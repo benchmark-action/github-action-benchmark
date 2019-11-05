@@ -5,9 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - run: npm install
+    - run: npm run build
     - name: Hello world action step
       id: hello
-      uses: actions/hello-world-javascript-action@master
+      uses: ./
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
