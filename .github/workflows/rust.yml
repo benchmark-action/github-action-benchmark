@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    name: Run Rust benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: npm run build
+      - run: rustup update nightly && rustup default nightly
+      - name: Run benchmark
+        run: cd examples/rust && cargo +nightly bench | tee output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          tool: 'cargo'
+          output-file-path: examples/rust/output.txt
