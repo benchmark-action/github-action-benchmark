@@ -24,3 +24,5 @@ jobs:
         with:
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
+      - name: Push benchmark result
+        run: git push 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages

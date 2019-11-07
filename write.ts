@@ -38,9 +38,6 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
     await git('switch', ghPagesBranch);
     try {
-        // Remote may be updated after checkout. Ensure to be able to push
-        await git('pull', '--rebase', 'origin', ghPagesBranch);
-
         await io.mkdirP(benchmarkDataDirPath);
 
         const data = await loadDataJson(jsonPath);
@@ -54,10 +51,17 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         // TODO: Write default index.html if not found
 
-        await git('commit', '-m', `add ${tool} benchmark result for ${bench.commit}`);
-
-        await git('push', 'origin', ghPagesBranch);
+        await git(
+            '-c',
+            'user.name=github-action-benchmark',
+            '-c',
+            'user.email=github@users.noreply.github.com',
+            'commit',
+            '-m',
+            `add ${tool} benchmark result for ${bench.commit}`,
+        );
     } finally {
-        await git('switch', '-');
+        // `git switch` does not work for backing to detached head
+        await git('checkout', '-');
     }
 }
