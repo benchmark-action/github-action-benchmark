@@ -50,8 +50,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     switch (tool) {
         case 'cargo':
             benches = extractCargoResult(output);
+            break;
         default:
-            throw new Error(`FATAL: Unexpected tool: ${tool}`);
+            throw new Error(`FATAL: Unexpected tool: '${tool}'`);
     }
 
     if (benches.length === 0) {

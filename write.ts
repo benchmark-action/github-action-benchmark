@@ -36,7 +36,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
     const jsonPath = path.join(benchmarkDataDirPath, 'data.json');
 
-    await git('checkout', ghPagesBranch);
+    await git('switch', ghPagesBranch);
     try {
         // Remote may be updated after checkout. Ensure to be able to push
         await git('pull', '--rebase', 'origin', ghPagesBranch);
@@ -58,6 +58,6 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         await git('push', 'origin', ghPagesBranch);
     } finally {
-        await git('checkout', '-');
+        await git('switch', '-');
     }
 }
