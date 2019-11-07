@@ -17,6 +17,10 @@
   },
   "files": [
     "index.ts",
+    "config.ts",
+    "extract.ts",
+    "git.ts",
+    "write.ts",
     "octokit_graphql.d.ts"
   ]
 }
