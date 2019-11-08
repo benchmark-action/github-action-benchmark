@@ -22,6 +22,7 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/rhysd/github-action-benchmark/commit/ce98bc6860729bc6f54da88577acef573816227f"
         },
         "date": 1573198480535,
+        "tool": "cargo",
         "benches": [
           {
             "name": "bench_fib_10",
