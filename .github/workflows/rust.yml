@@ -22,6 +22,7 @@ jobs:
       - name: Store benchmark result
         uses: ./
         with:
+          name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
       - name: Push benchmark result

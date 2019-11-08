@@ -6,7 +6,7 @@ import { Config } from './config';
 export interface BenchmarkResult {
     name: string;
     value: number;
-    diff?: number;
+    range?: number;
     unit: string;
 }
 
@@ -30,12 +30,12 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 
         const name = m[1];
         const value = parseInt(m[2].replace(reComma, ''), 10);
-        const diff = parseInt(m[3].replace(reComma, ''), 10);
+        const range = parseInt(m[3].replace(reComma, ''), 10);
 
         ret.push({
             name,
             value,
-            diff,
+            range,
             unit: 'ns/iter',
         });
     }
@@ -61,6 +61,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     }
 
     core.debug(`GitHub payload: ${github.context.payload}`);
+    console.log(github.context.payload);
 
     return {
         commit: github.context.payload.after,

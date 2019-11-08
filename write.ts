@@ -9,45 +9,53 @@ import { Config } from './config';
 type BenchmarkEntries = { [name: string]: Benchmark[] };
 interface DataJson {
     lastUpdate: number;
-    benches: BenchmarkEntries;
+    entries: BenchmarkEntries;
 }
 
-async function loadDataJson(jsonPath: string): Promise<DataJson> {
+const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
+
+async function loadDataJson(dataPath: string): Promise<DataJson> {
     try {
-        const json = await fs.readFile(jsonPath, 'utf8');
+        const script = await fs.readFile(dataPath, 'utf8');
+        const json = script.slice(SCRIPT_PREFIX.length);
         return JSON.parse(json);
     } catch (err) {
         core.debug(`Could not load data.json. Using empty default: ${err}`);
         return {
             lastUpdate: 0,
-            benches: {},
+            entries: {},
         };
     }
 }
 
-function addBenchmark(benches: BenchmarkEntries, name: string, bench: Benchmark) {
-    if (benches[name] === undefined) {
-        benches[name] = [];
+async function storeDataJson(dataPath: string, data: DataJson) {
+    const script = SCRIPT_PREFIX + JSON.stringify(data, null, 2);
+    await fs.writeFile(dataPath, script, 'utf8');
+}
+
+function addBenchmark(entries: BenchmarkEntries, name: string, bench: Benchmark) {
+    if (entries[name] === undefined) {
+        entries[name] = [];
     }
-    benches[name].push(bench);
+    entries[name].push(bench);
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
-    const jsonPath = path.join(benchmarkDataDirPath, 'data.json');
+    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
 
     await git('switch', ghPagesBranch);
     try {
         await io.mkdirP(benchmarkDataDirPath);
 
-        const data = await loadDataJson(jsonPath);
+        const data = await loadDataJson(dataPath);
         data.lastUpdate = Date.now();
 
-        addBenchmark(data.benches, name, bench);
+        addBenchmark(data.entries, name, bench);
 
-        await fs.writeFile(jsonPath, JSON.stringify(data, null, 2), 'utf8');
+        await storeDataJson(dataPath, data);
 
-        await git('add', jsonPath);
+        await git('add', dataPath);
 
         // TODO: Write default index.html if not found
 
