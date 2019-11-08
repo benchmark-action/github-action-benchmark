@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573197737724,
+  "lastUpdate": 1573197837909,
   "entries": {
     "Benchmark": [
       {
@@ -54,6 +54,24 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32588,
             "range": 4449,
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": "30e72ec1f64df9667c05b38e62558642b49672fc",
+        "date": 1573197837891,
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 231,
+            "range": 58,
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 30210,
+            "range": 5346,
             "unit": "ns/iter"
           }
         ]
