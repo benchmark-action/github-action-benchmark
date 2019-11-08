@@ -1,5 +1,5 @@
 {
-  "lastUpdate": 1573182433898,
+  "lastUpdate": 1573182926748,
   "benches": {
     "Benchmark": [
       {
@@ -16,6 +16,24 @@
             "name": "bench_fib_20",
             "value": 31929,
             "diff": 6710,
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": "65732079f25b1a26e572428b22533bf02de277fd",
+        "date": 1573182926730,
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 247,
+            "diff": 20,
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32092,
+            "diff": 4013,
             "unit": "ns/iter"
           }
         ]
