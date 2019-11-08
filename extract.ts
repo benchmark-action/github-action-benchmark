@@ -30,6 +30,7 @@ export interface Benchmark {
         url: string;
     };
     date: number;
+    tool: string;
     benches: BenchmarkResult[];
 }
 
@@ -83,6 +84,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     return {
         commit: github.context.payload.head_commit,
         date: Date.now(),
+        tool,
         benches,
     };
 }
