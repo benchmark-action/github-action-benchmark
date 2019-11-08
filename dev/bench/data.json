@@ -1,57 +1,21 @@
-{
-  "lastUpdate": 1573183210463,
+window.BENCHMARK_DATA = {
+  "lastUpdate": 1573185546681,
   "benches": {
     "Benchmark": [
       {
-        "commit": "074bf6089566674b10f31535c3d4fe35250ee444",
-        "date": 1573182433883,
+        "commit": "121e9d70471f21659489e8e708d02aaf20b47126",
+        "date": 1573185546662,
         "benches": [
           {
             "name": "bench_fib_10",
             "value": 240,
-            "diff": 30,
+            "range": 23,
             "unit": "ns/iter"
           },
           {
             "name": "bench_fib_20",
-            "value": 31929,
-            "diff": 6710,
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": "65732079f25b1a26e572428b22533bf02de277fd",
-        "date": 1573182926730,
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 247,
-            "diff": 20,
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 32092,
-            "diff": 4013,
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": "51790148c26761876d64527ec9a4b3c950d5d4ad",
-        "date": 1573183210448,
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 210,
-            "diff": 30,
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 27949,
-            "diff": 3557,
+            "value": 31705,
+            "range": 4390,
             "unit": "ns/iter"
           }
         ]
