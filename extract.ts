@@ -11,7 +11,24 @@ export interface BenchmarkResult {
 }
 
 export interface Benchmark {
-    commit: string;
+    commit: {
+        author: {
+            email: string;
+            name: string;
+            username: string;
+        };
+        committer: {
+            email: string;
+            name: string;
+            username: string;
+        };
+        distinct: boolean;
+        id: string;
+        message: string;
+        timestamp: string;
+        tree_id: string;
+        url: string;
+    };
     date: number;
     benches: BenchmarkResult[];
 }
@@ -64,7 +81,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     console.log(github.context.payload);
 
     return {
-        commit: github.context.payload.after,
+        commit: github.context.payload.head_commit,
         date: Date.now(),
         benches,
     };
