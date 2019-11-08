@@ -79,7 +79,6 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     }
 
     core.debug(`GitHub payload: ${github.context.payload}`);
-    console.log(github.context.payload);
 
     return {
         commit: github.context.payload.head_commit,

@@ -5,6 +5,7 @@ import * as core from '@actions/core';
 import git from './git';
 import { Benchmark } from './extract';
 import { Config } from './config';
+import { DEFAULT_INDEX_HTML } from './default_index_html';
 
 type BenchmarkEntries = { [name: string]: Benchmark[] };
 interface DataJson {
@@ -40,6 +41,25 @@ function addBenchmark(entries: BenchmarkEntries, name: string, bench: Benchmark)
     entries[name].push(bench);
 }
 
+async function addIndexHtmlIfNeeded(dir: string) {
+    console.log('hello', dir);
+    const indexHtml = path.join(dir, 'index.html');
+    try {
+        await fs.stat(indexHtml);
+        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtml}`);
+        console.log('skipped!', dir);
+        return;
+    } catch (_) {
+        // Continue
+    }
+
+    console.log('will create!', dir);
+    await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
+    await git('add', indexHtml);
+    core.debug(`Created default index.html at ${indexHtml}`);
+    console.log('did create!', dir);
+}
+
 export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
@@ -57,7 +77,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         await git('add', dataPath);
 
-        // TODO: Write default index.html if not found
+        await addIndexHtmlIfNeeded(benchmarkDataDirPath);
 
         await git(
             '-c',
@@ -66,7 +86,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
             'user.email=github@users.noreply.github.com',
             'commit',
             '-m',
-            `add ${tool} benchmark result for ${bench.commit}`,
+            `add ${name} (${tool}) benchmark result for ${bench.commit}`,
         );
     } finally {
         // `git switch` does not work for backing to detached head
