@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573193518803,
+  "lastUpdate": 1573197737724,
   "entries": {
     "Benchmark": [
       {
@@ -34,6 +34,26 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33714,
             "range": 1861,
+            "unit": "ns/iter"
+          }
+        ]
+      }
+    ],
+    "Rust Benchmark": [
+      {
+        "commit": "44bc901d0637c03f07cbe0c5ce2700ff5bf87bf5",
+        "date": 1573197737707,
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 249,
+            "range": 15,
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32588,
+            "range": 4449,
             "unit": "ns/iter"
           }
         ]
