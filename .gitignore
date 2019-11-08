@@ -1,5 +1,0 @@
-/node_modules
-/*.js
-/*.js.map
-/examples/rust/Cargo.lock
-/examples/rust/target
