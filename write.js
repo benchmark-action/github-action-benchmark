@@ -16,6 +16,7 @@ const io = __importStar(require("@actions/io"));
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
 const git_1 = __importDefault(require("./git"));
+const default_index_html_1 = require("./default_index_html");
 const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
 async function loadDataJson(dataPath) {
     try {
@@ -46,9 +47,6 @@ function addBenchmark(entries, name, bench) {
     }
     entries[name].push(bench);
 }
-function readDefaultIndexHtml() {
-    return fs_1.promises.readFile('index.html', 'utf8');
-}
 async function addIndexHtmlIfNeeded(dir) {
     const indexHtml = path.join(dir, 'index.html');
     try {
@@ -59,7 +57,7 @@ async function addIndexHtmlIfNeeded(dir) {
     catch (_) {
         // Continue
     }
-    await fs_1.promises.writeFile(indexHtml, await readDefaultIndexHtml(), 'utf8');
+    await fs_1.promises.writeFile(indexHtml, default_index_html_1.DEFAULT_INDEX_HTML, 'utf8');
     await git_1.default('add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }
