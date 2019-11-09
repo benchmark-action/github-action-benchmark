@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import * as path from 'path';
 import * as io from '@actions/io';
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 import git from './git';
 import { Benchmark } from './extract';
 import { Config } from './config';
@@ -10,6 +11,7 @@ import { DEFAULT_INDEX_HTML } from './default_index_html';
 type BenchmarkEntries = { [name: string]: Benchmark[] };
 interface DataJson {
     lastUpdate: number;
+    repoUrl: string;
     entries: BenchmarkEntries;
 }
 
@@ -24,6 +26,7 @@ async function loadDataJson(dataPath: string): Promise<DataJson> {
         core.debug(`Could not load data.json. Using empty default: ${err}`);
         return {
             lastUpdate: 0,
+            repoUrl: '',
             entries: {},
         };
     }
@@ -70,6 +73,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         const data = await loadDataJson(dataPath);
         data.lastUpdate = Date.now();
+        data.repoUrl = github.context.payload.repository?.html_url ?? '';
 
         addBenchmark(data.entries, name, bench);
 
