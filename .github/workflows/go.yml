@@ -1,5 +1,8 @@
 name: Go Example
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   benchmark:

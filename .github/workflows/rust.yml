@@ -1,5 +1,8 @@
 name: Rust Example
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   benchmark:
