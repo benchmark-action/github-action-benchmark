@@ -37,6 +37,8 @@ export interface Benchmark {
 function extractCargoResult(output: string): BenchmarkResult[] {
     const lines = output.split('\n');
     const ret = [];
+    // Example:
+    //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
     const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
     const reComma = /,/g;
 
@@ -61,6 +63,29 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
+function extractGoResult(output: string): BenchmarkResult[] {
+    const lines = output.split('\n');
+    const ret = [];
+    // Example:
+    //   BenchmarkFib20-8           30000             41653 ns/op
+    const reExtract = /^(Benchmark\w+)\S*\s+\d+\s+(\d+)\s+(.+)$/;
+
+    for (const line of lines) {
+        const m = line.match(reExtract);
+        if (m === null) {
+            continue;
+        }
+
+        const name = m[1];
+        const value = parseInt(m[2], 10);
+        const unit = m[3];
+
+        ret.push({ name, value, unit });
+    }
+
+    return ret;
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool } = config;
@@ -69,6 +94,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     switch (tool) {
         case 'cargo':
             benches = extractCargoResult(output);
+            break;
+        case 'go':
+            benches = extractGoResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);

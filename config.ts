@@ -1,21 +1,21 @@
 import * as core from '@actions/core';
-import {promises as fs, Stats} from 'fs';
+import { promises as fs, Stats } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
-export type ToolType = 'cargo';
+export type ToolType = 'cargo' | 'go';
 export interface Config {
-    name: string,
+    name: string;
     tool: ToolType;
     outputFilePath: string;
     ghPagesBranch: string;
     benchmarkDataDirPath: string;
 }
 
-const VALID_TOOLS = ['cargo'];
+const VALID_TOOLS: ToolType[] = ['cargo', 'go'];
 
 function validateToolType(tool: string): asserts tool is ToolType {
-    if (VALID_TOOLS.includes(tool)) {
+    if ((VALID_TOOLS as string[]).includes(tool)) {
         return;
     }
     throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
@@ -36,7 +36,7 @@ async function statPath(p: string): Promise<[Stats, string]> {
     p = resolvePath(p);
     try {
         return [await fs.stat(p), p];
-    } catch(e) {
+    } catch (e) {
         throw new Error(`Cannot stat '${p}': ${e}`);
     }
 }
@@ -63,7 +63,7 @@ function validateGhPagesBranch(branch: string) {
 function validateBenchmarkDataDirPath(dirPath: string): string {
     try {
         return resolvePath(dirPath);
-    } catch(e) {
+    } catch (e) {
         throw new Error(`Invalid value for 'benchmark-data-dir-path': ${e}`);
     }
 }
