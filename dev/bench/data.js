@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573310302838,
+  "lastUpdate": 1573310325846,
   "entries": {
     "Rust Benchmark": [
       {
@@ -358,6 +358,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33438,
             "range": 6750,
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "88c2dfffe2d198a4a898c29ee47dd068a317907d",
+          "message": "add graph colors for go and benchmarkjs",
+          "timestamp": "2019-11-09T23:33:54+09:00",
+          "tree_id": "08bd29deb22151ae19edf4cc64038b5ea606b49b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/88c2dfffe2d198a4a898c29ee47dd068a317907d"
+        },
+        "date": 1573310325831,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 249,
+            "range": 22,
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 33308,
+            "range": 4101,
             "unit": "ns/iter"
           }
         ]
