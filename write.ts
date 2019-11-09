@@ -6,6 +6,7 @@ import * as github from '@actions/github';
 import git from './git';
 import { Benchmark } from './extract';
 import { Config } from './config';
+import { DEFAULT_INDEX_HTML } from './default_index_html';
 
 type BenchmarkEntries = { [name: string]: Benchmark[] };
 interface DataJson {
@@ -47,10 +48,6 @@ function addBenchmark(entries: BenchmarkEntries, name: string, bench: Benchmark)
     entries[name].push(bench);
 }
 
-function readDefaultIndexHtml(): Promise<string> {
-    return fs.readFile('index.html', 'utf8');
-}
-
 async function addIndexHtmlIfNeeded(dir: string) {
     const indexHtml = path.join(dir, 'index.html');
     try {
@@ -61,7 +58,7 @@ async function addIndexHtmlIfNeeded(dir: string) {
         // Continue
     }
 
-    await fs.writeFile(indexHtml, await readDefaultIndexHtml(), 'utf8');
+    await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
     await git('add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }

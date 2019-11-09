@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -237,3 +237,4 @@
     </script>
   </body>
 </html>
+`;
