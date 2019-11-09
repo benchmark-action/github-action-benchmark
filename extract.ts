@@ -91,7 +91,7 @@ function extractBenchmarkJsResult(output: string): BenchmarkResult[] {
     const ret = [];
     // Example:
     //   fib(20) x 11,465 ops/sec ±1.12% (91 runs sampled)
-    const reExtract = /^ x ([0-9,]+)\s+(\S+)\s+(?:±|\+-)([^%]+%) \(\d+ runs sampled\)$/; // Note: Extract parts after benchmark name
+    const reExtract = /^ x ([0-9,]+)\s+(\S+)\s+((?:±|\+-)[^%]+%) \(\d+ runs sampled\)$/; // Note: Extract parts after benchmark name
     const reComma = /,/g;
 
     for (const line of lines) {
