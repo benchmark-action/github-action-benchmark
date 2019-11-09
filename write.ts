@@ -90,7 +90,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
             'user.email=github@users.noreply.github.com',
             'commit',
             '-m',
-            `add ${name} (${tool}) benchmark result for ${bench.commit}`,
+            `add ${name} (${tool}) benchmark result for ${bench.commit.id}`,
         );
     } finally {
         // `git switch` does not work for backing to detached head
