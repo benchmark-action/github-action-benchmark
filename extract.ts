@@ -6,7 +6,7 @@ import { Config } from './config';
 export interface BenchmarkResult {
     name: string;
     value: number;
-    range?: number;
+    range?: string;
     unit: string;
 }
 
@@ -39,7 +39,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
-    const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
+    const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \((\+\/- [0-9,]+)\)$/;
     const reComma = /,/g;
 
     for (const line of lines) {
@@ -50,7 +50,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 
         const name = m[1];
         const value = parseInt(m[2].replace(reComma, ''), 10);
-        const range = parseInt(m[3].replace(reComma, ''), 10);
+        const range = m[3];
 
         ret.push({
             name,
@@ -86,10 +86,41 @@ function extractGoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
+function extractBenchmarkJsResult(output: string): BenchmarkResult[] {
+    const lines = output.split('\n');
+    const ret = [];
+    // Example:
+    //   fib(20) x 11,465 ops/sec ±1.12% (91 runs sampled)
+    const reExtract = /^ x ([0-9,]+)\s+(\S+)\s+(?:±|\+-)([^%]+%) \(\d+ runs sampled\)$/; // Note: Extract parts after benchmark name
+    const reComma = /,/g;
+
+    for (const line of lines) {
+        const idx = line.lastIndexOf(' x ');
+        if (idx === -1) {
+            continue;
+        }
+        const name = line.slice(0, idx);
+        const rest = line.slice(idx);
+
+        const m = rest.match(reExtract);
+        if (m === null) {
+            continue;
+        }
+
+        const value = parseInt(m[1].replace(reComma, ''), 10);
+        const unit = m[2];
+        const range = m[3];
+
+        ret.push({ name, value, range, unit });
+    }
+
+    return ret;
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool } = config;
-    let benches;
+    let benches: BenchmarkResult[];
 
     switch (tool) {
         case 'cargo':
@@ -97,6 +128,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'go':
             benches = extractGoResult(output);
+            break;
+        case 'benchmarkjs':
+            benches = extractBenchmarkJsResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
