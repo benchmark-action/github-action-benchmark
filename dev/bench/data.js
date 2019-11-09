@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573306029476,
+  "lastUpdate": 1573307117942,
   "entries": {
     "Rust Benchmark": [
       {
@@ -250,6 +250,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32969,
             "range": 12589,
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a872c7d3d170ed06bf52d45afe5ffe5494372cc4",
+          "message": "add repository link and improve button styles in default index.html",
+          "timestamp": "2019-11-09T22:42:42+09:00",
+          "tree_id": "7f28b874009383dabef8a89da610801a35720e5f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a872c7d3d170ed06bf52d45afe5ffe5494372cc4"
+        },
+        "date": 1573307117927,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 260,
+            "range": 47,
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 37174,
+            "range": 7527,
             "unit": "ns/iter"
           }
         ]
