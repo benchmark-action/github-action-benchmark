@@ -1,13 +1,13 @@
-name: Rust Example
+name: Go Example
 on: [push]
 
 jobs:
   benchmark:
-    name: Run Rust benchmark example
+    name: Run Go benchmark example
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-go@v1
       - uses: actions/cache@v1
         with:
           path: node_modules
@@ -16,14 +16,13 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm install
       - run: npm run build
-      - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
-        run: cd examples/rust && cargo +nightly bench | tee output.txt
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
-          name: Rust Benchmark
-          tool: 'cargo'
-          output-file-path: examples/rust/output.txt
+          name: Go Benchmark
+          tool: 'go'
+          output-file-path: examples/go/output.txt
       - name: Push benchmark result
         run: git push 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
