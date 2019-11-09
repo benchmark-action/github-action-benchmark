@@ -1,0 +1,75 @@
+name: CI
+on: [push]
+
+jobs:
+  rust:
+    name: Run Rust benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - run: rustup toolchain update nightly && rustup default nightly
+      - name: Run benchmark
+        run: cd examples/rust && cargo +nightly bench | tee output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Rust Benchmark
+          tool: 'cargo'
+          output-file-path: examples/rust/output.txt
+      - run: echo 'TODO Verify result here!'
+  go:
+    name: Run Go benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - uses: actions/setup-go@v1
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - name: Run benchmark
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Go Benchmark
+          tool: 'go'
+          output-file-path: examples/go/output.txt
+      - run: echo 'TODO Verify result here!'
+  benchmarkjs:
+    name: Run JavaScript benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Benchmark.js Benchmark
+          tool: 'benchmarkjs'
+          output-file-path: examples/benchmarkjs/output.txt
+      - run: echo 'TODO Verify result here!'
