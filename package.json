@@ -2,7 +2,7 @@
   "name": "github-action-benchmark",
   "version": "0.0.0",
   "private": true,
-  "description": "GitHub action for continuous benchmaking to keep performance",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p .",
