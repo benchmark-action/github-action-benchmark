@@ -18,6 +18,8 @@ jobs:
       - run: npm run build
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+      - name: Fetch gh-pages for avoiding conflict
+        run: git fetch 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
       - name: Store benchmark result
         uses: ./
         with:
