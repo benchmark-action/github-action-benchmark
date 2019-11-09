@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573315242230,
+  "lastUpdate": 1573316822605,
   "entries": {
     "Rust Benchmark": [
       {
@@ -960,6 +960,42 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 8564,
             "range": "±1.10%",
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a970567c359fd4d8d3896bf295a2962445930f46",
+          "message": "wip",
+          "timestamp": "2019-11-10T01:26:08+09:00",
+          "tree_id": "2a70e17076f980854ce9bc84781f80628db41528",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a970567c359fd4d8d3896bf295a2962445930f46"
+        },
+        "date": 1573316822590,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 959774,
+            "range": "±0.55%",
+            "unit": "ops/sec"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8167,
+            "range": "±0.41%",
             "unit": "ops/sec"
           }
         ]
