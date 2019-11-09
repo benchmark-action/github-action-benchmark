@@ -21,9 +21,11 @@ async function loadDataJson(dataPath: string): Promise<DataJson> {
     try {
         const script = await fs.readFile(dataPath, 'utf8');
         const json = script.slice(SCRIPT_PREFIX.length);
-        return JSON.parse(json);
+        const parsed = JSON.parse(json);
+        core.debug(`Loaded data.js at ${dataPath}`);
+        return parsed;
     } catch (err) {
-        core.debug(`Could not load data.json. Using empty default: ${err}`);
+        console.log(`Could not find data.js at ${dataPath}. Using empty default: ${err}`);
         return {
             lastUpdate: 0,
             repoUrl: '',
@@ -35,32 +37,30 @@ async function loadDataJson(dataPath: string): Promise<DataJson> {
 async function storeDataJson(dataPath: string, data: DataJson) {
     const script = SCRIPT_PREFIX + JSON.stringify(data, null, 2);
     await fs.writeFile(dataPath, script, 'utf8');
+    core.debug(`Overwrote ${dataPath} for adding new data`);
 }
 
 function addBenchmark(entries: BenchmarkEntries, name: string, bench: Benchmark) {
     if (entries[name] === undefined) {
         entries[name] = [];
+        core.debug(`No entry found for benchmark '${name}'. Created.`);
     }
     entries[name].push(bench);
 }
 
 async function addIndexHtmlIfNeeded(dir: string) {
-    console.log('hello', dir);
     const indexHtml = path.join(dir, 'index.html');
     try {
         await fs.stat(indexHtml);
         core.debug(`Skipped to create default index.html since it is already existing: ${indexHtml}`);
-        console.log('skipped!', dir);
         return;
     } catch (_) {
         // Continue
     }
 
-    console.log('will create!', dir);
     await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
     await git('add', indexHtml);
-    core.debug(`Created default index.html at ${indexHtml}`);
-    console.log('did create!', dir);
+    console.log('Created default index.html at', indexHtml);
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
