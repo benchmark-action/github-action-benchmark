@@ -12,6 +12,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
       }
       body {
         color: #4a4a4a;
+        border: 8px;
         font-size: 1em;
         font-weight: 400;
       }
@@ -24,6 +25,27 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         width: 100%;
         display: flex;
         flex-direction: column;
+      }
+      a {
+        color: #3273dc;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #000;
+      }
+      button {
+        color: #fff;
+        background-color: #3298dc;
+        border-color: transparent;
+        cursor: pointer;
+        text-align: center;
+      }
+      button:hover {
+        background-color: #2793da;
+      }
+      footer {
+        margin-top: 16px;
       }
       .header-label {
         margin-right: 4px;
@@ -55,6 +77,10 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         <strong class="header-label">Last Update:</strong>
         <span id="last-update"></span>
       </div>
+      <div class="header-item">
+        <strong class="header-label">Repository:</strong>
+        <a id="repository-link" rel="noopener"></a>
+      </div>
     </header>
     <main id="main"></main>
     <footer id="footer"></footer>
@@ -71,6 +97,9 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
         const data = window.BENCHMARK_DATA;
         document.getElementById('last-update').textContent = new Date(data.lastUpdate).toString();
+        const repoLink = document.getElementById('repository-link');
+        repoLink.href = data.repoUrl;
+        repoLink.textContent = data.repoUrl;
 
         function collectBenchesPerTestCase(entries) {
           const map = new Map();
