@@ -13,7 +13,7 @@ jobs:
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
-      - name: Pull gh-pages for avoiding conflict
+      - name: Fetch gh-pages for avoiding conflict
         run: git fetch 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1

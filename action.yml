@@ -18,7 +18,7 @@ inputs:
     required: true
     default: 'gh-pages'
   benchmark-data-dir-path:
-    description: 'Path to directory which contains JSON files benchmarks'
+    description: 'Path to directory which contains benchmark files on GitHub pages branch'
     required: true
     default: 'dev/bench'
 
