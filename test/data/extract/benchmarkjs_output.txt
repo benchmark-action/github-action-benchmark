@@ -1,0 +1,2 @@
+fib(10) x 1,431,759 ops/sec ±0.74% (93 runs sampled)
+fib(20) x 12,146 ops/sec ±0.32% (96 runs sampled)

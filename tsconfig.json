@@ -20,6 +20,7 @@
     "config.ts",
     "test/config.ts",
     "extract.ts",
+    "test/extract.ts",
     "git.ts",
     "write.ts",
     "octokit_graphql.d.ts"
