@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573387660190,
+  "lastUpdate": 1573387686471,
   "entries": {
     "Rust Benchmark": [
       {
@@ -1760,6 +1760,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 56639,
+            "unit": "ns/op"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "9c4924a5070f8d103cbd7eadfd88e29226b762f2",
+          "message": "fix it() is missing in test for DEFAULT_INDEX_HTML",
+          "timestamp": "2019-11-10T21:06:56+09:00",
+          "tree_id": "6fd417437879d2ed99434be541c08fa3aac906d7",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/9c4924a5070f8d103cbd7eadfd88e29226b762f2"
+        },
+        "date": 1573387686450,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 463,
+            "unit": "ns/op"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 57037,
             "unit": "ns/op"
           }
         ]
