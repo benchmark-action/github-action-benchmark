@@ -37,6 +37,8 @@ Mouse over on data point shows a tooltip. It includes
 - Date and committer
 - Benchmark value
 
+Clicking data point in chart opens the commit page on GitHub repository.
+
 ![tooltip](https://github.com/rhysd/ss/blob/master/github-action-benchmark/tooltip.png?raw=true)
 
 At bottom of the page, download button is available for downloading benchmark results as JSON file.
@@ -174,7 +176,7 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 - Allow user defined benchmark tool
   - Accept benchmark result as an array of benchmark results as JSON. User can generate JSON file
     to integrate any benchmarking tool to this action
-- Allow to upload results to metrics service such as [mackerrel](https://mackerel.io/) instead of
+- Allow to upload results to metrics service such as [mackerel](https://mackerel.io/) instead of
   updating GitHub pages
 - Support pull requests. Instead of updating GitHub pages, add comment to the pull request to explain
   benchmark result.
