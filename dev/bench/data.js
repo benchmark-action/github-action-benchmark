@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573381014761,
+  "lastUpdate": 1573381957606,
   "entries": {
     "Rust Benchmark": [
       {
@@ -1410,6 +1410,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 53917,
+            "unit": "ns/op"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "ed511c607d5039ddedfc61128944abda9a5116bb",
+          "message": "add workflow to run unit tests",
+          "timestamp": "2019-11-10T19:15:41+09:00",
+          "tree_id": "b0abe5dbca1f50a5b1870c7e5436481dc9cbda88",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/ed511c607d5039ddedfc61128944abda9a5116bb"
+        },
+        "date": 1573381957535,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 479,
+            "unit": "ns/op"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 59605,
             "unit": "ns/op"
           }
         ]
