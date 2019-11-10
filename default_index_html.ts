@@ -165,7 +165,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                 title: items => {
                   const {xLabel, index} = items[0];
                   const data = dataset[index];
-                  return xLabel + '\n\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' commited by @' + data.commit.committer.username + '\n';
+                  return xLabel + '\n\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
                 },
                 label: item => {
                   let label = item.value;

@@ -15,12 +15,12 @@ if [ ! -d .git ]; then
 fi
 
 if ! git diff --quiet; then
-    echo 'Working tree is dirty! Please ensure all changes are commited and working tree is clean' >&2
+    echo 'Working tree is dirty! Please ensure all changes are committed and working tree is clean' >&2
     exit 1
 fi
 
 if ! git diff --cached --quiet; then
-    echo 'Git index is dirty! Please ensure all changes are commited and Git index is clean' >&2
+    echo 'Git index is dirty! Please ensure all changes are committed and Git index is clean' >&2
     exit 1
 fi
 
