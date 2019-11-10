@@ -3,3 +3,5 @@
 /*.js.map
 /examples/rust/Cargo.lock
 /examples/rust/target
+/test/*.js
+/test/*.js.map

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,14 @@
     "@actions/core": "^1.2.0",
     "@actions/exec": "^1.0.1",
     "@actions/github": "^1.1.0",
-    "@actions/io": "^1.0.1"
+    "@actions/io": "^1.0.1",
+    "@types/node": "^12.12.7"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/mock-require": "^2.0.0",
+    "mocha": "^6.2.2",
+    "mock-require": "^3.0.3",
     "typescript": "^3.7.0"
   }
 }

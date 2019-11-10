@@ -18,6 +18,7 @@
   "files": [
     "index.ts",
     "config.ts",
+    "test/config.ts",
     "extract.ts",
     "git.ts",
     "write.ts",
