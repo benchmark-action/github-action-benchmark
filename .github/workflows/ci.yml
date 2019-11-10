@@ -73,3 +73,18 @@ jobs:
           tool: 'benchmarkjs'
           output-file-path: examples/benchmarkjs/output.txt
       - run: echo 'TODO Verify result here!'
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - run: npm test
