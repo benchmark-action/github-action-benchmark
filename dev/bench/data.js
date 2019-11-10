@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573383736786,
+  "lastUpdate": 1573383766903,
   "entries": {
     "Rust Benchmark": [
       {
@@ -898,6 +898,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 36621,
             "range": "+/- 9,505",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d9890ce5337d5f7113e4d8e6faa5df4cc8b9ea4e",
+          "message": "add tests for extract.ts",
+          "timestamp": "2019-11-10T19:58:26+09:00",
+          "tree_id": "0b78d212665870292b6da7a321a92c73949cfb94",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d9890ce5337d5f7113e4d8e6faa5df4cc8b9ea4e"
+        },
+        "date": 1573383766887,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 259,
+            "range": "+/- 16",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 33946,
+            "range": "+/- 2,798",
             "unit": "ns/iter"
           }
         ]
