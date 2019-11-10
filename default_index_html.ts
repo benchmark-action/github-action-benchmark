@@ -87,7 +87,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
     <script src="data.js"></script>
-    <script>
+    <script id="main-script">
       'use strict';
       (function() {
         // Colors from https://github.com/github/linguist/blob/master/lib/linguist/languages.yml

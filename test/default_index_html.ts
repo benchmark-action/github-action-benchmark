@@ -1,0 +1,16 @@
+import * as A from 'assert';
+import * as cheerio from 'cheerio';
+import { Parser as JsParser } from 'acorn';
+import { DEFAULT_INDEX_HTML } from '../default_index_html';
+
+describe('DEFAULT_INDEX_HTML', function() {
+    // Verify HTML syntax
+    const q = cheerio.load(DEFAULT_INDEX_HTML);
+    const s = q('#main-script');
+    A.ok(s);
+    const src = s.html();
+    A.ok(src);
+
+    // Verify JavaScript syntax. It raises an error if invalid
+    JsParser.parse(src as string);
+});

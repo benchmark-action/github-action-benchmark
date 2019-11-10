@@ -23,6 +23,8 @@
     "test/extract.ts",
     "git.ts",
     "write.ts",
+    "default_index_html.ts",
+    "test/default_index_html.ts",
     "octokit_graphql.d.ts"
   ]
 }
