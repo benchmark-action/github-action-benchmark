@@ -28,6 +28,21 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://rhysd.github.io/github-action-benchmark/dev/bench/
 
+![page screenshot](https://github.com/rhysd/ss/blob/master/github-action-benchmark/main.png?raw=true)
+
+Mouse over on data point shows a tooltip. It includes
+
+- Commit hash
+- Commit message
+- Date and committer
+- Benchmark value
+
+![tooltip](https://github.com/rhysd/ss/blob/master/github-action-benchmark/tooltip.png?raw=true)
+
+At bottom of the page, download button is available for downloading benchmark results as JSON file.
+
+![download button](https://github.com/rhysd/ss/blob/master/github-action-benchmark/download.png?raw=true)
+
 ## Why?
 
 Since performance is important. Writing benchmarks is a very popular and correct way to visualize
@@ -42,7 +57,7 @@ So I built a new tool on top of GitHub Action.
 
 This action takes a file which contains benchmark output and updates GitHub pages branch automatically.
 
-### Basic Usage
+### Basic usage
 
 At first, please ensure that your benchmark workflow runs only on your branches. Please avoid `pull_request`
 event otherwise anyone who creates a pull request on your repository can modify your GitHub pages branch.
@@ -116,7 +131,7 @@ Please read `README.md` files at each example directory.
 
 These examples are run in workflows of this repository as described in 'Examples' section above.
 
-### Action Inputs
+### Action inputs
 
 Input definitions are written in [action.yml](./action.yml).
 
@@ -136,7 +151,7 @@ branch and benchmark results are available at `https://you.github.io/repo-name/d
 If you're using `docs/` directory of `master` branch for GitHub pages, please set `gh-pages-branch` to
 `master` and `benchmark-data-dir-path` to directory under `docs` like `docs/dev/bench`.
 
-### Customizing Benchmarks Result Page
+### Customizing benchmarks result page
 
 This action creates the default `index.html` in the directory specified with `benchmark-data-dir-path`
 input. By default every benchmark test case has its own chart in the page. Charts are drawn with
@@ -154,10 +169,15 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 
 `master` branch of this repository is for development and does not work as action.
 
-## TODO
+## Future work
 
 - Allow user defined benchmark tool
-  - Accept benchmark result as an array of benchmark results as JSON. User can generate JSON file to integrate any benchmarking tool to this action
+  - Accept benchmark result as an array of benchmark results as JSON. User can generate JSON file
+    to integrate any benchmarking tool to this action
+- Allow to upload results to metrics service such as [mackerrel](https://mackerel.io/) instead of
+  updating GitHub pages
+- Support pull requests. Instead of updating GitHub pages, add comment to the pull request to explain
+  benchmark result.
 
 ## License
 
