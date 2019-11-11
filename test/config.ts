@@ -49,7 +49,7 @@ describe('configFromJobInput()', function() {
                 'gh-pages-branch': 'gh-pages',
                 'benchmark-data-dir-path': '.',
             },
-            expected: /^Name must not be empty$/,
+            expected: /^Error: Name must not be empty$/,
         },
         {
             what: 'wrong tool',
@@ -60,7 +60,7 @@ describe('configFromJobInput()', function() {
                 'gh-pages-branch': 'gh-pages',
                 'benchmark-data-dir-path': '.',
             },
-            expected: /^Invalid value 'foo' for 'tool' input/,
+            expected: /^Error: Invalid value 'foo' for 'tool' input/,
         },
         {
             what: 'output file does not exist',
@@ -71,7 +71,7 @@ describe('configFromJobInput()', function() {
                 'gh-pages-branch': 'gh-pages',
                 'benchmark-data-dir-path': '.',
             },
-            expected: /^Invalid value for 'output-file-path'/,
+            expected: /^Error: Invalid value for 'output-file-path'/,
         },
         {
             what: 'output file is actually directory',
@@ -93,7 +93,7 @@ describe('configFromJobInput()', function() {
                 'gh-pages-branch': '',
                 'benchmark-data-dir-path': '.',
             },
-            expected: /^Branch value must not be empty/,
+            expected: /^Error: Branch value must not be empty/,
         },
         // Cannot check 'benchmark-data-dir-path' invalidation because it throws an error only when
         // current working directory is not obtainable.
@@ -120,9 +120,7 @@ describe('configFromJobInput()', function() {
             if (test.expected === null) {
                 await A.doesNotReject(configFromJobInput);
             } else {
-                await A.rejects(configFromJobInput, {
-                    message: test.expected,
-                } as any);
+                await A.rejects(configFromJobInput, test.expected);
             }
         });
     }

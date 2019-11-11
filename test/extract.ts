@@ -100,9 +100,7 @@ describe('extractResult()', function() {
             tool: 'foo',
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
         };
-        await A.rejects(() => extractResult(config), {
-            message: /^FATAL: Unexpected tool: 'foo'$/,
-        } as any);
+        await A.rejects(() => extractResult(config), /^Error: FATAL: Unexpected tool: 'foo'$/);
     });
 
     it('raises an error when output file is not readable', async function() {
@@ -118,8 +116,6 @@ describe('extractResult()', function() {
             tool: 'cargo',
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
         };
-        await A.rejects(() => extractResult(config), {
-            message: /^No benchmark result was found in /,
-        } as any);
+        await A.rejects(() => extractResult(config), /^Error: No benchmark result was found in /);
     });
 });
