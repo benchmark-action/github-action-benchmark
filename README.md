@@ -63,18 +63,6 @@ This action takes a file which contains benchmark output and updates GitHub page
 
 ### Basic usage
 
-At first, please ensure that your benchmark workflow runs only on your branches. Please avoid `pull_request`
-event otherwise anyone who creates a pull request on your repository can modify your GitHub pages branch.
-
-e.g. Runs on only `master` branch
-
-```yaml
-on:
-  push:
-    branches:
-      - master
-```
-
 Run your benchmarks on your workflow and store the output to a file. `tee` command is useful to output
 results to both console and file.
 
@@ -154,6 +142,32 @@ branch and benchmark results are available at `https://you.github.io/repo-name/d
 
 If you're using `docs/` directory of `master` branch for GitHub pages, please set `gh-pages-branch` to
 `master` and `benchmark-data-dir-path` to directory under `docs` like `docs/dev/bench`.
+
+### Caveats
+
+Please ensure that your benchmark workflow runs only on your branches. Please avoid running it on
+pull requests. If branch were pushed to GitHub pages branch on pull request, anyone who creates a
+pull request on your repository could modify your GitHub pages branch.
+
+For this, you can specify branch which runs your benchmark workflow on `on:` section. Or set proper
+condition to `if:` section of step which pushes GitHub pages.
+
+e.g. Runs on only `master` branch
+
+```yaml
+on:
+  push:
+    branches:
+      - master
+```
+
+e.g. Push when not running for pull request
+
+```yaml
+- name: Push benchmark result
+  run: git push ...
+  if: github.event_name != 'pull_request'
+```
 
 ### Customizing benchmarks result page
 
