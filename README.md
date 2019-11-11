@@ -145,6 +145,8 @@ If you're using `docs/` directory of `master` branch for GitHub pages, please se
 
 ### Caveats
 
+#### Run only on your branches
+
 Please ensure that your benchmark workflow runs only on your branches. Please avoid running it on
 pull requests. If branch were pushed to GitHub pages branch on pull request, anyone who creates a
 pull request on your repository could modify your GitHub pages branch.
@@ -168,6 +170,15 @@ e.g. Push when not running for pull request
   run: git push ...
   if: github.event_name != 'pull_request'
 ```
+
+#### Stability of Virtual Environment
+
+As far as watching the benchmark results of examples in this repository, amplitude of the benchmarks
+is about +- 10~20%. If your benchmarks use some resources such as networks or file I/O, the amplitude
+might be bigger.
+
+If the amplitude is not acceptable, please prepare a stable environment to run benchmarks.
+GitHub action supports [self-hosted runners](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-self-hosted-runners).
 
 ### Customizing benchmarks result page
 
@@ -196,6 +207,8 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
   updating GitHub pages
 - Support pull requests. Instead of updating GitHub pages, add comment to the pull request to explain
   benchmark result.
+- Add an alert comment to commit page when the benchmark result of the commit is far worse than
+  previous one.
 
 ## License
 
