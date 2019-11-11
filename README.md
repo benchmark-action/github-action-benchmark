@@ -15,6 +15,8 @@ This action currently supports
 
 Multiple languages in the same repository is supported for polyglot projects.
 
+[Japanese Blog post](https://rhysd.hatenablog.com/entry/2019/11/11/131505)
+
 ## Examples
 
 Example projects for each languages are in [examples/](./examples) directory. Live example workflows
