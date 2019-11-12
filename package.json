@@ -7,9 +7,8 @@
   "scripts": {
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "eslint": "eslint '**/*.ts'",
-    "prettier": "prettier --check '**/*.ts'",
-    "lint": "npm-run-all -p eslint prettier",
+    "lint": "eslint '**/*.ts'",
+    "fix": "eslint --fix '**/*.ts'",
     "test": "mocha ./test"
   },
   "repository": {
@@ -46,6 +45,7 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-mocha": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-security": "^1.4.0",
     "husky": "^3.0.9",
     "mocha": "^6.2.2",
