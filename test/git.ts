@@ -1,4 +1,4 @@
-import * as A from 'assert';
+import { strict as A } from 'assert';
 import { deepStrictEqual as eq, notDeepStrictEqual as neq } from 'assert';
 import mock = require('mock-require');
 

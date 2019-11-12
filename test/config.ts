@@ -1,4 +1,4 @@
-import * as A from 'assert';
+import { strict as A } from 'assert';
 import * as path from 'path';
 import mock = require('mock-require');
 
@@ -135,8 +135,8 @@ describe('configFromJobInput()', function() {
         });
 
         const config = await configFromJobInput();
-        A.strictEqual(config.name, 'Benchmark');
-        A.strictEqual(config.tool, 'cargo');
+        A.equal(config.name, 'Benchmark');
+        A.equal(config.tool, 'cargo');
         A.ok(path.isAbsolute(config.outputFilePath), config.outputFilePath);
         A.ok(config.outputFilePath.endsWith('out.txt'), config.outputFilePath);
         A.ok(path.isAbsolute(config.benchmarkDataDirPath), config.benchmarkDataDirPath);

@@ -1,4 +1,4 @@
-import * as A from 'assert';
+import { strict as A } from 'assert';
 import * as cheerio from 'cheerio';
 import { Parser as JsParser } from 'acorn';
 import { DEFAULT_INDEX_HTML } from '../default_index_html';

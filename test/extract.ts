@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as A from 'assert';
+import { strict as A } from 'assert';
 import mock = require('mock-require');
 import { BenchmarkResult } from '../extract';
 
@@ -89,10 +89,10 @@ describe('extractResult()', function() {
             };
             const bench = await extractResult(config);
 
-            A.strictEqual(bench.commit, 'dummy commit hash');
+            A.equal(bench.commit, 'dummy commit hash');
             A.ok(bench.date <= Date.now(), bench.date.toString());
-            A.strictEqual(bench.tool, test.tool);
-            A.deepStrictEqual(bench.benches, test.expected);
+            A.equal(bench.tool, test.tool);
+            A.deepEqual(bench.benches, test.expected);
         });
     }
 
