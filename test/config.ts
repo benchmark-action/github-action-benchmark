@@ -4,7 +4,7 @@ import mock = require('mock-require');
 
 type Inputs = { [name: string]: string };
 
-let inputs: Inputs = {};
+const inputs: Inputs = {};
 function mockInputs(newInputs: Inputs) {
     Object.assign(inputs, newInputs);
 }

@@ -142,8 +142,12 @@ export async function extractResult(config: Config): Promise<Benchmark> {
 
     core.debug(`GitHub payload: ${github.context.payload}`);
 
+    /* eslint-disable @typescript-eslint/camelcase */
+    const commit = github.context.payload.head_commit;
+    /* eslint-enable @typescript-eslint/camelcase */
+
     return {
-        commit: github.context.payload.head_commit,
+        commit,
         date: Date.now(),
         tool,
         benches,

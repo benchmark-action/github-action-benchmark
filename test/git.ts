@@ -26,6 +26,7 @@ mock('@actions/core', {
 });
 
 const git = require('../git').default;
+const ok: (x: any) => asserts x = A.ok;
 
 describe('git()', function() {
     after(function() {
@@ -42,10 +43,10 @@ describe('git()', function() {
         const stdout = await git('log', '--oneline');
 
         eq(stdout, 'this is test');
-        neq(lastArgs, null);
-        eq(lastArgs![0], 'git');
-        eq(lastArgs![1], ['log', '--oneline']);
-        A.ok('listeners' in (lastArgs![2] as object));
+        ok(lastArgs);
+        eq(lastArgs[0], 'git');
+        eq(lastArgs[1], ['log', '--oneline']);
+        ok('listeners' in (lastArgs[2] as object));
     });
 
     it('raises an error when command returns non-zero exit code', async function() {

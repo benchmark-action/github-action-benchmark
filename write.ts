@@ -67,13 +67,17 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
 
+    /* eslint-disable @typescript-eslint/camelcase */
+    const htmlUrl = github.context.payload.repository?.html_url ?? '';
+    /* eslint-enable @typescript-eslint/camelcase */
+
     await git('switch', ghPagesBranch);
     try {
         await io.mkdirP(benchmarkDataDirPath);
 
         const data = await loadDataJson(dataPath);
         data.lastUpdate = Date.now();
-        data.repoUrl = github.context.payload.repository?.html_url ?? '';
+        data.repoUrl = htmlUrl;
 
         addBenchmark(data.entries, name, bench);
 

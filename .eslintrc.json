@@ -1,0 +1,47 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:security/recommended",
+        "prettier",
+        "prettier/@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "mocha",
+        "security"
+    ],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "mocha": true,
+        "node": true
+    },
+    "rules": {
+        "prefer-spread": "off",
+        "@typescript-eslint/no-parameter-properties": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
+        "security/detect-non-literal-fs-filename": "off",
+        "security/detect-object-injection": "off",
+        "@typescript-eslint/no-floating-promises": "error",
+        "@typescript-eslint/no-unnecessary-type-arguments": "error"
+    },
+    "overrides": [
+        {
+            "files": [
+                "test/*.ts"
+            ],
+            "rules": {
+                "@typescript-eslint/no-var-requires": "off"
+            }
+        }
+    ]
+}

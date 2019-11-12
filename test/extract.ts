@@ -6,6 +6,7 @@ import { BenchmarkResult } from '../extract';
 mock('@actions/github', {
     context: {
         payload: {
+            // eslint-disable-next-line @typescript-eslint/camelcase
             head_commit: 'dummy commit hash',
         },
     },
