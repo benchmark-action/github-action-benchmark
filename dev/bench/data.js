@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573551103278,
+  "lastUpdate": 1573552124251,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2320,6 +2320,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 59194,
+            "unit": "ns/op"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "51a4802f871f8ed8f4a8fddf63a6c67e5a53874d",
+          "message": "integrate prettier with eslint",
+          "timestamp": "2019-11-12T18:47:31+09:00",
+          "tree_id": "8391796af66b48b32ef0d4e76b4025fc336be19f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/51a4802f871f8ed8f4a8fddf63a6c67e5a53874d"
+        },
+        "date": 1573552124169,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 460,
+            "unit": "ns/op"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 56174,
             "unit": "ns/op"
           }
         ]
