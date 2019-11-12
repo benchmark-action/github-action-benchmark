@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573483899152,
+  "lastUpdate": 1573531261965,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3046,6 +3046,42 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 9010,
             "range": "±0.76%",
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "415e3d3d1666981adf676db3c52651f88116859c",
+          "message": "describe stability of virtual environment and add one future item to README",
+          "timestamp": "2019-11-11T23:49:40+09:00",
+          "tree_id": "e1f0a286e1aa68e6c7a69a36467b277d5acbd40e",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/415e3d3d1666981adf676db3c52651f88116859c"
+        },
+        "date": 1573531261949,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1071588,
+            "range": "±1.14%",
+            "unit": "ops/sec"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8885,
+            "range": "±1.16%",
             "unit": "ops/sec"
           }
         ]
