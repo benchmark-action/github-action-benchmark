@@ -1,4 +1,4 @@
-import * as actionsExec from '@actions/exec';
+import { exec } from '@actions/exec';
 import * as core from '@actions/core';
 
 interface ExecResult {
@@ -7,7 +7,7 @@ interface ExecResult {
     code: number | null;
 }
 
-async function exec(cmd: string, args: string[]): Promise<ExecResult> {
+async function capture(cmd: string, args: string[]): Promise<ExecResult> {
     const res: ExecResult = {
         stdout: '',
         stderr: '',
@@ -15,7 +15,7 @@ async function exec(cmd: string, args: string[]): Promise<ExecResult> {
     };
 
     try {
-        const code = await actionsExec.exec(cmd, args, {
+        const code = await exec(cmd, args, {
             listeners: {
                 stdout(data) {
                     res.stdout += data.toString();
@@ -28,13 +28,15 @@ async function exec(cmd: string, args: string[]): Promise<ExecResult> {
         res.code = code;
         return res;
     } catch (err) {
-        core.debug(JSON.stringify(res));
+        const info = JSON.stringify(res);
+        core.debug(`Command '${args}' failed with args ${args.join(' ')}: ${info}`);
         throw err;
     }
 }
 
 export default async function git(...args: string[]): Promise<string> {
-    const res = await exec('git', args);
+    core.debug(`Executing Git: ${args.join(' ')}`);
+    const res = await capture('git', args);
     if (res.code !== 0) {
         throw new Error(`Command 'git ${args.join(' ')}' failed: ${res}`);
     }

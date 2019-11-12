@@ -22,6 +22,7 @@
     "extract.ts",
     "test/extract.ts",
     "git.ts",
+    "test/git.ts",
     "write.ts",
     "default_index_html.ts",
     "test/default_index_html.ts",
