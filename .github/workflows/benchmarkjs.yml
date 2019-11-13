@@ -14,7 +14,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Fetch gh-pages for avoiding conflict
-        run: git fetch 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
+        run: git fetch 'https://rhysd:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
@@ -22,4 +22,5 @@ jobs:
           tool: 'benchmarkjs'
           output-file-path: examples/benchmarkjs/output.txt
       - name: Push benchmark result
-        run: git push 'https://rhysd:${{ secrets.GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
+        # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
+        run: git push 'https://rhysd:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/rhysd/github-action-benchmark.git' gh-pages:gh-pages
