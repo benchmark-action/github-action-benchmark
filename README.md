@@ -94,11 +94,29 @@ branch. Please make it on your remote repository in advance.
 
 Then push the branch to your remote.
 
+As of now, [deploying GitHub Pages branch fails with `$GITHUB_TOKEN` automatically generated for workflows](https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869).
+`$GITHUB_TOKEN` can push branch to remote, but building GitHub Pages fails. Please read [issue #1](https://github.com/rhysd/github-action-benchmark/issues/1)
+for more details.
+
+To avoid this issue for now, you need to create your personal access token.
+
+1. Go to your user settings page
+2. Enter 'Developer settings' tab
+3. Enter 'Personal access tokens' tab
+4. Click 'Generate new token' and enter your favorite token name
+5. Check `public_repo` scope for `git push` and click 'Generate token' at bottom
+6. Go to your repository settings page
+7. Enter 'Secrets' tab
+8. Create new `PERSONAL_GITHUB_TOKEN` secret with generated token string
+
+In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to deploy GitHub
+Pages branch. Let's back to workflow YAML file.
+
 e.g.
 
 ```yaml
 - name: Push benchmark result
-  run: git push 'https://you:${{ secrets.GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
+  run: git push 'https://you:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
 ```
 
 This action does not push changes to remote automatically due to security reason. Action does not know
