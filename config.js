@@ -69,18 +69,29 @@ function validateName(name) {
     }
     throw new Error('Name must not be empty');
 }
+function validateAutoPush(autoPush, githubToken) {
+    if (!autoPush) {
+        return;
+    }
+    if (!githubToken) {
+        throw new Error("'auto-push' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote");
+    }
+}
 async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
     const ghPagesBranch = core.getInput('gh-pages-branch');
     let benchmarkDataDirPath = core.getInput('benchmark-data-dir-path');
     const name = core.getInput('name');
+    const githubToken = core.getInput('github-token') || undefined;
+    const autoPush = core.getInput('auto-push') === 'true';
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);
-    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath };
+    validateAutoPush(autoPush, githubToken);
+    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush };
 }
 exports.configFromJobInput = configFromJobInput;
 //# sourceMappingURL=config.js.map

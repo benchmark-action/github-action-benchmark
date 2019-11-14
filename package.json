@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint '**/*.ts'",
+    "fix": "eslint --fix '**/*.ts'",
+    "test": "mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,30 @@
     "@actions/io": "^1.0.1"
   },
   "devDependencies": {
+    "@types/acorn": "^4.0.5",
+    "@types/cheerio": "^0.22.13",
+    "@types/mocha": "^5.2.7",
+    "@types/mock-require": "^2.0.0",
+    "@types/node": "^12.12.7",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "acorn": "^7.1.0",
+    "cheerio": "^1.0.0-rc.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-mocha": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^3.0.9",
+    "mocha": "^6.2.2",
+    "mock-require": "^3.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
     "typescript": "^3.7.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm-run-all lint build test"
+    }
   }
 }

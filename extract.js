@@ -9,7 +9,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const github = __importStar(require("@actions/github"));
-const core = __importStar(require("@actions/core"));
 function extractCargoResult(output) {
     const lines = output.split('\n');
     const ret = [];
@@ -97,9 +96,11 @@ async function extractResult(config) {
     if (benches.length === 0) {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
-    core.debug(`GitHub payload: ${github.context.payload}`);
+    /* eslint-disable @typescript-eslint/camelcase */
+    const commit = github.context.payload.head_commit;
+    /* eslint-enable @typescript-eslint/camelcase */
     return {
-        commit: github.context.payload.head_commit,
+        commit,
         date: Date.now(),
         tool,
         benches,

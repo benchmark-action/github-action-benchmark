@@ -6,16 +6,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
 const io = __importStar(require("@actions/io"));
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
-const git_1 = __importDefault(require("./git"));
+const git = __importStar(require("./git"));
 const default_index_html_1 = require("./default_index_html");
 const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
 async function loadDataJson(dataPath) {
@@ -58,28 +55,46 @@ async function addIndexHtmlIfNeeded(dir) {
         // Continue
     }
     await fs_1.promises.writeFile(indexHtml, default_index_html_1.DEFAULT_INDEX_HTML, 'utf8');
-    await git_1.default('add', indexHtml);
+    await git.cmd('add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }
 async function writeBenchmark(bench, config) {
-    var _a, _b;
-    const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
+    var _a, _b, _c, _d;
+    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
-    await git_1.default('switch', ghPagesBranch);
+    /* eslint-disable @typescript-eslint/camelcase */
+    const htmlUrl = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url, (_b !== null && _b !== void 0 ? _b : ''));
+    const isPrivateRepo = (_d = (_c = github.context.payload.repository) === null || _c === void 0 ? void 0 : _c.private, (_d !== null && _d !== void 0 ? _d : false));
+    /* eslint-enable @typescript-eslint/camelcase */
+    await git.cmd('switch', ghPagesBranch);
     try {
+        if (!isPrivateRepo || githubToken) {
+            await git.pull(githubToken, ghPagesBranch);
+        }
+        else if (isPrivateRepo) {
+            core.warning("'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
+                "before generating a commit, please set 'github-token' input to pull GitHub pages branch");
+        }
         await io.mkdirP(benchmarkDataDirPath);
         const data = await loadDataJson(dataPath);
         data.lastUpdate = Date.now();
-        data.repoUrl = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url, (_b !== null && _b !== void 0 ? _b : ''));
+        data.repoUrl = htmlUrl;
         addBenchmark(data.entries, name, bench);
         await storeDataJson(dataPath, data);
-        await git_1.default('add', dataPath);
+        await git.cmd('add', dataPath);
         await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-        await git_1.default('-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com', 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+        await git.cmd('-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com', 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+        if (githubToken && autoPush) {
+            await git.push(githubToken, ghPagesBranch);
+            console.log(`Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`);
+        }
+        else {
+            core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
+        }
     }
     finally {
         // `git switch` does not work for backing to detached head
-        await git_1.default('checkout', '-');
+        await git.cmd('checkout', '-');
     }
 }
 exports.writeBenchmark = writeBenchmark;

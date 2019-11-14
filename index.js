@@ -17,7 +17,7 @@ async function main() {
     const bench = await extract_1.extractResult(config);
     core.debug(`Benchmark result was extracted: ${bench}`);
     await write_1.writeBenchmark(bench, config);
-    console.log('Benchmark was pushed successfully!', '\nData:', bench, '\nConfig:', config);
+    console.log('Benchmark was pushed successfully!', '\nData:', bench);
 }
 main().catch(e => core.setFailed(e.message));
 //# sourceMappingURL=index.js.map

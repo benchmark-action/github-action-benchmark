@@ -89,7 +89,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
     <script src="data.js"></script>
-    <script>
+    <script id="main-script">
       'use strict';
       (function() {
         // Colors from https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
@@ -167,7 +167,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
                 title: items => {
                   const {xLabel, index} = items[0];
                   const data = dataset[index];
-                  return xLabel + '\n\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' commited by @' + data.commit.committer.username + '\n';
+                  return xLabel + '\n\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
                 },
                 label: item => {
                   let label = item.value;
