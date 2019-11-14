@@ -10,6 +10,8 @@ export interface Config {
     outputFilePath: string;
     ghPagesBranch: string;
     benchmarkDataDirPath: string;
+    githubToken: string | undefined;
+    autoPush: boolean;
 }
 
 const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs'];
@@ -75,18 +77,34 @@ function validateName(name: string) {
     throw new Error('Name must not be empty');
 }
 
+function validateAutoPush(autoPush: boolean, githubToken: string | undefined) {
+    if (!autoPush) {
+        return;
+    }
+    if (!githubToken) {
+        throw new Error(
+            "'auto-push' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote",
+        );
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
     const name: string = core.getInput('name');
+    const githubToken: string | undefined = core.getInput('github-token') || undefined;
+    const autoPush: boolean = core.getInput('auto-push') === 'true';
+
+    console.log('autopush:', typeof autoPush, autoPush);
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);
+    validateAutoPush(autoPush, githubToken);
 
-    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath };
+    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush };
 }

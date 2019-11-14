@@ -11,7 +11,7 @@ async function main() {
     core.debug(`Benchmark result was extracted: ${bench}`);
 
     await writeBenchmark(bench, config);
-    console.log('Benchmark was pushed successfully!', '\nData:', bench, '\nConfig:', config);
+    console.log('Benchmark was pushed successfully!', '\nData:', bench);
 }
 
 main().catch(e => core.setFailed(e.message));

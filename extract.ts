@@ -1,6 +1,5 @@
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
-import * as core from '@actions/core';
 import { Config } from './config';
 
 export interface BenchmarkResult {
@@ -140,7 +139,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
 
-    core.debug(`GitHub payload: ${github.context.payload}`);
+    console.log('PAYLOAD:', github.context.payload);
 
     /* eslint-disable @typescript-eslint/camelcase */
     const commit = github.context.payload.head_commit;

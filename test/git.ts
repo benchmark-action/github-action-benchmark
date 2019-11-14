@@ -25,10 +25,10 @@ mock('@actions/core', {
     },
 });
 
-const git = require('../git').default;
+const git = require('../git');
 const ok: (x: any) => asserts x = A.ok;
 
-describe('git()', function() {
+describe('git.cmd()', function() {
     after(function() {
         mock.stop('@actions/exec');
         mock.stop('@actions/core');
@@ -40,7 +40,7 @@ describe('git()', function() {
     });
 
     it('runs Git command successfully', async function() {
-        const stdout = await git('log', '--oneline');
+        const stdout = await git.cmd('log', '--oneline');
 
         eq(stdout, 'this is test');
         ok(lastArgs);
@@ -51,7 +51,7 @@ describe('git()', function() {
 
     it('raises an error when command returns non-zero exit code', async function() {
         execReturnValue = 101;
-        await A.rejects(() => git('show'), /^Error: Command 'git show' failed: /);
+        await A.rejects(() => git.cmd('show'), /^Error: Command 'git show' failed: /);
         neq(lastArgs, null);
     });
 });
