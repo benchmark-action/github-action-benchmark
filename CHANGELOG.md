@@ -1,3 +1,11 @@
+<a name="v1.1.1"></a>
+# [v1.1.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.1) - 14 Nov 2019
+
+- **Improve:** More strict check for `auto-push` input. Now the value must be one of `true`, `false` (default value is `false`)
+
+[Changes][v1.1.1]
+
+
 <a name="v1.1.0"></a>
 # [v1.1.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.0) - 14 Nov 2019
 
@@ -14,6 +22,21 @@
   - This input is optional. When you do none of above operations, this input is not necessary
 - `README.md` was updated to avoid [the issue on public repository](https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869) (#1)
 
+e.g.
+
+```yaml
+- **name:** Store benchmark result
+  uses: rhysd/github-action-benchmark@v1
+  with:
+    name: My Project Go Benchmark
+    tool: 'go'
+    output-file-path: output.txt
+    github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    auto-push: true
+```
+
+Note that you need to make a personal access token for deploying GitHub Pages from GitHub Action workflow. Please read `RADME.md` for more details.
+
 [Changes][v1.1.0]
 
 
@@ -29,6 +52,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.1.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/rhysd/github-action-benchmark/tree/v1.0.2
 
