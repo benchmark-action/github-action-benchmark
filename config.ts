@@ -88,6 +88,17 @@ function validateAutoPush(autoPush: boolean, githubToken: string | undefined) {
     }
 }
 
+function getBoolInput(name: string): boolean {
+    const input = core.getInput(name);
+    if (!input) {
+        return false;
+    }
+    if (input !== 'true' && input !== 'false') {
+        throw new Error(`'${name}' input must be boolean value 'true' or 'false' but got '${input}'`);
+    }
+    return input === 'true';
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -95,7 +106,7 @@ export async function configFromJobInput(): Promise<Config> {
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
-    const autoPush: boolean = core.getInput('auto-push') === 'true';
+    const autoPush = getBoolInput('auto-push');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);

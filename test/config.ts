@@ -141,6 +141,19 @@ describe('configFromJobInput()', function() {
             },
             expected: /'auto-push' is enabled but 'github-token' is not set/,
         },
+        {
+            what: 'auto-push is set to other than boolean',
+            inputs: {
+                name: 'Benchmark',
+                tool: 'cargo',
+                'output-file-path': 'out.txt',
+                'gh-pages-branch': 'gh-pages',
+                'benchmark-data-dir-path': 'path/to/output',
+                'github-token': 'dummy',
+                'auto-push': 'hello',
+            },
+            expected: /'auto-push' input must be boolean value 'true' or 'false' but got 'hello'/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
