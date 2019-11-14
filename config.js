@@ -77,6 +77,16 @@ function validateAutoPush(autoPush, githubToken) {
         throw new Error("'auto-push' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote");
     }
 }
+function getBoolInput(name) {
+    const input = core.getInput(name);
+    if (!input) {
+        return false;
+    }
+    if (input !== 'true' && input !== 'false') {
+        throw new Error(`'${name}' input must be boolean value 'true' or 'false' but got '${input}'`);
+    }
+    return input === 'true';
+}
 async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
@@ -84,7 +94,7 @@ async function configFromJobInput() {
     let benchmarkDataDirPath = core.getInput('benchmark-data-dir-path');
     const name = core.getInput('name');
     const githubToken = core.getInput('github-token') || undefined;
-    const autoPush = core.getInput('auto-push') === 'true';
+    const autoPush = getBoolInput('auto-push');
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
