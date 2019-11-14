@@ -139,8 +139,6 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
 
-    console.log('PAYLOAD:', github.context.payload);
-
     /* eslint-disable @typescript-eslint/camelcase */
     const commit = github.context.payload.head_commit;
     /* eslint-enable @typescript-eslint/camelcase */

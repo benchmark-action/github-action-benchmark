@@ -97,8 +97,6 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush: boolean = core.getInput('auto-push') === 'true';
 
-    console.log('autopush:', typeof autoPush, autoPush);
-
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
