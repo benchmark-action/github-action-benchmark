@@ -35,6 +35,8 @@ echo "Releasing to $version branch..."
 set -x
 npm install
 npm run build
+npm run lint
+npm test
 npm prune --production
 
 rm -rf .release
@@ -44,6 +46,7 @@ cp action.yml *.js package.json package-lock.json .release/
 cp -R node_modules .release/node_modules
 
 git checkout "$version"
+git pull
 rm -rf node_modules
 mv .release/action.yml .
 mv .release/*.js .
