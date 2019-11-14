@@ -11,11 +11,6 @@ mock('@actions/github', {
         },
     },
 });
-mock('@actions/core', {
-    debug: () => {
-        /* do nothing */
-    },
-});
 
 const { extractResult } = require('../extract');
 

@@ -109,8 +109,35 @@ To avoid this issue for now, you need to create your personal access token.
 7. Enter 'Secrets' tab
 8. Create new `PERSONAL_GITHUB_TOKEN` secret with generated token string
 
-In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to deploy GitHub
-Pages branch. Let's back to workflow YAML file.
+This is a current limitation only for public repositories. For private repository, `secrets.GITHUB_TOKEN`
+is available. In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to
+deploy GitHub Pages branch. Let's back to workflow YAML file.
+
+There are two options for pushing GitHub pages branch to remote from workflow.
+
+1. Give your API token to `github-token` input and set `auto-push` to `true`
+2. Add step for executing `git push` within workflow
+
+#### 1. Give your API token to `github-token` input and set `auto-push` to `true`
+
+e.g.
+
+```yaml
+- name: Store benchmark result
+  uses: rhysd/github-action-benchmark@v1
+  with:
+    name: My Project Go Benchmark
+    tool: 'go'
+    output-file-path: output.txt
+    github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    auto-push: true
+```
+
+Just after generating a commit to update benchmark results, github-action-benchmark pushes the commit
+to GitHub Pages branch. As a bonus, this action pulls the branch before generating a commit. It helps
+to avoid conflicts among multiple workflows which deploy GitHub pages branch.
+
+#### 2. Add step for executing `git push` within workflow
 
 e.g.
 
@@ -119,12 +146,9 @@ e.g.
   run: git push 'https://you:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
 ```
 
-This action does not push changes to remote automatically due to security reason. Action does not know
-your GitHub API token automatically generated while running your workflows. So you need to push GitHub
-pages branch by your own.
-
-If you're lazy, you can use [github-push-action](https://github.com/ad-m/github-push-action) to push
-the branch easily.
+If you don't set `auto-push` input, this action does not push changes to remote automatically. This
+might be an option if you don't want to give API token to this action. Instead, So you need to push
+GitHub pages branch by your own.
 
 Note that GitHub pages branch and a directory to put benchmark results are customizable by inputs.
 
@@ -152,6 +176,8 @@ Input definitions are written in [action.yml](./action.yml).
 | `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                        | String                                    | Yes      |               |
 | `gh-pages-branch`         | Name of your GitHub pages branch                                                                     | String                                    | Yes      | `"gh-pages"`  |
 | `benchmark-data-dir-path` | Path to directory which contains benchmark files on GitHub pages branch. Relative to repository root | String                                    | Yes      | `"dev/bench"` |
+| `github-token`            | GitHub API token. For public repo, personal access token is necessary. Please see basic usage        | String                                    | No       |               |
+| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch           | Boolean                                   | No       | `false`       |
 
 `name` and `tool` must be specified in workflow at `uses` section of job step.
 

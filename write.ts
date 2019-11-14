@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as io from '@actions/io';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import git from './git';
+import * as git from './git';
 import { Benchmark } from './extract';
 import { Config } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
@@ -59,20 +59,31 @@ async function addIndexHtmlIfNeeded(dir: string) {
     }
 
     await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
-    await git('add', indexHtml);
+    await git.cmd('add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
-    const { name, tool, ghPagesBranch, benchmarkDataDirPath } = config;
+    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
 
     /* eslint-disable @typescript-eslint/camelcase */
     const htmlUrl = github.context.payload.repository?.html_url ?? '';
+    const isPrivateRepo = github.context.payload.repository?.private ?? false;
     /* eslint-enable @typescript-eslint/camelcase */
 
-    await git('switch', ghPagesBranch);
+    await git.cmd('switch', ghPagesBranch);
+
     try {
+        if (!isPrivateRepo || githubToken) {
+            await git.pull(githubToken, ghPagesBranch);
+        } else if (isPrivateRepo) {
+            core.warning(
+                "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
+                    "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
+            );
+        }
+
         await io.mkdirP(benchmarkDataDirPath);
 
         const data = await loadDataJson(dataPath);
@@ -83,11 +94,11 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         await storeDataJson(dataPath, data);
 
-        await git('add', dataPath);
+        await git.cmd('add', dataPath);
 
         await addIndexHtmlIfNeeded(benchmarkDataDirPath);
 
-        await git(
+        await git.cmd(
             '-c',
             'user.name=github-action-benchmark',
             '-c',
@@ -96,8 +107,17 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
             '-m',
             `add ${name} (${tool}) benchmark result for ${bench.commit.id}`,
         );
+
+        if (githubToken && autoPush) {
+            await git.push(githubToken, ghPagesBranch);
+            console.log(
+                `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
+            );
+        } else {
+            core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
+        }
     } finally {
         // `git switch` does not work for backing to detached head
-        await git('checkout', '-');
+        await git.cmd('checkout', '-');
     }
 }
