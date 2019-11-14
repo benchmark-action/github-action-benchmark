@@ -6,6 +6,13 @@ type Inputs = { [name: string]: string };
 
 const inputs: Inputs = {};
 function mockInputs(newInputs: Inputs) {
+    delete inputs.name;
+    delete inputs.tool;
+    delete inputs['output-file-path'];
+    delete inputs['gh-pages-branch'];
+    delete inputs['benchmark-data-dir-path'];
+    delete inputs['github-token'];
+    delete inputs['auto-push'];
     Object.assign(inputs, newInputs);
 }
 
@@ -37,6 +44,19 @@ describe('configFromJobInput()', function() {
                 'output-file-path': 'out.txt',
                 'gh-pages-branch': 'gh-pages',
                 'benchmark-data-dir-path': '.',
+            },
+            expected: null,
+        })),
+        ...['true', 'false'].map(autoPush => ({
+            what: `set auto-push to ${autoPush} with token`,
+            inputs: {
+                name: 'Benchmark',
+                tool: 'go',
+                'output-file-path': 'out.txt',
+                'gh-pages-branch': 'gh-pages',
+                'benchmark-data-dir-path': '.',
+                'github-token': 'dummy',
+                'auto-push': autoPush,
             },
             expected: null,
         })),
@@ -107,6 +127,19 @@ describe('configFromJobInput()', function() {
                 'benchmark-data-dir-path': '~/path/to/output',
             },
             expected: null,
+        },
+        {
+            what: 'auto-push is set but github-token is not set',
+            inputs: {
+                name: 'Benchmark',
+                tool: 'cargo',
+                'output-file-path': 'out.txt',
+                'gh-pages-branch': 'gh-pages',
+                'benchmark-data-dir-path': 'path/to/output',
+                'github-token': undefined,
+                'auto-push': 'true',
+            },
+            expected: /'auto-push' is enabled but 'github-token' is not set/,
         },
     ] as Array<{
         what: string;
