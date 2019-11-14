@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573773121293,
+  "lastUpdate": 1573773144988,
   "entries": {
     "Rust Benchmark": [
       {
@@ -1582,6 +1582,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32911,
             "range": "+/- 2,415",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "5675f3b8203b50669781adf59fb4c047699dfcab",
+          "message": "disable camelcase check in test code",
+          "timestamp": "2019-11-15T08:10:55+09:00",
+          "tree_id": "2171faa2603dabff450c5035390655e770f10ef7",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/5675f3b8203b50669781adf59fb4c047699dfcab"
+        },
+        "date": 1573773144716,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 254,
+            "range": "+/- 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32369,
+            "range": "+/- 1,754",
             "unit": "ns/iter"
           }
         ]
