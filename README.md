@@ -230,8 +230,8 @@ This action creates the default `index.html` in the directory specified with `be
 input. By default every benchmark test case has its own chart in the page. Charts are drawn with
 [Chart.js](https://www.chartjs.org/).
 
-If it does not fit to your use case, please modify it or replace it with your favorite one. Every
-benchmark data is stored in `window.BENCHMARK_DATA` so you can create your favorite view.
+If it does not fit to your use case, please modify the HTML file or replace it with your favorite one.
+Every benchmark data is stored in `window.BENCHMARK_DATA` so you can create your favorite view.
 
 ### Versioning
 

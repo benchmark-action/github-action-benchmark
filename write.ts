@@ -63,6 +63,26 @@ async function addIndexHtmlIfNeeded(dir: string) {
     console.log('Created default index.html at', indexHtml);
 }
 
+async function pushGitHubPages(token: string, branch: string) {
+    try {
+        await git.push(token, branch);
+        return;
+    } catch (err) {
+        if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
+            throw err;
+        }
+        // Fall through
+    }
+
+    core.warning('Auto push failed because remote seemed to be updated after git pull. Retrying...');
+
+    // Retry push after pull with rebasing
+    await git.pull(token, branch, '--rebase');
+    await git.push(token, branch);
+
+    core.debug('Retrying auto push was successfully done');
+}
+
 export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
@@ -109,7 +129,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
         );
 
         if (githubToken && autoPush) {
-            await git.push(githubToken, ghPagesBranch);
+            await pushGitHubPages(githubToken, ghPagesBranch);
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
