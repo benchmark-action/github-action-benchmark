@@ -22,10 +22,13 @@ inputs:
     required: true
     default: 'dev/bench'
   github-token:
-    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages'
+    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token. Please read README.md for more details'
     required: false
+  auto-push:
+    description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
+    required: false
+    default: false
 
 runs:
   using: 'node12'
   main: 'index.js'
-

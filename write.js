@@ -58,6 +58,23 @@ async function addIndexHtmlIfNeeded(dir) {
     await git.cmd('add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }
+async function pushGitHubPages(token, branch) {
+    try {
+        await git.push(token, branch);
+        return;
+    }
+    catch (err) {
+        if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
+            throw err;
+        }
+        // Fall through
+    }
+    core.warning('Auto push failed because remote seemed to be updated after git pull. Retrying...');
+    // Retry push after pull with rebasing
+    await git.pull(token, branch, '--rebase');
+    await git.push(token, branch);
+    core.debug('Retrying auto push was successfully done');
+}
 async function writeBenchmark(bench, config) {
     var _a, _b, _c, _d;
     const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush } = config;
@@ -85,7 +102,7 @@ async function writeBenchmark(bench, config) {
         await addIndexHtmlIfNeeded(benchmarkDataDirPath);
         await git.cmd('-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com', 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
         if (githubToken && autoPush) {
-            await git.push(githubToken, ghPagesBranch);
+            await pushGitHubPages(githubToken, ghPagesBranch);
             console.log(`Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`);
         }
         else {
