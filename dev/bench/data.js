@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573864502026,
+  "lastUpdate": 1573864510289,
   "entries": {
     "Rust Benchmark": [
       {
@@ -4530,6 +4530,42 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 8419,
             "range": "±1.18%",
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d7016b1d815f6f7bb82fa05c6c9c4fb32179eeeb",
+          "message": "fix `git push` retry failed with no Git user config",
+          "timestamp": "2019-11-16T09:32:56+09:00",
+          "tree_id": "031aac6b1ff713b933c097fa28739789185710d7",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d7016b1d815f6f7bb82fa05c6c9c4fb32179eeeb"
+        },
+        "date": 1573864509942,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1023985,
+            "range": "±0.57%",
+            "unit": "ops/sec"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8605,
+            "range": "±0.63%",
             "unit": "ops/sec"
           }
         ]
