@@ -1,3 +1,12 @@
+<a name="v1.1.4"></a>
+# [v1.1.4](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.4) - 16 Nov 2019
+
+- **Improve:** Title styles in default `index.html` which is generated when no `index.html` is in your GitHub Pages branch. If you want to update your `index.html` to the latest, please remove it and push to remote at first then re-run your workflow which will invoke github-action-benchmark
+- **Improve:** More metadata in `action.yml`. Now icon and its color are set.
+
+[Changes][v1.1.4]
+
+
 <a name="v1.1.3"></a>
 # [v1.1.3](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.3) - 16 Nov 2019
 
@@ -69,6 +78,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.1.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.3...v1.1.4
 [v1.1.3]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.2...v1.1.3
 [v1.1.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.1...v1.1.2
 [v1.1.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.0...v1.1.1
