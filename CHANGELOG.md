@@ -1,3 +1,12 @@
+<a name="v1.1.2"></a>
+# [v1.1.2](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.2) - 16 Nov 2019
+
+- **Improve:** Added retry for `git push`. When remote GitHub Pages branch is updated after the current workflow had fetched the branch, `git push` will fail because the remote branch is not up-to-date. In the case this action will try to rebase onto the latest remote by `git pull --rebase` and `git push` again. This is useful when your multiple workflows may be trying to push GitHub Pages branch at the same timing. `auto-push` input must be set to `true` for this.
+- **Fix:** Description for `auto-push` was missing in `action.yml`
+
+[Changes][v1.1.2]
+
+
 <a name="v1.1.1"></a>
 # [v1.1.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.1) - 14 Nov 2019
 
@@ -52,6 +61,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.1.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.1...v1.1.2
 [v1.1.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/rhysd/github-action-benchmark/tree/v1.0.2
