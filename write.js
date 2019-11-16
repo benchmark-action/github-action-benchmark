@@ -100,7 +100,7 @@ async function writeBenchmark(bench, config) {
         await storeDataJson(dataPath, data);
         await git.cmd('add', dataPath);
         await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-        await git.cmd('-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com', 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+        await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
         if (githubToken && autoPush) {
             await pushGitHubPages(githubToken, ghPagesBranch);
             console.log(`Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`);
