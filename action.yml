@@ -1,6 +1,9 @@
 name: 'Continuous Benchmark'
-
-description: 'Continuous Benchmark using GitHub pages as dash board'
+author: 'rhysd <https://rhysd.github.io>'
+description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
+branding:
+    icon: 'fast-forward'
+    color: 'blue'
 
 inputs:
   name:
@@ -22,7 +25,7 @@ inputs:
     required: true
     default: 'dev/bench'
   github-token:
-    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token. Please read README.md for more details'
+    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
     required: false
   auto-push:
     description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
