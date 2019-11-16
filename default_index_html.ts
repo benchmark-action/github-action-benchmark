@@ -56,6 +56,12 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         display: flex;
         flex-direction: column;
       }
+      .benchmark-title {
+        font-size: 3rem;
+        font-weight: 600;
+        word-break: break-word;
+        text-align: center;
+      }
       .benchmark-graphs {
         display: flex;
         flex-direction: row;
@@ -204,7 +210,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           document.getElementById('main').appendChild(setElem);
 
           const nameElem = document.createElement('h1');
-          nameElem.className = 'title is-2';
+          nameElem.className = 'benchmark-title';
           nameElem.textContent = name;
           setElem.appendChild(nameElem);
 
