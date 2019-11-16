@@ -51,7 +51,7 @@
 e.g.
 
 ```yaml
-- **name:** Store benchmark result
+- name: Store benchmark result
   uses: rhysd/github-action-benchmark@v1
   with:
     name: My Project Go Benchmark
