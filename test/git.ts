@@ -43,8 +43,9 @@ mock('@actions/github', {
 
 const git = require('../git');
 const ok: (x: any) => asserts x = A.ok;
+const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
 
-describe('git.ts', function() {
+describe('git', function() {
     after(function() {
         mock.stop('@actions/exec');
         mock.stop('@actions/core');
@@ -63,7 +64,7 @@ describe('git.ts', function() {
             eq(stdout, 'this is test');
             ok(lastArgs);
             eq(lastArgs[0], 'git');
-            eq(lastArgs[1], ['log', '--oneline']);
+            eq(lastArgs[1], userArgs.concat(['log', '--oneline']));
             ok('listeners' in (lastArgs[2] as object));
         });
 
@@ -85,13 +86,16 @@ describe('git.ts', function() {
             eq(stdout, 'this is test');
             ok(lastArgs);
             eq(lastArgs[0], 'git');
-            eq(lastArgs[1], [
-                'push',
-                'https://x-access-token:this-is-token@github.com/user/repo.git',
-                'my-branch:my-branch',
-                'opt1',
-                'opt2',
-            ]);
+            eq(
+                lastArgs[1],
+                userArgs.concat([
+                    'push',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
+                    'my-branch:my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
         });
 
         it('raises an error when repository info is not included in payload', async function() {
@@ -115,13 +119,16 @@ describe('git.ts', function() {
             eq(stdout, 'this is test');
             ok(lastArgs);
             eq(lastArgs[0], 'git');
-            eq(lastArgs[1], [
-                'pull',
-                'https://x-access-token:this-is-token@github.com/user/repo.git',
-                'my-branch',
-                'opt1',
-                'opt2',
-            ]);
+            eq(
+                lastArgs[1],
+                userArgs.concat([
+                    'pull',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
+                    'my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
         });
 
         it('runs `git pull` with given branch and options without token', async function() {
@@ -130,7 +137,7 @@ describe('git.ts', function() {
             eq(stdout, 'this is test');
             ok(lastArgs);
             eq(lastArgs[0], 'git');
-            eq(lastArgs[1], ['pull', 'origin', 'my-branch', 'opt1', 'opt2']);
+            eq(lastArgs[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
         });
 
         it('raises an error when repository info is not included in payload', async function() {

@@ -118,15 +118,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         await addIndexHtmlIfNeeded(benchmarkDataDirPath);
 
-        await git.cmd(
-            '-c',
-            'user.name=github-action-benchmark',
-            '-c',
-            'user.email=github@users.noreply.github.com',
-            'commit',
-            '-m',
-            `add ${name} (${tool}) benchmark result for ${bench.commit.id}`,
-        );
+        await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
         if (githubToken && autoPush) {
             await pushGitHubPages(githubToken, ghPagesBranch);

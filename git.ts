@@ -38,7 +38,8 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
 
 export async function cmd(...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
-    const res = await capture('git', args);
+    const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
+    const res = await capture('git', userArgs.concat(args));
     if (res.code !== 0) {
         throw new Error(`Command 'git ${args.join(' ')}' failed: ${res}`);
     }
