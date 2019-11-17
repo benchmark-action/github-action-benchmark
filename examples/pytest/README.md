@@ -1,8 +1,8 @@
 Python example for benchmarking with [pytest-benchmark][tool]
 =============================================================
 
-- [Workflow for this example](TODO)
-- [Action log of this example](TODO)
+- [Workflow for this example](../../.github/workflows/pytest.yml)
+- [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22)
 - [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
 
 This directory shows how to use [`github-action-benchmark`](https://github.com/rhysd/github-action-benchmark)

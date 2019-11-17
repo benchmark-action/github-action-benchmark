@@ -26,7 +26,7 @@ are in [.github/workflows/](./.github/workflows) directory. Workflow actions are
 - Rust: [![Rust Example Workflow][rust-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
 - Go: [![Go Example Workflow][go-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22)
 - JavaScript: [![JavaScript Example Workflow][benchmarkjs-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22)
-- Python (pytest-benchmark): [![Pytest Example Workflow][TODO]](TODO)
+- Python (pytest-benchmark): [![Pytest Example Workflow][pytest-benchmark-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22)
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -267,6 +267,7 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [rust-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Rust%20Example/badge.svg
 [go-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Go%20Example/badge.svg
 [benchmarkjs-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.js%20Example/badge.svg
+[pytest-benchmark-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Python%20Example%20with%20pytest-benchmark/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
