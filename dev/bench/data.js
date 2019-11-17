@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574001163431,
+  "lastUpdate": 1574001194441,
   "entries": {
     "Rust Benchmark": [
       {
@@ -1762,6 +1762,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30894,
             "range": "+/- 3,738",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "1ac7aa0a7cbf6887cceb0fe766dc178af204a76e",
+          "message": "add skip-fetch-gh-pages input and use it in CI check\n\nfor ensuring to remove the effect from other jobs",
+          "timestamp": "2019-11-17T23:31:42+09:00",
+          "tree_id": "b0647afa8288e16064eca8dd9d227e6eb6dba92c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/1ac7aa0a7cbf6887cceb0fe766dc178af204a76e"
+        },
+        "date": 1574001194161,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 237,
+            "range": "+/- 31",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32331,
+            "range": "+/- 3,784",
             "unit": "ns/iter"
           }
         ]
