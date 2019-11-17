@@ -12,6 +12,7 @@ This action currently supports
 - [`cargo bench`][cargo-bench] for Rust projects
 - `go test -bench` for Go projects
 - [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
+- [pytest-benchmark][] for Python projects with [pytest][]
 
 Multiple languages in the same repository is supported for polyglot projects.
 
@@ -25,6 +26,7 @@ are in [.github/workflows/](./.github/workflows) directory. Workflow actions are
 - Rust: [![Rust Example Workflow][rust-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
 - Go: [![Go Example Workflow][go-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22)
 - JavaScript: [![JavaScript Example Workflow][benchmarkjs-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22)
+- Python (pytest-benchmark): [![Pytest Example Workflow][TODO]](TODO)
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -162,6 +164,7 @@ Please read `README.md` files at each example directory.
 - [`cargo bench` for Rust projects](./examples/rust/README.md)
 - [`go test` for Go projects](./examples/go/README.md)
 - [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
+- [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
 
 These examples are run in workflows of this repository as described in 'Examples' section above.
 
@@ -169,15 +172,15 @@ These examples are run in workflows of this repository as described in 'Examples
 
 Input definitions are written in [action.yml](./action.yml).
 
-| Name                      | Description                                                                                          | Type                                      | Required | Default       |
-|---------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------|----------|---------------|
-| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository.        | String                                    | Yes      | `"Benchmark"` |
-| `tool`                    | Tool for running benchmark                                                                           | One of `"cargo"`, `"go"`, `"benchmarkjs"` | Yes      |               |
-| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                        | String                                    | Yes      |               |
-| `gh-pages-branch`         | Name of your GitHub pages branch                                                                     | String                                    | Yes      | `"gh-pages"`  |
-| `benchmark-data-dir-path` | Path to directory which contains benchmark files on GitHub pages branch. Relative to repository root | String                                    | Yes      | `"dev/bench"` |
-| `github-token`            | GitHub API token. For public repo, personal access token is necessary. Please see basic usage        | String                                    | No       |               |
-| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch           | Boolean                                   | No       | `false`       |
+| Name                      | Description                                                                                          | Type                                                  | Required | Default       |
+|---------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------|----------|---------------|
+| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository.        | String                                                | Yes      | `"Benchmark"` |
+| `tool`                    | Tool for running benchmark                                                                           | One of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"` | Yes      |               |
+| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                        | String                                                | Yes      |               |
+| `gh-pages-branch`         | Name of your GitHub pages branch                                                                     | String                                                | Yes      | `"gh-pages"`  |
+| `benchmark-data-dir-path` | Path to directory which contains benchmark files on GitHub pages branch. Relative to repository root | String                                                | Yes      | `"dev/bench"` |
+| `github-token`            | GitHub API token. For public repo, personal access token is necessary. Please see basic usage        | String                                                | No       |               |
+| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch           | Boolean                                               | No       | `false`       |
 
 `name` and `tool` must be specified in workflow at `uses` section of job step.
 
@@ -269,3 +272,5 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [benchmarkjs]: https://benchmarkjs.com/
 [gh-pages]: https://pages.github.com/
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
+[pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
+[pytest]: https://pypi.org/project/pytest/
