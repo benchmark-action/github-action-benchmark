@@ -168,21 +168,23 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
             },
             tooltips: {
               callbacks: {
-                title: items => {
-                  const {xLabel, index} = items[0];
+                afterTitle: items => {
+                  const {index} = items[0];
                   const data = dataset[index];
-                  return xLabel + '\n\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
+                  return '\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
                 },
                 label: item => {
                   let label = item.value;
                   const { range, unit } = dataset[item.index].bench;
-                  if (unit) {
-                    label += ' ' + unit;
-                  }
+                  label += ' ' + unit;
                   if (range) {
                     label += ' (' + range + ')';
                   }
                   return label;
+                },
+                afterLabel: item => {
+                  const { extra } = dataset[item.index].bench;
+                  return extra ? '\n' + extra : '';
                 }
               }
             },

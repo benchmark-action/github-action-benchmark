@@ -1,0 +1,27 @@
+name: Python Example with pytest-benchmark
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  benchmark:
+    name: Run pytest-benchmark benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - name: Run benchmark
+        run: |
+          cd examples/pytest
+          pip install -r requirements.txt
+          pytest bench.py --benchmark-json output.json
+      - name: Store benchmark result
+        uses: rhysd/github-action-benchmark@v1
+        with:
+          name: Python Benchmark with pytest-benchmark
+          tool: 'pytest'
+          output-file-path: examples/pytest/output.json
+          # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
+          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          auto-push: true

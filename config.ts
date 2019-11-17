@@ -3,7 +3,7 @@ import { promises as fs, Stats } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
-export type ToolType = 'cargo' | 'go' | 'benchmarkjs';
+export type ToolType = 'cargo' | 'go' | 'benchmarkjs' | 'pytest';
 export interface Config {
     name: string;
     tool: ToolType;
@@ -14,7 +14,7 @@ export interface Config {
     autoPush: boolean;
 }
 
-const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs'];
+const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
 
 function validateToolType(tool: string): asserts tool is ToolType {
     if ((VALID_TOOLS as string[]).includes(tool)) {
