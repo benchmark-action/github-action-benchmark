@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573967538664,
+  "lastUpdate": 1573967566726,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2014,6 +2014,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32205,
             "range": "+/- 2,130",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "be395fa45085f9d6d7723f39ef4ea4a1e7d2c71b",
+          "message": "Merge branch 'pytest-support-and-extra-data'",
+          "timestamp": "2019-11-17T14:11:08+09:00",
+          "tree_id": "445685b855eb924cfabb2480b04918aee14352f5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/be395fa45085f9d6d7723f39ef4ea4a1e7d2c71b"
+        },
+        "date": 1573967566272,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 216,
+            "range": "+/- 31",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 28454,
+            "range": "+/- 3,932",
             "unit": "ns/iter"
           }
         ]
