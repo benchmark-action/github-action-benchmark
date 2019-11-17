@@ -11,7 +11,7 @@ const core = __importStar(require("@actions/core"));
 const fs_1 = require("fs");
 const os = __importStar(require("os"));
 const path = __importStar(require("path"));
-const VALID_TOOLS = ['cargo', 'go', 'benchmarkjs'];
+const VALID_TOOLS = ['cargo', 'go', 'benchmarkjs', 'pytest'];
 function validateToolType(tool) {
     if (VALID_TOOLS.includes(tool)) {
         return;
