@@ -21,7 +21,7 @@ mock('@actions/core', {
 });
 
 // This line must be called after mocking
-const { configFromJobInput } = require('../config');
+const { configFromJobInput, VALID_TOOLS } = require('../config');
 
 describe('configFromJobInput()', function() {
     const cwd = process.cwd();
@@ -36,7 +36,7 @@ describe('configFromJobInput()', function() {
     });
 
     const tests = [
-        ...(['cargo', 'go', 'benchmarkjs', 'pytest'] as const).map(tool => ({
+        ...VALID_TOOLS.map((tool: string) => ({
             what: 'valid inputs for ' + tool,
             inputs: {
                 name: 'Benchmark',

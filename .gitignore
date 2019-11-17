@@ -5,3 +5,5 @@
 /examples/rust/target
 /test/*.js
 /test/*.js.map
+/scripts/*.js
+/scripts/*.js.map

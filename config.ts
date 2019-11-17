@@ -14,7 +14,7 @@ export interface Config {
     autoPush: boolean;
 }
 
-const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
+export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
 
 function validateToolType(tool: string): asserts tool is ToolType {
     if ((VALID_TOOLS as string[]).includes(tool)) {

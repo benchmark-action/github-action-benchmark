@@ -26,6 +26,7 @@
     "write.ts",
     "default_index_html.ts",
     "test/default_index_html.ts",
-    "octokit_graphql.d.ts"
+    "octokit_graphql.d.ts",
+    "scripts/ci_validate_modification.ts"
   ]
 }

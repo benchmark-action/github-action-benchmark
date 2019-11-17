@@ -8,14 +8,14 @@ import { Benchmark } from './extract';
 import { Config } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
 
-type BenchmarkEntries = { [name: string]: Benchmark[] };
-interface DataJson {
+export type BenchmarkEntries = { [name: string]: Benchmark[] };
+export interface DataJson {
     lastUpdate: number;
     repoUrl: string;
     entries: BenchmarkEntries;
 }
 
-const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
+export const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
 
 async function loadDataJson(dataPath: string): Promise<DataJson> {
     try {
