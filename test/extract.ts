@@ -70,6 +70,23 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'pytest',
+            expected: [
+                {
+                    name: 'bench.py::test_fib_10',
+                    range: 'stddev: 0.000006175090189861328',
+                    unit: 'sec/iter',
+                    value: 0.00002408868133322941,
+                },
+                {
+                    name: 'bench.py::test_fib_20',
+                    range: 'stddev: 0.0001745301654140968',
+                    unit: 'sec/iter',
+                    value: 0.002985030672661863,
+                },
+            ],
+        },
     ] as Array<{
         tool: string;
         expected: BenchmarkResult[];

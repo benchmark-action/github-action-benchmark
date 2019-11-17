@@ -1,0 +1,118 @@
+{
+    "machine_info": {
+        "node": "Corgi.local",
+        "processor": "i386",
+        "machine": "x86_64",
+        "python_compiler": "Clang 11.0.0 (clang-1100.0.33.8)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.7.5",
+        "python_version": "3.7.5",
+        "python_build": [
+            "default",
+            "Nov  1 2019 02:16:32"
+        ],
+        "release": "18.7.0",
+        "system": "Darwin",
+        "cpu": {
+            "vendor_id": "GenuineIntel",
+            "hardware": "unknown",
+            "brand": "Intel(R) Core(TM) i7-4771 CPU @ 3.50GHz"
+        }
+    },
+    "commit_info": {
+        "id": "9d55ab0434c9088746ae2d134702d782bf088644",
+        "time": "2019-11-16T12:10:30+09:00",
+        "author_time": "2019-11-16T12:10:30+09:00",
+        "dirty": true,
+        "project": "github-action-benchmark",
+        "branch": "pytest"
+    },
+    "benchmarks": [
+        {
+            "group": null,
+            "name": "test_fib_10",
+            "fullname": "bench.py::test_fib_10",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.2067000000181025e-05,
+                "max": 0.0003125999999999962,
+                "mean": 2.408868133322941e-05,
+                "stddev": 6.175090189861328e-06,
+                "rounds": 38523,
+                "median": 2.2300000000363696e-05,
+                "iqr": 1.2670000003600634e-06,
+                "q1": 2.2255999999831744e-05,
+                "q3": 2.3523000000191807e-05,
+                "iqr_outliers": 2896,
+                "stddev_outliers": 2523,
+                "outliers": "2523;2896",
+                "ld15iqr": 2.2067000000181025e-05,
+                "hd15iqr": 2.5426000000106086e-05,
+                "ops": 41513.272817492856,
+                "total": 0.9279682709999966,
+                "data": [
+                    3.215300000025678e-05,
+                    2.8706999999794647e-05,
+                    2.489499999969169e-05,
+                    2.487300000009185e-05,
+                    "... omitted to keep this file small"
+                ],
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_fib_20",
+            "fullname": "bench.py::test_fib_20",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0027349359999999656,
+                "max": 0.003903139999999805,
+                "mean": 0.002985030672661863,
+                "stddev": 0.0001745301654140968,
+                "rounds": 278,
+                "median": 0.0029605825000003083,
+                "iqr": 0.00021968899999968983,
+                "q1": 0.0028489629999999266,
+                "q3": 0.0030686519999996165,
+                "iqr_outliers": 5,
+                "stddev_outliers": 89,
+                "outliers": "89;5",
+                "ld15iqr": 0.0027349359999999656,
+                "hd15iqr": 0.0034360730000000395,
+                "ops": 335.0049328331567,
+                "total": 0.8298385269999979,
+                "data": [
+                    0.0032874509999998303,
+                    0.00317211499999992,
+                    0.0029934199999996913,
+                    0.00316091800000029,
+                    "... omitted to keep this file small"
+                ],
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2019-11-17T02:22:16.817862",
+    "version": "3.2.2"
+}

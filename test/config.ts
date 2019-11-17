@@ -36,7 +36,7 @@ describe('configFromJobInput()', function() {
     });
 
     const tests = [
-        ...(['cargo', 'go', 'benchmarkjs'] as const).map(tool => ({
+        ...(['cargo', 'go', 'benchmarkjs', 'pytest'] as const).map(tool => ({
             what: 'valid inputs for ' + tool,
             inputs: {
                 name: 'Benchmark',
