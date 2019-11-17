@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574000625190,
+  "lastUpdate": 1574001159173,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5291,6 +5291,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003863322148434093",
             "extra": "mean: 0.002349155905511534 sec\nrounds: 508"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "1ac7aa0a7cbf6887cceb0fe766dc178af204a76e",
+          "message": "add skip-fetch-gh-pages input and use it in CI check\n\nfor ensuring to remove the effect from other jobs",
+          "timestamp": "2019-11-17T23:31:42+09:00",
+          "tree_id": "b0647afa8288e16064eca8dd9d227e6eb6dba92c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/1ac7aa0a7cbf6887cceb0fe766dc178af204a76e"
+        },
+        "date": 1574001159003,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 49404.90035483193,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000009435758940004819",
+            "extra": "mean: 0.00002024090713305522 sec\nrounds: 25445"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 401.7249641123136,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022243428173328867",
+            "extra": "mean: 0.0024892652668715444 sec\nrounds: 326"
           }
         ]
       }
