@@ -256,6 +256,9 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
   benchmark result.
 - Add an alert comment to commit page when the benchmark result of the commit is far worse than
   previous one.
+- Add more benchmark tools:
+  - [Google's C++ Benchmark framework](https://github.com/google/benchmark)
+  - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
 
 ## License
 
