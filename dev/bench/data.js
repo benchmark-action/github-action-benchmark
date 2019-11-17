@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1573967566726,
+  "lastUpdate": 1573968123258,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5203,6 +5203,46 @@ window.BENCHMARK_DATA = {
             "value": 8675,
             "range": "±0.61%",
             "unit": "ops/sec"
+          }
+        ]
+      }
+    ],
+    "Python Benchmark with pytest-benchmark": [
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "be395fa45085f9d6d7723f39ef4ea4a1e7d2c71b",
+          "message": "Merge branch 'pytest-support-and-extra-data'",
+          "timestamp": "2019-11-17T14:11:08+09:00",
+          "tree_id": "445685b855eb924cfabb2480b04918aee14352f5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/be395fa45085f9d6d7723f39ef4ea4a1e7d2c71b"
+        },
+        "date": 1573968123092,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 48347.10086431428,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000020419912819191845",
+            "extra": "mean: 0.000020683763496108927 sec\nrounds: 28249"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 389.3380033674248,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002408106151480289",
+            "extra": "mean: 0.002568462342106078 sec\nrounds: 380"
           }
         ]
       }
