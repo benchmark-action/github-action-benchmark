@@ -12,6 +12,7 @@ export interface Config {
     benchmarkDataDirPath: string;
     githubToken: string | undefined;
     autoPush: boolean;
+    skipFetchGhPages: boolean;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -107,6 +108,7 @@ export async function configFromJobInput(): Promise<Config> {
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
+    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -115,5 +117,14 @@ export async function configFromJobInput(): Promise<Config> {
     validateName(name);
     validateAutoPush(autoPush, githubToken);
 
-    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush };
+    return {
+        name,
+        tool,
+        outputFilePath,
+        ghPagesBranch,
+        benchmarkDataDirPath,
+        githubToken,
+        autoPush,
+        skipFetchGhPages,
+    };
 }

@@ -84,7 +84,7 @@ async function pushGitHubPages(token: string, branch: string) {
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
-    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush } = config;
+    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
 
     /* eslint-disable @typescript-eslint/camelcase */
@@ -95,7 +95,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
     await git.cmd('switch', ghPagesBranch);
 
     try {
-        if (!isPrivateRepo || githubToken) {
+        if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
             await git.pull(githubToken, ghPagesBranch);
         } else if (isPrivateRepo) {
             core.warning(

@@ -30,6 +30,7 @@ jobs:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
+          skip-fetch-gh-pages: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
   go:
     name: Run Go benchmark example
@@ -59,6 +60,7 @@ jobs:
           name: Go Benchmark
           tool: 'go'
           output-file-path: examples/go/output.txt
+          skip-fetch-gh-pages: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
   benchmarkjs:
     name: Run JavaScript benchmark example
@@ -87,6 +89,7 @@ jobs:
           name: Benchmark.js Benchmark
           tool: 'benchmarkjs'
           output-file-path: examples/benchmarkjs/output.txt
+          skip-fetch-gh-pages: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
   pytest-benchmark:
     name: Run Pytest benchmark example
@@ -119,6 +122,7 @@ jobs:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
           output-file-path: examples/pytest/output.json
+          skip-fetch-gh-pages: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
   unit-tests:
     name: Run unit tests

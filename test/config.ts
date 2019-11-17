@@ -13,6 +13,7 @@ function mockInputs(newInputs: Inputs) {
     delete inputs['benchmark-data-dir-path'];
     delete inputs['github-token'];
     delete inputs['auto-push'];
+    delete inputs['skip-fetch-gh-pages'];
     Object.assign(inputs, newInputs);
 }
 
