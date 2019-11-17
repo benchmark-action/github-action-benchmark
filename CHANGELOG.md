@@ -1,3 +1,23 @@
+<a name="v1.2.0"></a>
+# [v1.2.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.2.0) - 17 Nov 2019
+
+- **New:** Support [pytest-benchmark](https://pypi.org/project/pytest-benchmark/) for Python projects which use pytest
+  - Benchmark value is how long one iteration takes (seconds/iter)
+- **Improve:** Show more extra data in tooltip which are specific to tools
+  - Go
+    - Iterations
+    - Number of CPUs used
+  - Benchmark.js
+    - Number of samples
+  - pytest-benchmark
+    - Mean time
+    - Number of rounds
+
+For reflecting the extra data improvement, please refresh your `index.html`. Remove current `index.html` in GitHub Pages branch and push the change to remote, then re-run your benchmark workflow.
+
+[Changes][v1.2.0]
+
+
 <a name="v1.1.4"></a>
 # [v1.1.4](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.1.4) - 16 Nov 2019
 
@@ -78,6 +98,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.2.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.4...v1.2.0
 [v1.1.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.3...v1.1.4
 [v1.1.3]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.2...v1.1.3
 [v1.1.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.1...v1.1.2
