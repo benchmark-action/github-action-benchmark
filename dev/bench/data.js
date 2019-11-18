@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574050056680,
+  "lastUpdate": 1574050083682,
   "entries": {
     "Rust Benchmark": [
       {
@@ -1834,6 +1834,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32880,
             "range": "+/- 35,681",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "fbfeeaf441bb85a3e57aae7ec18c47375c749f6b",
+          "message": "use Node.js 12.x for running unit tests instead of LTS",
+          "timestamp": "2019-11-18T13:06:11+09:00",
+          "tree_id": "143303105b6545c3ef4f1c9a08a005c058ab1949",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/fbfeeaf441bb85a3e57aae7ec18c47375c749f6b"
+        },
+        "date": 1574050083205,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 221,
+            "range": "+/- 36",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 30339,
+            "range": "+/- 4,543",
             "unit": "ns/iter"
           }
         ]
