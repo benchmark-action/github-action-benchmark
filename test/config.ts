@@ -1,19 +1,15 @@
 import { strict as A } from 'assert';
 import * as path from 'path';
+import * as os from 'os';
 import mock = require('mock-require');
 
 type Inputs = { [name: string]: string };
 
 const inputs: Inputs = {};
 function mockInputs(newInputs: Inputs) {
-    delete inputs.name;
-    delete inputs.tool;
-    delete inputs['output-file-path'];
-    delete inputs['gh-pages-branch'];
-    delete inputs['benchmark-data-dir-path'];
-    delete inputs['github-token'];
-    delete inputs['auto-push'];
-    delete inputs['skip-fetch-gh-pages'];
+    for (const name of Object.getOwnPropertyNames(inputs)) {
+        delete inputs[name];
+    }
     Object.assign(inputs, newInputs);
 }
 
@@ -36,31 +32,7 @@ describe('configFromJobInput()', function() {
         process.chdir(cwd);
     });
 
-    const tests = [
-        ...VALID_TOOLS.map((tool: string) => ({
-            what: 'valid inputs for ' + tool,
-            inputs: {
-                name: 'Benchmark',
-                tool,
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-            },
-            expected: null,
-        })),
-        ...['true', 'false'].map(autoPush => ({
-            what: `set auto-push to ${autoPush} with token`,
-            inputs: {
-                name: 'Benchmark',
-                tool: 'go',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-                'github-token': 'dummy',
-                'auto-push': autoPush,
-            },
-            expected: null,
-        })),
+    const validation_tests = [
         {
             what: 'wrong name',
             inputs: {
@@ -119,17 +91,6 @@ describe('configFromJobInput()', function() {
         // Cannot check 'benchmark-data-dir-path' invalidation because it throws an error only when
         // current working directory is not obtainable.
         {
-            what: 'resolve home directory in output directory path',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '~/path/to/output',
-            },
-            expected: null,
-        },
-        {
             what: 'auto-push is set but github-token is not set',
             inputs: {
                 name: 'Benchmark',
@@ -158,26 +119,94 @@ describe('configFromJobInput()', function() {
     ] as Array<{
         what: string;
         inputs: Inputs;
-        expected: RegExp | null;
+        expected: RegExp;
     }>;
 
-    for (const test of tests) {
+    for (const test of validation_tests) {
         it('validates ' + test.what, async function() {
             mockInputs(test.inputs);
-            if (test.expected === null) {
-                await A.doesNotReject(configFromJobInput);
-            } else {
-                await A.rejects(configFromJobInput, test.expected);
-            }
+            await A.rejects(configFromJobInput, test.expected);
         });
     }
 
-    it('resolves paths in config', async function() {
+    const defaultInputs = {
+        name: 'Benchmark',
+        tool: 'cargo',
+        'output-file-path': 'out.txt',
+        'gh-pages-branch': 'gh-pages',
+        'benchmark-data-dir-path': '.',
+        'github-token': '',
+        'auto-push': 'false',
+        'skip-fetch-gh-pages': 'false',
+    };
+
+    const defaultExpected = {
+        name: 'Benchmark',
+        tool: 'cargo',
+        ghPagesBranch: 'gh-pages',
+        autoPush: false,
+        skipFetchGhPages: false,
+        githubToken: undefined,
+    };
+    const returned_config_tests = [
+        ...VALID_TOOLS.map((tool: string) => ({
+            what: 'valid tool ' + tool,
+            inputs: { ...defaultInputs, tool },
+            expected: { ...defaultExpected, tool },
+        })),
+        ...([
+            ['auto-push', 'autoPush'],
+            ['skip-fetch-gh-pages', 'skipFetchGhPages'],
+        ] as const)
+            .map(([name, prop]) =>
+                ['true', 'false'].map(v => ({
+                    what: `boolean input ${name} set to '${v}'`,
+                    inputs: { ...defaultInputs, 'github-token': 'dummy', [name]: v },
+                    expected: { ...defaultExpected, githubToken: 'dummy', [prop]: v === 'true' },
+                })),
+            )
+            .flat(),
+        {
+            what: 'with specified name',
+            inputs: { ...defaultInputs, name: 'My Name is...' },
+            expected: { ...defaultExpected, name: 'My Name is...' },
+        },
+        {
+            what: 'with specified GitHub Pages branch',
+            inputs: { ...defaultInputs, 'gh-pages-branch': 'master' },
+            expected: { ...defaultExpected, ghPagesBranch: 'master' },
+        },
+    ] as Array<{
+        what: string;
+        inputs: Inputs;
+        expected: {
+            name: string;
+            tool: string;
+            ghPagesBranch: string;
+            githubToken: string | undefined;
+            autoPush: boolean;
+            skipFetchGhPages: boolean;
+        };
+    }>;
+
+    for (const test of returned_config_tests) {
+        it('returns validated config with ' + test.what, async function() {
+            mockInputs(test.inputs);
+            const actual = await configFromJobInput();
+            A.equal(actual.name, test.expected.name);
+            A.equal(actual.tool, test.expected.tool);
+            A.equal(actual.ghPagesBranch, test.expected.ghPagesBranch);
+            A.equal(actual.githubToken, test.expected.githubToken);
+            A.equal(actual.skipFetchGhPages, test.expected.skipFetchGhPages);
+            A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
+            A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
+        });
+    }
+
+    it('resolves relative paths in config', async function() {
         mockInputs({
-            name: 'Benchmark',
-            tool: 'cargo',
+            ...defaultInputs,
             'output-file-path': 'out.txt',
-            'gh-pages-branch': 'gh-pages',
             'benchmark-data-dir-path': 'path/to/output',
         });
 
@@ -188,5 +217,44 @@ describe('configFromJobInput()', function() {
         A.ok(config.outputFilePath.endsWith('out.txt'), config.outputFilePath);
         A.ok(path.isAbsolute(config.benchmarkDataDirPath), config.benchmarkDataDirPath);
         A.ok(config.benchmarkDataDirPath.endsWith('output'), config.benchmarkDataDirPath);
+    });
+
+    it('does not change abusolute paths in config', async function() {
+        const outFile = path.resolve('out.txt');
+        const dataDir = path.resolve('path/to/output');
+        mockInputs({
+            ...defaultInputs,
+            'output-file-path': outFile,
+            'benchmark-data-dir-path': dataDir,
+        });
+
+        const config = await configFromJobInput();
+        A.equal(config.outputFilePath, outFile);
+        A.equal(config.benchmarkDataDirPath, dataDir);
+    });
+
+    it('resolves home direcotry in output directory path', async function() {
+        const home = os.homedir();
+        const absCwd = process.cwd();
+        if (!absCwd.startsWith(home)) {
+            // Test was not run under home directory so "~" in paths cannot be tested
+            this.skip();
+        }
+
+        const cwd = path.join('~', absCwd.slice(home.length));
+        const file = path.join(cwd, 'out.txt');
+        const dir = path.join(cwd, 'outdir');
+
+        mockInputs({
+            ...defaultInputs,
+            'output-file-path': file,
+            'benchmark-data-dir-path': dir,
+        });
+
+        const config = await configFromJobInput();
+        A.ok(path.isAbsolute(config.outputFilePath), config.outputFilePath);
+        A.equal(config.outputFilePath, path.join(absCwd, 'out.txt'));
+        A.ok(path.isAbsolute(config.benchmarkDataDirPath), config.benchmarkDataDirPath);
+        A.equal(config.benchmarkDataDirPath, path.join(absCwd, 'outdir'));
     });
 });
