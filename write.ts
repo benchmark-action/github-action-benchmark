@@ -95,7 +95,7 @@ async function leaveAlertCommentIfNeeded(
     prevEntry: Benchmark,
     threshold: number,
     token: string,
-) {
+): Promise<Error | null> {
     core.debug(`Comparing current:${curEntry.commit.id} and prev:${prevEntry.commit.id} for alert comment`);
 
     const alerts = [];
@@ -120,7 +120,7 @@ async function leaveAlertCommentIfNeeded(
 
     if (alerts.length === 0) {
         core.debug('No alert found. Skipping alert comment happily');
-        return;
+        return null;
     }
 
     // Generate alert comment as array of lines
@@ -183,7 +183,9 @@ async function leaveAlertCommentIfNeeded(
     });
 
     const commitUrl = `${repoUrl}/commit/${curEntry.commit.id}`;
-    console.log(`Alert comment was sent to ${commitUrl}. Response:`, res);
+    console.log(`Alert comment was sent to ${commitUrl}. Response:`, res.status, res.data);
+
+    return new Error(body + `\nComment was generated at ${res.data.url}`);
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
@@ -197,6 +199,7 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
         skipFetchGhPages,
         alertComment,
         alertThreshold,
+        failOnAlert,
     } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
 
@@ -265,7 +268,10 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
             } else if (prevBench === null) {
                 core.debug('Alert check was skipped because previous benchmark result was not found');
             } else {
-                await leaveAlertCommentIfNeeded(name, bench, prevBench, alertThreshold, githubToken);
+                const err = await leaveAlertCommentIfNeeded(name, bench, prevBench, alertThreshold, githubToken);
+                if (failOnAlert && err !== null) {
+                    throw err;
+                }
             }
         }
     } finally {

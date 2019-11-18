@@ -15,6 +15,7 @@ export interface Config {
     skipFetchGhPages: boolean;
     alertComment: boolean;
     alertThreshold: number;
+    failOnAlert: boolean;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -127,6 +128,7 @@ export async function configFromJobInput(): Promise<Config> {
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const alertComment = getBoolInput('alert-comment');
     const alertThreshold = getPercentageInput('alert-comment-threshold');
+    const failOnAlert = getBoolInput('fail-on-alert');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -146,5 +148,6 @@ export async function configFromJobInput(): Promise<Config> {
         skipFetchGhPages,
         alertComment,
         alertThreshold,
+        failOnAlert,
     };
 }

@@ -43,6 +43,10 @@ inputs:
     description: 'Threshold which determines if an alert comment should be left or not. Percentage value such as "150%". For example, 150% means that an alert comment happens when current benchmark result is 1.5x worse than previous'
     required: false
     default: '200%'
+  fail-on-alert:
+    description: 'Workflow fails when alert comment happens'
+    required: false
+    default: true
 
 runs:
   using: 'node12'
