@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574049673830,
+  "lastUpdate": 1574050039347,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5513,6 +5513,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020464184112392649",
             "extra": "mean: 0.0027039383562017768 sec\nrounds: 379"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "fbfeeaf441bb85a3e57aae7ec18c47375c749f6b",
+          "message": "use Node.js 12.x for running unit tests instead of LTS",
+          "timestamp": "2019-11-18T13:06:11+09:00",
+          "tree_id": "143303105b6545c3ef4f1c9a08a005c058ab1949",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/fbfeeaf441bb85a3e57aae7ec18c47375c749f6b"
+        },
+        "date": 1574050039185,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45226.06209013867,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000027853171193325767",
+            "extra": "mean: 0.000022111144631759686 sec\nrounds: 27933"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 377.0882222617491,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00027997974061889995",
+            "extra": "mean: 0.0026518993194803837 sec\nrounds: 385"
           }
         ]
       }
