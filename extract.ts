@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
-import { Config } from './config';
+import { Config, ToolType } from './config';
 
 export interface BenchmarkResult {
     name: string;
@@ -30,7 +30,7 @@ export interface Benchmark {
         url: string;
     };
     date: number;
-    tool: string;
+    tool: ToolType;
     benches: BenchmarkResult[];
 }
 

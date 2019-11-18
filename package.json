@@ -30,7 +30,8 @@
     "@actions/core": "^1.2.0",
     "@actions/exec": "^1.0.1",
     "@actions/github": "^1.1.0",
-    "@actions/io": "^1.0.1"
+    "@actions/io": "^1.0.1",
+    "@octokit/rest": "^16.35.0"
   },
   "devDependencies": {
     "@types/acorn": "^4.0.5",

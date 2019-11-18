@@ -13,6 +13,8 @@ export interface Config {
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
+    alertComment: boolean;
+    alertThreshold: number;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -100,6 +102,20 @@ function getBoolInput(name: string): boolean {
     return input === 'true';
 }
 
+function getPercentageInput(name: string): number {
+    const input = core.getInput(name);
+    if (!input.endsWith('%')) {
+        throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
+    }
+
+    const percentage = parseFloat(input.slice(0, -1)); // Omit '%' at last
+    if (isNaN(percentage)) {
+        throw new Error(`Specified value '${input.slice(0, -1)}' in '${name}' input cannot be parsed as float number`);
+    }
+
+    return percentage / 100;
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -109,6 +125,8 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
+    const alertComment = getBoolInput('alert-comment');
+    const alertThreshold = getPercentageInput('alert-comment-threshold');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -126,5 +144,7 @@ export async function configFromJobInput(): Promise<Config> {
         githubToken,
         autoPush,
         skipFetchGhPages,
+        alertComment,
+        alertThreshold,
     };
 }
