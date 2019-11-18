@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574050083682,
+  "lastUpdate": 1574050188159,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3579,6 +3579,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 56351,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "fbfeeaf441bb85a3e57aae7ec18c47375c749f6b",
+          "message": "use Node.js 12.x for running unit tests instead of LTS",
+          "timestamp": "2019-11-18T13:06:11+09:00",
+          "tree_id": "143303105b6545c3ef4f1c9a08a005c058ab1949",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/fbfeeaf441bb85a3e57aae7ec18c47375c749f6b"
+        },
+        "date": 1574050187985,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 461,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 54575,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
