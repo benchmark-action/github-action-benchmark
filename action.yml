@@ -46,7 +46,9 @@ inputs:
   fail-on-alert:
     description: 'Workflow fails when alert comment happens'
     required: false
-    default: true
+    # Note: Set to false by default since this action does not push to remote by default. When workflow
+    # fails and auto-push is not set, there is no chance to push the result to remote.
+    default: false
 
 runs:
   using: 'node12'

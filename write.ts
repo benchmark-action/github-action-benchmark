@@ -235,6 +235,7 @@ async function alert(
     }
 
     if (shouldFail) {
+        core.debug('Mark this workflow as fail since one or more alerts found');
         throw new Error(message);
     }
 }
