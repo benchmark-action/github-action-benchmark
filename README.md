@@ -49,6 +49,11 @@ At bottom of the page, download button is available for downloading benchmark re
 
 ![download button](https://github.com/rhysd/ss/blob/master/github-action-benchmark/download.png?raw=true)
 
+If you enable an optional feature, this action raises an alert comment to the commit when its benchmark
+results are worse than previous exceeding specified threshold.
+
+![alert comment](https://github.com/rhysd/ss/blob/master/github-action-benchmark/alert-comment.png?raw=true)
+
 ## Why?
 
 Since performance is important. Writing benchmarks is a very popular and correct way to visualize
@@ -157,6 +162,41 @@ Note that GitHub pages branch and a directory to put benchmark results are custo
 After first job execution, `https://you.github.io/dev/bench` should be available like
 [examples of this repository][examples-page].
 
+#### Enable alert comment (optional)
+
+If you set `comment-on-alert` input, this action compares the benchmark results of current commit
+with previous. If it is worse than previous exceeding a threshold specified by `alert-threshold`
+input, this action sends a commit comment for alert. You can notice possible performance regression.
+Please read 'Examples' section above to see a screenshot.
+
+e.g.
+
+```yaml
+- name: Store benchmark result
+  uses: rhysd/github-action-benchmark@v1
+  with:
+    name: My Project Go Benchmark
+    tool: 'go'
+    output-file-path: output.txt
+    github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    auto-push: true
+    # Send commit comment when alert happens
+    comment-on-alert: true
+    # Alert happens when benchmark result gets worse exceeding 200% threshold
+    alert-threshold: 200%
+    # Workflow will fail when alert happens
+    fail-on-alert: true
+```
+
+In above example, when some benchmark result of current commit is worse than previous exceeding 200%
+threshold, an alert happens. For example, if previous benchmark result was 100 iter/ns and this time
+it is 230 iter/ns, it means 230% worse than previous. So alert will happen. Please ensure to set
+`github-token` input as well to for sending commit comment with GitHub API.
+
+Another option is `fail-on-alert`. When it is enabled, workflow will fail when alert happens. Since
+workflow immediately stops when it fails, please set `auto-push` to `true` also. Otherwise the benchmark
+result won't be pushed to remote.
+
 ### Tool Specific Setup
 
 Please read `README.md` files at each example directory.
@@ -172,15 +212,18 @@ These examples are run in workflows of this repository as described in 'Examples
 
 Input definitions are written in [action.yml](./action.yml).
 
-| Name                      | Description                                                                                          | Type                                                  | Required | Default       |
-|---------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------|----------|---------------|
-| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository.        | String                                                | Yes      | `"Benchmark"` |
-| `tool`                    | Tool for running benchmark                                                                           | One of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"` | Yes      |               |
-| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                        | String                                                | Yes      |               |
-| `gh-pages-branch`         | Name of your GitHub pages branch                                                                     | String                                                | Yes      | `"gh-pages"`  |
-| `benchmark-data-dir-path` | Path to directory which contains benchmark files on GitHub pages branch. Relative to repository root | String                                                | Yes      | `"dev/bench"` |
-| `github-token`            | GitHub API token. For public repo, personal access token is necessary. Please see basic usage        | String                                                | No       |               |
-| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch           | Boolean                                               | No       | `false`       |
+| Name                      | Description                                                                                                                   | Type                                                  | Required | Default       |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|----------|---------------|
+| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository                                  | String                                                | Yes      | `"Benchmark"` |
+| `tool`                    | Tool for running benchmark                                                                                                    | One of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"` | Yes      |               |
+| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                                                 | String                                                | Yes      |               |
+| `gh-pages-branch`         | Name of your GitHub pages branch                                                                                              | String                                                | Yes      | `"gh-pages"`  |
+| `benchmark-data-dir-path` | Path to directory which contains benchmark files on GitHub pages branch. Relative to repository root                          | String                                                | Yes      | `"dev/bench"` |
+| `github-token`            | GitHub API token. For public repo, personal access token is necessary. Please see basic usage                                 | String                                                | No       |               |
+| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch                                    | Boolean                                               | No       | `false`       |
+| `alert-threshold`         | Percentage value like `"150%"`. If current benchmark result is worse than previous exceeding the threshold, alert will happen | String                                                | No       | `"200%"`      |
+| `comment-on-alert`        | If set to `true`, this action will leave a commit comment when alert happens. `github-token` is necessary as well             | Boolean                                               | No       | `false`       |
+| `fail-on-alert`           | If set to `true`, workflow will fail when alert happens                                                                       | Boolean                                               | No       | `false`       |
 
 `name` and `tool` must be specified in workflow at `uses` section of job step.
 
