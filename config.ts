@@ -81,11 +81,9 @@ function validateName(name: string) {
     throw new Error('Name must not be empty');
 }
 
-function validateGitHubToken(inputName: string, githubToken: string | undefined) {
+function validateGitHubToken(inputName: string, githubToken: string | undefined, todo: string) {
     if (!githubToken) {
-        throw new Error(
-            `'${inputName}' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote`,
-        );
+        throw new Error(`'${inputName}' is enabled but 'github-token' is not set. Please give API token ${todo}`);
     }
 }
 
@@ -133,10 +131,10 @@ export async function configFromJobInput(): Promise<Config> {
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);
     if (autoPush) {
-        validateGitHubToken('auto-push', githubToken);
+        validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
     }
     if (commentOnAlert) {
-        validateGitHubToken('comment-on-alert', githubToken);
+        validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
 
     return {
