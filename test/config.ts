@@ -41,7 +41,7 @@ describe('configFromJobInput()', function() {
         'github-token': '',
         'auto-push': 'false',
         'skip-fetch-gh-pages': 'false',
-        'comment-on-alert': 'true',
+        'comment-on-alert': 'false',
         'alert-threshold': '200%',
         'fail-on-alert': 'false',
     };
@@ -94,6 +94,11 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'alert-threshold': 'foo%' },
             expected: /Specified value 'foo' in 'alert-threshold' input cannot be parsed as float number/,
         },
+        {
+            what: 'comment-on-alert is set but github-token is not set',
+            inputs: { ...defaultInputs, 'comment-on-alert': 'true', 'github-token': '' },
+            expected: /'comment-on-alert' is enabled but 'github-token' is not set/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -114,7 +119,7 @@ describe('configFromJobInput()', function() {
         autoPush: false,
         skipFetchGhPages: false,
         githubToken: undefined,
-        commentOnAlert: true,
+        commentOnAlert: false,
         alertThreshold: 2,
         failOnAlert: false,
     };

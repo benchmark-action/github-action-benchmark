@@ -227,11 +227,10 @@ async function alert(
 
     if (shouldComment) {
         if (!token) {
-            core.warning('Leaving alert comment was skipped because github-token is not set');
-        } else {
-            const res = await leaveComment(curEntry.commit.id, body, token);
-            message = body + `\nComment was generated at ${res.data.url}`;
+            throw new Error("'comment-on-alert' is set but github-token is not set");
         }
+        const res = await leaveComment(curEntry.commit.id, body, token);
+        message = body + `\nComment was generated at ${res.data.url}`;
     }
 
     if (shouldFail) {
