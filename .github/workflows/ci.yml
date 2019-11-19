@@ -31,6 +31,8 @@ jobs:
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
           skip-fetch-gh-pages: true
+          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
   go:
     name: Run Go benchmark example

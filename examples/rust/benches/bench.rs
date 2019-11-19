@@ -8,13 +8,13 @@ use test::Bencher;
 #[bench]
 fn bench_fib_10(b: &mut Bencher) {
     b.iter(|| {
-        let _ = fib(10);
+        let _ = fib(13);
     });
 }
 
 #[bench]
 fn bench_fib_20(b: &mut Bencher) {
     b.iter(|| {
-        let _ = fib(20);
+        let _ = fib(23);
     });
 }
