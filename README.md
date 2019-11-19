@@ -190,8 +190,9 @@ e.g.
 
 In above example, when some benchmark result of current commit is worse than previous exceeding 200%
 threshold, an alert happens. For example, if previous benchmark result was 100 iter/ns and this time
-it is 230 iter/ns, it means 230% worse than previous. So alert will happen. Please ensure to set
-`github-token` input as well to for sending commit comment with GitHub API.
+it is 230 iter/ns, it means 230% worse than previous and alert will happen.
+When `comment-on-alert` is set, a commit comment is generated for the alert [like this][alert-comment-example].
+Please ensure to set `github-token` input as well to for sending commit comment with GitHub API.
 
 Another option is `fail-on-alert`. When it is enabled, workflow will fail when alert happens. Since
 workflow immediately stops when it fails, please set `auto-push` to `true` also. Otherwise the benchmark
@@ -321,3 +322,4 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
+[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/f731ea56d351f1c1dc86ae32d0195ef5336b0737#commitcomment-36025041
