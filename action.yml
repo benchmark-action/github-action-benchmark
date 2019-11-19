@@ -35,12 +35,12 @@ inputs:
     description: 'Skip pulling GitHub Pages branch before generating an auto commit'
     required: false
     default: false
-  alert-comment:
+  comment-on-alert:
     description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-comment-threshold input. To enable this feature, github-token input must be given as well'
     required: false
     default: true
-  alert-comment-threshold:
-    description: 'Threshold which determines if an alert comment should be left or not. Percentage value such as "150%". For example, 150% means that an alert comment happens when current benchmark result is 1.5x worse than previous'
+  alert-threshold:
+    description: 'Threshold which determines if an alert should happen or not. Percentage value such as "150%". For example, 150% means that an alert happens when current benchmark result is 1.5x worse than previous'
     required: false
     default: '200%'
   fail-on-alert:

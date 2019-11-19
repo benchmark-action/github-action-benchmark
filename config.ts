@@ -13,7 +13,7 @@ export interface Config {
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
-    alertComment: boolean;
+    commentOnAlert: boolean;
     alertThreshold: number;
     failOnAlert: boolean;
 }
@@ -126,8 +126,8 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
-    const alertComment = getBoolInput('alert-comment');
-    const alertThreshold = getPercentageInput('alert-comment-threshold');
+    const commentOnAlert = getBoolInput('comment-on-alert');
+    const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
 
     validateToolType(tool);
@@ -146,7 +146,7 @@ export async function configFromJobInput(): Promise<Config> {
         githubToken,
         autoPush,
         skipFetchGhPages,
-        alertComment,
+        commentOnAlert,
         alertThreshold,
         failOnAlert,
     };
