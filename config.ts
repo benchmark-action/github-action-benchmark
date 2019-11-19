@@ -13,6 +13,9 @@ export interface Config {
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
+    commentOnAlert: boolean;
+    alertThreshold: number;
+    failOnAlert: boolean;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -78,14 +81,9 @@ function validateName(name: string) {
     throw new Error('Name must not be empty');
 }
 
-function validateAutoPush(autoPush: boolean, githubToken: string | undefined) {
-    if (!autoPush) {
-        return;
-    }
+function validateGitHubToken(inputName: string, githubToken: string | undefined, todo: string) {
     if (!githubToken) {
-        throw new Error(
-            "'auto-push' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote",
-        );
+        throw new Error(`'${inputName}' is enabled but 'github-token' is not set. Please give API token ${todo}`);
     }
 }
 
@@ -100,6 +98,20 @@ function getBoolInput(name: string): boolean {
     return input === 'true';
 }
 
+function getPercentageInput(name: string): number {
+    const input = core.getInput(name);
+    if (!input.endsWith('%')) {
+        throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
+    }
+
+    const percentage = parseFloat(input.slice(0, -1)); // Omit '%' at last
+    if (isNaN(percentage)) {
+        throw new Error(`Specified value '${input.slice(0, -1)}' in '${name}' input cannot be parsed as float number`);
+    }
+
+    return percentage / 100;
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -109,13 +121,21 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
+    const commentOnAlert = getBoolInput('comment-on-alert');
+    const alertThreshold = getPercentageInput('alert-threshold');
+    const failOnAlert = getBoolInput('fail-on-alert');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);
-    validateAutoPush(autoPush, githubToken);
+    if (autoPush) {
+        validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
+    }
+    if (commentOnAlert) {
+        validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
+    }
 
     return {
         name,
@@ -126,5 +146,8 @@ export async function configFromJobInput(): Promise<Config> {
         githubToken,
         autoPush,
         skipFetchGhPages,
+        commentOnAlert,
+        alertThreshold,
+        failOnAlert,
     };
 }

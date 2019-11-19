@@ -11,7 +11,7 @@ async function main() {
     core.debug(`Benchmark result was extracted: ${bench}`);
 
     await writeBenchmark(bench, config);
-    console.log('github-aciton-bvenchmark was run successfully!', '\nData:', bench);
+    console.log('github-action-benchmark was run successfully!', '\nData:', bench);
 }
 
 main().catch(e => core.setFailed(e.message));

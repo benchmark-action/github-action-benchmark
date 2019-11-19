@@ -32,89 +32,72 @@ describe('configFromJobInput()', function() {
         process.chdir(cwd);
     });
 
+    const defaultInputs = {
+        name: 'Benchmark',
+        tool: 'cargo',
+        'output-file-path': 'out.txt',
+        'gh-pages-branch': 'gh-pages',
+        'benchmark-data-dir-path': '.',
+        'github-token': '',
+        'auto-push': 'false',
+        'skip-fetch-gh-pages': 'false',
+        'comment-on-alert': 'false',
+        'alert-threshold': '200%',
+        'fail-on-alert': 'false',
+    };
+
     const validation_tests = [
         {
             what: 'wrong name',
-            inputs: {
-                name: '',
-                tool: 'cargo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-            },
+            inputs: { ...defaultInputs, name: '' },
             expected: /^Error: Name must not be empty$/,
         },
         {
             what: 'wrong tool',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'foo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-            },
+            inputs: { ...defaultInputs, tool: 'foo' },
             expected: /^Error: Invalid value 'foo' for 'tool' input/,
         },
         {
             what: 'output file does not exist',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': 'foo.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-            },
+            inputs: { ...defaultInputs, 'output-file-path': 'foo.txt' },
             expected: /^Error: Invalid value for 'output-file-path'/,
         },
         {
             what: 'output file is actually directory',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': '.',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': '.',
-            },
+            inputs: { ...defaultInputs, 'output-file-path': '.' },
             expected: /Specified path '.*' is not a file/,
         },
         {
             what: 'wrong GitHub pages branch name',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': '',
-                'benchmark-data-dir-path': '.',
-            },
+            inputs: { ...defaultInputs, 'gh-pages-branch': '' },
             expected: /^Error: Branch value must not be empty/,
         },
         // Cannot check 'benchmark-data-dir-path' invalidation because it throws an error only when
         // current working directory is not obtainable.
         {
             what: 'auto-push is set but github-token is not set',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': 'path/to/output',
-                'github-token': undefined,
-                'auto-push': 'true',
-            },
+            inputs: { ...defaultInputs, 'auto-push': 'true', 'github-token': '' },
             expected: /'auto-push' is enabled but 'github-token' is not set/,
         },
         {
             what: 'auto-push is set to other than boolean',
-            inputs: {
-                name: 'Benchmark',
-                tool: 'cargo',
-                'output-file-path': 'out.txt',
-                'gh-pages-branch': 'gh-pages',
-                'benchmark-data-dir-path': 'path/to/output',
-                'github-token': 'dummy',
-                'auto-push': 'hello',
-            },
+            inputs: { ...defaultInputs, 'auto-push': 'hello', 'github-token': 'dummy' },
             expected: /'auto-push' input must be boolean value 'true' or 'false' but got 'hello'/,
+        },
+        {
+            what: 'alert-threshold does not have percentage value',
+            inputs: { ...defaultInputs, 'alert-threshold': '1.2' },
+            expected: /'alert-threshold' input must ends with '%' for percentage value/,
+        },
+        {
+            what: 'alert-threshold does not have correct percentage number',
+            inputs: { ...defaultInputs, 'alert-threshold': 'foo%' },
+            expected: /Specified value 'foo' in 'alert-threshold' input cannot be parsed as float number/,
+        },
+        {
+            what: 'comment-on-alert is set but github-token is not set',
+            inputs: { ...defaultInputs, 'comment-on-alert': 'true', 'github-token': '' },
+            expected: /'comment-on-alert' is enabled but 'github-token' is not set/,
         },
     ] as Array<{
         what: string;
@@ -129,17 +112,6 @@ describe('configFromJobInput()', function() {
         });
     }
 
-    const defaultInputs = {
-        name: 'Benchmark',
-        tool: 'cargo',
-        'output-file-path': 'out.txt',
-        'gh-pages-branch': 'gh-pages',
-        'benchmark-data-dir-path': '.',
-        'github-token': '',
-        'auto-push': 'false',
-        'skip-fetch-gh-pages': 'false',
-    };
-
     const defaultExpected = {
         name: 'Benchmark',
         tool: 'cargo',
@@ -147,6 +119,9 @@ describe('configFromJobInput()', function() {
         autoPush: false,
         skipFetchGhPages: false,
         githubToken: undefined,
+        commentOnAlert: false,
+        alertThreshold: 2,
+        failOnAlert: false,
     };
     const returned_config_tests = [
         ...VALID_TOOLS.map((tool: string) => ({
@@ -157,6 +132,8 @@ describe('configFromJobInput()', function() {
         ...([
             ['auto-push', 'autoPush'],
             ['skip-fetch-gh-pages', 'skipFetchGhPages'],
+            ['comment-on-alert', 'commentOnAlert'],
+            ['fail-on-alert', 'failOnAlert'],
         ] as const)
             .map(([name, prop]) =>
                 ['true', 'false'].map(v => ({
@@ -176,6 +153,15 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'gh-pages-branch': 'master' },
             expected: { ...defaultExpected, ghPagesBranch: 'master' },
         },
+        ...[
+            ['150%', 1.5],
+            ['0%', 0],
+            ['123.4%', 1.234],
+        ].map(([v, e]) => ({
+            what: `with alert threshold ${v}`,
+            inputs: { ...defaultInputs, 'alert-threshold': v },
+            expected: { ...defaultExpected, alertThreshold: e },
+        })),
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -186,6 +172,9 @@ describe('configFromJobInput()', function() {
             githubToken: string | undefined;
             autoPush: boolean;
             skipFetchGhPages: boolean;
+            commentOnAlert: boolean;
+            alertThreshold: number;
+            failOnAlert: boolean;
         };
     }>;
 
@@ -198,6 +187,9 @@ describe('configFromJobInput()', function() {
             A.equal(actual.ghPagesBranch, test.expected.ghPagesBranch);
             A.equal(actual.githubToken, test.expected.githubToken);
             A.equal(actual.skipFetchGhPages, test.expected.skipFetchGhPages);
+            A.equal(actual.commentOnAlert, test.expected.commentOnAlert);
+            A.equal(actual.failOnAlert, test.expected.failOnAlert);
+            A.equal(actual.alertThreshold, test.expected.alertThreshold);
             A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
             A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
         });
