@@ -205,6 +205,8 @@ e.g.
     alert-threshold: 200%
     # Workflow will fail when alert happens
     fail-on-alert: true
+    # Users mentioned in alert commit message
+    alert-comment-cc-users: '@rhysd'
 ```
 
 With above inputs, this action works as follows:
@@ -224,9 +226,12 @@ will happen.
 When `comment-on-alert` is set, a commit comment is generated for the alert [like this][alert-comment-example].
 Please ensure to set `github-token` input as well to for sending commit comment with GitHub API.
 
-Another option is `fail-on-alert`. When it is enabled, workflow will fail when alert happens. Since
+When `fail-on-alert` is enabled, workflow will fail when alert happens. Since
 workflow immediately stops when it fails, please set `auto-push` to `true` also. Otherwise the benchmark
 result won't be pushed to remote.
+
+Optional `alert-comment-cc-users` specifies users which will be mentioned in alert comment so that they
+can notice the alert comment easily via notification.
 
 If you don't use GitHub Pages, please make a dedicated branch to store benchmark results (`benchmark-data`
 in above example). Since the branch is not for GitHub Pages, it is not deployed even if this action pushes
