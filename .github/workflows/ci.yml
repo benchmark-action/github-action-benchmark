@@ -63,9 +63,6 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          comment-on-alert: true
-          alert-comment-cc-users: '@rhysd'
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
   benchmarkjs:
     name: Run JavaScript benchmark example
