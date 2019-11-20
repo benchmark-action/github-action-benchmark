@@ -3,11 +3,16 @@ GitHub Action for Continuous Benchmarking
 [![Build Status][build-badge]][ci]
 
 [This repository][proj] provides a [GitHub Action][github-action] for continuous benchmarking.
-This action depends on nothing other than GitHub; it collects data from benchmark outputs and
-writes them to [GitHub pages][gh-pages] branch while GitHub Action workflow. You can see the
-visualized benchmark results in the GitHub pages of your project.
+If your project has some benchmark suites, this action collects data from the benchmark outputs
+and monitor the results on GitHub Actions workflow.
 
-This action currently supports
+- This action stores collected benchmark results in [GitHub pages][gh-pages] branch and provides
+  a chart view. You can see the visualized benchmark results on the GitHub pages of your project.
+- This action can detect possible performance regressions by comparing benchmark results. When
+  benchmark results are worse than previous exceeding specified threshold, it can raise an alert
+  via commit comment or workflow failure.
+
+This action currently supports following tools:
 
 - [`cargo bench`][cargo-bench] for Rust projects
 - `go test -bench` for Go projects
@@ -26,7 +31,7 @@ are in [.github/workflows/](./.github/workflows) directory. Workflow actions are
 - Rust: [![Rust Example Workflow][rust-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
 - Go: [![Go Example Workflow][go-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22)
 - JavaScript: [![JavaScript Example Workflow][benchmarkjs-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22)
-- Python (pytest-benchmark): [![Pytest Example Workflow][pytest-benchmark-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22)
+- Python: [![pytest-benchmark Example Workflow][pytest-benchmark-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22)
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -66,9 +71,13 @@ So I built a new tool on top of GitHub Action.
 
 ## How to use
 
-This action takes a file which contains benchmark output and updates GitHub pages branch automatically.
+This action takes a file which contains benchmark output and outputs the results to GitHub Pages branch
+and/or alert commit comment.
 
-### Basic usage
+- [How to use this action with GitHub pages](#how-to-use-this-action-with-github-pages)
+- [How to use this action with alert commit comment](#how-to-use-this-action-with-alert-commit-comment)
+
+### How to use this action with GitHub pages
 
 Run your benchmarks on your workflow and store the output to a file. `tee` command is useful to output
 results to both console and file.
@@ -88,8 +97,11 @@ e.g.
 - name: Store benchmark result
   uses: rhysd/github-action-benchmark@v1
   with:
+    # Your favorite benchmark name
     name: My Project Go Benchmark
+    # What benchmark tool the output.txt came from
     tool: 'go'
+    # Where the output from the benchmark tool is stored
     output-file-path: output.txt
 ```
 
@@ -120,7 +132,7 @@ This is a current limitation only for public repositories. For private repositor
 is available. In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to
 deploy GitHub Pages branch. Let's back to workflow YAML file.
 
-There are two options for pushing GitHub pages branch to remote from workflow.
+There are two options for pushing GitHub pages branch to remote from workflow. Please choose one of them.
 
 1. Give your API token to `github-token` input and set `auto-push` to `true`
 2. Add step for executing `git push` within workflow
@@ -136,7 +148,9 @@ e.g.
     name: My Project Go Benchmark
     tool: 'go'
     output-file-path: output.txt
+    # Personal access token to deploy GitHub Pages branch
     github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    # Push and deploy GitHub pages branch automatically
     auto-push: true
 ```
 
@@ -162,12 +176,12 @@ Note that GitHub pages branch and a directory to put benchmark results are custo
 After first job execution, `https://you.github.io/dev/bench` should be available like
 [examples of this repository][examples-page].
 
-#### Enable alert comment (optional)
+### How to use this action with alert commit comment
 
-If you set `comment-on-alert` input, this action compares the benchmark results of current commit
-with previous. If it is worse than previous exceeding a threshold specified by `alert-threshold`
-input, this action sends a commit comment for alert. You can notice possible performance regression.
-Please read 'Examples' section above to see a screenshot.
+This section explains how to enable performance alerts. To simplify explanation, configuration in
+this section only enables alerts. If you want to know how to both GitHub Pages and alerts, please
+see [live workflow examples](.github/workflows) for [example projects](examples/) after reading
+this section.
 
 e.g.
 
@@ -178,7 +192,12 @@ e.g.
     name: My Project Go Benchmark
     tool: 'go'
     output-file-path: output.txt
-    github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+    # Prepare dedicated branch to store benchmark results
+    gh-pages-branch: benchmark-data
+    benchmark-data-dir-path: ./
+    # If you don't deploy GitHub Pages, using secrets.GITHUB_TOKEN is sufficient.
+    # You don't need to create and manage personal access token.
+    github-token: ${{ secrets.GITHUB_TOKEN }}
     auto-push: true
     # Send commit comment when alert happens
     comment-on-alert: true
@@ -186,21 +205,44 @@ e.g.
     alert-threshold: 200%
     # Workflow will fail when alert happens
     fail-on-alert: true
+    # Users mentioned in alert commit message
+    alert-comment-cc-users: '@rhysd'
 ```
 
-In above example, when some benchmark result of current commit is worse than previous exceeding 200%
-threshold, an alert happens. For example, if previous benchmark result was 100 iter/ns and this time
-it is 230 iter/ns, it means 230% worse than previous and alert will happen.
+With above inputs, this action works as follows:
+
+1. extracts benchmark results from `output.txt`
+2. stores (commits and pushes) the results in `benchmark-data` branch
+3. compares the results with previous results stored in `benchmark-data` branch
+4. if some current result is worse than previous exceeding 200% threshold,
+    1. raise an alert as commit comment
+    2. marks the workflow fail with alert message
+
+In above example, when some benchmark result of current commit gets worse than previous exceeding 200%
+threshold specified with `alert-threshold` input, an alert happens. For example, if previous benchmark
+result was 100 iter/ns and this time it is 230 iter/ns, it means 230% worse than previous and alert
+will happen.
+
 When `comment-on-alert` is set, a commit comment is generated for the alert [like this][alert-comment-example].
 Please ensure to set `github-token` input as well to for sending commit comment with GitHub API.
 
-Another option is `fail-on-alert`. When it is enabled, workflow will fail when alert happens. Since
+When `fail-on-alert` is enabled, workflow will fail when alert happens. Since
 workflow immediately stops when it fails, please set `auto-push` to `true` also. Otherwise the benchmark
 result won't be pushed to remote.
 
-### Tool Specific Setup
+Optional `alert-comment-cc-users` specifies users which will be mentioned in alert comment so that they
+can notice the alert comment easily via notification.
 
-Please read `README.md` files at each example directory.
+If you don't use GitHub Pages, please make a dedicated branch to store benchmark results (`benchmark-data`
+in above example). Since the branch is not for GitHub Pages, it is not deployed even if this action pushes
+auto generated commit to the branch. And a personal access token is not necessary. `secrets.GITHUB_TOKEN`
+is sufficient for `git push` and sending a commit comment. If you only use alerts, you don't need to
+create and manage a personal access token.
+
+### Tool specific setup
+
+Please read `README.md` files at each example directory. Basically take stdout from benchmark tool and
+store it to file. Then specify the file path to `output-file-path` input.
 
 - [`cargo bench` for Rust projects](./examples/rust/README.md)
 - [`go test` for Go projects](./examples/go/README.md)
@@ -322,4 +364,4 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
-[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/f731ea56d351f1c1dc86ae32d0195ef5336b0737#commitcomment-36025041
+[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186

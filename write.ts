@@ -236,7 +236,9 @@ async function alert(
             throw new Error("'comment-on-alert' is set but github-token is not set");
         }
         const res = await leaveComment(curEntry.commit.id, body, token);
-        message = body + `\nComment was generated at ${res.data.url}`;
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        const url = res.data.html_url;
+        message = body + `\nComment was generated at ${url}`;
     }
 
     if (shouldFail) {
