@@ -25,13 +25,15 @@ Multiple languages in the same repository is supported for polyglot projects.
 
 ## Examples
 
-Example projects for each languages are in [examples/](./examples) directory. Live example workflows
-are in [.github/workflows/](./.github/workflows) directory. Workflow actions are:
+Example projects for each languages are in [examples/](./examples) directory. Live example workflow
+definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
 
-- Rust: [![Rust Example Workflow][rust-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
-- Go: [![Go Example Workflow][go-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22)
-- JavaScript: [![JavaScript Example Workflow][benchmarkjs-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22)
-- Python: [![pytest-benchmark Example Workflow][pytest-benchmark-badge]](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22)
+| Language   | Workflow                                                                                |
+|------------|-----------------------------------------------------------------------------------------|
+| Rust       | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           |
+| Go         | [![Go Example Workflow][go-badge]][go-workflow-example]                                 |
+| JavaScript | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       |
+| Python     | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -365,3 +367,7 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
 [alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
+[rust-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
+[go-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
+[benchmarkjs-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22
+[pytest-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22
