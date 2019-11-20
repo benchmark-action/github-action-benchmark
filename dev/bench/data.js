@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574222923635,
+  "lastUpdate": 1574234189468,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3723,6 +3723,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 57820,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "70e31dc6342aca739d3779013d25639418fc9c3e",
+          "message": "watch and run unit tests with `mocha --watch`",
+          "timestamp": "2019-11-20T13:06:49+09:00",
+          "tree_id": "509053b1325005be4406667fcf9d8c2b1c5b05f5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/70e31dc6342aca739d3779013d25639418fc9c3e"
+        },
+        "date": 1574234189297,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 454,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 57073,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
