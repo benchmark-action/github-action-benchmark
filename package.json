@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p .",
-    "watch": "tsc -p . --watch",
+    "watch:tsc": "tsc -p . --watch --preserveWatchOutput",
+    "watch:mocha": "mocha --watch ./test",
+    "watch": "npm-run-all -p watch:tsc watch:mocha",
     "lint": "eslint '**/*.ts'",
     "fix": "eslint --fix '**/*.ts'",
     "test": "mocha ./test"
