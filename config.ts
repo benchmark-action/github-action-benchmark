@@ -16,6 +16,7 @@ export interface Config {
     commentOnAlert: boolean;
     alertThreshold: number;
     failOnAlert: boolean;
+    alertCommentCcUsers: string[];
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -112,6 +113,22 @@ function getPercentageInput(name: string): number {
     return percentage / 100;
 }
 
+function getCommaSeparatedInput(name: string): string[] {
+    const input = core.getInput(name);
+    if (!input) {
+        return [];
+    }
+    return input.split(',').map(s => s.trim());
+}
+
+function validateAlertCommentCcUsers(users: string[]) {
+    for (const u of users) {
+        if (!u.startsWith('@')) {
+            throw new Error(`User name in 'alert-comment-cc-users' input must start with '@' but got '${u}'`);
+        }
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -124,6 +141,7 @@ export async function configFromJobInput(): Promise<Config> {
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
+    const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -136,6 +154,7 @@ export async function configFromJobInput(): Promise<Config> {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    validateAlertCommentCcUsers(alertCommentCcUsers);
 
     return {
         name,
@@ -149,5 +168,6 @@ export async function configFromJobInput(): Promise<Config> {
         commentOnAlert,
         alertThreshold,
         failOnAlert,
+        alertCommentCcUsers,
     };
 }

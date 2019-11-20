@@ -44,6 +44,7 @@ describe('configFromJobInput()', function() {
         'comment-on-alert': 'false',
         'alert-threshold': '200%',
         'fail-on-alert': 'false',
+        'alert-comment-cc-users': '',
     };
 
     const validation_tests = [
@@ -99,6 +100,11 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'comment-on-alert': 'true', 'github-token': '' },
             expected: /'comment-on-alert' is enabled but 'github-token' is not set/,
         },
+        {
+            what: 'user names in alert-comment-cc-users is not starting with @',
+            inputs: { ...defaultInputs, 'alert-comment-cc-users': '@foo,bar' },
+            expected: /User name in 'alert-comment-cc-users' input must start with '@' but got 'bar'/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -122,6 +128,7 @@ describe('configFromJobInput()', function() {
         commentOnAlert: false,
         alertThreshold: 2,
         failOnAlert: false,
+        alertCommentCcUsers: [],
     };
     const returned_config_tests = [
         ...VALID_TOOLS.map((tool: string) => ({
@@ -162,6 +169,15 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'alert-threshold': v },
             expected: { ...defaultExpected, alertThreshold: e },
         })),
+        ...[
+            ['@foo', ['@foo']],
+            ['@foo,@bar', ['@foo', '@bar']],
+            ['@foo, @bar ', ['@foo', '@bar']],
+        ].map(([v, e]) => ({
+            what: `with comment CC users ${v}`,
+            inputs: { ...defaultInputs, 'alert-comment-cc-users': v },
+            expected: { ...defaultExpected, alertCommentCcUsers: e },
+        })),
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -175,6 +191,7 @@ describe('configFromJobInput()', function() {
             commentOnAlert: boolean;
             alertThreshold: number;
             failOnAlert: boolean;
+            alertCommentCcUsers: string[];
         };
     }>;
 
@@ -190,6 +207,7 @@ describe('configFromJobInput()', function() {
             A.equal(actual.commentOnAlert, test.expected.commentOnAlert);
             A.equal(actual.failOnAlert, test.expected.failOnAlert);
             A.equal(actual.alertThreshold, test.expected.alertThreshold);
+            A.deepEqual(actual.alertCommentCcUsers, test.expected.alertCommentCcUsers);
             A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
             A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
         });
