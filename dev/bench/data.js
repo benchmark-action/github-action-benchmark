@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574222891351,
+  "lastUpdate": 1574222898671,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5503,6 +5503,44 @@ window.BENCHMARK_DATA = {
             "range": "±1.08%",
             "unit": "ops/sec",
             "extra": "88 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "70e31dc6342aca739d3779013d25639418fc9c3e",
+          "message": "watch and run unit tests with `mocha --watch`",
+          "timestamp": "2019-11-20T13:06:49+09:00",
+          "tree_id": "509053b1325005be4406667fcf9d8c2b1c5b05f5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/70e31dc6342aca739d3779013d25639418fc9c3e"
+        },
+        "date": 1574222898442,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1078963,
+            "range": "±0.39%",
+            "unit": "ops/sec",
+            "extra": "90 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9015,
+            "range": "±0.53%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
           }
         ]
       }
