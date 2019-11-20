@@ -364,4 +364,4 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
-[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/f731ea56d351f1c1dc86ae32d0195ef5336b0737#commitcomment-36025041
+[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
