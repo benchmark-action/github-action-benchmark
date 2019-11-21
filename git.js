@@ -60,7 +60,7 @@ function getRemoteUrl(token) {
 async function push(token, branch, ...options) {
     core.debug(`Executing 'git push' to branch '${branch}' with token and options '${options.join(' ')}'`);
     const remote = getRemoteUrl(token);
-    let args = ['push', remote, `${branch}:${branch}`];
+    let args = ['push', remote, `${branch}:${branch}`, '--no-verify'];
     if (options.length > 0) {
         args = args.concat(options);
     }
