@@ -8,7 +8,7 @@ import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
 import deepEq = require('deep-equal');
 
 function help(): never {
-    throw new Error('Usage: node ci_validate_modification.js before_data.js');
+    throw new Error('Usage: node ci_validate_modification.js before_data.js "bechmark name"');
 }
 
 async function exec(cmd: string): Promise<string> {
@@ -208,6 +208,22 @@ async function main() {
 
     console.log('Retrieving data.js after action');
     await exec('git checkout gh-pages');
+    const latestCommitLog = await exec('git log -n 1');
+
+    console.log('Validating auto commit');
+    const commitLogLines = latestCommitLog.split('\n');
+
+    const commitAuthorLine = commitLogLines[1];
+    if (!commitAuthorLine.startsWith('Author: github-action-benchmark')) {
+        throw new Error(`Unexpected auto commit author in log '${latestCommitLog}'`);
+    }
+
+    const commitMessageLine = commitLogLines[4];
+    const reCommitMessage = new RegExp(`add ${expectedBenchName} \\([^)]+\\) benchmark result for [0-9a-f]+$`);
+    if (!reCommitMessage.test(commitMessageLine)) {
+        throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
+    }
+
     const afterJson = await readDataJson('dev/bench/data.js');
     await exec('git checkout -');
 
