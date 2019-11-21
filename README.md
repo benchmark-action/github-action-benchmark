@@ -28,12 +28,12 @@ Multiple languages in the same repository is supported for polyglot projects.
 Example projects for each languages are in [examples/](./examples) directory. Live example workflow
 definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
 
-| Language   | Workflow                                                                                |
-|------------|-----------------------------------------------------------------------------------------|
-| Rust       | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           |
-| Go         | [![Go Example Workflow][go-badge]][go-workflow-example]                                 |
-| JavaScript | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       |
-| Python     | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] |
+| Language   | Workflow                                                                                | Example Project                                |
+|------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
+| Rust       | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
+| Go         | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
+| JavaScript | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
+| Python     | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -66,20 +66,20 @@ results are worse than previous exceeding specified threshold.
 Since performance is important. Writing benchmarks is a very popular and correct way to visualize
 a software performance. Benchmarks help us to keep performance and confirm effects of optimizations.
 For keeping the performance, it's key to monitor the benchmark results for changes to the software.
-To notice performance regression quickly, charts of benchmarking results are useful.
+To notice performance regression quickly, it's useful to monitor benchmarking results continously.
 
-However, there is no good free tool to watch the performance easily and continuously (as far as I looked).
-So I built a new tool on top of GitHub Action.
+However, there is no good free tool to watch the performance easily and continuously across languages
+(as far as I looked). So I built a new tool on top of GitHub Actions.
 
 ## How to use
 
 This action takes a file which contains benchmark output and outputs the results to GitHub Pages branch
 and/or alert commit comment.
 
-- [How to use this action with GitHub pages](#how-to-use-this-action-with-github-pages)
-- [How to use this action with alert commit comment](#how-to-use-this-action-with-alert-commit-comment)
+- [Use this action with charts on GitHub pages](#use-this-action-with-charts-on-github-pages)
+- [Use this action with alert commit comment](#use-this-action-with-alert-commit-comment)
 
-### How to use this action with GitHub pages
+### Use this action with charts on GitHub pages
 
 Run your benchmarks on your workflow and store the output to a file. `tee` command is useful to output
 results to both console and file.
@@ -178,7 +178,7 @@ Note that GitHub pages branch and a directory to put benchmark results are custo
 After first job execution, `https://you.github.io/dev/bench` should be available like
 [examples of this repository][examples-page].
 
-### How to use this action with alert commit comment
+### Use this action with alert commit comment
 
 This section explains how to enable performance alerts. To simplify explanation, configuration in
 this section only enables alerts. If you want to know how to both GitHub Pages and alerts, please
