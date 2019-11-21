@@ -92,6 +92,7 @@ describe('git', function() {
                     'push',
                     'https://x-access-token:this-is-token@github.com/user/repo.git',
                     'my-branch:my-branch',
+                    '--no-verify',
                     'opt1',
                     'opt2',
                 ]),
