@@ -11,12 +11,12 @@ const core = __importStar(require("@actions/core"));
 const fs_1 = require("fs");
 const os = __importStar(require("os"));
 const path = __importStar(require("path"));
-const VALID_TOOLS = ['cargo', 'go', 'benchmarkjs', 'pytest'];
+exports.VALID_TOOLS = ['cargo', 'go', 'benchmarkjs', 'pytest'];
 function validateToolType(tool) {
-    if (VALID_TOOLS.includes(tool)) {
+    if (exports.VALID_TOOLS.includes(tool)) {
         return;
     }
-    throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
+    throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${exports.VALID_TOOLS}`);
 }
 function resolvePath(p) {
     if (p[0] === '~') {
@@ -69,12 +69,9 @@ function validateName(name) {
     }
     throw new Error('Name must not be empty');
 }
-function validateAutoPush(autoPush, githubToken) {
-    if (!autoPush) {
-        return;
-    }
+function validateGitHubToken(inputName, githubToken, todo) {
     if (!githubToken) {
-        throw new Error("'auto-push' is enabled but 'github-token' is not set. Please give API token for pushing GitHub pages branch to remote");
+        throw new Error(`'${inputName}' is enabled but 'github-token' is not set. Please give API token ${todo}`);
     }
 }
 function getBoolInput(name) {
@@ -87,6 +84,31 @@ function getBoolInput(name) {
     }
     return input === 'true';
 }
+function getPercentageInput(name) {
+    const input = core.getInput(name);
+    if (!input.endsWith('%')) {
+        throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
+    }
+    const percentage = parseFloat(input.slice(0, -1)); // Omit '%' at last
+    if (isNaN(percentage)) {
+        throw new Error(`Specified value '${input.slice(0, -1)}' in '${name}' input cannot be parsed as float number`);
+    }
+    return percentage / 100;
+}
+function getCommaSeparatedInput(name) {
+    const input = core.getInput(name);
+    if (!input) {
+        return [];
+    }
+    return input.split(',').map(s => s.trim());
+}
+function validateAlertCommentCcUsers(users) {
+    for (const u of users) {
+        if (!u.startsWith('@')) {
+            throw new Error(`User name in 'alert-comment-cc-users' input must start with '@' but got '${u}'`);
+        }
+    }
+}
 async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
@@ -95,13 +117,37 @@ async function configFromJobInput() {
     const name = core.getInput('name');
     const githubToken = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
+    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
+    const commentOnAlert = getBoolInput('comment-on-alert');
+    const alertThreshold = getPercentageInput('alert-threshold');
+    const failOnAlert = getBoolInput('fail-on-alert');
+    const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);
-    validateAutoPush(autoPush, githubToken);
-    return { name, tool, outputFilePath, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush };
+    if (autoPush) {
+        validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
+    }
+    if (commentOnAlert) {
+        validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
+    }
+    validateAlertCommentCcUsers(alertCommentCcUsers);
+    return {
+        name,
+        tool,
+        outputFilePath,
+        ghPagesBranch,
+        benchmarkDataDirPath,
+        githubToken,
+        autoPush,
+        skipFetchGhPages,
+        commentOnAlert,
+        alertThreshold,
+        failOnAlert,
+        alertCommentCcUsers,
+    };
 }
 exports.configFromJobInput = configFromJobInput;
 //# sourceMappingURL=config.js.map

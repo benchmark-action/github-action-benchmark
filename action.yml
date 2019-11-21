@@ -2,8 +2,8 @@ name: 'Continuous Benchmark'
 author: 'rhysd <https://rhysd.github.io>'
 description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
 branding:
-    icon: 'fast-forward'
-    color: 'blue'
+  icon: 'fast-forward'
+  color: 'blue'
 
 inputs:
   name:
@@ -31,6 +31,27 @@ inputs:
     description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
     required: false
     default: false
+  skip-fetch-gh-pages:
+    description: 'Skip pulling GitHub Pages branch before generating an auto commit'
+    required: false
+    default: false
+  comment-on-alert:
+    description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-comment-threshold input. To enable this feature, github-token input must be given as well'
+    required: false
+    default: false
+  alert-threshold:
+    description: 'Threshold which determines if an alert should happen or not. Percentage value such as "150%". For example, 150% means that an alert happens when current benchmark result is 1.5x worse than previous'
+    required: false
+    default: '200%'
+  fail-on-alert:
+    description: 'Workflow fails when alert comment happens'
+    required: false
+    # Note: Set to false by default since this action does not push to remote by default. When workflow
+    # fails and auto-push is not set, there is no chance to push the result to remote.
+    default: false
+  alert-comment-cc-users:
+    description: 'Comma separated GitHub user names which start with @ (e.g. "@foo,@bar"). They will be mentioned in commit comment for alert.'
+    required: false
 
 runs:
   using: 'node12'
