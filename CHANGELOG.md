@@ -1,3 +1,20 @@
+<a name="v1.3.0"></a>
+# [v1.3.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.3.0) - 21 Nov 2019
+
+- **New:** Alert feature was added :tada:
+  - With this feature enabled, you can get alert commit comment or make workflow fail when possible performance regression is detected [like this](https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186)
+  - `comment-on-alert` input was added to enable commit comment on alert. `github-token` input is necessary as well to use GitHub API. Unlike deploying GitHub Pages, `secrets.GITHUB_TOKEN` is sufficient for this purpose (if you don't use GitHub Pages). The input is set to `false` by default.
+  - `fail-on-alert` input was added to mark running workflow fail on alert. The input is set to `false` by default.
+  - `alert-threshold` input was added to specify the threshold to check alerts. When current result gets worse than previous exceeding the threshold. Value is ratio such as `"200%"`. For example, when benchmark gets result 230 ns/iter and previous one was 100ns/iter, it means 230% worse and an alert will happen.
+  - Please read [documentation](https://github.com/rhysd/github-action-benchmark#use-this-action-with-alert-commit-comment) for setup
+- **New:** `alert-comment-cc-users` input was added to specify users mentioned in an alert commit comment so that they can easily notice it via GitHub notification
+- **New:** `skip-fetch-gh-pages` input was added to skip `git pull` which is automatically executed on public repo or when you set `github-token` on private repo.
+- **Improve:** E2E checks on CI were added
+- **Improve:** Updated dependencies
+
+[Changes][v1.3.0]
+
+
 <a name="v1.2.0"></a>
 # [v1.2.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.2.0) - 17 Nov 2019
 
@@ -98,6 +115,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.3.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.4...v1.2.0
 [v1.1.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.3...v1.1.4
 [v1.1.3]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.2...v1.1.3
