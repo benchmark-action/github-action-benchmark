@@ -333,6 +333,11 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 
 `master` branch of this repository is for development and does not work as action.
 
+### Track updates of this action
+
+To notice new version releases, please [watch 'release only'][help-watch-release] at [this repository][proj].
+Every release will appear in your GitHub notifications page.
+
 ## Future work
 
 - Allow user defined benchmark tool
@@ -371,3 +376,4 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 [go-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
 [benchmarkjs-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22
 [pytest-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest-benchmark%22
+[help-watch-release]: https://help.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
