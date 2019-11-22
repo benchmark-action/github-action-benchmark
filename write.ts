@@ -241,7 +241,7 @@ async function handleAlert(benchName: string, curEntry: Benchmark, prevEntry: Be
     }
 }
 
-function addBenchmarkToDataJson(bench: Benchmark, data: DataJson): Benchmark | null {
+function addBenchmarkToDataJson(benchName: string, bench: Benchmark, data: DataJson): Benchmark | null {
     // eslint-disable-next-line @typescript-eslint/camelcase
     const htmlUrl = github.context.payload.repository?.html_url ?? '';
 
@@ -250,11 +250,11 @@ function addBenchmarkToDataJson(bench: Benchmark, data: DataJson): Benchmark | n
     data.repoUrl = htmlUrl;
 
     // Add benchmark result
-    if (data.entries[name] === undefined) {
-        data.entries[name] = [bench];
-        core.debug(`No entry was found for benchmark '${name}' in existing data. Created`);
+    if (data.entries[benchName] === undefined) {
+        data.entries[benchName] = [bench];
+        core.debug(`No entry was found for benchmark '${benchName}' in existing data. Created`);
     } else {
-        const entries = data.entries[name];
+        const entries = data.entries[benchName];
         // Get last entry which has different commit ID for alert comment
         for (const e of entries.slice().reverse()) {
             if (e.commit.id !== bench.commit.id) {
@@ -288,7 +288,7 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
         await io.mkdirP(benchmarkDataDirPath);
 
         const data = await loadDataJs(dataPath);
-        const prevBench = addBenchmarkToDataJson(bench, data);
+        const prevBench = addBenchmarkToDataJson(name, bench, data);
         await storeDataJs(dataPath, data);
 
         await git.cmd('add', dataPath);
@@ -327,9 +327,14 @@ async function loadDataJson(jsonPath: string): Promise<DataJson> {
     }
 }
 
-async function writeBenchmarkToExternalJson(bench: Benchmark, jsonFilePath: string): Promise<Benchmark | null> {
+async function writeBenchmarkToExternalJson(
+    bench: Benchmark,
+    jsonFilePath: string,
+    config: Config,
+): Promise<Benchmark | null> {
+    const { name } = config;
     const data = await loadDataJson(jsonFilePath);
-    const prevBench = addBenchmarkToDataJson(bench, data);
+    const prevBench = addBenchmarkToDataJson(name, bench, data);
 
     try {
         const jsonDirPath = path.dirname(jsonFilePath);
@@ -343,9 +348,9 @@ async function writeBenchmarkToExternalJson(bench: Benchmark, jsonFilePath: stri
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
-    const { externalDataJsonPath } = config;
+    const { name, externalDataJsonPath } = config;
     const prevBench = externalDataJsonPath
-        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath)
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
         : await writeBenchmarkToGitHubPages(bench, config);
 
     // Put this after `git push` for reducing possibility to get conflict on push. Since sending
