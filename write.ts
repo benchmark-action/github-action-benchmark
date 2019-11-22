@@ -327,8 +327,7 @@ async function loadDataJson(jsonPath: string): Promise<DataJson> {
     }
 }
 
-async function writeBenchmarkToExternalJson(bench: Benchmark, config: Config): Promise<Benchmark | null> {
-    const jsonFilePath = config.externalDataJsonPath!;
+async function writeBenchmarkToExternalJson(bench: Benchmark, jsonFilePath: string): Promise<Benchmark | null> {
     const data = await loadDataJson(jsonFilePath);
     const prevBench = addBenchmarkToDataJson(bench, data);
 
@@ -344,8 +343,9 @@ async function writeBenchmarkToExternalJson(bench: Benchmark, config: Config): P
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
-    const prevBench = config.externalDataJsonPath
-        ? await writeBenchmarkToExternalJson(bench, config)
+    const { externalDataJsonPath } = config;
+    const prevBench = externalDataJsonPath
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath)
         : await writeBenchmarkToGitHubPages(bench, config);
 
     // Put this after `git push` for reducing possibility to get conflict on push. Since sending
