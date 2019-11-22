@@ -128,6 +128,40 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+  only-alert-with-cache:
+    name: Run alert check with actions/cache
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run build
+      - uses: actions/setup-go@v1
+      - name: Run benchmark
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+      - name: Download previous benchmark data
+        uses: actions/cache@v1
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-ci-cache-test
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Alert setup example with cache
+          tool: 'go'
+          output-file-path: examples/go/output.txt
+          external-data-json-path: ./cache/benchmark-data.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@rhysd'
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
