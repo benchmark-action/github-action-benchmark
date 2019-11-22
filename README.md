@@ -39,6 +39,10 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://rhysd.github.io/github-action-benchmark/dev/bench/
 
+## Screenshots
+
+### Charts on GitHub Pages
+
 ![page screenshot](https://github.com/rhysd/ss/blob/master/github-action-benchmark/main.png?raw=true)
 
 Mouse over on data point shows a tooltip. It includes
@@ -56,7 +60,9 @@ At bottom of the page, download button is available for downloading benchmark re
 
 ![download button](https://github.com/rhysd/ss/blob/master/github-action-benchmark/download.png?raw=true)
 
-If you enable an optional feature, this action raises an alert comment to the commit when its benchmark
+### Alert comment on commit page
+
+This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
 results are worse than previous exceeding specified threshold.
 
 ![alert comment](https://github.com/rhysd/ss/blob/master/github-action-benchmark/alert-comment.png?raw=true)
@@ -233,7 +239,8 @@ workflow immediately stops when it fails, please set `auto-push` to `true` also.
 result won't be pushed to remote.
 
 Optional `alert-comment-cc-users` specifies users which will be mentioned in alert comment so that they
-can notice the alert comment easily via notification.
+can notice the alert comment easily via notification. Pleaes note that this value must be quated like
+`'@rhysd'` because [`@` is an indicator in YAML syntax](https://yaml.org/spec/1.2/spec.html#id2772075).
 
 If you don't use GitHub Pages, please make a dedicated branch to store benchmark results (`benchmark-data`
 in above example). Since the branch is not for GitHub Pages, it is not deployed even if this action pushes
