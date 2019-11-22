@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { promises as fs, Stats } from 'fs';
+import { promises as fs } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
@@ -17,6 +17,7 @@ export interface Config {
     alertThreshold: number;
     failOnAlert: boolean;
     alertCommentCcUsers: string[];
+    externalDataJsonPath: string | undefined;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
@@ -39,10 +40,14 @@ function resolvePath(p: string): string {
     return path.resolve(p);
 }
 
-async function statPath(p: string): Promise<[Stats, string]> {
+async function resolveFilePath(p: string): Promise<string> {
     p = resolvePath(p);
     try {
-        return [await fs.stat(p), p];
+        const s = await fs.stat(p);
+        if (!s.isFile()) {
+            throw new Error(`Specified path '${p}' is not a file`);
+        }
+        return p;
     } catch (e) {
         throw new Error(`Cannot stat '${p}': ${e}`);
     }
@@ -50,11 +55,7 @@ async function statPath(p: string): Promise<[Stats, string]> {
 
 async function validateOutputFilePath(filePath: string): Promise<string> {
     try {
-        const [stat, resolved] = await statPath(filePath);
-        if (!stat.isFile()) {
-            throw new Error(`Specified path '${filePath}' is not a file`);
-        }
-        return resolved;
+        return await resolveFilePath(filePath);
     } catch (err) {
         throw new Error(`Invalid value for 'output-file-path' input: ${err}`);
     }
@@ -129,6 +130,35 @@ function validateAlertCommentCcUsers(users: string[]) {
     }
 }
 
+async function isDir(path: string) {
+    try {
+        const s = await fs.stat(path);
+        return s.isDirectory();
+    } catch (_) {
+        return false;
+    }
+}
+
+async function validateExternalDataJsonPath(path: string | undefined, autoPush: boolean): Promise<string | undefined> {
+    if (!path) {
+        return Promise.resolve(undefined);
+    }
+    if (autoPush) {
+        throw new Error(
+            'auto-push must be false when external-data-json-path is set since this action reads/writes the given JSON file and never pushes to remote',
+        );
+    }
+    try {
+        const p = resolvePath(path);
+        if (await isDir(p)) {
+            throw new Error(`Specified path '${p}' must be file but it is actually directory`);
+        }
+        return p;
+    } catch (err) {
+        throw new Error(`Invalid value for 'external-data-json-path' input: ${err}`);
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -142,6 +172,7 @@ export async function configFromJobInput(): Promise<Config> {
     const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
+    let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -155,6 +186,7 @@ export async function configFromJobInput(): Promise<Config> {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
     validateAlertCommentCcUsers(alertCommentCcUsers);
+    externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
 
     return {
         name,
@@ -169,5 +201,6 @@ export async function configFromJobInput(): Promise<Config> {
         alertThreshold,
         failOnAlert,
         alertCommentCcUsers,
+        externalDataJsonPath,
     };
 }
