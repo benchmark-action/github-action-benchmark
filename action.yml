@@ -52,6 +52,9 @@ inputs:
   alert-comment-cc-users:
     description: 'Comma separated GitHub user names which start with @ (e.g. "@foo,@bar"). They will be mentioned in commit comment for alert.'
     required: false
+  external-data-json-path:
+    description: 'JSON data file for storing benchmark results. When this input is set, github-action-benchmark no longer uses Git branch to store data. Instead, it reads and appends benchmark data from/to the file. User must store the file anywhere'
+    required: false
 
 runs:
   using: 'node12'

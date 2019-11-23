@@ -17,8 +17,13 @@ export interface DataJson {
 }
 
 export const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
+const DEFAULT_DATA_JSON = {
+    lastUpdate: 0,
+    repoUrl: '',
+    entries: {},
+};
 
-async function loadDataJson(dataPath: string): Promise<DataJson> {
+async function loadDataJs(dataPath: string): Promise<DataJson> {
     try {
         const script = await fs.readFile(dataPath, 'utf8');
         const json = script.slice(SCRIPT_PREFIX.length);
@@ -27,15 +32,11 @@ async function loadDataJson(dataPath: string): Promise<DataJson> {
         return parsed;
     } catch (err) {
         console.log(`Could not find data.js at ${dataPath}. Using empty default: ${err}`);
-        return {
-            lastUpdate: 0,
-            repoUrl: '',
-            entries: {},
-        };
+        return { ...DEFAULT_DATA_JSON };
     }
 }
 
-async function storeDataJson(dataPath: string, data: DataJson) {
+async function storeDataJs(dataPath: string, data: DataJson) {
     const script = SCRIPT_PREFIX + JSON.stringify(data, null, 2);
     await fs.writeFile(dataPath, script, 'utf8');
     core.debug(`Overwrote ${dataPath} for adding new data`);
@@ -206,67 +207,71 @@ async function leaveComment(commitId: string, body: string, token: string) {
     return res;
 }
 
-async function alert(
-    benchName: string,
-    curEntry: Benchmark,
-    prevEntry: Benchmark,
-    threshold: number,
-    token: string | undefined,
-    shouldComment: boolean,
-    shouldFail: boolean,
-    ccUsers: string[],
-) {
-    if (!shouldComment && !shouldFail) {
+async function handleAlert(benchName: string, curEntry: Benchmark, prevEntry: Benchmark, config: Config) {
+    const { alertThreshold, githubToken, commentOnAlert, failOnAlert, alertCommentCcUsers } = config;
+
+    if (!commentOnAlert && !failOnAlert) {
         core.debug('Alert check was skipped because both comment-on-alert and fail-on-alert were disabled');
         return;
     }
 
-    const alerts = findAlerts(curEntry, prevEntry, threshold);
+    const alerts = findAlerts(curEntry, prevEntry, alertThreshold);
     if (alerts.length === 0) {
         core.debug('No performance alert found happily');
         return;
     }
 
     core.debug(`Found ${alerts.length} alerts`);
-    const body = buildAlertComment(alerts, benchName, curEntry, prevEntry, threshold, ccUsers);
+    const body = buildAlertComment(alerts, benchName, curEntry, prevEntry, alertThreshold, alertCommentCcUsers);
     let message = body;
 
-    if (shouldComment) {
-        if (!token) {
+    if (commentOnAlert) {
+        if (!githubToken) {
             throw new Error("'comment-on-alert' is set but github-token is not set");
         }
-        const res = await leaveComment(curEntry.commit.id, body, token);
+        const res = await leaveComment(curEntry.commit.id, body, githubToken);
         // eslint-disable-next-line @typescript-eslint/camelcase
         const url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
 
-    if (shouldFail) {
+    if (failOnAlert) {
         core.debug('Mark this workflow as fail since one or more alerts found');
         throw new Error(message);
     }
 }
 
-export async function writeBenchmark(bench: Benchmark, config: Config) {
-    const {
-        name,
-        tool,
-        ghPagesBranch,
-        benchmarkDataDirPath,
-        githubToken,
-        autoPush,
-        skipFetchGhPages,
-        commentOnAlert,
-        alertThreshold,
-        failOnAlert,
-        alertCommentCcUsers,
-    } = config;
-    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
-
-    /* eslint-disable @typescript-eslint/camelcase */
+function addBenchmarkToDataJson(benchName: string, bench: Benchmark, data: DataJson): Benchmark | null {
+    // eslint-disable-next-line @typescript-eslint/camelcase
     const htmlUrl = github.context.payload.repository?.html_url ?? '';
+
+    let prevBench: Benchmark | null = null;
+    data.lastUpdate = Date.now();
+    data.repoUrl = htmlUrl;
+
+    // Add benchmark result
+    if (data.entries[benchName] === undefined) {
+        data.entries[benchName] = [bench];
+        core.debug(`No entry was found for benchmark '${benchName}' in existing data. Created`);
+    } else {
+        const entries = data.entries[benchName];
+        // Get last entry which has different commit ID for alert comment
+        for (const e of entries.slice().reverse()) {
+            if (e.commit.id !== bench.commit.id) {
+                prevBench = e;
+                break;
+            }
+        }
+        entries.push(bench);
+    }
+
+    return prevBench;
+}
+
+async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
+    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages } = config;
+    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
-    /* eslint-enable @typescript-eslint/camelcase */
 
     await git.cmd('switch', ghPagesBranch);
 
@@ -282,28 +287,9 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
 
         await io.mkdirP(benchmarkDataDirPath);
 
-        let prevBench: Benchmark | null = null;
-        const data = await loadDataJson(dataPath);
-        data.lastUpdate = Date.now();
-        data.repoUrl = htmlUrl;
-
-        // Add benchmark result
-        if (data.entries[name] === undefined) {
-            data.entries[name] = [bench];
-            core.debug(`No entry found for benchmark '${name}'. Created.`);
-        } else {
-            const entries = data.entries[name];
-            // Get last entry which has different commit ID for alert comment
-            for (const e of entries.slice().reverse()) {
-                if (e.commit.id !== bench.commit.id) {
-                    prevBench = e;
-                    break;
-                }
-            }
-            entries.push(bench);
-        }
-
-        await storeDataJson(dataPath, data);
+        const data = await loadDataJs(dataPath);
+        const prevBench = addBenchmarkToDataJson(name, bench, data);
+        await storeDataJs(dataPath, data);
 
         await git.cmd('add', dataPath);
 
@@ -320,24 +306,58 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
             core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
         }
 
-        // Put this after `git push` for reducing possibility to get conflict on push. Since sending
-        // comment take time due to API call, do it after updating remote branch.
-        if (prevBench === null) {
-            core.debug('Alert check was skipped because previous benchmark result was not found');
-        } else {
-            await alert(
-                name,
-                bench,
-                prevBench,
-                alertThreshold,
-                githubToken,
-                commentOnAlert,
-                failOnAlert,
-                alertCommentCcUsers,
-            );
-        }
+        return prevBench;
     } finally {
         // `git switch` does not work for backing to detached head
         await git.cmd('checkout', '-');
+    }
+}
+
+async function loadDataJson(jsonPath: string): Promise<DataJson> {
+    try {
+        const content = await fs.readFile(jsonPath, 'utf8');
+        const json: DataJson = JSON.parse(content);
+        core.debug(`Loaded external JSON file at ${jsonPath}`);
+        return json;
+    } catch (err) {
+        core.warning(
+            `Could not find external JSON file for benchmark data at ${jsonPath}. Using empty default: ${err}`,
+        );
+        return { ...DEFAULT_DATA_JSON };
+    }
+}
+
+async function writeBenchmarkToExternalJson(
+    bench: Benchmark,
+    jsonFilePath: string,
+    config: Config,
+): Promise<Benchmark | null> {
+    const { name } = config;
+    const data = await loadDataJson(jsonFilePath);
+    const prevBench = addBenchmarkToDataJson(name, bench, data);
+
+    try {
+        const jsonDirPath = path.dirname(jsonFilePath);
+        await io.mkdirP(jsonDirPath);
+        await fs.writeFile(jsonFilePath, JSON.stringify(data, null, 2), 'utf8');
+    } catch (err) {
+        throw new Error(`Could not store benchmark data as JSON at ${jsonFilePath}: ${err}`);
+    }
+
+    return prevBench;
+}
+
+export async function writeBenchmark(bench: Benchmark, config: Config) {
+    const { name, externalDataJsonPath } = config;
+    const prevBench = externalDataJsonPath
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
+        : await writeBenchmarkToGitHubPages(bench, config);
+
+    // Put this after `git push` for reducing possibility to get conflict on push. Since sending
+    // comment take time due to API call, do it after updating remote branch.
+    if (prevBench === null) {
+        core.debug('Alert check was skipped because previous benchmark result was not found');
+    } else {
+        await handleAlert(name, bench, prevBench, config);
     }
 }

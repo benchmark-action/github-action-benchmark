@@ -45,6 +45,7 @@ describe('configFromJobInput()', function() {
         'alert-threshold': '200%',
         'fail-on-alert': 'false',
         'alert-comment-cc-users': '',
+        'external-data-json-path': '',
     };
 
     const validation_tests = [
@@ -105,6 +106,21 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'alert-comment-cc-users': '@foo,bar' },
             expected: /User name in 'alert-comment-cc-users' input must start with '@' but got 'bar'/,
         },
+        {
+            what: 'external data file is actually directory',
+            inputs: { ...defaultInputs, 'external-data-json-path': '.' },
+            expected: /must be file but it is actually directory/,
+        },
+        {
+            what: 'both external-data-json-path and auto-push are set at the same time',
+            inputs: {
+                ...defaultInputs,
+                'external-data-json-path': 'external.json',
+                'auto-push': 'true',
+                'github-token': 'dummy',
+            },
+            expected: /auto-push must be false when external-data-json-path is set/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -118,7 +134,21 @@ describe('configFromJobInput()', function() {
         });
     }
 
-    const defaultExpected = {
+    interface ExpectedResult {
+        name: string;
+        tool: string;
+        ghPagesBranch: string;
+        githubToken: string | undefined;
+        autoPush: boolean;
+        skipFetchGhPages: boolean;
+        commentOnAlert: boolean;
+        alertThreshold: number;
+        failOnAlert: boolean;
+        alertCommentCcUsers: string[];
+        hasExternalDataJsonPath: boolean;
+    }
+
+    const defaultExpected: ExpectedResult = {
         name: 'Benchmark',
         tool: 'cargo',
         ghPagesBranch: 'gh-pages',
@@ -129,7 +159,9 @@ describe('configFromJobInput()', function() {
         alertThreshold: 2,
         failOnAlert: false,
         alertCommentCcUsers: [],
+        hasExternalDataJsonPath: false,
     };
+
     const returned_config_tests = [
         ...VALID_TOOLS.map((tool: string) => ({
             what: 'valid tool ' + tool,
@@ -178,21 +210,15 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'alert-comment-cc-users': v },
             expected: { ...defaultExpected, alertCommentCcUsers: e },
         })),
+        {
+            what: 'external JSON file',
+            inputs: { ...defaultInputs, 'external-data-json-path': 'external.json' },
+            expected: { ...defaultExpected, hasExternalDataJsonPath: true },
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
-        expected: {
-            name: string;
-            tool: string;
-            ghPagesBranch: string;
-            githubToken: string | undefined;
-            autoPush: boolean;
-            skipFetchGhPages: boolean;
-            commentOnAlert: boolean;
-            alertThreshold: number;
-            failOnAlert: boolean;
-            alertCommentCcUsers: string[];
-        };
+        expected: ExpectedResult;
     }>;
 
     for (const test of returned_config_tests) {
@@ -210,6 +236,13 @@ describe('configFromJobInput()', function() {
             A.deepEqual(actual.alertCommentCcUsers, test.expected.alertCommentCcUsers);
             A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
             A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
+
+            if (test.expected.hasExternalDataJsonPath) {
+                A.equal(typeof actual.externalDataJsonPath, 'string');
+                A.ok(path.isAbsolute(actual.externalDataJsonPath), actual.externalDataJsonPath);
+            } else {
+                A.equal(actual.externalDataJsonPath, undefined);
+            }
         });
     }
 

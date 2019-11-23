@@ -2,6 +2,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
+    "lib": [
+      "esnext"
+    ],
     "preserveConstEnums": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -9,7 +12,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmitOnError": true,
-    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
     "target": "es2019",
     "sourceMap": true,
     "esModuleInterop": true,
