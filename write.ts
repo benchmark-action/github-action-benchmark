@@ -140,13 +140,13 @@ function buildAlertComment(
     cc: string[],
 ): string {
     // Do not show benchmark name if it is the default value 'Benchmark'.
-    const benchmarkText = benchName === 'Benchmark' ? '' : ` '${benchName}'`;
-    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert!!** :warning:';
+    const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
+    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
     const lines = [
         title,
         '',
         `Possible performance regression was detected for benchmark${benchmarkText}.`,
-        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold ${threshold}.`,
+        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${threshold}\`.`,
         '',
         `| Benchmark suite | Current: ${curEntry.commit.id} | Previous: ${prevEntry.commit.id} | Ratio |`,
         '|-|-|-|-|',
