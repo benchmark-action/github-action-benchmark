@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574517996007,
+  "lastUpdate": 1574523256255,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7991,6 +7991,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023746968908191463",
             "extra": "mean: 0.0025754844253521093 sec\nrounds: 355"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "517be379ef3168b55036537d75cf9f3f6c6ac876",
+          "message": "Merge branch 'external-data-json'",
+          "timestamp": "2019-11-24T00:31:11+09:00",
+          "tree_id": "0347bd574585230e0ca2df859860ec43876902fe",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/517be379ef3168b55036537d75cf9f3f6c6ac876"
+        },
+        "date": 1574523255975,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46106.36709575071,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001586255009879332",
+            "extra": "mean: 0.000021688978399084552 sec\nrounds: 26110"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 381.28402348378455,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018718220566204586",
+            "extra": "mean: 0.0026227167633802746 sec\nrounds: 355"
           }
         ]
       }
