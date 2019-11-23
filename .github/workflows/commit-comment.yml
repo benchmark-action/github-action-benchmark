@@ -1,4 +1,4 @@
-name: Example for alert setup with cache
+name: Example for alert with commit comment
 on:
   push:
     branches:

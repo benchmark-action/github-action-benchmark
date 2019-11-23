@@ -1,4 +1,4 @@
-name: Minimal setup
+name: Example for minimal setup
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   benchmark:
-    name: Run alert check without using Git branch
+    name: Run minimal steps to run github-action-benchmark
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

@@ -137,6 +137,9 @@ exceeding 200% threshold. For example, if previous benchmark result was 100 iter
 it is 230 iter/ns, it means 230% worse than previous and alert will happen. The threshold can be
 changed by `alert-threshold` input.
 
+Live workflow example is [here](.github/workflows/minimal.yml). And results of the workflow can be
+seen [here][minimal-workflow-example].
+
 ### Commit comment
 
 In addition to above setup, GitHub API token needs to be given to enable `comment-on-alert` feature.
@@ -165,6 +168,9 @@ Now, in addition to making workflow fail, the step leaves a commit comment when 
 regression [like this][alert-comment-example]. `alert-comment-cc-users` input is not mandatory for this,
 but I recommend to set it to make sure you can notice the comment via GitHub notification. Pleaes note
 that this value must be quated like `'@rhysd'` because [`@` is an indicator in YAML syntax](https://yaml.org/spec/1.2/spec.html#id2772075).
+
+Live workflow example is [here](.github/workflows/commit-comment.yml). And results of the workflow can be
+seen [here][commit-comment-workflow-example].
 
 ### Charts on GitHub Pages
 
@@ -245,6 +251,8 @@ a path to put the benchmark dashboard page. If they don't fit to your use case, 
 This action merges all benchmark results into one GitHub pages branch. If your workflows have multiple
 steps to check benchmarks from multple tools, please give `name` input to each step to make each
 benchmark results identical.
+
+Please see above ['Examples' section](#examples) to see live workflow examples for each languages.
 
 If you don't want to pass GitHub API token to this action, it's still OK.
 
@@ -401,3 +409,5 @@ Every release will appear in your GitHub notifications page.
 [help-watch-release]: https://help.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
 [help-personal-access-token]: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line
+[minimal-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
+[commit-comment-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
