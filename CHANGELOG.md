@@ -1,3 +1,13 @@
+<a name="v1.4.0"></a>
+# [v1.4.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.4.0) - 23 Nov 2019
+
+- **New:** `external-data-json-path` input was added to support to put benchmark data externally rather than Git branch
+  - By using this input and [actions/cache](https://github.com/actions/cache), you no longer need to use Git branch for this action if you only want performance alerts. Benchmark data is stored as workflow cache.
+  - By this input, minimal setup for this action is much easier. Please read ['How to use' section](https://github.com/rhysd/github-action-benchmark#minimal-setup) in README.md.
+
+[Changes][v1.4.0]
+
+
 <a name="v1.3.2"></a>
 # [v1.3.2](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.3.2) - 23 Nov 2019
 
@@ -132,6 +142,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.4.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.2...v1.4.0
 [v1.3.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.0...v1.3.1
 [v1.3.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.2.0...v1.3.0
