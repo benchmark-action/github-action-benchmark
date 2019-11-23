@@ -28,10 +28,14 @@ function resolvePath(p) {
     }
     return path.resolve(p);
 }
-async function statPath(p) {
+async function resolveFilePath(p) {
     p = resolvePath(p);
     try {
-        return [await fs_1.promises.stat(p), p];
+        const s = await fs_1.promises.stat(p);
+        if (!s.isFile()) {
+            throw new Error(`Specified path '${p}' is not a file`);
+        }
+        return p;
     }
     catch (e) {
         throw new Error(`Cannot stat '${p}': ${e}`);
@@ -39,11 +43,7 @@ async function statPath(p) {
 }
 async function validateOutputFilePath(filePath) {
     try {
-        const [stat, resolved] = await statPath(filePath);
-        if (!stat.isFile()) {
-            throw new Error(`Specified path '${filePath}' is not a file`);
-        }
-        return resolved;
+        return await resolveFilePath(filePath);
     }
     catch (err) {
         throw new Error(`Invalid value for 'output-file-path' input: ${err}`);
@@ -109,6 +109,33 @@ function validateAlertCommentCcUsers(users) {
         }
     }
 }
+async function isDir(path) {
+    try {
+        const s = await fs_1.promises.stat(path);
+        return s.isDirectory();
+    }
+    catch (_) {
+        return false;
+    }
+}
+async function validateExternalDataJsonPath(path, autoPush) {
+    if (!path) {
+        return Promise.resolve(undefined);
+    }
+    if (autoPush) {
+        throw new Error('auto-push must be false when external-data-json-path is set since this action reads/writes the given JSON file and never pushes to remote');
+    }
+    try {
+        const p = resolvePath(path);
+        if (await isDir(p)) {
+            throw new Error(`Specified path '${p}' must be file but it is actually directory`);
+        }
+        return p;
+    }
+    catch (err) {
+        throw new Error(`Invalid value for 'external-data-json-path' input: ${err}`);
+    }
+}
 async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
@@ -122,6 +149,7 @@ async function configFromJobInput() {
     const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
+    let externalDataJsonPath = core.getInput('external-data-json-path');
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
@@ -134,6 +162,7 @@ async function configFromJobInput() {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
     validateAlertCommentCcUsers(alertCommentCcUsers);
+    externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
     return {
         name,
         tool,
@@ -147,6 +176,7 @@ async function configFromJobInput() {
         alertThreshold,
         failOnAlert,
         alertCommentCcUsers,
+        externalDataJsonPath,
     };
 }
 exports.configFromJobInput = configFromJobInput;
