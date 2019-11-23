@@ -169,7 +169,7 @@ function buildAlertComment(
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
     const repoUrl = repo.html_url;
-    const actionUrl = repoUrl + '/actions?query=workflow%3A' + github.context.workflow;
+    const actionUrl = repoUrl + '/actions?query=workflow%3A' + encodeURIComponent(github.context.workflow);
     core.debug(`Action URL: ${actionUrl}`);
 
     // Footer
