@@ -276,7 +276,7 @@ describe('configFromJobInput()', function() {
         A.equal(config.benchmarkDataDirPath, dataDir);
     });
 
-    it('resolves home direcotry in output directory path', async function() {
+    it('resolves home directory in output directory path', async function() {
         const home = os.homedir();
         const absCwd = process.cwd();
         if (!absCwd.startsWith(home)) {

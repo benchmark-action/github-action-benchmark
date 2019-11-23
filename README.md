@@ -73,7 +73,7 @@ Since performance is important. Writing benchmarks is a very popular and correct
 a software performance. Benchmarks help us to keep performance and to confirm effects of optimizations.
 For keeping the performance, it's important to monitor the benchmark results along with changes to
 the software. To notice performance regression quickly, it's useful to monitor benchmarking results
-continously.
+continuously.
 
 However, there is no good free tool to watch the performance easily and continuously across languages
 (as far as I looked into). So I built a new tool on top of GitHub Actions.
