@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      # TODO: Remove from here
-      - uses: actions/setup-node@v1
-      - run: npm install
-      - run: npm run build
-      # TODO: Remove until here
       - uses: actions/setup-go@v1
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
@@ -24,8 +19,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        # TODO: replace ./ with rhysd/github-action-benchmark@v1
-        uses: ./
+        uses: rhysd/github-action-benchmark@v1
         with:
           tool: 'go'
           output-file-path: examples/go/output.txt
