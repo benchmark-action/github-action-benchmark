@@ -1,4 +1,4 @@
-name: Example for alert setup with artifact
+name: Example for alert setup with cache
 on:
   push:
     branches:

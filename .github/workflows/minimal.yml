@@ -27,7 +27,6 @@ jobs:
         # TODO: replace ./ with rhysd/github-action-benchmark@v1
         uses: ./
         with:
-          name: Alert setup example with cache
           tool: 'go'
           output-file-path: examples/go/output.txt
           external-data-json-path: ./cache/benchmark-data.json
