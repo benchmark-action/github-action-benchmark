@@ -1,3 +1,12 @@
+<a name="v1.3.2"></a>
+# [v1.3.2](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.3.2) - 23 Nov 2019
+
+- **Improve:** Styles in alert commit comment were improved
+- **Fix:** When benchmark name (with `name` input) contained spaces, URL for the workflow which detected performance regression was broken
+
+[Changes][v1.3.2]
+
+
 <a name="v1.3.1"></a>
 # [v1.3.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.3.1) - 21 Nov 2019
 
@@ -123,6 +132,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.3.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.0...v1.3.1
 [v1.3.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.1.4...v1.2.0
