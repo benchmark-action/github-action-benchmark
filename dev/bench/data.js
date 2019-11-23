@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574477638234,
+  "lastUpdate": 1574477683486,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2410,6 +2410,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33267,
             "range": "+/- 4,548",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "59c8ee3f75dc57d35f1c43880e0e106b86887b56",
+          "message": "fix workflow name is not encoded in action URL",
+          "timestamp": "2019-11-23T11:52:47+09:00",
+          "tree_id": "d06c848578776444534b8fa5ce931d9c395ed3fa",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/59c8ee3f75dc57d35f1c43880e0e106b86887b56"
+        },
+        "date": 1574477683214,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 254,
+            "range": "+/- 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32740,
+            "range": "+/- 3,009",
             "unit": "ns/iter"
           }
         ]
