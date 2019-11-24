@@ -180,3 +180,7 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm test
+      - name: Apply yamllint
+        run: |
+          sudo pip install yamllint
+          yamllint .github/workflows
