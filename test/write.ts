@@ -8,12 +8,13 @@ import mock = require('mock-require');
 
 const ok: (x: any, msg?: string) => asserts x = assertOk;
 
+type OctokitOpts = { owner: string; repo: string; commit_sha: string; body: string };
 class FakedOctokitRepos {
-    spyOpts: object[];
+    spyOpts: OctokitOpts[];
     constructor() {
         this.spyOpts = [];
     }
-    createCommitComment(opt: object) {
+    createCommitComment(opt: OctokitOpts) {
         this.spyOpts.push(opt);
         return Promise.resolve({
             status: 201,
@@ -21,6 +22,13 @@ class FakedOctokitRepos {
                 html_url: 'dummy commit url',
             },
         });
+    }
+    lastCall(): OctokitOpts {
+        ok(this.spyOpts.length > 0);
+        return this.spyOpts[this.spyOpts.length - 1];
+    }
+    clear() {
+        this.spyOpts = [];
     }
 }
 
@@ -76,6 +84,10 @@ describe('writeBenchmark()', function() {
         process.chdir(savedCwd);
     });
 
+    afterEach(function() {
+        fakedRepos.clear();
+    });
+
     context('with external json file', function() {
         const dataJson = 'data.json';
         const defaultCfg: Config = {
@@ -102,37 +114,45 @@ describe('writeBenchmark()', function() {
             }
         });
 
-        const lastUpdate = Date.now() - 1000;
-        const prevLastUpdate = Date.now() - 10000;
+        const lastUpdate = Date.now() - 10000;
         const user = {
             email: 'dummy@example.com',
             name: 'User',
             username: 'user',
         };
-        const currentCommit = {
-            author: user,
-            committer: user,
-            distinct: false,
-            id: 'current commit id',
-            message: 'dummy message',
-            timestamp: 'dummy stamp',
-            tree_id: 'dummy tree id',
-            url: 'https://github.com/user/repo/commit/current commit id',
-        };
-        const prevCommit = {
-            author: user,
-            committer: user,
-            distinct: false,
-            id: 'prev commit id',
-            message: 'dummy message',
-            timestamp: 'dummy stamp',
-            tree_id: 'dummy tree id',
-            url: 'https://github.com/user/repo/commit/prev commit id',
-        };
 
-        const testsOk = [
+        function commit(id = 'commit id', message = 'dummy message', u = user) {
+            return {
+                author: u,
+                committer: u,
+                distinct: false,
+                id,
+                message,
+                timestamp: 'dummy stamp',
+                tree_id: 'dummy tree id',
+                url: 'https://github.com/user/repo/commit/' + id,
+            };
+        }
+
+        function bench(name: string, value: number, range = '+/- 20', unit = 'ns/iter') {
+            return {
+                name,
+                range,
+                unit,
+                value,
+            };
+        }
+
+        const testCases: Array<{
+            what: string;
+            config: Config;
+            data: DataJson | null;
+            added: Benchmark;
+            alert?: RegExp | RegExp[];
+            commitComment?: RegExp | RegExp[];
+        }> = [
             {
-                what: 'one data',
+                what: 'appends new result to existing data',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
@@ -140,68 +160,153 @@ describe('writeBenchmark()', function() {
                     entries: {
                         'Test benchmark': [
                             {
-                                commit: prevCommit,
-                                date: prevLastUpdate,
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
                                 tool: 'cargo',
-                                benches: [
-                                    {
-                                        name: 'bench_fib_10',
-                                        range: '+/- 20',
-                                        unit: 'ns/iter',
-                                        value: 100,
-                                    },
-                                ],
+                                benches: [bench('bench_fib_10', 100)],
                             },
                         ],
                     },
                 },
                 added: {
-                    commit: currentCommit,
+                    commit: commit('current commit id'),
                     date: lastUpdate,
                     tool: 'cargo',
-                    benches: [
-                        {
-                            name: 'bench_fib_10',
-                            range: '+/- 24',
-                            unit: 'ns/iter',
-                            value: 135,
-                        },
-                    ],
+                    benches: [bench('bench_fib_10', 135)],
                 },
             },
-        ] as Array<{
-            what: string;
-            config: Config;
-            data: DataJson | null;
-            added: Benchmark;
-            // TODO: Add alert check
-        }>;
+            {
+                what: 'creates new data file',
+                config: defaultCfg,
+                data: null,
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+            },
+            {
+                what: 'creates new result entry to existing data file',
+                config: defaultCfg,
+                data: {
+                    lastUpdate,
+                    repoUrl: 'https://github.com/user/repo',
+                    entries: {
+                        'Other benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+            },
+            {
+                what: 'appends new result to existing multiple benchmarks data',
+                config: defaultCfg,
+                data: {
+                    lastUpdate,
+                    repoUrl: 'https://github.com/user/repo',
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                        'Other benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 10)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+            },
+        ];
 
-        for (const test of testsOk) {
-            it(test.what, async function() {
-                await fs.writeFile(dataJson, JSON.stringify(test.data), 'utf8');
+        for (const t of testCases) {
+            it(t.what, async function() {
+                if (t.data !== null) {
+                    await fs.writeFile(dataJson, JSON.stringify(t.data), 'utf8');
+                }
 
-                await writeBenchmark(test.added, test.config);
+                let caughtError: Error | null = null;
+                try {
+                    await writeBenchmark(t.added, t.config);
+                } catch (err) {
+                    if (!t.alert) {
+                        throw err;
+                    }
+                    caughtError = err;
+                }
 
                 const json: DataJson = JSON.parse(await fs.readFile(dataJson, 'utf8'));
 
                 eq(typeof json.lastUpdate, 'number');
-                ok(json.entries[test.config.name]);
-                const len = json.entries[test.config.name].length;
+                ok(json.entries[t.config.name]);
+                const len = json.entries[t.config.name].length;
                 ok(len > 0);
-                eq(json.entries[test.config.name][len - 1], test.added);
+                eq(json.entries[t.config.name][len - 1], t.added);
 
-                if (test.data !== null) {
-                    ok(json.lastUpdate > test.data.lastUpdate);
-                    eq(json.repoUrl, test.data.repoUrl);
-                    for (const name of Object.keys(test.data.entries)) {
-                        const entries = test.data.entries[name];
-                        if (name === test.config.name) {
+                if (t.data !== null) {
+                    ok(json.lastUpdate > t.data.lastUpdate);
+                    eq(json.repoUrl, t.data.repoUrl);
+                    for (const name of Object.keys(t.data.entries)) {
+                        const entries = t.data.entries[name];
+                        if (name === t.config.name) {
                             eq(len, entries.length + 1, name);
+                            // Check benchmark data except for the last appended one are not modified
+                            eq(json.entries[name].slice(0, -1), entries, name);
                         } else {
                             eq(json.entries[name], entries, name);
                         }
                     }
+                }
+
+                if (caughtError && t.alert) {
+                    let regexes = t.alert;
+                    if (!Array.isArray(regexes)) {
+                        regexes = [regexes];
+                    }
+                    const msg = caughtError.message;
+                    for (const regex of regexes) {
+                        ok(regex.test(msg), `'${regex}' did not match to '${msg}'`);
+                    }
+                }
+
+                if (t.commitComment) {
+                    ok(caughtError);
+                    // Last line is appended only for failure message
+                    const expectedMessage = caughtError.message
+                        .split('\n')
+                        .slice(0, -1)
+                        .join('\n');
+                    const opts = fakedRepos.lastCall();
+                    eq(opts.owner, 'user');
+                    eq(opts.repo, 'repo');
+                    eq(opts.commit_sha, 'current commit id');
+                    eq(opts.body, expectedMessage);
+                    // TODO: Check the body is a correct markdown document by markdown parser
                 }
             });
         }
