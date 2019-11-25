@@ -12,7 +12,8 @@
     "lint": "eslint '**/*.ts'",
     "fix": "eslint --fix '**/*.ts'",
     "test": "mocha ./test",
-    "cov": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "cov": "nyc --reporter=lcov --reporter=text-summary npm run test && open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
