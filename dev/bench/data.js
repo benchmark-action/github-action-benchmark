@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574769752093,
+  "lastUpdate": 1574783954156,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8731,6 +8731,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00009084383773202626",
             "extra": "mean: 0.002632621935065153 sec\nrounds: 385"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "55e287a1ca5b379e3b8ea36f913c0412253d2e43",
+          "message": "add more eslint rules in favor of typescript-eslint v2.9.0",
+          "timestamp": "2019-11-27T00:58:07+09:00",
+          "tree_id": "f5d66094ff0562beba6c6fef10dba1b802cd9207",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/55e287a1ca5b379e3b8ea36f913c0412253d2e43"
+        },
+        "date": 1574783953986,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46473.727506817464,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000054141081442701555",
+            "extra": "mean: 0.00002151753374749863 sec\nrounds: 28491"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 377.8300475149009,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001796415502184",
+            "extra": "mean: 0.0026466926243089808 sec\nrounds: 362"
           }
         ]
       }
