@@ -1,6 +1,7 @@
 GitHub Action for Continuous Benchmarking
 =========================================
 [![Build Status][build-badge]][ci]
+[![codecov][codecov-badge]][codecov]
 
 [This repository][proj] provides a [GitHub Action][github-action] for continuous benchmarking.
 If your project has some benchmark suites, this action collects data from the benchmark outputs
@@ -389,6 +390,8 @@ Every release will appear in your GitHub notifications page.
 
 [build-badge]: https://github.com/rhysd/github-action-benchmark/workflows/CI/badge.svg
 [ci]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3ACI
+[codecov-badge]: https://codecov.io/gh/rhysd/github-action-benchmark/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/rhysd/github-action-benchmark
 [proj]: https://github.com/rhysd/github-action-benchmark
 [rust-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Rust%20Example/badge.svg
 [go-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Go%20Example/badge.svg
