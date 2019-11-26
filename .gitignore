@@ -7,3 +7,5 @@
 /test/*.js.map
 /scripts/*.js
 /scripts/*.js.map
+/.nyc_output
+/coverage

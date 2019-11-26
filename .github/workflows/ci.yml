@@ -179,4 +179,12 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm run build
-      - run: npm test
+      - run: npm run coverage
+      - name: Apply yamllint
+        run: |
+          sudo pip install yamllint
+          yamllint .github/workflows
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          yml: .codecov.yml

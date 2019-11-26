@@ -28,6 +28,7 @@
     "git.ts",
     "test/git.ts",
     "write.ts",
+    "test/write.ts",
     "default_index_html.ts",
     "test/default_index_html.ts",
     "octokit_graphql.d.ts",

@@ -9,11 +9,11 @@ import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
 
-export type BenchmarkEntries = { [name: string]: Benchmark[] };
+export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
     lastUpdate: number;
     repoUrl: string;
-    entries: BenchmarkEntries;
+    entries: BenchmarkSuites;
 }
 
 export const SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
@@ -96,18 +96,18 @@ interface Alert {
     ratio: number;
 }
 
-function findAlerts(curEntry: Benchmark, prevEntry: Benchmark, threshold: number): Alert[] {
-    core.debug(`Comparing current:${curEntry.commit.id} and prev:${prevEntry.commit.id} for alert`);
+function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number): Alert[] {
+    core.debug(`Comparing current:${curSuite.commit.id} and prev:${prevSuite.commit.id} for alert`);
 
     const alerts = [];
-    for (const current of curEntry.benches) {
-        const prev = prevEntry.benches.find(b => b.name === current.name);
+    for (const current of curSuite.benches) {
+        const prev = prevSuite.benches.find(b => b.name === current.name);
         if (prev === undefined) {
             core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
             continue;
         }
 
-        const ratio = biggerIsBetter(curEntry.tool)
+        const ratio = biggerIsBetter(curSuite.tool)
             ? prev.value / current.value // e.g. current=100, prev=200
             : current.value / prev.value; // e.g. current=200, prev=100
 
@@ -135,8 +135,8 @@ function getCurrentRepo() {
 function buildAlertComment(
     alerts: Alert[],
     benchName: string,
-    curEntry: Benchmark,
-    prevEntry: Benchmark,
+    curSuite: Benchmark,
+    prevSuite: Benchmark,
     threshold: number,
     cc: string[],
 ): string {
@@ -149,7 +149,7 @@ function buildAlertComment(
         `Possible performance regression was detected for benchmark${benchmarkText}.`,
         `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${threshold}\`.`,
         '',
-        `| Benchmark suite | Current: ${curEntry.commit.id} | Previous: ${prevEntry.commit.id} | Ratio |`,
+        `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
         '|-|-|-|-|',
     ];
 
@@ -207,7 +207,7 @@ async function leaveComment(commitId: string, body: string, token: string) {
     return res;
 }
 
-async function handleAlert(benchName: string, curEntry: Benchmark, prevEntry: Benchmark, config: Config) {
+async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
     const { alertThreshold, githubToken, commentOnAlert, failOnAlert, alertCommentCcUsers } = config;
 
     if (!commentOnAlert && !failOnAlert) {
@@ -215,21 +215,21 @@ async function handleAlert(benchName: string, curEntry: Benchmark, prevEntry: Be
         return;
     }
 
-    const alerts = findAlerts(curEntry, prevEntry, alertThreshold);
+    const alerts = findAlerts(curSuite, prevSuite, alertThreshold);
     if (alerts.length === 0) {
         core.debug('No performance alert found happily');
         return;
     }
 
     core.debug(`Found ${alerts.length} alerts`);
-    const body = buildAlertComment(alerts, benchName, curEntry, prevEntry, alertThreshold, alertCommentCcUsers);
+    const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, alertThreshold, alertCommentCcUsers);
     let message = body;
 
     if (commentOnAlert) {
         if (!githubToken) {
-            throw new Error("'comment-on-alert' is set but github-token is not set");
+            throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
-        const res = await leaveComment(curEntry.commit.id, body, githubToken);
+        const res = await leaveComment(curSuite.commit.id, body, githubToken);
         // eslint-disable-next-line @typescript-eslint/camelcase
         const url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
@@ -252,17 +252,17 @@ function addBenchmarkToDataJson(benchName: string, bench: Benchmark, data: DataJ
     // Add benchmark result
     if (data.entries[benchName] === undefined) {
         data.entries[benchName] = [bench];
-        core.debug(`No entry was found for benchmark '${benchName}' in existing data. Created`);
+        core.debug(`No suite was found for benchmark '${benchName}' in existing data. Created`);
     } else {
-        const entries = data.entries[benchName];
-        // Get last entry which has different commit ID for alert comment
-        for (const e of entries.slice().reverse()) {
+        const suites = data.entries[benchName];
+        // Get last suite which has different commit ID for alert comment
+        for (const e of suites.slice().reverse()) {
             if (e.commit.id !== bench.commit.id) {
                 prevBench = e;
                 break;
             }
         }
-        entries.push(bench);
+        suites.push(bench);
     }
 
     return prevBench;
