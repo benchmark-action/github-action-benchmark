@@ -1,10 +1,12 @@
 import { deepStrictEqual as eq, ok as assertOk } from 'assert';
 import * as path from 'path';
 import { promises as fs } from 'fs';
+import * as cheerio from 'cheerio';
+import markdownit = require('markdown-it');
+import mock = require('mock-require');
 import { Config } from '../config';
 import { Benchmark } from '../extract';
 import { DataJson } from '../write';
-import mock = require('mock-require');
 
 const ok: (x: any, msg?: string) => asserts x = assertOk;
 
@@ -133,6 +135,7 @@ describe('writeBenchmark()', function() {
             username: 'user',
         };
         const repoUrl = 'https://github.com/user/repo';
+        const md2html = markdownit();
 
         function commit(id = 'commit id', message = 'dummy message', u = user) {
             return {
@@ -604,9 +607,35 @@ describe('writeBenchmark()', function() {
                     eq(opts.body, expectedMessage);
                     const commentLine = messageLines[messageLines.length - 1];
                     eq(commentLine, t.commitComment);
-                    // TODO: Check the body is a correct markdown document by markdown parser
+
+                    // Check the body is a correct markdown document by markdown parser
+                    // Validate markdown content via HTML
+                    // TODO: Use Markdown AST instead of DOM API
+                    const html = md2html.render(opts.body);
+                    const query = cheerio.load(html);
+
+                    const h1 = query('h1');
+                    eq(h1.length, 1);
+                    eq(h1.text(), ':warning: Performance Alert :warning:');
+
+                    const tr = query('tbody tr');
+                    eq(tr.length, t.added.benches.length);
+
+                    const a = query('a');
+                    eq(a.length, 2);
+
+                    const workflowLink = a.first();
+                    eq(workflowLink.text(), 'workflow');
+                    const workflowUrl = workflowLink.attr('href');
+                    ok(workflowUrl.startsWith(json.repoUrl), workflowUrl);
+
+                    const actionLink = a.last();
+                    eq(actionLink.text(), 'github-action-benchmark');
+                    eq(actionLink.attr('href'), 'https://github.com/rhysd/github-action-benchmark');
                 }
             });
         }
     });
+
+    // TODO: Add tests for updating GitHub Pages branch
 });
