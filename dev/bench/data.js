@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574783962914,
+  "lastUpdate": 1574783988128,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2662,6 +2662,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32445,
             "range": "+/- 2,406",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "55e287a1ca5b379e3b8ea36f913c0412253d2e43",
+          "message": "add more eslint rules in favor of typescript-eslint v2.9.0",
+          "timestamp": "2019-11-27T00:58:07+09:00",
+          "tree_id": "f5d66094ff0562beba6c6fef10dba1b802cd9207",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/55e287a1ca5b379e3b8ea36f913c0412253d2e43"
+        },
+        "date": 1574783987820,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 210,
+            "range": "+/- 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 28346,
+            "range": "+/- 3,884",
             "unit": "ns/iter"
           }
         ]
