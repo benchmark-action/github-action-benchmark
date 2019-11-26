@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cp from 'child_process';
-import { DataJson, BenchmarkEntries, SCRIPT_PREFIX } from '../write';
+import { DataJson, BenchmarkSuites, SCRIPT_PREFIX } from '../write';
 import { VALID_TOOLS } from '../config';
 import { Benchmark } from '../extract';
 import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
@@ -30,7 +30,7 @@ async function readDataJson(file: string): Promise<DataJson> {
 }
 
 function validateDataJson(data: DataJson) {
-    const { lastUpdate, repoUrl, entries } = data;
+    const { lastUpdate, repoUrl, entries: suites } = data;
     const now = Date.now();
     if (lastUpdate > now) {
         throw new Error(`Last update is not correct: ${lastUpdate} v.s. ${now}`);
@@ -40,9 +40,9 @@ function validateDataJson(data: DataJson) {
         throw new Error(`repoUrl is not correct: ${repoUrl}`);
     }
 
-    for (const benchName of Object.keys(entries)) {
-        for (const entry of entries[benchName]) {
-            const { commit, tool, date, benches } = entry;
+    for (const benchName of Object.keys(suites)) {
+        for (const suite of suites[benchName]) {
+            const { commit, tool, date, benches } = suite;
             if (!(VALID_TOOLS as string[]).includes(tool)) {
                 throw new Error(`Invalid tool ${tool}`);
             }
@@ -122,14 +122,14 @@ function assertDiffNewBench(diff: Diff<unknown>): asserts diff is DiffNew<Benchm
     }
 }
 
-function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string, afterEntries: BenchmarkEntries) {
-    if (!(expectedBenchName in afterEntries)) {
+function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string, afterSuites: BenchmarkSuites) {
+    if (!(expectedBenchName in afterSuites)) {
         throw new Error(`data.js after action does not contain '${expectedBenchName}' benchmark`);
     }
 
-    const benchEntries = afterEntries[expectedBenchName];
-    if (benchEntries.length === 0) {
-        throw new Error('Benchmark entry is empty after action');
+    const benchSuites = afterSuites[expectedBenchName];
+    if (benchSuites.length === 0) {
+        throw new Error('Benchmark suite is empty after action');
     }
 
     assertDiffArray(diff);
@@ -142,24 +142,24 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
     assertDiffNewBench(diff);
 
     const added: Benchmark = diff.rhs;
-    const last = benchEntries[benchEntries.length - 1];
+    const last = benchSuites[benchSuites.length - 1];
     if (last.commit.id !== added.commit.id) {
         throw new Error(
             `Newly added benchmark ${JSON.stringify(added)} is not the last one in data.js ${JSON.stringify(last)}`,
         );
     }
 
-    for (const entry of benchEntries) {
-        if (entry.date > added.date) {
-            throw new Error(`Older entry's date ${JSON.stringify(entry)} is newer than added ${JSON.stringify(added)}`);
+    for (const suite of benchSuites) {
+        if (suite.date > added.date) {
+            throw new Error(`Older suite's date ${JSON.stringify(suite)} is newer than added ${JSON.stringify(added)}`);
         }
 
-        if (entry.tool !== added.tool) {
-            throw new Error(`Tool is different between ${JSON.stringify(entry)} and ${JSON.stringify(added)}`);
+        if (suite.tool !== added.tool) {
+            throw new Error(`Tool is different between ${JSON.stringify(suite)} and ${JSON.stringify(added)}`);
         }
 
         for (const addedBench of added.benches) {
-            for (const prevBench of entry.benches) {
+            for (const prevBench of suite.benches) {
                 if (prevBench.name === addedBench.name) {
                     if (prevBench.unit !== addedBench.unit) {
                         throw new Error(

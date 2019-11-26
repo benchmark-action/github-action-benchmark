@@ -204,7 +204,7 @@ describe('writeBenchmark()', function() {
                 },
             },
             {
-                it: 'creates new result entry to existing data file',
+                it: 'creates new result suite to existing data file',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
