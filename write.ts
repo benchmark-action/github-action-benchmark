@@ -169,7 +169,7 @@ function buildAlertComment(
 
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
-    const repoUrl = repo.html_url;
+    const repoUrl = repo.html_url ?? '';
     const actionUrl = repoUrl + '/actions?query=workflow%3A' + encodeURIComponent(github.context.workflow);
     core.debug(`Action URL: ${actionUrl}`);
 
@@ -191,7 +191,7 @@ async function leaveComment(commitId: string, body: string, token: string) {
 
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
-    const repoUrl = repo.html_url;
+    const repoUrl = repo.html_url ?? '';
     const client = new Octokit({ auth: token });
     const res = await client.repos.createCommitComment({
         owner: repo.owner.login,
