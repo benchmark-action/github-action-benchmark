@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574783954156,
+  "lastUpdate": 1574783960019,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7627,6 +7627,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.36%",
             "unit": "ops/sec",
             "extra": "95 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "55e287a1ca5b379e3b8ea36f913c0412253d2e43",
+          "message": "add more eslint rules in favor of typescript-eslint v2.9.0",
+          "timestamp": "2019-11-27T00:58:07+09:00",
+          "tree_id": "f5d66094ff0562beba6c6fef10dba1b802cd9207",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/55e287a1ca5b379e3b8ea36f913c0412253d2e43"
+        },
+        "date": 1574783959758,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1074517,
+            "range": "±1.82%",
+            "unit": "ops/sec",
+            "extra": "82 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9264,
+            "range": "±1.75%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
           }
         ]
       }
