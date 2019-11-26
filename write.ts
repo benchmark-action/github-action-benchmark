@@ -227,7 +227,7 @@ async function handleAlert(benchName: string, curEntry: Benchmark, prevEntry: Be
 
     if (commentOnAlert) {
         if (!githubToken) {
-            throw new Error("'comment-on-alert' is set but github-token is not set");
+            throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
         const res = await leaveComment(curEntry.commit.id, body, githubToken);
         // eslint-disable-next-line @typescript-eslint/camelcase

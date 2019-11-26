@@ -41,6 +41,16 @@ class FakedOctokit {
     }
 }
 
+interface RepositoryPayload {
+    owner: {
+        login: string;
+    };
+    name: string;
+    full_name: string;
+    html_url: string;
+    private: boolean;
+}
+
 const gitHubContext = {
     payload: {
         repository: {
@@ -51,7 +61,7 @@ const gitHubContext = {
             full_name: 'user/repo',
             html_url: 'https://github.com/user/repo',
             private: false,
-        },
+        } as RepositoryPayload | null,
     },
     workflow: 'Workflow name',
 };
@@ -105,12 +115,15 @@ describe('writeBenchmark()', function() {
             externalDataJsonPath: dataJson,
         };
 
+        const savedRepository = gitHubContext.payload.repository;
+
         afterEach(async function() {
             try {
                 await fs.unlink(dataJson);
             } catch (_) {
                 // Ignore
             }
+            gitHubContext.payload.repository = savedRepository;
         });
 
         const lastUpdate = Date.now() - 10000;
@@ -119,6 +132,7 @@ describe('writeBenchmark()', function() {
             name: 'User',
             username: 'user',
         };
+        const repoUrl = 'https://github.com/user/repo';
 
         function commit(id = 'commit id', message = 'dummy message', u = user) {
             return {
@@ -142,20 +156,21 @@ describe('writeBenchmark()', function() {
             };
         }
 
-        const testCases: Array<{
-            what: string;
+        const normalCases: Array<{
+            it: string;
             config: Config;
             data: DataJson | null;
             added: Benchmark;
-            alert?: string[];
+            error?: string[];
             commitComment?: string;
+            repoPayload?: null | RepositoryPayload;
         }> = [
             {
-                what: 'appends new result to existing data',
+                it: 'appends new result to existing data',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Test benchmark': [
                             {
@@ -175,7 +190,7 @@ describe('writeBenchmark()', function() {
                 },
             },
             {
-                what: 'creates new data file',
+                it: 'creates new data file',
                 config: defaultCfg,
                 data: null,
                 added: {
@@ -186,11 +201,11 @@ describe('writeBenchmark()', function() {
                 },
             },
             {
-                what: 'creates new result entry to existing data file',
+                it: 'creates new result entry to existing data file',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Other benchmark': [
                             {
@@ -210,17 +225,17 @@ describe('writeBenchmark()', function() {
                 },
             },
             {
-                what: 'appends new result to existing multiple benchmarks data',
+                it: 'appends new result to existing multiple benchmarks data',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Test benchmark': [
                             {
                                 commit: commit('prev commit id'),
                                 date: lastUpdate - 1000,
-                                tool: 'cargo',
+                                tool: 'pytest',
                                 benches: [bench('bench_fib_10', 100)],
                             },
                         ],
@@ -237,22 +252,22 @@ describe('writeBenchmark()', function() {
                 added: {
                     commit: commit('current commit id'),
                     date: lastUpdate,
-                    tool: 'cargo',
+                    tool: 'pytest',
                     benches: [bench('bench_fib_10', 135)],
                 },
             },
             {
-                what: 'raises an alert when exceeding threshold 2.0',
+                it: 'raises an alert when exceeding threshold 2.0',
                 config: defaultCfg,
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Test benchmark': [
                             {
                                 commit: commit('prev commit id'),
                                 date: lastUpdate - 1000,
-                                tool: 'cargo',
+                                tool: 'go',
                                 benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 10000)],
                             },
                         ],
@@ -261,10 +276,10 @@ describe('writeBenchmark()', function() {
                 added: {
                     commit: commit('current commit id'),
                     date: lastUpdate,
-                    tool: 'cargo',
+                    tool: 'go',
                     benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
                 },
-                alert: [
+                error: [
                     '# :warning: **Performance Alert** :warning:',
                     '',
                     "Possible performance regression was detected for benchmark **'Test benchmark'**.",
@@ -281,11 +296,49 @@ describe('writeBenchmark()', function() {
                 ],
             },
             {
-                what: 'raises an alert without benchmark name with default benchmark name',
+                it: 'raises an alert with tool whose result value is bigger-is-better',
+                config: defaultCfg,
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'benchmarkjs',
+                                benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'benchmarkjs',
+                    benches: [bench('benchFib10', 20, '+-20', 'ops/sec')], // ops/sec so bigger is better
+                },
+                error: [
+                    '# :warning: **Performance Alert** :warning:',
+                    '',
+                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    '',
+                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    '|-|-|-|-|',
+                    '| `benchFib10` | `20` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `5` |',
+                    '',
+                    'This comment was automatically generated by [workflow](https://github.com/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/rhysd/github-action-benchmark).',
+                    '',
+                    'CC: @user',
+                ],
+            },
+            {
+                it: 'raises an alert without benchmark name with default benchmark name',
                 config: { ...defaultCfg, name: 'Benchmark' },
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         Benchmark: [
                             {
@@ -303,7 +356,7 @@ describe('writeBenchmark()', function() {
                     tool: 'cargo',
                     benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                 },
-                alert: [
+                error: [
                     '# :warning: **Performance Alert** :warning:',
                     '',
                     'Possible performance regression was detected for benchmark.',
@@ -319,11 +372,11 @@ describe('writeBenchmark()', function() {
                 ],
             },
             {
-                what: 'raises an alert without CC names',
+                it: 'raises an alert without CC names',
                 config: { ...defaultCfg, alertCommentCcUsers: [] },
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Test benchmark': [
                             {
@@ -341,7 +394,7 @@ describe('writeBenchmark()', function() {
                     tool: 'cargo',
                     benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                 },
-                alert: [
+                error: [
                     '# :warning: **Performance Alert** :warning:',
                     '',
                     "Possible performance regression was detected for benchmark **'Test benchmark'**.",
@@ -355,11 +408,11 @@ describe('writeBenchmark()', function() {
                 ],
             },
             {
-                what: 'sends commit comment on alert with GitHub API',
+                it: 'sends commit comment on alert with GitHub API',
                 config: { ...defaultCfg, commentOnAlert: true, githubToken: 'dummy token' },
                 data: {
                     lastUpdate,
-                    repoUrl: 'https://github.com/user/repo',
+                    repoUrl,
                     entries: {
                         'Test benchmark': [
                             {
@@ -379,10 +432,118 @@ describe('writeBenchmark()', function() {
                 },
                 commitComment: 'Comment was generated at https://dummy-comment-url',
             },
+            {
+                it: 'does not raise an alert when both comment-on-alert and fail-on-alert are disabled',
+                config: { ...defaultCfg, commentOnAlert: false, failOnAlert: false },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                },
+                error: undefined,
+                commitComment: undefined,
+            },
+            {
+                it: 'ignores other bench case on detecting alerts',
+                config: defaultCfg,
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('another_bench', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                },
+                error: undefined,
+                commitComment: undefined,
+            },
+            {
+                it:
+                    'throws an error when GitHub token is not set (though this case should not happen in favor of validation)',
+                config: { ...defaultCfg, commentOnAlert: true },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                },
+                error: ["'comment-on-alert' input is set but 'github-token' input is not set"],
+                commitComment: undefined,
+            },
+            {
+                it: 'throws an error when repository payload cannot be obtained from context',
+                config: defaultCfg,
+                data: {
+                    lastUpdate,
+                    repoUrl: '', // When repository is null repoUrl will be empty
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                },
+                repoPayload: null,
+                error: ['Repository information is not available in payload: {', '  "repository": null', '}'],
+            },
         ];
 
-        for (const t of testCases) {
-            it(t.what, async function() {
+        for (const t of normalCases) {
+            it(t.it, async function() {
+                if (t.repoPayload !== undefined) {
+                    gitHubContext.payload.repository = t.repoPayload;
+                }
                 if (t.data !== null) {
                     await fs.writeFile(dataJson, JSON.stringify(t.data), 'utf8');
                 }
@@ -391,7 +552,7 @@ describe('writeBenchmark()', function() {
                 try {
                     await writeBenchmark(t.added, t.config);
                 } catch (err) {
-                    if (!t.alert && !t.commitComment) {
+                    if (!t.error && !t.commitComment) {
                         throw err;
                     }
                     caughtError = err;
@@ -420,9 +581,9 @@ describe('writeBenchmark()', function() {
                     }
                 }
 
-                if (t.alert) {
+                if (t.error) {
                     ok(caughtError);
-                    const expected = t.alert.join('\n');
+                    const expected = t.error.join('\n');
                     eq(expected, caughtError.message);
                 }
 
