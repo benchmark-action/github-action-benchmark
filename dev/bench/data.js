@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574826798352,
+  "lastUpdate": 1574837606208,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9137,6 +9137,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00031211420774244065",
             "extra": "mean: 0.0026176555040216846 sec\nrounds: 373"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": false,
+          "id": "a8343706262db7116a645e96a7b331573c5ab898",
+          "message": "implement max-items-in-chart input",
+          "timestamp": "2019-11-27T12:37:57+09:00",
+          "tree_id": "a093be896e7c406cd112f490210e8b6393cae86a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a8343706262db7116a645e96a7b331573c5ab898"
+        },
+        "date": 1574837606047,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 47439.05574039441,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00000875951927149308",
+            "extra": "mean: 0.00002107967758617292 sec\nrounds: 21460"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 378.7806400227626,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00029214309202901817",
+            "extra": "mean: 0.0026400504522615135 sec\nrounds: 398"
           }
         ]
       }
