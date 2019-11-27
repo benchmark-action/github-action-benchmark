@@ -18,9 +18,11 @@ export interface Config {
     failOnAlert: boolean;
     alertCommentCcUsers: string[];
     externalDataJsonPath: string | undefined;
+    maxItemsInChart: number | null;
 }
 
 export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest'];
+const RE_UINT = /^\d+$/;
 
 function validateToolType(tool: string): asserts tool is ToolType {
     if ((VALID_TOOLS as string[]).includes(tool)) {
@@ -159,6 +161,27 @@ async function validateExternalDataJsonPath(path: string | undefined, autoPush: 
     }
 }
 
+function getUintInput(name: string): number | null {
+    const input = core.getInput(name);
+    if (!input) {
+        return null;
+    }
+    if (!RE_UINT.test(input)) {
+        throw new Error(`'${name}' input must be unsigned integer but got '${input}'`);
+    }
+    const i = parseInt(input, 10);
+    if (isNaN(i)) {
+        throw new Error(`Unsigned integer value '${input}' in '${name}' input was parsed as NaN`);
+    }
+    return i;
+}
+
+function validateMaxItemsInChart(max: number | null) {
+    if (max !== null && max <= 0) {
+        throw new Error(`'max-items-in-chart' input value must be one or more but got ${max}`);
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -173,6 +196,7 @@ export async function configFromJobInput(): Promise<Config> {
     const failOnAlert = getBoolInput('fail-on-alert');
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
+    const maxItemsInChart = getUintInput('max-items-in-chart');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -187,6 +211,7 @@ export async function configFromJobInput(): Promise<Config> {
     }
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
+    validateMaxItemsInChart(maxItemsInChart);
 
     return {
         name,
@@ -202,5 +227,6 @@ export async function configFromJobInput(): Promise<Config> {
         failOnAlert,
         alertCommentCcUsers,
         externalDataJsonPath,
+        maxItemsInChart,
     };
 }

@@ -241,7 +241,12 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     }
 }
 
-function addBenchmarkToDataJson(benchName: string, bench: Benchmark, data: DataJson): Benchmark | null {
+function addBenchmarkToDataJson(
+    benchName: string,
+    bench: Benchmark,
+    data: DataJson,
+    maxItems: number | null,
+): Benchmark | null {
     // eslint-disable-next-line @typescript-eslint/camelcase
     const htmlUrl = github.context.payload.repository?.html_url ?? '';
 
@@ -262,14 +267,31 @@ function addBenchmarkToDataJson(benchName: string, bench: Benchmark, data: DataJ
                 break;
             }
         }
+
         suites.push(bench);
+
+        if (maxItems !== null && suites.length > maxItems) {
+            suites.splice(0, suites.length - maxItems);
+            core.debug(
+                `Number of data items for '${benchName}' was truncated to ${maxItems} due to max-items-in-charts`,
+            );
+        }
     }
 
     return prevBench;
 }
 
 async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
-    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages } = config;
+    const {
+        name,
+        tool,
+        ghPagesBranch,
+        benchmarkDataDirPath,
+        githubToken,
+        autoPush,
+        skipFetchGhPages,
+        maxItemsInChart,
+    } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
@@ -288,7 +310,7 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
         await io.mkdirP(benchmarkDataDirPath);
 
         const data = await loadDataJs(dataPath);
-        const prevBench = addBenchmarkToDataJson(name, bench, data);
+        const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
         await storeDataJs(dataPath, data);
 
         await git.cmd('add', dataPath);
@@ -332,9 +354,9 @@ async function writeBenchmarkToExternalJson(
     jsonFilePath: string,
     config: Config,
 ): Promise<Benchmark | null> {
-    const { name } = config;
+    const { name, maxItemsInChart } = config;
     const data = await loadDataJson(jsonFilePath);
-    const prevBench = addBenchmarkToDataJson(name, bench, data);
+    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
     try {
         const jsonDirPath = path.dirname(jsonFilePath);

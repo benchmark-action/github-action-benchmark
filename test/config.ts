@@ -46,6 +46,7 @@ describe('configFromJobInput()', function() {
         'fail-on-alert': 'false',
         'alert-comment-cc-users': '',
         'external-data-json-path': '',
+        'max-items-in-chart': '',
     };
 
     const validation_tests = [
@@ -121,6 +122,22 @@ describe('configFromJobInput()', function() {
             },
             expected: /auto-push must be false when external-data-json-path is set/,
         },
+        {
+            what: 'invalid integer value for max-items-in-chart',
+            inputs: {
+                ...defaultInputs,
+                'max-items-in-chart': '3.14',
+            },
+            expected: /'max-items-in-chart' input must be unsigned integer but got '3.14'/,
+        },
+        {
+            what: 'max-items-in-chart must not be zero',
+            inputs: {
+                ...defaultInputs,
+                'max-items-in-chart': '0',
+            },
+            expected: /'max-items-in-chart' input value must be one or more/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -146,6 +163,7 @@ describe('configFromJobInput()', function() {
         failOnAlert: boolean;
         alertCommentCcUsers: string[];
         hasExternalDataJsonPath: boolean;
+        maxItemsInChart: null | number;
     }
 
     const defaultExpected: ExpectedResult = {
@@ -160,6 +178,7 @@ describe('configFromJobInput()', function() {
         failOnAlert: false,
         alertCommentCcUsers: [],
         hasExternalDataJsonPath: false,
+        maxItemsInChart: null,
     };
 
     const returned_config_tests = [
@@ -215,6 +234,11 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'external-data-json-path': 'external.json' },
             expected: { ...defaultExpected, hasExternalDataJsonPath: true },
         },
+        {
+            what: 'max items in chart',
+            inputs: { ...defaultInputs, 'max-items-in-chart': '50' },
+            expected: { ...defaultExpected, maxItemsInChart: 50 },
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -236,6 +260,7 @@ describe('configFromJobInput()', function() {
             A.deepEqual(actual.alertCommentCcUsers, test.expected.alertCommentCcUsers);
             A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
             A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
+            A.equal(actual.maxItemsInChart, test.expected.maxItemsInChart);
 
             if (test.expected.hasExternalDataJsonPath) {
                 A.equal(typeof actual.externalDataJsonPath, 'string');

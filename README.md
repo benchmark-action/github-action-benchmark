@@ -303,6 +303,7 @@ Input definitions are written in [action.yml](./action.yml).
 | `fail-on-alert`           | If set to `true`, workflow will fail when alert happens                                                                                     | Boolean                                               | No       | `false`       |
 | `alert-comment-cc-users`  | Comma-separated GitHub user names mentioned in alert commit comment                                                                         | String                                                | No       |               |
 | `external-data-json-path` | External JSON file which contains benchmark results until previous job run. This action updates the file instead of generating a Git commit | String                                                | No       |               |
+| `max-items-in-chart`      | Max number of data points in chart as unsigned integer. It can avoid too busy chart. No limit by default                                    | Unsigned integer                                      | No       |               |
 
 `name` and `tool` must be specified in workflow at `uses` section of job step.
 
