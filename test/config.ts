@@ -18,7 +18,7 @@ mock('@actions/core', {
 });
 
 // This line must be called after mocking
-const { configFromJobInput, VALID_TOOLS } = require('../config');
+const { configFromJobInput, VALID_TOOLS } = require('../src/config');
 
 describe('configFromJobInput()', function() {
     const cwd = process.cwd();

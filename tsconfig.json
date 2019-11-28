@@ -20,18 +20,18 @@
     "resolveJsonModule": true
   },
   "files": [
-    "index.ts",
-    "config.ts",
-    "test/config.ts",
-    "extract.ts",
+    "src/index.ts",
+    "src/config.ts",
+    "src/extract.ts",
+    "src/git.ts",
+    "src/write.ts",
+    "src/default_index_html.ts",
+    "src/octokit_graphql.d.ts",
     "test/extract.ts",
-    "git.ts",
+    "test/config.ts",
     "test/git.ts",
-    "write.ts",
     "test/write.ts",
-    "default_index_html.ts",
     "test/default_index_html.ts",
-    "octokit_graphql.d.ts",
     "scripts/ci_validate_modification.ts"
   ]
 }

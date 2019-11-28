@@ -5,8 +5,8 @@ Development
 
 Adding support for new benchmaking tools is welcome!
 
-1. Add your tool name in `config.ts`
-2. Implement the logic to extract benchmark results from output in `extract.ts`
+1. Add your tool name in `src/config.ts`
+2. Implement the logic to extract benchmark results from output in `src/extract.ts`
 3. Add tests for your tool under `test/*.ts`
 4. Add your tool's color in `default_index_html.ts`
 5. Add example project under `examples/` directory
@@ -34,4 +34,4 @@ And for another example, here are commits to add support for `pytest-benchmark`:
 1. Run `$ bash scripts/prepare-release.sh v1`
 2. Check changes with `git diff --cached`
 3. If ok, create a new commit and tag it with `v1.x.y`
-4. Push to `v1` remote repository and make a release on GitHub
+4. Push the commit and tag to `v1` remote repository and make a release on GitHub

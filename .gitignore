@@ -1,6 +1,6 @@
 /node_modules
-/*.js
-/*.js.map
+/src/*.js
+/src/*.js.map
 /examples/rust/Cargo.lock
 /examples/rust/target
 /test/*.js

@@ -4,9 +4,9 @@ import { promises as fs } from 'fs';
 import * as cheerio from 'cheerio';
 import markdownit = require('markdown-it');
 import mock = require('mock-require');
-import { Config } from '../config';
-import { Benchmark } from '../extract';
-import { DataJson } from '../write';
+import { Config } from '../src/config';
+import { Benchmark } from '../src/extract';
+import { DataJson } from '../src/write';
 
 const ok: (x: any, msg?: string) => asserts x = assertOk;
 
@@ -79,7 +79,7 @@ mock('@actions/core', {
 mock('@actions/github', { context: gitHubContext });
 mock('@octokit/rest', FakedOctokit);
 
-const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../write').writeBenchmark;
+const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../src/write').writeBenchmark;
 
 describe('writeBenchmark()', function() {
     const savedCwd = process.cwd();

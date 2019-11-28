@@ -41,7 +41,7 @@ mock('@actions/github', {
     context: gitHubContext,
 });
 
-const git = require('../git');
+const git = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
 const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
 

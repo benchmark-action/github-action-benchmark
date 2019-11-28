@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { strict as A } from 'assert';
 import mock = require('mock-require');
-import { BenchmarkResult } from '../extract';
+import { BenchmarkResult } from '../src/extract';
 
 mock('@actions/github', {
     context: {
@@ -12,7 +12,7 @@ mock('@actions/github', {
     },
 });
 
-const { extractResult } = require('../extract');
+const { extractResult } = require('../src/extract');
 
 describe('extractResult()', function() {
     after(function() {

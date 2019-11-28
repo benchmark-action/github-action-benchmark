@@ -1,9 +1,9 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cp from 'child_process';
-import { DataJson, BenchmarkSuites, SCRIPT_PREFIX } from '../write';
-import { VALID_TOOLS } from '../config';
-import { Benchmark } from '../extract';
+import { DataJson, BenchmarkSuites, SCRIPT_PREFIX } from '../src/write';
+import { VALID_TOOLS } from '../src/config';
+import { Benchmark } from '../src/extract';
 import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
 import deepEq = require('deep-equal');
 

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "tsc -p .",
     "watch:tsc": "tsc -p . --watch --preserveWatchOutput",
