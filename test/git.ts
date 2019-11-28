@@ -41,7 +41,7 @@ mock('@actions/github', {
     context: gitHubContext,
 });
 
-const git = require('../src/git');
+const { cmd, pull, push } = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
 const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
 
@@ -59,7 +59,7 @@ describe('git', function() {
 
     describe('cmd()', function() {
         it('runs Git command successfully', async function() {
-            const stdout = await git.cmd('log', '--oneline');
+            const stdout = await cmd('log', '--oneline');
 
             eq(stdout, 'this is test');
             ok(lastArgs);
@@ -70,7 +70,7 @@ describe('git', function() {
 
         it('raises an error when command returns non-zero exit code', async function() {
             execReturnValue = 101;
-            await A.rejects(() => git.cmd('show'), /^Error: Command 'git show' failed: /);
+            await A.rejects(() => cmd('show'), /^Error: Command 'git show' failed: /);
             neq(lastArgs, null);
         });
     });
@@ -81,7 +81,7 @@ describe('git', function() {
         });
 
         it('runs `git push` with given branch and options', async function() {
-            const stdout = await git.push('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const stdout = await push('this-is-token', 'my-branch', 'opt1', 'opt2');
 
             eq(stdout, 'this is test');
             ok(lastArgs);
@@ -102,7 +102,7 @@ describe('git', function() {
         it('raises an error when repository info is not included in payload', async function() {
             gitHubContext.payload.repository = null;
             await A.rejects(
-                () => git.push('this-is-token', 'my-branch', 'opt1', 'opt2'),
+                () => push('this-is-token', 'my-branch', 'opt1', 'opt2'),
                 /^Error: Repository info is not available in payload/,
             );
             eq(lastArgs, null);
@@ -115,7 +115,7 @@ describe('git', function() {
         });
 
         it('runs `git pull` with given branch and options with token', async function() {
-            const stdout = await git.pull('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const stdout = await pull('this-is-token', 'my-branch', 'opt1', 'opt2');
 
             eq(stdout, 'this is test');
             ok(lastArgs);
@@ -133,7 +133,7 @@ describe('git', function() {
         });
 
         it('runs `git pull` with given branch and options without token', async function() {
-            const stdout = await git.pull(undefined, 'my-branch', 'opt1', 'opt2');
+            const stdout = await pull(undefined, 'my-branch', 'opt1', 'opt2');
 
             eq(stdout, 'this is test');
             ok(lastArgs);
@@ -144,7 +144,7 @@ describe('git', function() {
         it('raises an error when repository info is not included in payload', async function() {
             gitHubContext.payload.repository = null;
             await A.rejects(
-                () => git.pull('this-is-token', 'my-branch', 'opt1', 'opt2'),
+                () => pull('this-is-token', 'my-branch', 'opt1', 'opt2'),
                 /^Error: Repository info is not available in payload/,
             );
             eq(lastArgs, null);

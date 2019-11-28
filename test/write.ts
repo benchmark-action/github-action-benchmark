@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import * as cheerio from 'cheerio';
 import markdownit = require('markdown-it');
 import mock = require('mock-require');
+import rimraf = require('rimraf');
 import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { DataJson } from '../src/write';
@@ -43,6 +44,21 @@ class FakedOctokit {
     }
 }
 
+type GitFunc = 'cmd' | 'push' | 'pull';
+class GitSpy {
+    history: [GitFunc, unknown[]][];
+    constructor() {
+        this.history = [];
+    }
+    call(func: GitFunc, args: unknown[]) {
+        this.history.push([func, args]);
+    }
+    clear() {
+        this.history = [];
+    }
+}
+const gitSpy = new GitSpy();
+
 interface RepositoryPayload {
     owner: {
         login: string;
@@ -77,6 +93,20 @@ mock('@actions/core', {
     },
 });
 mock('@actions/github', { context: gitHubContext });
+mock('../src/git', {
+    async cmd(...args: unknown[]): Promise<string> {
+        gitSpy.call('cmd', args);
+        return '';
+    },
+    async push(...args: unknown[]): Promise<string> {
+        gitSpy.call('push', args);
+        return '';
+    },
+    async pull(...args: unknown[]): Promise<string> {
+        gitSpy.call('pull', args);
+        return '';
+    },
+});
 mock('@octokit/rest', FakedOctokit);
 
 const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../src/write').writeBenchmark;
@@ -92,12 +122,45 @@ describe('writeBenchmark()', function() {
         mock.stop('@actions/core');
         mock.stop('@actions/github');
         mock.stop('@octokit/rest');
+        mock.stop('../src/git');
         process.chdir(savedCwd);
     });
 
     afterEach(function() {
         fakedRepos.clear();
     });
+
+    // Utilities for test data
+    const lastUpdate = Date.now() - 10000;
+    const user = {
+        email: 'dummy@example.com',
+        name: 'User',
+        username: 'user',
+    };
+    const repoUrl = 'https://github.com/user/repo';
+    const md2html = markdownit();
+
+    function commit(id = 'commit id', message = 'dummy message', u = user) {
+        return {
+            author: u,
+            committer: u,
+            distinct: false,
+            id,
+            message,
+            timestamp: 'dummy stamp',
+            tree_id: 'dummy tree id',
+            url: 'https://github.com/user/repo/commit/' + id,
+        };
+    }
+
+    function bench(name: string, value: number, range = '+/- 20', unit = 'ns/iter') {
+        return {
+            name,
+            range,
+            unit,
+            value,
+        };
+    }
 
     context('with external json file', function() {
         const dataJson = 'data.json';
@@ -128,37 +191,6 @@ describe('writeBenchmark()', function() {
             }
             gitHubContext.payload.repository = savedRepository;
         });
-
-        const lastUpdate = Date.now() - 10000;
-        const user = {
-            email: 'dummy@example.com',
-            name: 'User',
-            username: 'user',
-        };
-        const repoUrl = 'https://github.com/user/repo';
-        const md2html = markdownit();
-
-        function commit(id = 'commit id', message = 'dummy message', u = user) {
-            return {
-                author: u,
-                committer: u,
-                distinct: false,
-                id,
-                message,
-                timestamp: 'dummy stamp',
-                tree_id: 'dummy tree id',
-                url: 'https://github.com/user/repo/commit/' + id,
-            };
-        }
-
-        function bench(name: string, value: number, range = '+/- 20', unit = 'ns/iter') {
-            return {
-                name,
-                range,
-                unit,
-                value,
-            };
-        }
 
         const normalCases: Array<{
             it: string;
@@ -685,5 +717,153 @@ describe('writeBenchmark()', function() {
         }
     });
 
-    // TODO: Add tests for updating GitHub Pages branch
+    // Tests for updating GitHub Pages branch
+    context('with gh-pages branch', function() {
+        const dataJsPath = path.join('data-dir', 'data.js');
+        const indexHtmlPath = path.join('data-dir', 'index.html');
+
+        beforeEach(async function() {
+            (global as any).window = {}; // Fake window object on browser
+            await fs.copyFile(path.join('data-dir', 'original_data.js'), dataJsPath);
+        });
+        afterEach(async function() {
+            gitSpy.clear();
+            delete (global as any).window;
+            for (const p of [dataJsPath, indexHtmlPath, 'new-data-dir']) {
+                // Ignore exception
+                await new Promise(resolve => rimraf(p, resolve));
+            }
+        });
+
+        async function isFile(p: string) {
+            try {
+                const s = await fs.stat(p);
+                return s.isFile();
+            } catch (_) {
+                return false;
+            }
+        }
+
+        async function isDir(p: string) {
+            try {
+                const s = await fs.stat(p);
+                return s.isDirectory();
+            } catch (_) {
+                return false;
+            }
+        }
+
+        async function loadDataJs(dataDir: string) {
+            const dataJs = path.join(dataDir, 'data.js');
+            if (!(await isDir(dataDir)) || !(await isFile(dataJs))) {
+                return null;
+            }
+            const dataSource = await fs.readFile(dataJs, 'utf8');
+            eval(dataSource);
+            return (global as any).window.BENCHMARK_DATA as DataJson;
+        }
+
+        const defaultCfg: Config = {
+            name: 'Test benchmark',
+            tool: 'cargo',
+            outputFilePath: 'dummy', // Should not affect
+            ghPagesBranch: 'gh-pages',
+            benchmarkDataDirPath: 'data-dir', // Should not affect
+            githubToken: 'dummy token',
+            autoPush: true,
+            skipFetchGhPages: false, // Should not affect
+            commentOnAlert: false,
+            alertThreshold: 2.0,
+            failOnAlert: true,
+            alertCommentCcUsers: [],
+            externalDataJsonPath: undefined,
+            maxItemsInChart: null,
+        };
+
+        function gitHistory(cfg: { dir?: string; addIndexHtml?: boolean } = {}) {
+            const dir = cfg.dir ?? 'data-dir';
+            const hist: [GitFunc, string[]][] = [
+                ['cmd', ['switch', 'gh-pages']],
+                ['pull', ['dummy token', 'gh-pages']],
+                ['cmd', ['add', path.join(dir, 'data.js')]],
+                ['cmd', ['commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
+                ['push', ['dummy token', 'gh-pages']], // Push it to remote when auto-push is true
+                ['cmd', ['checkout', '-']], // Return from gh-pages
+            ];
+            if (cfg.addIndexHtml) {
+                hist.splice(3, 0, ['cmd', ['add', path.join(dir, 'index.html')]]); // add index.html before making a commit
+            }
+            return hist;
+        }
+
+        const normalCases: Array<{
+            it: string;
+            config: Config;
+            added: Benchmark;
+            gitHistory: [GitFunc, string[]][];
+        }> = [
+            {
+                it: 'appends new data',
+                config: defaultCfg,
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+                gitHistory: gitHistory({ addIndexHtml: true }),
+            },
+            {
+                it: 'creates new data',
+                config: { ...defaultCfg, benchmarkDataDirPath: 'new-data-dir' },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+                gitHistory: gitHistory({ dir: 'new-data-dir', addIndexHtml: true }),
+            },
+        ];
+
+        for (const t of normalCases) {
+            it(t.it, async function() {
+                const beforeData = await loadDataJs(t.config.benchmarkDataDirPath);
+                const beforeDate = Date.now();
+                await writeBenchmark(t.added, t.config);
+                const afterDate = Date.now();
+
+                eq(t.gitHistory, gitSpy.history);
+
+                ok(await isDir(t.config.benchmarkDataDirPath));
+                ok(await isFile(path.join(t.config.benchmarkDataDirPath, 'index.html')));
+                const dataJs = path.join(t.config.benchmarkDataDirPath, 'data.js');
+                ok(await isFile(dataJs));
+
+                const data = await loadDataJs(t.config.benchmarkDataDirPath);
+                ok(data);
+
+                eq(typeof data.lastUpdate, 'number');
+                ok(
+                    beforeDate <= data.lastUpdate && data.lastUpdate <= afterDate,
+                    `Should be ${beforeDate} <= ${data.lastUpdate} <= ${afterDate}`,
+                );
+                ok(data.entries[t.config.name]);
+                const len = data.entries[t.config.name].length;
+                ok(len > 0);
+                eq(data.entries[t.config.name][len - 1], t.added); // Check last item is the newest
+
+                if (beforeData !== null) {
+                    eq(beforeData.repoUrl, data.repoUrl);
+                    for (const name of Object.keys(beforeData.entries)) {
+                        if (name === t.config.name) {
+                            eq(beforeData.entries[name], data.entries[name].slice(0, -1)); // New data was appended
+                        } else {
+                            eq(beforeData.entries[name], data.entries[name]);
+                        }
+                    }
+                }
+            });
+        }
+    });
 });
