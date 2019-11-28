@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574937461348,
+  "lastUpdate": 1574937485406,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2878,6 +2878,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 31595,
             "range": "+/- 3,171",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b4994e7fca1b99562f65f6568c0580724ad476ea",
+          "message": "add basic tests for updating gh-pages branch in write.ts",
+          "timestamp": "2019-11-28T19:35:56+09:00",
+          "tree_id": "229f749ee721916046048bf0e9d1f4dedd119712",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b4994e7fca1b99562f65f6568c0580724ad476ea"
+        },
+        "date": 1574937484999,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 213,
+            "range": "+/- 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 27515,
+            "range": "+/- 6,142",
             "unit": "ns/iter"
           }
         ]
