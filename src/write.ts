@@ -87,6 +87,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return true;
         case 'pytest':
             return true;
+        case 'googlecpp':
+            return false;
     }
 }
 

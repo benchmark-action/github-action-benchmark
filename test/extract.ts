@@ -93,6 +93,23 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'googlecpp',
+            expected: [
+                {
+                    extra: 'iterations: 3070566\ncpu: 213.65507206163295 ns\nthreads: 1',
+                    name: 'fib_10',
+                    unit: 'ns/iter',
+                    value: 214.98980114547953,
+                },
+                {
+                    extra: 'iterations: 23968\ncpu: 27364.90320427236 ns\nthreads: 1',
+                    name: 'fib_20',
+                    unit: 'ns/iter',
+                    value: 27455.600415007055,
+                },
+            ],
+        },
     ] as Array<{
         tool: string;
         expected: BenchmarkResult[];

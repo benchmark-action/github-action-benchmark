@@ -132,6 +132,8 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
         throw new Error('Benchmark suite is empty after action');
     }
 
+    // XXX: This check does not consider the case where previous data does not exist.
+    // In case, new element is created so diff.kind does not become 'A' (instead it does 'N')
     assertDiffArray(diff);
 
     if (!deepEq(diff.path, ['entries', expectedBenchName])) {
@@ -219,7 +221,12 @@ async function main() {
     }
 
     const commitMessageLine = commitLogLines[4];
-    const reCommitMessage = new RegExp(`add ${expectedBenchName} \\([^)]+\\) benchmark result for [0-9a-f]+$`);
+    const reCommitMessage = new RegExp(
+        `add ${expectedBenchName.replace(
+            /[.*+?^=!:${}()|[\]/\\]/g,
+            '\\$&',
+        )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
+    );
     if (!reCommitMessage.test(commitMessageLine)) {
         throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     }
