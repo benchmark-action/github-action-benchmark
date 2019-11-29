@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575021202967,
+  "lastUpdate": 1575023724153,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10247,6 +10247,42 @@ window.BENCHMARK_DATA = {
             "value": 31067.770346096648,
             "unit": "ns/iter",
             "extra": "iterations: 22277\ncpu: 31062.763612694704 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "9571a5b21657060d46916e06a47e3ff5db170238",
+          "message": "fix benchmark name was not escaped for regex in validation script",
+          "timestamp": "2019-11-29T19:34:17+09:00",
+          "tree_id": "d30db02dad0a32bc0a5f288bb7a552a01d612e56",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/9571a5b21657060d46916e06a47e3ff5db170238"
+        },
+        "date": 1575023723805,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 238.2389098995691,
+            "unit": "ns/iter",
+            "extra": "iterations: 2902228\ncpu: 236.90667928226173 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30811.903016597174,
+            "unit": "ns/iter",
+            "extra": "iterations: 23437\ncpu: 30795.933395912445 ns\nthreads: 1"
           }
         ]
       }
