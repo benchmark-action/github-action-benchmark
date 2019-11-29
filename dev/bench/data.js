@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574937485406,
+  "lastUpdate": 1574986602777,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9729,6 +9729,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003264258729501185",
             "extra": "mean: 0.002999867044303411 sec\nrounds: 316"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "276e95c9c09c9541a9b815eac0a812f95c155dc0",
+          "message": "add more test cases for updating gh-pages branch",
+          "timestamp": "2019-11-29T09:15:52+09:00",
+          "tree_id": "ba18290a875214471199f9f5a20d3507be156d2c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/276e95c9c09c9541a9b815eac0a812f95c155dc0"
+        },
+        "date": 1574986602592,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 44006.56965776681,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000011090146615522122",
+            "extra": "mean: 0.000022723879815601757 sec\nrounds: 19961"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 350.6098676486641,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000760562331877955",
+            "extra": "mean: 0.002852173005587141 sec\nrounds: 358"
           }
         ]
       }
