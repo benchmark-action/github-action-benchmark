@@ -137,6 +137,11 @@ jobs:
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
+      - name: Cache Benchmark library
+        uses: actions/cache@v1
+        with:
+          path: examples/cpp/benchmark
+          key: ${{ runner.os }}-googlebenchmark-${{ hashFiles('examples/cpp/bench.cpp') }}
       - name: Run benchmark
         run: |
           cd examples/cpp
@@ -145,7 +150,7 @@ jobs:
         uses: ./
         with:
           name: C++ Benchmark with Google Benchmark
-          tool: 'pytest'
+          tool: 'googlecpp'
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
