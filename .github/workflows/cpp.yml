@@ -19,7 +19,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: examples/cpp/benchmark
-          key: ${{ runner.os }}-googlebenchmark-${{ hashFiles('examples/cpp/bench.cpp') }}
+          key: ${{ runner.os }}-googlebenchmark-v1.5.0
       - name: Run benchmark
         run: cd examples/cpp && make json
       - name: Store benchmark result
