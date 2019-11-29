@@ -138,7 +138,6 @@ describe('writeBenchmark()', function() {
         username: 'user',
     };
     const repoUrl = 'https://github.com/user/repo';
-    const md2html = markdownit();
 
     function commit(id = 'commit id', message = 'dummy message', u = user) {
         return {
@@ -191,6 +190,8 @@ describe('writeBenchmark()', function() {
             }
             gitHubContext.payload.repository = savedRepository;
         });
+
+        const md2html = markdownit();
 
         const normalCases: Array<{
             it: string;
@@ -719,16 +720,18 @@ describe('writeBenchmark()', function() {
 
     // Tests for updating GitHub Pages branch
     context('with gh-pages branch', function() {
-        const dataJsPath = path.join('data-dir', 'data.js');
-        const indexHtmlPath = path.join('data-dir', 'index.html');
-
         beforeEach(async function() {
             (global as any).window = {}; // Fake window object on browser
         });
         afterEach(async function() {
             gitSpy.clear();
             delete (global as any).window;
-            for (const p of [dataJsPath, indexHtmlPath, 'new-data-dir']) {
+            for (const p of [
+                path.join('data-dir', 'data.js'),
+                path.join('data-dir', 'index.html'),
+                'new-data-dir',
+                path.join('with-index-html', 'data.js'),
+            ]) {
                 // Ignore exception
                 await new Promise(resolve => rimraf(p, resolve));
             }
@@ -878,7 +881,7 @@ describe('writeBenchmark()', function() {
                 const indexHtml = path.join(t.config.benchmarkDataDirPath, 'index.html');
 
                 if (await isFile(originalDataJs)) {
-                    await fs.copyFile(originalDataJs, dataJsPath);
+                    await fs.copyFile(originalDataJs, dataJs);
                 }
 
                 let indexHtmlBefore = null;
