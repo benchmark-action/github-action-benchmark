@@ -149,12 +149,12 @@ jobs:
       - name: Store benchmark result
         uses: ./
         with:
-          name: C++ Benchmark with Google Benchmark
+          name: C++ Benchmark
           tool: 'googlecpp'
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'C++ Benchmark with Google Benchmark'
+      - run: node ./scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
   only-alert-with-cache:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
