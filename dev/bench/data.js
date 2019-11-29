@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575025891869,
+  "lastUpdate": 1575026990077,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10391,6 +10391,42 @@ window.BENCHMARK_DATA = {
             "value": 26955.032502957034,
             "unit": "ns/iter",
             "extra": "iterations: 26213\ncpu: 26948.619883264026 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c45b4d09efed73171c5bf2a15d0b64779574711f",
+          "message": "describe Google Benchmark Framework support in README.md files",
+          "timestamp": "2019-11-29T20:28:22+09:00",
+          "tree_id": "1a0622d7e8b9656c8f6215c4e35f00515f314583",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/c45b4d09efed73171c5bf2a15d0b64779574711f"
+        },
+        "date": 1575026989677,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 233.1502697858465,
+            "unit": "ns/iter",
+            "extra": "iterations: 3061873\ncpu: 233.1242151454355 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30959.39133410388,
+            "unit": "ns/iter",
+            "extra": "iterations: 23379\ncpu: 30954.789298088017 ns\nthreads: 1"
           }
         ]
       }
