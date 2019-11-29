@@ -1,0 +1,64 @@
+{
+  "context": {
+    "date": "2019-11-29 21:26:59",
+    "host_name": "Corgi.local",
+    "executable": "./a.out",
+    "num_cpus": 4,
+    "mhz_per_cpu": 2700,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 3145728,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [1.68408,1.73779,2.02783],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "fib_10",
+      "run_name": "fib_10",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 3070566,
+      "real_time": 2.1498980114547953e+02,
+      "cpu_time": 2.1365507206163295e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "fib_20",
+      "run_name": "fib_20",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 23968,
+      "real_time": 2.7455600415007055e+04,
+      "cpu_time": 2.7364903204272359e+04,
+      "time_unit": "ns"
+    }
+  ]
+}

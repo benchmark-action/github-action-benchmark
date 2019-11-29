@@ -419,7 +419,7 @@ describe('writeBenchmark()', function() {
                             {
                                 commit: commit('prev commit id'),
                                 date: lastUpdate - 1000,
-                                tool: 'cargo',
+                                tool: 'googlecpp',
                                 benches: [bench('bench_fib_10', 100)],
                             },
                         ],
@@ -428,7 +428,7 @@ describe('writeBenchmark()', function() {
                 added: {
                     commit: commit('current commit id'),
                     date: lastUpdate,
-                    tool: 'cargo',
+                    tool: 'googlecpp',
                     benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                 },
                 error: [
