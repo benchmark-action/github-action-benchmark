@@ -1,0 +1,34 @@
+name: C++ Example
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  benchmark:
+    name: Run C++ benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run benchmark
+        run: cd examples/cpp && make json
+      # TODO: Temporary until new release from here
+      - uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run build
+      # TODO: Temporary until new release until here
+      - name: Store benchmark result
+        # TODO: Replace './' with 'rhysd/github-action-benchmark@v1'
+        uses: ./
+        with:
+          name: C++ Benchmark
+          tool: 'googlecpp'
+          output-file-path: examples/cpp/benchmark_result.json
+          # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
+          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@rhysd'
