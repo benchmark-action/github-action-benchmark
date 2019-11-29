@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574998297532,
+  "lastUpdate": 1574998322320,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2986,6 +2986,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32233,
             "range": "+/- 2,276",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "7e51d4b458e70cd4162611af7abde465533da90e",
+          "message": "add more tests for cases auto-push and fetch don't happen",
+          "timestamp": "2019-11-29T12:30:32+09:00",
+          "tree_id": "5ccd1bb95154695f656ca9d1f9f08d74e66e910b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/7e51d4b458e70cd4162611af7abde465533da90e"
+        },
+        "date": 1574998322046,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 217,
+            "range": "+/- 61",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26631,
+            "range": "+/- 5,210",
             "unit": "ns/iter"
           }
         ]
