@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574986606079,
+  "lastUpdate": 1574986656572,
   "entries": {
     "Rust Benchmark": [
       {
@@ -2914,6 +2914,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27515,
             "range": "+/- 6,142",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "276e95c9c09c9541a9b815eac0a812f95c155dc0",
+          "message": "add more test cases for updating gh-pages branch",
+          "timestamp": "2019-11-29T09:15:52+09:00",
+          "tree_id": "ba18290a875214471199f9f5a20d3507be156d2c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/276e95c9c09c9541a9b815eac0a812f95c155dc0"
+        },
+        "date": 1574986656261,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 233,
+            "range": "+/- 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 31838,
+            "range": "+/- 3,471",
             "unit": "ns/iter"
           }
         ]
