@@ -385,6 +385,7 @@ Every release will appear on your GitHub notifications page.
   - [Google's C++ Benchmark framework](https://github.com/google/benchmark)
   - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
 - Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
+- Show extracted benchmark data in the output from this action
 
 ## License
 
