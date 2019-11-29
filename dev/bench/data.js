@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575030832793,
+  "lastUpdate": 1575030841241,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10611,6 +10611,42 @@ window.BENCHMARK_DATA = {
             "value": 24895.33672826938,
             "unit": "ns/iter",
             "extra": "iterations: 27001\ncpu: 24889.019777045294 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a5bab7e58d0ea8d24e898bfacbce2bef0710018f",
+          "message": "Merge branch 'googlecpp'",
+          "timestamp": "2019-11-29T21:31:41+09:00",
+          "tree_id": "3eb9d95107217f59b57bb4ea7a71e172299eb5c5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a5bab7e58d0ea8d24e898bfacbce2bef0710018f"
+        },
+        "date": 1575030840585,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 236.91251128082953,
+            "unit": "ns/iter",
+            "extra": "iterations: 2753555\ncpu: 236.80485917296005 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30202.96264505667,
+            "unit": "ns/iter",
+            "extra": "iterations: 22835\ncpu: 30198.721742938473 ns\nthreads: 1"
           }
         ]
       }
