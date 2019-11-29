@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574986656572,
+  "lastUpdate": 1574993905166,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9841,6 +9841,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000760562331877955",
             "extra": "mean: 0.002852173005587141 sec\nrounds: 358"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "7e41af66f3aeed1bf43263928541b6600d5e61c5",
+          "message": "fix tests for skipping to create index.html",
+          "timestamp": "2019-11-29T11:17:15+09:00",
+          "tree_id": "2ff01cfd7912662e251e719f7158158e08847721",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/7e41af66f3aeed1bf43263928541b6600d5e61c5"
+        },
+        "date": 1574993904993,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46027.534777487694,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000012620654635707306",
+            "extra": "mean: 0.00002172612556449808 sec\nrounds: 25907"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 373.87784185539397,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024288841409926166",
+            "extra": "mean: 0.0026746704084880577 sec\nrounds: 377"
           }
         ]
       }
