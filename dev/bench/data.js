@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574998289177,
+  "lastUpdate": 1574998297532,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8617,6 +8617,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.54%",
             "unit": "ops/sec",
             "extra": "83 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "7e51d4b458e70cd4162611af7abde465533da90e",
+          "message": "add more tests for cases auto-push and fetch don't happen",
+          "timestamp": "2019-11-29T12:30:32+09:00",
+          "tree_id": "5ccd1bb95154695f656ca9d1f9f08d74e66e910b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/7e51d4b458e70cd4162611af7abde465533da90e"
+        },
+        "date": 1574998297089,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1065923,
+            "range": "±0.76%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8884,
+            "range": "±0.88%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
           }
         ]
       }
