@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1574993943236,
+  "lastUpdate": 1574998286050,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9989,6 +9989,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00024288841409926166",
             "extra": "mean: 0.0026746704084880577 sec\nrounds: 377"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "7e51d4b458e70cd4162611af7abde465533da90e",
+          "message": "add more tests for cases auto-push and fetch don't happen",
+          "timestamp": "2019-11-29T12:30:32+09:00",
+          "tree_id": "5ccd1bb95154695f656ca9d1f9f08d74e66e910b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/7e51d4b458e70cd4162611af7abde465533da90e"
+        },
+        "date": 1574998285861,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 42186.590931952895,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000019545252231279168",
+            "extra": "mean: 0.000023704214488746038 sec\nrounds: 26738"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 341.88653403730524,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003931742792589165",
+            "extra": "mean: 0.0029249470231865996 sec\nrounds: 345"
           }
         ]
       }
