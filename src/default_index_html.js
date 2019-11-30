@@ -103,7 +103,9 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
           cargo: '#dea584',
           go: '#00add8',
           benchmarkjs: '#f1e05a',
-          pytest: '#3572a5'
+          pytest: '#3572a5',
+          googlecpp: '#f34b7d',
+          _: '#333333'
         };
 
         const data = window.BENCHMARK_DATA;
@@ -116,8 +118,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
           const map = new Map();
           for (const entry of entries) {
             const {commit, date, tool, benches} = entry;
-            // Reverse array because of descending order by time
-            for (const bench of benches.reverse()) {
+            for (const bench of benches) {
               const result = { commit, date, tool, bench };
               const arr = map.get(bench.name);
               if (arr === undefined) {
@@ -135,7 +136,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
           canvas.className = 'benchmark-chart';
           parent.appendChild(canvas);
 
-          const color = toolColors[dataset.length > 0 ? dataset[0].tool : ''];
+          const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
           const data = {
             labels: dataset.map(d => d.commit.id.slice(0, 7)),
             datasets: [

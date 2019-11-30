@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "tsc -p .",
     "watch:tsc": "tsc -p . --watch --preserveWatchOutput",
@@ -11,7 +11,9 @@
     "watch": "npm-run-all -p watch:tsc watch:mocha",
     "lint": "eslint '**/*.ts'",
     "fix": "eslint --fix '**/*.ts'",
-    "test": "mocha ./test"
+    "test": "mocha ./test",
+    "coverage": "nyc --reporter=lcov --reporter=text npm test",
+    "cov": "nyc --reporter=lcov --reporter=text-summary npm test && open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -40,29 +42,40 @@
     "@types/cheerio": "^0.22.14",
     "@types/deep-diff": "^1.0.0",
     "@types/deep-equal": "^1.0.1",
+    "@types/markdown-it": "0.0.9",
     "@types/mocha": "^5.2.7",
     "@types/mock-require": "^2.0.0",
-    "@types/node": "^12.12.11",
-    "@typescript-eslint/eslint-plugin": "^2.8.0",
-    "@typescript-eslint/parser": "^2.8.0",
+    "@types/node": "^12.12.14",
+    "@types/rimraf": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
     "acorn": "^7.1.0",
     "cheerio": "^1.0.0-rc.3",
     "deep-diff": "^1.0.2",
     "deep-equal": "^1.1.1",
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.1",
     "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-mocha": "^6.2.1",
+    "eslint-plugin-mocha": "^6.2.2",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.1.0",
+    "markdown-it": "^10.0.0",
     "mocha": "^6.2.2",
     "mock-require": "^3.0.3",
     "npm-run-all": "^4.1.5",
+    "nyc": "^14.1.1",
     "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
     "typescript": "^3.7.2"
   },
   "husky": {
     "hooks": {
       "pre-push": "npm-run-all lint build test"
     }
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "extension": [
+      ".ts"
+    ]
   }
 }

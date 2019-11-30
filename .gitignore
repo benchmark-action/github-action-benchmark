@@ -1,5 +1,7 @@
-/*.js.map
+/src/*.js.map
 /examples
 /test
 /scripts
 /node_modules/.cache
+/.nyc_output
+/coverage
