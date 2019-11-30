@@ -1,7 +1,7 @@
 C++ example for benchmarking with [Google Benchmark Framework][tool]
 ====================================================================
 
-- [Workflow for this example](../../.github/workflows/googlecpp.yml)
+- [Workflow for this example](../../.github/workflows/cpp.yml)
 - [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22)
 - [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
 
