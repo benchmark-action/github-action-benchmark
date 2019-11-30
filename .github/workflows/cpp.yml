@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      # TODO: Temporary until new release from here
-      - uses: actions/setup-node@v1
-      - run: npm ci
-      - run: npm run build
-      # TODO: Temporary until new release until here
       - name: Cache Benchmark library
         uses: actions/cache@v1
         with:
@@ -23,8 +18,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/cpp && make json
       - name: Store benchmark result
-        # TODO: Replace './' with 'rhysd/github-action-benchmark@v1'
-        uses: ./
+        uses: rhysd/github-action-benchmark@v1
         with:
           name: C++ Benchmark
           tool: 'googlecpp'
