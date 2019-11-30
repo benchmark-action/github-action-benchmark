@@ -1,3 +1,17 @@
+<a name="v1.5.0"></a>
+# [v1.5.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.5.0) - 30 Nov 2019
+
+- **New:** Added `max-items-in-chart` input was added to limit the number of data points in a graph chart.
+- **New:** Supported [Google C++ Benchmark Framework](https://github.com/google/benchmark) for C++ projects. Please check [the example project](https://github.com/rhysd/github-action-benchmark/tree/master/examples/cpp) and [the example workflow](https://github.com/rhysd/github-action-benchmark/blob/master/.github/workflows/cpp.yml) to know the setup
+- **Fix:** Fix the order of graphs in the default `index.html`. To apply this fix, please remove `index.html` in your GitHub Pages branch and run your benchmark workflow again
+- **Improve:** Use the actions marketplace URL for the link to this action in commit comment
+- **Improve:** Updated dependencies
+- **Dev:** Added Many tests for checking the updates on a new benchmark result
+- **Dev:** Changed directory structure. Sources are now put in `src/` directory
+
+[Changes][v1.5.0]
+
+
 <a name="v1.4.0"></a>
 # [v1.4.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.4.0) - 23 Nov 2019
 
@@ -142,6 +156,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.5.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.2...v1.4.0
 [v1.3.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.0...v1.3.1
