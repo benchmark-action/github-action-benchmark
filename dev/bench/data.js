@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575204671463,
+  "lastUpdate": 1575204780996,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6279,6 +6279,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 52001,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d49426ab375ed971255ea4f5dbe42903bfd8b4a2",
+          "message": "add fail-threshold input to give different threshold for workflow failure",
+          "timestamp": "2019-12-01T21:49:53+09:00",
+          "tree_id": "18bf1f4a77f060f878c3e994d27272a226353b31",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d49426ab375ed971255ea4f5dbe42903bfd8b4a2"
+        },
+        "date": 1575204780788,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 452,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 55823,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
