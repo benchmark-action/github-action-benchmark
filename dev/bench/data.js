@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575204639841,
+  "lastUpdate": 1575204643988,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11025,6 +11025,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000276402821112651",
             "extra": "mean: 0.0024799974149182827 sec\nrounds: 429"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d49426ab375ed971255ea4f5dbe42903bfd8b4a2",
+          "message": "add fail-threshold input to give different threshold for workflow failure",
+          "timestamp": "2019-12-01T21:49:53+09:00",
+          "tree_id": "18bf1f4a77f060f878c3e994d27272a226353b31",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d49426ab375ed971255ea4f5dbe42903bfd8b4a2"
+        },
+        "date": 1575204643660,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 47254.07898255017,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000009198164474906014",
+            "extra": "mean: 0.000021162194281032897 sec\nrounds: 28572"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 372.8289058277264,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00030002033449336873",
+            "extra": "mean: 0.0026821954638411847 sec\nrounds: 401"
           }
         ]
       }
