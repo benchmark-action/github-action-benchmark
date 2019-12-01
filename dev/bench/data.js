@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575204643988,
+  "lastUpdate": 1575204671463,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3238,6 +3238,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32404,
             "range": "+/- 1,176",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d49426ab375ed971255ea4f5dbe42903bfd8b4a2",
+          "message": "add fail-threshold input to give different threshold for workflow failure",
+          "timestamp": "2019-12-01T21:49:53+09:00",
+          "tree_id": "18bf1f4a77f060f878c3e994d27272a226353b31",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d49426ab375ed971255ea4f5dbe42903bfd8b4a2"
+        },
+        "date": 1575204671192,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 220,
+            "range": "+/- 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 28592,
+            "range": "+/- 4,872",
             "unit": "ns/iter"
           }
         ]
