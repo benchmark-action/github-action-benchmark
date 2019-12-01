@@ -49,6 +49,9 @@ inputs:
     # Note: Set to false by default since this action does not push to remote by default. When workflow
     # fails and auto-push is not set, there is no chance to push the result to remote.
     default: false
+  fail-threshold:
+    description: 'Threshold which determines if the current workflow fails. Format is the same as alert-threshold input. If this value is not specified, the same value as alert-threshold is used'
+    required: false
   alert-comment-cc-users:
     description: 'Comma separated GitHub user names which start with @ (e.g. "@foo,@bar"). They will be mentioned in commit comment for alert.'
     required: false

@@ -138,6 +138,29 @@ describe('configFromJobInput()', function() {
             },
             expected: /'max-items-in-chart' input value must be one or more/,
         },
+        {
+            what: 'alert-threshold must not be empty',
+            inputs: {
+                ...defaultInputs,
+                'alert-threshold': '',
+            },
+            expected: /'alert-threshold' input must not be empty/,
+        },
+        {
+            what: 'fail-threshold does not have percentage value',
+            inputs: { ...defaultInputs, 'fail-threshold': '1.2' },
+            expected: /'fail-threshold' input must ends with '%' for percentage value/,
+        },
+        {
+            what: 'fail-threshold does not have correct percentage number',
+            inputs: { ...defaultInputs, 'fail-threshold': 'foo%' },
+            expected: /Specified value 'foo' in 'fail-threshold' input cannot be parsed as float number/,
+        },
+        {
+            what: 'fail-threshold is smaller than alert-threshold',
+            inputs: { ...defaultInputs, 'alert-threshold': '150%', 'fail-threshold': '120%' },
+            expected: /'alert-threshold' value must be smaller than 'fail-threshold' value but got 1.5 > 1.2/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -164,6 +187,7 @@ describe('configFromJobInput()', function() {
         alertCommentCcUsers: string[];
         hasExternalDataJsonPath: boolean;
         maxItemsInChart: null | number;
+        failThreshold: number | null;
     }
 
     const defaultExpected: ExpectedResult = {
@@ -179,6 +203,7 @@ describe('configFromJobInput()', function() {
         alertCommentCcUsers: [],
         hasExternalDataJsonPath: false,
         maxItemsInChart: null,
+        failThreshold: null,
     };
 
     const returned_config_tests = [
@@ -239,6 +264,11 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'max-items-in-chart': '50' },
             expected: { ...defaultExpected, maxItemsInChart: 50 },
         },
+        {
+            what: 'different failure threshold from alert threshold',
+            inputs: { ...defaultInputs, 'fail-threshold': '300%' },
+            expected: { ...defaultExpected, failThreshold: 3.0 },
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -261,6 +291,11 @@ describe('configFromJobInput()', function() {
             A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
             A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
             A.equal(actual.maxItemsInChart, test.expected.maxItemsInChart);
+            if (test.expected.failThreshold === null) {
+                A.equal(actual.failThreshold, test.expected.alertThreshold);
+            } else {
+                A.equal(actual.failThreshold, test.expected.failThreshold);
+            }
 
             if (test.expected.hasExternalDataJsonPath) {
                 A.equal(typeof actual.externalDataJsonPath, 'string');

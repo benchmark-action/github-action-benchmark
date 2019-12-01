@@ -294,21 +294,22 @@ These examples are run in workflows of this repository as described in the 'Exam
 
 Input definitions are written in [action.yml](./action.yml).
 
-| Name                      | Description                                                                                                                                 | Type    | Required | Default       |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------|----------|---------------|
-| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository                                                | String  | Yes      | `"Benchmark"` |
-| `tool`                    | Tool for running benchmark. One of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`, `"googlecpp"`                                            | String  | Yes      |               |
-| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                                                               | String  | Yes      |               |
-| `gh-pages-branch`         | Name of your GitHub pages branch                                                                                                            | String  | Yes      | `"gh-pages"`  |
-| `benchmark-data-dir-path` | Path to a directory that contains benchmark files on GitHub pages branch. Relative to repository root                                       | String  | Yes      | `"dev/bench"` |
-| `github-token`            | GitHub API token. For public repo with gh-pages branch, a personal access token is necessary. Please see the 'Commit comment' section       | String  | No       |               |
-| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch                                                  | Boolean | No       | `false`       |
-| `alert-threshold`         | Percentage value like `"150%"`. If the current benchmark result is worse than previous exceeding the threshold, alert will happen           | String  | No       | `"200%"`      |
-| `comment-on-alert`        | If set to `true`, this action will leave a commit comment when an alert happens. `github-token` is necessary as well                        | Boolean | No       | `false`       |
-| `fail-on-alert`           | If set to `true`, the workflow will fail when an alert happens                                                                              | Boolean | No       | `false`       |
-| `alert-comment-cc-users`  | Comma-separated GitHub user names mentioned in alert commit comment                                                                         | String  | No       |               |
-| `external-data-json-path` | External JSON file which contains benchmark results until previous job run. This action updates the file instead of generating a Git commit | String  | No       |               |
-| `max-items-in-chart`      | Max number of data points in a chart as an unsigned integer. It can avoid too busy chart. No limit by default                               | Number  | No       |               |
+| Name                      | Description                                                                                                                                           | Type    | Required | Default       |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------|----------|---------------|
+| `name`                    | Name of the benchmark. This value must be identical across all benchmarks in your repository                                                          | String  | Yes      | `"Benchmark"` |
+| `tool`                    | Tool for running benchmark. One of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`, `"googlecpp"`                                                      | String  | Yes      |               |
+| `output-file-path`        | Path to file which contains the benchmark output. Relative to repository root                                                                         | String  | Yes      |               |
+| `gh-pages-branch`         | Name of your GitHub pages branch                                                                                                                      | String  | Yes      | `"gh-pages"`  |
+| `benchmark-data-dir-path` | Path to a directory that contains benchmark files on GitHub pages branch. Relative to repository root                                                 | String  | Yes      | `"dev/bench"` |
+| `github-token`            | GitHub API token. For public repo with gh-pages branch, a personal access token is necessary. Please see the 'Commit comment' section                 | String  | No       |               |
+| `auto-push`               | If set to `true`, this action automatically pushes generated commit to GitHub Pages branch                                                            | Boolean | No       | `false`       |
+| `alert-threshold`         | Percentage value like `"150%"`. If the current benchmark result is worse than previous exceeding the threshold, alert will happen                     | String  | No       | `"200%"`      |
+| `comment-on-alert`        | If set to `true`, this action will leave a commit comment when an alert happens. `github-token` is necessary as well                                  | Boolean | No       | `false`       |
+| `fail-on-alert`           | If set to `true`, the workflow will fail when an alert happens                                                                                        | Boolean | No       | `false`       |
+| `alert-comment-cc-users`  | Comma-separated GitHub user names mentioned in alert commit comment                                                                                   | String  | No       |               |
+| `external-data-json-path` | External JSON file which contains benchmark results until previous job run. This action updates the file instead of generating a Git commit           | String  | No       |               |
+| `max-items-in-chart`      | Max number of data points in a chart as an unsigned integer. It can avoid too busy chart. No limit by default                                         | Number  | No       |               |
+| `fail-threshold`          | Format is the same as `alert-threshold`. This value is used to determine if the workflow fails. Set to the same value as `alert-threshold` by default | String  | No       |               |
 
 `tool` and `output-file-path` must be specified in workflow at `uses` section of the job step.
 
@@ -389,6 +390,7 @@ Every release will appear on your GitHub notifications page.
   - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
 - Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
 - Show extracted benchmark data in the output from this action
+- Improve retry logic on conflict with remote when updating gh-pages branch
 
 ## License
 

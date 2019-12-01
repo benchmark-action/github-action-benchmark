@@ -16,6 +16,7 @@ export interface Config {
     commentOnAlert: boolean;
     alertThreshold: number;
     failOnAlert: boolean;
+    failThreshold: number;
     alertCommentCcUsers: string[];
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
@@ -102,8 +103,11 @@ function getBoolInput(name: string): boolean {
     return input === 'true';
 }
 
-function getPercentageInput(name: string): number {
+function getPercentageInput(name: string): number | null {
     const input = core.getInput(name);
+    if (!input) {
+        return null;
+    }
     if (!input.endsWith('%')) {
         throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
     }
@@ -182,6 +186,17 @@ function validateMaxItemsInChart(max: number | null) {
     }
 }
 
+function validateAlertThreshold(alertThreshold: number | null, failThreshold: number | null): asserts alertThreshold {
+    if (alertThreshold === null) {
+        throw new Error("'alert-threshold' input must not be empty");
+    }
+    if (failThreshold && alertThreshold > failThreshold) {
+        throw new Error(
+            `'alert-threshold' value must be smaller than 'fail-threshold' value but got ${alertThreshold} > ${failThreshold}`,
+        );
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
@@ -197,6 +212,7 @@ export async function configFromJobInput(): Promise<Config> {
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
+    let failThreshold = getPercentageInput('fail-threshold');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -209,9 +225,13 @@ export async function configFromJobInput(): Promise<Config> {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
     validateMaxItemsInChart(maxItemsInChart);
+    if (failThreshold === null) {
+        failThreshold = alertThreshold;
+    }
 
     return {
         name,
@@ -228,5 +248,6 @@ export async function configFromJobInput(): Promise<Config> {
         alertCommentCcUsers,
         externalDataJsonPath,
         maxItemsInChart,
+        failThreshold,
     };
 }
