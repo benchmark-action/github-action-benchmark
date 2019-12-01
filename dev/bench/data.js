@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575123932289,
+  "lastUpdate": 1575204639841,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11567,6 +11567,42 @@ window.BENCHMARK_DATA = {
             "value": 27264.206297434666,
             "unit": "ns/iter",
             "extra": "iterations: 24518\ncpu: 27264.278774777715 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d49426ab375ed971255ea4f5dbe42903bfd8b4a2",
+          "message": "add fail-threshold input to give different threshold for workflow failure",
+          "timestamp": "2019-12-01T21:49:53+09:00",
+          "tree_id": "18bf1f4a77f060f878c3e994d27272a226353b31",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d49426ab375ed971255ea4f5dbe42903bfd8b4a2"
+        },
+        "date": 1575204639658,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 221.37599696750786,
+            "unit": "ns/iter",
+            "extra": "iterations: 2978407\ncpu: 221.2076495925506 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29599.768938273985,
+            "unit": "ns/iter",
+            "extra": "iterations: 23669\ncpu: 29597.82196121509 ns\nthreads: 1"
           }
         ]
       }
