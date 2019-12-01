@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575204780996,
+  "lastUpdate": 1575204802030,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9423,6 +9423,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.42%",
             "unit": "ops/sec",
             "extra": "92 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d49426ab375ed971255ea4f5dbe42903bfd8b4a2",
+          "message": "add fail-threshold input to give different threshold for workflow failure",
+          "timestamp": "2019-12-01T21:49:53+09:00",
+          "tree_id": "18bf1f4a77f060f878c3e994d27272a226353b31",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d49426ab375ed971255ea4f5dbe42903bfd8b4a2"
+        },
+        "date": 1575204801751,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1069279,
+            "range": "±0.93%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9003,
+            "range": "±0.72%",
+            "unit": "ops/sec",
+            "extra": "91 samples"
           }
         ]
       }
