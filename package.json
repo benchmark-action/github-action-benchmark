@@ -11,9 +11,10 @@
     "watch": "npm-run-all -p watch:tsc watch:mocha",
     "lint": "eslint '**/*.ts'",
     "fix": "eslint --fix '**/*.ts'",
-    "test": "mocha ./test",
-    "coverage": "nyc --reporter=lcov --reporter=text npm test",
-    "cov": "nyc --reporter=lcov --reporter=text-summary npm test && open ./coverage/lcov-report/index.html"
+    "mocha": "mocha ./test",
+    "test": "npm-run-all build mocha",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run mocha",
+    "cov": "nyc --reporter=lcov --reporter=text-summary npm run mocha && open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -69,7 +70,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm-run-all lint build test"
+      "pre-push": "npm-run-all -p lint test"
     }
   },
   "nyc": {
