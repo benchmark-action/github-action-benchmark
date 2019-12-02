@@ -33,7 +33,7 @@ function validateToolType(tool: string): asserts tool is ToolType {
 }
 
 function resolvePath(p: string): string {
-    if (p[0] === '~') {
+    if (p.startsWith('~')) {
         const home = os.homedir();
         if (!home) {
             throw new Error("Cannot resolve '~'");
