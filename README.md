@@ -1,6 +1,6 @@
 GitHub Action for Continuous Benchmarking
 =========================================
-[![Action Marketplace][action-badge]][marketplace]
+[![Action Marketplace][release-badge]][marketplace]
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
 
@@ -400,7 +400,7 @@ Every release will appear on your GitHub notifications page.
 [ci]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3ACI
 [codecov-badge]: https://codecov.io/gh/rhysd/github-action-benchmark/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/rhysd/github-action-benchmark
-[action-badge]: https://img.shields.io/static/v1?label=action&message=v1.5.0&color=blue&logo=github
+[release-badge]: https://img.shields.io/github/v/release/rhysd/github-action-benchmark.svg
 [marketplace]: https://github.com/marketplace/actions/continuous-benchmark
 [proj]: https://github.com/rhysd/github-action-benchmark
 [rust-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Rust%20Example/badge.svg
