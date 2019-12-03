@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575365280003,
+  "lastUpdate": 1575365371861,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11651,6 +11651,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023967186691484498",
             "extra": "mean: 0.002428047374395861 sec\nrounds: 414"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "fb95daa027ea42dbf2779dc9133808b4ccc4b8a2",
+          "message": "add tests for improved retry logic",
+          "timestamp": "2019-12-03T18:28:46+09:00",
+          "tree_id": "8971f5cc8eccc601e175a7756b3e365c59392432",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/fb95daa027ea42dbf2779dc9133808b4ccc4b8a2"
+        },
+        "date": 1575365371683,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45696.615870481,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000009339643923299501",
+            "extra": "mean: 0.000021883458565822986 sec\nrounds: 28491"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 372.15172597301006,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019036170475483357",
+            "extra": "mean: 0.0026870760773322977 sec\nrounds: 375"
           }
         ]
       }
