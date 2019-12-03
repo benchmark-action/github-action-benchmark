@@ -57,26 +57,6 @@ async function addIndexHtmlIfNeeded(dir: string) {
     console.log('Created default index.html at', indexHtml);
 }
 
-async function pushGitHubPages(token: string, branch: string) {
-    try {
-        await git.push(token, branch);
-        return;
-    } catch (err) {
-        if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
-            throw err;
-        }
-        // Fall through
-    }
-
-    core.warning('Auto push failed because remote seemed to be updated after git pull. Retrying...');
-
-    // Retry push after pull with rebasing
-    await git.pull(token, branch, '--rebase');
-    await git.push(token, branch);
-
-    core.debug('Retrying auto push was successfully done');
-}
-
 function biggerIsBetter(tool: ToolType): boolean {
     switch (tool) {
         case 'cargo':
@@ -297,7 +277,11 @@ function addBenchmarkToDataJson(
     return prevBench;
 }
 
-async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
+async function writeBenchmarkToGitHubPagesWithRetry(
+    bench: Benchmark,
+    config: Config,
+    retry: number,
+): Promise<Benchmark | null> {
     const {
         name,
         tool,
@@ -311,40 +295,69 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
-    await git.cmd('switch', ghPagesBranch);
+    if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
+        await git.pull(githubToken, ghPagesBranch);
+    } else if (isPrivateRepo) {
+        core.warning(
+            "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
+                "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
+        );
+    }
 
-    try {
-        if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
-            await git.pull(githubToken, ghPagesBranch);
-        } else if (isPrivateRepo) {
-            core.warning(
-                "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
-                    "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
-            );
-        }
+    await io.mkdirP(benchmarkDataDirPath);
 
-        await io.mkdirP(benchmarkDataDirPath);
+    const data = await loadDataJs(dataPath);
+    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+    await storeDataJs(dataPath, data);
 
-        const data = await loadDataJs(dataPath);
-        const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
-        await storeDataJs(dataPath, data);
+    await git.cmd('add', dataPath);
+    await addIndexHtmlIfNeeded(benchmarkDataDirPath);
+    await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
-        await git.cmd('add', dataPath);
-
-        await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-
-        await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
-
-        if (githubToken && autoPush) {
-            await pushGitHubPages(githubToken, ghPagesBranch);
+    if (githubToken && autoPush) {
+        try {
+            await git.push(githubToken, ghPagesBranch);
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
-        } else {
-            core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
-        }
+        } catch (err) {
+            if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
+                throw err;
+            }
+            // Fall through
 
-        return prevBench;
+            core.warning(
+                `Auto-push failed because the remote ${ghPagesBranch} seemed to be updated after git pull. Rollback the commit`,
+            );
+
+            // Rollback
+            await git.cmd('reset', '--hard', 'HEAD~1');
+
+            if (retry > 0) {
+                core.warning(
+                    `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
+                );
+                return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
+            } else {
+                throw new Error(
+                    `Auto push failed 3 times since the remote branch ${ghPagesBranch} rejected pushing all the time. Last exception was: ${err.message}`,
+                );
+            }
+        }
+    } else {
+        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
+    }
+
+    return prevBench;
+}
+
+async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
+    const { ghPagesBranch } = config;
+
+    await git.cmd('switch', ghPagesBranch);
+
+    try {
+        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 2);
     } finally {
         // `git switch` does not work for backing to detached head
         await git.cmd('checkout', '-');
