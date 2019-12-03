@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575365380885,
+  "lastUpdate": 1575365387869,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6605,6 +6605,42 @@ window.BENCHMARK_DATA = {
             "value": 56842,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "fb95daa027ea42dbf2779dc9133808b4ccc4b8a2",
+          "message": "add tests for improved retry logic",
+          "timestamp": "2019-12-03T18:28:46+09:00",
+          "tree_id": "8971f5cc8eccc601e175a7756b3e365c59392432",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/fb95daa027ea42dbf2779dc9133808b4ccc4b8a2"
+        },
+        "date": 1575365384304,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 482,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 60106,
+            "unit": "ns/op",
+            "extra": "20000 times\n2 procs"
           }
         ]
       }
