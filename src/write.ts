@@ -326,21 +326,20 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             }
             // Fall through
 
-            core.warning(
-                `Auto-push failed because the remote ${ghPagesBranch} seemed to be updated after git pull. Rollback the commit`,
-            );
-
-            // Rollback
-            await git.cmd('reset', '--hard', 'HEAD~1');
+            core.warning(`Auto-push failed because the remote ${ghPagesBranch} was updated after git pull`);
 
             if (retry > 0) {
+                core.debug('Rollback the auto-generated commit before retry');
+                await git.cmd('reset', '--hard', 'HEAD~1');
+
                 core.warning(
                     `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
                 );
                 return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
             } else {
+                core.warning(`Failed to add benchmark data to '${name}' suite: ${JSON.stringify(bench, null, 2)}`);
                 throw new Error(
-                    `Auto push failed 3 times since the remote branch ${ghPagesBranch} rejected pushing all the time. Last exception was: ${err.message}`,
+                    `Auto-push failed 3 times since the remote branch ${ghPagesBranch} rejected pushing all the time. Last exception was: ${err.message}`,
                 );
             }
         }

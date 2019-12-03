@@ -47,14 +47,30 @@ class FakedOctokit {
 type GitFunc = 'cmd' | 'push' | 'pull';
 class GitSpy {
     history: [GitFunc, unknown[]][];
+    pushFailure: null | string;
+    pushFailureCount: number;
+
     constructor() {
         this.history = [];
+        this.pushFailure = null;
+        this.pushFailureCount = 0;
     }
+
     call(func: GitFunc, args: unknown[]) {
         this.history.push([func, args]);
     }
+
     clear() {
         this.history = [];
+        this.pushFailure = null;
+        this.pushFailureCount = 0;
+    }
+
+    mayFailPush() {
+        if (this.pushFailure !== null && this.pushFailureCount > 0) {
+            --this.pushFailureCount;
+            throw new Error(this.pushFailure);
+        }
     }
 }
 const gitSpy = new GitSpy();
@@ -94,15 +110,16 @@ mock('@actions/core', {
 });
 mock('@actions/github', { context: gitHubContext });
 mock('../src/git', {
-    async cmd(...args: unknown[]): Promise<string> {
+    async cmd(...args: unknown[]) {
         gitSpy.call('cmd', args);
         return '';
     },
-    async push(...args: unknown[]): Promise<string> {
+    async push(...args: unknown[]) {
         gitSpy.call('push', args);
+        gitSpy.mayFailPush(); // For testing retry
         return '';
     },
-    async pull(...args: unknown[]): Promise<string> {
+    async pull(...args: unknown[]) {
         gitSpy.call('pull', args);
         return '';
     },
@@ -1061,6 +1078,7 @@ describe('writeBenchmark()', function() {
                         ? { ...gitHubContext.payload.repository, private: true }
                         : null;
                 }
+
                 const originalDataJs = path.join(t.config.benchmarkDataDirPath, 'original_data.js');
                 const dataJs = path.join(t.config.benchmarkDataDirPath, 'data.js');
                 const indexHtml = path.join(t.config.benchmarkDataDirPath, 'index.html');
@@ -1132,6 +1150,70 @@ describe('writeBenchmark()', function() {
                 if (indexHtmlBefore !== null) {
                     const indexHtmlAfter = await fs.readFile(indexHtml);
                     eq(indexHtmlBefore, indexHtmlAfter); // If index.html is already existing, do not touch it
+                }
+            });
+        }
+
+        const retryCases: Array<{
+            it: string;
+            error?: RegExp;
+            pushErrorMessage: string;
+            pushErrorCount: number;
+        }> = [
+            ...[1, 2].map(retries => ({
+                it: `updates data successfully after ${retries} retries`,
+                pushErrorMessage: '... [remote rejected] ...',
+                pushErrorCount: retries,
+            })),
+            {
+                it: 'gives up updating data after 2 retries with an error',
+                pushErrorMessage: '... [remote rejected] ...',
+                pushErrorCount: 3,
+                error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
+            },
+            {
+                it: 'handles an unexpected error without retry',
+                pushErrorMessage: 'Some fatal error',
+                pushErrorCount: 1,
+                error: /Some fatal error/,
+            },
+        ];
+
+        for (const t of retryCases) {
+            it(t.it, async function() {
+                gitSpy.pushFailure = t.pushErrorMessage;
+                gitSpy.pushFailureCount = t.pushErrorCount;
+                const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };
+                const added: Benchmark = {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 110)],
+                };
+
+                const originalDataJs = path.join(config.benchmarkDataDirPath, 'original_data.js');
+                const dataJs = path.join(config.benchmarkDataDirPath, 'data.js');
+                await fs.copyFile(originalDataJs, dataJs);
+
+                const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
+                if (t.pushErrorCount > 0) {
+                    const retryHistory = history.slice(1, -1);
+                    retryHistory.push(['cmd', ['reset', '--hard', 'HEAD~1']]);
+
+                    const retries = Math.min(t.pushErrorCount, 2);
+                    for (let i = 0; i < retries; i++) {
+                        history.splice(1, 0, ...retryHistory);
+                    }
+                }
+
+                try {
+                    await writeBenchmark(added, config);
+                    eq(history, gitSpy.history);
+                } catch (err) {
+                    if (t.error === undefined) {
+                        throw err;
+                    }
+                    ok(t.error.test(err.message), `'${err.message}' did not match to ${t.error}`);
                 }
             });
         }
