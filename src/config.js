@@ -20,7 +20,7 @@ function validateToolType(tool) {
     throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${exports.VALID_TOOLS}`);
 }
 function resolvePath(p) {
-    if (p[0] === '~') {
+    if (p.startsWith('~')) {
         const home = os.homedir();
         if (!home) {
             throw new Error("Cannot resolve '~'");
@@ -87,6 +87,9 @@ function getBoolInput(name) {
 }
 function getPercentageInput(name) {
     const input = core.getInput(name);
+    if (!input) {
+        return null;
+    }
     if (!input.endsWith('%')) {
         throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
     }
@@ -156,6 +159,14 @@ function validateMaxItemsInChart(max) {
         throw new Error(`'max-items-in-chart' input value must be one or more but got ${max}`);
     }
 }
+function validateAlertThreshold(alertThreshold, failThreshold) {
+    if (alertThreshold === null) {
+        throw new Error("'alert-threshold' input must not be empty");
+    }
+    if (failThreshold && alertThreshold > failThreshold) {
+        throw new Error(`'alert-threshold' value must be smaller than 'fail-threshold' value but got ${alertThreshold} > ${failThreshold}`);
+    }
+}
 async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
@@ -171,6 +182,7 @@ async function configFromJobInput() {
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     let externalDataJsonPath = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
+    let failThreshold = getPercentageInput('fail-threshold');
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
@@ -182,9 +194,13 @@ async function configFromJobInput() {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
     validateMaxItemsInChart(maxItemsInChart);
+    if (failThreshold === null) {
+        failThreshold = alertThreshold;
+    }
     return {
         name,
         tool,
@@ -200,6 +216,7 @@ async function configFromJobInput() {
         alertCommentCcUsers,
         externalDataJsonPath,
         maxItemsInChart,
+        failThreshold,
     };
 }
 exports.configFromJobInput = configFromJobInput;
