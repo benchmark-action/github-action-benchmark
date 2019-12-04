@@ -297,7 +297,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
-    } else if (isPrivateRepo) {
+    } else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning(
             "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
                 "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
@@ -337,24 +337,21 @@ async function writeBenchmarkToGitHubPagesWithRetry(
                 );
                 return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
             } else {
-                core.warning(`Failed to add benchmark data to '${name}' suite: ${JSON.stringify(bench, null, 2)}`);
+                core.warning(`Failed to add benchmark data to '${name}' data: ${JSON.stringify(bench)}`);
                 throw new Error(
                     `Auto-push failed 3 times since the remote branch ${ghPagesBranch} rejected pushing all the time. Last exception was: ${err.message}`,
                 );
             }
         }
     } else {
-        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
+        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both 'github-token' and 'auto-push' inputs`);
     }
 
     return prevBench;
 }
 
 async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
-    const { ghPagesBranch } = config;
-
-    await git.cmd('switch', ghPagesBranch);
-
+    await git.cmd('switch', config.ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 2);
     } finally {
