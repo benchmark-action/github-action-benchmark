@@ -95,7 +95,8 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
 
         if (ratio > threshold) {
             core.warning(
-                `Performance alert! Previous value was ${prev.value} and current value is ${current.value}. Ratio ${ratio} is bigger than threshold ${threshold}`,
+                `Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
+                    ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`,
             );
             alerts.push({ current, prev, ratio });
         }
@@ -114,6 +115,10 @@ function getCurrentRepo() {
     return repo;
 }
 
+function floatStr(n: number) {
+    return Number.isInteger(n) ? n.toFixed(1) : n.toString();
+}
+
 function buildAlertComment(
     alerts: Alert[],
     benchName: string,
@@ -122,20 +127,7 @@ function buildAlertComment(
     threshold: number,
     cc: string[],
 ): string {
-    // Do not show benchmark name if it is the default value 'Benchmark'.
-    const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
-    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
-    const lines = [
-        title,
-        '',
-        `Possible performance regression was detected for benchmark${benchmarkText}.`,
-        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${threshold}\`.`,
-        '',
-        `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
-        '|-|-|-|-|',
-    ];
-
-    function strOfValue(b: BenchmarkResult): string {
+    function strVal(b: BenchmarkResult): string {
         let s = `\`${b.value}\` ${b.unit}`;
         if (b.range) {
             s += ` (\`${b.range}\`)`;
@@ -143,9 +135,23 @@ function buildAlertComment(
         return s;
     }
 
+    // Do not show benchmark name if it is the default value 'Benchmark'.
+    const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
+    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
+    const thresholdString = floatStr(threshold);
+    const lines = [
+        title,
+        '',
+        `Possible performance regression was detected for benchmark${benchmarkText}.`,
+        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${thresholdString}\`.`,
+        '',
+        `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
+        '|-|-|-|-|',
+    ];
+
     for (const alert of alerts) {
         const { current, prev, ratio } = alert;
-        const line = `| \`${current.name}\` | ${strOfValue(current)} | ${strOfValue(prev)} | \`${ratio}\` |`;
+        const line = `| \`${current.name}\` | ${strVal(current)} | ${strVal(prev)} | \`${floatStr(ratio)}\` |`;
         lines.push(line);
     }
 
@@ -221,18 +227,20 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     if (failOnAlert) {
         // Note: alertThreshold is smaller than failThreshold. It was checked in config.ts
         const len = alerts.length;
+        const threshold = floatStr(failThreshold);
         const failures = alerts.filter(a => a.ratio > failThreshold);
         if (failures.length > 0) {
             core.debug('Mark this workflow as fail since one or more fatal alerts found');
             if (failThreshold !== alertThreshold) {
                 // Prepend message that explains how these alerts were detected with different thresholds
-                message =
-                    `${failures.length} of ${len} alerts exceeded the failure threshold \`${failThreshold}\` specified by fail-threshold input:\n\n` +
-                    message;
+                message = `${failures.length} of ${len} alerts exceeded the failure threshold \`${threshold}\` specified by fail-threshold input:\n\n${message}`;
             }
             throw new Error(message);
         } else {
-            core.debug(`${len} alerts were found but all of them did not exceed failure threshold ${failThreshold}`);
+            core.debug(
+                `${len} alerts exceeding the alert threshold ${alertThreshold} were found but` +
+                    ` all of them did not exceed the failure threshold ${threshold}`,
+            );
         }
     }
 }
@@ -344,7 +352,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             }
         }
     } else {
-        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both 'github-token' and 'auto-push' inputs`);
+        core.debug(
+            `Auto-push to ${ghPagesBranch} is skipped because it requires both 'github-token' and 'auto-push' inputs`,
+        );
     }
 
     return prevBench;
