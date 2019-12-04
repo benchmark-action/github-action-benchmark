@@ -1,3 +1,12 @@
+<a name="v1.6.0"></a>
+# [v1.6.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.0) - 04 Dec 2019
+
+- **New:** `fail-threshold` input was added. Format is the same as `alert-threshold`, but you can give different thresholds to sending a commit comment and making the workflow fail by giving different value to `fail-threshold` from `alert-threshold`. This value is optional. If omitted, `fail-threshold` value is the same as `alert-threshold`
+- **Improve:** Retry logic was improved on `git push` failed due to remote branch updates after `git pull`. Now this action retries entire process to update `gh-pages` branch when the remote rejected automatic `git push`. Previously this action tried to rebase the local onto the remote but it sometimes failed due to conflicts
+
+[Changes][v1.6.0]
+
+
 <a name="v1.5.0"></a>
 # [v1.5.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.5.0) - 30 Nov 2019
 
@@ -156,6 +165,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.2...v1.4.0
 [v1.3.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.1...v1.3.2
