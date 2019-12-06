@@ -1172,6 +1172,12 @@ describe('writeBenchmark()', function() {
                 error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
             },
             {
+                it: 'gives up updating data after 2 retries with an error containing "[rejected]" in message',
+                pushErrorMessage: '... [rejected] ...',
+                pushErrorCount: 3,
+                error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
+            },
+            {
                 it: 'handles an unexpected error without retry',
                 pushErrorMessage: 'Some fatal error',
                 pushErrorCount: 1,

@@ -285,6 +285,13 @@ function addBenchmarkToDataJson(
     return prevBench;
 }
 
+function isRemoteRejectedError(err: unknown) {
+    if (err instanceof Error) {
+        return ['[remote rejected]', '[rejected]'].some(l => err.message.includes(l));
+    }
+    return false;
+}
+
 async function writeBenchmarkToGitHubPagesWithRetry(
     bench: Benchmark,
     config: Config,
@@ -329,7 +336,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
         } catch (err) {
-            if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
+            if (!isRemoteRejectedError(err)) {
                 throw err;
             }
             // Fall through
