@@ -43,9 +43,18 @@
       }
       button:hover {
         background-color: #2793da;
+        flex: none;
+      }
+      .spacer {
+        flex: auto;
+      }
+      .small {
+        font-size: 0.75rem;
       }
       footer {
         margin-top: 16px;
+        display: flex;
+        align-items: center;
       }
       .header-label {
         margin-right: 4px;
@@ -89,7 +98,11 @@
       </div>
     </header>
     <main id="main"></main>
-    <footer id="footer"></footer>
+    <footer>
+      <button id="dl-button">Download data as JSON</button>
+      <div class="spacer"></div>
+      <div class="small">Powered by <a rel="noopener" href="https://github.com/marketplace/actions/continuous-benchmark">github-action-benchmark</a></small>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
     <script src="data.js"></script>
@@ -233,16 +246,13 @@
           renderBenchSet(name, benchset);
         }
 
-        const dlButton = document.createElement('button');
-        dlButton.textContent = 'Download data as JSON';
-        dlButton.onclick = () => {
+        document.getElementById('dl-button').onclick = () => {
           const dataUrl = 'data:,' + JSON.stringify(data, null, 2);
           const a = document.createElement('a');
           a.href = dataUrl;
           a.download = 'benchmark_data.json';
           a.click();
         };
-        document.getElementById('footer').appendChild(dlButton);
       })();
     </script>
   </body>
