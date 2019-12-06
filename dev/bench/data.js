@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575631341707,
+  "lastUpdate": 1575634882688,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13955,6 +13955,42 @@ window.BENCHMARK_DATA = {
             "value": 24918.201124968098,
             "unit": "ns/iter",
             "extra": "iterations: 27023\ncpu: 24916.408096806423 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "9de38ac81d5073636128dc9b3908d393dcefcf05",
+          "message": "fix closing tag was wrong in default index.html",
+          "timestamp": "2019-12-06T21:20:16+09:00",
+          "tree_id": "369cd9d1fb41e7ab9269f848c22a7ecc81e549d3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/9de38ac81d5073636128dc9b3908d393dcefcf05"
+        },
+        "date": 1575634880115,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 234.29183291207522,
+            "unit": "ns/iter",
+            "extra": "iterations: 2790052\ncpu: 234.2363593940185 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 32922.2436669622,
+            "unit": "ns/iter",
+            "extra": "iterations: 22580\ncpu: 32915.53711248892 ns\nthreads: 1"
           }
         ]
       }
