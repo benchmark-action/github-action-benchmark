@@ -1,0 +1,202 @@
+{
+    "machine_info": {
+        "node": "Corgi.local",
+        "processor": "i386",
+        "machine": "x86_64",
+        "python_compiler": "Clang 8.1.0 (clang-802.0.42)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.7.5",
+        "python_version": "3.7.5",
+        "python_build": [
+            "default",
+            "Nov 28 2019 13:59:33"
+        ],
+        "release": "16.7.0",
+        "system": "Darwin",
+        "cpu": {
+            "vendor_id": "GenuineIntel",
+            "hardware": "unknown",
+            "brand": "Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz"
+        }
+    },
+    "commit_info": {
+        "id": "b8e9e2af2493a1ee2f3fa758a9572cd9972e6db7",
+        "time": "2019-12-06T16:36:53+09:00",
+        "author_time": "2019-12-06T16:30:53+09:00",
+        "dirty": true,
+        "project": "github-action-benchmark",
+        "branch": "master"
+    },
+    "benchmarks": [
+        {
+            "group": null,
+            "name": "test_fib_1",
+            "fullname": "bench.py::test_fib_1",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1,
+                "min_time": 0.000005,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.422099999981441e-7,
+                "max": 0.000001708769999999582,
+                "mean": 1.4995610248628836e-7,
+                "stddev": 2.9351731952139377e-8,
+                "rounds": 68536,
+                "median": 1.437600000020467e-7,
+                "iqr": 6.699999977044534e-10,
+                "q1": 1.4348000000108384e-7,
+                "q3": 1.441499999987883e-7,
+                "iqr_outliers": 10729,
+                "stddev_outliers": 1999,
+                "outliers": "1999;10729",
+                "ld15iqr": 1.4247999999827953e-7,
+                "hd15iqr": 1.4515999999797912e-7,
+                "ops": 6668618.238403659,
+                "total": 0.010277391440000352,
+                "data": [
+                    1.4538999999924586e-7,
+                    1.4500999999889076e-7,
+                    1.4345999999942904e-7,
+                    1.4399000000109297e-7,
+                    "... omitted to keep this file small"
+                ],
+                "iterations": 100
+            }
+        },
+        {
+            "group": null,
+            "name": "test_fib_10",
+            "fullname": "bench.py::test_fib_10",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1,
+                "min_time": 0.000005,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.000027831000000144712,
+                "max": 0.00019098799999994753,
+                "mean": 0.00002885754012484424,
+                "stddev": 0.000005235937482008476,
+                "rounds": 20025,
+                "median": 0.000028052999999861328,
+                "iqr": 1.2500000012849455e-7,
+                "q1": 0.00002800099999999972,
+                "q3": 0.000028126000000128215,
+                "iqr_outliers": 1664,
+                "stddev_outliers": 510,
+                "outliers": "510;1664",
+                "ld15iqr": 0.000027831000000144712,
+                "hd15iqr": 0.000028314000000140283,
+                "ops": 34652.98828915334,
+                "total": 0.5778722410000059,
+                "data": [
+                    0.00004389500000012703,
+                    0.00003724299999996461,
+                    0.000042176000000004876,
+                    0.000039165000000007666,
+                    "... omitted to keep this file small"
+                ],
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_fib_20",
+            "fullname": "bench.py::test_fib_20",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1,
+                "min_time": 0.000005,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0034516560000001917,
+                "max": 0.005351305000000028,
+                "mean": 0.003611916368852473,
+                "stddev": 0.0003737982822178215,
+                "rounds": 122,
+                "median": 0.003471104000000169,
+                "iqr": 0.00010164100000009668,
+                "q1": 0.003456519999999852,
+                "q3": 0.0035581609999999486,
+                "iqr_outliers": 18,
+                "stddev_outliers": 8,
+                "outliers": "8;18",
+                "ld15iqr": 0.0034516560000001917,
+                "hd15iqr": 0.003772042000000031,
+                "ops": 276.8613383807958,
+                "total": 0.44065379700000173,
+                "data": [
+                    0.0034733610000001747,
+                    0.005047906999999796,
+                    0.0035023750000000575,
+                    0.0035686130000001093,
+                    "... omitted to keep this file small"
+                ],
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_sleep_2",
+            "fullname": "bench.py::test_sleep_2",
+            "params": null,
+            "param": null,
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1,
+                "min_time": 0.000005,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.001044877,
+                "max": 2.005173128,
+                "mean": 2.0038430469999997,
+                "stddev": 0.0018776587251587858,
+                "rounds": 5,
+                "median": 2.005124842999999,
+                "iqr": 0.002820521000000298,
+                "q1": 2.0023191352499996,
+                "q3": 2.00513965625,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 2.001044877,
+                "hd15iqr": 2.005173128,
+                "ops": 0.49904108083570886,
+                "total": 10.019215234999999,
+                "data": [
+                    2.005173128,
+                    2.0051284989999996,
+                    2.005124842999999,
+                    2.0027438879999995,
+                    2.001044877
+                ],
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2019-12-06T08:58:58.115974",
+    "version": "3.2.2"
+}
