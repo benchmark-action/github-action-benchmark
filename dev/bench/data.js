@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575623541077,
+  "lastUpdate": 1575624507220,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12501,6 +12501,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023396959631765261",
             "extra": "mean: 0.002725438832446635 sec\nrounds: 376"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "2373db40e16fc4e86640215009ab8b090128ef10",
+          "message": "fix condition to check git push failure was due to remote rejection",
+          "timestamp": "2019-12-06T18:26:22+09:00",
+          "tree_id": "ebfe16acd5b42b482dcc269d7d2d0ca54c9a5bae",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/2373db40e16fc4e86640215009ab8b090128ef10"
+        },
+        "date": 1575624506987,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 37275.80492125698,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000021731904070674168",
+            "extra": "mean: 0.000026827053154517872 sec\nrounds: 25774"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 291.3811221407244,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005390166083389114",
+            "extra": "mean: 0.0034319313229806405 sec\nrounds: 322"
           }
         ]
       }
