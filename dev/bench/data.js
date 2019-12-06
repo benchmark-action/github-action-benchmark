@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575617904422,
+  "lastUpdate": 1575623505914,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13257,6 +13257,42 @@ window.BENCHMARK_DATA = {
             "value": 27155.34074165527,
             "unit": "ns/iter",
             "extra": "iterations: 24297\ncpu: 27153.7841708853 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f2db5af72c19572d3c823a17482e89f09a105ff4",
+          "message": "fix calculating unit of floating point value was wrong and add tests for it",
+          "timestamp": "2019-12-06T18:10:31+09:00",
+          "tree_id": "1d60b710a3978d349fab2cd47eb8459018f31eb0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f2db5af72c19572d3c823a17482e89f09a105ff4"
+        },
+        "date": 1575623505731,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 200.4998456536672,
+            "unit": "ns/iter",
+            "extra": "iterations: 3391723\ncpu: 200.4380891364065 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27792.046920934663,
+            "unit": "ns/iter",
+            "extra": "iterations: 25852\ncpu: 27785.110513693333 ns\nthreads: 1"
           }
         ]
       }
