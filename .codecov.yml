@@ -2,8 +2,6 @@ comment: off
 
 coverage:
   status:
-    project:
-      default:
-        target: 50%
-        threshold: null
-        base: auto
+    project: yes
+    patch: no
+    changes: no
