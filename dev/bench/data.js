@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575623511859,
+  "lastUpdate": 1575623541077,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3598,6 +3598,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32831,
             "range": "+/- 6,120",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f2db5af72c19572d3c823a17482e89f09a105ff4",
+          "message": "fix calculating unit of floating point value was wrong and add tests for it",
+          "timestamp": "2019-12-06T18:10:31+09:00",
+          "tree_id": "1d60b710a3978d349fab2cd47eb8459018f31eb0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f2db5af72c19572d3c823a17482e89f09a105ff4"
+        },
+        "date": 1575623540757,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 204,
+            "range": "+/- 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 27479,
+            "range": "+/- 3,542",
             "unit": "ns/iter"
           }
         ]
