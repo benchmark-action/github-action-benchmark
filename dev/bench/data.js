@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575617874505,
+  "lastUpdate": 1575617877938,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10301,6 +10301,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.92%",
             "unit": "ops/sec",
             "extra": "91 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b8e9e2af2493a1ee2f3fa758a9572cd9972e6db7",
+          "message": "rename Pytest example workflow name\n\nsince previous one was a bit longer",
+          "timestamp": "2019-12-06T16:36:53+09:00",
+          "tree_id": "e005dddd8456e05a1c551315426775584cba6c24",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b8e9e2af2493a1ee2f3fa758a9572cd9972e6db7"
+        },
+        "date": 1575617875146,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1059081,
+            "range": "±1.03%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9033,
+            "range": "±0.95%",
+            "unit": "ops/sec",
+            "extra": "80 samples"
           }
         ]
       }
