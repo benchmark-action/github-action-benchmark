@@ -9,8 +9,31 @@ interface ExecOptions {
     };
 }
 
-let execReturnValue = 0;
-let lastArgs: [string, string[], ExecOptions] | null = null;
+class FakedExec {
+    lastArgs: [string, string[], ExecOptions] | null;
+    stdout: string;
+    stderr: string | null;
+    exitCode: number;
+    error: string | null;
+
+    constructor() {
+        this.lastArgs = null;
+        this.stdout = 'this is test';
+        this.stderr = null;
+        this.exitCode = 0;
+        this.error = null;
+    }
+
+    reset() {
+        this.lastArgs = null;
+        this.stdout = 'this is test';
+        this.stderr = null;
+        this.exitCode = 0;
+        this.error = null;
+    }
+}
+
+const fakedExec = new FakedExec();
 const gitHubContext = {
     payload: {
         repository: {
@@ -27,9 +50,16 @@ const gitHubContext = {
 
 mock('@actions/exec', {
     exec: (c: string, a: string[], o: ExecOptions) => {
-        lastArgs = [c, a, o];
-        o.listeners.stdout(Buffer.from('this is test'));
-        return Promise.resolve(execReturnValue);
+        fakedExec.lastArgs = [c, a, o];
+        o.listeners.stdout(Buffer.from(fakedExec.stdout));
+        if (fakedExec.stderr !== null) {
+            o.listeners.stderr(Buffer.from(fakedExec.stderr));
+        }
+        if (fakedExec.error === null) {
+            return Promise.resolve(fakedExec.exitCode);
+        } else {
+            return Promise.reject(new Error(fakedExec.error));
+        }
     },
 });
 mock('@actions/core', {
@@ -53,25 +83,36 @@ describe('git', function() {
     });
 
     afterEach(function() {
-        lastArgs = null;
-        execReturnValue = 0;
+        fakedExec.reset();
     });
 
     describe('cmd()', function() {
         it('runs Git command successfully', async function() {
             const stdout = await cmd('log', '--oneline');
+            const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
-            ok(lastArgs);
-            eq(lastArgs[0], 'git');
-            eq(lastArgs[1], userArgs.concat(['log', '--oneline']));
-            ok('listeners' in (lastArgs[2] as object));
+            ok(args);
+            eq(args[0], 'git');
+            eq(args[1], userArgs.concat(['log', '--oneline']));
+            ok('listeners' in (args[2] as object));
         });
 
         it('raises an error when command returns non-zero exit code', async function() {
-            execReturnValue = 101;
+            fakedExec.exitCode = 101;
             await A.rejects(() => cmd('show'), /^Error: Command 'git show' failed: /);
-            neq(lastArgs, null);
+            neq(fakedExec.lastArgs, null);
+        });
+
+        it('raises an error with stderr output', async function() {
+            fakedExec.exitCode = 101;
+            fakedExec.stderr = 'this is error output!';
+            await A.rejects(() => cmd('show'), /this is error output!/);
+        });
+
+        it('raises an error when exec.exec() threw an error', async function() {
+            fakedExec.error = 'this is error from exec.exec';
+            await A.rejects(() => cmd('show'), /this is error from exec\.exec/);
         });
     });
 
@@ -82,12 +123,13 @@ describe('git', function() {
 
         it('runs `git push` with given branch and options', async function() {
             const stdout = await push('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
-            ok(lastArgs);
-            eq(lastArgs[0], 'git');
+            ok(args);
+            eq(args[0], 'git');
             eq(
-                lastArgs[1],
+                args[1],
                 userArgs.concat([
                     'push',
                     'https://x-access-token:this-is-token@github.com/user/repo.git',
@@ -105,7 +147,7 @@ describe('git', function() {
                 () => push('this-is-token', 'my-branch', 'opt1', 'opt2'),
                 /^Error: Repository info is not available in payload/,
             );
-            eq(lastArgs, null);
+            eq(fakedExec.lastArgs, null);
         });
     });
 
@@ -116,12 +158,13 @@ describe('git', function() {
 
         it('runs `git pull` with given branch and options with token', async function() {
             const stdout = await pull('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
-            ok(lastArgs);
-            eq(lastArgs[0], 'git');
+            ok(args);
+            eq(args[0], 'git');
             eq(
-                lastArgs[1],
+                args[1],
                 userArgs.concat([
                     'pull',
                     'https://x-access-token:this-is-token@github.com/user/repo.git',
@@ -134,11 +177,12 @@ describe('git', function() {
 
         it('runs `git pull` with given branch and options without token', async function() {
             const stdout = await pull(undefined, 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
-            ok(lastArgs);
-            eq(lastArgs[0], 'git');
-            eq(lastArgs[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
+            ok(args);
+            eq(args[0], 'git');
+            eq(args[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
         });
 
         it('raises an error when repository info is not included in payload', async function() {
@@ -147,7 +191,7 @@ describe('git', function() {
                 () => pull('this-is-token', 'my-branch', 'opt1', 'opt2'),
                 /^Error: Repository info is not available in payload/,
             );
-            eq(lastArgs, null);
+            eq(fakedExec.lastArgs, null);
         });
     });
 });

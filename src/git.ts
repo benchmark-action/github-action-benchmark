@@ -29,9 +29,8 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
         res.code = code;
         return res;
     } catch (err) {
-        const info = JSON.stringify(res);
-        const msg = `Command '${cmd}' failed with args '${args.join(' ')}': ${info}`;
-        core.debug(msg);
+        const msg = `Command '${cmd}' failed with args '${args.join(' ')}': ${err}`;
+        core.debug(`@actions/exec.exec() threw an error: ${msg}`);
         throw new Error(msg);
     }
 }
@@ -41,7 +40,7 @@ export async function cmd(...args: string[]): Promise<string> {
     const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
     const res = await capture('git', userArgs.concat(args));
     if (res.code !== 0) {
-        throw new Error(`Command 'git ${args.join(' ')}' failed: ${res}`);
+        throw new Error(`Command 'git ${args.join(' ')}' failed: ${JSON.stringify(res)}`);
     }
     return res.stdout;
 }
