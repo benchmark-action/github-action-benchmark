@@ -1,4 +1,4 @@
-name: Python Example with pytest-benchmark
+name: Python Example with pytest
 on:
   push:
     branches:
