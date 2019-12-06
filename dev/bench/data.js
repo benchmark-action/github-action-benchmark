@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575634882688,
+  "lastUpdate": 1575634885628,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12945,6 +12945,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021868682232127878",
             "extra": "mean: 0.0028492943424667325 sec\nrounds: 365"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "9de38ac81d5073636128dc9b3908d393dcefcf05",
+          "message": "fix closing tag was wrong in default index.html",
+          "timestamp": "2019-12-06T21:20:16+09:00",
+          "tree_id": "369cd9d1fb41e7ab9269f848c22a7ecc81e549d3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/9de38ac81d5073636128dc9b3908d393dcefcf05"
+        },
+        "date": 1575634883022,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46166.46216687104,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000017359138582697233",
+            "extra": "mean: 0.000021660745767900707 sec\nrounds: 29941"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 379.8044840069853,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013273189363108067",
+            "extra": "mean: 0.002632933633246963 sec\nrounds: 379"
           }
         ]
       }
