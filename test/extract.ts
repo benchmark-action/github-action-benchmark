@@ -1,6 +1,7 @@
 import * as path from 'path';
 import { strict as A } from 'assert';
 import mock = require('mock-require');
+import { ToolType } from '../src/config';
 import { BenchmarkResult } from '../src/extract';
 
 mock('@actions/github', {
@@ -127,7 +128,7 @@ describe('extractResult()', function() {
             A.equal(bench.commit, 'dummy commit hash');
             A.ok(bench.date <= Date.now(), bench.date.toString());
             A.equal(bench.tool, test.tool);
-            A.deepEqual(bench.benches, test.expected);
+            A.deepEqual(test.expected, bench.benches);
         });
     }
 
@@ -154,4 +155,27 @@ describe('extractResult()', function() {
         };
         await A.rejects(() => extractResult(config), /^Error: No benchmark result was found in /);
     });
+
+    const toolSpecificErrorCases: Array<{
+        it: string;
+        tool: ToolType;
+        file: string;
+        expected: RegExp;
+    }> = [
+        ...(['pytest', 'googlecpp'] as const).map(tool => ({
+            it: `raises an error when output file is not in JSON with tool '${tool}'`,
+            tool,
+            file: 'go_output.txt',
+            expected: /must be JSON file/,
+        })),
+    ];
+
+    for (const t of toolSpecificErrorCases) {
+        it(t.it, async function() {
+            // Note: go_output.txt is not in JSON format!
+            const outputFilePath = path.join(__dirname, 'data', 'extract', t.file);
+            const config = { tool: t.tool, outputFilePath };
+            await A.rejects(() => extractResult(config), t.expected);
+        });
+    }
 });
