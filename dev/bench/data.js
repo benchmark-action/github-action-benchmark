@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575625614961,
+  "lastUpdate": 1575625649601,
   "entries": {
     "Rust Benchmark": [
       {
@@ -3670,6 +3670,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33294,
             "range": "+/- 1,791",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "dc2d3662d4fd5f628388e775c9c21daf8cd3906a",
+          "message": "disable patch check on codecov",
+          "timestamp": "2019-12-06T18:45:50+09:00",
+          "tree_id": "f42f65c8b30d93501feb5426ab22df96de377b19",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/dc2d3662d4fd5f628388e775c9c21daf8cd3906a"
+        },
+        "date": 1575625649197,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 247,
+            "range": "+/- 32",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32286,
+            "range": "+/- 6,218",
             "unit": "ns/iter"
           }
         ]
