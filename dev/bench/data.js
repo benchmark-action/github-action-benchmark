@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575625649601,
+  "lastUpdate": 1575630574253,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13771,6 +13771,42 @@ window.BENCHMARK_DATA = {
             "value": 26009.395048917788,
             "unit": "ns/iter",
             "extra": "iterations: 26984\ncpu: 25999.99599762822 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "1e26bdeea3c0bb6bf58f3c692cce5577265a1c07",
+          "message": "add a small link to github-action-benchmark in footer",
+          "timestamp": "2019-12-06T20:05:40+09:00",
+          "tree_id": "30e67717ba5e1263f83242c8fc6ad67c1b8d1cfb",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/1e26bdeea3c0bb6bf58f3c692cce5577265a1c07"
+        },
+        "date": 1575630574081,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 189.23104818998885,
+            "unit": "ns/iter",
+            "extra": "iterations: 3387592\ncpu: 189.0493607258489 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24918.201124968098,
+            "unit": "ns/iter",
+            "extra": "iterations: 27023\ncpu: 24916.408096806423 ns\nthreads: 1"
           }
         ]
       }
