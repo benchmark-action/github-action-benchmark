@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575623508618,
+  "lastUpdate": 1575623511859,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12427,6 +12427,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003042207290802958",
             "extra": "mean: 0.0025137708717950275 sec\nrounds: 390"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f2db5af72c19572d3c823a17482e89f09a105ff4",
+          "message": "fix calculating unit of floating point value was wrong and add tests for it",
+          "timestamp": "2019-12-06T18:10:31+09:00",
+          "tree_id": "1d60b710a3978d349fab2cd47eb8459018f31eb0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f2db5af72c19572d3c823a17482e89f09a105ff4"
+        },
+        "date": 1575623506765,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 44024.85669166031,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000022121238308360577",
+            "extra": "mean: 0.000022714440776122537 sec\nrounds: 28654"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 366.9133895411246,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023396959631765261",
+            "extra": "mean: 0.002725438832446635 sec\nrounds: 376"
           }
         ]
       }
