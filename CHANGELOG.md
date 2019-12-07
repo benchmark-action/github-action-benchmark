@@ -1,3 +1,16 @@
+<a name="v1.6.1"></a>
+# [v1.6.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.1) - 07 Dec 2019
+
+- **Fix:** Time unit of mean time in `pytest` benchmark results were always `sec`. Now time units are converted to `msec`, `usec` and `nsec` if necessary
+- **Fix:** Detecting rejection by remote on `git push` was not sufficient
+- **Improve:** Add a small link at right bottom of dashboard page to show this action provided the page
+- **Improve:** Showed at least 1 significant digit for threshold float values like `2.0`
+- **Improve:** Updated dependencies
+
+
+[Changes][v1.6.1]
+
+
 <a name="v1.6.0"></a>
 # [v1.6.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.0) - 04 Dec 2019
 
@@ -165,6 +178,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.0...v1.6.1
 [v1.6.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.3.2...v1.4.0
