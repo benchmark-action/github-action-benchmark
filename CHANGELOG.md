@@ -1,3 +1,11 @@
+<a name="v1.6.2"></a>
+# [v1.6.2](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.2) - 07 Dec 2019
+
+- **Fix:** Retry logic for `git push` did not work properly since stderr output was not included in error message
+
+[Changes][v1.6.2]
+
+
 <a name="v1.6.1"></a>
 # [v1.6.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.1) - 07 Dec 2019
 
@@ -178,6 +186,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.1...v1.6.2
 [v1.6.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.0...v1.6.1
 [v1.6.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.4.0...v1.5.0
