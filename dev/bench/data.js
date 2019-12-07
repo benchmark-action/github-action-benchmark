@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575719040984,
+  "lastUpdate": 1575720507922,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14247,6 +14247,42 @@ window.BENCHMARK_DATA = {
             "value": 24846.734305276696,
             "unit": "ns/iter",
             "extra": "iterations: 29357\ncpu: 24836.661477671416 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f3d65e0bd16f4948fe41a7f0a8d2e28ce5d6fbc7",
+          "message": "update changelog for v1.6.2",
+          "timestamp": "2019-12-07T21:05:11+09:00",
+          "tree_id": "61ceb6370daee88948c8ac2d73359853195f6d8d",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f3d65e0bd16f4948fe41a7f0a8d2e28ce5d6fbc7"
+        },
+        "date": 1575720507694,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 155.02018936262613,
+            "unit": "ns/iter",
+            "extra": "iterations: 4614955\ncpu: 154.99867691017573 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22297.677721373177,
+            "unit": "ns/iter",
+            "extra": "iterations: 32897\ncpu: 22293.081983159555 ns\nthreads: 1"
           }
         ]
       }
