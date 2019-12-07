@@ -829,7 +829,7 @@ describe('writeBenchmark()', function() {
                     const workflowLink = a.first();
                     eq(workflowLink.text(), 'workflow');
                     const workflowUrl = workflowLink.attr('href');
-                    ok(workflowUrl.startsWith(json.repoUrl), workflowUrl);
+                    ok(workflowUrl?.startsWith(json.repoUrl), workflowUrl);
 
                     const actionLink = a.last();
                     eq(actionLink.text(), 'github-action-benchmark');

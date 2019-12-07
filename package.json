@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/acorn": "^4.0.5",
-    "@types/cheerio": "^0.22.14",
+    "@types/cheerio": "^0.22.15",
     "@types/deep-diff": "^1.0.0",
     "@types/deep-equal": "^1.0.1",
     "@types/markdown-it": "0.0.9",
@@ -48,13 +48,13 @@
     "@types/mock-require": "^2.0.0",
     "@types/node": "^12.12.14",
     "@types/rimraf": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^2.9.0",
-    "@typescript-eslint/parser": "^2.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "acorn": "^7.1.0",
     "cheerio": "^1.0.0-rc.3",
     "deep-diff": "^1.0.2",
     "deep-equal": "^1.1.1",
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-mocha": "^6.2.2",
     "eslint-plugin-prettier": "^3.1.1",
@@ -66,7 +66,7 @@
     "nyc": "^14.1.1",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "husky": {
     "hooks": {
