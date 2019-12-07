@@ -80,7 +80,8 @@ function findAlerts(curSuite, prevSuite, threshold) {
             ? prev.value / current.value // e.g. current=100, prev=200
             : current.value / prev.value; // e.g. current=200, prev=100
         if (ratio > threshold) {
-            core.warning(`Performance alert! Previous value was ${prev.value} and current value is ${current.value}. Ratio ${ratio} is bigger than threshold ${threshold}`);
+            core.warning(`Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
+                ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`);
             alerts.push({ current, prev, ratio });
         }
     }
@@ -93,30 +94,34 @@ function getCurrentRepo() {
     }
     return repo;
 }
+function floatStr(n) {
+    return Number.isInteger(n) ? n.toFixed(1) : n.toString();
+}
 function buildAlertComment(alerts, benchName, curSuite, prevSuite, threshold, cc) {
     var _a;
-    // Do not show benchmark name if it is the default value 'Benchmark'.
-    const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
-    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
-    const lines = [
-        title,
-        '',
-        `Possible performance regression was detected for benchmark${benchmarkText}.`,
-        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${threshold}\`.`,
-        '',
-        `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
-        '|-|-|-|-|',
-    ];
-    function strOfValue(b) {
+    function strVal(b) {
         let s = `\`${b.value}\` ${b.unit}`;
         if (b.range) {
             s += ` (\`${b.range}\`)`;
         }
         return s;
     }
+    // Do not show benchmark name if it is the default value 'Benchmark'.
+    const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
+    const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
+    const thresholdString = floatStr(threshold);
+    const lines = [
+        title,
+        '',
+        `Possible performance regression was detected for benchmark${benchmarkText}.`,
+        `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${thresholdString}\`.`,
+        '',
+        `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
+        '|-|-|-|-|',
+    ];
     for (const alert of alerts) {
         const { current, prev, ratio } = alert;
-        const line = `| \`${current.name}\` | ${strOfValue(current)} | ${strOfValue(prev)} | \`${ratio}\` |`;
+        const line = `| \`${current.name}\` | ${strVal(current)} | ${strVal(prev)} | \`${floatStr(ratio)}\` |`;
         lines.push(line);
     }
     const repo = getCurrentRepo();
@@ -176,19 +181,19 @@ async function handleAlert(benchName, curSuite, prevSuite, config) {
     if (failOnAlert) {
         // Note: alertThreshold is smaller than failThreshold. It was checked in config.ts
         const len = alerts.length;
+        const threshold = floatStr(failThreshold);
         const failures = alerts.filter(a => a.ratio > failThreshold);
         if (failures.length > 0) {
             core.debug('Mark this workflow as fail since one or more fatal alerts found');
             if (failThreshold !== alertThreshold) {
                 // Prepend message that explains how these alerts were detected with different thresholds
-                message =
-                    `${failures.length} of ${len} alerts exceeded the failure threshold \`${failThreshold}\` specified by fail-threshold input:\n\n` +
-                        message;
+                message = `${failures.length} of ${len} alerts exceeded the failure threshold \`${threshold}\` specified by fail-threshold input:\n\n${message}`;
             }
             throw new Error(message);
         }
         else {
-            core.debug(`${len} alerts were found but all of them did not exceed failure threshold ${failThreshold}`);
+            core.debug(`${len} alerts exceeding the alert threshold ${alertThreshold} were found but` +
+                ` all of them did not exceed the failure threshold ${threshold}`);
         }
     }
 }
@@ -221,6 +226,12 @@ function addBenchmarkToDataJson(benchName, bench, data, maxItems) {
     }
     return prevBench;
 }
+function isRemoteRejectedError(err) {
+    if (err instanceof Error) {
+        return ['[remote rejected]', '[rejected]'].some(l => err.message.includes(l));
+    }
+    return false;
+}
 async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     var _a, _b;
     const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages, maxItemsInChart, } = config;
@@ -229,7 +240,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     }
-    else if (isPrivateRepo) {
+    else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning("'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
             "before generating a commit, please set 'github-token' input to pull GitHub pages branch");
     }
@@ -246,7 +257,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
             console.log(`Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`);
         }
         catch (err) {
-            if (!(err instanceof Error) || !err.message.includes('[remote rejected]')) {
+            if (!isRemoteRejectedError(err)) {
                 throw err;
             }
             // Fall through
@@ -258,19 +269,18 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
                 return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
             }
             else {
-                core.warning(`Failed to add benchmark data to '${name}' suite: ${JSON.stringify(bench, null, 2)}`);
+                core.warning(`Failed to add benchmark data to '${name}' data: ${JSON.stringify(bench)}`);
                 throw new Error(`Auto-push failed 3 times since the remote branch ${ghPagesBranch} rejected pushing all the time. Last exception was: ${err.message}`);
             }
         }
     }
     else {
-        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both github-token and auto-push`);
+        core.debug(`Auto-push to ${ghPagesBranch} is skipped because it requires both 'github-token' and 'auto-push' inputs`);
     }
     return prevBench;
 }
 async function writeBenchmarkToGitHubPages(bench, config) {
-    const { ghPagesBranch } = config;
-    await git.cmd('switch', ghPagesBranch);
+    await git.cmd('switch', config.ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 2);
     }
