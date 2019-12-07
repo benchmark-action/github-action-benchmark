@@ -31,7 +31,7 @@ async function capture(cmd, args) {
         return res;
     }
     catch (err) {
-        const msg = `Command '${cmd}' failed with args '${args.join(' ')}': ${err}`;
+        const msg = `Command '${cmd}' failed with args '${args.join(' ')}': ${res.stderr}: ${err}`;
         core.debug(`@actions/exec.exec() threw an error: ${msg}`);
         throw new Error(msg);
     }
