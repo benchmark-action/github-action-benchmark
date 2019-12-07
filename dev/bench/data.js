@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575718997950,
+  "lastUpdate": 1575719004387,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7323,6 +7323,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 57528,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f93392da8d8ee9765d603e1cfd7919b303efc66f",
+          "message": "update chagnelog for v1.6.1",
+          "timestamp": "2019-12-07T20:42:32+09:00",
+          "tree_id": "d4898b2f4faba2b474e8da6fa70639d2a05149ca",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f93392da8d8ee9765d603e1cfd7919b303efc66f"
+        },
+        "date": 1575719003901,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 421,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 51548,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
