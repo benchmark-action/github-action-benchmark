@@ -510,7 +510,15 @@ Every release will appear on your GitHub notifications page.
   - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
 - Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
 - Show extracted benchmark data in the output from this action
-- Improve retry logic on conflict with remote when updating gh-pages branch
+- Add a table view in dashboard page to see all data points in table
+
+
+
+## Related actions
+
+- [lighthouse-ci-action][] is an action for [Lighthouse CI][lighthouse-ci]. If you're measuring performance
+  of your web application, using Lighthouse CI and lighthouse-ci-action would be better than using this
+  action.
 
 
 
@@ -549,3 +557,5 @@ Every release will appear on your GitHub notifications page.
 [minimal-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
 [commit-comment-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
 [google-benchmark]: https://github.com/google/benchmark
+[lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
+[lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
