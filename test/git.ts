@@ -112,7 +112,9 @@ describe('git', function() {
 
         it('raises an error when exec.exec() threw an error', async function() {
             fakedExec.error = 'this is error from exec.exec';
+            fakedExec.stderr = 'this is stderr output!';
             await A.rejects(() => cmd('show'), /this is error from exec\.exec/);
+            await A.rejects(() => cmd('show'), /this is stderr output!/);
         });
     });
 
