@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575773167321,
+  "lastUpdate": 1575773340183,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14799,6 +14799,42 @@ window.BENCHMARK_DATA = {
             "value": 29508.70107436348,
             "unit": "ns/iter",
             "extra": "iterations: 23735\ncpu: 29501.911438803454 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "178447c6b480e5cac2be939b5e236bf03b1a3639",
+          "message": "increase retries from 2 to 10\n\nsince 2 is not sufficient according to CI of this action.",
+          "timestamp": "2019-12-08T11:47:56+09:00",
+          "tree_id": "872ec73d398d329023a9c1677fcb8e2c2a57904a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/178447c6b480e5cac2be939b5e236bf03b1a3639"
+        },
+        "date": 1575773340004,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 189.54316881431382,
+            "unit": "ns/iter",
+            "extra": "iterations: 3636155\ncpu: 189.47310579444496 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 26476.84264506329,
+            "unit": "ns/iter",
+            "extra": "iterations: 25058\ncpu: 26318.12858169049 ns\nthreads: 1"
           }
         ]
       }
