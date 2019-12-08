@@ -370,7 +370,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
     await git.cmd('switch', config.ghPagesBranch);
     try {
-        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 2);
+        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     } finally {
         // `git switch` does not work for backing to detached head
         await git.cmd('checkout', '-');

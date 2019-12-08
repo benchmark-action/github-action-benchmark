@@ -1154,6 +1154,7 @@ describe('writeBenchmark()', function() {
             });
         }
 
+        const maxRetries = 10;
         const retryCases: Array<{
             it: string;
             error?: RegExp;
@@ -1166,15 +1167,15 @@ describe('writeBenchmark()', function() {
                 pushErrorCount: retries,
             })),
             {
-                it: 'gives up updating data after 2 retries with an error',
+                it: `gives up updating data after ${maxRetries} retries with an error`,
                 pushErrorMessage: '... [remote rejected] ...',
-                pushErrorCount: 3,
+                pushErrorCount: maxRetries,
                 error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
             },
             {
-                it: 'gives up updating data after 2 retries with an error containing "[rejected]" in message',
+                it: `gives up updating data after ${maxRetries} retries with an error containing "[rejected]" in message`,
                 pushErrorMessage: '... [rejected] ...',
-                pushErrorCount: 3,
+                pushErrorCount: maxRetries,
                 error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
             },
             {
@@ -1206,7 +1207,7 @@ describe('writeBenchmark()', function() {
                     const retryHistory = history.slice(1, -1);
                     retryHistory.push(['cmd', ['reset', '--hard', 'HEAD~1']]);
 
-                    const retries = Math.min(t.pushErrorCount, 2);
+                    const retries = Math.min(t.pushErrorCount, maxRetries);
                     for (let i = 0; i < retries; i++) {
                         history.splice(1, 0, ...retryHistory);
                     }
