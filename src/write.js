@@ -282,7 +282,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
 async function writeBenchmarkToGitHubPages(bench, config) {
     await git.cmd('switch', config.ghPagesBranch);
     try {
-        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 2);
+        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     }
     finally {
         // `git switch` does not work for backing to detached head
