@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575771315260,
+  "lastUpdate": 1575771317951,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14505,6 +14505,42 @@ window.BENCHMARK_DATA = {
             "value": 22297.677721373177,
             "unit": "ns/iter",
             "extra": "iterations: 32897\ncpu: 22293.081983159555 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "46ed84f72dc0a8b26baad3f84a91d3d8a7673dd0",
+          "message": "fix test for catching a bug fixed at 46be637",
+          "timestamp": "2019-12-08T11:13:49+09:00",
+          "tree_id": "28c78f7efcff78f82910e75f991af613eb6723d5",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/46ed84f72dc0a8b26baad3f84a91d3d8a7673dd0"
+        },
+        "date": 1575771314997,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 227.68799881399624,
+            "unit": "ns/iter",
+            "extra": "iterations: 2927444\ncpu: 227.6492663907491 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30529.017829782166,
+            "unit": "ns/iter",
+            "extra": "iterations: 21537\ncpu: 30517.463388587094 ns\nthreads: 1"
           }
         ]
       }
