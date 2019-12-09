@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1575882145716,
+  "lastUpdate": 1575902303450,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14017,6 +14017,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0004538217463103584",
             "extra": "mean: 2.2700648991245913 msec\nrounds: 456"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "00a7395d0e77bc345662759a06d76831f0612b1f",
+          "message": "add test for parsing an empty input as false",
+          "timestamp": "2019-12-09T23:37:19+09:00",
+          "tree_id": "8440ba4d3d2077223ae2d1258c8812054126ffb2",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/00a7395d0e77bc345662759a06d76831f0612b1f"
+        },
+        "date": 1575902303270,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45499.61892241372,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000010118166030338992",
+            "extra": "mean: 21.97820605278491 usec\nrounds: 36364"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 367.8412113484821,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000216989187147471",
+            "extra": "mean: 2.7185643401240025 msec\nrounds: 391"
           }
         ]
       }
