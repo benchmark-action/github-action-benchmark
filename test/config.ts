@@ -206,7 +206,7 @@ describe('configFromJobInput()', function() {
         failThreshold: null,
     };
 
-    const returned_config_tests = [
+    const returnedConfigTests = [
         ...VALID_TOOLS.map((tool: string) => ({
             what: 'valid tool ' + tool,
             inputs: { ...defaultInputs, tool },
@@ -269,13 +269,23 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, 'fail-threshold': '300%' },
             expected: { ...defaultExpected, failThreshold: 3.0 },
         },
+        {
+            what: 'boolean value parsing an empty input as false',
+            inputs: {
+                ...defaultInputs,
+                'skip-fetch-gh-pages': '',
+                'comment-on-alert': '',
+                'fail-on-alert': '',
+            },
+            expected: defaultExpected,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
         expected: ExpectedResult;
     }>;
 
-    for (const test of returned_config_tests) {
+    for (const test of returnedConfigTests) {
         it('returns validated config with ' + test.what, async function() {
             mockInputs(test.inputs);
             const actual = await configFromJobInput();
