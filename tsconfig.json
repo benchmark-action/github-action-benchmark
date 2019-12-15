@@ -26,7 +26,6 @@
     "src/git.ts",
     "src/write.ts",
     "src/default_index_html.ts",
-    "src/octokit_graphql.d.ts",
     "test/extract.ts",
     "test/config.ts",
     "test/git.ts",
