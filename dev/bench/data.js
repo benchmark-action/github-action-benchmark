@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576494362697,
+  "lastUpdate": 1576494857955,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16051,6 +16051,42 @@ window.BENCHMARK_DATA = {
             "value": 27386.99331103671,
             "unit": "ns/iter",
             "extra": "iterations: 25116\ncpu: 27383.7058050645 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d9ecbae4b982d69913ddc6a5060e05d6bb3965a2",
+          "message": "fix validation script considering retries",
+          "timestamp": "2019-12-16T20:13:38+09:00",
+          "tree_id": "15d0dac7225911f939185a8e75dc708b0c0dabec",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d9ecbae4b982d69913ddc6a5060e05d6bb3965a2"
+        },
+        "date": 1576494857142,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 185.6736456824399,
+            "unit": "ns/iter",
+            "extra": "iterations: 3702289\ncpu: 185.52347885321757 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24591.614134649786,
+            "unit": "ns/iter",
+            "extra": "iterations: 28370\ncpu: 24584.91335918224 ns\nthreads: 1"
           }
         ]
       }
