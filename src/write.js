@@ -280,6 +280,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     return prevBench;
 }
 async function writeBenchmarkToGitHubPages(bench, config) {
+    await git.cmd('fetch', 'origin', `${config.ghPagesBranch}:${config.ghPagesBranch}`);
     await git.cmd('switch', config.ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
