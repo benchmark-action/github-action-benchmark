@@ -919,6 +919,7 @@ describe('writeBenchmark()', function() {
             const addIndexHtml = cfg.addIndexHtml ?? true;
             const autoPush = cfg.autoPush ?? true;
             const hist: Array<[GitFunc, unknown[]] | undefined> = [
+                ['cmd', ['fetch', 'origin', 'gh-pages:gh-pages']],
                 ['cmd', ['switch', 'gh-pages']],
                 fetch ? ['pull', [token, 'gh-pages']] : undefined,
                 ['cmd', ['add', path.join(dir, 'data.js')]],
@@ -1204,12 +1205,13 @@ describe('writeBenchmark()', function() {
 
                 const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
                 if (t.pushErrorCount > 0) {
-                    const retryHistory = history.slice(1, -1);
+                    // First 2 commands are fetch and switch. They are not repeated on retry
+                    const retryHistory = history.slice(2, -1);
                     retryHistory.push(['cmd', ['reset', '--hard', 'HEAD~1']]);
 
                     const retries = Math.min(t.pushErrorCount, maxRetries);
                     for (let i = 0; i < retries; i++) {
-                        history.splice(1, 0, ...retryHistory);
+                        history.splice(2, 0, ...retryHistory);
                     }
                 }
 
