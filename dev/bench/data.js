@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576496127628,
+  "lastUpdate": 1576496163718,
   "entries": {
     "Rust Benchmark": [
       {
@@ -4282,6 +4282,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30331,
             "range": "+/- 11,826",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a3b152c1554653b479806562523026c42f7e0256",
+          "message": "fetch GitHub Pages branch only when skip-fetch-gh-pages is not set",
+          "timestamp": "2019-12-16T20:34:23+09:00",
+          "tree_id": "dd504579d82e12f3534ecc5acbb827365e97d734",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a3b152c1554653b479806562523026c42f7e0256"
+        },
+        "date": 1576496156777,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 228,
+            "range": "+/- 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 30423,
+            "range": "+/- 3,785",
             "unit": "ns/iter"
           }
         ]
