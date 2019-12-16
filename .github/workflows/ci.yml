@@ -6,7 +6,7 @@ jobs:
     name: Run Rust benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/cache@v1
         with:
@@ -35,7 +35,7 @@ jobs:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/setup-go@v1
       - uses: actions/cache@v1
@@ -64,7 +64,7 @@ jobs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/cache@v1
         with:
@@ -92,7 +92,7 @@ jobs:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/setup-python@v1
       - uses: actions/cache@v1
@@ -124,7 +124,7 @@ jobs:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/cache@v1
         with:
@@ -159,7 +159,7 @@ jobs:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: actions/cache@v1
         with:
@@ -191,7 +191,7 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
