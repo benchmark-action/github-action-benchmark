@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576493863566,
+  "lastUpdate": 1576493866063,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14313,6 +14313,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002701397610116711",
             "extra": "mean: 2.111112802127328 msec\nrounds: 470"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "0e117d4e0e532c5ff34162138695e8f578dd4e76",
+          "message": "Merge branch 'checkout-v2'",
+          "timestamp": "2019-12-16T19:54:49+09:00",
+          "tree_id": "005e292367f479a235559fa0f78ab158444074e0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/0e117d4e0e532c5ff34162138695e8f578dd4e76"
+        },
+        "date": 1576493865672,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 47150.20743207229,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001882710000967125",
+            "extra": "mean: 21.208814435030135 usec\nrounds: 15504"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 393.50776334107593,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002141043595946396",
+            "extra": "mean: 2.541245924882153 msec\nrounds: 426"
           }
         ]
       }
