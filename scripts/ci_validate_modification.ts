@@ -203,9 +203,9 @@ async function main() {
     const beforeJson = await readDataJson(beforeDataJs);
 
     console.log('Validating current branch');
-    const stdout = await exec('git show -s --pretty=%d HEAD');
-    if (stdout.includes('HEAD -> ')) {
-        throw new Error(`Current branch is not detached head: '${stdout}'`);
+    const branch = await exec('git rev-parse --abbrev-ref HEAD');
+    if (branch === 'gh-pages') {
+        throw new Error(`Current branch is still on '${branch}'`);
     }
 
     console.log('Retrieving data.js after action');

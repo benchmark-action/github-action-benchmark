@@ -114,7 +114,7 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-go@v1
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
@@ -230,7 +230,7 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-go@v1
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
