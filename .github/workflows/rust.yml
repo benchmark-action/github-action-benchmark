@@ -9,7 +9,7 @@ jobs:
     name: Run Rust benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
