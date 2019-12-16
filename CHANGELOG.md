@@ -1,3 +1,13 @@
+<a name="v1.6.4"></a>
+# [v1.6.4](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.4) - 16 Dec 2019
+
+- **Fix:** Supported [actions/checkout@v2](https://github.com/actions/checkout/releases/tag/v2.0.0)
+- **Improve:** Refactored `index.html` automatically generated when it does not exist
+- **Improve:** Update dependencies (`actions/github` v2)
+
+[Changes][v1.6.4]
+
+
 <a name="v1.6.3"></a>
 # [v1.6.3](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.3) - 08 Dec 2019
 
@@ -194,6 +204,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.3...v1.6.4
 [v1.6.3]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.2...v1.6.3
 [v1.6.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.1...v1.6.2
 [v1.6.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.0...v1.6.1
