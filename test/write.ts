@@ -911,6 +911,7 @@ describe('writeBenchmark()', function() {
                 autoPush?: boolean;
                 token?: string | undefined;
                 fetch?: boolean;
+                skipFetch?: boolean;
             } = {},
         ): [GitFunc, unknown[]][] {
             const dir = cfg.dir ?? 'data-dir';
@@ -918,8 +919,9 @@ describe('writeBenchmark()', function() {
             const fetch = cfg.fetch ?? true;
             const addIndexHtml = cfg.addIndexHtml ?? true;
             const autoPush = cfg.autoPush ?? true;
+            const skipFetch = cfg.skipFetch ?? false;
             const hist: Array<[GitFunc, unknown[]] | undefined> = [
-                ['cmd', ['fetch', 'origin', 'gh-pages:gh-pages']],
+                skipFetch ? undefined : ['cmd', ['fetch', 'origin', 'gh-pages:gh-pages']],
                 ['cmd', ['switch', 'gh-pages']],
                 fetch ? ['pull', [token, 'gh-pages']] : undefined,
                 ['cmd', ['add', path.join(dir, 'data.js')]],
@@ -1026,7 +1028,7 @@ describe('writeBenchmark()', function() {
                     tool: 'cargo',
                     benches: [bench('bench_fib_10', 135)],
                 },
-                gitHistory: gitHistory({ fetch: false }),
+                gitHistory: gitHistory({ fetch: false, skipFetch: true }),
             },
             {
                 it: 'fails when exceeding the threshold',
