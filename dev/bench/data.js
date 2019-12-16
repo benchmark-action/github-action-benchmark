@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576416084834,
+  "lastUpdate": 1576493863566,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15683,6 +15683,42 @@ window.BENCHMARK_DATA = {
             "value": 29574.194286446796,
             "unit": "ns/iter",
             "extra": "iterations: 23383\ncpu: 29570.076209211824 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "0e117d4e0e532c5ff34162138695e8f578dd4e76",
+          "message": "Merge branch 'checkout-v2'",
+          "timestamp": "2019-12-16T19:54:49+09:00",
+          "tree_id": "005e292367f479a235559fa0f78ab158444074e0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/0e117d4e0e532c5ff34162138695e8f578dd4e76"
+        },
+        "date": 1576493863284,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 208.97118884853796,
+            "unit": "ns/iter",
+            "extra": "iterations: 3333015\ncpu: 208.87472033579206 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 28731.006745502287,
+            "unit": "ns/iter",
+            "extra": "iterations: 24016\ncpu: 28728.9741422385 ns\nthreads: 1"
           }
         ]
       }
