@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576678110386,
+  "lastUpdate": 1576678116039,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15237,6 +15237,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00026780269396427166",
             "extra": "mean: 2.582529651332107 msec\nrounds: 413"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "4d1b5b0b48b978cc951bc4d47f120e022efde6a4",
+          "message": "enable eslint rules for mocha",
+          "timestamp": "2019-12-18T23:07:44+09:00",
+          "tree_id": "66dfe0fde04eb6a556fbb9871dc7fb73d91e76f3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/4d1b5b0b48b978cc951bc4d47f120e022efde6a4"
+        },
+        "date": 1576678115223,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 43219.24462049389,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001155422297476018",
+            "extra": "mean: 23.137840764709146 usec\nrounds: 18727"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 360.96574693759766,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000247660055807371",
+            "extra": "mean: 2.7703459635267724 msec\nrounds: 329"
           }
         ]
       }
