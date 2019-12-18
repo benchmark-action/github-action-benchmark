@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576496163718,
+  "lastUpdate": 1576678106759,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8367,6 +8367,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 54333,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "4d1b5b0b48b978cc951bc4d47f120e022efde6a4",
+          "message": "enable eslint rules for mocha",
+          "timestamp": "2019-12-18T23:07:44+09:00",
+          "tree_id": "66dfe0fde04eb6a556fbb9871dc7fb73d91e76f3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/4d1b5b0b48b978cc951bc4d47f120e022efde6a4"
+        },
+        "date": 1576678104293,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 456,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 56411,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
