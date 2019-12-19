@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576741936756,
+  "lastUpdate": 1576741940608,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8439,6 +8439,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 56411,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a9481e53d9b58ba8a16d8eb34857cd1e041f8704",
+          "message": "fix title is not shown in default index.html",
+          "timestamp": "2019-12-19T16:50:40+09:00",
+          "tree_id": "a17fdea97634b8cc366b1754da61682c14fc4f4d",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a9481e53d9b58ba8a16d8eb34857cd1e041f8704"
+        },
+        "date": 1576741932666,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 485,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 61968,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
