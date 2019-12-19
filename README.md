@@ -434,6 +434,11 @@ the oldest one will be removed before storing the results to file. By default th
 which means there is no limit.
 
 
+### Action inputs
+
+No action output is set by this action.
+
+
 ### Caveats
 
 #### Run only on your branches
