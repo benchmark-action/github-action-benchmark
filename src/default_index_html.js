@@ -157,7 +157,10 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
           };
 
           // Prepare data points for charts
-          return Object.keys(data.entries).map(name => collectBenchesPerTestCase(data.entries[name]));
+          return Object.keys(data.entries).map(name => ({
+            name,
+            dataSet: collectBenchesPerTestCase(data.entries[name]),
+          }));
         }
 
         function renderAllChars(dataSets) {
@@ -241,7 +244,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
             });
           }
 
-          function renderBenchSet(name, benchset, main) {
+          function renderBenchSet(name, benchSet, main) {
             const setElem = document.createElement('div');
             setElem.className = 'benchmark-set';
             main.appendChild(setElem);
@@ -255,13 +258,13 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
             graphsElem.className = 'benchmark-graphs';
             setElem.appendChild(graphsElem);
 
-            for (const [benchName, benches] of benchset.entries()) {
+            for (const [benchName, benches] of benchSet.entries()) {
               renderGraph(graphsElem, benchName, benches)
             }
           }
 
           const main = document.getElementById('main');
-          for (const dataSet of dataSets) {
+          for (const {name, dataSet} of dataSets) {
             renderBenchSet(name, dataSet, main);
           }
         }
