@@ -1,3 +1,13 @@
+<a name="v1.6.5"></a>
+# [v1.6.5](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.5) - 19 Dec 2019
+
+- **Fix:** Titles are set to empty in auto-generated default `index.html`. To apply this fix, please remove current `index.html` in your GitHub Pages branch
+- **Fix:** Skip fetching GitHub Pages branch before switching to the branch when `skip-fetch-gh-pages` is set to true
+- **Improve:** Explicitly note no action output from this action in README.md
+
+[Changes][v1.6.5]
+
+
 <a name="v1.6.4"></a>
 # [v1.6.4](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.4) - 16 Dec 2019
 
@@ -204,6 +214,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.5]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.4...v1.6.5
 [v1.6.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.3...v1.6.4
 [v1.6.3]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.2...v1.6.3
 [v1.6.2]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.1...v1.6.2
