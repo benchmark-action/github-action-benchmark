@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1576741933711,
+  "lastUpdate": 1576741936756,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17047,6 +17047,42 @@ window.BENCHMARK_DATA = {
             "value": 30701.987207783426,
             "unit": "ns/iter",
             "extra": "iterations: 22201\ncpu: 30698.09130219359 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a9481e53d9b58ba8a16d8eb34857cd1e041f8704",
+          "message": "fix title is not shown in default index.html",
+          "timestamp": "2019-12-19T16:50:40+09:00",
+          "tree_id": "a17fdea97634b8cc366b1754da61682c14fc4f4d",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a9481e53d9b58ba8a16d8eb34857cd1e041f8704"
+        },
+        "date": 1576741935935,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 232.28776619519186,
+            "unit": "ns/iter",
+            "extra": "iterations: 2870497\ncpu: 232.27901892947457 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30943.811615292896,
+            "unit": "ns/iter",
+            "extra": "iterations: 22677\ncpu: 30940.362570004854 ns\nthreads: 1"
           }
         ]
       }
