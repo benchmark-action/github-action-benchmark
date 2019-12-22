@@ -1,0 +1,29 @@
+name: Catch2 C++ Example
+on: push
+
+jobs:
+  benchmark:
+    name: Run C++ benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          cd examples/catch2
+          mkdir build && cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --config Release
+          ./Catch2_bench > ../benchmark_result.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Catch2 Benchmark
+          tool: "catch2"
+          output-file-path: examples/catch2/benchmark_result.txt
+          # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
+          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: "200%"
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: "@bernedom"
