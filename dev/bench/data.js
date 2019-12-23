@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577067316023,
+  "lastUpdate": 1577067340234,
   "entries": {
     "Rust Benchmark": [
       {
@@ -4462,6 +4462,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 36760,
             "range": "+/- 3,492",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a8c46e7163e3a5847d7b24b649b1ce00ed2b5d1b",
+          "message": "Merge pull request #3 from Bnaya/support-decimal-dot\n\nSupport benchmark results with decimal dot",
+          "timestamp": "2019-12-23T11:14:30+09:00",
+          "tree_id": "1c8bf714785fd936a59ca0b816c2df0f84994c7b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a8c46e7163e3a5847d7b24b649b1ce00ed2b5d1b"
+        },
+        "date": 1577067338728,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 256,
+            "range": "+/- 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 34329,
+            "range": "+/- 5,923",
             "unit": "ns/iter"
           }
         ]
