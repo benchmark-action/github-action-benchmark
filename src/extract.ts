@@ -333,6 +333,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     }
 
     const commit = getCommit();
+    console.log(`DEBUGGGGGGGGG!!!!: Extracted commit: ${JSON.stringify(commit, null, 2)}`);
 
     return {
         commit,
