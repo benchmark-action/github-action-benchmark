@@ -77,6 +77,13 @@ describe('extractResult()', function() {
                     value: 12146,
                     extra: '96 samples',
                 },
+                {
+                    name: 'createObjectBuffer with 200 comments',
+                    range: '±1.70%',
+                    unit: 'ops/sec',
+                    value: 81.61,
+                    extra: '69 samples',
+                },
             ],
         },
         {
