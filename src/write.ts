@@ -310,6 +310,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
+    core.debug(`Payload: ${JSON.stringify(github.context.payload, null, 2)}`);
+    core.debug(`Benchamrk:\n\n${JSON.stringify(bench, null, 2)}`);
+
     if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
