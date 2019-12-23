@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577081648909,
+  "lastUpdate": 1577081651809,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17965,6 +17965,42 @@ window.BENCHMARK_DATA = {
             "value": 27687.16523494713,
             "unit": "ns/iter",
             "extra": "iterations: 25261\ncpu: 27683.31368512728 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "9ba4ceeb3f7b51dfcff665a81f9e7951f4456612",
+          "message": "add special case which should be ignored on extracting benchmark results from benchmark.js output",
+          "timestamp": "2019-12-23T15:12:49+09:00",
+          "tree_id": "442b5a0c7a56518c8d21f643d70bc15b689effc1",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/9ba4ceeb3f7b51dfcff665a81f9e7951f4456612"
+        },
+        "date": 1577081650860,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 212.0251860321507,
+            "unit": "ns/iter",
+            "extra": "iterations: 3277928\ncpu: 211.96603952252764 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 28319.629995953608,
+            "unit": "ns/iter",
+            "extra": "iterations: 22243\ncpu: 28315.281841478227 ns\nthreads: 1"
           }
         ]
       }
