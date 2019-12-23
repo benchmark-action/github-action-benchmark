@@ -76,7 +76,8 @@ function extractBenchmarkJsResult(output) {
     const ret = [];
     // Example:
     //   fib(20) x 11,465 ops/sec ±1.12% (91 runs sampled)
-    const reExtract = /^ x ([0-9,]+)\s+(\S+)\s+((?:±|\+-)[^%]+%) \((\d+) runs sampled\)$/; // Note: Extract parts after benchmark name
+    //   createObjectBuffer with 200 comments x 81.61 ops/sec ±1.70% (69 runs sampled)
+    const reExtract = /^ x ([0-9,.]+)\s+(\S+)\s+((?:±|\+-)[^%]+%) \((\d+) runs sampled\)$/; // Note: Extract parts after benchmark name
     const reComma = /,/g;
     for (const line of lines) {
         const idx = line.lastIndexOf(' x ');
@@ -89,7 +90,7 @@ function extractBenchmarkJsResult(output) {
         if (m === null) {
             continue;
         }
-        const value = parseInt(m[1].replace(reComma, ''), 10);
+        const value = parseFloat(m[1].replace(reComma, ''));
         const unit = m[2];
         const range = m[3];
         const extra = `${m[4]} samples`;
