@@ -434,9 +434,9 @@ the oldest one will be removed before storing the results to file. By default th
 which means there is no limit.
 
 
-### Action inputs
+### Action outputs
 
-No action output is set by this action.
+No action output is set by this action for the parent GitHub workflow.
 
 
 ### Caveats
