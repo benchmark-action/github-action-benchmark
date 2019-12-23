@@ -4,21 +4,32 @@ import mock = require('mock-require');
 import { ToolType } from '../src/config';
 import { BenchmarkResult } from '../src/extract';
 
-mock('@actions/github', {
-    context: {
-        payload: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            head_commit: 'dummy commit hash',
-        },
+const dummyWebhookPayload = {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    head_commit: {
+        author: null,
+        committer: null,
+        id: '123456789abcdef',
+        message: 'this is dummy',
+        timestamp: 'dummy timestamp',
+        url: 'https://github.com/dummy/repo',
     },
-});
+} as { [key: string]: any };
+const dummyGitHubContext = {
+    payload: dummyWebhookPayload,
+};
+
+mock('@actions/github', { context: dummyGitHubContext });
 
 const { extractResult } = require('../src/extract');
 
 describe('extractResult()', function() {
     after(function() {
         mock.stop('@actions/github');
-        mock.stop('@actions/core');
+    });
+
+    afterEach(function() {
+        dummyGitHubContext.payload = dummyWebhookPayload;
     });
 
     const normalCases: Array<{
@@ -168,7 +179,7 @@ describe('extractResult()', function() {
             };
             const bench = await extractResult(config);
 
-            A.equal(bench.commit, 'dummy commit hash');
+            A.equal(bench.commit, dummyWebhookPayload.head_commit);
             A.ok(bench.date <= Date.now(), bench.date.toString());
             A.equal(bench.tool, test.tool);
             A.deepEqual(test.expected, bench.benches);
@@ -180,7 +191,7 @@ describe('extractResult()', function() {
             tool: 'foo',
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
         };
-        await A.rejects(() => extractResult(config), /^Error: FATAL: Unexpected tool: 'foo'$/);
+        await A.rejects(extractResult(config), /^Error: FATAL: Unexpected tool: 'foo'$/);
     });
 
     it('raises an error when output file is not readable', async function() {
@@ -188,7 +199,7 @@ describe('extractResult()', function() {
             tool: 'go',
             outputFilePath: 'path/does/not/exist.txt',
         };
-        await A.rejects(() => extractResult(config));
+        await A.rejects(extractResult(config));
     });
 
     it('raises an error when no output found', async function() {
@@ -196,7 +207,7 @@ describe('extractResult()', function() {
             tool: 'cargo',
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
         };
-        await A.rejects(() => extractResult(config), /^Error: No benchmark result was found in /);
+        await A.rejects(extractResult(config), /^Error: No benchmark result was found in /);
     });
 
     const toolSpecificErrorCases: Array<{
@@ -218,7 +229,51 @@ describe('extractResult()', function() {
             // Note: go_output.txt is not in JSON format!
             const outputFilePath = path.join(__dirname, 'data', 'extract', t.file);
             const config = { tool: t.tool, outputFilePath };
-            await A.rejects(() => extractResult(config), t.expected);
+            await A.rejects(extractResult(config), t.expected);
         });
     }
+
+    it('collects the commit information from pull_request payload as fallback', async function() {
+        dummyGitHubContext.payload = {
+            pull_request: {
+                title: 'this is title',
+                html_url: 'https://github.com/dummy/repo/pull/1',
+                head: {
+                    sha: 'abcdef0123456789',
+                    user: {
+                        login: 'user',
+                    },
+                    repo: {
+                        updated_at: 'repo updated at timestamp',
+                    },
+                },
+            },
+        };
+        const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
+        const config = {
+            tool: 'go',
+            outputFilePath,
+        };
+        const { commit } = await extractResult(config);
+        const expectedUser = {
+            name: 'user',
+            username: 'user',
+        };
+        A.deepEqual(commit.author, expectedUser);
+        A.deepEqual(commit.committer, expectedUser);
+        A.equal(commit.id, 'abcdef0123456789');
+        A.equal(commit.message, 'this is title');
+        A.equal(commit.timestamp, 'repo updated at timestamp');
+        A.equal(commit.url, 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789');
+    });
+
+    it('raises an error when commit information is not found in webhook payload', async function() {
+        dummyGitHubContext.payload = {};
+        const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
+        const config = {
+            tool: 'go',
+            outputFilePath,
+        };
+        await A.rejects(extractResult(config), /^Error: No commit information is found in payload/);
+    });
 });
