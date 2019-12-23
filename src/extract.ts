@@ -10,25 +10,25 @@ export interface BenchmarkResult {
     extra?: string;
 }
 
+interface GitHubUser {
+    email?: string;
+    name: string;
+    username: string;
+}
+
+interface Commit {
+    author: GitHubUser;
+    committer: GitHubUser;
+    distinct?: unknown; // Unused
+    id: string;
+    message: string;
+    timestamp: string;
+    tree_id?: unknown; // Unused
+    url: string;
+}
+
 export interface Benchmark {
-    commit: {
-        author: {
-            email: string;
-            name: string;
-            username: string;
-        };
-        committer: {
-            email: string;
-            name: string;
-            username: string;
-        };
-        distinct: boolean;
-        id: string;
-        message: string;
-        timestamp: string;
-        tree_id: string;
-        url: string;
-    };
+    commit: Commit;
     date: number;
     tool: ToolType;
     benches: BenchmarkResult[];
@@ -136,6 +136,41 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
     } else {
         return [seconds, 'sec'];
     }
+}
+
+function getCommit(): Commit {
+    /* eslint-disable @typescript-eslint/camelcase */
+    if (github.context.payload.head_commit) {
+        return github.context.payload.head_commit;
+    }
+
+    const pr = github.context.payload.pull_request;
+    if (!pr) {
+        throw new Error(
+            `No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}`,
+        );
+    }
+
+    // On pull_request hook, head_commit is not available
+    const message: string = pr.title;
+    const id: string = pr.head.sha;
+    const timestamp: string = pr.head.repo.updated_at;
+    const url = `${pr.html_url}/commits/${id}`;
+    const name: string = pr.head.user.login;
+    const user = {
+        name,
+        username: name, // XXX: Fallback, not correct
+    };
+
+    return {
+        author: user,
+        committer: user,
+        id,
+        message,
+        timestamp,
+        url,
+    };
+    /* eslint-enable @typescript-eslint/camelcase */
 }
 
 function extractCargoResult(output: string): BenchmarkResult[] {
@@ -297,9 +332,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
 
-    /* eslint-disable @typescript-eslint/camelcase */
-    const commit = github.context.payload.head_commit;
-    /* eslint-enable @typescript-eslint/camelcase */
+    const commit = getCommit();
 
     return {
         commit,
