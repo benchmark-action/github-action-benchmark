@@ -36,7 +36,7 @@ function resolvePath(p: string): string {
     if (p.startsWith('~')) {
         const home = os.homedir();
         if (!home) {
-            throw new Error("Cannot resolve '~'");
+            throw new Error(`Cannot resolve '~' in ${p}`);
         }
         p = path.join(home, p.slice(1));
     }
@@ -45,15 +45,19 @@ function resolvePath(p: string): string {
 
 async function resolveFilePath(p: string): Promise<string> {
     p = resolvePath(p);
+
+    let s;
     try {
-        const s = await fs.stat(p);
-        if (!s.isFile()) {
-            throw new Error(`Specified path '${p}' is not a file`);
-        }
-        return p;
+        s = await fs.stat(p);
     } catch (e) {
         throw new Error(`Cannot stat '${p}': ${e}`);
     }
+
+    if (!s.isFile()) {
+        throw new Error(`Specified path '${p}' is not a file`);
+    }
+
+    return p;
 }
 
 async function validateOutputFilePath(filePath: string): Promise<string> {
