@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577083551587,
+  "lastUpdate": 1577153428279,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13343,6 +13343,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.90%",
             "unit": "ops/sec",
             "extra": "90 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "673f297ec48f8a3375cfc334c1f9088a5ecb9e3c",
+          "message": "fix error was wrongly wrapped on resolving paths",
+          "timestamp": "2019-12-24T11:08:55+09:00",
+          "tree_id": "184a1113921cf881fc37e6fc18560d2acd2d3f94",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/673f297ec48f8a3375cfc334c1f9088a5ecb9e3c"
+        },
+        "date": 1577153427362,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1037921,
+            "range": "±1.22%",
+            "unit": "ops/sec",
+            "extra": "90 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8517,
+            "range": "±2.18%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
           }
         ]
       }
