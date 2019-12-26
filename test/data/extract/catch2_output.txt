@@ -1,0 +1,32 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Catch2_bench is a Catch v2.11.0 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Fibonacci
+-------------------------------------------------------------------------------
+/home/doeme/Code/github-action-benchmark/examples/catch2/catch2_bench.cpp:5
+...............................................................................
+
+benchmark name                                  samples       iterations    estimated
+                                                mean          low mean      high mean
+                                                std dev       low std dev   high std dev
+-------------------------------------------------------------------------------
+Fibonacci 20                                              100             2     8.4318 ms 
+                                                    43.186 us     41.402 us     46.246 us 
+                                                    11.719 us      7.847 us     17.747 us 
+                                                                                          
+Fibonacci 25                                              100             1    45.6213 ms 
+                                                   451.183 us    441.654 us    469.296 us 
+                                                    65.064 us     36.524 us    106.192 us 
+
+Fibonacci Integer                                         100             1         45 ms 
+                                                        123 s         441 s    296.123 ns 
+                                                          2 s     36.524 us    106.192 us                                                     
+                                                                                          
+
+===============================================================================
+test cases: 1 | 1 passed
+assertions: - none -
+
