@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577853637211,
+  "lastUpdate": 1577853640483,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13489,6 +13489,44 @@ window.BENCHMARK_DATA = {
             "range": "±2.18%",
             "unit": "ops/sec",
             "extra": "88 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "5951ab86cee0ef1e196b63e9d70812a7bd664212",
+          "message": "fix benchmark result value from `go test -bench` is float number (#5)",
+          "timestamp": "2020-01-01T13:40:35+09:00",
+          "tree_id": "6f401e721ebb2ae406e61a1f2c9eb88f24d65299",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/5951ab86cee0ef1e196b63e9d70812a7bd664212"
+        },
+        "date": 1577853637148,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1004910,
+            "range": "±1.29%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8544,
+            "range": "±1.05%",
+            "unit": "ops/sec",
+            "extra": "90 samples"
           }
         ]
       }
