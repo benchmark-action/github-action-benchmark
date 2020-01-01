@@ -1,3 +1,12 @@
+<a name="v1.6.7"></a>
+# [v1.6.7](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.7) - 01 Jan 2020
+
+- **Fix:** Extracting the benchmark result value from `go test -bench` did not assume float numbers (Fixed [#5](https://github.com/rhysd/github-action-benchmark/issues/5))
+- **Fix:** Running this action on `pull_request` event caused an error since `head_commit` payload is not set at the event. In the case, now this action tries to extract the commit information from `pull_request` payload
+
+[Changes][v1.6.7]
+
+
 <a name="v1.6.6"></a>
 # [v1.6.6](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.6.6) - 23 Dec 2019
 
@@ -222,6 +231,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.6.7]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.6...v1.6.7
 [v1.6.6]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.5...v1.6.6
 [v1.6.5]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.4...v1.6.5
 [v1.6.4]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.3...v1.6.4
