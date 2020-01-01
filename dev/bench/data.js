@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577153469667,
+  "lastUpdate": 1577853629336,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16533,6 +16533,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020644083742750674",
             "extra": "mean: 2.462859491094329 msec\nrounds: 393"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "5951ab86cee0ef1e196b63e9d70812a7bd664212",
+          "message": "fix benchmark result value from `go test -bench` is float number (#5)",
+          "timestamp": "2020-01-01T13:40:35+09:00",
+          "tree_id": "6f401e721ebb2ae406e61a1f2c9eb88f24d65299",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/5951ab86cee0ef1e196b63e9d70812a7bd664212"
+        },
+        "date": 1577853628455,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 43269.58633351906,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000012267545010478808",
+            "extra": "mean: 23.110921197444952 usec\nrounds: 25126"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 345.91093426754793,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004493867090824235",
+            "extra": "mean: 2.890917577142967 msec\nrounds: 350"
           }
         ]
       }
