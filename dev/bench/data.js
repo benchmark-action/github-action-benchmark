@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1577853650082,
+  "lastUpdate": 1577853690435,
   "entries": {
     "Rust Benchmark": [
       {
@@ -18591,6 +18591,42 @@ window.BENCHMARK_DATA = {
             "value": 28473.44071724826,
             "unit": "ns/iter",
             "extra": "iterations: 24594\ncpu: 28470.45067902741 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "5951ab86cee0ef1e196b63e9d70812a7bd664212",
+          "message": "fix benchmark result value from `go test -bench` is float number (#5)",
+          "timestamp": "2020-01-01T13:40:35+09:00",
+          "tree_id": "6f401e721ebb2ae406e61a1f2c9eb88f24d65299",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/5951ab86cee0ef1e196b63e9d70812a7bd664212"
+        },
+        "date": 1577853689570,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 221.10444618822905,
+            "unit": "ns/iter",
+            "extra": "iterations: 3136237\ncpu: 221.06372732672946 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29669.15723938765,
+            "unit": "ns/iter",
+            "extra": "iterations: 23531\ncpu: 29660.811142747865 ns\nthreads: 1"
           }
         ]
       }
