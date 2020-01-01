@@ -66,7 +66,7 @@ describe('extractResult()', function() {
                 {
                     name: 'BenchmarkFib20',
                     unit: 'ns/op',
-                    value: 40537,
+                    value: 40537.123,
                     extra: '30000 times',
                 },
             ],

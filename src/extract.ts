@@ -207,7 +207,8 @@ function extractGoResult(output: string): BenchmarkResult[] {
     const ret = [];
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
-    const reExtract = /^(Benchmark\w+)(-\d+)?\s+(\d+)\s+(\d+)\s+(.+)$/;
+    //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
+    const reExtract = /^(Benchmark\w+)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
 
     for (const line of lines) {
         const m = line.match(reExtract);
@@ -218,7 +219,7 @@ function extractGoResult(output: string): BenchmarkResult[] {
         const name = m[1];
         const procs = m[2] !== undefined ? m[2].slice(1) : null;
         const times = m[3];
-        const value = parseInt(m[4], 10);
+        const value = parseFloat(m[4]);
         const unit = m[5];
 
         let extra = `${times} times`;
