@@ -23,6 +23,35 @@ function getHumanReadableUnitValue(seconds) {
         return [seconds, 'sec'];
     }
 }
+function getCommit() {
+    /* eslint-disable @typescript-eslint/camelcase */
+    if (github.context.payload.head_commit) {
+        return github.context.payload.head_commit;
+    }
+    const pr = github.context.payload.pull_request;
+    if (!pr) {
+        throw new Error(`No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}`);
+    }
+    // On pull_request hook, head_commit is not available
+    const message = pr.title;
+    const id = pr.head.sha;
+    const timestamp = pr.head.repo.updated_at;
+    const url = `${pr.html_url}/commits/${id}`;
+    const name = pr.head.user.login;
+    const user = {
+        name,
+        username: name,
+    };
+    return {
+        author: user,
+        committer: user,
+        id,
+        message,
+        timestamp,
+        url,
+    };
+    /* eslint-enable @typescript-eslint/camelcase */
+}
 function extractCargoResult(output) {
     const lines = output.split('\n');
     const ret = [];
@@ -52,7 +81,8 @@ function extractGoResult(output) {
     const ret = [];
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
-    const reExtract = /^(Benchmark\w+)(-\d+)?\s+(\d+)\s+(\d+)\s+(.+)$/;
+    //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
+    const reExtract = /^(Benchmark\w+)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
     for (const line of lines) {
         const m = line.match(reExtract);
         if (m === null) {
@@ -61,7 +91,7 @@ function extractGoResult(output) {
         const name = m[1];
         const procs = m[2] !== undefined ? m[2].slice(1) : null;
         const times = m[3];
-        const value = parseInt(m[4], 10);
+        const value = parseFloat(m[4]);
         const unit = m[5];
         let extra = `${times} times`;
         if (procs !== null) {
@@ -158,9 +188,7 @@ async function extractResult(config) {
     if (benches.length === 0) {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
-    /* eslint-disable @typescript-eslint/camelcase */
-    const commit = github.context.payload.head_commit;
-    /* eslint-enable @typescript-eslint/camelcase */
+    const commit = getCommit();
     return {
         commit,
         date: Date.now(),
