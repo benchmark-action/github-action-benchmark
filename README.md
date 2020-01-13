@@ -531,7 +531,9 @@ Every release will appear on your GitHub notifications page.
 
 [the MIT License](./LICENSE.txt)
 
-[build-badge]: https://github.com/rhysd/github-action-benchmark/workflows/CI/badge.svg
+
+
+[build-badge]: https://github.com/rhysd/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
 [ci]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3ACI
 [codecov-badge]: https://codecov.io/gh/rhysd/github-action-benchmark/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/rhysd/github-action-benchmark
