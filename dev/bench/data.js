@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579071273626,
+  "lastUpdate": 1579071276740,
   "entries": {
     "Rust Benchmark": [
       {
@@ -4750,6 +4750,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 31484,
             "range": "+/- 3,349",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a013373ae57b193925e5f51ad238191f825e2f9b",
+          "message": "enable eqeqeq rule in eslint",
+          "timestamp": "2020-01-15T15:52:29+09:00",
+          "tree_id": "591a5edd9737a897951836d72c23fd3c97cea4d3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a013373ae57b193925e5f51ad238191f825e2f9b"
+        },
+        "date": 1579071275733,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 267,
+            "range": "+/- 28",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 35199,
+            "range": "+/- 5,392",
             "unit": "ns/iter"
           }
         ]
