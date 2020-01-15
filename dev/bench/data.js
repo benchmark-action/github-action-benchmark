@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1578935360722,
+  "lastUpdate": 1579071263609,
   "entries": {
     "Rust Benchmark": [
       {
@@ -18995,6 +18995,42 @@ window.BENCHMARK_DATA = {
             "value": 30071.132297552303,
             "unit": "ns/iter",
             "extra": "iterations: 23364\ncpu: 30065.359912686185 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a013373ae57b193925e5f51ad238191f825e2f9b",
+          "message": "enable eqeqeq rule in eslint",
+          "timestamp": "2020-01-15T15:52:29+09:00",
+          "tree_id": "591a5edd9737a897951836d72c23fd3c97cea4d3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a013373ae57b193925e5f51ad238191f825e2f9b"
+        },
+        "date": 1579071262773,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 233.22915107463,
+            "unit": "ns/iter",
+            "extra": "iterations: 2950224\ncpu: 233.0148246370445 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 31200.627947559107,
+            "unit": "ns/iter",
+            "extra": "iterations: 22349\ncpu: 31191.10774531299 ns\nthreads: 1"
           }
         ]
       }
