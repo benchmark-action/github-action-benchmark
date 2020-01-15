@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579071270214,
+  "lastUpdate": 1579071273626,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17051,6 +17051,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00027304098808937736",
             "extra": "mean: 2.449107602771538 msec\nrounds: 433"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a013373ae57b193925e5f51ad238191f825e2f9b",
+          "message": "enable eqeqeq rule in eslint",
+          "timestamp": "2020-01-15T15:52:29+09:00",
+          "tree_id": "591a5edd9737a897951836d72c23fd3c97cea4d3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a013373ae57b193925e5f51ad238191f825e2f9b"
+        },
+        "date": 1579071262599,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 41062.50165573429,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007791034756028767",
+            "extra": "mean: 24.353119261557513 usec\nrounds: 28819"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 341.903739004712,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024709879079279633",
+            "extra": "mean: 2.924799836676306 msec\nrounds: 349"
           }
         ]
       }
