@@ -182,7 +182,7 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
 async function main() {
     console.log('Start validating modifications by action with args', process.argv);
 
-    if (process.argv.length != 4) {
+    if (process.argv.length !== 4) {
         help();
     }
 
