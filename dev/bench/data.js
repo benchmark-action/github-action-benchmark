@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579170856254,
+  "lastUpdate": 1579170859552,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9593,6 +9593,42 @@ window.BENCHMARK_DATA = {
             "value": 58059,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "643d2f3d26c09ec4dbf1cd510dc118013af564cf",
+          "message": "run yamllint with warnings as error on CI",
+          "timestamp": "2020-01-16T19:33:03+09:00",
+          "tree_id": "99cc101d53a94131405869410619348ffd7fd976",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/643d2f3d26c09ec4dbf1cd510dc118013af564cf"
+        },
+        "date": 1579170855778,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 479,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 58857,
+            "unit": "ns/op",
+            "extra": "20000 times\n2 procs"
           }
         ]
       }
