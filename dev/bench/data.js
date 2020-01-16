@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579167774254,
+  "lastUpdate": 1579170167957,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17569,6 +17569,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000429313187856854",
             "extra": "mean: 2.916301602985315 msec\nrounds: 335"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b8935cc87c54d24bb845673a85a267db3908aba6",
+          "message": "describe Catch2 support in README",
+          "timestamp": "2020-01-16T19:21:38+09:00",
+          "tree_id": "4a536d101262d2ce0a1611323ef12a34a171c65a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b8935cc87c54d24bb845673a85a267db3908aba6"
+        },
+        "date": 1579170167008,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 50708.09053818904,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000009666802827405741",
+            "extra": "mean: 19.7207189106615 usec\nrounds: 32680"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 419.3206128770881,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015776025659771604",
+            "extra": "mean: 2.3848100219512025 msec\nrounds: 410"
           }
         ]
       }
