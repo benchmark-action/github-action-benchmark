@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579166737349,
+  "lastUpdate": 1579166741228,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13929,6 +13929,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.82%",
             "unit": "ops/sec",
             "extra": "86 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99ae26bc5c473f0d87821995681003a7cb128a08",
+          "message": "Merge pull request #6 from bernedom/master\n\nAdd support for catch2 benchmarks",
+          "timestamp": "2020-01-16T18:24:52+09:00",
+          "tree_id": "adb2dca42e7955d6b732ff0d0f315ac3cdfeb36f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99ae26bc5c473f0d87821995681003a7cb128a08"
+        },
+        "date": 1579166737820,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1112104,
+            "range": "±0.90%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9451,
+            "range": "±0.69%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
           }
         ]
       }
