@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        # TODO: Temporary (start)
+      # TODO: Temporary (start)
       - uses: actions/setup-node@v1
       - run: npm ci
       - run: npm run build
-        # TODO: Temporary (end)
+      # TODO: Temporary (end)
       - name: Build and run benchmarks with Catch2
         run: |
           cd examples/catch2
