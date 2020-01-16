@@ -246,7 +246,7 @@ jobs:
       - name: Apply yamllint
         run: |
           sudo pip install yamllint
-          yamllint .github/workflows
+          yamllint --strict .github/workflows
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
