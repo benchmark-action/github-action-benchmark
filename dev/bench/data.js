@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579170178042,
+  "lastUpdate": 1579170181456,
   "entries": {
     "Rust Benchmark": [
       {
@@ -4894,6 +4894,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33491,
             "range": "+/- 5,039",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b8935cc87c54d24bb845673a85a267db3908aba6",
+          "message": "describe Catch2 support in README",
+          "timestamp": "2020-01-16T19:21:38+09:00",
+          "tree_id": "4a536d101262d2ce0a1611323ef12a34a171c65a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b8935cc87c54d24bb845673a85a267db3908aba6"
+        },
+        "date": 1579170179100,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 262,
+            "range": "+/- 60",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 33738,
+            "range": "+/- 3,386",
             "unit": "ns/iter"
           }
         ]
