@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579170859552,
+  "lastUpdate": 1579170862702,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17791,6 +17791,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00015776025659771604",
             "extra": "mean: 2.3848100219512025 msec\nrounds: 410"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "643d2f3d26c09ec4dbf1cd510dc118013af564cf",
+          "message": "run yamllint with warnings as error on CI",
+          "timestamp": "2020-01-16T19:33:03+09:00",
+          "tree_id": "99cc101d53a94131405869410619348ffd7fd976",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/643d2f3d26c09ec4dbf1cd510dc118013af564cf"
+        },
+        "date": 1579170861770,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 42869.79410730929,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000459467946935823",
+            "extra": "mean: 23.32644746314516 usec\nrounds: 31949"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 365.09795281863666,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023619954697004985",
+            "extra": "mean: 2.738990981131994 msec\nrounds: 371"
           }
         ]
       }
