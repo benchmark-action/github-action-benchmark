@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579170865666,
+  "lastUpdate": 1579170892281,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20213,6 +20213,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 25",
             "value": 220.319,
             "range": "+/- 46.46",
+            "unit": "us",
+            "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "643d2f3d26c09ec4dbf1cd510dc118013af564cf",
+          "message": "run yamllint with warnings as error on CI",
+          "timestamp": "2020-01-16T19:33:03+09:00",
+          "tree_id": "99cc101d53a94131405869410619348ffd7fd976",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/643d2f3d26c09ec4dbf1cd510dc118013af564cf"
+        },
+        "date": 1579170891050,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 20",
+            "value": 21.419,
+            "range": "+/- 8.032",
+            "unit": "us",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 25",
+            "value": 233.006,
+            "range": "+/- 30.637",
             "unit": "us",
             "extra": "100 samples"
           }
