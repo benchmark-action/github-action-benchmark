@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        # TODO: Temporary (start)
+      - uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run build
+        # TODO: Temporary (end)
       - run: |
           cd examples/catch2
           mkdir build && cd build
