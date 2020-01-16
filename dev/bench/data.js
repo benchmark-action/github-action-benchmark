@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579166758337,
+  "lastUpdate": 1579167177545,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19363,6 +19363,42 @@ window.BENCHMARK_DATA = {
             "value": 27968.343740057404,
             "unit": "ns/iter",
             "extra": "iterations: 25144\ncpu: 27962.89890232262 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f0757c8721bfa6e0a557f8414ba206772ca9a1a8",
+          "message": "build action and run Catch2 example locally until new version is released",
+          "timestamp": "2020-01-16T18:31:40+09:00",
+          "tree_id": "be058eb0dbf4ad52c656fbe02e5ec74c3c3967f1",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f0757c8721bfa6e0a557f8414ba206772ca9a1a8"
+        },
+        "date": 1579167176685,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 208.47048030813076,
+            "unit": "ns/iter",
+            "extra": "iterations: 3467482\ncpu: 208.3659032692888 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27707.631329241758,
+            "unit": "ns/iter",
+            "extra": "iterations: 24450\ncpu: 27668.066707566468 ns\nthreads: 1"
           }
         ]
       }
