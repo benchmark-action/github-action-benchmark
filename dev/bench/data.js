@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579167177545,
+  "lastUpdate": 1579167180862,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9377,6 +9377,42 @@ window.BENCHMARK_DATA = {
             "value": 57195,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f0757c8721bfa6e0a557f8414ba206772ca9a1a8",
+          "message": "build action and run Catch2 example locally until new version is released",
+          "timestamp": "2020-01-16T18:31:40+09:00",
+          "tree_id": "be058eb0dbf4ad52c656fbe02e5ec74c3c3967f1",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f0757c8721bfa6e0a557f8414ba206772ca9a1a8"
+        },
+        "date": 1579167177345,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 486,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 60094,
+            "unit": "ns/op",
+            "extra": "20000 times\n2 procs"
           }
         ]
       }
