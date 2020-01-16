@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579167193078,
+  "lastUpdate": 1579167213688,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19547,6 +19547,46 @@ window.BENCHMARK_DATA = {
             "value": 27707.631329241758,
             "unit": "ns/iter",
             "extra": "iterations: 24450\ncpu: 27668.066707566468 ns\nthreads: 1"
+          }
+        ]
+      }
+    ],
+    "Catch2 Benchmark": [
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f0757c8721bfa6e0a557f8414ba206772ca9a1a8",
+          "message": "build action and run Catch2 example locally until new version is released",
+          "timestamp": "2020-01-16T18:31:40+09:00",
+          "tree_id": "be058eb0dbf4ad52c656fbe02e5ec74c3c3967f1",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f0757c8721bfa6e0a557f8414ba206772ca9a1a8"
+        },
+        "date": 1579167212476,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 20",
+            "value": 17.246,
+            "range": "+/- 4.869",
+            "unit": "us",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 25",
+            "value": 200.894,
+            "range": "+/- 27.735",
+            "unit": "us",
+            "extra": "100 samples"
           }
         ]
       }
