@@ -135,8 +135,12 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
         throw new Error('Benchmark suite is empty after action');
     }
 
-    // XXX: This check does not consider the case where previous data does not exist.
-    // In case, new element is created so diff.kind does not become 'A' (instead it does 'N')
+    if (diff.kind === 'N') {
+        // Previous data does not exist. This case occurs only once when new tool support is added.
+        // Ignore checks.
+        return;
+    }
+
     assertDiffArray(diff);
 
     if (!deepEq(diff.path, ['entries', expectedBenchName])) {
