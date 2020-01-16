@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579170207952,
+  "lastUpdate": 1579170848997,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19915,6 +19915,42 @@ window.BENCHMARK_DATA = {
             "value": 26398.40414997374,
             "unit": "ns/iter",
             "extra": "iterations: 26458\ncpu: 26394.78282561041 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "643d2f3d26c09ec4dbf1cd510dc118013af564cf",
+          "message": "run yamllint with warnings as error on CI",
+          "timestamp": "2020-01-16T19:33:03+09:00",
+          "tree_id": "99cc101d53a94131405869410619348ffd7fd976",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/643d2f3d26c09ec4dbf1cd510dc118013af564cf"
+        },
+        "date": 1579170847971,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 227.7472378750466,
+            "unit": "ns/iter",
+            "extra": "iterations: 2771598\ncpu: 227.46403085873203 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30453.70215839936,
+            "unit": "ns/iter",
+            "extra": "iterations: 22841\ncpu: 30449.91576550939 ns\nthreads: 1"
           }
         ]
       }
