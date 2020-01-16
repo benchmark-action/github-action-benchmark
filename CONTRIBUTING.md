@@ -3,7 +3,7 @@ Development
 
 ## How to add new benchmark tool support
 
-Adding support for new benchmaking tools is welcome!
+Adding support for new benchmarking tools is welcome!
 
 1. Add your tool name in `src/config.ts`
 2. Implement the logic to extract benchmark results from output in `src/extract.ts`
@@ -11,7 +11,7 @@ Adding support for new benchmaking tools is welcome!
 4. Add your tool's color in `default_index_html.ts`
 5. Add example project under `examples/` directory
 6. Add workflow to run the example project under `.github/workflows/` directory
-7. Update `.github/workflows/ci.yml` to check your tool works without an error
+7. Update `.github/workflows/ci.yml` to check your tool works without an error (see below for needed changes)
 8. Add README.md in the example project directory and update README.md at root directory
 
 Important part is 2.
@@ -28,6 +28,22 @@ And for another example, here are commits to add support for `pytest-benchmark`:
 - Add test: https://github.com/rhysd/github-action-benchmark/commit/eb449170566ff5882e75eeaeb637f17a302fbf7e
 - Add workflows for test and example: https://github.com/rhysd/github-action-benchmark/commit/1e4ebf2e9ecde9e7620661c60455b22837a2bdaf
 - Add documentation: https://github.com/rhysd/github-action-benchmark/commit/895f92f564521597492bd281cbf6c8efd39f628e
+
+## Running CI workflow on a forked repo
+
+Since the benchmark data includes the URL of the repository the tests and examples will fail when the repo is forked. In order to get the ci workflow and all examples running the URL has to be changed
+
+### Change workflows and tests
+
+1. in [`ci_validate_modification.ts`](scripts/ci_validate_modification.ts) in the `validateJSON` function replace `https://github.com/rhysd/github-action-benchmark` with your repo URL (i.e. `https://github.com/<YOU>/github-action-benchmark`)
+2. in all workflow (`.yml`) in `.github/workflows` replace `alert-comment-cc-users: '@rhysd'` with your user
+
+### Adapt past benchmark data to new repo path 
+
+1. checkout the branch `gh-pages` 
+2. in `dev/bench/data.js` replace `https://github.com/rhysd/github-action-benchmark` with your repo URL (i.e. `https://github.com/<YOU>/github-action-benchmark`)
+
+In case you are adding a new tool and wand to run ci, you have to add at least one set of example data to the `data.js` in the gh-pages branch.
 
 ## How to create a new release
 

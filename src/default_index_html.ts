@@ -116,6 +116,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           benchmarkjs: '#f1e05a',
           pytest: '#3572a5',
           googlecpp: '#f34b7d',
+          catch2: '#f34b7d',
           _: '#333333'
         };
 

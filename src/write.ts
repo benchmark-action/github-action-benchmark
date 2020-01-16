@@ -69,6 +69,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return true;
         case 'googlecpp':
             return false;
+        case 'catch2':
+            return false;
     }
 }
 
