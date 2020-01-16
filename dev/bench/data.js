@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579166744349,
+  "lastUpdate": 1579166747161,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19291,6 +19291,42 @@ window.BENCHMARK_DATA = {
             "value": 31200.627947559107,
             "unit": "ns/iter",
             "extra": "iterations: 22349\ncpu: 31191.10774531299 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99ae26bc5c473f0d87821995681003a7cb128a08",
+          "message": "Merge pull request #6 from bernedom/master\n\nAdd support for catch2 benchmarks",
+          "timestamp": "2020-01-16T18:24:52+09:00",
+          "tree_id": "adb2dca42e7955d6b732ff0d0f315ac3cdfeb36f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99ae26bc5c473f0d87821995681003a7cb128a08"
+        },
+        "date": 1579166743180,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 208.73466647138383,
+            "unit": "ns/iter",
+            "extra": "iterations: 3277230\ncpu: 207.16137042563383 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27968.343740057404,
+            "unit": "ns/iter",
+            "extra": "iterations: 25144\ncpu: 27962.89890232262 ns\nthreads: 1"
           }
         ]
       }
