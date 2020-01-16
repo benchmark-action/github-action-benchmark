@@ -12,7 +12,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         # TODO: Temporary (end)
-      - run: |
+      - name: Build and run benchmarks with Catch2
+        run: |
           cd examples/catch2
           mkdir build && cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -31,4 +32,4 @@ jobs:
           alert-threshold: "200%"
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: "@bernedom"
+          alert-comment-cc-users: "@bernedom,@rhysd"
