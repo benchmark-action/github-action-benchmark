@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579166747161,
+  "lastUpdate": 1579166758337,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9339,6 +9339,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 54252,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99ae26bc5c473f0d87821995681003a7cb128a08",
+          "message": "Merge pull request #6 from bernedom/master\n\nAdd support for catch2 benchmarks",
+          "timestamp": "2020-01-16T18:24:52+09:00",
+          "tree_id": "adb2dca42e7955d6b732ff0d0f315ac3cdfeb36f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99ae26bc5c473f0d87821995681003a7cb128a08"
+        },
+        "date": 1579166757377,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 470,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 57195,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
