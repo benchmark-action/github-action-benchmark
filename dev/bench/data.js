@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579263451345,
+  "lastUpdate": 1579263472058,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21241,6 +21241,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 20.676,
             "range": "+/- 1.404",
+            "unit": "us",
+            "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "da06e8bad6862a75115488d7c175e70e2462a257",
+          "message": "Revert \"'x-access-token:' should be omit for personal access token\"\n\nThis reverts commit ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d.",
+          "timestamp": "2020-01-17T21:16:20+09:00",
+          "tree_id": "a99e0bc915152def6be391c7c01c9a5d6b617e26",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/da06e8bad6862a75115488d7c175e70e2462a257"
+        },
+        "date": 1579263470817,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 182,
+            "range": "+/- 81",
+            "unit": "ns",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.555,
+            "range": "+/- 2.288",
             "unit": "us",
             "extra": "100 samples"
           }
