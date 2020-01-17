@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579263444947,
+  "lastUpdate": 1579263448191,
   "entries": {
     "Rust Benchmark": [
       {
@@ -18679,6 +18679,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00037826282307824735",
             "extra": "mean: 2.8650267584267803 msec\nrounds: 356"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "da06e8bad6862a75115488d7c175e70e2462a257",
+          "message": "Revert \"'x-access-token:' should be omit for personal access token\"\n\nThis reverts commit ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d.",
+          "timestamp": "2020-01-17T21:16:20+09:00",
+          "tree_id": "a99e0bc915152def6be391c7c01c9a5d6b617e26",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/da06e8bad6862a75115488d7c175e70e2462a257"
+        },
+        "date": 1579263440414,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 43972.89461769464,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000024593403279802303",
+            "extra": "mean: 22.741282071469573 usec\nrounds: 26667"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 366.43349747725193,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024277276990493832",
+            "extra": "mean: 2.7290081471388397 msec\nrounds: 367"
           }
         ]
       }
