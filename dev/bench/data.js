@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579260334052,
+  "lastUpdate": 1579261255641,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9879,6 +9879,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 47629,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d",
+          "message": "'x-access-token:' should be omit for personal access token\n\nref:\n  https://github.com/JamesIves/github-pages-deploy-action/blob/dev/src/constants.ts#L40",
+          "timestamp": "2020-01-17T20:40:01+09:00",
+          "tree_id": "a33d5d281817f0ddc07b9cc6be3cee087d064e3f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d"
+        },
+        "date": 1579261253412,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 426,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 51877,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
