@@ -18,7 +18,7 @@ jobs:
           mkdir build && cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
-          ./Catch2_bench > ../benchmark_result.txt
+          ./Catch2_bench | tee ../benchmark_result.txt
       - name: Store benchmark result
         uses: ./
         with:
