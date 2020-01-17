@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579259197075,
+  "lastUpdate": 1579260274209,
   "entries": {
     "Rust Benchmark": [
       {
@@ -18161,6 +18161,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020689151208137788",
             "extra": "mean: 2.380178822888195 msec\nrounds: 367"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9",
+          "message": "seems 'repo' permission is necessary to deploy gh-pages",
+          "timestamp": "2020-01-17T20:23:35+09:00",
+          "tree_id": "7958a8eb443521aece7239ead8442307a9de1211",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9"
+        },
+        "date": 1579260273141,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 42184.887180342324,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000015175839467186976",
+            "extra": "mean: 23.70517184803539 usec\nrounds: 27856"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 351.3127179755436,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004616332334569485",
+            "extra": "mean: 2.8464668337729075 msec\nrounds: 379"
           }
         ]
       }
