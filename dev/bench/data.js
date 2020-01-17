@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579260282441,
+  "lastUpdate": 1579260285442,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9807,6 +9807,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 56609,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9",
+          "message": "seems 'repo' permission is necessary to deploy gh-pages",
+          "timestamp": "2020-01-17T20:23:35+09:00",
+          "tree_id": "7958a8eb443521aece7239ead8442307a9de1211",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9"
+        },
+        "date": 1579260277661,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 380,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 47629,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
