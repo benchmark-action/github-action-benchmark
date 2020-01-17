@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579260289963,
+  "lastUpdate": 1579260334052,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20879,6 +20879,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 25",
             "value": 216.166,
             "range": "+/- 27.783",
+            "unit": "us",
+            "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9",
+          "message": "seems 'repo' permission is necessary to deploy gh-pages",
+          "timestamp": "2020-01-17T20:23:35+09:00",
+          "tree_id": "7958a8eb443521aece7239ead8442307a9de1211",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9"
+        },
+        "date": 1579260332849,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 20",
+            "value": 20.678,
+            "range": "+/- 5.743",
+            "unit": "us",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 25",
+            "value": 220.307,
+            "range": "+/- 23.558",
             "unit": "us",
             "extra": "100 samples"
           }
