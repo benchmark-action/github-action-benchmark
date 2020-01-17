@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579261270386,
+  "lastUpdate": 1579261284911,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5074,6 +5074,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33147,
             "range": "+/- 2,072",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d",
+          "message": "'x-access-token:' should be omit for personal access token\n\nref:\n  https://github.com/JamesIves/github-pages-deploy-action/blob/dev/src/constants.ts#L40",
+          "timestamp": "2020-01-17T20:40:01+09:00",
+          "tree_id": "a33d5d281817f0ddc07b9cc6be3cee087d064e3f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d"
+        },
+        "date": 1579261279144,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 223,
+            "range": "+/- 64",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 29049,
+            "range": "+/- 5,500",
             "unit": "ns/iter"
           }
         ]
