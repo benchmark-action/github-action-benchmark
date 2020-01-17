@@ -369,11 +369,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         }
     }
 
-    if (
-        ret.every(function(r) {
-            return r.range === '' && r.unit === '';
-        })
-    ) {
+    if (ret.some(r => r.range === '' || r.unit === '')) {
         throw new Error(`Invalid range or unit for catch2 benchmark`);
     }
 
