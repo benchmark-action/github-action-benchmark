@@ -134,7 +134,7 @@ describe('git', function() {
                 args[1],
                 userArgs.concat([
                     'push',
-                    'https://this-is-token@github.com/user/repo.git',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
                     'my-branch:my-branch',
                     '--no-verify',
                     'opt1',
@@ -169,7 +169,7 @@ describe('git', function() {
                 args[1],
                 userArgs.concat([
                     'pull',
-                    'https://this-is-token@github.com/user/repo.git',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
                     'my-branch',
                     'opt1',
                     'opt2',
