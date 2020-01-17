@@ -54,7 +54,7 @@ function getRemoteUrl(token: string): string {
         throw new Error(`Repository info is not available in payload: ${JSON.stringify(github.context.payload)}`);
     }
 
-    return `https://x-access-token:${token}@github.com/${fullName}.git`;
+    return `https://${token}@github.com/${fullName}.git`;
 }
 
 export async function push(token: string, branch: string, ...options: string[]): Promise<string> {
