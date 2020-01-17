@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579260274209,
+  "lastUpdate": 1579260278388,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20505,6 +20505,42 @@ window.BENCHMARK_DATA = {
             "value": 21974.576421491543,
             "unit": "ns/iter",
             "extra": "iterations: 32589\ncpu: 21970.639755745804 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9",
+          "message": "seems 'repo' permission is necessary to deploy gh-pages",
+          "timestamp": "2020-01-17T20:23:35+09:00",
+          "tree_id": "7958a8eb443521aece7239ead8442307a9de1211",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0e79e3288ddd5cbbc7f2a4873483af1a58bdef9"
+        },
+        "date": 1579260274708,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 246.81251215846976,
+            "unit": "ns/iter",
+            "extra": "iterations: 2724438\ncpu: 245.65203575930158 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30895.6197314187,
+            "unit": "ns/iter",
+            "extra": "iterations: 22563\ncpu: 30888.41971369055 ns\nthreads: 1"
           }
         ]
       }
