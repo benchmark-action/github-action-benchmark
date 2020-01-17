@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579262045993,
+  "lastUpdate": 1579263439133,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21019,6 +21019,42 @@ window.BENCHMARK_DATA = {
             "value": 26192.935209974978,
             "unit": "ns/iter",
             "extra": "iterations: 26146\ncpu: 26179.07683775721 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "da06e8bad6862a75115488d7c175e70e2462a257",
+          "message": "Revert \"'x-access-token:' should be omit for personal access token\"\n\nThis reverts commit ef551ef34a8aee04a7ead1c96b1b4ef909be8c4d.",
+          "timestamp": "2020-01-17T21:16:20+09:00",
+          "tree_id": "a99e0bc915152def6be391c7c01c9a5d6b617e26",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/da06e8bad6862a75115488d7c175e70e2462a257"
+        },
+        "date": 1579263438224,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 202.27771403779315,
+            "unit": "ns/iter",
+            "extra": "iterations: 3351289\ncpu: 202.1910500705848 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 26821.909684093276,
+            "unit": "ns/iter",
+            "extra": "iterations: 25134\ncpu: 26816.076947561072 ns\nthreads: 1"
           }
         ]
       }
