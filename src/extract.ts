@@ -316,8 +316,8 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     //                11.719 us      7.847 us     17.747 us <-- Ignored
 
     const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
-    const reBenchmarkStart = /^([a-zA-Z\d ]+) +(\d+) +(\d+) +(\d+(\.\d+)?) (ns|ms|us|s)/;
-    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(\d+(?:\.\d+)?) (ns|us|ms|s) +(\d+(?:\.\d+)?) (ns|us|ms|s)/;
+    const reBenchmarkStart = /^([a-zA-Z\d ]+) +(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)/;
+    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
 
