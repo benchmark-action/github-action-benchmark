@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579447008672,
+  "lastUpdate": 1579486244319,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21317,6 +21317,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.303,
             "range": "+/- 2.141",
+            "unit": "us",
+            "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "845ca068060c04702936d0e6f95bf3ec61705fb8",
+          "message": "wip",
+          "timestamp": "2020-01-20T11:08:55+09:00",
+          "tree_id": "5c0beb626dd09d4bbd5a12f41f82a88f4fac3ba0",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/845ca068060c04702936d0e6f95bf3ec61705fb8"
+        },
+        "date": 1579486242721,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 177,
+            "range": "+/- 14",
+            "unit": "ns",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 20.673,
+            "range": "+/- 1.577",
             "unit": "us",
             "extra": "100 samples"
           }
