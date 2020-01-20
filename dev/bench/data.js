@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579491820155,
+  "lastUpdate": 1579491839535,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5182,6 +5182,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 34041,
             "range": "+/- 12,950",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3172d63464d3005406c7ce33d7360cb1affffc8d",
+          "message": "Merge branch 'fix-deploy-checkout-v2'",
+          "timestamp": "2020-01-20T12:42:36+09:00",
+          "tree_id": "b24198c000115cb9f934c6935af07316a38d2be3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3172d63464d3005406c7ce33d7360cb1affffc8d"
+        },
+        "date": 1579491838300,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 228,
+            "range": "+/- 37",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 31671,
+            "range": "+/- 3,727",
             "unit": "ns/iter"
           }
         ]
