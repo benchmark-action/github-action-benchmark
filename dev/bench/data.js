@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579517339401,
+  "lastUpdate": 1579517344283,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19123,6 +19123,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021951288911702975",
             "extra": "mean: 2.768838161725024 msec\nrounds: 371"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0c9f1b5b613e156a8f23402da0c7e91b7e36df0",
+          "message": "fix eslint error\n\nconfigured no-constant-condition since `while (true) { ... }` loop feels\nok for me.",
+          "timestamp": "2020-01-20T19:47:48+09:00",
+          "tree_id": "03a0d71e1ebf4ffbe7e9f50ee01be31b0bbbfc3b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0c9f1b5b613e156a8f23402da0c7e91b7e36df0"
+        },
+        "date": 1579517333220,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46399.118680809355,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000007222925143161276",
+            "extra": "mean: 21.552133498035587 usec\nrounds: 27933"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 380.8329446768303,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006163781568512817",
+            "extra": "mean: 2.6258232486913293 msec\nrounds: 382"
           }
         ]
       }
