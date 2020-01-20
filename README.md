@@ -219,7 +219,7 @@ deploy a GitHub Pages branch.
 2. Enter 'Developer settings' tab
 3. Enter 'Personal access tokens' tab
 4. Click 'Generate new token' and enter your favorite token name
-5. Check `repo` scope for `git push` and click 'Generate token' at bottom
+5. Check `public_repo` scope for `git push` and click 'Generate token' at bottom
 6. Go to your repository settings page
 7. Enter 'Secrets' tab
 8. Create new `PERSONAL_GITHUB_TOKEN` secret with a generated token string
