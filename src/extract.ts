@@ -323,12 +323,13 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
 
     const lines = output.split('\n');
     lines.reverse();
-    function nextLine(): string | null {
-        return lines.pop() ?? null;
+    let lnum = 0;
+    function nextLine(): [string | null, number] {
+        return [lines.pop() ?? null, ++lnum];
     }
 
     function extractBench(): BenchmarkResult | null {
-        const startLine = nextLine();
+        const startLine = nextLine()[0];
         if (startLine === null) {
             return null;
         }
@@ -341,33 +342,41 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         const name = start[1].trim();
         const extra = `${start[2]} samples\n${start[3]} iterations`;
 
-        const meanLine = nextLine();
+        const [meanLine, meanLineNum] = nextLine();
         if (meanLine === null) {
-            throw new Error(`Unexpected EOF: Mean values are missing for benchmark '${name}'`);
+            throw new Error(`Unexpected EOF: Mean values are missing for benchmark '${name}' at line ${meanLineNum}`);
         }
         const mean = meanLine.match(reBenchmarkValues);
         if (mean === null) {
-            throw new Error(`Mean values cannot be retrieved for benchmark '${name}' at line '${meanLine}'`);
+            throw new Error(
+                `Mean values cannot be retrieved for benchmark '${name}' on parsing input '${meanLine}' at line ${meanLineNum}`,
+            );
         }
 
         const value = parseFloat(mean[1]);
         const unit = mean[2];
 
-        const stdDevLine = nextLine();
+        const [stdDevLine, stdDevLineNum] = nextLine();
         if (stdDevLine === null) {
-            throw new Error(`Unexpected EOF: Std-dev values are missing for benchmark '${name}'`);
+            throw new Error(
+                `Unexpected EOF: Std-dev values are missing for benchmark '${name}' at line ${stdDevLineNum}`,
+            );
         }
         const stdDev = stdDevLine.match(reBenchmarkValues);
         if (stdDev === null) {
-            throw new Error(`Std-dev values cannot be retrieved for benchmark '${name}' at line '${stdDevLine}'`);
+            throw new Error(
+                `Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${stdDevLine}' at line ${stdDevLineNum}`,
+            );
         }
 
         const range = '+/- ' + stdDev[1].trim();
 
         // Skip empty line
-        const emptyLine = nextLine();
+        const [emptyLine, emptyLineNum] = nextLine();
         if (emptyLine === null || !reEmptyLine.test(emptyLine)) {
-            throw new Error(`Empty line is not following after 'std dev' line of benchmark '${name}'`);
+            throw new Error(
+                `Empty line is not following after 'std dev' line of benchmark '${name}' at line ${emptyLineNum}`,
+            );
         }
 
         return { name, value, range, unit, extra };
@@ -376,7 +385,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     const ret = [];
     while (lines.length > 0) {
         // Search header of benchmark section
-        let line = nextLine();
+        let line = nextLine()[0];
         if (line === null) {
             break; // All lines were eaten
         }
@@ -386,9 +395,9 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
 
         // Eat until a separator line appears
         while (true) {
-            const line = nextLine();
+            const [line, num] = nextLine();
             if (line === null) {
-                throw new Error("Separator '------' does not appear after benchmark suite");
+                throw new Error(`Separator '------' does not appear after benchmark suite at line ${num}`);
             }
             if (reSeparator.test(line)) {
                 break;
