@@ -73,7 +73,14 @@ mock('@actions/github', {
 
 const { cmd, pull, push } = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
-const userArgs = ['-c', 'user.name=github-action-benchmark', '-c', 'user.email=github@users.noreply.github.com'];
+const userArgs = [
+    '-c',
+    'user.name=github-action-benchmark',
+    '-c',
+    'user.email=github@users.noreply.github.com',
+    '-c',
+    'http.https://github.com/.extraheader=',
+];
 
 describe('git', function() {
     after(function() {
