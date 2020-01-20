@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579563588191,
+  "lastUpdate": 1579563594447,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5434,6 +5434,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 34722,
             "range": "+/- 7,374",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "4083579bdcb049e3858a18ba2e80d7e308a1f96a",
+          "message": "Revert \"Revert \"seems 'repo' permission is necessary to deploy gh-pages\"\"\n\nThis reverts commit ffb1592aa85ebd2cded3d901b5a02e2dd95a89c1.",
+          "timestamp": "2020-01-21T08:38:53+09:00",
+          "tree_id": "2aab02b5435b192dbf1feef45ffd0a676946e547",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/4083579bdcb049e3858a18ba2e80d7e308a1f96a"
+        },
+        "date": 1579563593118,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 235,
+            "range": "+/- 31",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 31022,
+            "range": "+/- 8,053",
             "unit": "ns/iter"
           }
         ]
