@@ -385,7 +385,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     const ret = [];
     while (lines.length > 0) {
         // Search header of benchmark section
-        let line = nextLine()[0];
+        const line = nextLine()[0];
         if (line === null) {
             break; // All lines were eaten
         }
@@ -394,7 +394,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         }
 
         // Eat until a separator line appears
-        while (true) {
+        for (;;) {
             const [line, num] = nextLine();
             if (line === null) {
                 throw new Error(`Separator '------' does not appear after benchmark suite at line ${num}`);
@@ -405,7 +405,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         }
 
         let benchFound = false;
-        while (true) {
+        for (;;) {
             const res = extractBench();
             if (res === null) {
                 break;
