@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579522326169,
+  "lastUpdate": 1579522678043,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21907,6 +21907,42 @@ window.BENCHMARK_DATA = {
             "value": 29615.83566198127,
             "unit": "ns/iter",
             "extra": "iterations: 23762\ncpu: 29610.82396262942 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f8643d9b7c962011bcd49ea8a7feed1be4f16f02",
+          "message": "Merge branch 'wo-pak-checkout' (fix #9)",
+          "timestamp": "2020-01-20T21:16:57+09:00",
+          "tree_id": "59695f59476851e9892733a06fcc74749683d14e",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f8643d9b7c962011bcd49ea8a7feed1be4f16f02"
+        },
+        "date": 1579522676820,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 206.91448594818442,
+            "unit": "ns/iter",
+            "extra": "iterations: 3343661\ncpu: 206.8849404888833 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29671.423415637433,
+            "unit": "ns/iter",
+            "extra": "iterations: 24300\ncpu: 28681.862098765436 ns\nthreads: 1"
           }
         ]
       }
