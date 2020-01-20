@@ -233,6 +233,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
       - uses: actions/setup-go@v1
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
@@ -271,6 +273,11 @@ This action merges all benchmark results into one GitHub pages branch. If your w
 steps to check benchmarks from multiple tools, please give `name` input to each step to make each
 benchmark results identical.
 
+If you use [actions/checkout@v2][actions-checkout],
+**please ensure that your personal access token is used for checking out**. This can be done by passing
+your personal access token to `token` input of actions/checkout@v2. Pleases read [#9][issue-9] for more
+details.
+
 Please see the above ['Examples' section](#examples) to see live workflow examples for each language.
 
 If you don't want to pass GitHub API token to this action, it's still OK.
@@ -289,7 +296,7 @@ If you don't want to pass GitHub API token to this action, it's still OK.
   run: git push 'https://you:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
 ```
 
-Please add a step to push the branch to the remote.
+Please add a step to push the branch to the remote by yourself.
 
 
 ### Tool specific setup
@@ -572,3 +579,5 @@ Every release will appear on your GitHub notifications page.
 [catch2]: https://github.com/catchorg/Catch2
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
+[actions-checkout]: https://github.com/actions/checkout
+[issue-9]: https://github.com/rhysd/github-action-benchmark/issues/9
