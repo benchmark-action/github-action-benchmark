@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579517333138,
+  "lastUpdate": 1579517336396,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21607,6 +21607,42 @@ window.BENCHMARK_DATA = {
             "value": 23123.176236720486,
             "unit": "ns/iter",
             "extra": "iterations: 30686\ncpu: 23120.222479306518 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "d0c9f1b5b613e156a8f23402da0c7e91b7e36df0",
+          "message": "fix eslint error\n\nconfigured no-constant-condition since `while (true) { ... }` loop feels\nok for me.",
+          "timestamp": "2020-01-20T19:47:48+09:00",
+          "tree_id": "03a0d71e1ebf4ffbe7e9f50ee01be31b0bbbfc3b",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/d0c9f1b5b613e156a8f23402da0c7e91b7e36df0"
+        },
+        "date": 1579517332592,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 224.72165225676395,
+            "unit": "ns/iter",
+            "extra": "iterations: 3101455\ncpu: 224.6753343188923 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29615.83566198127,
+            "unit": "ns/iter",
+            "extra": "iterations: 23762\ncpu: 29610.82396262942 ns\nthreads: 1"
           }
         ]
       }
