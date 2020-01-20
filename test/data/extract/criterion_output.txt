@@ -1,0 +1,17 @@
+Symbol Creation         time:   [567.19 us 572.98 us 580.80 us]
+Found 17 outliers among 100 measurements (17.00%)
+  4 (4.00%) high mild
+  13 (13.00%) high severe
+
+     Running target/release/deps/fib-9ff430dbccaab995
+Benchmarking fibonacci (Execution): Warming up for 3.0000 s
+fibonacci (Execution)   time:   [5.4756 ms 5.5354 ms 5.6049 ms]
+Found 13 outliers among 100 measurements (13.00%)
+  3 (3.00%) high mild
+  10 (10.00%) high severe
+
+     Running target/release/deps/string-21e60149b4b73866
+Hello World (Execution) time:   [518.17 us 519.92 us 521.89 us]
+Found 12 outliers among 100 measurements (12.00%)
+  7 (7.00%) high mild
+  5 (5.00%) high severe

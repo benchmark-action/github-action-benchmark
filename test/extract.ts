@@ -55,6 +55,29 @@ describe('extractResult()', function() {
             ],
         },
         {
+            tool: 'criterion',
+            expected: [
+                {
+                    name: 'Symbol Creation',
+                    range: '+/- 13.610',
+                    unit: 'us',
+                    value: 572.98,
+                },
+                {
+                    name: 'fibonacci (Execution)',
+                    range: '+/- 0.129',
+                    unit: 'ms',
+                    value: 5.5354,
+                },
+                {
+                    name: 'Hello World (Execution)',
+                    range: '+/- 3.720',
+                    unit: 'us',
+                    value: 519.92,
+                },
+            ],
+        },
+        {
             tool: 'catch2',
             expected: [
                 {
