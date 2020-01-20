@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579522683383,
+  "lastUpdate": 1579522686906,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19387,6 +19387,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00006163781568512817",
             "extra": "mean: 2.6258232486913293 msec\nrounds: 382"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f8643d9b7c962011bcd49ea8a7feed1be4f16f02",
+          "message": "Merge branch 'wo-pak-checkout' (fix #9)",
+          "timestamp": "2020-01-20T21:16:57+09:00",
+          "tree_id": "59695f59476851e9892733a06fcc74749683d14e",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f8643d9b7c962011bcd49ea8a7feed1be4f16f02"
+        },
+        "date": 1579522685703,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 42988.331625779814,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000017973756790684226",
+            "extra": "mean: 23.26212630685827 usec\nrounds: 30030"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 376.82580423642355,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00032140565273265924",
+            "extra": "mean: 2.6537460777834414 msec\nrounds: 360"
           }
         ]
       }
