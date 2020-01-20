@@ -7,6 +7,8 @@ C++ example for benchmarking with [Catch2 Framework][tool]
 
 This directory shows how to use [`github-action-benchmark`][action] with [Catch2 Framework][tool].
 
+
+
 ## Run benchmarks
 
 Official documentation for usage of Catch2 Framework can be found in its repository:
@@ -28,17 +30,9 @@ TEST_CASE("Fibonacci") {
 }
 ```
 
-Build the source with C++ compiler:
+Build the source with C++ compiler and run the built executable to get the benchmark output.
 
-```sh
-$ clang++ -std=c++14 -O3 bench.cpp
-```
 
-And run built executable to output the result:
-
-```sh
-$ ./a.out | tee benchmark_result.json
-```
 
 ## Process benchmark results
 
@@ -53,6 +47,8 @@ Store the benchmark results with step using the action. Please set `catch2` to `
 ```
 
 Please read ['How to use' section](https://github.com/rhysd/github-action-benchmark#how-to-use) for common usage.
+
+
 
 ## Run this example
 

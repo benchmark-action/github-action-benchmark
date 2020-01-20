@@ -1,5 +1,8 @@
 name: Catch2 C++ Example
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   benchmark:
