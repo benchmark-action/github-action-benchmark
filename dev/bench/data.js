@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579522693660,
+  "lastUpdate": 1579522727027,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22661,6 +22661,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 21.992,
             "range": "+/- 5.212",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f8643d9b7c962011bcd49ea8a7feed1be4f16f02",
+          "message": "Merge branch 'wo-pak-checkout' (fix #9)",
+          "timestamp": "2020-01-20T21:16:57+09:00",
+          "tree_id": "59695f59476851e9892733a06fcc74749683d14e",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f8643d9b7c962011bcd49ea8a7feed1be4f16f02"
+        },
+        "date": 1579522725797,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 170,
+            "range": "+/- 61",
+            "unit": "ns",
+            "extra": "100 samples\n181 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 21.951,
+            "range": "+/- 8.823",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
