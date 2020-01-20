@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579522690715,
+  "lastUpdate": 1579522693660,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10347,6 +10347,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 51564,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "f8643d9b7c962011bcd49ea8a7feed1be4f16f02",
+          "message": "Merge branch 'wo-pak-checkout' (fix #9)",
+          "timestamp": "2020-01-20T21:16:57+09:00",
+          "tree_id": "59695f59476851e9892733a06fcc74749683d14e",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f8643d9b7c962011bcd49ea8a7feed1be4f16f02"
+        },
+        "date": 1579522682566,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 462,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 57333,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
