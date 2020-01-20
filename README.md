@@ -1,5 +1,5 @@
-GitHub Action for Continuous Benchmarking
-=========================================
+# GitHub Action for Continuous Benchmarking
+
 [![Action Marketplace][release-badge]][marketplace]
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
@@ -8,26 +8,25 @@ GitHub Action for Continuous Benchmarking
 If your project has some benchmark suites, this action collects data from the benchmark outputs
 and monitor the results on GitHub Actions workflow.
 
-- This action can store collected benchmark results in [GitHub pages][gh-pages] branch and provide
-  a chart view. Benchmark results are visualized on the GitHub pages of your project.
-- This action can detect possible performance regressions by comparing benchmark results. When
-  benchmark results get worse than previous exceeding the specified threshold, it can raise an alert
-  via commit comment or workflow failure.
+-   This action can store collected benchmark results in [GitHub pages][gh-pages] branch and provide
+    a chart view. Benchmark results are visualized on the GitHub pages of your project.
+-   This action can detect possible performance regressions by comparing benchmark results. When
+    benchmark results get worse than previous exceeding the specified threshold, it can raise an alert
+    via commit comment or workflow failure.
 
 This action currently supports the following tools:
 
-- [`cargo bench`][cargo-bench] for Rust projects
-- `go test -bench` for Go projects
-- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
-- [pytest-benchmark][] for Python projects with [pytest][]
-- [Google Benchmark Framework][google-benchmark] for C++ projects
-- [Catch2][catch2] for C++ projects
+-   [`cargo bench`][cargo-bench] for Rust projects
+-   `Criterion` for Rust projects
+-   `go test -bench` for Go projects
+-   [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
+-   [pytest-benchmark][] for Python projects with [pytest][]
+-   [Google Benchmark Framework][google-benchmark] for C++ projects
+-   [Catch2][catch2] for C++ projects
 
 Multiple languages in the same repository are supported for polyglot projects.
 
 [Japanese Blog post](https://rhysd.hatenablog.com/entry/2019/11/11/131505)
-
-
 
 ## Examples
 
@@ -35,8 +34,9 @@ Example projects for each language are in [examples/](./examples) directory. Liv
 definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
 
 | Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
+| ------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
+| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/criterion](./examples/criterion)     |
 | Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
 | JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
 | Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
@@ -47,8 +47,6 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://rhysd.github.io/github-action-benchmark/dev/bench/
 
-
-
 ## Screenshots
 
 ### Charts on GitHub Pages
@@ -57,10 +55,10 @@ https://rhysd.github.io/github-action-benchmark/dev/bench/
 
 Mouseover on data point shows a tooltip. It includes
 
-- Commit hash
-- Commit message
-- Date and committer
-- Benchmark value
+-   Commit hash
+-   Commit message
+-   Date and committer
+-   Benchmark value
 
 Clicking data point in chart opens the commit page on a GitHub repository.
 
@@ -70,15 +68,12 @@ At bottom of the page, the download button is available for downloading benchmar
 
 ![download button](https://github.com/rhysd/ss/blob/master/github-action-benchmark/download.png?raw=true)
 
-
 ### Alert comment on commit page
 
 This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
 results are worse than previous exceeding a specified threshold.
 
 ![alert comment](https://github.com/rhysd/ss/blob/master/github-action-benchmark/alert-comment.png?raw=true)
-
-
 
 ## Why?
 
@@ -91,13 +86,10 @@ continuously.
 However, there is no good free tool to watch the performance easily and continuously across languages
 (as far as I looked into). So I built a new tool on top of GitHub Actions.
 
-
-
 ## How to use
 
 This action takes a file that contains benchmark output. And it outputs the results to GitHub Pages
 branch and/or alert commit comment.
-
 
 ### Minimal setup
 
@@ -107,39 +99,39 @@ setup is the same when you use other languages. For language-specific setup, ple
 ```yaml
 name: Minimal setup
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  benchmark:
-    name: Performance regression check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v1
-      # Run benchmark with `go test -bench` and stores the output to a file
-      - name: Run benchmark
-        run: go test -bench 'BenchmarkFib' | tee output.txt
-      # Download previous benchmark result from cache (if exists)
-      - name: Download previous benchmark data
-        uses: actions/cache@v1
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-      # Run `github-action-benchmark` action
-      - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
-        with:
-          # What benchmark tool the output.txt came from
-          tool: 'go'
-          # Where the output from the benchmark tool is stored
-          output-file-path: output.txt
-          # Where the previous data file is stored
-          external-data-json-path: ./cache/benchmark-data.json
-          # Workflow will fail when an alert happens
-          fail-on-alert: true
-      # Upload the updated cache file for the next job by actions/cache
+    benchmark:
+        name: Performance regression check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-go@v1
+            # Run benchmark with `go test -bench` and stores the output to a file
+            - name: Run benchmark
+              run: go test -bench 'BenchmarkFib' | tee output.txt
+            # Download previous benchmark result from cache (if exists)
+            - name: Download previous benchmark data
+              uses: actions/cache@v1
+              with:
+                  path: ./cache
+                  key: ${{ runner.os }}-benchmark
+            # Run `github-action-benchmark` action
+            - name: Store benchmark result
+              uses: rhysd/github-action-benchmark@v1
+              with:
+                  # What benchmark tool the output.txt came from
+                  tool: 'go'
+                  # Where the output from the benchmark tool is stored
+                  output-file-path: output.txt
+                  # Where the previous data file is stored
+                  external-data-json-path: ./cache/benchmark-data.json
+                  # Workflow will fail when an alert happens
+                  fail-on-alert: true
+            # Upload the updated cache file for the next job by actions/cache
 ```
 
 The step which runs `github-action-benchmark` does followings:
@@ -157,7 +149,6 @@ be changed by `alert-threshold` input.
 A live workflow example is [here](.github/workflows/minimal.yml). And the results of the workflow can
 be seen [here][minimal-workflow-example].
 
-
 ### Commit comment
 
 In addition to the above setup, GitHub API token needs to be given to enable `comment-on-alert` feature.
@@ -166,16 +157,16 @@ In addition to the above setup, GitHub API token needs to be given to enable `co
 - name: Store benchmark result
   uses: rhysd/github-action-benchmark@v1
   with:
-    tool: 'go'
-    output-file-path: output.txt
-    external-data-json-path: ./cache/benchmark-data.json
-    fail-on-alert: true
-    # GitHub API token to make a commit comment
-    github-token: ${{ secrets.GITHUB_TOKEN }}
-    # Enable alert commit comment
-    comment-on-alert: true
-    # Mention @rhysd in the commit comment
-    alert-comment-cc-users: '@rhysd'
+      tool: 'go'
+      output-file-path: output.txt
+      external-data-json-path: ./cache/benchmark-data.json
+      fail-on-alert: true
+      # GitHub API token to make a commit comment
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      # Enable alert commit comment
+      comment-on-alert: true
+      # Mention @rhysd in the commit comment
+      alert-comment-cc-users: '@rhysd'
 ```
 
 `secrets.GITHUB_TOKEN` is [a GitHub API token automatically generated for each workflow run][help-github-token].
@@ -189,7 +180,6 @@ that this value must be quoted like `'@rhysd'` because [`@` is an indicator in Y
 
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
-
 
 ### Charts on GitHub Pages
 
@@ -228,26 +218,26 @@ Now you're ready for workflow setup.
 
 ```yaml
 jobs:
-  benchmark:
-    name: Performance regression check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v1
-      # Run benchmark with `go test -bench` and stores the output to a file
-      - name: Run benchmark
-        run: go test -bench 'BenchmarkFib' | tee output.txt
-      # gh-pages branch is updated and pushed automatically with extracted benchmark data
-      - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
-        with:
-          name: My Project Go Benchmark
-          tool: 'go'
-          output-file-path: output.txt
-          # Personal access token to deploy GitHub Pages branch
-          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          # Push and deploy GitHub pages branch automatically
-          auto-push: true
+    benchmark:
+        name: Performance regression check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-go@v1
+            # Run benchmark with `go test -bench` and stores the output to a file
+            - name: Run benchmark
+              run: go test -bench 'BenchmarkFib' | tee output.txt
+            # gh-pages branch is updated and pushed automatically with extracted benchmark data
+            - name: Store benchmark result
+              uses: rhysd/github-action-benchmark@v1
+              with:
+                  name: My Project Go Benchmark
+                  tool: 'go'
+                  output-file-path: output.txt
+                  # Personal access token to deploy GitHub Pages branch
+                  github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+                  # Push and deploy GitHub pages branch automatically
+                  auto-push: true
 ```
 
 The step which runs `github-action-benchmark` does followings:
@@ -279,11 +269,11 @@ If you don't want to pass GitHub API token to this action, it's still OK.
 - name: Store benchmark result
   uses: rhysd/github-action-benchmark@v1
   with:
-    name: My Project Go Benchmark
-    tool: 'go'
-    output-file-path: output.txt
-    # Set auto-push to false since GitHub API token is not given
-    auto-push: false
+      name: My Project Go Benchmark
+      tool: 'go'
+      output-file-path: output.txt
+      # Set auto-push to false since GitHub API token is not given
+      auto-push: false
 # Push gh-pages branch by yourself
 - name: Push benchmark result
   run: git push 'https://you:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
@@ -291,20 +281,18 @@ If you don't want to pass GitHub API token to this action, it's still OK.
 
 Please add a step to push the branch to the remote.
 
-
 ### Tool specific setup
 
 Please read `README.md` files at each example directory. Usually, take stdout from a benchmark tool
 and store it to file. Then specify the file path to `output-file-path` input.
 
-- [`cargo bench` for Rust projects](./examples/rust/README.md)
-- [`go test` for Go projects](./examples/go/README.md)
-- [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
-- [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
-- [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
+-   [`cargo bench` for Rust projects](./examples/rust/README.md)
+-   [`go test` for Go projects](./examples/go/README.md)
+-   [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
+-   [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
+-   [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
-
 
 ### Action inputs
 
@@ -312,30 +300,30 @@ Input definitions are written in [action.yml](./action.yml).
 
 #### `name` (Required)
 
-- Type: String
-- Default: `"Benchmark"`
+-   Type: String
+-   Default: `"Benchmark"`
 
 Name of the benchmark. This value must be identical across all benchmarks in your repository.
 
 #### `tool` (Required)
 
-- Type: String
-- Default: N/A
+-   Type: String
+-   Default: N/A
 
-Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
+Tool for running benchmark. The value must be one of `"cargo"`, `"criterion"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
 `"googlecpp"`, `"catch2"`.
 
 #### `output-file-path` (Required)
 
-- Type: String
-- Default: N/A
+-   Type: String
+-   Default: N/A
 
 Path to a file which contains the output from benchmark tool. The path can be relative to repository root.
 
 #### `gh-pages-branch` (Required)
 
-- Type: String
-- Default: `"gh-pages"`
+-   Type: String
+-   Default: `"gh-pages"`
 
 Name of your GitHub pages branch.
 
@@ -344,8 +332,8 @@ to `master` and `benchmark-data-dir-path` to the directory under `docs` like `do
 
 #### `benchmark-data-dir-path` (Required)
 
-- Type: String
-- Default: `"dev/bench"`
+-   Type: String
+-   Default: `"dev/bench"`
 
 Path to a directory that contains benchmark files on the GitHub pages branch. For example, when this value
 is set to `"path/to/bench"`, `https://you.github.io/repo-name/path/to/bench` will be available as benchmarks
@@ -354,24 +342,24 @@ The path can be relative to repository root.
 
 #### `github-token` (Optional)
 
-- Type: String
-- Default: N/A
+-   Type: String
+-   Default: N/A
 
 GitHub API token. For updating a GitHub Pages branch with public repo, a personal access token is necessary.
 Please see the 'Commit comment' section for more details.
 
 #### `auto-push` (Optional)
 
-- Type: Boolean
-- Default: `false`
+-   Type: Boolean
+-   Default: `false`
 
 If it is set to `true`, this action automatically pushes the generated commit to GitHub Pages branch.
 Otherwise, you need to push it by your own. Please read 'Commit comment' section above for more details.
 
 #### `alert-threshold` (Optional)
 
-- Type: String
-- Default: `"200%"`
+-   Type: String
+-   Default: `"200%"`
 
 Percentage value like `"150%"`. It is a ratio indicating how worse the current benchmark result is.
 For example, if we now get `150 ns/iter` and previously got `100 ns/iter`, it gets `150%` worse.
@@ -381,8 +369,8 @@ See `comment-on-alert` and `fail-on-alert` also.
 
 #### `comment-on-alert` (Optional)
 
-- Type: Boolean
-- Default: `false`
+-   Type: Boolean
+-   Default: `false`
 
 If it is set to `true`, this action will leave a commit comment when an alert happens [like this][alert-comment-example].
 `github-token` is necessary as well. Please note that a personal access token is not necessary to
@@ -391,16 +379,16 @@ send a commit comment. `secrets.GITHUB_TOKEN` is sufficient. For the threshold f
 
 #### `fail-on-alert` (Optional)
 
-- Type: Boolean
-- Default: `false`
+-   Type: Boolean
+-   Default: `false`
 
 If it is set to `true`, the workflow will fail when an alert happens. For the threshold for this, please
 see `alert-threshold` and `fail-threshold` also.
 
 #### `fail-threshold` (Optional)
 
-- Type: String
-- Default: The same value as `alert-threshold`
+-   Type: String
+-   Default: The same value as `alert-threshold`
 
 Percentage value in the same format as `alert-threshold`. If this value is set, the threshold value
 will be used to determine if the workflow should fail. Default value is set to the same value as
@@ -408,8 +396,8 @@ will be used to determine if the workflow should fail. Default value is set to t
 
 #### `alert-comment-cc-users` (Optional)
 
-- Type: String
-- Default: N/A
+-   Type: String
+-   Default: N/A
 
 Comma-separated GitHub user names mentioned in alert commit comment like `"@foo,@bar"`. These users
 will be mentioned in a commit comment when an alert happens. For configuring alerts, please see
@@ -417,8 +405,8 @@ will be mentioned in a commit comment when an alert happens. For configuring ale
 
 #### `external-data-json-path` (Optional)
 
-- Type: String
-- Default: N/A
+-   Type: String
+-   Default: N/A
 
 External JSON file which contains benchmark results until previous job run. When this value is set,
 this action updates the file content instead of generating a Git commit in GitHub Pages branch.
@@ -428,19 +416,17 @@ with `actions/cache` action. Please read 'Minimal setup' section above.
 
 #### `max-items-in-chart` (Optional)
 
-- Type: Number
-- Default: N/A
+-   Type: Number
+-   Default: N/A
 
 Max number of data points in a chart for avoiding too busy chart. This value must be unsigned integer
 larger than zero. If the number of benchmark results for some benchmark suite exceeds this value,
 the oldest one will be removed before storing the results to file. By default this value is empty
 which means there is no limit.
 
-
 ### Action outputs
 
 No action output is set by this action for the parent GitHub workflow.
-
 
 ### Caveats
 
@@ -457,9 +443,9 @@ e.g. Runs on only `master` branch
 
 ```yaml
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 ```
 
 e.g. Push when not running for a pull request
@@ -479,7 +465,6 @@ might be bigger.
 If the amplitude is not acceptable, please prepare a stable environment to run benchmarks.
 GitHub action supports [self-hosted runners](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-self-hosted-runners).
 
-
 ### Customizing the benchmarks result page
 
 This action creates the default `index.html` in the directory specified with `benchmark-data-dir-path`
@@ -488,7 +473,6 @@ input. By default, every benchmark test case has own chart on the page. Charts a
 
 If it does not fit your use case, please modify the HTML file or replace it with your favorite one.
 Every benchmark data is stored in `window.BENCHMARK_DATA` so you can create your favorite view.
-
 
 ### Versioning
 
@@ -499,42 +483,33 @@ For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x
 
 `master` branch of this repository is for development and does not work as action.
 
-
 ### Track updates of this action
 
 To notice new version releases, please [watch 'release only'][help-watch-release] at [this repository][proj].
 Every release will appear on your GitHub notifications page.
 
-
-
 ## Future work
 
-- Allow user-defined benchmark tool
-  - Accept benchmark results as an array of benchmark results as JSON. User can generate JSON file
-    to integrate any benchmarking tool to this action
-- Support pull requests. Instead of updating GitHub pages, add a comment to the pull request to explain
-  benchmark results.
-- Add more benchmark tools:
-  - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
-- Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
-- Show extracted benchmark data in the output from this action
-- Add a table view in dashboard page to see all data points in table
-
-
+-   Allow user-defined benchmark tool
+    -   Accept benchmark results as an array of benchmark results as JSON. User can generate JSON file
+        to integrate any benchmarking tool to this action
+-   Support pull requests. Instead of updating GitHub pages, add a comment to the pull request to explain
+    benchmark results.
+-   Add more benchmark tools:
+    -   [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
+-   Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
+-   Show extracted benchmark data in the output from this action
+-   Add a table view in dashboard page to see all data points in table
 
 ## Related actions
 
-- [lighthouse-ci-action][] is an action for [Lighthouse CI][lighthouse-ci]. If you're measuring performance
-  of your web application, using Lighthouse CI and lighthouse-ci-action would be better than using this
-  action.
-
-
+-   [lighthouse-ci-action][] is an action for [Lighthouse CI][lighthouse-ci]. If you're measuring performance
+    of your web application, using Lighthouse CI and lighthouse-ci-action would be better than using this
+    action.
 
 ## License
 
 [the MIT License](./LICENSE.txt)
-
-
 
 [build-badge]: https://github.com/rhysd/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
 [ci]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3ACI
@@ -551,6 +526,7 @@ Every release will appear on your GitHub notifications page.
 [catch2-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
+[criterion]: https://github.com/bheisler/criterion.rs
 [benchmarkjs]: https://benchmarkjs.com/
 [gh-pages]: https://pages.github.com/
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
