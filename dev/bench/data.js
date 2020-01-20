@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579521056209,
+  "lastUpdate": 1579522326169,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22439,6 +22439,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 24.589,
             "range": "+/- 16.435",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "ededc76765335030c798a46c13273fbeb5e6bebc",
+          "message": "Revert \"Merge branch 'fix-deploy-checkout-v2'\"\n\nThis reverts commit 3172d63464d3005406c7ce33d7360cb1affffc8d, reversing\nchanges made to da06e8bad6862a75115488d7c175e70e2462a257.",
+          "timestamp": "2020-01-20T21:10:19+09:00",
+          "tree_id": "3ad740e703ded42f61c7ba3caa6da375b7d69a27",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/ededc76765335030c798a46c13273fbeb5e6bebc"
+        },
+        "date": 1579522324678,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 180,
+            "range": "+/- 33",
+            "unit": "ns",
+            "extra": "100 samples\n190 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 21.992,
+            "range": "+/- 5.212",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
