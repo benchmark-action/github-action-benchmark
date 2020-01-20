@@ -343,13 +343,11 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         const name = startLine.slice(0, start.index).trim();
 
         const [meanLine, meanLineNum] = nextLine();
-        if (meanLine === null) {
-            throw new Error(`Unexpected EOF: Mean values are missing for benchmark '${name}' at line ${meanLineNum}`);
-        }
-        const mean = meanLine.match(reBenchmarkValues);
-        if (mean === null) {
+        const mean = meanLine?.match(reBenchmarkValues);
+        if (!mean) {
             throw new Error(
-                `Mean values cannot be retrieved for benchmark '${name}' on parsing input '${meanLine}' at line ${meanLineNum}`,
+                `Mean values cannot be retrieved for benchmark '${name}' on parsing input '${meanLine ??
+                    'EOF'}' at line ${meanLineNum}`,
             );
         }
 
@@ -357,15 +355,11 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         const unit = mean[2];
 
         const [stdDevLine, stdDevLineNum] = nextLine();
-        if (stdDevLine === null) {
+        const stdDev = stdDevLine?.match(reBenchmarkValues);
+        if (!stdDev) {
             throw new Error(
-                `Unexpected EOF: Std-dev values are missing for benchmark '${name}' at line ${stdDevLineNum}`,
-            );
-        }
-        const stdDev = stdDevLine.match(reBenchmarkValues);
-        if (stdDev === null) {
-            throw new Error(
-                `Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${stdDevLine}' at line ${stdDevLineNum}`,
+                `Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${stdDevLine ??
+                    'EOF'}' at line ${stdDevLineNum}`,
             );
         }
 
