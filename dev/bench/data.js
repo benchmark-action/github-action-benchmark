@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579516552661,
+  "lastUpdate": 1579516556115,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15247,6 +15247,44 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 8444,
             "range": "±0.81%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "04d2af70e07e30b5b80a16575664f0300c0a134a",
+          "message": "fix eslint error\n\nconfigured no-constant-condition since `while (true) { ... }` loop feels\nok for me.",
+          "timestamp": "2020-01-20T19:34:18+09:00",
+          "tree_id": "7221f84a396e2acc551cfaaf89702da305d361e7",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/04d2af70e07e30b5b80a16575664f0300c0a134a"
+        },
+        "date": 1579516554848,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1040733,
+            "range": "±0.93%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8740,
+            "range": "±0.94%",
             "unit": "ops/sec",
             "extra": "89 samples"
           }
