@@ -3,6 +3,8 @@
 /src/*.js.map
 /examples/rust/Cargo.lock
 /examples/rust/target
+/examples/criterion/Cargo.lock
+/examples/criterion/target
 /test/*.js
 /test/*.js.map
 /scripts/*.js
