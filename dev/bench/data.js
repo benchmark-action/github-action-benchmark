@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579516562843,
+  "lastUpdate": 1579516589246,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22029,6 +22029,44 @@ window.BENCHMARK_DATA = {
             "range": "+/- 4.387",
             "unit": "us",
             "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "04d2af70e07e30b5b80a16575664f0300c0a134a",
+          "message": "fix eslint error\n\nconfigured no-constant-condition since `while (true) { ... }` loop feels\nok for me.",
+          "timestamp": "2020-01-20T19:34:18+09:00",
+          "tree_id": "7221f84a396e2acc551cfaaf89702da305d361e7",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/04d2af70e07e30b5b80a16575664f0300c0a134a"
+        },
+        "date": 1579516587762,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 175,
+            "range": "+/- 3",
+            "unit": "ns",
+            "extra": "100 samples\n174 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 20.453,
+            "range": "+/- 470",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
           }
         ]
       }
