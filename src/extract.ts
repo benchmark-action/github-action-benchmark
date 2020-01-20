@@ -305,9 +305,6 @@ function extractGoogleCppResult(output: string): BenchmarkResult[] {
 }
 
 function extractCatch2Result(output: string): BenchmarkResult[] {
-    const lines = output.split('\n');
-
-    const ret = [];
     // Example:
 
     // benchmark name samples       iterations    estimated <-- Start benchmark section
@@ -321,56 +318,95 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
     const reBenchmarkStart = /^([a-zA-Z\d ]+) +(\d+) +(\d+) +(\d+(\.\d+)?) (ns|ms|us|s)/;
     const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(\d+(?:\.\d+)?) (ns|us|ms|s) +(\d+(?:\.\d+)?) (ns|us|ms|s)/;
+    const reEmptyLine = /^\s*$/;
+    const reSeparator = /^-+$/;
 
-    let benchmarkNr = -1;
-    let testCaseNr = -1;
+    const lines = output.split('\n');
+    lines.reverse();
+    function nextLine(): string | null {
+        return lines.pop() ?? null;
+    }
 
-    let linesSinceBenchmarkStart = -1;
-
-    for (const line of lines) {
-        const m = line.match(reTestCaseStart);
-        if (m !== null) {
-            testCaseNr++;
+    function extractBench(): BenchmarkResult | null {
+        const startLine = nextLine();
+        if (startLine === null) {
+            return null;
         }
-        // no benchmark section found so far, ignore
-        if (testCaseNr < 0) {
+
+        const start = startLine.match(reBenchmarkStart);
+        if (start === null) {
+            return null; // No more benchmark found. Go to next benchmark suite
+        }
+
+        const name = start[1].trim();
+        const extra = start[2] + ' samples';
+
+        const meanLine = nextLine();
+        if (meanLine === null) {
+            throw new Error(`Unexpected EOF: Mean values are missing for benchmark '${name}'`);
+        }
+        const mean = meanLine.match(reBenchmarkValues);
+        if (mean === null) {
+            throw new Error(`Mean values cannot be retrieved for benchmark '${name}' at line '${meanLine}'`);
+        }
+
+        const value = parseFloat(mean[1]);
+        const unit = mean[2];
+
+        const stdDevLine = nextLine();
+        if (stdDevLine === null) {
+            throw new Error(`Unexpected EOF: Std-dev values are missing for benchmark '${name}'`);
+        }
+        const stdDev = stdDevLine.match(reBenchmarkValues);
+        if (stdDev === null) {
+            throw new Error(`Std-dev values cannot be retrieved for benchmark '${name}' at line '${stdDevLine}'`);
+        }
+
+        const range = '+/- ' + stdDev[1].trim();
+
+        // Skip empty line
+        const emptyLine = nextLine();
+        if (emptyLine === null || !reEmptyLine.test(emptyLine)) {
+            throw new Error(`Empty line is not following after 'std dev' line of benchmark '${name}'`);
+        }
+
+        return { name, value, range, unit, extra };
+    }
+
+    const ret = [];
+    while (lines.length > 0) {
+        // Search header of benchmark section
+        let line = nextLine();
+        if (line === null) {
+            break; // All lines were eaten
+        }
+        if (!reTestCaseStart.test(line)) {
             continue;
         }
 
-        if (benchmarkNr >= 0) {
-            linesSinceBenchmarkStart++;
+        // Eat until a separator line appears
+        while (true) {
+            const line = nextLine();
+            if (line === null) {
+                throw new Error("Separator '------' does not appear after benchmark suite");
+            }
+            if (reSeparator.test(line)) {
+                break;
+            }
         }
 
-        const benchmarkValueMatch = line.match(reBenchmarkValues);
-        if (benchmarkValueMatch === null && linesSinceBenchmarkStart === 1) {
-            throw new Error(
-                'Retrieved a catch2 benchmark but no values for it\nCatch2 result file is possibly mangled\n\n' + line,
-            );
+        let benchFound = false;
+        while (true) {
+            const res = extractBench();
+            if (res === null) {
+                break;
+            }
+            ret.push(res);
+            benchFound = true;
         }
-        if (linesSinceBenchmarkStart === 1 && benchmarkValueMatch !== null) {
-            ret[benchmarkNr].value = parseFloat(benchmarkValueMatch[1]);
-            ret[benchmarkNr].unit = benchmarkValueMatch[2];
+        if (!benchFound) {
+            throw new Error(`No benchmark found for bench suite. Possibly mangled output from Catch2:\n\n${output}`);
         }
-        if (linesSinceBenchmarkStart === 2 && benchmarkValueMatch !== null) {
-            ret[benchmarkNr].range = '+/- ' + benchmarkValueMatch[1].trim();
-        }
-
-        const benchmarkMatch = line.match(reBenchmarkStart);
-        if (benchmarkMatch !== null) {
-            linesSinceBenchmarkStart = 0;
-            benchmarkNr++;
-            ret.push({
-                name: benchmarkMatch[1].trim(),
-                value: 0,
-                range: '',
-                unit: '',
-                extra: benchmarkMatch[2] + ' samples',
-            });
-        }
-    }
-
-    if (ret.some(r => r.range === '' || r.unit === '')) {
-        throw new Error(`Invalid range or unit for catch2 benchmark`);
     }
 
     return ret;
