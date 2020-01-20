@@ -316,7 +316,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     //                11.719 us      7.847 us     17.747 us <-- Ignored
 
     const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
-    const reBenchmarkStart = /^([a-zA-Z\d ]+) +(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)/;
+    const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)\s*$/;
     const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
@@ -339,8 +339,8 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
             return null; // No more benchmark found. Go to next benchmark suite
         }
 
-        const name = start[1].trim();
-        const extra = `${start[2]} samples\n${start[3]} iterations`;
+        const extra = `${start[1]} samples\n${start[2]} iterations`;
+        const name = startLine.slice(0, start.index).trim();
 
         const [meanLine, meanLineNum] = nextLine();
         if (meanLine === null) {
