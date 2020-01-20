@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579491839535,
+  "lastUpdate": 1579491848518,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21805,6 +21805,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 20.822,
             "range": "+/- 4.778",
+            "unit": "us",
+            "extra": "100 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3172d63464d3005406c7ce33d7360cb1affffc8d",
+          "message": "Merge branch 'fix-deploy-checkout-v2'",
+          "timestamp": "2020-01-20T12:42:36+09:00",
+          "tree_id": "b24198c000115cb9f934c6935af07316a38d2be3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3172d63464d3005406c7ce33d7360cb1affffc8d"
+        },
+        "date": 1579491847086,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 418,
+            "range": "+/- 532",
+            "unit": "ns",
+            "extra": "100 samples"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 21.703,
+            "range": "+/- 4.387",
             "unit": "us",
             "extra": "100 samples"
           }
