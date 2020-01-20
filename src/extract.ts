@@ -339,7 +339,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         }
 
         const name = start[1].trim();
-        const extra = start[2] + ' samples';
+        const extra = `${start[2]} samples\n${start[3]} iterations`;
 
         const meanLine = nextLine();
         if (meanLine === null) {
