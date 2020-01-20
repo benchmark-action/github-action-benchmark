@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579488833904,
+  "lastUpdate": 1579491807407,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21203,6 +21203,42 @@ window.BENCHMARK_DATA = {
             "value": 26821.909684093276,
             "unit": "ns/iter",
             "extra": "iterations: 25134\ncpu: 26816.076947561072 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3172d63464d3005406c7ce33d7360cb1affffc8d",
+          "message": "Merge branch 'fix-deploy-checkout-v2'",
+          "timestamp": "2020-01-20T12:42:36+09:00",
+          "tree_id": "b24198c000115cb9f934c6935af07316a38d2be3",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3172d63464d3005406c7ce33d7360cb1affffc8d"
+        },
+        "date": 1579491806353,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 193.236489328265,
+            "unit": "ns/iter",
+            "extra": "iterations: 3782843\ncpu: 193.05688023531508 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24804.574686138916,
+            "unit": "ns/iter",
+            "extra": "iterations: 27321\ncpu: 24798.08173200102 ns\nthreads: 1"
           }
         ]
       }
