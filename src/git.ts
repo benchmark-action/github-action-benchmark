@@ -43,7 +43,7 @@ export async function cmd(...args: string[]): Promise<string> {
         '-c',
         'user.email=github@users.noreply.github.com',
         '-c',
-        'http.https://github.com/.extraheader=',
+        'http.https://github.com/.extraheader=', // This config is necessary to support actions/checkout@v2 (#9)
     ];
     const res = await capture('git', userArgs.concat(args));
     if (res.code !== 0) {
