@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579565753684,
+  "lastUpdate": 1579565760821,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23993,6 +23993,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 16.35,
             "range": "+/- 3.11",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "99bc279360964f95974a026b018dd8e0ea7a7c9f",
+          "message": "use released Catch2 support in example workflow",
+          "timestamp": "2020-01-21T09:14:41+09:00",
+          "tree_id": "f787855d8454dc96ec0723bbc16dbc5d97ba5315",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99bc279360964f95974a026b018dd8e0ea7a7c9f"
+        },
+        "date": 1579565759456,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 187,
+            "range": "+/- 73",
+            "unit": "ns",
+            "extra": "100 samples\n188 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 20.735,
+            "range": "+/- 1.531",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
