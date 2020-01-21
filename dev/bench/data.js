@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579590019984,
+  "lastUpdate": 1579590024479,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23415,6 +23415,42 @@ window.BENCHMARK_DATA = {
             "value": 26977.47842579421,
             "unit": "ns/iter",
             "extra": "iterations: 27417\ncpu: 26915.126053178687 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "e8d70a542cb5f9537922ea4a2964fe93fff54aec",
+          "message": "remove sections which are no longer necessary in CONTRIBUTING.md\n\nbecause validation script was improved",
+          "timestamp": "2020-01-21T15:59:28+09:00",
+          "tree_id": "72570a3dfc3ed51e4e87b11709fea2134194a877",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e8d70a542cb5f9537922ea4a2964fe93fff54aec"
+        },
+        "date": 1579590023062,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 248.61995366771256,
+            "unit": "ns/iter",
+            "extra": "iterations: 2813157\ncpu: 248.50122549150296 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 31502.220366833695,
+            "unit": "ns/iter",
+            "extra": "iterations: 22517\ncpu: 31500.58959896967 ns\nthreads: 1"
           }
         ]
       }
