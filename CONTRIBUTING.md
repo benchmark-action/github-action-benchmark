@@ -3,6 +3,11 @@ Development
 
 ## How to add new benchmark tool support
 
+At first, please determine how to get benchmark output from the new benchmarking tool.
+Some tools support multiple formats for outputting the results. In the case please choose
+machine-friendly one. For example, if a tool supports both human-readable console output
+and machine-friendly JSON output, please choose the latter.
+
 Adding support for new benchmarking tools is welcome!
 
 1. Add your tool name in `src/config.ts`
@@ -31,7 +36,7 @@ And for another example, here are commits to add support for `pytest-benchmark`:
 
 ## Running CI workflow on a forked repo
 
-Since the benchmark data includes the URL of the repository the tests and examples will fail when the repo is forked. In order to get the ci workflow and all examples running the URL has to be changed
+Since the benchmark data includes the URL of the repository the tests and examples will fail when the repo is forked. In order to get the CI workflow and all examples running the URL has to be changed
 
 ### Change workflows and tests
 

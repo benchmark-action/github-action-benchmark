@@ -31,6 +31,7 @@ TEST_CASE("Fibonacci") {
 ```
 
 Build the source with C++ compiler and run the built executable to get the benchmark output.
+Ensure to use `console` reporter for this. `xml` reporter may be supported in the future.
 
 
 
