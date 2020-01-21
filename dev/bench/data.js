@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579565736883,
+  "lastUpdate": 1579565740006,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16281,6 +16281,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.44%",
             "unit": "ops/sec",
             "extra": "91 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "99bc279360964f95974a026b018dd8e0ea7a7c9f",
+          "message": "use released Catch2 support in example workflow",
+          "timestamp": "2020-01-21T09:14:41+09:00",
+          "tree_id": "f787855d8454dc96ec0723bbc16dbc5d97ba5315",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99bc279360964f95974a026b018dd8e0ea7a7c9f"
+        },
+        "date": 1579565738588,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1095361,
+            "range": "±0.53%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9010,
+            "range": "±0.73%",
+            "unit": "ops/sec",
+            "extra": "90 samples"
           }
         ]
       }
