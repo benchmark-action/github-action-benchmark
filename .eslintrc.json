@@ -17,7 +17,6 @@
     ],
     "env": {
         "es6": true,
-        "browser": true,
         "mocha": true,
         "node": true
     },
@@ -38,7 +37,8 @@
         "@typescript-eslint/prefer-includes": "error",
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-string-starts-ends-with": "error",
-        "@typescript-eslint/prefer-readonly": "error"
+        "@typescript-eslint/prefer-readonly": "error",
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "error"
     },
     "overrides": [
         {
