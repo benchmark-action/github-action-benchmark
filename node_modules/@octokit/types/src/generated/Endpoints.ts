@@ -8,13 +8,29 @@ export interface Endpoints {
     AppsDeleteInstallationEndpoint,
     AppsDeleteInstallationRequestOptions
   ];
+  "DELETE /applications/:client_id/grant": [
+    AppsDeleteAuthorizationEndpoint,
+    AppsDeleteAuthorizationRequestOptions
+  ];
   "DELETE /applications/:client_id/grants/:access_token": [
-    OauthAuthorizationsRevokeGrantForApplicationEndpoint,
-    OauthAuthorizationsRevokeGrantForApplicationRequestOptions
+
+      | AppsRevokeGrantForApplicationEndpoint
+      | OauthAuthorizationsRevokeGrantForApplicationEndpoint,
+
+      | AppsRevokeGrantForApplicationRequestOptions
+      | OauthAuthorizationsRevokeGrantForApplicationRequestOptions
+  ];
+  "DELETE /applications/:client_id/token": [
+    AppsDeleteTokenEndpoint,
+    AppsDeleteTokenRequestOptions
   ];
   "DELETE /applications/:client_id/tokens/:access_token": [
-    OauthAuthorizationsRevokeAuthorizationForApplicationEndpoint,
-    OauthAuthorizationsRevokeAuthorizationForApplicationRequestOptions
+
+      | AppsRevokeAuthorizationForApplicationEndpoint
+      | OauthAuthorizationsRevokeAuthorizationForApplicationEndpoint,
+
+      | AppsRevokeAuthorizationForApplicationRequestOptions
+      | OauthAuthorizationsRevokeAuthorizationForApplicationRequestOptions
   ];
   "DELETE /applications/grants/:grant_id": [
     OauthAuthorizationsDeleteGrantEndpoint,
@@ -32,6 +48,10 @@ export interface Endpoints {
   "DELETE /gists/:gist_id/star": [
     GistsUnstarEndpoint,
     GistsUnstarRequestOptions
+  ];
+  "DELETE /installation/token": [
+    AppsRevokeInstallationTokenEndpoint,
+    AppsRevokeInstallationTokenRequestOptions
   ];
   "DELETE /notifications/threads/:thread_id/subscription": [
     ActivityDeleteThreadSubscriptionEndpoint,
@@ -76,6 +96,30 @@ export interface Endpoints {
   "DELETE /orgs/:org/public_members/:username": [
     OrgsConcealMembershipEndpoint,
     OrgsConcealMembershipRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug": [
+    TeamsDeleteInOrgEndpoint,
+    TeamsDeleteInOrgRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug/discussions/:discussion_number": [
+    TeamsDeleteDiscussionInOrgEndpoint,
+    TeamsDeleteDiscussionInOrgRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments/:comment_number": [
+    TeamsDeleteDiscussionCommentInOrgEndpoint,
+    TeamsDeleteDiscussionCommentInOrgRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug/memberships/:username": [
+    TeamsRemoveMembershipInOrgEndpoint,
+    TeamsRemoveMembershipInOrgRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug/projects/:project_id": [
+    TeamsRemoveProjectInOrgEndpoint,
+    TeamsRemoveProjectInOrgRequestOptions
+  ];
+  "DELETE /orgs/:org/teams/:team_slug/repos/:owner/:repo": [
+    TeamsRemoveRepoInOrgEndpoint,
+    TeamsRemoveRepoInOrgRequestOptions
   ];
   "DELETE /projects/:project_id": [
     ProjectsDeleteEndpoint,
@@ -249,30 +293,39 @@ export interface Endpoints {
     ScimRemoveUserFromOrgEndpoint,
     ScimRemoveUserFromOrgRequestOptions
   ];
-  "DELETE /teams/:team_id": [TeamsDeleteEndpoint, TeamsDeleteRequestOptions];
+  "DELETE /teams/:team_id": [
+    TeamsDeleteLegacyEndpoint | TeamsDeleteEndpoint,
+    TeamsDeleteLegacyRequestOptions | TeamsDeleteRequestOptions
+  ];
   "DELETE /teams/:team_id/discussions/:discussion_number": [
-    TeamsDeleteDiscussionEndpoint,
-    TeamsDeleteDiscussionRequestOptions
+    TeamsDeleteDiscussionLegacyEndpoint | TeamsDeleteDiscussionEndpoint,
+
+      | TeamsDeleteDiscussionLegacyRequestOptions
+      | TeamsDeleteDiscussionRequestOptions
   ];
   "DELETE /teams/:team_id/discussions/:discussion_number/comments/:comment_number": [
-    TeamsDeleteDiscussionCommentEndpoint,
-    TeamsDeleteDiscussionCommentRequestOptions
+
+      | TeamsDeleteDiscussionCommentLegacyEndpoint
+      | TeamsDeleteDiscussionCommentEndpoint,
+
+      | TeamsDeleteDiscussionCommentLegacyRequestOptions
+      | TeamsDeleteDiscussionCommentRequestOptions
   ];
   "DELETE /teams/:team_id/members/:username": [
-    TeamsRemoveMemberEndpoint,
-    TeamsRemoveMemberRequestOptions
+    TeamsRemoveMemberLegacyEndpoint,
+    TeamsRemoveMemberLegacyRequestOptions
   ];
   "DELETE /teams/:team_id/memberships/:username": [
-    TeamsRemoveMembershipEndpoint,
-    TeamsRemoveMembershipRequestOptions
+    TeamsRemoveMembershipLegacyEndpoint,
+    TeamsRemoveMembershipLegacyRequestOptions
   ];
   "DELETE /teams/:team_id/projects/:project_id": [
-    TeamsRemoveProjectEndpoint,
-    TeamsRemoveProjectRequestOptions
+    TeamsRemoveProjectLegacyEndpoint | TeamsRemoveProjectEndpoint,
+    TeamsRemoveProjectLegacyRequestOptions | TeamsRemoveProjectRequestOptions
   ];
   "DELETE /teams/:team_id/repos/:owner/:repo": [
-    TeamsRemoveRepoEndpoint,
-    TeamsRemoveRepoRequestOptions
+    TeamsRemoveRepoLegacyEndpoint | TeamsRemoveRepoEndpoint,
+    TeamsRemoveRepoLegacyRequestOptions | TeamsRemoveRepoRequestOptions
   ];
   "DELETE /user/blocks/:username": [
     UsersUnblockEndpoint,
@@ -331,8 +384,12 @@ export interface Endpoints {
     AppsGetInstallationRequestOptions
   ];
   "GET /applications/:client_id/tokens/:access_token": [
-    OauthAuthorizationsCheckAuthorizationEndpoint,
-    OauthAuthorizationsCheckAuthorizationRequestOptions
+
+      | AppsCheckAuthorizationEndpoint
+      | OauthAuthorizationsCheckAuthorizationEndpoint,
+
+      | AppsCheckAuthorizationRequestOptions
+      | OauthAuthorizationsCheckAuthorizationRequestOptions
   ];
   "GET /applications/grants": [
     OauthAuthorizationsListGrantsEndpoint,
@@ -498,6 +555,10 @@ export interface Endpoints {
     AppsGetOrgInstallationEndpoint | AppsFindOrgInstallationEndpoint,
     AppsGetOrgInstallationRequestOptions | AppsFindOrgInstallationRequestOptions
   ];
+  "GET /orgs/:org/installations": [
+    OrgsListInstallationsEndpoint,
+    OrgsListInstallationsRequestOptions
+  ];
   "GET /orgs/:org/interaction-limits": [
     InteractionsGetRestrictionsForOrgEndpoint,
     InteractionsGetRestrictionsForOrgRequestOptions
@@ -538,6 +599,10 @@ export interface Endpoints {
     MigrationsGetArchiveForOrgEndpoint,
     MigrationsGetArchiveForOrgRequestOptions
   ];
+  "GET /orgs/:org/migrations/:migration_id/repositories": [
+    MigrationsListReposForOrgEndpoint,
+    MigrationsListReposForOrgRequestOptions
+  ];
   "GET /orgs/:org/outside_collaborators": [
     OrgsListOutsideCollaboratorsEndpoint,
     OrgsListOutsideCollaboratorsRequestOptions
@@ -566,6 +631,66 @@ export interface Endpoints {
   "GET /orgs/:org/teams/:team_slug": [
     TeamsGetByNameEndpoint,
     TeamsGetByNameRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions": [
+    TeamsListDiscussionsInOrgEndpoint,
+    TeamsListDiscussionsInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions/:discussion_number": [
+    TeamsGetDiscussionInOrgEndpoint,
+    TeamsGetDiscussionInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments": [
+    TeamsListDiscussionCommentsInOrgEndpoint,
+    TeamsListDiscussionCommentsInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments/:comment_number": [
+    TeamsGetDiscussionCommentInOrgEndpoint,
+    TeamsGetDiscussionCommentInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments/:comment_number/reactions": [
+    ReactionsListForTeamDiscussionCommentInOrgEndpoint,
+    ReactionsListForTeamDiscussionCommentInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/discussions/:discussion_number/reactions": [
+    ReactionsListForTeamDiscussionInOrgEndpoint,
+    ReactionsListForTeamDiscussionInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/invitations": [
+    TeamsListPendingInvitationsInOrgEndpoint,
+    TeamsListPendingInvitationsInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/members": [
+    TeamsListMembersInOrgEndpoint,
+    TeamsListMembersInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/memberships/:username": [
+    TeamsGetMembershipInOrgEndpoint,
+    TeamsGetMembershipInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/projects": [
+    TeamsListProjectsInOrgEndpoint,
+    TeamsListProjectsInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/projects/:project_id": [
+    TeamsReviewProjectInOrgEndpoint,
+    TeamsReviewProjectInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/repos": [
+    TeamsListReposInOrgEndpoint,
+    TeamsListReposInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/repos/:owner/:repo": [
+    TeamsCheckManagesRepoInOrgEndpoint,
+    TeamsCheckManagesRepoInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings": [
+    TeamsListIdPGroupsInOrgEndpoint,
+    TeamsListIdPGroupsInOrgRequestOptions
+  ];
+  "GET /orgs/:org/teams/:team_slug/teams": [
+    TeamsListChildInOrgEndpoint,
+    TeamsListChildInOrgRequestOptions
   ];
   "GET /projects/:project_id": [ProjectsGetEndpoint, ProjectsGetRequestOptions];
   "GET /projects/:project_id/collaborators": [
@@ -1124,74 +1249,105 @@ export interface Endpoints {
   "GET /search/repositories": [SearchReposEndpoint, SearchReposRequestOptions];
   "GET /search/topics": [SearchTopicsEndpoint, SearchTopicsRequestOptions];
   "GET /search/users": [SearchUsersEndpoint, SearchUsersRequestOptions];
-  "GET /teams/:team_id": [TeamsGetEndpoint, TeamsGetRequestOptions];
+  "GET /teams/:team_id": [
+    TeamsGetLegacyEndpoint | TeamsGetEndpoint,
+    TeamsGetLegacyRequestOptions | TeamsGetRequestOptions
+  ];
   "GET /teams/:team_id/discussions": [
-    TeamsListDiscussionsEndpoint,
-    TeamsListDiscussionsRequestOptions
+    TeamsListDiscussionsLegacyEndpoint | TeamsListDiscussionsEndpoint,
+
+      | TeamsListDiscussionsLegacyRequestOptions
+      | TeamsListDiscussionsRequestOptions
   ];
   "GET /teams/:team_id/discussions/:discussion_number": [
-    TeamsGetDiscussionEndpoint,
-    TeamsGetDiscussionRequestOptions
+    TeamsGetDiscussionLegacyEndpoint | TeamsGetDiscussionEndpoint,
+    TeamsGetDiscussionLegacyRequestOptions | TeamsGetDiscussionRequestOptions
   ];
   "GET /teams/:team_id/discussions/:discussion_number/comments": [
-    TeamsListDiscussionCommentsEndpoint,
-    TeamsListDiscussionCommentsRequestOptions
+
+      | TeamsListDiscussionCommentsLegacyEndpoint
+      | TeamsListDiscussionCommentsEndpoint,
+
+      | TeamsListDiscussionCommentsLegacyRequestOptions
+      | TeamsListDiscussionCommentsRequestOptions
   ];
   "GET /teams/:team_id/discussions/:discussion_number/comments/:comment_number": [
-    TeamsGetDiscussionCommentEndpoint,
-    TeamsGetDiscussionCommentRequestOptions
+    TeamsGetDiscussionCommentLegacyEndpoint | TeamsGetDiscussionCommentEndpoint,
+
+      | TeamsGetDiscussionCommentLegacyRequestOptions
+      | TeamsGetDiscussionCommentRequestOptions
   ];
   "GET /teams/:team_id/discussions/:discussion_number/comments/:comment_number/reactions": [
-    ReactionsListForTeamDiscussionCommentEndpoint,
-    ReactionsListForTeamDiscussionCommentRequestOptions
+
+      | ReactionsListForTeamDiscussionCommentLegacyEndpoint
+      | ReactionsListForTeamDiscussionCommentEndpoint,
+
+      | ReactionsListForTeamDiscussionCommentLegacyRequestOptions
+      | ReactionsListForTeamDiscussionCommentRequestOptions
   ];
   "GET /teams/:team_id/discussions/:discussion_number/reactions": [
-    ReactionsListForTeamDiscussionEndpoint,
-    ReactionsListForTeamDiscussionRequestOptions
+
+      | ReactionsListForTeamDiscussionLegacyEndpoint
+      | ReactionsListForTeamDiscussionEndpoint,
+
+      | ReactionsListForTeamDiscussionLegacyRequestOptions
+      | ReactionsListForTeamDiscussionRequestOptions
   ];
   "GET /teams/:team_id/invitations": [
-    TeamsListPendingInvitationsEndpoint,
-    TeamsListPendingInvitationsRequestOptions
+
+      | TeamsListPendingInvitationsLegacyEndpoint
+      | TeamsListPendingInvitationsEndpoint,
+
+      | TeamsListPendingInvitationsLegacyRequestOptions
+      | TeamsListPendingInvitationsRequestOptions
   ];
   "GET /teams/:team_id/members": [
-    TeamsListMembersEndpoint,
-    TeamsListMembersRequestOptions
+    TeamsListMembersLegacyEndpoint | TeamsListMembersEndpoint,
+    TeamsListMembersLegacyRequestOptions | TeamsListMembersRequestOptions
   ];
   "GET /teams/:team_id/members/:username": [
-    TeamsGetMemberEndpoint,
-    TeamsGetMemberRequestOptions
+    TeamsGetMemberLegacyEndpoint | TeamsGetMemberEndpoint,
+    TeamsGetMemberLegacyRequestOptions | TeamsGetMemberRequestOptions
   ];
   "GET /teams/:team_id/memberships/:username": [
-    TeamsGetMembershipEndpoint,
-    TeamsGetMembershipRequestOptions
+    TeamsGetMembershipLegacyEndpoint | TeamsGetMembershipEndpoint,
+    TeamsGetMembershipLegacyRequestOptions | TeamsGetMembershipRequestOptions
   ];
   "GET /teams/:team_id/projects": [
-    TeamsListProjectsEndpoint,
-    TeamsListProjectsRequestOptions
+    TeamsListProjectsLegacyEndpoint | TeamsListProjectsEndpoint,
+    TeamsListProjectsLegacyRequestOptions | TeamsListProjectsRequestOptions
   ];
   "GET /teams/:team_id/projects/:project_id": [
-    TeamsReviewProjectEndpoint,
-    TeamsReviewProjectRequestOptions
+    TeamsReviewProjectLegacyEndpoint | TeamsReviewProjectEndpoint,
+    TeamsReviewProjectLegacyRequestOptions | TeamsReviewProjectRequestOptions
   ];
   "GET /teams/:team_id/repos": [
-    TeamsListReposEndpoint,
-    TeamsListReposRequestOptions
+    TeamsListReposLegacyEndpoint | TeamsListReposEndpoint,
+    TeamsListReposLegacyRequestOptions | TeamsListReposRequestOptions
   ];
   "GET /teams/:team_id/repos/:owner/:repo": [
-    TeamsCheckManagesRepoEndpoint,
-    TeamsCheckManagesRepoRequestOptions
+    TeamsCheckManagesRepoLegacyEndpoint | TeamsCheckManagesRepoEndpoint,
+
+      | TeamsCheckManagesRepoLegacyRequestOptions
+      | TeamsCheckManagesRepoRequestOptions
   ];
   "GET /teams/:team_id/team-sync/group-mappings": [
-    TeamsListIdPGroupsEndpoint,
-    TeamsListIdPGroupsRequestOptions
+    TeamsListIdPGroupsForLegacyEndpoint | TeamsListIdPGroupsForEndpoint,
+
+      | TeamsListIdPGroupsForLegacyRequestOptions
+      | TeamsListIdPGroupsForRequestOptions
   ];
   "GET /teams/:team_id/teams": [
-    TeamsListChildEndpoint,
-    TeamsListChildRequestOptions
+    TeamsListChildLegacyEndpoint | TeamsListChildEndpoint,
+    TeamsListChildLegacyRequestOptions | TeamsListChildRequestOptions
   ];
   "GET /user": [
     UsersGetAuthenticatedEndpoint,
     UsersGetAuthenticatedRequestOptions
+  ];
+  "GET /user/:migration_id/repositories": [
+    MigrationsListReposForUserEndpoint,
+    MigrationsListReposForUserRequestOptions
   ];
   "GET /user/blocks": [
     UsersListBlockedEndpoint,
@@ -1382,6 +1538,10 @@ export interface Endpoints {
     ActivityListReposWatchedByUserEndpoint,
     ActivityListReposWatchedByUserRequestOptions
   ];
+  "PATCH /applications/:client_id/token": [
+    AppsResetTokenEndpoint,
+    AppsResetTokenRequestOptions
+  ];
   "PATCH /authorizations/:authorization_id": [
     OauthAuthorizationsUpdateAuthorizationEndpoint,
     OauthAuthorizationsUpdateAuthorizationRequestOptions
@@ -1399,6 +1559,22 @@ export interface Endpoints {
   "PATCH /orgs/:org/hooks/:hook_id": [
     OrgsUpdateHookEndpoint,
     OrgsUpdateHookRequestOptions
+  ];
+  "PATCH /orgs/:org/teams/:team_slug": [
+    TeamsUpdateInOrgEndpoint,
+    TeamsUpdateInOrgRequestOptions
+  ];
+  "PATCH /orgs/:org/teams/:team_slug/discussions/:discussion_number": [
+    TeamsUpdateDiscussionInOrgEndpoint,
+    TeamsUpdateDiscussionInOrgRequestOptions
+  ];
+  "PATCH /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments/:comment_number": [
+    TeamsUpdateDiscussionCommentInOrgEndpoint,
+    TeamsUpdateDiscussionCommentInOrgRequestOptions
+  ];
+  "PATCH /orgs/:org/teams/:team_slug/team-sync/group-mappings": [
+    TeamsCreateOrUpdateIdPGroupConnectionsInOrgEndpoint,
+    TeamsCreateOrUpdateIdPGroupConnectionsInOrgRequestOptions
   ];
   "PATCH /projects/:project_id": [
     ProjectsUpdateEndpoint,
@@ -1493,18 +1669,31 @@ export interface Endpoints {
     ScimUpdateUserAttributeEndpoint,
     ScimUpdateUserAttributeRequestOptions
   ];
-  "PATCH /teams/:team_id": [TeamsUpdateEndpoint, TeamsUpdateRequestOptions];
+  "PATCH /teams/:team_id": [
+    TeamsUpdateLegacyEndpoint | TeamsUpdateEndpoint,
+    TeamsUpdateLegacyRequestOptions | TeamsUpdateRequestOptions
+  ];
   "PATCH /teams/:team_id/discussions/:discussion_number": [
-    TeamsUpdateDiscussionEndpoint,
-    TeamsUpdateDiscussionRequestOptions
+    TeamsUpdateDiscussionLegacyEndpoint | TeamsUpdateDiscussionEndpoint,
+
+      | TeamsUpdateDiscussionLegacyRequestOptions
+      | TeamsUpdateDiscussionRequestOptions
   ];
   "PATCH /teams/:team_id/discussions/:discussion_number/comments/:comment_number": [
-    TeamsUpdateDiscussionCommentEndpoint,
-    TeamsUpdateDiscussionCommentRequestOptions
+
+      | TeamsUpdateDiscussionCommentLegacyEndpoint
+      | TeamsUpdateDiscussionCommentEndpoint,
+
+      | TeamsUpdateDiscussionCommentLegacyRequestOptions
+      | TeamsUpdateDiscussionCommentRequestOptions
   ];
   "PATCH /teams/:team_id/team-sync/group-mappings": [
-    TeamsCreateOrUpdateIdPGroupConnectionsEndpoint,
-    TeamsCreateOrUpdateIdPGroupConnectionsRequestOptions
+
+      | TeamsCreateOrUpdateIdPGroupConnectionsLegacyEndpoint
+      | TeamsCreateOrUpdateIdPGroupConnectionsEndpoint,
+
+      | TeamsCreateOrUpdateIdPGroupConnectionsLegacyRequestOptions
+      | TeamsCreateOrUpdateIdPGroupConnectionsRequestOptions
   ];
   "PATCH /user": [
     UsersUpdateAuthenticatedEndpoint,
@@ -1530,9 +1719,17 @@ export interface Endpoints {
     AppsCreateInstallationTokenEndpoint,
     AppsCreateInstallationTokenRequestOptions
   ];
+  "POST /applications/:client_id/token": [
+    AppsCheckTokenEndpoint,
+    AppsCheckTokenRequestOptions
+  ];
   "POST /applications/:client_id/tokens/:access_token": [
-    OauthAuthorizationsResetAuthorizationEndpoint,
-    OauthAuthorizationsResetAuthorizationRequestOptions
+
+      | AppsResetAuthorizationEndpoint
+      | OauthAuthorizationsResetAuthorizationEndpoint,
+
+      | AppsResetAuthorizationRequestOptions
+      | OauthAuthorizationsResetAuthorizationRequestOptions
   ];
   "POST /authorizations": [
     OauthAuthorizationsCreateAuthorizationEndpoint,
@@ -1578,6 +1775,22 @@ export interface Endpoints {
     ReposCreateInOrgRequestOptions
   ];
   "POST /orgs/:org/teams": [TeamsCreateEndpoint, TeamsCreateRequestOptions];
+  "POST /orgs/:org/teams/:team_slug/discussions": [
+    TeamsCreateDiscussionInOrgEndpoint,
+    TeamsCreateDiscussionInOrgRequestOptions
+  ];
+  "POST /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments": [
+    TeamsCreateDiscussionCommentInOrgEndpoint,
+    TeamsCreateDiscussionCommentInOrgRequestOptions
+  ];
+  "POST /orgs/:org/teams/:team_slug/discussions/:discussion_number/comments/:comment_number/reactions": [
+    ReactionsCreateForTeamDiscussionCommentInOrgEndpoint,
+    ReactionsCreateForTeamDiscussionCommentInOrgRequestOptions
+  ];
+  "POST /orgs/:org/teams/:team_slug/discussions/:discussion_number/reactions": [
+    ReactionsCreateForTeamDiscussionInOrgEndpoint,
+    ReactionsCreateForTeamDiscussionInOrgRequestOptions
+  ];
   "POST /projects/:project_id/columns": [
     ProjectsCreateColumnEndpoint,
     ProjectsCreateColumnRequestOptions
@@ -1789,20 +2002,34 @@ export interface Endpoints {
       | ScimProvisionInviteUsersRequestOptions
   ];
   "POST /teams/:team_id/discussions": [
-    TeamsCreateDiscussionEndpoint,
-    TeamsCreateDiscussionRequestOptions
+    TeamsCreateDiscussionLegacyEndpoint | TeamsCreateDiscussionEndpoint,
+
+      | TeamsCreateDiscussionLegacyRequestOptions
+      | TeamsCreateDiscussionRequestOptions
   ];
   "POST /teams/:team_id/discussions/:discussion_number/comments": [
-    TeamsCreateDiscussionCommentEndpoint,
-    TeamsCreateDiscussionCommentRequestOptions
+
+      | TeamsCreateDiscussionCommentLegacyEndpoint
+      | TeamsCreateDiscussionCommentEndpoint,
+
+      | TeamsCreateDiscussionCommentLegacyRequestOptions
+      | TeamsCreateDiscussionCommentRequestOptions
   ];
   "POST /teams/:team_id/discussions/:discussion_number/comments/:comment_number/reactions": [
-    ReactionsCreateForTeamDiscussionCommentEndpoint,
-    ReactionsCreateForTeamDiscussionCommentRequestOptions
+
+      | ReactionsCreateForTeamDiscussionCommentLegacyEndpoint
+      | ReactionsCreateForTeamDiscussionCommentEndpoint,
+
+      | ReactionsCreateForTeamDiscussionCommentLegacyRequestOptions
+      | ReactionsCreateForTeamDiscussionCommentRequestOptions
   ];
   "POST /teams/:team_id/discussions/:discussion_number/reactions": [
-    ReactionsCreateForTeamDiscussionEndpoint,
-    ReactionsCreateForTeamDiscussionRequestOptions
+
+      | ReactionsCreateForTeamDiscussionLegacyEndpoint
+      | ReactionsCreateForTeamDiscussionEndpoint,
+
+      | ReactionsCreateForTeamDiscussionLegacyRequestOptions
+      | ReactionsCreateForTeamDiscussionRequestOptions
   ];
   "POST /user/emails": [UsersAddEmailsEndpoint, UsersAddEmailsRequestOptions];
   "POST /user/gpg_keys": [
@@ -1865,6 +2092,18 @@ export interface Endpoints {
   "PUT /orgs/:org/public_members/:username": [
     OrgsPublicizeMembershipEndpoint,
     OrgsPublicizeMembershipRequestOptions
+  ];
+  "PUT /orgs/:org/teams/:team_slug/memberships/:username": [
+    TeamsAddOrUpdateMembershipInOrgEndpoint,
+    TeamsAddOrUpdateMembershipInOrgRequestOptions
+  ];
+  "PUT /orgs/:org/teams/:team_slug/projects/:project_id": [
+    TeamsAddOrUpdateProjectInOrgEndpoint,
+    TeamsAddOrUpdateProjectInOrgRequestOptions
+  ];
+  "PUT /orgs/:org/teams/:team_slug/repos/:owner/:repo": [
+    TeamsAddOrUpdateRepoInOrgEndpoint,
+    TeamsAddOrUpdateRepoInOrgRequestOptions
   ];
   "PUT /projects/:project_id/collaborators/:username": [
     ProjectsAddCollaboratorEndpoint,
@@ -1969,20 +2208,28 @@ export interface Endpoints {
       | ScimUpdateProvisionedOrgMembershipRequestOptions
   ];
   "PUT /teams/:team_id/members/:username": [
-    TeamsAddMemberEndpoint,
-    TeamsAddMemberRequestOptions
+    TeamsAddMemberLegacyEndpoint | TeamsAddMemberEndpoint,
+    TeamsAddMemberLegacyRequestOptions | TeamsAddMemberRequestOptions
   ];
   "PUT /teams/:team_id/memberships/:username": [
-    TeamsAddOrUpdateMembershipEndpoint,
-    TeamsAddOrUpdateMembershipRequestOptions
+
+      | TeamsAddOrUpdateMembershipLegacyEndpoint
+      | TeamsAddOrUpdateMembershipEndpoint,
+
+      | TeamsAddOrUpdateMembershipLegacyRequestOptions
+      | TeamsAddOrUpdateMembershipRequestOptions
   ];
   "PUT /teams/:team_id/projects/:project_id": [
-    TeamsAddOrUpdateProjectEndpoint,
-    TeamsAddOrUpdateProjectRequestOptions
+    TeamsAddOrUpdateProjectLegacyEndpoint | TeamsAddOrUpdateProjectEndpoint,
+
+      | TeamsAddOrUpdateProjectLegacyRequestOptions
+      | TeamsAddOrUpdateProjectRequestOptions
   ];
   "PUT /teams/:team_id/repos/:owner/:repo": [
-    TeamsAddOrUpdateRepoEndpoint,
-    TeamsAddOrUpdateRepoRequestOptions
+    TeamsAddOrUpdateRepoLegacyEndpoint | TeamsAddOrUpdateRepoEndpoint,
+
+      | TeamsAddOrUpdateRepoLegacyRequestOptions
+      | TeamsAddOrUpdateRepoRequestOptions
   ];
   "PUT /user/blocks/:username": [UsersBlockEndpoint, UsersBlockRequestOptions];
   "PUT /user/following/:username": [
@@ -2122,6 +2369,38 @@ type OauthAuthorizationsDeleteGrantRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type AppsDeleteAuthorizationEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * The OAuth access token used to authenticate to the GitHub API.
+   */
+  access_token?: string;
+};
+type AppsDeleteAuthorizationRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsRevokeGrantForApplicationEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * access_token parameter
+   */
+  access_token: string;
+};
+type AppsRevokeGrantForApplicationRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type OauthAuthorizationsRevokeGrantForApplicationEndpoint = {
   /**
    * client_id parameter
@@ -2134,6 +2413,70 @@ type OauthAuthorizationsRevokeGrantForApplicationEndpoint = {
 };
 type OauthAuthorizationsRevokeGrantForApplicationRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsCheckTokenEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * The OAuth access token used to authenticate to the GitHub API.
+   */
+  access_token?: string;
+};
+type AppsCheckTokenRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsResetTokenEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * The OAuth access token used to authenticate to the GitHub API.
+   */
+  access_token?: string;
+};
+type AppsResetTokenRequestOptions = {
+  method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsDeleteTokenEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * The OAuth access token used to authenticate to the GitHub API.
+   */
+  access_token?: string;
+};
+type AppsDeleteTokenRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsCheckAuthorizationEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * access_token parameter
+   */
+  access_token: string;
+};
+type AppsCheckAuthorizationRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -2154,6 +2497,22 @@ type OauthAuthorizationsCheckAuthorizationRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type AppsResetAuthorizationEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * access_token parameter
+   */
+  access_token: string;
+};
+type AppsResetAuthorizationRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type OauthAuthorizationsResetAuthorizationEndpoint = {
   /**
    * client_id parameter
@@ -2166,6 +2525,22 @@ type OauthAuthorizationsResetAuthorizationEndpoint = {
 };
 type OauthAuthorizationsResetAuthorizationRequestOptions = {
   method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type AppsRevokeAuthorizationForApplicationEndpoint = {
+  /**
+   * client_id parameter
+   */
+  client_id: string;
+  /**
+   * access_token parameter
+   */
+  access_token: string;
+};
+type AppsRevokeAuthorizationForApplicationRequestOptions = {
+  method: "DELETE";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -2822,6 +3197,13 @@ type AppsListReposRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type AppsRevokeInstallationTokenEndpoint = {};
+type AppsRevokeInstallationTokenRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type IssuesListEndpoint = {
   /**
    * Indicates which sorts of issues to return. Can be one of:
@@ -3344,11 +3726,11 @@ type OrgsUpdateEndpoint = {
    */
   description?: string;
   /**
-   * Toggles whether organization projects are enabled for the organization.
+   * Toggles whether an organization can use organization projects.
    */
   has_organization_projects?: boolean;
   /**
-   * Toggles whether repository projects are enabled for repositories that belong to the organization.
+   * Toggles whether repositories that belong to the organization can use repository projects.
    */
   has_repository_projects?: boolean;
   /**
@@ -3362,17 +3744,38 @@ type OrgsUpdateEndpoint = {
   /**
    * Toggles the ability of non-admin organization members to create repositories. Can be one of:
    * \* `true` - all organization members can create repositories.
-   * \* `false` - only admin members can create repositories.
+   * \* `false` - only organization owners can create repositories.
    * Default: `true`
-   * **Note:** Another parameter can override the this parameter. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details. **Note:** Another parameter can override the this parameter. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.
+   * **Note:** A parameter can override this parameter. See `members_allowed_repository_creation_type` in this table for details. **Note:** A parameter can override this parameter. See `members_allowed_repository_creation_type` in this table for details.
    */
   members_can_create_repositories?: boolean;
   /**
+   * Toggles whether organization members can create internal repositories, which are visible to all enterprise members. You can only allow members to create internal repositories if your organization is associated with an enterprise account using GitHub Enterprise Cloud. Can be one of:
+   * \* `true` - all organization members can create internal repositories.
+   * \* `false` - only organization owners can create internal repositories.
+   * Default: `true`. For more information, see "[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)" in the GitHub Help documentation.
+   */
+  members_can_create_internal_repositories?: boolean;
+  /**
+   * Toggles whether organization members can create private repositories, which are visible to organization members with permission. Can be one of:
+   * \* `true` - all organization members can create private repositories.
+   * \* `false` - only organization owners can create private repositories.
+   * Default: `true`. For more information, see "[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)" in the GitHub Help documentation.
+   */
+  members_can_create_private_repositories?: boolean;
+  /**
+   * Toggles whether organization members can create public repositories, which are visible to anyone. Can be one of:
+   * \* `true` - all organization members can create public repositories.
+   * \* `false` - only organization owners can create public repositories.
+   * Default: `true`. For more information, see "[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)" in the GitHub Help documentation.
+   */
+  members_can_create_public_repositories?: boolean;
+  /**
    * Specifies which types of repositories non-admin organization members can create. Can be one of:
    * \* `all` - all organization members can create public and private repositories.
-   * \* `private` - members can create private repositories. This option is only available to repositories that are part of an organization on [GitHub Business Cloud](https://github.com/pricing/business-cloud).
+   * \* `private` - members can create private repositories. This option is only available to repositories that are part of an organization on GitHub Enterprise Cloud.
    * \* `none` - only admin members can create repositories.
-   * **Note:** Using this parameter will override values set in `members_can_create_repositories`. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.
+   * **Note:** This parameter is deprecated and will be removed in the future. Its return value ignores internal repositories. Using this parameter overrides values set in `members_can_create_repositories`. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.
    */
   members_allowed_repository_creation_type?: "all" | "private" | "none";
 };
@@ -3633,6 +4036,26 @@ type AppsFindOrgInstallationEndpoint = {
   org: string;
 };
 type AppsFindOrgInstallationRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type OrgsListInstallationsEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type OrgsListInstallationsRequestOptions = {
   method: "GET";
   url: Url;
   headers: RequestHeaders;
@@ -4033,6 +4456,30 @@ type MigrationsUnlockRepoForOrgRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type MigrationsListReposForOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * migration_id parameter
+   */
+  migration_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type MigrationsListReposForOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type OrgsListOutsideCollaboratorsEndpoint = {
   /**
    * org parameter
@@ -4209,9 +4656,16 @@ type ReposListForOrgEndpoint = {
    */
   org: string;
   /**
-   * Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`.
+   * Specifies the types of repositories you want returned. Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`, `internal`. Default: `all`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `type` can also be `internal`.
    */
-  type?: "all" | "public" | "private" | "forks" | "sources" | "member";
+  type?:
+    | "all"
+    | "public"
+    | "private"
+    | "forks"
+    | "sources"
+    | "member"
+    | "internal";
   /**
    * Can be one of `created`, `updated`, `pushed`, `full_name`.
    */
@@ -4257,6 +4711,11 @@ type ReposCreateInOrgEndpoint = {
    */
   private?: boolean;
   /**
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)" in the GitHub Help documentation.
+   * The `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.
+   */
+  visibility?: "public" | "private" | "visibility" | "internal";
+  /**
    * Either `true` to enable issues for this repository or `false` to disable them.
    */
   has_issues?: boolean;
@@ -4300,6 +4759,10 @@ type ReposCreateInOrgEndpoint = {
    * Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.
    */
   allow_rebase_merge?: boolean;
+  /**
+   * Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.
+   */
+  delete_branch_on_merge?: boolean;
 };
 type ReposCreateInOrgRequestOptions = {
   method: "POST";
@@ -4361,7 +4824,7 @@ type TeamsCreateEndpoint = {
    */
   description?: string;
   /**
-   * The logins of organization members to add as maintainers of the team.
+   * List GitHub IDs for organization members who will become team maintainers.
    */
   maintainers?: string[];
   /**
@@ -4377,7 +4840,6 @@ type TeamsCreateEndpoint = {
    * **For a parent or child team:**
    * \* `closed` - visible to all members of this organization.
    * Default for child team: `closed`
-   * **Note**: You must pass the `hellcat-preview` media type to set privacy default to `closed` for child teams.
    */
   privacy?: "secret" | "closed";
   /**
@@ -4388,7 +4850,7 @@ type TeamsCreateEndpoint = {
    */
   permission?: "pull" | "push" | "admin";
   /**
-   * The ID of a team to set as the parent team. **Note**: You must pass the `hellcat-preview` media type to use this parameter.
+   * The ID of a team to set as the parent team.
    */
   parent_team_id?: number;
 };
@@ -4409,6 +4871,852 @@ type TeamsGetByNameEndpoint = {
   team_slug: string;
 };
 type TeamsGetByNameRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * The name of the team.
+   */
+  name: string;
+  /**
+   * The description of the team.
+   */
+  description?: string;
+  /**
+   * The level of privacy this team should have. Editing teams without specifying this parameter leaves `privacy` intact. When a team is nested, the `privacy` for parent teams cannot be `secret`. The options are:
+   * **For a non-nested team:**
+   * \* `secret` - only visible to organization owners and members of this team.
+   * \* `closed` - visible to all members of this organization.
+   * **For a parent or child team:**
+   * \* `closed` - visible to all members of this organization.
+   */
+  privacy?: "secret" | "closed";
+  /**
+   * **Deprecated**. The permission that new repositories will be added to the team with when none is specified. Can be one of:
+   * \* `pull` - team members can pull, but not push to or administer newly-added repositories.
+   * \* `push` - team members can pull and push, but not administer newly-added repositories.
+   * \* `admin` - team members can pull, push and administer newly-added repositories.
+   */
+  permission?: "pull" | "push" | "admin";
+  /**
+   * The ID of a team to set as the parent team.
+   */
+  parent_team_id?: number;
+};
+type TeamsUpdateInOrgRequestOptions = {
+  method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsDeleteInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+};
+type TeamsDeleteInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListDiscussionsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.
+   */
+  direction?: "asc" | "desc";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListDiscussionsInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCreateDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * The discussion post's title.
+   */
+  title: string;
+  /**
+   * The discussion post's body text.
+   */
+  body: string;
+  /**
+   * Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post.
+   */
+  private?: boolean;
+};
+type TeamsCreateDiscussionInOrgRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsGetDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+};
+type TeamsGetDiscussionInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The discussion post's title.
+   */
+  title?: string;
+  /**
+   * The discussion post's body text.
+   */
+  body?: string;
+};
+type TeamsUpdateDiscussionInOrgRequestOptions = {
+  method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsDeleteDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+};
+type TeamsDeleteDiscussionInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListDiscussionCommentsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.
+   */
+  direction?: "asc" | "desc";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListDiscussionCommentsInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCreateDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The discussion comment's body text.
+   */
+  body: string;
+};
+type TeamsCreateDiscussionCommentInOrgRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsGetDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+};
+type TeamsGetDiscussionCommentInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * The discussion comment's body text.
+   */
+  body: string;
+};
+type TeamsUpdateDiscussionCommentInOrgRequestOptions = {
+  method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsDeleteDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+};
+type TeamsDeleteDiscussionCommentInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsListForTeamDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion comment.
+   */
+  content?:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ReactionsListForTeamDiscussionCommentInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsCreateForTeamDiscussionCommentInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion comment.
+   */
+  content:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+};
+type ReactionsCreateForTeamDiscussionCommentInOrgRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsListForTeamDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion.
+   */
+  content?:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ReactionsListForTeamDiscussionInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsCreateForTeamDiscussionInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion.
+   */
+  content:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+};
+type ReactionsCreateForTeamDiscussionInOrgRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListPendingInvitationsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListPendingInvitationsInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListMembersInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Filters members returned by their role in the team. Can be one of:
+   * \* `member` - normal members of the team.
+   * \* `maintainer` - team maintainers.
+   * \* `all` - all members of the team.
+   */
+  role?: "member" | "maintainer" | "all";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListMembersInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsGetMembershipInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsGetMembershipInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddOrUpdateMembershipInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * username parameter
+   */
+  username: string;
+  /**
+   * The role that this user should have in the team. Can be one of:
+   * \* `member` - a normal member of the team.
+   * \* `maintainer` - a team maintainer. Able to add/remove other team members, promote other team members to team maintainer, and edit the team's name and description.
+   */
+  role?: "member" | "maintainer";
+};
+type TeamsAddOrUpdateMembershipInOrgRequestOptions = {
+  method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveMembershipInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsRemoveMembershipInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListProjectsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListProjectsInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsReviewProjectInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+};
+type TeamsReviewProjectInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddOrUpdateProjectInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+  /**
+   * The permission to grant to the team for this project. Can be one of:
+   * \* `read` - team members can read, but not write to or administer this project.
+   * \* `write` - team members can read and write, but not administer this project.
+   * \* `admin` - team members can read, write and administer this project.
+   * Default: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP verbs](https://developer.github.com/v3/#http-verbs)."
+   */
+  permission?: "read" | "write" | "admin";
+};
+type TeamsAddOrUpdateProjectInOrgRequestOptions = {
+  method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveProjectInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+};
+type TeamsRemoveProjectInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListReposInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListReposInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCheckManagesRepoInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type TeamsCheckManagesRepoInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddOrUpdateRepoInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * The permission to grant the team on this repository. Can be one of:
+   * \* `pull` - team members can pull, but not push to or administer this repository.
+   * \* `push` - team members can pull and push, but not administer this repository.
+   * \* `admin` - team members can pull, push and administer this repository.
+   *
+   * If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.
+   */
+  permission?: "pull" | "push" | "admin";
+};
+type TeamsAddOrUpdateRepoInOrgRequestOptions = {
+  method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveRepoInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type TeamsRemoveRepoInOrgRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListIdPGroupsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+};
+type TeamsListIdPGroupsInOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCreateOrUpdateIdPGroupConnectionsInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * The IdP groups you want to connect to a GitHub team. When updating, the new `groups` object will replace the original one. You must include any existing groups that you don't want to remove.
+   */
+  groups: TeamsCreateOrUpdateIdPGroupConnectionsInOrgParamsGroups[];
+};
+type TeamsCreateOrUpdateIdPGroupConnectionsInOrgRequestOptions = {
+  method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListChildInOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * team_slug parameter
+   */
+  team_slug: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListChildInOrgRequestOptions = {
   method: "GET";
   url: Url;
   headers: RequestHeaders;
@@ -4839,6 +6147,10 @@ type ReposUpdateEndpoint = {
    */
   private?: boolean;
   /**
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. The `visibility` parameter overrides the `private` parameter when you use both along with the `nebula-preview` preview header.
+   */
+  visibility?: "public" | "private" | "visibility" | "internal";
+  /**
    * Either `true` to enable issues for this repository or `false` to disable them.
    */
   has_issues?: boolean;
@@ -4870,6 +6182,10 @@ type ReposUpdateEndpoint = {
    * Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.
    */
   allow_rebase_merge?: boolean;
+  /**
+   * Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.
+   */
+  delete_branch_on_merge?: boolean;
   /**
    * `true` to archive this repository. **Note**: You cannot unarchive repositories through the API.
    */
@@ -5067,9 +6383,21 @@ type ReposUpdateBranchProtectionEndpoint = {
    */
   required_pull_request_reviews: ReposUpdateBranchProtectionParamsRequiredPullRequestReviews | null;
   /**
-   * Restrict who can push to this branch. User, app, and team `restrictions` are only available for organization-owned repositories. Set to `null` to disable.
+   * Restrict who can push to the protected branch. User, app, and team `restrictions` are only available for organization-owned repositories. Set to `null` to disable.
    */
   restrictions: ReposUpdateBranchProtectionParamsRestrictions | null;
+  /**
+   * Enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch. Set to `true` to enforce a linear commit history. Set to `false` to disable a linear commit Git history. Your repository must allow squash merging or rebase merging before you can enable a linear commit history. Default: `false`. For more information, see "[Requiring a linear commit history](https://help.github.com/github/administering-a-repository/requiring-a-linear-commit-history)" in the GitHub Help documentation.
+   */
+  required_linear_history?: boolean;
+  /**
+   * Permits force pushes to the protected branch by anyone with write access to the repository. Set to `true` to allow force pushes. Set to `false` or `null` to block force pushes. Default: `false`. For more information, see "[Enabling force pushes to a protected branch](https://help.github.com/en/github/administering-a-repository/enabling-force-pushes-to-a-protected-branch)" in the GitHub Help documentation."
+   */
+  allow_force_pushes?: boolean | null;
+  /**
+   * Allows deletion of the protected branch by anyone with write access to the repository. Set to `false` to prevent deletion of the protected branch. Default: `false`. For more information, see "[Enabling force pushes to a protected branch](https://help.github.com/en/github/administering-a-repository/enabling-force-pushes-to-a-protected-branch)" in the GitHub Help documentation.
+   */
+  allow_deletions?: boolean;
 };
 type ReposUpdateBranchProtectionRequestOptions = {
   method: "PUT";
@@ -7259,6 +8587,10 @@ type ReposCreateDispatchEventEndpoint = {
    * **Required:** A custom webhook event name.
    */
   event_type?: string;
+  /**
+   * JSON payload with extra information about the webhook event that your action or worklow may use.
+   */
+  client_payload?: ReposCreateDispatchEventParamsClientPayload;
 };
 type ReposCreateDispatchEventRequestOptions = {
   method: "POST";
@@ -11852,6 +13184,18 @@ type SearchUsersRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsGetLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+};
+type TeamsGetLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsGetEndpoint = {
   /**
    * team_id parameter
@@ -11860,6 +13204,46 @@ type TeamsGetEndpoint = {
 };
 type TeamsGetRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * The name of the team.
+   */
+  name: string;
+  /**
+   * The description of the team.
+   */
+  description?: string;
+  /**
+   * The level of privacy this team should have. Editing teams without specifying this parameter leaves `privacy` intact. The options are:
+   * **For a non-nested team:**
+   * \* `secret` - only visible to organization owners and members of this team.
+   * \* `closed` - visible to all members of this organization.
+   * **For a parent or child team:**
+   * \* `closed` - visible to all members of this organization.
+   */
+  privacy?: "secret" | "closed";
+  /**
+   * **Deprecated**. The permission that new repositories will be added to the team with when none is specified. Can be one of:
+   * \* `pull` - team members can pull, but not push to or administer newly-added repositories.
+   * \* `push` - team members can pull and push, but not administer newly-added repositories.
+   * \* `admin` - team members can pull, push and administer newly-added repositories.
+   */
+  permission?: "pull" | "push" | "admin";
+  /**
+   * The ID of a team to set as the parent team.
+   */
+  parent_team_id?: number;
+};
+type TeamsUpdateLegacyRequestOptions = {
+  method: "PATCH";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -11894,12 +13278,24 @@ type TeamsUpdateEndpoint = {
    */
   permission?: "pull" | "push" | "admin";
   /**
-   * The ID of a team to set as the parent team. **Note**: You must pass the `hellcat-preview` media type to use this parameter.
+   * The ID of a team to set as the parent team.
    */
   parent_team_id?: number;
 };
 type TeamsUpdateRequestOptions = {
   method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsDeleteLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+};
+type TeamsDeleteLegacyRequestOptions = {
+  method: "DELETE";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -11912,6 +13308,30 @@ type TeamsDeleteEndpoint = {
 };
 type TeamsDeleteRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListDiscussionsLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.
+   */
+  direction?: "asc" | "desc";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListDiscussionsLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -11940,6 +13360,30 @@ type TeamsListDiscussionsRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsCreateDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * The discussion post's title.
+   */
+  title: string;
+  /**
+   * The discussion post's body text.
+   */
+  body: string;
+  /**
+   * Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post.
+   */
+  private?: boolean;
+};
+type TeamsCreateDiscussionLegacyRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsCreateDiscussionEndpoint = {
   /**
    * team_id parameter
@@ -11964,6 +13408,22 @@ type TeamsCreateDiscussionRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsGetDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+};
+type TeamsGetDiscussionLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsGetDiscussionEndpoint = {
   /**
    * team_id parameter
@@ -11976,6 +13436,30 @@ type TeamsGetDiscussionEndpoint = {
 };
 type TeamsGetDiscussionRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The discussion post's title.
+   */
+  title?: string;
+  /**
+   * The discussion post's body text.
+   */
+  body?: string;
+};
+type TeamsUpdateDiscussionLegacyRequestOptions = {
+  method: "PATCH";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12004,6 +13488,22 @@ type TeamsUpdateDiscussionRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsDeleteDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+};
+type TeamsDeleteDiscussionLegacyRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsDeleteDiscussionEndpoint = {
   /**
    * team_id parameter
@@ -12016,6 +13516,34 @@ type TeamsDeleteDiscussionEndpoint = {
 };
 type TeamsDeleteDiscussionRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListDiscussionCommentsLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.
+   */
+  direction?: "asc" | "desc";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListDiscussionCommentsLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12048,6 +13576,26 @@ type TeamsListDiscussionCommentsRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsCreateDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The discussion comment's body text.
+   */
+  body: string;
+};
+type TeamsCreateDiscussionCommentLegacyRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsCreateDiscussionCommentEndpoint = {
   /**
    * team_id parameter
@@ -12068,6 +13616,26 @@ type TeamsCreateDiscussionCommentRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsGetDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+};
+type TeamsGetDiscussionCommentLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsGetDiscussionCommentEndpoint = {
   /**
    * team_id parameter
@@ -12084,6 +13652,30 @@ type TeamsGetDiscussionCommentEndpoint = {
 };
 type TeamsGetDiscussionCommentRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsUpdateDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * The discussion comment's body text.
+   */
+  body: string;
+};
+type TeamsUpdateDiscussionCommentLegacyRequestOptions = {
+  method: "PATCH";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12112,6 +13704,26 @@ type TeamsUpdateDiscussionCommentRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsDeleteDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+};
+type TeamsDeleteDiscussionCommentLegacyRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsDeleteDiscussionCommentEndpoint = {
   /**
    * team_id parameter
@@ -12128,6 +13740,46 @@ type TeamsDeleteDiscussionCommentEndpoint = {
 };
 type TeamsDeleteDiscussionCommentRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsListForTeamDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion comment.
+   */
+  content?:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ReactionsListForTeamDiscussionCommentLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12172,6 +13824,38 @@ type ReactionsListForTeamDiscussionCommentRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type ReactionsCreateForTeamDiscussionCommentLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * comment_number parameter
+   */
+  comment_number: number;
+  /**
+   * The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion comment.
+   */
+  content:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+};
+type ReactionsCreateForTeamDiscussionCommentLegacyRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type ReactionsCreateForTeamDiscussionCommentEndpoint = {
   /**
    * team_id parameter
@@ -12200,6 +13884,42 @@ type ReactionsCreateForTeamDiscussionCommentEndpoint = {
 };
 type ReactionsCreateForTeamDiscussionCommentRequestOptions = {
   method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReactionsListForTeamDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion.
+   */
+  content?:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ReactionsListForTeamDiscussionLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12240,6 +13960,34 @@ type ReactionsListForTeamDiscussionRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type ReactionsCreateForTeamDiscussionLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * discussion_number parameter
+   */
+  discussion_number: number;
+  /**
+   * The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion.
+   */
+  content:
+    | "+1"
+    | "-1"
+    | "laugh"
+    | "confused"
+    | "heart"
+    | "hooray"
+    | "rocket"
+    | "eyes";
+};
+type ReactionsCreateForTeamDiscussionLegacyRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type ReactionsCreateForTeamDiscussionEndpoint = {
   /**
    * team_id parameter
@@ -12268,6 +14016,26 @@ type ReactionsCreateForTeamDiscussionRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsListPendingInvitationsLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListPendingInvitationsLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsListPendingInvitationsEndpoint = {
   /**
    * team_id parameter
@@ -12283,6 +14051,33 @@ type TeamsListPendingInvitationsEndpoint = {
   page?: number;
 };
 type TeamsListPendingInvitationsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListMembersLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Filters members returned by their role in the team. Can be one of:
+   * \* `member` - normal members of the team.
+   * \* `maintainer` - team maintainers.
+   * \* `all` - all members of the team.
+   */
+  role?: "member" | "maintainer" | "all";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListMembersLegacyRequestOptions = {
   method: "GET";
   url: Url;
   headers: RequestHeaders;
@@ -12315,6 +14110,22 @@ type TeamsListMembersRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsGetMemberLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsGetMemberLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsGetMemberEndpoint = {
   /**
    * team_id parameter
@@ -12327,6 +14138,22 @@ type TeamsGetMemberEndpoint = {
 };
 type TeamsGetMemberRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddMemberLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsAddMemberLegacyRequestOptions = {
+  method: "PUT";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12347,7 +14174,7 @@ type TeamsAddMemberRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
-type TeamsRemoveMemberEndpoint = {
+type TeamsRemoveMemberLegacyEndpoint = {
   /**
    * team_id parameter
    */
@@ -12357,8 +14184,24 @@ type TeamsRemoveMemberEndpoint = {
    */
   username: string;
 };
-type TeamsRemoveMemberRequestOptions = {
+type TeamsRemoveMemberLegacyRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsGetMembershipLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsGetMembershipLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12375,6 +14218,28 @@ type TeamsGetMembershipEndpoint = {
 };
 type TeamsGetMembershipRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddOrUpdateMembershipLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+  /**
+   * The role that this user should have in the team. Can be one of:
+   * \* `member` - a normal member of the team.
+   * \* `maintainer` - a team maintainer. Able to add/remove other team members, promote other team members to team maintainer, and edit the team's name and description.
+   */
+  role?: "member" | "maintainer";
+};
+type TeamsAddOrUpdateMembershipLegacyRequestOptions = {
+  method: "PUT";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12401,7 +14266,7 @@ type TeamsAddOrUpdateMembershipRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
-type TeamsRemoveMembershipEndpoint = {
+type TeamsRemoveMembershipLegacyEndpoint = {
   /**
    * team_id parameter
    */
@@ -12411,8 +14276,28 @@ type TeamsRemoveMembershipEndpoint = {
    */
   username: string;
 };
-type TeamsRemoveMembershipRequestOptions = {
+type TeamsRemoveMembershipLegacyRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListProjectsLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListProjectsLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12437,6 +14322,22 @@ type TeamsListProjectsRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsReviewProjectLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+};
+type TeamsReviewProjectLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsReviewProjectEndpoint = {
   /**
    * team_id parameter
@@ -12449,6 +14350,30 @@ type TeamsReviewProjectEndpoint = {
 };
 type TeamsReviewProjectRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsAddOrUpdateProjectLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+  /**
+   * The permission to grant to the team for this project. Can be one of:
+   * \* `read` - team members can read, but not write to or administer this project.
+   * \* `write` - team members can read and write, but not administer this project.
+   * \* `admin` - team members can read, write and administer this project.
+   * Default: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP verbs](https://developer.github.com/v3/#http-verbs)."
+   */
+  permission?: "read" | "write" | "admin";
+};
+type TeamsAddOrUpdateProjectLegacyRequestOptions = {
+  method: "PUT";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12468,12 +14393,27 @@ type TeamsAddOrUpdateProjectEndpoint = {
    * \* `write` - team members can read and write, but not administer this project.
    * \* `admin` - team members can read, write and administer this project.
    * Default: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP verbs](https://developer.github.com/v3/#http-verbs)."
-   * **Note**: If you pass the `hellcat-preview` media type, you can promote—but not demote—a `permission` attribute inherited from a parent team.
    */
   permission?: "read" | "write" | "admin";
 };
 type TeamsAddOrUpdateProjectRequestOptions = {
   method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveProjectLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * project_id parameter
+   */
+  project_id: number;
+};
+type TeamsRemoveProjectLegacyRequestOptions = {
+  method: "DELETE";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12494,6 +14434,26 @@ type TeamsRemoveProjectRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsListReposLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListReposLegacyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsListReposEndpoint = {
   /**
    * team_id parameter
@@ -12509,6 +14469,26 @@ type TeamsListReposEndpoint = {
   page?: number;
 };
 type TeamsListReposRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCheckManagesRepoLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type TeamsCheckManagesRepoLegacyRequestOptions = {
   method: "GET";
   url: Url;
   headers: RequestHeaders;
@@ -12534,6 +14514,35 @@ type TeamsCheckManagesRepoRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsAddOrUpdateRepoLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * The permission to grant the team on this repository. Can be one of:
+   * \* `pull` - team members can pull, but not push to or administer this repository.
+   * \* `push` - team members can pull and push, but not administer this repository.
+   * \* `admin` - team members can pull, push and administer this repository.
+   *
+   * If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.
+   */
+  permission?: "pull" | "push" | "admin";
+};
+type TeamsAddOrUpdateRepoLegacyRequestOptions = {
+  method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsAddOrUpdateRepoEndpoint = {
   /**
    * team_id parameter
@@ -12554,12 +14563,31 @@ type TeamsAddOrUpdateRepoEndpoint = {
    * \* `admin` - team members can pull, push and administer this repository.
    *
    * If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.
-   * **Note**: If you pass the `hellcat-preview` media type, you can promote—but not demote—a `permission` attribute inherited through a parent team.
    */
   permission?: "pull" | "push" | "admin";
 };
 type TeamsAddOrUpdateRepoRequestOptions = {
   method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveRepoLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type TeamsRemoveRepoLegacyRequestOptions = {
+  method: "DELETE";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12584,14 +14612,42 @@ type TeamsRemoveRepoRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
-type TeamsListIdPGroupsEndpoint = {
+type TeamsListIdPGroupsForLegacyEndpoint = {
   /**
    * team_id parameter
    */
   team_id: number;
 };
-type TeamsListIdPGroupsRequestOptions = {
+type TeamsListIdPGroupsForLegacyRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListIdPGroupsForEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+};
+type TeamsListIdPGroupsForRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsCreateOrUpdateIdPGroupConnectionsLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * The IdP groups you want to connect to a GitHub team. When updating, the new `groups` object will replace the original one. You must include any existing groups that you don't want to remove.
+   */
+  groups: TeamsCreateOrUpdateIdPGroupConnectionsLegacyParamsGroups[];
+};
+type TeamsCreateOrUpdateIdPGroupConnectionsLegacyRequestOptions = {
+  method: "PATCH";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -12608,6 +14664,26 @@ type TeamsCreateOrUpdateIdPGroupConnectionsEndpoint = {
 };
 type TeamsCreateOrUpdateIdPGroupConnectionsRequestOptions = {
   method: "PATCH";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsListChildLegacyEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type TeamsListChildLegacyRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -13338,6 +15414,11 @@ type ReposCreateForAuthenticatedUserEndpoint = {
    */
   private?: boolean;
   /**
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)" in the GitHub Help documentation.
+   * The `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.
+   */
+  visibility?: "public" | "private" | "visibility" | "internal";
+  /**
    * Either `true` to enable issues for this repository or `false` to disable them.
    */
   has_issues?: boolean;
@@ -13381,6 +15462,10 @@ type ReposCreateForAuthenticatedUserEndpoint = {
    * Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.
    */
   allow_rebase_merge?: boolean;
+  /**
+   * Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.
+   */
+  delete_branch_on_merge?: boolean;
 };
 type ReposCreateForAuthenticatedUserRequestOptions = {
   method: "POST";
@@ -13575,6 +15660,26 @@ type TeamsListForAuthenticatedUserEndpoint = {
   page?: number;
 };
 type TeamsListForAuthenticatedUserRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type MigrationsListReposForUserEndpoint = {
+  /**
+   * migration_id parameter
+   */
+  migration_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type MigrationsListReposForUserRequestOptions = {
   method: "GET";
   url: Url;
   headers: RequestHeaders;
@@ -14025,6 +16130,11 @@ export type OrgsUpdateHookParamsConfig = {
   secret?: string;
   insecure_ssl?: string;
 };
+export type TeamsCreateOrUpdateIdPGroupConnectionsInOrgParamsGroups = {
+  group_id: string;
+  group_name: string;
+  group_description: string;
+};
 export type ReposUpdateBranchProtectionParamsRequiredStatusChecks = {
   strict: boolean;
   contexts: string[];
@@ -14140,6 +16250,7 @@ export type ReposDeleteFileParamsAuthor = {
   name?: string;
   email?: string;
 };
+export type ReposCreateDispatchEventParamsClientPayload = {};
 export type GitCreateCommitParamsAuthor = {
   name?: string;
   email?: string;
@@ -14159,7 +16270,7 @@ export type GitCreateTreeParamsTree = {
   path?: string;
   mode?: "100644" | "100755" | "040000" | "160000" | "120000";
   type?: "blob" | "tree" | "commit";
-  sha?: string;
+  sha?: string | null;
   content?: string;
 };
 export type ReposCreateHookParamsConfig = {
@@ -14182,6 +16293,11 @@ export type PullsCreateReviewParamsComments = {
   path: string;
   position: number;
   body: string;
+};
+export type TeamsCreateOrUpdateIdPGroupConnectionsLegacyParamsGroups = {
+  group_id: string;
+  group_name: string;
+  group_description: string;
 };
 export type TeamsCreateOrUpdateIdPGroupConnectionsParamsGroups = {
   group_id: string;

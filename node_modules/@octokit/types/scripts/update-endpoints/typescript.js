@@ -3,7 +3,7 @@ const { resolve } = require("path");
 
 const Handlebars = require("handlebars");
 const set = require("lodash.set");
-const pascalCase = require("pascal-case");
+const { pascalCase } = require("pascal-case");
 const prettier = require("prettier");
 const { stringToJsdocComment } = require("string-to-jsdoc-comment");
 const sortKeys = require("sort-keys");

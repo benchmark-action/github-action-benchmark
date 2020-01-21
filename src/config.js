@@ -11,7 +11,7 @@ const core = __importStar(require("@actions/core"));
 const fs_1 = require("fs");
 const os = __importStar(require("os"));
 const path = __importStar(require("path"));
-exports.VALID_TOOLS = ['cargo', 'go', 'benchmarkjs', 'pytest', 'googlecpp'];
+exports.VALID_TOOLS = ['cargo', 'go', 'benchmarkjs', 'pytest', 'googlecpp', 'catch2'];
 const RE_UINT = /^\d+$/;
 function validateToolType(tool) {
     if (exports.VALID_TOOLS.includes(tool)) {

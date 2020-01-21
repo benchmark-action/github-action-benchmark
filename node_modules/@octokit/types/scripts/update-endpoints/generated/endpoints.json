@@ -200,11 +200,185 @@
     ]
   },
   {
+    "name": "Delete an app authorization",
+    "scope": "apps",
+    "id": "deleteAuthorization",
+    "method": "DELETE",
+    "url": "/applications/{client_id}/grant",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The OAuth access token used to authenticate to the GitHub API.",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Revoke a grant for an application",
+    "scope": "apps",
+    "id": "revokeGrantForApplication",
+    "method": "DELETE",
+    "url": "/applications/{client_id}/grants/{access_token}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "access_token parameter",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
     "name": "Revoke a grant for an application",
     "scope": "oauthAuthorizations",
     "id": "revokeGrantForApplication",
     "method": "DELETE",
     "url": "/applications/{client_id}/grants/{access_token}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "access_token parameter",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Check a token",
+    "scope": "apps",
+    "id": "checkToken",
+    "method": "POST",
+    "url": "/applications/{client_id}/token",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The OAuth access token used to authenticate to the GitHub API.",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Reset a token",
+    "scope": "apps",
+    "id": "resetToken",
+    "method": "PATCH",
+    "url": "/applications/{client_id}/token",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The OAuth access token used to authenticate to the GitHub API.",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Delete an app token",
+    "scope": "apps",
+    "id": "deleteToken",
+    "method": "DELETE",
+    "url": "/applications/{client_id}/token",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The OAuth access token used to authenticate to the GitHub API.",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Check an authorization",
+    "scope": "apps",
+    "id": "checkAuthorization",
+    "method": "GET",
+    "url": "/applications/{client_id}/tokens/{access_token}",
     "parameters": [
       {
         "alias": null,
@@ -259,9 +433,67 @@
   },
   {
     "name": "Reset an authorization",
+    "scope": "apps",
+    "id": "resetAuthorization",
+    "method": "POST",
+    "url": "/applications/{client_id}/tokens/{access_token}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "access_token parameter",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Reset an authorization",
     "scope": "oauthAuthorizations",
     "id": "resetAuthorization",
     "method": "POST",
+    "url": "/applications/{client_id}/tokens/{access_token}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "client_id parameter",
+        "enum": null,
+        "name": "client_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "access_token parameter",
+        "enum": null,
+        "name": "access_token",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Revoke an authorization for an application",
+    "scope": "apps",
+    "id": "revokeAuthorizationForApplication",
+    "method": "DELETE",
     "url": "/applications/{client_id}/tokens/{access_token}",
     "parameters": [
       {
@@ -1535,6 +1767,14 @@
     ]
   },
   {
+    "name": "Revoke an installation token",
+    "scope": "apps",
+    "id": "revokeInstallationToken",
+    "method": "DELETE",
+    "url": "/installation/token",
+    "parameters": []
+  },
+  {
     "name": "List all issues assigned to the authenticated user across all visible repositories including owned repositories, member repositories, and organization repositories",
     "scope": "issues",
     "id": "list",
@@ -2535,7 +2775,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "Toggles whether organization projects are enabled for the organization.",
+        "description": "Toggles whether an organization can use organization projects.",
         "enum": null,
         "name": "has_organization_projects",
         "type": "boolean",
@@ -2545,7 +2785,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "Toggles whether repository projects are enabled for repositories that belong to the organization.",
+        "description": "Toggles whether repositories that belong to the organization can use repository projects.",
         "enum": null,
         "name": "has_repository_projects",
         "type": "boolean",
@@ -2565,7 +2805,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "Toggles the ability of non-admin organization members to create repositories. Can be one of:  \n\\* `true` - all organization members can create repositories.  \n\\* `false` - only admin members can create repositories.  \nDefault: `true`  \n**Note:** Another parameter can override the this parameter. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details. **Note:** Another parameter can override the this parameter. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.",
+        "description": "Toggles the ability of non-admin organization members to create repositories. Can be one of:  \n\\* `true` - all organization members can create repositories.  \n\\* `false` - only organization owners can create repositories.  \nDefault: `true`  \n**Note:** A parameter can override this parameter. See `members_allowed_repository_creation_type` in this table for details. **Note:** A parameter can override this parameter. See `members_allowed_repository_creation_type` in this table for details.",
         "enum": null,
         "name": "members_can_create_repositories",
         "type": "boolean",
@@ -2575,7 +2815,37 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "Specifies which types of repositories non-admin organization members can create. Can be one of:  \n\\* `all` - all organization members can create public and private repositories.  \n\\* `private` - members can create private repositories. This option is only available to repositories that are part of an organization on [GitHub Business Cloud](https://github.com/pricing/business-cloud).  \n\\* `none` - only admin members can create repositories.  \n**Note:** Using this parameter will override values set in `members_can_create_repositories`. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.",
+        "description": "Toggles whether organization members can create internal repositories, which are visible to all enterprise members. You can only allow members to create internal repositories if your organization is associated with an enterprise account using GitHub Enterprise Cloud. Can be one of:  \n\\* `true` - all organization members can create internal repositories.  \n\\* `false` - only organization owners can create internal repositories.  \nDefault: `true`. For more information, see \"[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)\" in the GitHub Help documentation.",
+        "enum": null,
+        "name": "members_can_create_internal_repositories",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Toggles whether organization members can create private repositories, which are visible to organization members with permission. Can be one of:  \n\\* `true` - all organization members can create private repositories.  \n\\* `false` - only organization owners can create private repositories.  \nDefault: `true`. For more information, see \"[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)\" in the GitHub Help documentation.",
+        "enum": null,
+        "name": "members_can_create_private_repositories",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Toggles whether organization members can create public repositories, which are visible to anyone. Can be one of:  \n\\* `true` - all organization members can create public repositories.  \n\\* `false` - only organization owners can create public repositories.  \nDefault: `true`. For more information, see \"[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)\" in the GitHub Help documentation.",
+        "enum": null,
+        "name": "members_can_create_public_repositories",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Specifies which types of repositories non-admin organization members can create. Can be one of:  \n\\* `all` - all organization members can create public and private repositories.  \n\\* `private` - members can create private repositories. This option is only available to repositories that are part of an organization on GitHub Enterprise Cloud.  \n\\* `none` - only admin members can create repositories.  \n**Note:** This parameter is deprecated and will be removed in the future. Its return value ignores internal repositories. Using this parameter overrides values set in `members_can_create_repositories`. See [this note](https://developer.github.com/v3/orgs/#members_can_create_repositories) for details.",
         "enum": ["all", "private", "none"],
         "name": "members_allowed_repository_creation_type",
         "type": "string",
@@ -3135,6 +3405,45 @@
         "name": "org",
         "type": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "name": "List installations for an organization",
+    "scope": "orgs",
+    "id": "listInstallations",
+    "method": "GET",
+    "url": "/orgs/{org}/installations",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
       }
     ]
   },
@@ -3715,7 +4024,7 @@
     ]
   },
   {
-    "name": "Get a list of organization migrations",
+    "name": "List organization migrations",
     "scope": "migrations",
     "id": "listForOrg",
     "method": "GET",
@@ -3876,6 +4185,55 @@
         "name": "repo_name",
         "type": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "name": "List repositories in an organization migration",
+    "scope": "migrations",
+    "id": "listReposForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/migrations/{migration_id}/repositories",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "migration_id parameter",
+        "enum": null,
+        "name": "migration_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
       }
     ]
   },
@@ -4221,8 +4579,16 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`.",
-        "enum": ["all", "public", "private", "forks", "sources", "member"],
+        "description": "Specifies the types of repositories you want returned. Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`, `internal`. Default: `all`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `type` can also be `internal`.",
+        "enum": [
+          "all",
+          "public",
+          "private",
+          "forks",
+          "sources",
+          "member",
+          "internal"
+        ],
         "name": "type",
         "type": "string",
         "required": false
@@ -4324,6 +4690,16 @@
         "enum": null,
         "name": "private",
         "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see \"[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)\" in the GitHub Help documentation.  \nThe `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.",
+        "enum": ["public", "private", "visibility", "internal"],
+        "name": "visibility",
+        "type": "string",
         "required": false
       },
       {
@@ -4433,6 +4809,16 @@
         "description": "Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.",
         "enum": null,
         "name": "allow_rebase_merge",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.",
+        "enum": null,
+        "name": "delete_branch_on_merge",
         "type": "boolean",
         "required": false
       }
@@ -4557,7 +4943,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The logins of organization members to add as maintainers of the team.",
+        "description": "List GitHub IDs for organization members who will become team maintainers.",
         "enum": null,
         "name": "maintainers",
         "type": "string[]",
@@ -4577,7 +4963,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The level of privacy this team should have. The options are:  \n**For a non-nested team:**  \n\\* `secret` - only visible to organization owners and members of this team.  \n\\* `closed` - visible to all members of this organization.  \nDefault: `secret`  \n**For a parent or child team:**  \n\\* `closed` - visible to all members of this organization.  \nDefault for child team: `closed`  \n**Note**: You must pass the `hellcat-preview` media type to set privacy default to `closed` for child teams.",
+        "description": "The level of privacy this team should have. The options are:  \n**For a non-nested team:**  \n\\* `secret` - only visible to organization owners and members of this team.  \n\\* `closed` - visible to all members of this organization.  \nDefault: `secret`  \n**For a parent or child team:**  \n\\* `closed` - visible to all members of this organization.  \nDefault for child team: `closed`",
         "enum": ["secret", "closed"],
         "name": "privacy",
         "type": "string",
@@ -4597,7 +4983,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The ID of a team to set as the parent team. **Note**: You must pass the `hellcat-preview` media type to use this parameter.",
+        "description": "The ID of a team to set as the parent team.",
         "enum": null,
         "name": "parent_team_id",
         "type": "integer",
@@ -4631,6 +5017,1700 @@
         "name": "team_slug",
         "type": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "name": "Edit team",
+    "scope": "teams",
+    "id": "updateInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The name of the team.",
+        "enum": null,
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The description of the team.",
+        "enum": null,
+        "name": "description",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The level of privacy this team should have. Editing teams without specifying this parameter leaves `privacy` intact. When a team is nested, the `privacy` for parent teams cannot be `secret`. The options are:  \n**For a non-nested team:**  \n\\* `secret` - only visible to organization owners and members of this team.  \n\\* `closed` - visible to all members of this organization.  \n**For a parent or child team:**  \n\\* `closed` - visible to all members of this organization.",
+        "enum": ["secret", "closed"],
+        "name": "privacy",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "**Deprecated**. The permission that new repositories will be added to the team with when none is specified. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer newly-added repositories.  \n\\* `push` - team members can pull and push, but not administer newly-added repositories.  \n\\* `admin` - team members can pull, push and administer newly-added repositories.",
+        "enum": ["pull", "push", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The ID of a team to set as the parent team.",
+        "enum": null,
+        "name": "parent_team_id",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Delete team",
+    "scope": "teams",
+    "id": "deleteInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List discussions",
+    "scope": "teams",
+    "id": "listDiscussionsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.",
+        "enum": ["asc", "desc"],
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Create a discussion",
+    "scope": "teams",
+    "id": "createDiscussionInOrg",
+    "method": "POST",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's title.",
+        "enum": null,
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post.",
+        "enum": null,
+        "name": "private",
+        "type": "boolean",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Get a single discussion",
+    "scope": "teams",
+    "id": "getDiscussionInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Edit a discussion",
+    "scope": "teams",
+    "id": "updateDiscussionInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's title.",
+        "enum": null,
+        "name": "title",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Delete a discussion",
+    "scope": "teams",
+    "id": "deleteDiscussionInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List comments",
+    "scope": "teams",
+    "id": "listDiscussionCommentsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.",
+        "enum": ["asc", "desc"],
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Create a comment",
+    "scope": "teams",
+    "id": "createDiscussionCommentInOrg",
+    "method": "POST",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion comment's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get a single comment",
+    "scope": "teams",
+    "id": "getDiscussionCommentInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Edit a comment",
+    "scope": "teams",
+    "id": "updateDiscussionCommentInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion comment's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Delete a comment",
+    "scope": "teams",
+    "id": "deleteDiscussionCommentInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List reactions for a team discussion comment",
+    "scope": "reactions",
+    "id": "listForTeamDiscussionCommentInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion comment.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Create reaction for a team discussion comment",
+    "scope": "reactions",
+    "id": "createForTeamDiscussionCommentInOrg",
+    "method": "POST",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion comment.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List reactions for a team discussion",
+    "scope": "reactions",
+    "id": "listForTeamDiscussionInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Create reaction for a team discussion",
+    "scope": "reactions",
+    "id": "createForTeamDiscussionInOrg",
+    "method": "POST",
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List pending team invitations",
+    "scope": "teams",
+    "id": "listPendingInvitationsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/invitations",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List team members",
+    "scope": "teams",
+    "id": "listMembersInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/members",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Filters members returned by their role in the team. Can be one of:  \n\\* `member` - normal members of the team.  \n\\* `maintainer` - team maintainers.  \n\\* `all` - all members of the team.",
+        "enum": ["member", "maintainer", "all"],
+        "name": "role",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Get team membership",
+    "scope": "teams",
+    "id": "getMembershipInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Add or update team membership",
+    "scope": "teams",
+    "id": "addOrUpdateMembershipInOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The role that this user should have in the team. Can be one of:  \n\\* `member` - a normal member of the team.  \n\\* `maintainer` - a team maintainer. Able to add/remove other team members, promote other team members to team maintainer, and edit the team's name and description.",
+        "enum": ["member", "maintainer"],
+        "name": "role",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Remove team membership",
+    "scope": "teams",
+    "id": "removeMembershipInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List team projects",
+    "scope": "teams",
+    "id": "listProjectsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/projects",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Review a team project",
+    "scope": "teams",
+    "id": "reviewProjectInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Add or update team project",
+    "scope": "teams",
+    "id": "addOrUpdateProjectInOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The permission to grant to the team for this project. Can be one of:  \n\\* `read` - team members can read, but not write to or administer this project.  \n\\* `write` - team members can read and write, but not administer this project.  \n\\* `admin` - team members can read, write and administer this project.  \nDefault: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP verbs](https://developer.github.com/v3/#http-verbs).\"",
+        "enum": ["read", "write", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Remove team project",
+    "scope": "teams",
+    "id": "removeProjectInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List team repos",
+    "scope": "teams",
+    "id": "listReposInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/repos",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Check if a team manages a repository",
+    "scope": "teams",
+    "id": "checkManagesRepoInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Add or update team repository",
+    "scope": "teams",
+    "id": "addOrUpdateRepoInOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The permission to grant the team on this repository. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer this repository.  \n\\* `push` - team members can pull and push, but not administer this repository.  \n\\* `admin` - team members can pull, push and administer this repository.  \n  \nIf no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.",
+        "enum": ["pull", "push", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Remove team repository",
+    "scope": "teams",
+    "id": "removeRepoInOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List IdP groups for a team",
+    "scope": "teams",
+    "id": "listIdPGroupsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create or update IdP group connections",
+    "scope": "teams",
+    "id": "createOrUpdateIdPGroupConnectionsInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The IdP groups you want to connect to a GitHub team. When updating, the new `groups` object will replace the original one. You must include any existing groups that you don't want to remove.",
+        "enum": null,
+        "name": "groups",
+        "type": "object[]",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "ID of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Name of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Description of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_description",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "List child teams",
+    "scope": "teams",
+    "id": "listChildInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/teams",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "org parameter",
+        "enum": null,
+        "name": "org",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_slug parameter",
+        "enum": null,
+        "name": "team_slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
       }
     ]
   },
@@ -5412,6 +7492,16 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
+        "description": "Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. The `visibility` parameter overrides the `private` parameter when you use both along with the `nebula-preview` preview header.",
+        "enum": ["public", "private", "visibility", "internal"],
+        "name": "visibility",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
         "description": "Either `true` to enable issues for this repository or `false` to disable them.",
         "enum": null,
         "name": "has_issues",
@@ -5485,6 +7575,16 @@
         "description": "Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.",
         "enum": null,
         "name": "allow_rebase_merge",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.",
+        "enum": null,
+        "name": "delete_branch_on_merge",
         "type": "boolean",
         "required": false
       },
@@ -5963,7 +8063,7 @@
         "alias": null,
         "allowNull": true,
         "deprecated": null,
-        "description": "Restrict who can push to this branch. User, app, and team `restrictions` are only available for organization-owned repositories. Set to `null` to disable.",
+        "description": "Restrict who can push to the protected branch. User, app, and team `restrictions` are only available for organization-owned repositories. Set to `null` to disable.",
         "enum": null,
         "name": "restrictions",
         "type": "object",
@@ -5997,6 +8097,36 @@
         "enum": null,
         "name": "restrictions.apps",
         "type": "string[]",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch. Set to `true` to enforce a linear commit history. Set to `false` to disable a linear commit Git history. Your repository must allow squash merging or rebase merging before you can enable a linear commit history. Default: `false`. For more information, see \"[Requiring a linear commit history](https://help.github.com/github/administering-a-repository/requiring-a-linear-commit-history)\" in the GitHub Help documentation.",
+        "enum": null,
+        "name": "required_linear_history",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": true,
+        "deprecated": null,
+        "description": "Permits force pushes to the protected branch by anyone with write access to the repository. Set to `true` to allow force pushes. Set to `false` or `null` to block force pushes. Default: `false`. For more information, see \"[Enabling force pushes to a protected branch](https://help.github.com/en/github/administering-a-repository/enabling-force-pushes-to-a-protected-branch)\" in the GitHub Help documentation.\"",
+        "enum": null,
+        "name": "allow_force_pushes",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Allows deletion of the protected branch by anyone with write access to the repository. Set to `false` to prevent deletion of the protected branch. Default: `false`. For more information, see \"[Enabling force pushes to a protected branch](https://help.github.com/en/github/administering-a-repository/enabling-force-pushes-to-a-protected-branch)\" in the GitHub Help documentation.",
+        "enum": null,
+        "name": "allow_deletions",
+        "type": "boolean",
         "required": false
       }
     ]
@@ -10114,7 +12244,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "committer.email",
         "type": "string",
@@ -10144,7 +12274,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "author.email",
         "type": "string",
@@ -10253,7 +12383,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "committer.email",
         "type": "string",
@@ -10283,7 +12413,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "author.email",
         "type": "string",
@@ -10392,7 +12522,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "committer.email",
         "type": "string",
@@ -10422,7 +12552,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.",
+        "description": "The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.",
         "enum": null,
         "name": "author.email",
         "type": "string",
@@ -11125,6 +13255,16 @@
         "enum": null,
         "name": "event_type",
         "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "JSON payload with extra information about the webhook event that your action or worklow may use.",
+        "enum": null,
+        "name": "client_payload",
+        "type": "object",
         "required": false
       }
     ]
@@ -12141,9 +14281,9 @@
       },
       {
         "alias": null,
-        "allowNull": false,
+        "allowNull": true,
         "deprecated": null,
-        "description": "The SHA1 checksum ID of the object in the tree. Also called `tree.sha`.  \n  \n**Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error.",
+        "description": "The SHA1 checksum ID of the object in the tree. Also called `tree.sha`. If the value is `null` then the file will be deleted.  \n  \n**Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error.",
         "enum": null,
         "name": "tree[].sha",
         "type": "string",
@@ -21215,7 +23355,26 @@
     ]
   },
   {
-    "name": "Get team",
+    "name": "Get team (Legacy)",
+    "scope": "teams",
+    "id": "getLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get team (Legacy)",
     "scope": "teams",
     "id": "get",
     "method": "GET",
@@ -21234,7 +23393,76 @@
     ]
   },
   {
-    "name": "Edit team",
+    "name": "Edit team (Legacy)",
+    "scope": "teams",
+    "id": "updateLegacy",
+    "method": "PATCH",
+    "url": "/teams/{team_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The name of the team.",
+        "enum": null,
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The description of the team.",
+        "enum": null,
+        "name": "description",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The level of privacy this team should have. Editing teams without specifying this parameter leaves `privacy` intact. The options are:  \n**For a non-nested team:**  \n\\* `secret` - only visible to organization owners and members of this team.  \n\\* `closed` - visible to all members of this organization.  \n**For a parent or child team:**  \n\\* `closed` - visible to all members of this organization.",
+        "enum": ["secret", "closed"],
+        "name": "privacy",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "**Deprecated**. The permission that new repositories will be added to the team with when none is specified. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer newly-added repositories.  \n\\* `push` - team members can pull and push, but not administer newly-added repositories.  \n\\* `admin` - team members can pull, push and administer newly-added repositories.",
+        "enum": ["pull", "push", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The ID of a team to set as the parent team.",
+        "enum": null,
+        "name": "parent_team_id",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Edit team (Legacy)",
     "scope": "teams",
     "id": "update",
     "method": "PATCH",
@@ -21294,7 +23522,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The ID of a team to set as the parent team. **Note**: You must pass the `hellcat-preview` media type to use this parameter.",
+        "description": "The ID of a team to set as the parent team.",
         "enum": null,
         "name": "parent_team_id",
         "type": "integer",
@@ -21303,7 +23531,26 @@
     ]
   },
   {
-    "name": "Delete team",
+    "name": "Delete team (Legacy)",
+    "scope": "teams",
+    "id": "deleteLegacy",
+    "method": "DELETE",
+    "url": "/teams/{team_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Delete team (Legacy)",
     "scope": "teams",
     "id": "delete",
     "method": "DELETE",
@@ -21322,7 +23569,56 @@
     ]
   },
   {
-    "name": "List discussions",
+    "name": "List discussions (Legacy)",
+    "scope": "teams",
+    "id": "listDiscussionsLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.",
+        "enum": ["asc", "desc"],
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List discussions (Legacy)",
     "scope": "teams",
     "id": "listDiscussions",
     "method": "GET",
@@ -21371,7 +23667,56 @@
     ]
   },
   {
-    "name": "Create a discussion",
+    "name": "Create a discussion (Legacy)",
+    "scope": "teams",
+    "id": "createDiscussionLegacy",
+    "method": "POST",
+    "url": "/teams/{team_id}/discussions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's title.",
+        "enum": null,
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post.",
+        "enum": null,
+        "name": "private",
+        "type": "boolean",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Create a discussion (Legacy)",
     "scope": "teams",
     "id": "createDiscussion",
     "method": "POST",
@@ -21420,7 +23765,36 @@
     ]
   },
   {
-    "name": "Get a single discussion",
+    "name": "Get a single discussion (Legacy)",
+    "scope": "teams",
+    "id": "getDiscussionLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get a single discussion (Legacy)",
     "scope": "teams",
     "id": "getDiscussion",
     "method": "GET",
@@ -21449,7 +23823,56 @@
     ]
   },
   {
-    "name": "Edit a discussion",
+    "name": "Edit a discussion (Legacy)",
+    "scope": "teams",
+    "id": "updateDiscussionLegacy",
+    "method": "PATCH",
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's title.",
+        "enum": null,
+        "name": "title",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion post's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Edit a discussion (Legacy)",
     "scope": "teams",
     "id": "updateDiscussion",
     "method": "PATCH",
@@ -21498,7 +23921,36 @@
     ]
   },
   {
-    "name": "Delete a discussion",
+    "name": "Delete a discussion (Legacy)",
+    "scope": "teams",
+    "id": "deleteDiscussionLegacy",
+    "method": "DELETE",
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Delete a discussion (Legacy)",
     "scope": "teams",
     "id": "deleteDiscussion",
     "method": "DELETE",
@@ -21527,7 +23979,66 @@
     ]
   },
   {
-    "name": "List comments",
+    "name": "List comments (Legacy)",
+    "scope": "teams",
+    "id": "listDiscussionCommentsLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Sorts the discussion comments by the date they were created. To return the oldest comments first, set to `asc`. Can be one of `asc` or `desc`.",
+        "enum": ["asc", "desc"],
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List comments (Legacy)",
     "scope": "teams",
     "id": "listDiscussionComments",
     "method": "GET",
@@ -21586,7 +24097,46 @@
     ]
   },
   {
-    "name": "Create a comment",
+    "name": "Create a comment (Legacy)",
+    "scope": "teams",
+    "id": "createDiscussionCommentLegacy",
+    "method": "POST",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion comment's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create a comment (Legacy)",
     "scope": "teams",
     "id": "createDiscussionComment",
     "method": "POST",
@@ -21625,7 +24175,46 @@
     ]
   },
   {
-    "name": "Get a single comment",
+    "name": "Get a single comment (Legacy)",
+    "scope": "teams",
+    "id": "getDiscussionCommentLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get a single comment (Legacy)",
     "scope": "teams",
     "id": "getDiscussionComment",
     "method": "GET",
@@ -21664,7 +24253,56 @@
     ]
   },
   {
-    "name": "Edit a comment",
+    "name": "Edit a comment (Legacy)",
+    "scope": "teams",
+    "id": "updateDiscussionCommentLegacy",
+    "method": "PATCH",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The discussion comment's body text.",
+        "enum": null,
+        "name": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Edit a comment (Legacy)",
     "scope": "teams",
     "id": "updateDiscussionComment",
     "method": "PATCH",
@@ -21713,7 +24351,46 @@
     ]
   },
   {
-    "name": "Delete a comment",
+    "name": "Delete a comment (Legacy)",
+    "scope": "teams",
+    "id": "deleteDiscussionCommentLegacy",
+    "method": "DELETE",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Delete a comment (Legacy)",
     "scope": "teams",
     "id": "deleteDiscussionComment",
     "method": "DELETE",
@@ -21752,7 +24429,85 @@
     ]
   },
   {
-    "name": "List reactions for a team discussion comment",
+    "name": "List reactions for a team discussion comment (Legacy)",
+    "scope": "reactions",
+    "id": "listForTeamDiscussionCommentLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion comment.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List reactions for a team discussion comment (Legacy)",
     "scope": "reactions",
     "id": "listForTeamDiscussionComment",
     "method": "GET",
@@ -21830,7 +24585,65 @@
     ]
   },
   {
-    "name": "Create reaction for a team discussion comment",
+    "name": "Create reaction for a team discussion comment (Legacy)",
+    "scope": "reactions",
+    "id": "createForTeamDiscussionCommentLegacy",
+    "method": "POST",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "comment_number parameter",
+        "enum": null,
+        "name": "comment_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion comment.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create reaction for a team discussion comment (Legacy)",
     "scope": "reactions",
     "id": "createForTeamDiscussionComment",
     "method": "POST",
@@ -21888,7 +24701,75 @@
     ]
   },
   {
-    "name": "List reactions for a team discussion",
+    "name": "List reactions for a team discussion (Legacy)",
+    "scope": "reactions",
+    "id": "listForTeamDiscussionLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Returns a single [reaction type](https://developer.github.com/v3/reactions/#reaction-types). Omit this parameter to list all reactions to a team discussion.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List reactions for a team discussion (Legacy)",
     "scope": "reactions",
     "id": "listForTeamDiscussion",
     "method": "GET",
@@ -21956,7 +24837,55 @@
     ]
   },
   {
-    "name": "Create reaction for a team discussion",
+    "name": "Create reaction for a team discussion (Legacy)",
+    "scope": "reactions",
+    "id": "createForTeamDiscussionLegacy",
+    "method": "POST",
+    "url": "/teams/{team_id}/discussions/{discussion_number}/reactions",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "discussion_number parameter",
+        "enum": null,
+        "name": "discussion_number",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The [reaction type](https://developer.github.com/v3/reactions/#reaction-types) to add to the team discussion.",
+        "enum": [
+          "+1",
+          "-1",
+          "laugh",
+          "confused",
+          "heart",
+          "hooray",
+          "rocket",
+          "eyes"
+        ],
+        "name": "content",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create reaction for a team discussion (Legacy)",
     "scope": "reactions",
     "id": "createForTeamDiscussion",
     "method": "POST",
@@ -22004,7 +24933,46 @@
     ]
   },
   {
-    "name": "List pending team invitations",
+    "name": "List pending team invitations (Legacy)",
+    "scope": "teams",
+    "id": "listPendingInvitationsLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/invitations",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List pending team invitations (Legacy)",
     "scope": "teams",
     "id": "listPendingInvitations",
     "method": "GET",
@@ -22043,7 +25011,56 @@
     ]
   },
   {
-    "name": "List team members",
+    "name": "List team members (Legacy)",
+    "scope": "teams",
+    "id": "listMembersLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/members",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Filters members returned by their role in the team. Can be one of:  \n\\* `member` - normal members of the team.  \n\\* `maintainer` - team maintainers.  \n\\* `all` - all members of the team.",
+        "enum": ["member", "maintainer", "all"],
+        "name": "role",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List team members (Legacy)",
     "scope": "teams",
     "id": "listMembers",
     "method": "GET",
@@ -22092,7 +25109,36 @@
     ]
   },
   {
-    "name": "Get team member",
+    "name": "Get team member (Legacy)",
+    "scope": "teams",
+    "id": "getMemberLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/members/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get team member (Legacy)",
     "scope": "teams",
     "id": "getMember",
     "method": "GET",
@@ -22121,7 +25167,36 @@
     ]
   },
   {
-    "name": "Add team member",
+    "name": "Add team member (Legacy)",
+    "scope": "teams",
+    "id": "addMemberLegacy",
+    "method": "PUT",
+    "url": "/teams/{team_id}/members/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Add team member (Legacy)",
     "scope": "teams",
     "id": "addMember",
     "method": "PUT",
@@ -22150,9 +25225,9 @@
     ]
   },
   {
-    "name": "Remove team member",
+    "name": "Remove team member (Legacy)",
     "scope": "teams",
-    "id": "removeMember",
+    "id": "removeMemberLegacy",
     "method": "DELETE",
     "url": "/teams/{team_id}/members/{username}",
     "parameters": [
@@ -22179,7 +25254,36 @@
     ]
   },
   {
-    "name": "Get team membership",
+    "name": "Get team membership (Legacy)",
+    "scope": "teams",
+    "id": "getMembershipLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/memberships/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Get team membership (Legacy)",
     "scope": "teams",
     "id": "getMembership",
     "method": "GET",
@@ -22208,7 +25312,46 @@
     ]
   },
   {
-    "name": "Add or update team membership",
+    "name": "Add or update team membership (Legacy)",
+    "scope": "teams",
+    "id": "addOrUpdateMembershipLegacy",
+    "method": "PUT",
+    "url": "/teams/{team_id}/memberships/{username}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "username parameter",
+        "enum": null,
+        "name": "username",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The role that this user should have in the team. Can be one of:  \n\\* `member` - a normal member of the team.  \n\\* `maintainer` - a team maintainer. Able to add/remove other team members, promote other team members to team maintainer, and edit the team's name and description.",
+        "enum": ["member", "maintainer"],
+        "name": "role",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Add or update team membership (Legacy)",
     "scope": "teams",
     "id": "addOrUpdateMembership",
     "method": "PUT",
@@ -22247,9 +25390,9 @@
     ]
   },
   {
-    "name": "Remove team membership",
+    "name": "Remove team membership (Legacy)",
     "scope": "teams",
-    "id": "removeMembership",
+    "id": "removeMembershipLegacy",
     "method": "DELETE",
     "url": "/teams/{team_id}/memberships/{username}",
     "parameters": [
@@ -22276,7 +25419,46 @@
     ]
   },
   {
-    "name": "List team projects",
+    "name": "List team projects (Legacy)",
+    "scope": "teams",
+    "id": "listProjectsLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/projects",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List team projects (Legacy)",
     "scope": "teams",
     "id": "listProjects",
     "method": "GET",
@@ -22315,7 +25497,36 @@
     ]
   },
   {
-    "name": "Review a team project",
+    "name": "Review a team project (Legacy)",
+    "scope": "teams",
+    "id": "reviewProjectLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Review a team project (Legacy)",
     "scope": "teams",
     "id": "reviewProject",
     "method": "GET",
@@ -22344,7 +25555,46 @@
     ]
   },
   {
-    "name": "Add or update team project",
+    "name": "Add or update team project (Legacy)",
+    "scope": "teams",
+    "id": "addOrUpdateProjectLegacy",
+    "method": "PUT",
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The permission to grant to the team for this project. Can be one of:  \n\\* `read` - team members can read, but not write to or administer this project.  \n\\* `write` - team members can read and write, but not administer this project.  \n\\* `admin` - team members can read, write and administer this project.  \nDefault: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP verbs](https://developer.github.com/v3/#http-verbs).\"",
+        "enum": ["read", "write", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Add or update team project (Legacy)",
     "scope": "teams",
     "id": "addOrUpdateProject",
     "method": "PUT",
@@ -22374,7 +25624,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The permission to grant to the team for this project. Can be one of:  \n\\* `read` - team members can read, but not write to or administer this project.  \n\\* `write` - team members can read and write, but not administer this project.  \n\\* `admin` - team members can read, write and administer this project.  \nDefault: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP verbs](https://developer.github.com/v3/#http-verbs).\"  \n**Note**: If you pass the `hellcat-preview` media type, you can promote—but not demote—a `permission` attribute inherited from a parent team.",
+        "description": "The permission to grant to the team for this project. Can be one of:  \n\\* `read` - team members can read, but not write to or administer this project.  \n\\* `write` - team members can read and write, but not administer this project.  \n\\* `admin` - team members can read, write and administer this project.  \nDefault: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP verbs](https://developer.github.com/v3/#http-verbs).\"",
         "enum": ["read", "write", "admin"],
         "name": "permission",
         "type": "string",
@@ -22383,7 +25633,36 @@
     ]
   },
   {
-    "name": "Remove team project",
+    "name": "Remove team project (Legacy)",
+    "scope": "teams",
+    "id": "removeProjectLegacy",
+    "method": "DELETE",
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "project_id parameter",
+        "enum": null,
+        "name": "project_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Remove team project (Legacy)",
     "scope": "teams",
     "id": "removeProject",
     "method": "DELETE",
@@ -22412,7 +25691,46 @@
     ]
   },
   {
-    "name": "List team repos",
+    "name": "List team repos (Legacy)",
+    "scope": "teams",
+    "id": "listReposLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/repos",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List team repos (Legacy)",
     "scope": "teams",
     "id": "listRepos",
     "method": "GET",
@@ -22451,7 +25769,46 @@
     ]
   },
   {
-    "name": "Check if a team manages a repository",
+    "name": "Check if a team manages a repository (Legacy)",
+    "scope": "teams",
+    "id": "checkManagesRepoLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Check if a team manages a repository (Legacy)",
     "scope": "teams",
     "id": "checkManagesRepo",
     "method": "GET",
@@ -22490,7 +25847,56 @@
     ]
   },
   {
-    "name": "Add or update team repository",
+    "name": "Add or update team repository (Legacy)",
+    "scope": "teams",
+    "id": "addOrUpdateRepoLegacy",
+    "method": "PUT",
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The permission to grant the team on this repository. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer this repository.  \n\\* `push` - team members can pull and push, but not administer this repository.  \n\\* `admin` - team members can pull, push and administer this repository.  \n  \nIf no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.",
+        "enum": ["pull", "push", "admin"],
+        "name": "permission",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "Add or update team repository (Legacy)",
     "scope": "teams",
     "id": "addOrUpdateRepo",
     "method": "PUT",
@@ -22530,7 +25936,7 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
-        "description": "The permission to grant the team on this repository. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer this repository.  \n\\* `push` - team members can pull and push, but not administer this repository.  \n\\* `admin` - team members can pull, push and administer this repository.  \n  \nIf no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.  \n**Note**: If you pass the `hellcat-preview` media type, you can promote—but not demote—a `permission` attribute inherited through a parent team.",
+        "description": "The permission to grant the team on this repository. Can be one of:  \n\\* `pull` - team members can pull, but not push to or administer this repository.  \n\\* `push` - team members can pull and push, but not administer this repository.  \n\\* `admin` - team members can pull, push and administer this repository.  \n  \nIf no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.",
         "enum": ["pull", "push", "admin"],
         "name": "permission",
         "type": "string",
@@ -22539,7 +25945,46 @@
     ]
   },
   {
-    "name": "Remove team repository",
+    "name": "Remove team repository (Legacy)",
+    "scope": "teams",
+    "id": "removeRepoLegacy",
+    "method": "DELETE",
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "owner parameter",
+        "enum": null,
+        "name": "owner",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "repo parameter",
+        "enum": null,
+        "name": "repo",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Remove team repository (Legacy)",
     "scope": "teams",
     "id": "removeRepo",
     "method": "DELETE",
@@ -22578,9 +26023,9 @@
     ]
   },
   {
-    "name": "List IdP groups for a team",
+    "name": "List IdP groups for a team (Legacy)",
     "scope": "teams",
-    "id": "listIdPGroups",
+    "id": "listIdPGroupsForLegacy",
     "method": "GET",
     "url": "/teams/{team_id}/team-sync/group-mappings",
     "parameters": [
@@ -22597,7 +26042,85 @@
     ]
   },
   {
-    "name": "Create or update IdP group connections",
+    "name": "List IdP groups for a team (Legacy)",
+    "scope": "teams",
+    "id": "listIdPGroupsFor",
+    "method": "GET",
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create or update IdP group connections (Legacy)",
+    "scope": "teams",
+    "id": "createOrUpdateIdPGroupConnectionsLegacy",
+    "method": "PATCH",
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "The IdP groups you want to connect to a GitHub team. When updating, the new `groups` object will replace the original one. You must include any existing groups that you don't want to remove.",
+        "enum": null,
+        "name": "groups",
+        "type": "object[]",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "ID of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Name of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Description of the IdP group.",
+        "enum": null,
+        "name": "groups[].group_description",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "Create or update IdP group connections (Legacy)",
     "scope": "teams",
     "id": "createOrUpdateIdPGroupConnections",
     "method": "PATCH",
@@ -22656,7 +26179,46 @@
     ]
   },
   {
-    "name": "List child teams",
+    "name": "List child teams (Legacy)",
+    "scope": "teams",
+    "id": "listChildLegacy",
+    "method": "GET",
+    "url": "/teams/{team_id}/teams",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "team_id parameter",
+        "enum": null,
+        "name": "team_id",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List child teams (Legacy)",
     "scope": "teams",
     "id": "listChild",
     "method": "GET",
@@ -23639,7 +27201,7 @@
     ]
   },
   {
-    "name": "Get a list of user migrations",
+    "name": "List user migrations",
     "scope": "migrations",
     "id": "listForAuthenticatedUser",
     "method": "GET",
@@ -23970,6 +27532,16 @@
         "alias": null,
         "allowNull": false,
         "deprecated": null,
+        "description": "Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see \"[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)\" in the GitHub Help documentation.  \nThe `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.",
+        "enum": ["public", "private", "visibility", "internal"],
+        "name": "visibility",
+        "type": "string",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
         "description": "Either `true` to enable issues for this repository or `false` to disable them.",
         "enum": null,
         "name": "has_issues",
@@ -24073,6 +27645,16 @@
         "description": "Either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging.",
         "enum": null,
         "name": "allow_rebase_merge",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Either `true` to allow automatically deleting head branches when pull requests are merged, or `false` to prevent automatic deletion.",
+        "enum": null,
+        "name": "delete_branch_on_merge",
         "type": "boolean",
         "required": false
       }
@@ -24404,6 +27986,45 @@
     "method": "GET",
     "url": "/user/teams",
     "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Results per page (max 100)",
+        "enum": null,
+        "name": "per_page",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "Page number of the results to fetch.",
+        "enum": null,
+        "name": "page",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "List repositories for a user migration",
+    "scope": "migrations",
+    "id": "listReposForUser",
+    "method": "GET",
+    "url": "/user/{migration_id}/repositories",
+    "parameters": [
+      {
+        "alias": null,
+        "allowNull": false,
+        "deprecated": null,
+        "description": "migration_id parameter",
+        "enum": null,
+        "name": "migration_id",
+        "type": "integer",
+        "required": true
+      },
       {
         "alias": null,
         "allowNull": false,

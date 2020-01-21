@@ -65,6 +65,8 @@ function biggerIsBetter(tool) {
             return true;
         case 'googlecpp':
             return false;
+        case 'catch2':
+            return false;
     }
 }
 function findAlerts(curSuite, prevSuite, threshold) {
