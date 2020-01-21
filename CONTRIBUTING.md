@@ -34,21 +34,8 @@ And for another example, here are commits to add support for `pytest-benchmark`:
 - Add workflows for test and example: https://github.com/rhysd/github-action-benchmark/commit/1e4ebf2e9ecde9e7620661c60455b22837a2bdaf
 - Add documentation: https://github.com/rhysd/github-action-benchmark/commit/895f92f564521597492bd281cbf6c8efd39f628e
 
-## Running CI workflow on a forked repo
-
-Since the benchmark data includes the URL of the repository the tests and examples will fail when the repo is forked. In order to get the CI workflow and all examples running the URL has to be changed
-
-### Change workflows and tests
-
-1. in [`ci_validate_modification.ts`](scripts/ci_validate_modification.ts) in the `validateJSON` function replace `https://github.com/rhysd/github-action-benchmark` with your repo URL (i.e. `https://github.com/<YOU>/github-action-benchmark`)
-2. in all workflow (`.yml`) in `.github/workflows` replace `alert-comment-cc-users: '@rhysd'` with your user
-
-### Adapt past benchmark data to new repo path 
-
-1. checkout the branch `gh-pages` 
-2. in `dev/bench/data.js` replace `https://github.com/rhysd/github-action-benchmark` with your repo URL (i.e. `https://github.com/<YOU>/github-action-benchmark`)
-
-In case you are adding a new tool and wand to run ci, you have to add at least one set of example data to the `data.js` in the gh-pages branch.
+Optional: If you add a new example workflow under `.github/workflows/`, you might want to add your
+user name to `alert-comment-cc-users` input like `alert-comment-cc-users: '@rhysd,@you'`.
 
 ## How to create a new release
 
