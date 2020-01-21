@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # TODO: Temporary (start)
-      - uses: actions/setup-node@v1
-      - run: npm ci
-      - run: npm run build
-      # TODO: Temporary (end)
       - name: Build and run benchmarks with Catch2
         run: |
           cd examples/catch2
@@ -23,7 +18,7 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench | tee ../benchmark_result.txt
       - name: Store benchmark result
-        uses: ./
+        uses: rhysd/github-action-benchmark@v1
         with:
           name: Catch2 Benchmark
           tool: "catch2"
