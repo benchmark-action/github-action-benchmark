@@ -1,7 +1,9 @@
-Development
-===========
+Contributing to github-action-benchmark
+=======================================
 
 ## How to add new benchmark tool support
+
+Thank you for being interested in adding a support for new benchmarking tool.
 
 At first, please determine how to get benchmark output from the new benchmarking tool.
 Some tools support multiple formats for outputting the results. In the case please choose
@@ -19,7 +21,7 @@ Adding support for new benchmarking tools is welcome!
 7. Update `.github/workflows/ci.yml` to check your tool works without an error (see below for needed changes)
 8. Add README.md in the example project directory and update README.md at root directory
 
-Important part is 2.
+Important part is 2 and 3.
 
 For example, here are commits to add support for `go test -bench`:
 
@@ -37,9 +39,13 @@ And for another example, here are commits to add support for `pytest-benchmark`:
 Optional: If you add a new example workflow under `.github/workflows/`, you might want to add your
 user name to `alert-comment-cc-users` input like `alert-comment-cc-users: '@rhysd,@you'`.
 
+If something is unclear for you, please ask me questions by creating a new issue.
+
+
+
 ## How to create a new release
 
 1. Run `$ bash scripts/prepare-release.sh v1`
 2. Check changes with `git diff --cached`
 3. If ok, create a new commit and tag it with `v1.x.y`
-4. Push the commit and tag to `v1` remote repository and make a release on GitHub
+4. Push the tag and commit to `v1` remote repository and make a new release on GitHub
