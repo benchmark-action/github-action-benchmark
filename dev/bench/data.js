@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579565734129,
+  "lastUpdate": 1579565736883,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23085,6 +23085,42 @@ window.BENCHMARK_DATA = {
             "value": 31351.78429057918,
             "unit": "ns/iter",
             "extra": "iterations: 22025\ncpu: 31335.20199772986 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "99bc279360964f95974a026b018dd8e0ea7a7c9f",
+          "message": "use released Catch2 support in example workflow",
+          "timestamp": "2020-01-21T09:14:41+09:00",
+          "tree_id": "f787855d8454dc96ec0723bbc16dbc5d97ba5315",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/99bc279360964f95974a026b018dd8e0ea7a7c9f"
+        },
+        "date": 1579565735448,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 218.66228127202663,
+            "unit": "ns/iter",
+            "extra": "iterations: 3276330\ncpu: 218.45939633675485 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30024.656223357495,
+            "unit": "ns/iter",
+            "extra": "iterations: 23460\ncpu: 30020.436231884058 ns\nthreads: 1"
           }
         ]
       }
