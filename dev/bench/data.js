@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579590024479,
+  "lastUpdate": 1579590030183,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16499,6 +16499,44 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 8572,
             "range": "±1.12%",
+            "unit": "ops/sec",
+            "extra": "92 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "e8d70a542cb5f9537922ea4a2964fe93fff54aec",
+          "message": "remove sections which are no longer necessary in CONTRIBUTING.md\n\nbecause validation script was improved",
+          "timestamp": "2020-01-21T15:59:28+09:00",
+          "tree_id": "72570a3dfc3ed51e4e87b11709fea2134194a877",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e8d70a542cb5f9537922ea4a2964fe93fff54aec"
+        },
+        "date": 1579590028890,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1100046,
+            "range": "±0.85%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9331,
+            "range": "±0.77%",
             "unit": "ops/sec",
             "extra": "92 samples"
           }
