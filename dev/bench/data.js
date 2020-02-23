@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1582460712246,
+  "lastUpdate": 1582460715096,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21311,6 +21311,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003189835578286073",
             "extra": "mean: 2.672991039900235 msec\nrounds: 401"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c55701c8dacf265696fae2d0a2a0d61c2df62281",
+          "message": "fix example for googlecpp does not suppress constant folding optimization currently",
+          "timestamp": "2020-02-23T21:23:24+09:00",
+          "tree_id": "ca0a0cd45870b65a16174afaf7062e7ab9a1177f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/c55701c8dacf265696fae2d0a2a0d61c2df62281"
+        },
+        "date": 1582460710923,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 53395.60365937924,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000007237021918537241",
+            "extra": "mean: 18.72813361899963 usec\nrounds: 45046"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 417.9317050152662,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002958179311679604",
+            "extra": "mean: 2.392735435000013 msec\nrounds: 400"
           }
         ]
       }
