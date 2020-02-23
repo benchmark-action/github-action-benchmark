@@ -12,7 +12,6 @@ const path = __importStar(require("path"));
 const io = __importStar(require("@actions/io"));
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
-const Octokit = require("@octokit/rest");
 const git = __importStar(require("./git"));
 const default_index_html_1 = require("./default_index_html");
 exports.SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
@@ -128,7 +127,7 @@ function buildAlertComment(alerts, benchName, curSuite, prevSuite, threshold, cc
     }
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
-    const repoUrl = (_a = repo.html_url, (_a !== null && _a !== void 0 ? _a : ''));
+    const repoUrl = (_a = repo.html_url) !== null && _a !== void 0 ? _a : '';
     const actionUrl = repoUrl + '/actions?query=workflow%3A' + encodeURIComponent(github.context.workflow);
     core.debug(`Action URL: ${actionUrl}`);
     // Footer
@@ -143,8 +142,8 @@ async function leaveComment(commitId, body, token) {
     core.debug('Sending alert comment:\n' + body);
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
-    const repoUrl = (_a = repo.html_url, (_a !== null && _a !== void 0 ? _a : ''));
-    const client = new Octokit({ auth: token });
+    const repoUrl = (_a = repo.html_url) !== null && _a !== void 0 ? _a : '';
+    const client = new github.GitHub(token);
     const res = await client.repos.createCommitComment({
         owner: repo.owner.login,
         repo: repo.name,
@@ -202,7 +201,7 @@ async function handleAlert(benchName, curSuite, prevSuite, config) {
 function addBenchmarkToDataJson(benchName, bench, data, maxItems) {
     var _a, _b;
     // eslint-disable-next-line @typescript-eslint/camelcase
-    const htmlUrl = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url, (_b !== null && _b !== void 0 ? _b : ''));
+    const htmlUrl = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url) !== null && _b !== void 0 ? _b : '';
     let prevBench = null;
     data.lastUpdate = Date.now();
     data.repoUrl = htmlUrl;
@@ -238,7 +237,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     var _a, _b;
     const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages, maxItemsInChart, } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
-    const isPrivateRepo = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.private, (_b !== null && _b !== void 0 ? _b : false));
+    const isPrivateRepo = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.private) !== null && _b !== void 0 ? _b : false;
     if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     }

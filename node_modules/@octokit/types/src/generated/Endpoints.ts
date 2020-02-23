@@ -145,6 +145,18 @@ export interface Endpoints {
     ReposDeleteEndpoint,
     ReposDeleteRequestOptions
   ];
+  "DELETE /repos/:owner/:repo/actions/artifacts/:artifact_id": [
+    ActionsDeleteArtifactEndpoint,
+    ActionsDeleteArtifactRequestOptions
+  ];
+  "DELETE /repos/:owner/:repo/actions/runners/:runner_id": [
+    ActionsRemoveSelfHostedRunnerEndpoint,
+    ActionsRemoveSelfHostedRunnerRequestOptions
+  ];
+  "DELETE /repos/:owner/:repo/actions/secrets/:name": [
+    ActionsDeleteSecretFromRepoEndpoint,
+    ActionsDeleteSecretFromRepoRequestOptions
+  ];
   "DELETE /repos/:owner/:repo/automated-security-fixes": [
     ReposDisableAutomatedSecurityFixesEndpoint,
     ReposDisableAutomatedSecurityFixesRequestOptions
@@ -200,6 +212,10 @@ export interface Endpoints {
   "DELETE /repos/:owner/:repo/contents/:path": [
     ReposDeleteFileEndpoint,
     ReposDeleteFileRequestOptions
+  ];
+  "DELETE /repos/:owner/:repo/deployments/:deployment_id": [
+    ReposDeleteDeploymentEndpoint,
+    ReposDeleteDeploymentRequestOptions
   ];
   "DELETE /repos/:owner/:repo/downloads/:download_id": [
     ReposDeleteDownloadEndpoint,
@@ -312,12 +328,14 @@ export interface Endpoints {
       | TeamsDeleteDiscussionCommentRequestOptions
   ];
   "DELETE /teams/:team_id/members/:username": [
-    TeamsRemoveMemberLegacyEndpoint,
-    TeamsRemoveMemberLegacyRequestOptions
+    TeamsRemoveMemberLegacyEndpoint | TeamsRemoveMemberEndpoint,
+    TeamsRemoveMemberLegacyRequestOptions | TeamsRemoveMemberRequestOptions
   ];
   "DELETE /teams/:team_id/memberships/:username": [
-    TeamsRemoveMembershipLegacyEndpoint,
-    TeamsRemoveMembershipLegacyRequestOptions
+    TeamsRemoveMembershipLegacyEndpoint | TeamsRemoveMembershipEndpoint,
+
+      | TeamsRemoveMembershipLegacyRequestOptions
+      | TeamsRemoveMembershipRequestOptions
   ];
   "DELETE /teams/:team_id/projects/:project_id": [
     TeamsRemoveProjectLegacyEndpoint | TeamsRemoveProjectEndpoint,
@@ -596,8 +614,12 @@ export interface Endpoints {
     MigrationsGetStatusForOrgRequestOptions
   ];
   "GET /orgs/:org/migrations/:migration_id/archive": [
-    MigrationsGetArchiveForOrgEndpoint,
-    MigrationsGetArchiveForOrgRequestOptions
+
+      | MigrationsDownloadArchiveForOrgEndpoint
+      | MigrationsGetArchiveForOrgEndpoint,
+
+      | MigrationsDownloadArchiveForOrgRequestOptions
+      | MigrationsGetArchiveForOrgRequestOptions
   ];
   "GET /orgs/:org/migrations/:migration_id/repositories": [
     MigrationsListReposForOrgEndpoint,
@@ -722,6 +744,82 @@ export interface Endpoints {
   "GET /repos/:owner/:repo/:archive_format/:ref": [
     ReposGetArchiveLinkEndpoint,
     ReposGetArchiveLinkRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/artifacts": [
+    ActionsListArtifactsForRepoEndpoint,
+    ActionsListArtifactsForRepoRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/artifacts/:artifact_id": [
+    ActionsGetArtifactEndpoint,
+    ActionsGetArtifactRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/artifacts/:artifact_id/:archive_format": [
+    ActionsDownloadArtifactEndpoint,
+    ActionsDownloadArtifactRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/jobs/:job_id": [
+    ActionsGetWorkflowJobEndpoint,
+    ActionsGetWorkflowJobRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/jobs/:job_id/logs": [
+    ActionsListWorkflowJobLogsEndpoint,
+    ActionsListWorkflowJobLogsRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runners": [
+    ActionsListSelfHostedRunnersForRepoEndpoint,
+    ActionsListSelfHostedRunnersForRepoRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runners/:runner_id": [
+    ActionsGetSelfHostedRunnerEndpoint,
+    ActionsGetSelfHostedRunnerRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runners/downloads": [
+    ActionsListDownloadsForSelfHostedRunnerApplicationEndpoint,
+    ActionsListDownloadsForSelfHostedRunnerApplicationRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runs": [
+    ActionsListRepoWorkflowRunsEndpoint,
+    ActionsListRepoWorkflowRunsRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runs/:run_id": [
+    ActionsGetWorkflowRunEndpoint,
+    ActionsGetWorkflowRunRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runs/:run_id/artifacts": [
+    ActionsListWorkflowRunArtifactsEndpoint,
+    ActionsListWorkflowRunArtifactsRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runs/:run_id/jobs": [
+    ActionsListJobsForWorkflowRunEndpoint,
+    ActionsListJobsForWorkflowRunRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/runs/:run_id/logs": [
+    ActionsListWorkflowRunLogsEndpoint,
+    ActionsListWorkflowRunLogsRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/secrets": [
+    ActionsListSecretsForRepoEndpoint,
+    ActionsListSecretsForRepoRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/secrets/:name": [
+    ActionsGetSecretEndpoint,
+    ActionsGetSecretRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/secrets/public-key": [
+    ActionsGetPublicKeyEndpoint,
+    ActionsGetPublicKeyRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/workflows": [
+    ActionsListRepoWorkflowsEndpoint,
+    ActionsListRepoWorkflowsRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/workflows/:workflow_id": [
+    ActionsGetWorkflowEndpoint,
+    ActionsGetWorkflowRequestOptions
+  ];
+  "GET /repos/:owner/:repo/actions/workflows/:workflow_id/runs": [
+    ActionsListWorkflowRunsEndpoint,
+    ActionsListWorkflowRunsRequestOptions
   ];
   "GET /repos/:owner/:repo/assignees": [
     IssuesListAssigneesEndpoint,
@@ -1807,6 +1905,22 @@ export interface Endpoints {
     ProjectsMoveCardEndpoint,
     ProjectsMoveCardRequestOptions
   ];
+  "POST /repos/:owner/:repo/actions/runners/registration-token": [
+    ActionsCreateRegistrationTokenEndpoint,
+    ActionsCreateRegistrationTokenRequestOptions
+  ];
+  "POST /repos/:owner/:repo/actions/runners/remove-token": [
+    ActionsCreateRemoveTokenEndpoint,
+    ActionsCreateRemoveTokenRequestOptions
+  ];
+  "POST /repos/:owner/:repo/actions/runs/:run_id/cancel": [
+    ActionsCancelWorkflowRunEndpoint,
+    ActionsCancelWorkflowRunRequestOptions
+  ];
+  "POST /repos/:owner/:repo/actions/runs/:run_id/rerun": [
+    ActionsReRunWorkflowEndpoint,
+    ActionsReRunWorkflowRequestOptions
+  ];
   "POST /repos/:owner/:repo/branches/:branch/protection/enforce_admins": [
     ReposAddProtectedBranchAdminEnforcementEndpoint,
     ReposAddProtectedBranchAdminEnforcementRequestOptions
@@ -2052,6 +2166,10 @@ export interface Endpoints {
     ReposCreateForAuthenticatedUserEndpoint,
     ReposCreateForAuthenticatedUserRequestOptions
   ];
+  "POST :origin/repos/:owner/:repo/releases/:release_id/assets:?name,label": [
+    ReposUploadReleaseAssetEndpoint,
+    ReposUploadReleaseAssetRequestOptions
+  ];
   "PUT /authorizations/clients/:client_id": [
     OauthAuthorizationsGetOrCreateAuthorizationForAppEndpoint,
     OauthAuthorizationsGetOrCreateAuthorizationForAppRequestOptions
@@ -2108,6 +2226,10 @@ export interface Endpoints {
   "PUT /projects/:project_id/collaborators/:username": [
     ProjectsAddCollaboratorEndpoint,
     ProjectsAddCollaboratorRequestOptions
+  ];
+  "PUT /repos/:owner/:repo/actions/secrets/:name": [
+    ActionsCreateOrUpdateSecretForRepoEndpoint,
+    ActionsCreateOrUpdateSecretForRepoRequestOptions
   ];
   "PUT /repos/:owner/:repo/automated-security-fixes": [
     ReposEnableAutomatedSecurityFixesEndpoint,
@@ -3402,14 +3524,6 @@ type AppsCheckAccountIsAssociatedWithAnyEndpoint = {
    * account_id parameter
    */
   account_id: number;
-  /**
-   * Results per page (max 100)
-   */
-  per_page?: number;
-  /**
-   * Page number of the results to fetch.
-   */
-  page?: number;
 };
 type AppsCheckAccountIsAssociatedWithAnyRequestOptions = {
   method: "GET";
@@ -3466,14 +3580,6 @@ type AppsCheckAccountIsAssociatedWithAnyStubbedEndpoint = {
    * account_id parameter
    */
   account_id: number;
-  /**
-   * Results per page (max 100)
-   */
-  per_page?: number;
-  /**
-   * Page number of the results to fetch.
-   */
-  page?: number;
 };
 type AppsCheckAccountIsAssociatedWithAnyStubbedRequestOptions = {
   method: "GET";
@@ -3666,9 +3772,9 @@ type ActivityDeleteThreadSubscriptionRequestOptions = {
 };
 type OrgsListEndpoint = {
   /**
-   * The integer ID of the last Organization that you've seen.
+   * The integer ID of the last organization that you've seen.
    */
-  since?: string;
+  since?: number;
   /**
    * Results per page (max 100)
    */
@@ -3750,7 +3856,7 @@ type OrgsUpdateEndpoint = {
    */
   members_can_create_repositories?: boolean;
   /**
-   * Toggles whether organization members can create internal repositories, which are visible to all enterprise members. You can only allow members to create internal repositories if your organization is associated with an enterprise account using GitHub Enterprise Cloud. Can be one of:
+   * Toggles whether organization members can create internal repositories, which are visible to all enterprise members. You can only allow members to create internal repositories if your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+. Can be one of:
    * \* `true` - all organization members can create internal repositories.
    * \* `false` - only organization owners can create internal repositories.
    * Default: `true`. For more information, see "[Restricting repository creation in your organization](https://help.github.com/github/setting-up-and-managing-organizations-and-teams/restricting-repository-creation-in-your-organization)" in the GitHub Help documentation.
@@ -4404,6 +4510,22 @@ type MigrationsGetStatusForOrgRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type MigrationsDownloadArchiveForOrgEndpoint = {
+  /**
+   * org parameter
+   */
+  org: string;
+  /**
+   * migration_id parameter
+   */
+  migration_id: number;
+};
+type MigrationsDownloadArchiveForOrgRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type MigrationsGetArchiveForOrgEndpoint = {
   /**
    * org parameter
@@ -4656,7 +4778,7 @@ type ReposListForOrgEndpoint = {
    */
   org: string;
   /**
-   * Specifies the types of repositories you want returned. Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`, `internal`. Default: `all`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `type` can also be `internal`.
+   * Specifies the types of repositories you want returned. Can be one of `all`, `public`, `private`, `forks`, `sources`, `member`, `internal`. Default: `all`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, `type` can also be `internal`.
    */
   type?:
     | "all"
@@ -4711,7 +4833,7 @@ type ReposCreateInOrgEndpoint = {
    */
   private?: boolean;
   /**
-   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)" in the GitHub Help documentation.
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-visibility#about-internal-repositories)" in the GitHub Help documentation.
    * The `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.
    */
   visibility?: "public" | "private" | "visibility" | "internal";
@@ -5896,14 +6018,6 @@ type ProjectsGetEndpoint = {
    * project_id parameter
    */
   project_id: number;
-  /**
-   * Results per page (max 100)
-   */
-  per_page?: number;
-  /**
-   * Page number of the results to fetch.
-   */
-  page?: number;
 };
 type ProjectsGetRequestOptions = {
   method: "GET";
@@ -6147,7 +6261,7 @@ type ReposUpdateEndpoint = {
    */
   private?: boolean;
   /**
-   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. The `visibility` parameter overrides the `private` parameter when you use both along with the `nebula-preview` preview header.
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, `visibility` can also be `internal`. The `visibility` parameter overrides the `private` parameter when you use both along with the `nebula-preview` preview header.
    */
   visibility?: "public" | "private" | "visibility" | "internal";
   /**
@@ -6209,6 +6323,634 @@ type ReposDeleteEndpoint = {
 };
 type ReposDeleteRequestOptions = {
   method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListArtifactsForRepoEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListArtifactsForRepoRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetArtifactEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * artifact_id parameter
+   */
+  artifact_id: number;
+};
+type ActionsGetArtifactRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsDeleteArtifactEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * artifact_id parameter
+   */
+  artifact_id: number;
+};
+type ActionsDeleteArtifactRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsDownloadArtifactEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * artifact_id parameter
+   */
+  artifact_id: number;
+  /**
+   * archive_format parameter
+   */
+  archive_format: string;
+};
+type ActionsDownloadArtifactRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetWorkflowJobEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * job_id parameter
+   */
+  job_id: number;
+};
+type ActionsGetWorkflowJobRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListWorkflowJobLogsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * job_id parameter
+   */
+  job_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListWorkflowJobLogsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListSelfHostedRunnersForRepoEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListSelfHostedRunnersForRepoRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListDownloadsForSelfHostedRunnerApplicationEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type ActionsListDownloadsForSelfHostedRunnerApplicationRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsCreateRegistrationTokenEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type ActionsCreateRegistrationTokenRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsCreateRemoveTokenEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type ActionsCreateRemoveTokenRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetSelfHostedRunnerEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * runner_id parameter
+   */
+  runner_id: number;
+};
+type ActionsGetSelfHostedRunnerRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsRemoveSelfHostedRunnerEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * runner_id parameter
+   */
+  runner_id: number;
+};
+type ActionsRemoveSelfHostedRunnerRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListRepoWorkflowRunsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * Returns someone's workflow runs. Use the login for the user who created the `push` associated with the check suite or workflow run.
+   */
+  actor?: string;
+  /**
+   * Returns workflow runs associated with a branch. Use the name of the branch of the `push`.
+   */
+  branch?: string;
+  /**
+   * Returns workflow run triggered by the event you specify. For example, `push`, `pull_request` or `issue`. For more information, see "[Events that trigger workflows](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows)" in the GitHub Help documentation.
+   */
+  event?: string;
+  /**
+   * Returns workflow runs associated with the check run `status` or `conclusion` you specify. For example, a conclusion can be `success` or a status can be `completed`. For more information, see the `status` and `conclusion` options available in "[Create a check run](https://developer.github.com/v3/checks/runs/#create-a-check-run)."
+   */
+  status?: "completed" | "status" | "conclusion";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListRepoWorkflowRunsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetWorkflowRunEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+};
+type ActionsGetWorkflowRunRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListWorkflowRunArtifactsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListWorkflowRunArtifactsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsCancelWorkflowRunEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+};
+type ActionsCancelWorkflowRunRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListJobsForWorkflowRunEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListJobsForWorkflowRunRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListWorkflowRunLogsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListWorkflowRunLogsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsReRunWorkflowEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * run_id parameter
+   */
+  run_id: number;
+};
+type ActionsReRunWorkflowRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListSecretsForRepoEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListSecretsForRepoRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetPublicKeyEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+};
+type ActionsGetPublicKeyRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetSecretEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * name parameter
+   */
+  name: string;
+};
+type ActionsGetSecretRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsCreateOrUpdateSecretForRepoEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * name parameter
+   */
+  name: string;
+  /**
+   * Value for your secret, encrypted with [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages) using the public key retrieved from the [Get your public key](https://developer.github.com/v3/actions/secrets/#get-your-public-key) endpoint.
+   */
+  encrypted_value?: string;
+  /**
+   * ID of the key you used to encrypt the secret.
+   */
+  key_id?: string;
+};
+type ActionsCreateOrUpdateSecretForRepoRequestOptions = {
+  method: "PUT";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsDeleteSecretFromRepoEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * name parameter
+   */
+  name: string;
+};
+type ActionsDeleteSecretFromRepoRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListRepoWorkflowsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListRepoWorkflowsRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsGetWorkflowEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * workflow_id parameter
+   */
+  workflow_id: number;
+};
+type ActionsGetWorkflowRequestOptions = {
+  method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ActionsListWorkflowRunsEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * workflow_id parameter
+   */
+  workflow_id: number;
+  /**
+   * Returns someone's workflow runs. Use the login for the user who created the `push` associated with the check suite or workflow run.
+   */
+  actor?: string;
+  /**
+   * Returns workflow runs associated with a branch. Use the name of the branch of the `push`.
+   */
+  branch?: string;
+  /**
+   * Returns workflow run triggered by the event you specify. For example, `push`, `pull_request` or `issue`. For more information, see "[Events that trigger workflows](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows)" in the GitHub Help documentation.
+   */
+  event?: string;
+  /**
+   * Returns workflow runs associated with the check run `status` or `conclusion` you specify. For example, a conclusion can be `success` or a status can be `completed`. For more information, see the `status` and `conclusion` options available in "[Create a check run](https://developer.github.com/v3/checks/runs/#create-a-check-run)."
+   */
+  status?: "completed" | "status" | "conclusion";
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
+};
+type ActionsListWorkflowRunsRequestOptions = {
+  method: "GET";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -7232,7 +7974,7 @@ type ChecksCreateEndpoint = {
   started_at?: string;
   /**
    * **Required if you provide `completed_at` or a `status` of `completed`**. The final conclusion of the check. Can be one of `success`, `failure`, `neutral`, `cancelled`, `timed_out`, or `action_required`. When the conclusion is `action_required`, additional details should be provided on the site specified by `details_url`.
-   * **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`.
+   * **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`. Only GitHub can change a check run conclusion to `stale`.
    */
   conclusion?:
     | "success"
@@ -7295,7 +8037,7 @@ type ChecksUpdateEndpoint = {
   status?: "queued" | "in_progress" | "completed";
   /**
    * **Required if you provide `completed_at` or a `status` of `completed`**. The final conclusion of the check. Can be one of `success`, `failure`, `neutral`, `cancelled`, `timed_out`, or `action_required`.
-   * **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`.
+   * **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`. Only GitHub can change a check run conclusion to `stale`.
    */
   conclusion?:
     | "success"
@@ -8459,6 +9201,26 @@ type ReposGetDeploymentEndpoint = {
 };
 type ReposGetDeploymentRequestOptions = {
   method: "GET";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type ReposDeleteDeploymentEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * deployment_id parameter
+   */
+  deployment_id: number;
+};
+type ReposDeleteDeploymentRequestOptions = {
+  method: "DELETE";
   url: Url;
   headers: RequestHeaders;
   request: RequestRequestOptions;
@@ -9687,6 +10449,14 @@ type IssuesListCommentsForRepoEndpoint = {
    * Only comments updated at or after this time are returned. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.
    */
   since?: string;
+  /**
+   * Results per page (max 100)
+   */
+  per_page?: number;
+  /**
+   * Page number of the results to fetch.
+   */
+  page?: number;
 };
 type IssuesListCommentsForRepoRequestOptions = {
   method: "GET";
@@ -9707,14 +10477,6 @@ type IssuesGetCommentEndpoint = {
    * comment_id parameter
    */
   comment_id: number;
-  /**
-   * Results per page (max 100)
-   */
-  per_page?: number;
-  /**
-   * Page number of the results to fetch.
-   */
-  page?: number;
 };
 type IssuesGetCommentRequestOptions = {
   method: "GET";
@@ -12304,6 +13066,42 @@ type ReposListAssetsForReleaseRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type ReposUploadReleaseAssetEndpoint = {
+  /**
+   * owner parameter
+   */
+  owner: string;
+  /**
+   * repo parameter
+   */
+  repo: string;
+  /**
+   * release_id parameter
+   */
+  release_id: number;
+  /**
+   * name parameter
+   */
+  name?: string;
+  /**
+   * label parameter
+   */
+  label?: string;
+  /**
+   * The raw file data
+   */
+  data: string;
+  /**
+   * The URL origin (protocol + host name + port) is included in `upload_url` returned in the response of the "Create a release" endpoint
+   */
+  origin?: string;
+};
+type ReposUploadReleaseAssetRequestOptions = {
+  method: "POST";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type ActivityListStargazersForRepoEndpoint = {
   /**
    * owner parameter
@@ -12812,9 +13610,9 @@ type ReposCreateUsingTemplateRequestOptions = {
 };
 type ReposListPublicEndpoint = {
   /**
-   * The integer ID of the last Repository that you've seen.
+   * The integer ID of the last repository that you've seen.
    */
-  since?: string;
+  since?: number;
   /**
    * Results per page (max 100)
    */
@@ -14190,6 +14988,22 @@ type TeamsRemoveMemberLegacyRequestOptions = {
   headers: RequestHeaders;
   request: RequestRequestOptions;
 };
+type TeamsRemoveMemberEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsRemoveMemberRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
 type TeamsGetMembershipLegacyEndpoint = {
   /**
    * team_id parameter
@@ -14277,6 +15091,22 @@ type TeamsRemoveMembershipLegacyEndpoint = {
   username: string;
 };
 type TeamsRemoveMembershipLegacyRequestOptions = {
+  method: "DELETE";
+  url: Url;
+  headers: RequestHeaders;
+  request: RequestRequestOptions;
+};
+type TeamsRemoveMembershipEndpoint = {
+  /**
+   * team_id parameter
+   */
+  team_id: number;
+  /**
+   * username parameter
+   */
+  username: string;
+};
+type TeamsRemoveMembershipRequestOptions = {
   method: "DELETE";
   url: Url;
   headers: RequestHeaders;
@@ -15414,7 +16244,7 @@ type ReposCreateForAuthenticatedUserEndpoint = {
    */
   private?: boolean;
   /**
-   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/github/creating-cloning-and-archiving-repositories/creating-an-internal-repository)" in the GitHub Help documentation.
+   * Can be `public` or `private`. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, `visibility` can also be `internal`. For more information, see "[Creating an internal repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-visibility#about-internal-repositories)" in the GitHub Help documentation.
    * The `visibility` parameter overrides the `private` parameter when you use both parameters with the `nebula-preview` preview header.
    */
   visibility?: "public" | "private" | "visibility" | "internal";

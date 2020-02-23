@@ -53,7 +53,7 @@ function getCommit() {
     /* eslint-enable @typescript-eslint/camelcase */
 }
 function extractCargoResult(output) {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
@@ -77,7 +77,7 @@ function extractCargoResult(output) {
     return ret;
 }
 function extractGoResult(output) {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
@@ -102,7 +102,7 @@ function extractGoResult(output) {
     return ret;
 }
 function extractBenchmarkJsResult(output) {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   fib(20) x 11,465 ops/sec ±1.12% (91 runs sampled)
@@ -176,15 +176,14 @@ function extractCatch2Result(output) {
     const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     lines.reverse();
     let lnum = 0;
     function nextLine() {
         var _a;
-        return [(_a = lines.pop(), (_a !== null && _a !== void 0 ? _a : null)), ++lnum];
+        return [(_a = lines.pop()) !== null && _a !== void 0 ? _a : null, ++lnum];
     }
     function extractBench() {
-        var _a, _b;
         const startLine = nextLine()[0];
         if (startLine === null) {
             return null;
@@ -196,16 +195,16 @@ function extractCatch2Result(output) {
         const extra = `${start[1]} samples\n${start[2]} iterations`;
         const name = startLine.slice(0, start.index).trim();
         const [meanLine, meanLineNum] = nextLine();
-        const mean = (_a = meanLine) === null || _a === void 0 ? void 0 : _a.match(reBenchmarkValues);
+        const mean = meanLine === null || meanLine === void 0 ? void 0 : meanLine.match(reBenchmarkValues);
         if (!mean) {
-            throw new Error(`Mean values cannot be retrieved for benchmark '${name}' on parsing input '${(meanLine !== null && meanLine !== void 0 ? meanLine : 'EOF')}' at line ${meanLineNum}`);
+            throw new Error(`Mean values cannot be retrieved for benchmark '${name}' on parsing input '${meanLine !== null && meanLine !== void 0 ? meanLine : 'EOF'}' at line ${meanLineNum}`);
         }
         const value = parseFloat(mean[1]);
         const unit = mean[2];
         const [stdDevLine, stdDevLineNum] = nextLine();
-        const stdDev = (_b = stdDevLine) === null || _b === void 0 ? void 0 : _b.match(reBenchmarkValues);
+        const stdDev = stdDevLine === null || stdDevLine === void 0 ? void 0 : stdDevLine.match(reBenchmarkValues);
         if (!stdDev) {
-            throw new Error(`Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${(stdDevLine !== null && stdDevLine !== void 0 ? stdDevLine : 'EOF')}' at line ${stdDevLineNum}`);
+            throw new Error(`Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${stdDevLine !== null && stdDevLine !== void 0 ? stdDevLine : 'EOF'}' at line ${stdDevLineNum}`);
         }
         const range = '+/- ' + stdDev[1].trim();
         // Skip empty line
