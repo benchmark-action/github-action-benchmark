@@ -1,7 +1,16 @@
+<a name="v1.7.1"></a>
+# [v1.7.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.7.1) - 23 Feb 2020
+
+- **Fix:** Benchmark output parser could not parse `\r\n` as newline correctly (#16)
+- **Improve:** Prefer `@actions/github.GitHub` wrapper to `@octokit/rest.Octokit`
+
+[Changes][v1.7.1]
+
+
 <a name="v1.7.0"></a>
 # [v1.7.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.7.0) - 21 Jan 2020
 
-- **Improve:** Add [Catch2](https://github.com/catchorg/Catch2) support. Please read [the example](https://github.com/rhysd/github-action-benchmark/tree/master/examples/catch2) for more details. [Thanks @bernedom](https://github.com/rhysd/github-action-benchmark/pull/6)
+- **New:** Add [Catch2](https://github.com/catchorg/Catch2) support. Please read [the example](https://github.com/rhysd/github-action-benchmark/tree/master/examples/catch2) for more details. [Thanks @bernedom](https://github.com/rhysd/github-action-benchmark/pull/6)
 - **Fix:** Deploying to GitHub Pages did not work when checking out the repository with `actions/checkout@v2`
 - **Improve:** Update several dependencies including `@actions/*` packages
 
@@ -241,6 +250,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.7.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.7...v1.7.0
 [v1.6.7]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.6...v1.6.7
 [v1.6.6]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.5...v1.6.6
