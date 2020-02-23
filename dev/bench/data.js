@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1582456049315,
+  "lastUpdate": 1582456084040,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24079,6 +24079,42 @@ window.BENCHMARK_DATA = {
             "value": 30642.644546705833,
             "unit": "ns/iter",
             "extra": "iterations: 23252\ncpu: 30551.755633923964 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3bac239e2a4482b79a34b004d8e800ff780d348f",
+          "message": "fix \\r\\n is not considered as newline on parsing Catch2 output (fix #16)",
+          "timestamp": "2020-02-23T20:06:15+09:00",
+          "tree_id": "498498bc013e7fa2d8f908ca06f7f88b71ace11c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3bac239e2a4482b79a34b004d8e800ff780d348f"
+        },
+        "date": 1582456082763,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 0.40945571000000314,
+            "unit": "ns/iter",
+            "extra": "iterations: 1000000000\ncpu: 0.4094471110000001 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 0.40413627499999905,
+            "unit": "ns/iter",
+            "extra": "iterations: 1000000000\ncpu: 0.403907664 ns\nthreads: 1"
           }
         ]
       }
