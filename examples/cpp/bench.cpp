@@ -4,13 +4,17 @@
 static void fib_10(benchmark::State &state) {
   for (auto _ : state) {
     // Suppress optimization otherwise this line is removed by DCE
-    benchmark::DoNotOptimize(fib(10));
+    int i = 10;
+    benchmark::DoNotOptimize(i);
+    benchmark::DoNotOptimize(fib(i));
   }
 }
 
 static void fib_20(benchmark::State &state) {
   for (auto _ : state) {
-    benchmark::DoNotOptimize(fib(20));
+    int i = 20;
+    benchmark::DoNotOptimize(i);
+    benchmark::DoNotOptimize(fib(i));
   }
 }
 
