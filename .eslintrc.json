@@ -12,7 +12,6 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "mocha",
         "prettier"
     ],
     "env": {
@@ -38,12 +37,18 @@
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-string-starts-ends-with": "error",
         "@typescript-eslint/prefer-readonly": "error",
-        "@typescript-eslint/no-non-null-asserted-optional-chain": "error"
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+        "@typescript-eslint/await-thenable": "error",
+        "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+        "@typescript-eslint/switch-exhaustiveness-check": "error"
     },
     "overrides": [
         {
             "files": [
                 "test/*.ts"
+            ],
+            "plugins": [
+                "mocha"
             ],
             "extends": [
                 "plugin:mocha/recommended"
