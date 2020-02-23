@@ -1,0 +1,28 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bench.exe is a Catch v2.11.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Fibonacci
+-------------------------------------------------------------------------------
+D:\a\bench_action_test\bench_action_test\catch2_bench.cpp(5)
+...............................................................................
+
+benchmark name                                  samples       iterations    estimated
+                                                mean          low mean      high mean
+                                                std dev       low std dev   high std dev
+-------------------------------------------------------------------------------
+Fibonacci 10                                              100         76353          0 ns 
+                                                         0 ns          0 ns          0 ns 
+                                                         0 ns          0 ns          0 ns 
+                                                                                          
+Fibonacci 20                                              100         75814          0 ns 
+                                                         1 ns          1 ns          1 ns 
+                                                         0 ns          0 ns          0 ns 
+                                                                                          
+
+===============================================================================
+test cases: 1 | 1 passed
+assertions: - none -
+

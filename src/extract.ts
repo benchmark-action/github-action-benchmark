@@ -174,7 +174,7 @@ function getCommit(): Commit {
 }
 
 function extractCargoResult(output: string): BenchmarkResult[] {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
@@ -203,7 +203,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 }
 
 function extractGoResult(output: string): BenchmarkResult[] {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
@@ -234,7 +234,7 @@ function extractGoResult(output: string): BenchmarkResult[] {
 }
 
 function extractBenchmarkJsResult(output: string): BenchmarkResult[] {
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   fib(20) x 11,465 ops/sec ±1.12% (91 runs sampled)
@@ -321,7 +321,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
 
-    const lines = output.split('\n');
+    const lines = output.split(/\r?\n/g);
     lines.reverse();
     let lnum = 0;
     function nextLine(): [string | null, number] {
