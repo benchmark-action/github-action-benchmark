@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1579590593139,
+  "lastUpdate": 1582456030014,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11103,6 +11103,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 55793,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3bac239e2a4482b79a34b004d8e800ff780d348f",
+          "message": "fix \\r\\n is not considered as newline on parsing Catch2 output (fix #16)",
+          "timestamp": "2020-02-23T20:06:15+09:00",
+          "tree_id": "498498bc013e7fa2d8f908ca06f7f88b71ace11c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3bac239e2a4482b79a34b004d8e800ff780d348f"
+        },
+        "date": 1582456028658,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 434,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 51053,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
