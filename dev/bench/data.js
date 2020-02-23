@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1582456037870,
+  "lastUpdate": 1582456045864,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25031,6 +25031,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 22.134,
             "range": "+/- 5.917",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3bac239e2a4482b79a34b004d8e800ff780d348f",
+          "message": "fix \\r\\n is not considered as newline on parsing Catch2 output (fix #16)",
+          "timestamp": "2020-02-23T20:06:15+09:00",
+          "tree_id": "498498bc013e7fa2d8f908ca06f7f88b71ace11c",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/3bac239e2a4482b79a34b004d8e800ff780d348f"
+        },
+        "date": 1582456044492,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 174,
+            "range": "+/- 1",
+            "unit": "ns",
+            "extra": "100 samples\n178 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.003,
+            "range": "+/- 23.704",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
