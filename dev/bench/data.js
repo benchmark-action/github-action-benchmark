@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1582460715096,
+  "lastUpdate": 1582460717868,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11249,6 +11249,42 @@ window.BENCHMARK_DATA = {
             "value": 59007,
             "unit": "ns/op",
             "extra": "20000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c55701c8dacf265696fae2d0a2a0d61c2df62281",
+          "message": "fix example for googlecpp does not suppress constant folding optimization currently",
+          "timestamp": "2020-02-23T21:23:24+09:00",
+          "tree_id": "ca0a0cd45870b65a16174afaf7062e7ab9a1177f",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/c55701c8dacf265696fae2d0a2a0d61c2df62281"
+        },
+        "date": 1582460709816,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 375,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 45046,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
           }
         ]
       }
