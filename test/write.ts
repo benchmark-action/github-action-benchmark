@@ -38,8 +38,9 @@ const fakedRepos = new FakedOctokitRepos();
 
 class FakedOctokit {
     repos: FakedOctokitRepos;
-    constructor(public opt: object) {
-        this.opt = opt;
+    opt: { token: string };
+    constructor(token: string) {
+        this.opt = { token };
         this.repos = fakedRepos;
     }
 }
@@ -108,7 +109,7 @@ mock('@actions/core', {
         /* do nothing */
     },
 });
-mock('@actions/github', { context: gitHubContext });
+mock('@actions/github', { context: gitHubContext, GitHub: FakedOctokit });
 mock('../src/git', {
     async cmd(...args: unknown[]) {
         gitSpy.call('cmd', args);
@@ -124,7 +125,6 @@ mock('../src/git', {
         return '';
     },
 });
-mock('@octokit/rest', FakedOctokit);
 
 const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../src/write').writeBenchmark;
 
@@ -138,7 +138,6 @@ describe('writeBenchmark()', function() {
     after(function() {
         mock.stop('@actions/core');
         mock.stop('@actions/github');
-        mock.stop('@octokit/rest');
         mock.stop('../src/git');
         process.chdir(savedCwd);
     });

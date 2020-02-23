@@ -35,8 +35,7 @@
     "@actions/core": "^1.2.2",
     "@actions/exec": "^1.0.3",
     "@actions/github": "^2.1.1",
-    "@actions/io": "^1.0.2",
-    "@octokit/rest": "^17.0.0"
+    "@actions/io": "^1.0.2"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",

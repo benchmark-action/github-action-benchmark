@@ -3,7 +3,6 @@ import * as path from 'path';
 import * as io from '@actions/io';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import Octokit = require('@octokit/rest');
 import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
@@ -182,7 +181,7 @@ async function leaveComment(commitId: string, body: string, token: string) {
     const repo = getCurrentRepo();
     // eslint-disable-next-line @typescript-eslint/camelcase
     const repoUrl = repo.html_url ?? '';
-    const client = new Octokit({ auth: token });
+    const client = new github.GitHub(token);
     const res = await client.repos.createCommitComment({
         owner: repo.owner.login,
         repo: repo.name,
