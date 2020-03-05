@@ -117,7 +117,7 @@ function getCurrentRepo() {
 }
 
 function floatStr(n: number) {
-    return Number.isInteger(n) ? n.toFixed(1) : n.toString();
+    return Number.isInteger(n) ? n.toFixed(0) : n.toFixed(2);
 }
 
 function strVal(b: BenchmarkResult): string {
@@ -142,6 +142,8 @@ function buildComment(benchName: string, curSuite: Benchmark, prevSuite: Benchma
     const lines = [
         `# ${benchName}`,
         '',
+        '<details>',
+        '',
         `| Benchmark suite | Current: ${curSuite.commit.id} | Previous: ${prevSuite.commit.id} | Ratio |`,
         '|-|-|-|-|',
     ];
@@ -164,7 +166,7 @@ function buildComment(benchName: string, curSuite: Benchmark, prevSuite: Benchma
     }
 
     // Footer
-    lines.push('', commentFooter());
+    lines.push('', '</details>', '', commentFooter());
 
     return lines.join('\n');
 }
