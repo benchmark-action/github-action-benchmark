@@ -188,6 +188,7 @@ describe('writeBenchmark()', function() {
             githubToken: undefined,
             autoPush: false,
             skipFetchGhPages: false, // Should not affect
+            commentAlways: false,
             commentOnAlert: false,
             alertThreshold: 2.0,
             failOnAlert: true,
@@ -894,6 +895,7 @@ describe('writeBenchmark()', function() {
             githubToken: 'dummy token',
             autoPush: true,
             skipFetchGhPages: false, // Should not affect
+            commentAlways: false,
             commentOnAlert: false,
             alertThreshold: 2.0,
             failOnAlert: true,

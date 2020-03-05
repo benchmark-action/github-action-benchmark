@@ -13,6 +13,7 @@ export interface Config {
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
+    commentAlways: boolean;
     commentOnAlert: boolean;
     alertThreshold: number;
     failOnAlert: boolean;
@@ -210,6 +211,7 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
+    const commentAlways = getBoolInput('comment-always');
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
@@ -225,6 +227,9 @@ export async function configFromJobInput(): Promise<Config> {
     validateName(name);
     if (autoPush) {
         validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
+    }
+    if (commentAlways) {
+        validateGitHubToken('comment-always', githubToken, 'to send commit comment');
     }
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
@@ -246,6 +251,7 @@ export async function configFromJobInput(): Promise<Config> {
         githubToken,
         autoPush,
         skipFetchGhPages,
+        commentAlways,
         commentOnAlert,
         alertThreshold,
         failOnAlert,
