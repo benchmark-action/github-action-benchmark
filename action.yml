@@ -39,6 +39,10 @@ inputs:
     description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
     required: false
     default: false
+  save-on-pr:
+    description: 'Save the benchmark data on pull requests'
+    required: false
+    default: true
   comment-on-alert:
     description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-comment-threshold input. To enable this feature, github-token input must be given as well'
     required: false

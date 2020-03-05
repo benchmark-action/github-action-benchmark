@@ -368,6 +368,16 @@ Please see the 'Commit comment' section for more details.
 If it is set to `true`, this action automatically pushes the generated commit to GitHub Pages branch.
 Otherwise, you need to push it by your own. Please read 'Commit comment' section above for more details.
 
+#### `comment-always` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+#### `save-on-pr` (Optional)
+
+- Type: Boolean
+- Default: `true`
+
 #### `alert-threshold` (Optional)
 
 - Type: String

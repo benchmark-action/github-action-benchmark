@@ -189,6 +189,7 @@ describe('writeBenchmark()', function() {
             autoPush: false,
             skipFetchGhPages: false, // Should not affect
             commentAlways: false,
+            saveOnPr: true,
             commentOnAlert: false,
             alertThreshold: 2.0,
             failOnAlert: true,
@@ -896,6 +897,7 @@ describe('writeBenchmark()', function() {
             autoPush: true,
             skipFetchGhPages: false, // Should not affect
             commentAlways: false,
+            saveOnPr: true,
             commentOnAlert: false,
             alertThreshold: 2.0,
             failOnAlert: true,

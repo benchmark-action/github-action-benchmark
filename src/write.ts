@@ -240,6 +240,8 @@ async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: 
         throw new Error("'comment-always' input is set but 'github-token' input is not set");
     }
 
+    core.debug('Commenting about benchmark comparison');
+
     const body = buildComment(benchName, curSuite, prevSuite);
 
     await leaveComment(curSuite.commit.id, body, githubToken);
@@ -356,6 +358,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         autoPush,
         skipFetchGhPages,
         maxItemsInChart,
+        saveOnPr,
     } = config;
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
@@ -373,6 +376,12 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     const data = await loadDataJs(dataPath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+
+    if (!saveOnPr && github.context.eventName === 'pull_request') {
+        core.debug('Skipping storing benchmarks');
+        return prevBench;
+    }
+
     await storeDataJs(dataPath, data);
 
     await git.cmd('add', dataPath);
@@ -450,9 +459,14 @@ async function writeBenchmarkToExternalJson(
     jsonFilePath: string,
     config: Config,
 ): Promise<Benchmark | null> {
-    const { name, maxItemsInChart } = config;
+    const { name, maxItemsInChart, saveOnPr } = config;
     const data = await loadDataJson(jsonFilePath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+
+    if (!saveOnPr && github.context.eventName === 'pull_request') {
+        core.debug('Skipping storing benchmarks');
+        return prevBench;
+    }
 
     try {
         const jsonDirPath = path.dirname(jsonFilePath);
