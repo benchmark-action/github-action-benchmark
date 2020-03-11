@@ -377,12 +377,12 @@ If it is set to `true`, this action will leave a commit comment comparing the cu
 `github-token` is necessary as well. Please note that a personal access token is not necessary to
 send a commit comment. `secrets.GITHUB_TOKEN` is sufficient.
 
-#### `save-on-pr` (Optional)
+#### `save-data-file` (Optional)
 
 - Type: Boolean
 - Default: `true`
 
-If it is set to `true`, any commits that are part of a PR will not save the current benchmark.
+If it is set to `true`, this action will not save the current benchmark to the external data file.
 You can use this option to set up your action to compare the benchmarks between PR and base branch.
 
 #### `alert-threshold` (Optional)
