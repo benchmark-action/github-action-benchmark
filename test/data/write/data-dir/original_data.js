@@ -16,7 +16,7 @@ window.BENCHMARK_DATA = {
                 },
                 "date": 1574927127603,
                 "tool": "cargo",
-                "benches": [{ "name": "bench_fib_10", "range": "+/- 20", "unit": "ns/iter", "value": 100 }]
+                "benches": [{ "name": "bench_fib_10", "range": "± 20", "unit": "ns/iter", "value": 100 }]
             }
         ]
     }

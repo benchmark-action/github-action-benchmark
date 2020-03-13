@@ -368,6 +368,23 @@ Please see the 'Commit comment' section for more details.
 If it is set to `true`, this action automatically pushes the generated commit to GitHub Pages branch.
 Otherwise, you need to push it by your own. Please read 'Commit comment' section above for more details.
 
+#### `comment-always` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+If it is set to `true`, this action will leave a commit comment comparing the current benchmark with previous.
+`github-token` is necessary as well. Please note that a personal access token is not necessary to
+send a commit comment. `secrets.GITHUB_TOKEN` is sufficient.
+
+#### `save-data-file` (Optional)
+
+- Type: Boolean
+- Default: `true`
+
+If it is set to `true`, this action will not save the current benchmark to the external data file.
+You can use this option to set up your action to compare the benchmarks between PR and base branch.
+
 #### `alert-threshold` (Optional)
 
 - Type: String

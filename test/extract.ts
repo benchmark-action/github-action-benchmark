@@ -42,13 +42,13 @@ describe('extractResult()', function() {
             expected: [
                 {
                     name: 'bench_fib_10',
-                    range: '+/- 24',
+                    range: '± 24',
                     unit: 'ns/iter',
                     value: 135,
                 },
                 {
                     name: 'bench_fib_20',
-                    range: '+/- 755',
+                    range: '± 755',
                     unit: 'ns/iter',
                     value: 18149,
                 },
@@ -59,28 +59,28 @@ describe('extractResult()', function() {
             expected: [
                 {
                     name: 'Fibonacci 10',
-                    range: '+/- 19',
+                    range: '± 19',
                     unit: 'ns',
                     value: 344,
                     extra: '100 samples\n208 iterations',
                 },
                 {
                     name: 'Fibonacci 20',
-                    range: '+/- 3.256',
+                    range: '± 3.256',
                     unit: 'us',
                     value: 41.731,
                     extra: '100 samples\n2 iterations',
                 },
                 {
                     name: 'Fibonacci~ 5!',
-                    range: '+/- 4',
+                    range: '± 4',
                     unit: 'ns',
                     value: 36,
                     extra: '100 samples\n1961 iterations',
                 },
                 {
                     name: 'Fibonacci-15_bench',
-                    range: '+/- 362',
+                    range: '± 362',
                     unit: 'us',
                     value: 3.789,
                     extra: '100 samples\n20 iterations',
@@ -207,14 +207,14 @@ describe('extractResult()', function() {
                 {
                     extra: '100 samples\n76353 iterations',
                     name: 'Fibonacci 10',
-                    range: '+/- 0',
+                    range: '± 0',
                     unit: 'ns',
                     value: 0,
                 },
                 {
                     extra: '100 samples\n75814 iterations',
                     name: 'Fibonacci 20',
-                    range: '+/- 0',
+                    range: '± 0',
                     unit: 'ns',
                     value: 1,
                 },
