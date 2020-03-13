@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1584108083349,
+  "lastUpdate": 1584108086613,
   "entries": {
     "Rust Benchmark": [
       {
@@ -5830,6 +5830,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 23781,
             "range": "+/- 3,765",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f7e74600840753f0a2c57f256703eb576c737c60",
+          "message": "Merge pull request #17 from pksunkara/master\n\nAdded options to make PR compare against base branch and then output result",
+          "timestamp": "2020-03-13T23:00:44+09:00",
+          "tree_id": "ac820cf60ab9efbec4ea4302aab90249f8c272e1",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/f7e74600840753f0a2c57f256703eb576c737c60"
+        },
+        "date": 1584108084199,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 261,
+            "range": "+/- 58",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 34364,
+            "range": "+/- 1,672",
             "unit": "ns/iter"
           }
         ]
