@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1584108129533,
+  "lastUpdate": 1584449950885,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24779,6 +24779,42 @@ window.BENCHMARK_DATA = {
             "value": 27774.700252684775,
             "unit": "ns/iter",
             "extra": "iterations: 25328\ncpu: 27770.838321225525 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "671f28ac34ee84c5ee267b3adc52fd13de15c0a3",
+          "message": "Merge pull request #20 from rhysd/dependabot/npm_and_yarn/acorn-7.1.1\n\nBump acorn from 7.1.0 to 7.1.1",
+          "timestamp": "2020-03-17T21:58:35+09:00",
+          "tree_id": "7bcf7874a28d961d4cfb1a76dd92cb5668bf4d8a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/671f28ac34ee84c5ee267b3adc52fd13de15c0a3"
+        },
+        "date": 1584449949360,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 187.69331280722193,
+            "unit": "ns/iter",
+            "extra": "iterations: 3544103\ncpu: 187.57748321648666 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25341.74809926801,
+            "unit": "ns/iter",
+            "extra": "iterations: 27884\ncpu: 25341.8158800746 ns\nthreads: 1"
           }
         ]
       }
