@@ -57,7 +57,7 @@ function extractCargoResult(output) {
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
-    const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \((\+\/- [0-9,]+)\)$/;
+    const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
     const reComma = /,/g;
     for (const line of lines) {
         const m = line.match(reExtract);
@@ -66,11 +66,11 @@ function extractCargoResult(output) {
         }
         const name = m[1];
         const value = parseInt(m[2].replace(reComma, ''), 10);
-        const range = m[3];
+        const range = m[3].replace(reComma, '');
         ret.push({
             name,
             value,
-            range,
+            range: `± ${range}`,
             unit: 'ns/iter',
         });
     }
@@ -206,7 +206,7 @@ function extractCatch2Result(output) {
         if (!stdDev) {
             throw new Error(`Std-dev values cannot be retrieved for benchmark '${name}' on parsing '${stdDevLine !== null && stdDevLine !== void 0 ? stdDevLine : 'EOF'}' at line ${stdDevLineNum}`);
         }
-        const range = '+/- ' + stdDev[1].trim();
+        const range = '± ' + stdDev[1].trim();
         // Skip empty line
         const [emptyLine, emptyLineNum] = nextLine();
         if (emptyLine === null || !reEmptyLine.test(emptyLine)) {
