@@ -121,7 +121,7 @@ function floatStr(n: number) {
         return n.toFixed(0);
     }
 
-    if (n > 1) {
+    if (n > 0.1) {
         return n.toFixed(2);
     }
 
