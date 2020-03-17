@@ -1,3 +1,14 @@
+<a name="v1.8.0"></a>
+# [v1.8.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.8.0) - 17 Mar 2020
+
+- **New:** Added `comment-always` option to leave a comment of benchmarking results at the commit always. [Thanks @pksunkara](https://github.com/rhysd/github-action-benchmark/pull/17)
+- **New:** Added `save-data-file` option to skip saving data file. Setting `false` to this value is useful when you don't want to update Git repository. [Thanks @pksunkara](https://github.com/rhysd/github-action-benchmark/pull/17)
+- **Improve:** `+/-` is now replaced with `±`
+- **Improve:** Better formatting for floating point numbers
+
+[Changes][v1.8.0]
+
+
 <a name="v1.7.1"></a>
 # [v1.7.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.7.1) - 23 Feb 2020
 
@@ -250,6 +261,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.8.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.7.1...v1.8.0
 [v1.7.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.7...v1.7.0
 [v1.6.7]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.6...v1.6.7
