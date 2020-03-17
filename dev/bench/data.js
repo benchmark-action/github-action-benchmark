@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1584449950885,
+  "lastUpdate": 1584449953652,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17345,6 +17345,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.67%",
             "unit": "ops/sec",
             "extra": "89 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "671f28ac34ee84c5ee267b3adc52fd13de15c0a3",
+          "message": "Merge pull request #20 from rhysd/dependabot/npm_and_yarn/acorn-7.1.1\n\nBump acorn from 7.1.0 to 7.1.1",
+          "timestamp": "2020-03-17T21:58:35+09:00",
+          "tree_id": "7bcf7874a28d961d4cfb1a76dd92cb5668bf4d8a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/671f28ac34ee84c5ee267b3adc52fd13de15c0a3"
+        },
+        "date": 1584449951755,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1170213,
+            "range": "±0.44%",
+            "unit": "ops/sec",
+            "extra": "91 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9612,
+            "range": "±0.69%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
           }
         ]
       }
