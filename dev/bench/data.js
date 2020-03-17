@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1584449964481,
+  "lastUpdate": 1584449967735,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26141,6 +26141,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 16.867,
             "range": "+/- 2.322",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "671f28ac34ee84c5ee267b3adc52fd13de15c0a3",
+          "message": "Merge pull request #20 from rhysd/dependabot/npm_and_yarn/acorn-7.1.1\n\nBump acorn from 7.1.0 to 7.1.1",
+          "timestamp": "2020-03-17T21:58:35+09:00",
+          "tree_id": "7bcf7874a28d961d4cfb1a76dd92cb5668bf4d8a",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/671f28ac34ee84c5ee267b3adc52fd13de15c0a3"
+        },
+        "date": 1584449963099,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 159,
+            "range": "+/- 30",
+            "unit": "ns",
+            "extra": "100 samples\n214 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.476,
+            "range": "+/- 3.207",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
