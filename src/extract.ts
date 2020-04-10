@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
+import * as git from './git';
 import { Config, ToolType } from './config';
 
 export interface BenchmarkResult {
@@ -17,12 +18,12 @@ interface GitHubUser {
 }
 
 interface Commit {
-    author: GitHubUser;
-    committer: GitHubUser;
+    author?: GitHubUser;
+    committer?: GitHubUser;
     distinct?: unknown; // Unused
     id: string;
-    message: string;
-    timestamp: string;
+    message?: string;
+    timestamp?: string;
     tree_id?: unknown; // Unused
     url: string;
 }
@@ -138,7 +139,17 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
     }
 }
 
-function getCommit(): Commit {
+async function getCommit(config: Config): Promise<Commit> {
+    if (config.readCommitId) {
+        const id = (await git.readCommitId()).trim();
+        const repo = github.context.repo;
+
+        return {
+            id,
+            url: `https://github.com/${repo.owner}/${repo.repo}/commits/${id}`,
+        };
+    }
+
     /* eslint-disable @typescript-eslint/camelcase */
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
@@ -447,7 +458,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
 
-    const commit = getCommit();
+    const commit = await getCommit(config);
 
     return {
         commit,

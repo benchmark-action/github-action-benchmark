@@ -195,6 +195,7 @@ describe('writeBenchmark()', function() {
             failOnAlert: true,
             alertCommentCcUsers: ['@user'],
             externalDataJsonPath: dataJson,
+            readCommitId: false,
             maxItemsInChart: null,
             failThreshold: 2.0,
         };
@@ -903,6 +904,7 @@ describe('writeBenchmark()', function() {
             failOnAlert: true,
             alertCommentCcUsers: [],
             externalDataJsonPath: undefined,
+            readCommitId: false,
             maxItemsInChart: null,
             failThreshold: 2.0,
         };
