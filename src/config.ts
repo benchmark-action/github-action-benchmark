@@ -13,6 +13,7 @@ export interface Config {
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
+    annotateAlways: boolean;
     commentAlways: boolean;
     saveDataFile: boolean;
     commentOnAlert: boolean;
@@ -212,6 +213,7 @@ export async function configFromJobInput(): Promise<Config> {
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
+    const annotateAlways = getBoolInput('annotate-always');
     const commentAlways = getBoolInput('comment-always');
     const saveDataFile = getBoolInput('save-data-file');
     const commentOnAlert = getBoolInput('comment-on-alert');
@@ -253,6 +255,7 @@ export async function configFromJobInput(): Promise<Config> {
         githubToken,
         autoPush,
         skipFetchGhPages,
+        annotateAlways,
         commentAlways,
         saveDataFile,
         commentOnAlert,

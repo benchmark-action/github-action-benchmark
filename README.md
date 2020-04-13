@@ -368,6 +368,15 @@ Please see the 'Commit comment' section for more details.
 If it is set to `true`, this action automatically pushes the generated commit to GitHub Pages branch.
 Otherwise, you need to push it by your own. Please read 'Commit comment' section above for more details.
 
+#### `annotate-always` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+If it is set to `true`, this action will leave github check annotations comparing the current benchmark with previous.
+[Github check annotations](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks)
+are notes that are added to the github check status of this action.
+
 #### `comment-always` (Optional)
 
 - Type: Boolean
