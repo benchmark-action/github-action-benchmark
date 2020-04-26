@@ -71,8 +71,6 @@ function biggerIsBetter(tool: ToolType): boolean {
         case 'catch2':
             return false;
     }
-
-    return false;
 }
 
 interface Alert {

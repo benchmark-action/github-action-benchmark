@@ -178,7 +178,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
-    const reExtract = /^test (\w+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
+    const reExtract = /^test ([\w/]+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
     const reComma = /,/g;
 
     for (const line of lines) {
@@ -196,39 +196,6 @@ function extractCargoResult(output: string): BenchmarkResult[] {
             value,
             range: `± ${range}`,
             unit: 'ns/iter',
-        });
-    }
-
-    return ret;
-}
-
-function extractCriterionResult(output: string): BenchmarkResult[] {
-    const lines = output.split('\n');
-    const ret = [];
-    // Example:
-    // fibonacci   time:   [5.4756 ms 5.5354 ms 5.6049 ms]
-    // Symbol Creation         time:   [567.19 us 572.98 us 580.80 us]
-    // https://regex101.com/r/34Xrmb/1
-
-    // Only the middle value unit is collected, as its assumed the high/low values will have the same unit
-    const reExtract = /^(?<name>.*)time:\s*\[(?<low>\d+\.?\d*)\s(?:\w{1,2})\s(?<value>\d+\.?\d*)\s(?<unit>\w{1,2})\s(?<high>\d+\.?\d*).*$/;
-
-    for (const line of lines) {
-        const m = line.match(reExtract);
-        if (m === null || !m.groups) {
-            continue;
-        }
-
-        const name: string = m.groups.name.trim();
-        const value: number = parseFloat(m.groups.value);
-        const range = `+/- ${(parseFloat(m.groups.high) - parseFloat(m.groups.low)).toFixed(3)}`;
-        const unit: string = m.groups.unit;
-
-        ret.push({
-            name,
-            value,
-            range,
-            unit,
         });
     }
 
@@ -456,9 +423,6 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     switch (tool) {
         case 'cargo':
             benches = extractCargoResult(output);
-            break;
-        case 'criterion':
-            benches = extractCriterionResult(output);
             break;
         case 'go':
             benches = extractGoResult(output);
