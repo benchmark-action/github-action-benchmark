@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588000514284,
+  "lastUpdate": 1588000546485,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25295,6 +25295,42 @@ window.BENCHMARK_DATA = {
             "value": 28643.612904549198,
             "unit": "ns/iter",
             "extra": "iterations: 24379\ncpu: 28632.073382829494 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e47c97d3e7d45119a6cdc04c2da04593ab96dba3",
+          "message": "Merge pull request #26 from morenol/master\n\nAllow '/' in test name (rust)",
+          "timestamp": "2020-04-28T00:14:17+09:00",
+          "tree_id": "0cd375ea056fd5f7f0c2d7d211d24a7500262eab",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e47c97d3e7d45119a6cdc04c2da04593ab96dba3"
+        },
+        "date": 1588000544733,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 230.588488364707,
+            "unit": "ns/iter",
+            "extra": "iterations: 3038213\ncpu: 230.51353970245012 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 28959.36523412435,
+            "unit": "ns/iter",
+            "extra": "iterations: 23385\ncpu: 28956.854906991663 ns\nthreads: 1"
           }
         ]
       }
