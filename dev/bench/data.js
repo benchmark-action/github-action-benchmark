@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1584450610294,
+  "lastUpdate": 1588000486755,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22013,6 +22013,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0001903659164309294",
             "extra": "mean: 2.378041971222976 msec\nrounds: 417"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e47c97d3e7d45119a6cdc04c2da04593ab96dba3",
+          "message": "Merge pull request #26 from morenol/master\n\nAllow '/' in test name (rust)",
+          "timestamp": "2020-04-28T00:14:17+09:00",
+          "tree_id": "0cd375ea056fd5f7f0c2d7d211d24a7500262eab",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e47c97d3e7d45119a6cdc04c2da04593ab96dba3"
+        },
+        "date": 1588000485040,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45471.70839783795,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000075990885129562355",
+            "extra": "mean: 21.991696270807964 usec\nrounds: 32259"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 374.02795727834894,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00026818987868577876",
+            "extra": "mean: 2.673596934508848 msec\nrounds: 397"
           }
         ]
       }
