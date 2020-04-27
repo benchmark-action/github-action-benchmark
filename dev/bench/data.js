@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588000510732,
+  "lastUpdate": 1588000514284,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26549,6 +26549,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.11,
             "range": "± 2.506",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e47c97d3e7d45119a6cdc04c2da04593ab96dba3",
+          "message": "Merge pull request #26 from morenol/master\n\nAllow '/' in test name (rust)",
+          "timestamp": "2020-04-28T00:14:17+09:00",
+          "tree_id": "0cd375ea056fd5f7f0c2d7d211d24a7500262eab",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e47c97d3e7d45119a6cdc04c2da04593ab96dba3"
+        },
+        "date": 1588000509146,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 162,
+            "range": "± 44",
+            "unit": "ns",
+            "extra": "100 samples\n188 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.153,
+            "range": "± 3.922",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
