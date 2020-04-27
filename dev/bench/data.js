@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588000486755,
+  "lastUpdate": 1588000494280,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17565,6 +17565,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.79%",
             "unit": "ops/sec",
             "extra": "92 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e47c97d3e7d45119a6cdc04c2da04593ab96dba3",
+          "message": "Merge pull request #26 from morenol/master\n\nAllow '/' in test name (rust)",
+          "timestamp": "2020-04-28T00:14:17+09:00",
+          "tree_id": "0cd375ea056fd5f7f0c2d7d211d24a7500262eab",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/e47c97d3e7d45119a6cdc04c2da04593ab96dba3"
+        },
+        "date": 1588000492668,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1057465,
+            "range": "±0.60%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8868,
+            "range": "±0.70%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
           }
         ]
       }
