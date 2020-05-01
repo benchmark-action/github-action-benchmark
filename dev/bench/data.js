@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297200857,
+  "lastUpdate": 1588297206199,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26807,6 +26807,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.153,
             "range": "± 3.922",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "223d4be4c3b0dfd29d506192d42fe181ee0f33c9",
+          "message": "Merge pull request #27 from morenol/lmm/test\n\nFix criterion-rs test",
+          "timestamp": "2020-05-01T10:39:14+09:00",
+          "tree_id": "93b5c6c7c4f5ba77db8a4db0d708ba0bf5f32cfc",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/223d4be4c3b0dfd29d506192d42fe181ee0f33c9"
+        },
+        "date": 1588297201044,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 169,
+            "range": "± 8",
+            "unit": "ns",
+            "extra": "100 samples\n215 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 21.867,
+            "range": "± 526",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
