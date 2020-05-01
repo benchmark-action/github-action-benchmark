@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297225760,
+  "lastUpdate": 1588297229256,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27029,6 +27029,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 21.867,
             "range": "± 526",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b2ee598f83705ff7093e1eea5d494ada99851bd9",
+          "message": "Merge pull request #29 from rhysd/dependabot/npm_and_yarn/actions/http-client-1.0.8\n\nBump @actions/http-client from 1.0.6 to 1.0.8",
+          "timestamp": "2020-05-01T10:39:40+09:00",
+          "tree_id": "159b1ba6f53f979ed4c30528e9c4ca0363744b68",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b2ee598f83705ff7093e1eea5d494ada99851bd9"
+        },
+        "date": 1588297227338,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 175,
+            "range": "± 3",
+            "unit": "ns",
+            "extra": "100 samples\n209 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 21.929,
+            "range": "± 996",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
