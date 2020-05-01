@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297209753,
+  "lastUpdate": 1588297213742,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25553,6 +25553,42 @@ window.BENCHMARK_DATA = {
             "value": 28431.290752991932,
             "unit": "ns/iter",
             "extra": "iterations: 26906\ncpu: 28422.864268192974 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b2ee598f83705ff7093e1eea5d494ada99851bd9",
+          "message": "Merge pull request #29 from rhysd/dependabot/npm_and_yarn/actions/http-client-1.0.8\n\nBump @actions/http-client from 1.0.6 to 1.0.8",
+          "timestamp": "2020-05-01T10:39:40+09:00",
+          "tree_id": "159b1ba6f53f979ed4c30528e9c4ca0363744b68",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b2ee598f83705ff7093e1eea5d494ada99851bd9"
+        },
+        "date": 1588297208756,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 224.85840664373407,
+            "unit": "ns/iter",
+            "extra": "iterations: 3106085\ncpu: 224.82212141650984 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 30410.524779541414,
+            "unit": "ns/iter",
+            "extra": "iterations: 22680\ncpu: 30407.12927689595 ns\nthreads: 1"
           }
         ]
       }
