@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297182765,
+  "lastUpdate": 1588297190436,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17675,6 +17675,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.70%",
             "unit": "ops/sec",
             "extra": "93 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "223d4be4c3b0dfd29d506192d42fe181ee0f33c9",
+          "message": "Merge pull request #27 from morenol/lmm/test\n\nFix criterion-rs test",
+          "timestamp": "2020-05-01T10:39:14+09:00",
+          "tree_id": "93b5c6c7c4f5ba77db8a4db0d708ba0bf5f32cfc",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/223d4be4c3b0dfd29d506192d42fe181ee0f33c9"
+        },
+        "date": 1588297188753,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1078307,
+            "range": "±0.64%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9078,
+            "range": "±0.45%",
+            "unit": "ops/sec",
+            "extra": "95 samples"
           }
         ]
       }
