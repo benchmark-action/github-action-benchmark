@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297213742,
+  "lastUpdate": 1588297218811,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17785,6 +17785,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.45%",
             "unit": "ops/sec",
             "extra": "95 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b2ee598f83705ff7093e1eea5d494ada99851bd9",
+          "message": "Merge pull request #29 from rhysd/dependabot/npm_and_yarn/actions/http-client-1.0.8\n\nBump @actions/http-client from 1.0.6 to 1.0.8",
+          "timestamp": "2020-05-01T10:39:40+09:00",
+          "tree_id": "159b1ba6f53f979ed4c30528e9c4ca0363744b68",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b2ee598f83705ff7093e1eea5d494ada99851bd9"
+        },
+        "date": 1588297213861,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1160313,
+            "range": "±1.00%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9806,
+            "range": "±0.67%",
+            "unit": "ops/sec",
+            "extra": "90 samples"
           }
         ]
       }
