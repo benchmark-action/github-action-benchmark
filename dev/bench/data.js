@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588297206199,
+  "lastUpdate": 1588297209753,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22309,6 +22309,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00010687738725252806",
             "extra": "mean: 2.425169812500125 msec\nrounds: 368"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b2ee598f83705ff7093e1eea5d494ada99851bd9",
+          "message": "Merge pull request #29 from rhysd/dependabot/npm_and_yarn/actions/http-client-1.0.8\n\nBump @actions/http-client from 1.0.6 to 1.0.8",
+          "timestamp": "2020-05-01T10:39:40+09:00",
+          "tree_id": "159b1ba6f53f979ed4c30528e9c4ca0363744b68",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/b2ee598f83705ff7093e1eea5d494ada99851bd9"
+        },
+        "date": 1588297204804,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 50641.10776129584,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000025913428865173893",
+            "extra": "mean: 19.74680342131622 usec\nrounds: 33671"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 416.7377959945843,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00004989700594750845",
+            "extra": "mean: 2.3995903650001438 msec\nrounds: 400"
           }
         ]
       }
