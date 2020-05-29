@@ -220,6 +220,18 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'benchmarkdotnet',
+            file: 'benchmarkdotnet.json',
+            expected: [
+                {
+                    name: 'Fantomas.Benchmarks.Runners+CodePrinterTest.Format',
+                    range: '± 1320344603.1604276',
+                    unit: 'ns',
+                    value: 47470178082.2,
+                },
+            ],
+        },
     ];
 
     for (const test of normalCases) {

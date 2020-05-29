@@ -194,7 +194,36 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
-
+  benchmarkdotnet-framework:
+    name: Run Benchmark.Net .Net Benchmark Framework example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.201'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
+      - name: Run benchmark
+        run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Benchmark.Net Benchmark
+          tool: "benchmarkdotnet"
+          output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
   only-alert-with-cache:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest

@@ -22,6 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
+- [Benchmark.Net][benchmarkdotnet] for .Net projects
 
 Multiple languages in the same repository are supported for polyglot projects.
 
@@ -34,14 +35,15 @@ Multiple languages in the same repository are supported for polyglot projects.
 Example projects for each language are in [examples/](./examples) directory. Live example workflow
 definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
 
-| Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
-| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
-| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
-| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
-| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
-| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
+| Language     | Workflow                                                                                        | Example Project                                        |
+|--------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                                   | [examples/rust](./examples/rust)                       |
+| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                         | [examples/go](./examples/go)                           |
+| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]               | [examples/benchmarkjs](./examples/benchmarkjs)         |
+| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example]         | [examples/pytest](./examples/pytest)                   |
+| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                                      | [examples/cpp](./examples/cpp)                         |
+| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                         | [examples/catch2](./examples/catch2)                   |
+| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -302,6 +304,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
 - [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
 - [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
+- [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
 
@@ -323,7 +326,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`.
+`"googlecpp"`, `"catch2"`, `"benchmarkdotnet"`.
 
 #### `output-file-path` (Required)
 
@@ -589,3 +592,6 @@ Every release will appear on your GitHub notifications page.
 [catch2]: https://github.com/catchorg/Catch2
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
+[benchmarkdotnet]: [https://benchmarkdotnet.org]
+[benchmarkdotnet-badge]: [https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg]
+[benchmarkdotnet-workflow-example]: [https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22]

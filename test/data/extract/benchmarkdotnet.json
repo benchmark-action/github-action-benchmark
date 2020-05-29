@@ -1,0 +1,219 @@
+{
+    "Title": "Fantomas.Benchmarks.Runners.CodePrinterTest-20200529-125817",
+    "HostEnvironmentInfo": {
+        "BenchmarkDotNetCaption": "BenchmarkDotNet",
+        "BenchmarkDotNetVersion": "0.12.1",
+        "OsVersion": "macOS Catalina 10.15.4 (19E287) [Darwin 19.4.0]",
+        "ProcessorName": "Intel Core i7-7820HQ CPU 2.90GHz (Kaby Lake)",
+        "PhysicalProcessorCount": 1,
+        "PhysicalCoreCount": 4,
+        "LogicalCoreCount": 8,
+        "RuntimeVersion": ".NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001)",
+        "Architecture": "X64",
+        "HasAttachedDebugger": false,
+        "HasRyuJit": true,
+        "Configuration": "DEBUG",
+        "DotNetCliVersion": "5.0.100-preview.2.20176.6",
+        "ChronometerFrequency": {
+            "Hertz": 1000000000
+        },
+        "HardwareTimerKind": "Unknown"
+    },
+    "Benchmarks": [
+        {
+            "DisplayInfo": "CodePrinterTest.Format: Job-ISNCHE(IterationCount=5, RunStrategy=ColdStart)",
+            "Namespace": "Fantomas.Benchmarks",
+            "Type": "CodePrinterTest",
+            "Method": "Format",
+            "MethodTitle": "Format",
+            "Parameters": "",
+            "FullName": "Fantomas.Benchmarks.Runners+CodePrinterTest.Format",
+            "Statistics": {
+                "OriginalValues": [
+                    48016226159,
+                    46011386499,
+                    46951833349,
+                    46910122331,
+                    49461322073
+                ],
+                "N": 5,
+                "Min": 46011386499,
+                "LowerFence": 45250966589,
+                "Q1": 46910122331,
+                "Median": 46951833349,
+                "Mean": 47470178082.2,
+                "Q3": 48016226159,
+                "UpperFence": 49675381901,
+                "Max": 49461322073,
+                "InterquartileRange": 1106103828,
+                "LowerOutliers": [],
+                "UpperOutliers": [],
+                "AllOutliers": [],
+                "StandardError": 590476057.2783399,
+                "Variance": 1.7433098710948667e+18,
+                "StandardDeviation": 1320344603.1604276,
+                "Skewness": 0.40296465461600256,
+                "Kurtosis": 1.3495086770860778,
+                "ConfidenceInterval": {
+                    "N": 5,
+                    "Mean": 47470178082.2,
+                    "StandardError": 590476057.2783399,
+                    "Level": 12,
+                    "Margin": 5084176929.812266,
+                    "Lower": 42386001152.38773,
+                    "Upper": 52554355012.01226
+                },
+                "Percentiles": {
+                    "P0": 46011386499,
+                    "P25": 46910122331,
+                    "P50": 46951833349,
+                    "P67": 47675620459.8,
+                    "P80": 48305245341.799995,
+                    "P85": 48594264524.600006,
+                    "P90": 48883283707.399994,
+                    "P95": 49172302890.200005,
+                    "P100": 49461322073
+                }
+            },
+            "Memory": {
+                "Gen0Collections": 5272,
+                "Gen1Collections": 1841,
+                "Gen2Collections": 314,
+                "TotalOperations": 1,
+                "BytesAllocatedPerOperation": 23405419512
+            },
+            "Measurements": [
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Actual",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 1,
+                    "Operations": 1,
+                    "Nanoseconds": 48016226159
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Actual",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 2,
+                    "Operations": 1,
+                    "Nanoseconds": 46011386499
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Actual",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 3,
+                    "Operations": 1,
+                    "Nanoseconds": 46951833349
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Actual",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 4,
+                    "Operations": 1,
+                    "Nanoseconds": 46910122331
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Actual",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 5,
+                    "Operations": 1,
+                    "Nanoseconds": 49461322073
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Result",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 1,
+                    "Operations": 1,
+                    "Nanoseconds": 48016226159
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Result",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 2,
+                    "Operations": 1,
+                    "Nanoseconds": 46011386499
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Result",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 3,
+                    "Operations": 1,
+                    "Nanoseconds": 46951833349
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Result",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 4,
+                    "Operations": 1,
+                    "Nanoseconds": 46910122331
+                },
+                {
+                    "IterationMode": "Workload",
+                    "IterationStage": "Result",
+                    "LaunchIndex": 1,
+                    "IterationIndex": 5,
+                    "Operations": 1,
+                    "Nanoseconds": 49461322073
+                }
+            ],
+            "Metrics": [
+                {
+                    "Value": 5272000,
+                    "Descriptor": {
+                        "Id": "Gen0Collects",
+                        "DisplayName": "Gen 0",
+                        "Legend": "GC Generation 0 collects per 1000 operations",
+                        "NumberFormat": "#0.0000",
+                        "UnitType": 0,
+                        "Unit": "Count",
+                        "TheGreaterTheBetter": false
+                    }
+                },
+                {
+                    "Value": 1841000,
+                    "Descriptor": {
+                        "Id": "Gen1Collects",
+                        "DisplayName": "Gen 1",
+                        "Legend": "GC Generation 1 collects per 1000 operations",
+                        "NumberFormat": "#0.0000",
+                        "UnitType": 0,
+                        "Unit": "Count",
+                        "TheGreaterTheBetter": false
+                    }
+                },
+                {
+                    "Value": 314000,
+                    "Descriptor": {
+                        "Id": "Gen2Collects",
+                        "DisplayName": "Gen 2",
+                        "Legend": "GC Generation 2 collects per 1000 operations",
+                        "NumberFormat": "#0.0000",
+                        "UnitType": 0,
+                        "Unit": "Count",
+                        "TheGreaterTheBetter": false
+                    }
+                },
+                {
+                    "Value": 23405419512,
+                    "Descriptor": {
+                        "Id": "Allocated Memory",
+                        "DisplayName": "Allocated",
+                        "Legend": "Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)",
+                        "NumberFormat": "N0",
+                        "UnitType": 2,
+                        "Unit": "B",
+                        "TheGreaterTheBetter": false
+                    }
+                }
+            ]
+        }
+    ]
+}

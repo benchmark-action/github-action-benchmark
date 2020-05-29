@@ -70,6 +70,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'catch2':
             return false;
+        case 'benchmarkdotnet':
+            return false;
     }
 }
 

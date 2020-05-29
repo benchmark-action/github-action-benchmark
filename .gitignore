@@ -5,6 +5,9 @@
 /examples/rust/target
 /examples/criterion-rs/Cargo.lock
 /examples/criterion-rs/target
+/examples/benchmarkdotnet/bin
+/examples/benchmarkdotnet/obj
+/examples/benchmarkdotnet/BenchmarkDotNet.Artifacts
 /test/*.js
 /test/*.js.map
 /scripts/*.js
