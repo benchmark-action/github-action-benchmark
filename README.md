@@ -23,6 +23,7 @@ This action currently supports the following tools:
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
 - [BenchmarkTools.jl][] for Julia packages
+- [Benchmark.Net][benchmarkdotnet] for .Net projects
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -45,6 +46,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
 | C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
 | Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
+| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -325,6 +327,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
 - [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
 - [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
+- [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
 
@@ -346,7 +349,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
+`"googlecpp"`, `"catch2"`, `"benchmarkdotnet"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
 
 #### `output-file-path` (Required)
 
@@ -607,3 +610,6 @@ Every release will appear on your GitHub notifications page.
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
 [BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
+[benchmarkdotnet]: [https://benchmarkdotnet.org]
+[benchmarkdotnet-badge]: [https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg]
+[benchmarkdotnet-workflow-example]: [https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22]
