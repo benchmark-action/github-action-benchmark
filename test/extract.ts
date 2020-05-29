@@ -225,10 +225,16 @@ describe('extractResult()', function() {
             file: 'benchmarkdotnet.json',
             expected: [
                 {
-                    name: 'Fantomas.Benchmarks.Runners+CodePrinterTest.Format',
-                    range: '± 1320344603.1604276',
+                    name: 'Sample.Benchmarks.Fib10',
+                    range: '± 0.1981212530783709',
                     unit: 'ns',
-                    value: 47470178082.2,
+                    value: 24.4202085009643,
+                },
+                {
+                    name: 'Sample.Benchmarks.Fib20',
+                    range: '± 0.7903737021529575',
+                    unit: 'ns',
+                    value: 51.52008151549559,
                 },
             ],
         },
