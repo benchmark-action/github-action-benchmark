@@ -184,6 +184,7 @@ describe('writeBenchmark()', function() {
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'dummy', // Should not affect
+            ghRepository: undefined,
             benchmarkDataDirPath: 'dummy', // Should not affect
             githubToken: undefined,
             autoPush: false,
@@ -892,6 +893,7 @@ describe('writeBenchmark()', function() {
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'gh-pages',
+            ghRepository: undefined,
             benchmarkDataDirPath: 'data-dir', // Should not affect
             githubToken: 'dummy token',
             autoPush: true,

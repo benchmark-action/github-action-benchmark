@@ -362,6 +362,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         name,
         tool,
         ghPagesBranch,
+        ghRepository,
         benchmarkDataDirPath,
         githubToken,
         autoPush,
@@ -371,7 +372,14 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
-    if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
+    let benchmarkBaseDir = './';
+    let extraGitArguments: string[] = [];
+
+    if (!skipFetchGhPages && ghRepository) {
+        await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmarkDataRepository');
+        benchmarkBaseDir = './benchmarkDataRepository/';
+        extraGitArguments = ['--work-tree=' + benchmarkBaseDir, '--git-dir=' + benchmarkBaseDir + '.git'];
+    } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning(
@@ -380,20 +388,25 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         );
     }
 
-    await io.mkdirP(benchmarkDataDirPath);
+    await io.mkdirP(benchmarkBaseDir + benchmarkDataDirPath);
 
-    const data = await loadDataJs(dataPath);
+    const data = await loadDataJs(benchmarkBaseDir + dataPath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
-    await storeDataJs(dataPath, data);
+    await storeDataJs(benchmarkBaseDir + dataPath, data);
 
     await git.cmd('add', dataPath);
-    await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-    await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+    await addIndexHtmlIfNeeded(benchmarkBaseDir + benchmarkDataDirPath);
+    await git.cmd(
+        'commit',
+        '-m',
+        `add ${name} (${tool}) benchmark result for ${bench.commit.id}`,
+        ...extraGitArguments,
+    );
 
     if (githubToken && autoPush) {
         try {
-            await git.push(githubToken, ghPagesBranch);
+            await git.push(githubToken, ghPagesBranch, ...extraGitArguments);
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
@@ -407,7 +420,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
             if (retry > 0) {
                 core.debug('Rollback the auto-generated commit before retry');
-                await git.cmd('reset', '--hard', 'HEAD~1');
+                await git.cmd('reset', '--hard', 'HEAD~1', ...extraGitArguments);
 
                 core.warning(
                     `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
@@ -430,11 +443,13 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 }
 
 async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
-    const { ghPagesBranch, skipFetchGhPages } = config;
-    if (!skipFetchGhPages) {
-        await git.cmd('fetch', 'origin', `${ghPagesBranch}:${ghPagesBranch}`);
+    const { ghPagesBranch, ghRepository, skipFetchGhPages } = config;
+    if (!ghRepository) {
+        if (!skipFetchGhPages) {
+            await git.cmd('fetch', 'origin', `${ghPagesBranch}:${ghPagesBranch}`);
+        }
+        await git.cmd('switch', ghPagesBranch);
     }
-    await git.cmd('switch', ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     } finally {

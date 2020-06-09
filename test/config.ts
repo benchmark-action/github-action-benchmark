@@ -178,6 +178,7 @@ describe('configFromJobInput()', function() {
         name: string;
         tool: string;
         ghPagesBranch: string;
+        ghRepository: string | undefined;
         githubToken: string | undefined;
         autoPush: boolean;
         skipFetchGhPages: boolean;
@@ -194,6 +195,7 @@ describe('configFromJobInput()', function() {
         name: 'Benchmark',
         tool: 'cargo',
         ghPagesBranch: 'gh-pages',
+        ghRepository: undefined,
         autoPush: false,
         skipFetchGhPages: false,
         githubToken: undefined,

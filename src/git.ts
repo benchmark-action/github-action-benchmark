@@ -52,9 +52,11 @@ export async function cmd(...args: string[]): Promise<string> {
     return res.stdout;
 }
 
-function getRemoteUrl(token: string): string {
+function getRemoteUrl(token: string, fullName?: string): string {
     /* eslint-disable @typescript-eslint/camelcase */
-    const fullName = github.context.payload.repository?.full_name;
+    if (!fullName) {
+        fullName = github.context.payload.repository?.full_name;
+    }
     /* eslint-enable @typescript-eslint/camelcase */
 
     if (!fullName) {
@@ -81,6 +83,23 @@ export async function pull(token: string | undefined, branch: string, ...options
 
     const remote = token !== undefined ? getRemoteUrl(token) : 'origin';
     let args = ['pull', remote, branch];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(...args);
+}
+
+export async function clone(
+    token: string | undefined,
+    ghRepository: string,
+    branch: string,
+    ...options: string[]
+): Promise<string> {
+    core.debug(`Executing 'git fetch' to branch '${branch}' with token and options '${options.join(' ')}'`);
+
+    const remote = token !== undefined ? getRemoteUrl(token, ghRepository) : 'origin';
+    let args = ['clone', remote, branch];
     if (options.length > 0) {
         args = args.concat(options);
     }
