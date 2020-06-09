@@ -66,9 +66,11 @@ export async function cmd(...args: string[]): Promise<string> {
     return res.stdout;
 }
 
-function getRemoteUrl(token: string): string {
+function getRemoteUrl(token: string, serverName?: string): string {
     const { repo, owner } = github.context.repo;
-    const serverName = getServerName(github.context.payload.repository?.html_url);
+    if (!serverName) {
+        serverName = getServerName(github.context.payload.repository?.html_url);
+    }
     return `https://x-access-token:${token}@${serverName}/${owner}/${repo}.git`;
 }
 
@@ -101,6 +103,23 @@ export async function fetch(token: string | undefined, branch: string, ...option
 
     const remote = token !== undefined ? getRemoteUrl(token) : 'origin';
     let args = ['fetch', remote, `${branch}:${branch}`];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(...args);
+}
+
+export async function clone(
+    token: string | undefined,
+    ghRepository: string,
+    branch: string,
+    ...options: string[]
+): Promise<string> {
+    core.debug(`Executing 'git fetch' to branch '${branch}' with token and options '${options.join(' ')}'`);
+
+    const remote = token !== undefined ? getRemoteUrl(token, ghRepository) : 'origin';
+    let args = ['clone', remote, branch];
     if (options.length > 0) {
         args = args.concat(options);
     }
