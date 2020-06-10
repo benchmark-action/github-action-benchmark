@@ -1,3 +1,12 @@
+<a name="v1.8.1"></a>
+# [v1.8.1](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.8.1) - 10 Jun 2020
+
+- **Fix:** Allow `/` in `cargo bench` benchmark name (#26)
+- **New:** Add an example with [Criterion.rs](https://github.com/bheisler/criterion.rs) for Rust projects
+
+[Changes][v1.8.1]
+
+
 <a name="v1.8.0"></a>
 # [v1.8.0](https://github.com/rhysd/github-action-benchmark/releases/tag/v1.8.0) - 17 Mar 2020
 
@@ -261,6 +270,7 @@ https://github.com/rhysd/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.8.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.8.0...v1.8.1
 [v1.8.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.7.1...v1.8.0
 [v1.7.1]: https://github.com/rhysd/github-action-benchmark/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/rhysd/github-action-benchmark/compare/v1.6.7...v1.7.0
