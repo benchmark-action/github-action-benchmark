@@ -1,5 +1,8 @@
 ## Releases
 
+## 1.0.7
+Update NPM dependencies and add 429 to the list of HttpCodes
+
 ## 1.0.6
 Automatically sends Content-Type and Accept application/json headers for \<verb>Json() helper methods if not set in the client or parameters.
 
