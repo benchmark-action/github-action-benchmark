@@ -71,7 +71,7 @@ mock('@actions/github', {
     context: gitHubContext,
 });
 
-const { cmd, pull, push } = require('../src/git');
+const { cmd, pull, push, fetch } = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
 const userArgs = [
     '-c',
@@ -198,6 +198,50 @@ describe('git', function() {
             gitHubContext.payload.repository = null;
             await A.rejects(
                 () => pull('this-is-token', 'my-branch', 'opt1', 'opt2'),
+                /^Error: Repository info is not available in payload/,
+            );
+            eq(fakedExec.lastArgs, null);
+        });
+    });
+
+    describe('fetch()', function() {
+        afterEach(function() {
+            gitHubContext.payload.repository = { full_name: 'user/repo' };
+        });
+
+        it('runs `git fetch` with given branch and options with token', async function() {
+            const stdout = await fetch('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(
+                args[1],
+                userArgs.concat([
+                    'fetch',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
+                    'my-branch:my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
+        });
+
+        it('runs `git fetch` with given branch and options without token', async function() {
+            const stdout = await fetch(undefined, 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(args[1], userArgs.concat(['fetch', 'origin', 'my-branch:my-branch', 'opt1', 'opt2']));
+        });
+
+        it('raises an error when repository info is not included in payload', async function() {
+            gitHubContext.payload.repository = null;
+            await A.rejects(
+                () => fetch('this-is-token', 'my-branch', 'opt1', 'opt2'),
                 /^Error: Repository info is not available in payload/,
             );
             eq(fakedExec.lastArgs, null);

@@ -45,7 +45,7 @@ class FakedOctokit {
     }
 }
 
-type GitFunc = 'cmd' | 'push' | 'pull';
+type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch';
 class GitSpy {
     history: [GitFunc, unknown[]][];
     pushFailure: null | string;
@@ -122,6 +122,10 @@ mock('../src/git', {
     },
     async pull(...args: unknown[]) {
         gitSpy.call('pull', args);
+        return '';
+    },
+    async fetch(...args: unknown[]) {
+        gitSpy.call('fetch', args);
         return '';
     },
 });
@@ -924,7 +928,7 @@ describe('writeBenchmark()', function() {
             const autoPush = cfg.autoPush ?? true;
             const skipFetch = cfg.skipFetch ?? false;
             const hist: Array<[GitFunc, unknown[]] | undefined> = [
-                skipFetch ? undefined : ['cmd', ['fetch', 'origin', 'gh-pages:gh-pages']],
+                skipFetch ? undefined : ['fetch', [token, 'gh-pages']],
                 ['cmd', ['switch', 'gh-pages']],
                 fetch ? ['pull', [token, 'gh-pages']] : undefined,
                 ['cmd', ['add', path.join(dir, 'data.js')]],
