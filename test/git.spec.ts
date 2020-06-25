@@ -1,5 +1,5 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
-import { cmd, pull, push } from '../src/git';
+import { cmd, pull, push, fetch } from '../src/git';
 
 interface ExecOptions {
     listeners: {
@@ -173,6 +173,37 @@ describe('git', function () {
             ok(args);
             eq(args[0], 'git');
             eq(args[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
+        });
+    });
+
+    describe('fetch()', function() {
+        it('runs `git fetch` with given branch and options with token', async function() {
+            const stdout = await fetch('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(
+                args[1],
+                userArgs.concat([
+                    'fetch',
+                    'https://x-access-token:this-is-token@github.com/user/repo.git',
+                    'my-branch:my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
+        });
+
+        it('runs `git fetch` with given branch and options without token', async function() {
+            const stdout = await fetch(undefined, 'my-branch', 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(args[1], userArgs.concat(['fetch', 'origin', 'my-branch:my-branch', 'opt1', 'opt2']));
         });
     });
 });
