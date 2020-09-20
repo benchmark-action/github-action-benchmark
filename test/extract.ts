@@ -86,7 +86,7 @@ describe('extractResult()', function() {
                     extra: '100 samples\n20 iterations',
                 },
                 {
-                    name: 'Fibonacci 10 with',
+                    name: 'Fibonacci 10 with a long name',
                     range: '± 19',
                     unit: 'ns',
                     value: 344,
