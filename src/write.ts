@@ -56,7 +56,7 @@ async function addIndexHtmlIfNeeded(dir: string) {
     console.log('Created default index.html at', indexHtml);
 }
 
-function biggerIsBetter(tool: ToolType): boolean {
+function biggerIsBetter(tool: ToolType, result: BenchmarkResult): boolean {
     switch (tool) {
         case 'cargo':
             return false;
@@ -70,6 +70,13 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'catch2':
             return false;
+        case 'ndjson': {
+            const { biggerIsBetter } = result;
+            if (biggerIsBetter === undefined) {
+                throw new Error('ndjson is assumed to have a biggerIsBetter field.');
+            }
+            return biggerIsBetter;
+        }
     }
 }
 
@@ -90,7 +97,7 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
             continue;
         }
 
-        const ratio = biggerIsBetter(curSuite.tool)
+        const ratio = biggerIsBetter(curSuite.tool, current)
             ? prev.value / current.value // e.g. current=100, prev=200
             : current.value / prev.value; // e.g. current=200, prev=100
 
@@ -160,7 +167,7 @@ function buildComment(benchName: string, curSuite: Benchmark, prevSuite: Benchma
         const prev = prevSuite.benches.find(i => i.name === current.name);
 
         if (prev) {
-            const ratio = biggerIsBetter(curSuite.tool)
+            const ratio = biggerIsBetter(curSuite.tool, current)
                 ? prev.value / current.value // e.g. current=100, prev=200
                 : current.value / prev.value;
 
