@@ -70,6 +70,10 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'catch2':
             return false;
+        case 'gatling':
+            return false;
+        default:
+            throw new Error(`FATAL: Unexpected value`);
     }
 }
 

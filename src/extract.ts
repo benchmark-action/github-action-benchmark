@@ -34,6 +34,53 @@ export interface Benchmark {
     benches: BenchmarkResult[];
 }
 
+export interface RequestsCounter {
+    total: number;
+    ok: number;
+    ko: number;
+}
+
+export interface RequestsDistribution {
+    name: string;
+    count: number;
+    percentage: number;
+}
+
+export interface GatlingStats {
+    name: string;
+    numberOfRequests: RequestsCounter;
+    minResponseTime: RequestsCounter;
+    maxResponseTime: RequestsCounter;
+    meanResponseTime: RequestsCounter;
+    standardDeviation: RequestsCounter;
+    percentiles1: RequestsCounter;
+    percentiles2: RequestsCounter;
+    percentiles3: RequestsCounter;
+    percentiles4: RequestsCounter;
+    group1: RequestsDistribution;
+    group2: RequestsDistribution;
+    group3: RequestsDistribution;
+    group4: RequestsDistribution;
+    meanNumberOfRequestsPerSecond: RequestsCounter;
+}
+export interface GatlingContent {
+    type: string;
+    name: string;
+    path: string;
+    pathFormatted: string;
+    stats: GatlingStats;
+}
+export interface GatlingBenchmarkJson {
+    type: string;
+    name: string;
+    path: string;
+    pathFormatted: string;
+    stats: GatlingStats;
+    contents: {
+        [index: string]: GatlingContent;
+    };
+}
+
 export interface GoogleCppBenchmarkJson {
     context: {
         date: string;
@@ -304,6 +351,27 @@ function extractGoogleCppResult(output: string): BenchmarkResult[] {
     });
 }
 
+function extractGatlingJsResult(output: string): BenchmarkResult[] {
+    let json: GatlingBenchmarkJson;
+    try {
+        json = JSON.parse(output);
+    } catch (err) {
+        throw new Error(`Output file for 'gatling' must be JSON file from stats.json: ${err.message}`);
+    }
+
+    const ret = [];
+
+    for (const content in json.contents) {
+        console.log(content);
+        const name = json.contents[content].name;
+        const value = json.contents[content].stats.percentiles3.total;
+        const unit = 'ms';
+        ret.push({ name, value, unit });
+    }
+
+    return ret;
+}
+
 function extractCatch2Result(output: string): BenchmarkResult[] {
     // Example:
 
@@ -438,6 +506,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'catch2':
             benches = extractCatch2Result(output);
+            break;
+        case 'gatling':
+            benches = extractGatlingJsResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);

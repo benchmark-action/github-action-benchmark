@@ -88,6 +88,21 @@ describe('extractResult()', function() {
             ],
         },
         {
+            tool: 'gatling',
+            expected: [
+                {
+                    name: 'BenchmarkFib10',
+                    unit: 'ms',
+                    value: 247,
+                },
+                {
+                    name: 'BenchmarkFib20',
+                    unit: 'ms',
+                    value: 23,
+                },
+            ],
+        },
+        {
             tool: 'go',
             expected: [
                 {
