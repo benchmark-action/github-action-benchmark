@@ -22,6 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
+- [JMH][jmh] for Java projects
 
 Multiple languages in the same repository are supported for polyglot projects.
 
@@ -323,7 +324,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`.
+`"googlecpp"`, `"catch2"`, `"jmh"`.
 
 #### `output-file-path` (Required)
 
@@ -587,5 +588,6 @@ Every release will appear on your GitHub notifications page.
 [commit-comment-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
 [google-benchmark]: https://github.com/google/benchmark
 [catch2]: https://github.com/catchorg/Catch2
+[jmh]: https://openjdk.java.net/projects/code-tools/jmh/
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci

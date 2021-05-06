@@ -194,6 +194,42 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+  jmh:
+    name: Run JMH Java Benchmark Framework example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
+      - name: Run benchmark
+        run: |
+          cd examples/java
+          mvn clean verify
+          java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: JMH Benchmark
+          tool: "jmh"
+          output-file-path: examples/java/jmh-result.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+      - run: node ./scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
