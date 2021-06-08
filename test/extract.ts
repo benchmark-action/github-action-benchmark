@@ -131,6 +131,23 @@ describe('extractResult()', function() {
             ],
         },
         {
+            tool: 'jsperformanceentry',
+            expected: [
+                {
+                    name: 'fib(10)',
+                    unit: 'ms',
+                    value: 1234,
+                    extra: 'type: measure',
+                },
+                {
+                    name: 'fib(20)',
+                    unit: 'ms',
+                    value: 1234,
+                    extra: 'type: measure',
+                },
+            ],
+        },
+        {
             tool: 'pytest',
             expected: [
                 {

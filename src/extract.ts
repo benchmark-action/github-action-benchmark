@@ -126,6 +126,13 @@ export interface PytestBenchmarkJson {
     version: string;
 }
 
+export interface JsPerformanceEntryJson {
+    name: string;
+    entryType: 'element' | 'frame' | 'navigation' | 'resource' | 'mark' | 'measure' | 'paint' | 'longtask';
+    startTime: number;
+    duration: number;
+}
+
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
         return [seconds * 1e9, 'nsec'];
@@ -264,6 +271,24 @@ function extractBenchmarkJsResult(output: string): BenchmarkResult[] {
     }
 
     return ret;
+}
+
+function extractJsPerformanceEntryResult(output: string): BenchmarkResult[] {
+    let json: JsPerformanceEntryJson[];
+    try {
+        json = JSON.parse(output);
+    } catch (err) {
+        throw new Error(`Output file for 'jsperformanceentry' invalid: ${err.message}`);
+    }
+
+    return json.map(entry => {
+        return {
+            name: entry.name,
+            value: entry.duration,
+            unit: 'ms',
+            extra: `type: ${entry.entryType}`,
+        };
+    });
 }
 
 function extractPytestResult(output: string): BenchmarkResult[] {
@@ -429,6 +454,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'benchmarkjs':
             benches = extractBenchmarkJsResult(output);
+            break;
+        case 'jsperformanceentry':
+            benches = extractJsPerformanceEntryResult(output);
             break;
         case 'pytest':
             benches = extractPytestResult(output);

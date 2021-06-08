@@ -19,6 +19,7 @@ This action currently supports the following tools:
 - [`cargo bench`][cargo-bench] for Rust projects
 - `go test -bench` for Go projects
 - [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
+- [JsPerformanceEntry][[jsperformanceentry]] for JavaScript/TypeScript projects
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
@@ -34,14 +35,15 @@ Multiple languages in the same repository are supported for polyglot projects.
 Example projects for each language are in [examples/](./examples) directory. Live example workflow
 definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
 
-| Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
-| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
-| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
-| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
-| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
-| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
+| Language     | Workflow                                                                                          | Example Project                                              |
+|--------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                                     | [examples/rust](./examples/rust)                             |
+| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                           | [examples/go](./examples/go)                                 |
+| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]                 | [examples/benchmarkjs](./examples/benchmarkjs)               |
+| JavaScript   | [![JsPerformance Example Workflow][jsperformanceentry-badge]][benchmarkjs-workflow-example]       | [examples/jsperformanceentry](./examples/jsperformanceentry) |
+| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example]           | [examples/pytest](./examples/pytest)                         |
+| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                                        | [examples/cpp](./examples/cpp)                               |
+| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                           | [examples/catch2](./examples/catch2)                         |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -300,6 +302,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [`cargo bench` for Rust projects](./examples/rust/README.md)
 - [`go test` for Go projects](./examples/go/README.md)
 - [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
+- [JsPerformanceEntry for JavaScript/TypeScript projects](./examples/jsperformanceentry/README.md)
 - [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
 - [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
 
@@ -322,7 +325,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Type: String
 - Default: N/A
 
-Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
+Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"jsperformanceentry"`, `"pytest"`,
 `"googlecpp"`, `"catch2"`.
 
 #### `output-file-path` (Required)
@@ -563,12 +566,14 @@ Every release will appear on your GitHub notifications page.
 [rust-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Rust%20Example/badge.svg
 [go-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Go%20Example/badge.svg
 [benchmarkjs-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.js%20Example/badge.svg
+[jsperformanceentry-badge]: https://github.com/rhysd/github-action-benchmark/workflows/JsPerformanceEntry%20Example/badge.svg
 [pytest-benchmark-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Python%20Example%20with%20pytest/badge.svg
 [cpp-badge]: https://github.com/rhysd/github-action-benchmark/workflows/C%2B%2B%20Example/badge.svg
 [catch2-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
+[jsperformanceentry]: https://developer.mozilla.org/docs/Web/API/Performance
 [gh-pages]: https://pages.github.com/
 [examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
@@ -577,6 +582,7 @@ Every release will appear on your GitHub notifications page.
 [rust-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
 [go-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
 [benchmarkjs-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22
+[jsperformanceentry-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22JsPerformanceEntry%20Example%22
 [pytest-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22
 [cpp-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22
 [catch2-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22

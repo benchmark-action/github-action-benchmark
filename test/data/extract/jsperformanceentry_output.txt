@@ -1,0 +1,14 @@
+[
+    {
+        "name": "fib(10)",
+        "duration": 1234,
+        "startTime": 1337,
+        "entryType": "measure"
+    },
+    {
+        "name": "fib(20)",
+        "duration": 1234,
+        "startTime": 0,
+        "entryType": "measure"
+    }
+]

@@ -114,6 +114,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           cargo: '#dea584',
           go: '#00add8',
           benchmarkjs: '#f1e05a',
+          jsperformanceentry: '#64bd25',
           pytest: '#3572a5',
           googlecpp: '#f34b7d',
           catch2: '#f34b7d',
