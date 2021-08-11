@@ -76,27 +76,19 @@ class GitSpy {
 }
 const gitSpy = new GitSpy();
 
-interface RepositoryPayload {
-    owner: {
-        login: string;
-    };
-    name: string;
-    full_name: string;
-    html_url: string;
+interface RepositoryPayloadSubset {
     private: boolean;
 }
 
 const gitHubContext = {
+    repo: {
+        repo: 'repo',
+        owner: 'user',
+    },
     payload: {
         repository: {
-            owner: {
-                login: 'user',
-            },
-            name: 'repo',
-            full_name: 'user/repo',
-            html_url: 'https://github.com/user/repo',
             private: false,
-        } as RepositoryPayload | null,
+        } as RepositoryPayloadSubset | null,
     },
     workflow: 'Workflow name',
 };
@@ -219,7 +211,7 @@ describe('writeBenchmark()', function() {
             added: Benchmark;
             error?: string[];
             commitComment?: string;
-            repoPayload?: null | RepositoryPayload;
+            repoPayload?: null | RepositoryPayloadSubset;
         }> = [
             {
                 it: 'appends new result to existing data',
@@ -566,32 +558,6 @@ describe('writeBenchmark()', function() {
                 },
                 error: ["'comment-on-alert' input is set but 'github-token' input is not set"],
                 commitComment: undefined,
-            },
-            {
-                it: 'throws an error when repository payload cannot be obtained from context',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl: '', // When repository is null repoUrl will be empty
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
-                    },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                repoPayload: null,
-                error: ['Repository information is not available in payload: {', '  "repository": null', '}'],
             },
             {
                 it: 'truncates data items if it exceeds max-items-in-chart',
