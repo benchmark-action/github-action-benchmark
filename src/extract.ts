@@ -146,7 +146,6 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
 }
 
 function getCommitFromPr(pr: PullRequest): Commit {
-    /* eslint-disable @typescript-eslint/camelcase */
     // On pull_request hook, head_commit is not available
     const message: string = pr.title;
     const id: string = pr.head.sha;
@@ -166,7 +165,6 @@ function getCommitFromPr(pr: PullRequest): Commit {
         timestamp,
         url,
     };
-    /* eslint-enable @typescript-eslint/camelcase */
 }
 
 async function getHeadCommit(githubToken: string): Promise<Commit> {
@@ -204,7 +202,6 @@ async function getHeadCommit(githubToken: string): Promise<Commit> {
 }
 
 async function getCommit(githubToken?: string): Promise<Commit> {
-    /* eslint-disable @typescript-eslint/camelcase */
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
     }
@@ -223,7 +220,6 @@ async function getCommit(githubToken?: string): Promise<Commit> {
         );
     }
     return await getHeadCommit(githubToken);
-    /* eslint-enable @typescript-eslint/camelcase */
 }
 
 function extractCargoResult(output: string): BenchmarkResult[] {
