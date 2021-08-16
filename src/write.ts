@@ -70,6 +70,10 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'catch2':
             return false;
+        case 'custom-ascending-benchmark':
+            return true;
+        case 'custom-descending-benchmark':
+            return false;
     }
 }
 

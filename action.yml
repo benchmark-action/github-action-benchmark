@@ -11,7 +11,7 @@ inputs:
     required: true
     default: 'Benchmark'
   tool:
-    description: 'Tool to use get benchmark output. One of "cargo", "go", "benchmarkjs", "pytest"'
+    description: 'Tool to use get benchmark output. One of "cargo", "go", "benchmarkjs", "pytest", "custom-ascending-benchmark", "custom-descending-benchmark"'
     required: true
   output-file-path:
     description: 'A path to file which contains the benchmark output'

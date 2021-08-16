@@ -239,6 +239,36 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'custom-ascending-benchmark',
+            expected: [
+                {
+                    name: "My Custom Ascending Benchmark - Throughput",
+                    unit: "req/s",
+                    value: 70,
+                },
+                {
+                    name: "My Custom Ascending Benchmark - Free Memory",
+                    unit: "Megabytes",
+                    value: 150,
+                },
+            ],
+        },
+        {
+            tool: 'custom-descending-benchmark',
+            expected: [
+                {
+                    name: "My Custom Descending Benchmark - CPU Load",
+                    unit: "Percent",
+                    value: 50,
+                },
+                {
+                    name: "My Custom Descending Benchmark - Memory Used",
+                    unit: "Megabytes",
+                    value: 100,
+                },
+            ],
+        },
     ];
 
     for (const test of normalCases) {

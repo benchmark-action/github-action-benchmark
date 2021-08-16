@@ -22,6 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
+- Custom benchmarks either 'ascending' or 'descending'
 
 Multiple languages in the same repository are supported for polyglot projects.
 
@@ -47,7 +48,26 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 
+Additionally, even though there is no explicit example, you can use
+`custom-ascending-benchmark` and `custom-descending-benchmark` to use this
+action and create your own graphs from your own benchmark data. The name in
+these tools define which direction "is better" for your benchmarks.
 
+Every entry in the JSON file you provide only need to provide `name`, `unit`,
+and `value`. Like this:
+
+```json
+{
+    "name": "My Custom Descending Benchmark - CPU Load",
+    "unit": "Percent",
+    "value": "50",
+}
+{
+    "name": "My Custom Descending Benchmark - Memory Used",
+    "unit": "Megabytes",
+    "value": 100,
+},
+```
 
 ## Screenshots
 
@@ -517,9 +537,6 @@ Every release will appear on your GitHub notifications page.
 
 ## Future work
 
-- Allow user-defined benchmark tool
-  - Accept benchmark results as an array of benchmark results as JSON. User can generate JSON file
-    to integrate any benchmarking tool to this action
 - Support pull requests. Instead of updating GitHub pages, add a comment to the pull request to explain
   benchmark results.
 - Add more benchmark tools:
