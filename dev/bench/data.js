@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146845929,
+  "lastUpdate": 1633146856408,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27811,6 +27811,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.269,
             "range": "± 602",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3b96c47c597911e76bc2e766cde7efa5cc7e818b",
+          "message": "add contents write permission to example workflows",
+          "timestamp": "2021-10-02T12:53:12+09:00",
+          "tree_id": "6b12a54c5cbaf730716cd97ed005afd358bfbd38",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3b96c47c597911e76bc2e766cde7efa5cc7e818b"
+        },
+        "date": 1633146854566,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 188,
+            "range": "± 14",
+            "unit": "ns",
+            "extra": "100 samples\n176 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 24.564,
+            "range": "± 2.136",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
