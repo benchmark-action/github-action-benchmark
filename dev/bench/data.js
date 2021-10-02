@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633147603777,
+  "lastUpdate": 1633147605213,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23223,6 +23223,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00017075801844428619",
             "extra": "mean: 2.4110147870819794 msec\nrounds: 418"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
+          "message": "fix pytest example workflow",
+          "timestamp": "2021-10-02T13:01:21+09:00",
+          "tree_id": "907b77cf2252b6bbde997aedee7cc8dda37e0f93",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b66943d1565db5d7fc7f206625fa19c2e9cee0cd"
+        },
+        "date": 1633147601393,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54234.753181637985,
+            "unit": "iter/sec",
+            "range": "stddev: 5.565117395268185e-7",
+            "extra": "mean: 18.438361776090197 usec\nrounds: 35088"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 448.36166541058884,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00000982793485087082",
+            "extra": "mean: 2.2303423266220728 msec\nrounds: 447"
           }
         ]
       }
