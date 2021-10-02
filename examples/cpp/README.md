@@ -2,7 +2,7 @@ C++ example for benchmarking with [Google Benchmark Framework][tool]
 ====================================================================
 
 - [Workflow for this example](../../.github/workflows/cpp.yml)
-- [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22)
+- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22)
 - [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
 
 This directory shows how to use [`github-action-benchmark`][action] with [Google Benchmark Framework][tool].
@@ -56,7 +56,7 @@ Store the benchmark results with step using the action. Please set `googlecpp` t
     output-file-path: benchmark_result.json
 ```
 
-Please read ['How to use' section](https://github.com/rhysd/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
 
 ## Run this example
 
@@ -96,4 +96,4 @@ $ make json
 file in current directory.
 
 [tool]: https://github.com/google/benchmark
-[action]: https://github.com/rhysd/github-action-benchmark
+[action]: https://github.com/benchmark-action/github-action-benchmark

@@ -53,7 +53,7 @@ https://rhysd.github.io/github-action-benchmark/dev/bench/
 
 ### Charts on GitHub Pages
 
-![page screenshot](https://github.com/rhysd/ss/blob/master/github-action-benchmark/main.png?raw=true)
+![page screenshot](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/main.png)
 
 Mouseover on data point shows a tooltip. It includes
 
@@ -64,11 +64,11 @@ Mouseover on data point shows a tooltip. It includes
 
 Clicking data point in chart opens the commit page on a GitHub repository.
 
-![tooltip](https://github.com/rhysd/ss/blob/master/github-action-benchmark/tooltip.png?raw=true)
+![tooltip](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/tooltip.png)
 
 At bottom of the page, the download button is available for downloading benchmark results as a JSON file.
 
-![download button](https://github.com/rhysd/ss/blob/master/github-action-benchmark/download.png?raw=true)
+![download button](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/download.png)
 
 
 ### Alert comment on commit page
@@ -76,7 +76,7 @@ At bottom of the page, the download button is available for downloading benchmar
 This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
 results are worse than previous exceeding a specified threshold.
 
-![alert comment](https://github.com/rhysd/ss/blob/master/github-action-benchmark/alert-comment.png?raw=true)
+![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
 
 
 
@@ -208,9 +208,9 @@ $ git push origin gh-pages:gh-pages
 ```
 
 Second, you need to [create a personal access token][help-personal-access-token]. As of now,
-[deploying a GitHub Pages branch fails with `$GITHUB_TOKEN` automatically generated for workflows](https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869).
+[deploying a GitHub Pages branch fails with `$GITHUB_TOKEN` automatically generated for workflows](https://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096).
 `$GITHUB_TOKEN` can push a branch to remote, but building GitHub Pages fails. Please read
-[issue #1](https://github.com/rhysd/github-action-benchmark/issues/1) for more details.
+[issue #1](https://github.com/benchmark-action/github-action-benchmark/issues/1) for more details.
 This is a current limitation only for public repositories. For private repository, `secrets.GITHUB_TOKEN`
 is available. In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to
 deploy a GitHub Pages branch.
@@ -494,7 +494,7 @@ is about +- 10~20%. If your benchmarks use some resources such as networks or fi
 might be bigger.
 
 If the amplitude is not acceptable, please prepare a stable environment to run benchmarks.
-GitHub action supports [self-hosted runners](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-self-hosted-runners).
+GitHub action supports [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners).
 
 
 ### Customizing the benchmarks result page
@@ -533,7 +533,7 @@ Every release will appear on your GitHub notifications page.
   benchmark results.
 - Add more benchmark tools:
   - [airspeed-velocity Python benchmarking tool](https://github.com/airspeed-velocity/asv)
-- Allow uploading results to metrics services such as [mackerel](https://mackerel.io/)
+- Allow uploading results to metrics services such as [mackerel](https://en.mackerel.io/)
 - Show extracted benchmark data in the output from this action
 - Add a table view in dashboard page to see all data points in table
 
@@ -553,19 +553,19 @@ Every release will appear on your GitHub notifications page.
 
 
 
-[build-badge]: https://github.com/rhysd/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
-[ci]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3ACI
+[build-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
+[ci]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3ACI
 [codecov-badge]: https://codecov.io/gh/rhysd/github-action-benchmark/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/rhysd/github-action-benchmark
+[codecov]: https://app.codecov.io/gh/rhysd/github-action-benchmark
 [release-badge]: https://img.shields.io/github/v/release/rhysd/github-action-benchmark.svg
 [marketplace]: https://github.com/marketplace/actions/continuous-benchmark
-[proj]: https://github.com/rhysd/github-action-benchmark
-[rust-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Rust%20Example/badge.svg
-[go-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Go%20Example/badge.svg
-[benchmarkjs-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.js%20Example/badge.svg
-[pytest-benchmark-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Python%20Example%20with%20pytest/badge.svg
-[cpp-badge]: https://github.com/rhysd/github-action-benchmark/workflows/C%2B%2B%20Example/badge.svg
-[catch2-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
+[proj]: https://github.com/benchmark-action/github-action-benchmark
+[rust-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Rust%20Example/badge.svg
+[go-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Go%20Example/badge.svg
+[benchmarkjs-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Benchmark.js%20Example/badge.svg
+[pytest-benchmark-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Python%20Example%20with%20pytest/badge.svg
+[cpp-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/C%2B%2B%20Example/badge.svg
+[catch2-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
@@ -574,17 +574,17 @@ Every release will appear on your GitHub notifications page.
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
 [alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
-[rust-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
-[go-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
-[benchmarkjs-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22
-[pytest-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22
-[cpp-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22
-[catch2-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
-[help-watch-release]: https://help.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
-[help-github-token]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token
-[help-personal-access-token]: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line
-[minimal-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
-[commit-comment-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
+[rust-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
+[go-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
+[benchmarkjs-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22
+[pytest-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22
+[cpp-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22
+[catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
+[help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
+[help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+[help-personal-access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
+[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
 [google-benchmark]: https://github.com/google/benchmark
 [catch2]: https://github.com/catchorg/Catch2
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
