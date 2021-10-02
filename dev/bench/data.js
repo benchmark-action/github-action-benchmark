@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633160757144,
+  "lastUpdate": 1633178701881,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27305,6 +27305,42 @@ window.BENCHMARK_DATA = {
             "value": 29081.575875971266,
             "unit": "ns/iter",
             "extra": "iterations: 24059\ncpu: 29079.26077559333 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "cf314e1991c86f79890dfb5947c2cced39e956f0",
+          "message": "use codecov-action v2",
+          "timestamp": "2021-10-02T21:44:27+09:00",
+          "tree_id": "cb7344445981bd54c30a35eed7990e3dbcfab42a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/cf314e1991c86f79890dfb5947c2cced39e956f0"
+        },
+        "date": 1633178699550,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.64085454420135,
+            "unit": "ns/iter",
+            "extra": "iterations: 3898827\ncpu: 179.52586021385406 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24174.463168097656,
+            "unit": "ns/iter",
+            "extra": "iterations: 28888\ncpu: 24172.048047632237 ns\nthreads: 1"
           }
         ]
       }
