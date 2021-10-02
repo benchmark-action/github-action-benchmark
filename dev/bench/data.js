@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146068692,
+  "lastUpdate": 1633146073192,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12027,6 +12027,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 51307,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "212bdda1ace705087217d259c353e145c520701e",
+          "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
+          "timestamp": "2021-10-02T12:39:37+09:00",
+          "tree_id": "0433fdf672992005a340ecfe0fea07301a25839e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/212bdda1ace705087217d259c353e145c520701e"
+        },
+        "date": 1633146071218,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 419,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 55241,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
