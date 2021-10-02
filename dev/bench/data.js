@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146839418,
+  "lastUpdate": 1633146845929,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6310,6 +6310,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3b96c47c597911e76bc2e766cde7efa5cc7e818b",
+          "message": "add contents write permission to example workflows",
+          "timestamp": "2021-10-02T12:53:12+09:00",
+          "tree_id": "6b12a54c5cbaf730716cd97ed005afd358bfbd38",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3b96c47c597911e76bc2e766cde7efa5cc7e818b"
+        },
+        "date": 1633146844001,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 262,
+            "range": "± 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 34100,
+            "range": "± 5726",
             "unit": "ns/iter"
           }
         ]
