@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146066883,
+  "lastUpdate": 1633146068692,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26053,6 +26053,42 @@ window.BENCHMARK_DATA = {
             "value": 30070.168987449662,
             "unit": "ns/iter",
             "extra": "iterations: 23268\ncpu: 30057.73521574695 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "212bdda1ace705087217d259c353e145c520701e",
+          "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
+          "timestamp": "2021-10-02T12:39:37+09:00",
+          "tree_id": "0433fdf672992005a340ecfe0fea07301a25839e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/212bdda1ace705087217d259c353e145c520701e"
+        },
+        "date": 1633146066388,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.4729719573616,
+            "unit": "ns/iter",
+            "extra": "iterations: 3898599\ncpu: 179.45758335237863 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24129.06195667213,
+            "unit": "ns/iter",
+            "extra": "iterations: 28988\ncpu: 24122.787670760317 ns\nthreads: 1"
           }
         ]
       }
