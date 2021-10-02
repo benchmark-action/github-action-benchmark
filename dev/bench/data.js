@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633159408478,
+  "lastUpdate": 1633159419976,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28559,6 +28559,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.212,
             "range": "± 217",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "92a87597923a9ef11cdb364b7a4603190b0ae889",
+          "message": "Merge pull request #80 from HerringtonDarkholme/patch-1\n\nfix: allow more test name",
+          "timestamp": "2021-10-02T16:22:51+09:00",
+          "tree_id": "dd1785058dc01cee20ca13bfeb3f3bb6c9827eac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/92a87597923a9ef11cdb364b7a4603190b0ae889"
+        },
+        "date": 1633159417761,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 165,
+            "range": "± 7",
+            "unit": "ns",
+            "extra": "100 samples\n179 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.379,
+            "range": "± 528",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
