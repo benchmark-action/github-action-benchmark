@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633178701881,
+  "lastUpdate": 1633178705959,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23811,6 +23811,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00032833186199988213",
             "extra": "mean: 2.5549324171599483 msec\nrounds: 338"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "cf314e1991c86f79890dfb5947c2cced39e956f0",
+          "message": "use codecov-action v2",
+          "timestamp": "2021-10-02T21:44:27+09:00",
+          "tree_id": "cb7344445981bd54c30a35eed7990e3dbcfab42a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/cf314e1991c86f79890dfb5947c2cced39e956f0"
+        },
+        "date": 1633178703719,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54279.29454209291,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000003790744223213523",
+            "extra": "mean: 18.423231334086562 usec\nrounds: 36497"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 450.92119592956266,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000089270036204919",
+            "extra": "mean: 2.2176824000001267 msec\nrounds: 445"
           }
         ]
       }
