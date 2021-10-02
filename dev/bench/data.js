@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1591796792063,
+  "lastUpdate": 1633146041986,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27425,8 +27425,46 @@ window.BENCHMARK_DATA = {
             "extra": "100 samples\n2 iterations"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "212bdda1ace705087217d259c353e145c520701e",
+          "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
+          "timestamp": "2021-10-02T12:39:37+09:00",
+          "tree_id": "0433fdf672992005a340ecfe0fea07301a25839e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/212bdda1ace705087217d259c353e145c520701e"
+        },
+        "date": 1633146039878,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 164,
+            "range": "± 2",
+            "unit": "ns",
+            "extra": "100 samples\n177 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.269,
+            "range": "± 602",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
       }
     ]
   },
-  "repoUrl": "https://github.com/rhysd/github-action-benchmark"
+  "repoUrl": "https://github.com/benchmark-action/github-action-benchmark"
 }
