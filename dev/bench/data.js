@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633147601234,
+  "lastUpdate": 1633147603777,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6442,6 +6442,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
+          "message": "fix pytest example workflow",
+          "timestamp": "2021-10-02T13:01:21+09:00",
+          "tree_id": "907b77cf2252b6bbde997aedee7cc8dda37e0f93",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b66943d1565db5d7fc7f206625fa19c2e9cee0cd"
+        },
+        "date": 1633147602505,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 170,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 23813,
+            "range": "± 4007",
             "unit": "ns/iter"
           }
         ]
