@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146856408,
+  "lastUpdate": 1633147041819,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12231,6 +12231,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 55645,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "6ed7bce2e0810467febf7b42f94671f0b0e6ebba",
+          "message": "fix criterion example workflow",
+          "timestamp": "2021-10-02T12:56:30+09:00",
+          "tree_id": "51bf74f1304dece2011c87e2b1b8ec8f3a5cc63e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6ed7bce2e0810467febf7b42f94671f0b0e6ebba"
+        },
+        "date": 1633147040436,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 386,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 47162,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
