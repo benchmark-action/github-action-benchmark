@@ -5,6 +5,7 @@ on:
       - master
 
 permissions:
+  contents: write
   deployments: write
 
 jobs:
