@@ -4,6 +4,9 @@ on:
     branches:
       - master
 
+permissions:
+  deployments: write
+
 jobs:
   benchmark:
     name: Run alert check without using Git branch

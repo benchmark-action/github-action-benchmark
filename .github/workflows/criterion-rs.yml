@@ -1,28 +1,31 @@
 name: Criterion.rs Example
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
+
+permissions:
+  deployments: write
 
 jobs:
-    benchmark:
-        name: Run Criterion.rs benchmark example
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - run: rustup toolchain update nightly && rustup default nightly
-            - name: Run benchmark
-              run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
-            - name: Store benchmark result
-              uses: rhysd/github-action-benchmark@v1
-              with:
-                  name: Rust Benchmark
-                  tool: 'cargo'
-                  output-file-path: examples/criterion-rs/output.txt
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  auto-push: true
-                  # Show alert with commit comment on detecting possible performance regression
-                  alert-threshold: '200%'
-                  comment-on-alert: true
-                  fail-on-alert: true
-                  alert-comment-cc-users: '@rhysd'
+  benchmark:
+    name: Run Criterion.rs benchmark example
+    runs-on: ubuntu-latest
+    eps:
+      - uses: actions/checkout@v2
+      - run: rustup toolchain update nightly && rustup default nightly
+      - name: Run benchmark
+        run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
+      - name: Store benchmark result
+        uses: rhysd/github-action-benchmark@v1
+        with:
+          name: Rust Benchmark
+          tool: 'cargo'
+          output-file-path: examples/criterion-rs/output.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@rhysd'
