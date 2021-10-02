@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633160568375,
+  "lastUpdate": 1633160570997,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27135,6 +27135,42 @@ window.BENCHMARK_DATA = {
             "value": 27935.62862776032,
             "unit": "ns/iter",
             "extra": "iterations: 25360\ncpu: 27932.422752365932 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
+          "message": "remove husky and update old lockfile",
+          "timestamp": "2021-10-02T16:42:01+09:00",
+          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
+        },
+        "date": 1633160568864,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 212.29410071267773,
+            "unit": "ns/iter",
+            "extra": "iterations: 3411090\ncpu: 212.28809090349418 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29081.575875971266,
+            "unit": "ns/iter",
+            "extra": "iterations: 24059\ncpu: 29079.26077559333 ns\nthreads: 1"
           }
         ]
       }
