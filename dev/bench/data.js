@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146837752,
+  "lastUpdate": 1633146839418,
   "entries": {
     "Rust Benchmark": [
       {
@@ -18343,6 +18343,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.94%",
             "unit": "ops/sec",
             "extra": "87 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3b96c47c597911e76bc2e766cde7efa5cc7e818b",
+          "message": "add contents write permission to example workflows",
+          "timestamp": "2021-10-02T12:53:12+09:00",
+          "tree_id": "6b12a54c5cbaf730716cd97ed005afd358bfbd38",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3b96c47c597911e76bc2e766cde7efa5cc7e818b"
+        },
+        "date": 1633146835991,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1061586,
+            "range": "±1.16%",
+            "unit": "ops/sec",
+            "extra": "86 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9194,
+            "range": "±0.68%",
+            "unit": "ops/sec",
+            "extra": "86 samples"
           }
         ]
       }
