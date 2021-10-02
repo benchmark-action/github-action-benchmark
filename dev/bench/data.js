@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633159585628,
+  "lastUpdate": 1633160565050,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23603,6 +23603,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000009338384806935256",
             "extra": "mean: 2.2225883028963196 msec\nrounds: 449"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
+          "message": "remove husky and update old lockfile",
+          "timestamp": "2021-10-02T16:42:01+09:00",
+          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
+        },
+        "date": 1633160563508,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 46163.62999094834,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000436980712072573",
+            "extra": "mean: 21.662074672119104 usec\nrounds: 31645"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 391.39978548301315,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00032833186199988213",
+            "extra": "mean: 2.5549324171599483 msec\nrounds: 338"
           }
         ]
       }
