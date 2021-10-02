@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633147205117,
+  "lastUpdate": 1633147601234,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26573,6 +26573,42 @@ window.BENCHMARK_DATA = {
             "value": 26787.807435615498,
             "unit": "ns/iter",
             "extra": "iterations: 25472\ncpu: 26785.093671482417 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
+          "message": "fix pytest example workflow",
+          "timestamp": "2021-10-02T13:01:21+09:00",
+          "tree_id": "907b77cf2252b6bbde997aedee7cc8dda37e0f93",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b66943d1565db5d7fc7f206625fa19c2e9cee0cd"
+        },
+        "date": 1633147599128,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.67014286055314,
+            "unit": "ns/iter",
+            "extra": "iterations: 3901777\ncpu: 179.63053193455187 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24146.085611832816,
+            "unit": "ns/iter",
+            "extra": "iterations: 29003\ncpu: 24144.751370547874 ns\nthreads: 1"
           }
         ]
       }
