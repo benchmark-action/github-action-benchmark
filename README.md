@@ -45,7 +45,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
-https://rhysd.github.io/github-action-benchmark/dev/bench/
+https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 
 
 
@@ -129,7 +129,7 @@ jobs:
           key: ${{ runner.os }}-benchmark
       # Run `github-action-benchmark` action
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
           tool: 'go'
@@ -164,7 +164,7 @@ In addition to the above setup, GitHub API token needs to be given to enable `co
 
 ```yaml
 - name: Store benchmark result
-  uses: rhysd/github-action-benchmark@v1
+  uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'go'
     output-file-path: output.txt
@@ -234,7 +234,7 @@ jobs:
         run: go test -bench 'BenchmarkFib' | tee output.txt
       # gh-pages branch is updated and pushed automatically with extracted benchmark data
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           name: My Project Go Benchmark
           tool: 'go'
@@ -272,7 +272,7 @@ If you don't want to pass GitHub API token to this action, it's still OK.
 
 ```yaml
 - name: Store benchmark result
-  uses: rhysd/github-action-benchmark@v1
+  uses: benchmark-action/github-action-benchmark@v1
   with:
     name: My Project Go Benchmark
     tool: 'go'
@@ -502,8 +502,8 @@ Every benchmark data is stored in `window.BENCHMARK_DATA` so you can create your
 
 This action conforms semantic versioning 2.0.
 
-For example, `rhysd/github-action-benchmark@v1` means the latest version of `1.x.y`. And
-`rhysd/github-action-benchmark@v1.0.2` always uses `v1.0.2` even if a newer version is published.
+For example, `benchmark-action/github-action-benchmark@v1` means the latest version of `1.x.y`. And
+`benchmark-action/github-action-benchmark@v1.0.2` always uses `v1.0.2` even if a newer version is published.
 
 `master` branch of this repository is for development and does not work as action.
 
@@ -546,9 +546,9 @@ Every release will appear on your GitHub notifications page.
 
 [build-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
 [ci]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3ACI
-[codecov-badge]: https://codecov.io/gh/rhysd/github-action-benchmark/branch/master/graph/badge.svg
-[codecov]: https://app.codecov.io/gh/rhysd/github-action-benchmark
-[release-badge]: https://img.shields.io/github/v/release/rhysd/github-action-benchmark.svg
+[codecov-badge]: https://codecov.io/gh/benchmark-action/github-action-benchmark/branch/master/graph/badge.svg
+[codecov]: https://app.codecov.io/gh/benchmark-action/github-action-benchmark
+[release-badge]: https://img.shields.io/github/v/release/benchmark-action/github-action-benchmark.svg
 [marketplace]: https://github.com/marketplace/actions/continuous-benchmark
 [proj]: https://github.com/benchmark-action/github-action-benchmark
 [rust-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Rust%20Example/badge.svg
@@ -561,10 +561,10 @@ Every release will appear on your GitHub notifications page.
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
 [gh-pages]: https://pages.github.com/
-[examples-page]: https://rhysd.github.io/github-action-benchmark/dev/bench/
+[examples-page]: https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
-[alert-comment-example]: https://github.com/rhysd/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
+[alert-comment-example]: https://github.com/benchmark-action/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
 [rust-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
 [go-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
 [benchmarkjs-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Benchmark.js+Example%22

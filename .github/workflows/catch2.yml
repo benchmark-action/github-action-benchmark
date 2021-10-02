@@ -22,7 +22,7 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench | tee ../benchmark_result.txt
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Catch2 Benchmark
           tool: "catch2"

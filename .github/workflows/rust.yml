@@ -18,7 +18,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Rust Benchmark
           tool: 'cargo'

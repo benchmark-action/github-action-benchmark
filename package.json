@@ -18,19 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rhysd/github-action-benchmark.git"
+    "url": "git+https://github.com/benchmark-action/github-action-benchmark.git"
   },
   "keywords": [
     "github",
     "action",
     "benchmark"
   ],
-  "author": "rhysd <https://rhysd.github.io>",
+  "author": "github-action-benchmark developers <https://github.com/benchmark-action>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rhysd/github-action-benchmark/issues"
+    "url": "https://github.com/benchmark-action/github-action-benchmark/issues"
   },
-  "homepage": "https://github.com/rhysd/github-action-benchmark#readme",
+  "homepage": "https://github.com/benchmark-action/github-action-benchmark#readme",
   "dependencies": {
     "@actions/core": "^1.2.3",
     "@actions/exec": "^1.0.3",

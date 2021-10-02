@@ -3,4 +3,4 @@ goarch: amd64
 BenchmarkFib10-8   	 5000000	       325 ns/op
 BenchmarkFib20   	   30000	     40537.123 ns/op
 PASS
-ok  	_/Users/rhayasd/Develop/github.com/rhysd/github-action-benchmark/examples/go	3.614s
+ok  	_/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/go	3.614s

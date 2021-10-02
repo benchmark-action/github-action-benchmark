@@ -3,7 +3,7 @@ Rust example for benchmarking with `cargo bench`
 
 - [Workflow for this example](../../.github/workflows/rust.yml)
 - [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
-- [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
+- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
 
 This directory shows how to use [`github-action-benchmark`](https://github.com/benchmark-action/github-action-benchmark)
 with [`cargo bench`](https://doc.rust-lang.org/cargo/commands/cargo-bench.html).
@@ -38,7 +38,7 @@ Store the benchmark results with step using the action. Please set `cargo` to `t
 
 ```yaml
 - name: Store benchmark result
-  uses: rhysd/github-action-benchmark@v1
+  uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'cargo'
     output-file-path: output.txt
