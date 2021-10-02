@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633159402801,
+  "lastUpdate": 1633159404381,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26929,6 +26929,42 @@ window.BENCHMARK_DATA = {
             "value": 24146.085611832816,
             "unit": "ns/iter",
             "extra": "iterations: 29003\ncpu: 24144.751370547874 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "92a87597923a9ef11cdb364b7a4603190b0ae889",
+          "message": "Merge pull request #80 from HerringtonDarkholme/patch-1\n\nfix: allow more test name",
+          "timestamp": "2021-10-02T16:22:51+09:00",
+          "tree_id": "dd1785058dc01cee20ca13bfeb3f3bb6c9827eac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/92a87597923a9ef11cdb364b7a4603190b0ae889"
+        },
+        "date": 1633159400350,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 206.2556543707019,
+            "unit": "ns/iter",
+            "extra": "iterations: 3353512\ncpu: 206.22857857672793 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27935.62862776032,
+            "unit": "ns/iter",
+            "extra": "iterations: 25360\ncpu: 27932.422752365932 ns\nthreads: 1"
           }
         ]
       }
