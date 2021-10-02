@@ -198,7 +198,7 @@ provides a chart dashboard on GitHub pages.
 
 It requires some preparations before the workflow setup.
 
-At first, you need to create a branch for GitHub Pages if you haven't created it yet.
+You need to create a branch for GitHub Pages if you haven't created it yet.
 
 ```sh
 # Create a local branch
@@ -207,26 +207,21 @@ $ git checkout --orphan gh-pages
 $ git push origin gh-pages:gh-pages
 ```
 
-Second, you need to [create a personal access token][help-personal-access-token]. As of now,
-[deploying a GitHub Pages branch fails with `$GITHUB_TOKEN` automatically generated for workflows](https://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096).
-`$GITHUB_TOKEN` can push a branch to remote, but building GitHub Pages fails. Please read
-[issue #1](https://github.com/benchmark-action/github-action-benchmark/issues/1) for more details.
-This is a current limitation only for public repositories. For private repository, `secrets.GITHUB_TOKEN`
-is available. In the future, this issue would be resolved and we could simply use `$GITHUB_TOKEN` to
-deploy a GitHub Pages branch.
-
-1. Go to your user settings page
-2. Enter 'Developer settings' tab
-3. Enter 'Personal access tokens' tab
-4. Click 'Generate new token' and enter your favorite token name
-5. Check `repo` scope for `git push` and click 'Generate token' at bottom
-6. Go to your repository settings page
-7. Enter 'Secrets' tab
-8. Create new `PERSONAL_GITHUB_TOKEN` secret with a generated token string
-
 Now you're ready for workflow setup.
 
 ```yaml
+# Do not run this workflow on pull request since this workflow has permission to modify contents.
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  # deployments permission to deploy GitHub pages website
+  deployments: write
+  # contents permission to update benchmark contents in gh-pages branch
+  contents: write
+
 jobs:
   benchmark:
     name: Performance regression check
@@ -244,8 +239,8 @@ jobs:
           name: My Project Go Benchmark
           tool: 'go'
           output-file-path: output.txt
-          # Personal access token to deploy GitHub Pages branch
-          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          # Access token to deploy GitHub Pages branch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           # Push and deploy GitHub pages branch automatically
           auto-push: true
 ```
@@ -286,7 +281,7 @@ If you don't want to pass GitHub API token to this action, it's still OK.
     auto-push: false
 # Push gh-pages branch by yourself
 - name: Push benchmark result
-  run: git push 'https://you:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
+  run: git push 'https://you:${{ secrets.GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
 ```
 
 Please add a step to push the branch to the remote.
@@ -357,8 +352,7 @@ The path can be relative to repository root.
 - Type: String
 - Default: N/A
 
-GitHub API token. For updating a GitHub Pages branch with public repo, a personal access token is necessary.
-Please see the 'Commit comment' section for more details.
+GitHub API access token.
 
 #### `auto-push` (Optional)
 
@@ -374,8 +368,7 @@ Otherwise, you need to push it by your own. Please read 'Commit comment' section
 - Default: `false`
 
 If it is set to `true`, this action will leave a commit comment comparing the current benchmark with previous.
-`github-token` is necessary as well. Please note that a personal access token is not necessary to
-send a commit comment. `secrets.GITHUB_TOKEN` is sufficient.
+`github-token` is necessary as well.
 
 #### `save-data-file` (Optional)
 
@@ -402,9 +395,7 @@ See `comment-on-alert` and `fail-on-alert` also.
 - Default: `false`
 
 If it is set to `true`, this action will leave a commit comment when an alert happens [like this][alert-comment-example].
-`github-token` is necessary as well. Please note that a personal access token is not necessary to
-send a commit comment. `secrets.GITHUB_TOKEN` is sufficient. For the threshold for this, please see
-`alert-threshold` also.
+`github-token` is necessary as well. For the threshold, please see `alert-threshold` also.
 
 #### `fail-on-alert` (Optional)
 
@@ -582,7 +573,6 @@ Every release will appear on your GitHub notifications page.
 [catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-[help-personal-access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
 [commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
 [google-benchmark]: https://github.com/google/benchmark
