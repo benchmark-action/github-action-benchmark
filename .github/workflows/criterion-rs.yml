@@ -12,7 +12,7 @@ jobs:
   benchmark:
     name: Run Criterion.rs benchmark example
     runs-on: ubuntu-latest
-    eps:
+    steps:
       - uses: actions/checkout@v2
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
