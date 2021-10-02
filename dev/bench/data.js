@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633160565050,
+  "lastUpdate": 1633160568375,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12627,6 +12627,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 48049,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
+          "message": "remove husky and update old lockfile",
+          "timestamp": "2021-10-02T16:42:01+09:00",
+          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
+        },
+        "date": 1633160565700,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 389,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 48345,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
