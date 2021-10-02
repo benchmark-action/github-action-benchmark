@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633146253737,
+  "lastUpdate": 1633146836197,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26221,6 +26221,42 @@ window.BENCHMARK_DATA = {
             "value": 24129.06195667213,
             "unit": "ns/iter",
             "extra": "iterations: 28988\ncpu: 24122.787670760317 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "3b96c47c597911e76bc2e766cde7efa5cc7e818b",
+          "message": "add contents write permission to example workflows",
+          "timestamp": "2021-10-02T12:53:12+09:00",
+          "tree_id": "6b12a54c5cbaf730716cd97ed005afd358bfbd38",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3b96c47c597911e76bc2e766cde7efa5cc7e818b"
+        },
+        "date": 1633146834257,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 228.54973310575195,
+            "unit": "ns/iter",
+            "extra": "iterations: 3027229\ncpu: 228.5072850451684 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 29841.855184693817,
+            "unit": "ns/iter",
+            "extra": "iterations: 24148\ncpu: 29841.06828722876 ns\nthreads: 1"
           }
         ]
       }
