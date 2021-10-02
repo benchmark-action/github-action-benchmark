@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633147046679,
+  "lastUpdate": 1633147048343,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26441,6 +26441,42 @@ window.BENCHMARK_DATA = {
             "value": 29841.855184693817,
             "unit": "ns/iter",
             "extra": "iterations: 24148\ncpu: 29841.06828722876 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "6ed7bce2e0810467febf7b42f94671f0b0e6ebba",
+          "message": "fix criterion example workflow",
+          "timestamp": "2021-10-02T12:56:30+09:00",
+          "tree_id": "51bf74f1304dece2011c87e2b1b8ec8f3a5cc63e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6ed7bce2e0810467febf7b42f94671f0b0e6ebba"
+        },
+        "date": 1633147046220,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 207.39336605458843,
+            "unit": "ns/iter",
+            "extra": "iterations: 3212387\ncpu: 206.9574658968549 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 26787.807435615498,
+            "unit": "ns/iter",
+            "extra": "iterations: 25472\ncpu: 26785.093671482417 ns\nthreads: 1"
           }
         ]
       }
