@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633160575835,
+  "lastUpdate": 1633160577102,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6634,6 +6634,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
+          "message": "remove husky and update old lockfile",
+          "timestamp": "2021-10-02T16:42:01+09:00",
+          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
+        },
+        "date": 1633160574949,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 229,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 29782,
+            "range": "± 5030",
             "unit": "ns/iter"
           }
         ]
