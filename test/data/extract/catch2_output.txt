@@ -6,7 +6,7 @@ Run with -? for options
 -------------------------------------------------------------------------------
 Fibonacci
 -------------------------------------------------------------------------------
-/Users/rhayasd/Develop/github.com/rhysd/github-action-benchmark/examples/catch2/catch2_bench.cpp:5
+/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/catch2/catch2_bench.cpp:5
 ...............................................................................
 
 benchmark name                                  samples       iterations    estimated
@@ -25,7 +25,7 @@ Fibonacci 20                                              100             2     
 -------------------------------------------------------------------------------
 More Fibonacci
 -------------------------------------------------------------------------------
-/Users/rhayasd/Develop/github.com/rhysd/github-action-benchmark/examples/catch2/catch2_bench.cpp:13
+/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/catch2/catch2_bench.cpp:13
 ...............................................................................
 
 benchmark name                                  samples       iterations    estimated

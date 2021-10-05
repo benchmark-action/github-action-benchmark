@@ -2,10 +2,10 @@ Python example for benchmarking with [pytest-benchmark][tool]
 =============================================================
 
 - [Workflow for this example](../../.github/workflows/pytest.yml)
-- [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22)
-- [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
+- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22)
+- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
 
-This directory shows how to use [`github-action-benchmark`](https://github.com/rhysd/github-action-benchmark)
+This directory shows how to use [`github-action-benchmark`](https://github.com/benchmark-action/github-action-benchmark)
 with [pytest-benchmark][tool].
 
 ## Run benchmarks
@@ -49,12 +49,12 @@ Store the benchmark results with step using the action. Please set `pytest` to `
 
 ```yaml
 - name: Store benchmark result
-  uses: rhysd/github-action-benchmark@v1
+  uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'pytest'
     output-file-path: output.json
 ```
 
-Please read ['How to use' section](https://github.com/rhysd/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
 
 [tool]: https://pypi.org/project/pytest-benchmark/

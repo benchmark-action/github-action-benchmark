@@ -4,6 +4,10 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+  deployments: write
+
 jobs:
   benchmark:
     name: Run minimal steps to run github-action-benchmark
@@ -19,7 +23,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'go'
           output-file-path: examples/go/output.txt

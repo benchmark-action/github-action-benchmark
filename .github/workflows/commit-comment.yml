@@ -4,6 +4,10 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+  deployments: write
+
 jobs:
   benchmark:
     name: Run alert check without using Git branch
@@ -19,7 +23,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        uses: rhysd/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Alert setup example with cache
           tool: 'go'
