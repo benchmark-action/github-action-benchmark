@@ -27,6 +27,13 @@ interface Commit {
     url: string;
 }
 
+interface PullRequest {
+    [key: string]: any;
+    number: number;
+    html_url?: string;
+    body?: string;
+}
+
 export interface Benchmark {
     commit: Commit;
     date: number;
@@ -138,7 +145,7 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
     }
 }
 
-function getCommitFromPullRequestPayload(pr: any) {
+function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
     // On pull_request hook, head_commit is not available
     const id: string = pr.head.sha;
     const username: string = pr.head.user.login;
@@ -157,7 +164,7 @@ function getCommitFromPullRequestPayload(pr: any) {
     };
 }
 
-async function getCommitFromGitHubAPIRequest(githubToken: string) {
+async function getCommitFromGitHubAPIRequest(githubToken: string): Promise<Commit> {
     const octocat = new github.GitHub(githubToken);
 
     const { status, data } = await octocat.repos.getCommit({
