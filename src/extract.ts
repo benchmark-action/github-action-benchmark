@@ -204,7 +204,11 @@ async function getCommit(githubToken?: string): Promise<Commit> {
 
     if (!githubToken) {
         throw new Error(
-            `No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}. Also, no 'github-token' provided, could not fallback to GitHub API Request.`,
+            `No commit information is found in payload: ${JSON.stringify(
+                github.context.payload,
+                null,
+                2,
+            )}. Also, no 'github-token' provided, could not fallback to GitHub API Request.`,
         );
     }
 
