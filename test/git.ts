@@ -35,16 +35,14 @@ class FakedExec {
 
 const fakedExec = new FakedExec();
 const gitHubContext = {
-    payload: {
-        repository: {
-            full_name: 'user/repo',
-        },
+    repo: {
+        repo: 'repo',
+        owner: 'user',
     },
 } as {
-    payload: {
-        repository: {
-            full_name: string;
-        } | null;
+    repo: {
+        repo: string;
+        owner: string;
     };
 };
 
@@ -126,10 +124,6 @@ describe('git', function() {
     });
 
     describe('push()', function() {
-        afterEach(function() {
-            gitHubContext.payload.repository = { full_name: 'user/repo' };
-        });
-
         it('runs `git push` with given branch and options', async function() {
             const stdout = await push('this-is-token', 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
@@ -149,22 +143,9 @@ describe('git', function() {
                 ]),
             );
         });
-
-        it('raises an error when repository info is not included in payload', async function() {
-            gitHubContext.payload.repository = null;
-            await A.rejects(
-                () => push('this-is-token', 'my-branch', 'opt1', 'opt2'),
-                /^Error: Repository info is not available in payload/,
-            );
-            eq(fakedExec.lastArgs, null);
-        });
     });
 
     describe('pull()', function() {
-        afterEach(function() {
-            gitHubContext.payload.repository = { full_name: 'user/repo' };
-        });
-
         it('runs `git pull` with given branch and options with token', async function() {
             const stdout = await pull('this-is-token', 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
@@ -192,15 +173,6 @@ describe('git', function() {
             ok(args);
             eq(args[0], 'git');
             eq(args[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
-        });
-
-        it('raises an error when repository info is not included in payload', async function() {
-            gitHubContext.payload.repository = null;
-            await A.rejects(
-                () => pull('this-is-token', 'my-branch', 'opt1', 'opt2'),
-                /^Error: Repository info is not available in payload/,
-            );
-            eq(fakedExec.lastArgs, null);
         });
     });
 });

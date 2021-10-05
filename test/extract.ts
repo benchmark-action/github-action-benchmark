@@ -342,14 +342,23 @@ describe('extractResult()', function() {
     it('collects the commit information from current head via REST API as fallback when githubToken is provided', async function() {
         dummyGitHubContext.payload = {};
         dummyCommitData = {
+            author: {
+                login: 'testAuthorLogin',
+            },
+            committer: {
+                login: 'testCommitterLogin',
+            },
             commit: {
                 author: {
                     name: 'test author',
-                    date: 'repo updated at timestamp',
+                    date: 'author updated at timestamp',
+                    email: 'author@testdummy.com',
                 },
                 committer: {
                     name: 'test committer',
-                    date: 'repo updated at timestamp',
+                    // We use the `author.date` instead.
+                    // date: 'committer updated at timestamp',
+                    email: 'committer@testdummy.com',
                 },
                 message: 'test message',
             },
@@ -368,15 +377,17 @@ describe('extractResult()', function() {
         const expectedCommit = {
             id: 'abcd1234',
             message: 'test message',
-            timestamp: 'repo updated at timestamp',
+            timestamp: 'author updated at timestamp',
             url: 'https://github.com/dymmy/repo/commit/abcd1234',
             author: {
                 name: 'test author',
-                username: 'test author',
+                username: 'testAuthorLogin',
+                email: 'author@testdummy.com',
             },
             committer: {
                 name: 'test committer',
-                username: 'test committer',
+                username: 'testCommitterLogin',
+                email: 'committer@testdummy.com',
             },
         };
         A.deepEqual(commit, expectedCommit);

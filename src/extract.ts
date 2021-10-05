@@ -27,13 +27,6 @@ interface Commit {
     url: string;
 }
 
-interface PullRequest {
-    [key: string]: any;
-    number: number;
-    html_url?: string;
-    body?: string;
-}
-
 export interface Benchmark {
     commit: Commit;
     date: number;
@@ -145,55 +138,51 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
     }
 }
 
-function getCommitFromPr(pr: PullRequest): Commit {
+function getCommitFromPullRequestPayload(pr: any) {
     // On pull_request hook, head_commit is not available
-    const message: string = pr.title;
     const id: string = pr.head.sha;
-    const timestamp: string = pr.head.repo.updated_at;
-    const url = `${pr.html_url}/commits/${id}`;
-    const name: string = pr.head.user.login;
+    const username: string = pr.head.user.login;
     const user = {
-        name,
-        username: name, // XXX: Fallback, not correct
+        name: username, // XXX: Fallback, not correct
+        username,
     };
 
     return {
         author: user,
         committer: user,
         id,
-        message,
-        timestamp,
-        url,
+        message: pr.title,
+        timestamp: pr.head.repo.updated_at,
+        url: `${pr.html_url}/commits/${id}`,
     };
 }
 
-async function getHeadCommit(githubToken: string): Promise<Commit> {
-    // On cron and manually dispatched workflows head_commit and pull_request is not available
-    // We try to get the data of current HEAD via GitHub REST
+async function getCommitFromGitHubAPIRequest(githubToken: string) {
     const octocat = new github.GitHub(githubToken);
+
     const { status, data } = await octocat.repos.getCommit({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         ref: github.context.ref,
     });
-    if (status !== 200 && status !== 304) {
+
+    if (!(status === 200 || status === 304)) {
         throw new Error(`Could not fetch the head commit. Received code: ${status}`);
     }
 
     const { commit } = data;
 
-    const author = {
-        name: commit.author.name,
-        username: commit.author.name, // XXX: Fallback, not correct
-    };
-    const committer = {
-        name: commit.committer.name,
-        username: commit.committer.name, // XXX: Fallback, not correct
-    };
-
     return {
-        author,
-        committer,
+        author: {
+            name: commit.author.name,
+            username: data.author.login,
+            email: commit.author.email,
+        },
+        committer: {
+            name: commit.committer.name,
+            username: data.committer.login,
+            email: commit.committer.email,
+        },
         id: data.sha,
         message: commit.message,
         timestamp: commit.author.date,
@@ -202,24 +191,24 @@ async function getHeadCommit(githubToken: string): Promise<Commit> {
 }
 
 async function getCommit(githubToken?: string): Promise<Commit> {
+    /* eslint-disable @typescript-eslint/camelcase */
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
     }
 
-    if (github.context.payload.pull_request) {
-        return getCommitFromPr(github.context.payload.pull_request);
+    const pr = github.context.payload.pull_request;
+
+    if (pr) {
+        return getCommitFromPullRequestPayload(pr);
     }
 
     if (!githubToken) {
         throw new Error(
-            `No commit information is found in payload: ${JSON.stringify(
-                github.context.payload,
-                null,
-                2,
-            )} and 'github-token' input is not set`,
+            `No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}. Also, no 'github-token' provided, could not fallback to GitHub API Request.`,
         );
     }
-    return await getHeadCommit(githubToken);
+
+    return getCommitFromGitHubAPIRequest(githubToken);
 }
 
 function extractCargoResult(output: string): BenchmarkResult[] {
