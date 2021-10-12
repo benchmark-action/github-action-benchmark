@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1634067048960,
+  "lastUpdate": 1634067050284,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24055,6 +24055,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0000089270036204919",
             "extra": "mean: 2.2176824000001267 msec\nrounds: 445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14b2070940dcc2738ed750544834dd425afabeed",
+          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
+          "timestamp": "2021-10-12T21:30:21+02:00",
+          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
+        },
+        "date": 1634067046905,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54865.86578552147,
+            "unit": "iter/sec",
+            "range": "stddev: 5.307431024791582e-7",
+            "extra": "mean: 18.22626847645389 usec\nrounds: 36100"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 446.3176266009533,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011997063805601372",
+            "extra": "mean: 2.24055681514476 msec\nrounds: 449"
           }
         ]
       }
