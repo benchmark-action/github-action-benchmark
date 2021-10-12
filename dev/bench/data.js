@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1634068433085,
+  "lastUpdate": 1634068567601,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6958,6 +6958,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29676,
             "range": "± 4131",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "daca3ae613f1675d98fe0011aad5f702bf938325",
+          "message": "update changelog for v1.9.0",
+          "timestamp": "2021-10-12T21:52:30+02:00",
+          "tree_id": "773979b9c0d4e5da2897684b17ca74e5f25f726e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/daca3ae613f1675d98fe0011aad5f702bf938325"
+        },
+        "date": 1634068565431,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 187,
+            "range": "± 9",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 25052,
+            "range": "± 1664",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 25262,
+            "range": "± 2459",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 40643,
+            "range": "± 2505",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
