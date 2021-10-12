@@ -1,3 +1,8 @@
+<a name="v1.9.0"></a>
+# [v1.9.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.9.0) - 12 Oct 2021
+
+- **Fix:** manual and scheduled runs (#74) 
+
 <a name="v1.8.1"></a>
 # [v1.8.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.8.1) - 10 Jun 2020
 
@@ -270,6 +275,7 @@ https://github.com/benchmark-action/github-action-benchmark#readme
 [Changes][v1.0.2]
 
 
+[v1.9.0]: https://github.com/benchmark-action/github-action-benchmark/compare/v1.8.1...v1.9.0
 [v1.8.1]: https://github.com/benchmark-action/github-action-benchmark/compare/v1.8.0...v1.8.1
 [v1.8.0]: https://github.com/benchmark-action/github-action-benchmark/compare/v1.7.1...v1.8.0
 [v1.7.1]: https://github.com/benchmark-action/github-action-benchmark/compare/v1.7.0...v1.7.1
