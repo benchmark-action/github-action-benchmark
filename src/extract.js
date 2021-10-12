@@ -23,41 +23,71 @@ function getHumanReadableUnitValue(seconds) {
         return [seconds, 'sec'];
     }
 }
-function getCommit() {
-    /* eslint-disable @typescript-eslint/camelcase */
-    if (github.context.payload.head_commit) {
-        return github.context.payload.head_commit;
-    }
-    const pr = github.context.payload.pull_request;
-    if (!pr) {
-        throw new Error(`No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}`);
-    }
+function getCommitFromPullRequestPayload(pr) {
     // On pull_request hook, head_commit is not available
-    const message = pr.title;
     const id = pr.head.sha;
-    const timestamp = pr.head.repo.updated_at;
-    const url = `${pr.html_url}/commits/${id}`;
-    const name = pr.head.user.login;
+    const username = pr.head.user.login;
     const user = {
-        name,
-        username: name,
+        name: username,
+        username,
     };
     return {
         author: user,
         committer: user,
         id,
-        message,
-        timestamp,
-        url,
+        message: pr.title,
+        timestamp: pr.head.repo.updated_at,
+        url: `${pr.html_url}/commits/${id}`,
     };
-    /* eslint-enable @typescript-eslint/camelcase */
+}
+async function getCommitFromGitHubAPIRequest(githubToken) {
+    const octocat = new github.GitHub(githubToken);
+    const { status, data } = await octocat.repos.getCommit({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        ref: github.context.ref,
+    });
+    if (!(status === 200 || status === 304)) {
+        throw new Error(`Could not fetch the head commit. Received code: ${status}`);
+    }
+    const { commit } = data;
+    return {
+        author: {
+            name: commit.author.name,
+            username: data.author.login,
+            email: commit.author.email,
+        },
+        committer: {
+            name: commit.committer.name,
+            username: data.committer.login,
+            email: commit.committer.email,
+        },
+        id: data.sha,
+        message: commit.message,
+        timestamp: commit.author.date,
+        url: data.html_url,
+    };
+}
+async function getCommit(githubToken) {
+    /* eslint-disable @typescript-eslint/camelcase */
+    if (github.context.payload.head_commit) {
+        return github.context.payload.head_commit;
+    }
+    const pr = github.context.payload.pull_request;
+    if (pr) {
+        return getCommitFromPullRequestPayload(pr);
+    }
+    if (!githubToken) {
+        throw new Error(`No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}. Also, no 'github-token' provided, could not fallback to GitHub API Request.`);
+    }
+    return getCommitFromGitHubAPIRequest(githubToken);
 }
 function extractCargoResult(output) {
     const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
-    const reExtract = /^test ([\w/]+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
+    const reExtract = /^test (\S+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
     const reComma = /,/g;
     for (const line of lines) {
         const m = line.match(reExtract);
@@ -251,7 +281,7 @@ function extractCatch2Result(output) {
 }
 async function extractResult(config) {
     const output = await fs_1.promises.readFile(config.outputFilePath, 'utf8');
-    const { tool } = config;
+    const { tool, githubToken } = config;
     let benches;
     switch (tool) {
         case 'cargo':
@@ -278,7 +308,7 @@ async function extractResult(config) {
     if (benches.length === 0) {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
-    const commit = getCommit();
+    const commit = await getCommit(githubToken);
     return {
         commit,
         date: Date.now(),
