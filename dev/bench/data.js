@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1634067068624,
+  "lastUpdate": 1634067097291,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27697,6 +27697,42 @@ window.BENCHMARK_DATA = {
             "value": 24174.463168097656,
             "unit": "ns/iter",
             "extra": "iterations: 28888\ncpu: 24172.048047632237 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14b2070940dcc2738ed750544834dd425afabeed",
+          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
+          "timestamp": "2021-10-12T21:30:21+02:00",
+          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
+        },
+        "date": 1634067095037,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.39604810555997,
+            "unit": "ns/iter",
+            "extra": "iterations: 3901420\ncpu: 179.3803725310272 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24149.633475597006,
+            "unit": "ns/iter",
+            "extra": "iterations: 29054\ncpu: 24148.302264748407 ns\nthreads: 1"
           }
         ]
       }
