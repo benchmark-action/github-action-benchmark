@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1634067050284,
+  "lastUpdate": 1634067055946,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19303,6 +19303,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.02%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14b2070940dcc2738ed750544834dd425afabeed",
+          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
+          "timestamp": "2021-10-12T21:30:21+02:00",
+          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
+        },
+        "date": 1634067053682,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1326326,
+            "range": "±0.13%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11049,
+            "range": "±0.06%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
