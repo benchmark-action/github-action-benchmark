@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1634067055946,
+  "lastUpdate": 1634067059564,
   "entries": {
     "Rust Benchmark": [
       {
@@ -6826,6 +6826,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14b2070940dcc2738ed750544834dd425afabeed",
+          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
+          "timestamp": "2021-10-12T21:30:21+02:00",
+          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
+        },
+        "date": 1634067057184,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 176,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 24062,
+            "range": "± 182",
             "unit": "ns/iter"
           }
         ]
