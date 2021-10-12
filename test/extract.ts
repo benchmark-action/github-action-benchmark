@@ -15,11 +15,30 @@ const dummyWebhookPayload = {
         url: 'https://github.com/dummy/repo',
     },
 } as { [key: string]: any };
+let dummyCommitData = {};
+class DummyGitHub {
+    repos = {
+        getCommit: () => {
+            return {
+                status: 200,
+                data: dummyCommitData,
+            };
+        },
+    };
+}
 const dummyGitHubContext = {
     payload: dummyWebhookPayload,
+    repo: {
+        owner: 'dummy',
+        repo: 'repo',
+    },
+    ref: 'abcd1234',
 };
 
-mock('@actions/github', { context: dummyGitHubContext });
+mock('@actions/github', {
+    context: dummyGitHubContext,
+    GitHub: DummyGitHub,
+});
 
 const { extractResult } = require('../src/extract');
 
@@ -320,7 +339,61 @@ describe('extractResult()', function() {
         A.equal(commit.url, 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789');
     });
 
-    it('raises an error when commit information is not found in webhook payload', async function() {
+    it('collects the commit information from current head via REST API as fallback when githubToken is provided', async function() {
+        dummyGitHubContext.payload = {};
+        dummyCommitData = {
+            author: {
+                login: 'testAuthorLogin',
+            },
+            committer: {
+                login: 'testCommitterLogin',
+            },
+            commit: {
+                author: {
+                    name: 'test author',
+                    date: 'author updated at timestamp',
+                    email: 'author@testdummy.com',
+                },
+                committer: {
+                    name: 'test committer',
+                    // We use the `author.date` instead.
+                    // date: 'committer updated at timestamp',
+                    email: 'committer@testdummy.com',
+                },
+                message: 'test message',
+            },
+            sha: 'abcd1234',
+            html_url: 'https://github.com/dymmy/repo/commit/abcd1234',
+        };
+        const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
+        const config = {
+            tool: 'go',
+            outputFilePath,
+            githubToken: 'abcd1234',
+        };
+
+        const { commit } = await extractResult(config);
+
+        const expectedCommit = {
+            id: 'abcd1234',
+            message: 'test message',
+            timestamp: 'author updated at timestamp',
+            url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            author: {
+                name: 'test author',
+                username: 'testAuthorLogin',
+                email: 'author@testdummy.com',
+            },
+            committer: {
+                name: 'test committer',
+                username: 'testCommitterLogin',
+                email: 'committer@testdummy.com',
+            },
+        };
+        A.deepEqual(commit, expectedCommit);
+    });
+
+    it('raises an error when commit information is not found in webhook payload and no githubToken is provided', async function() {
         dummyGitHubContext.payload = {};
         const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
         const config = {
