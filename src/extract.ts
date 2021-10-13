@@ -366,7 +366,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
 
     const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
     const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)\s*$/;
-    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
+    const reBenchmarkValues = /^(.*) +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
 
@@ -389,7 +389,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
         }
 
         const extra = `${start[1]} samples\n${start[2]} iterations`;
-        const name = startLine.slice(0, start.index).trim();
+        let name = startLine.slice(0, start.index).trim();
 
         const [meanLine, meanLineNum] = nextLine();
         const mean = meanLine?.match(reBenchmarkValues);
@@ -400,8 +400,12 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
             );
         }
 
-        const value = parseFloat(mean[1]);
-        const unit = mean[2];
+        const nameAddition = mean[1].trim();
+        if (nameAddition.trim() !== '') {
+            name += ' ' + nameAddition.trim();
+        }
+        const value = parseFloat(mean[2]);
+        const unit = mean[3];
 
         const [stdDevLine, stdDevLineNum] = nextLine();
         const stdDev = stdDevLine?.match(reBenchmarkValues);
@@ -412,7 +416,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
             );
         }
 
-        const range = '± ' + stdDev[1].trim();
+        const range = '± ' + stdDev[2].trim();
 
         // Skip empty line
         const [emptyLine, emptyLineNum] = nextLine();

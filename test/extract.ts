@@ -104,6 +104,20 @@ describe('extractResult()', function() {
                     value: 3.789,
                     extra: '100 samples\n20 iterations',
                 },
+                {
+                    name: 'Fibonacci 10 with a long name',
+                    range: '± 19',
+                    unit: 'ns',
+                    value: 344,
+                    extra: '100 samples\n208 iterations',
+                },
+                {
+                    name: 'Fibonacci 20',
+                    range: '± 3.256',
+                    unit: 'us',
+                    value: 41.731,
+                    extra: '100 samples\n2 iterations',
+                },
             ],
         },
         {
