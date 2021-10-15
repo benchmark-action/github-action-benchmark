@@ -1,10 +1,12 @@
-{
-    "name": "My Custom Ascending Benchmark - Throughput",
-    "unit": "req/s",
-    "value": "70",
-}
-{
-    "name": "My Custom Ascending Benchmark - Free Memory",
-    "unit": "Megabytes",
-    "value": 150,
-},
+[
+    {
+        "name": "My Custom Ascending Benchmark - Throughput",
+        "unit": "req/s",
+        "value": 70
+    },
+    {
+        "name": "My Custom Ascending Benchmark - Free Memory",
+        "unit": "Megabytes",
+        "value": 150
+    }
+]
