@@ -57,16 +57,18 @@ Every entry in the JSON file you provide only need to provide `name`, `unit`,
 and `value`. Like this:
 
 ```json
-{
-    "name": "My Custom Descending Benchmark - CPU Load",
-    "unit": "Percent",
-    "value": "50",
-}
-{
-    "name": "My Custom Descending Benchmark - Memory Used",
-    "unit": "Megabytes",
-    "value": 100,
-},
+[
+    {
+        "name": "My Custom Descending Benchmark - CPU Load",
+        "unit": "Percent",
+        "value": 50
+    },
+    {
+        "name": "My Custom Descending Benchmark - Memory Used",
+        "unit": "Megabytes",
+        "value": 100
+    }
+]
 ```
 
 ## Screenshots
