@@ -133,12 +133,6 @@ export interface PytestBenchmarkJson {
     version: string;
 }
 
-export interface CustomBenchmarkJson {
-    name: string;
-    unit: string;
-    value: number;
-}
-
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
         return [seconds * 1e9, 'nsec'];
@@ -472,10 +466,10 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
 
 function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
     try {
-        const json: [CustomBenchmarkJson] = JSON.parse(output);
+        const json: [BenchmarkResult] = JSON.parse(output);
         return json.map(bench => {
             const { name, value, unit } = bench;
-            return { name, value, unit, range: undefined, extra: undefined };
+            return { name, value, unit };
         });
     } catch (err) {
         throw new Error(
