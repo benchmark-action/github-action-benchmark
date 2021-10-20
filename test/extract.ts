@@ -239,6 +239,28 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'ndjson',
+            file: 'ndjson_output.ndjson',
+            expected: [
+                {
+                    extra: '100 samples\n76353 iterations',
+                    name: 'Fibonacci 10',
+                    range: '± 0',
+                    unit: 'ns',
+                    value: 0,
+                    biggerIsBetter: true,
+                },
+                {
+                    extra: '100 samples\n75814 iterations',
+                    name: 'Fibonacci 20',
+                    range: '± 0',
+                    unit: 'ns',
+                    value: 1,
+                    biggerIsBetter: true,
+                },
+            ],
+        },
     ];
 
     for (const test of normalCases) {
