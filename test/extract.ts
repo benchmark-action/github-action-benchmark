@@ -318,12 +318,14 @@ describe('extractResult()', function() {
         file: string;
         expected: RegExp;
     }> = [
-        ...(['pytest', 'googlecpp'] as const).map(tool => ({
-            it: `raises an error when output file is not in JSON with tool '${tool}'`,
-            tool,
-            file: 'go_output.txt',
-            expected: /must be JSON file/,
-        })),
+        ...(['pytest', 'googlecpp', 'custom-ascending-benchmark', 'custom-descending-benchmark'] as const).map(
+            tool => ({
+                it: `raises an error when output file is not in JSON with tool '${tool}'`,
+                tool,
+                file: 'go_output.txt',
+                expected: /must be JSON file/,
+            }),
+        ),
     ];
 
     for (const t of toolSpecificErrorCases) {
