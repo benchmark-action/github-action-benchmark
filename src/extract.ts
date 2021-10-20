@@ -466,7 +466,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
 
 function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
     try {
-        const json: [BenchmarkResult] = JSON.parse(output);
+        const json: BenchmarkResult[] = JSON.parse(output);
         return json.map(bench => {
             const { name, value, unit } = bench;
             return { name, value, unit };
