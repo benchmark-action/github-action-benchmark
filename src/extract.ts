@@ -473,7 +473,7 @@ function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
         });
     } catch (err) {
         throw new Error(
-            `Output file for 'custom-(ascending|descending)-benchmark' must be a JSON file generated according to the CustomBenchmarkJson format: ${err.message}`,
+            `Output file for 'custom-(ascending|descending)-benchmark' must be a JSON file containing an array of entries in BenchmarkResult format: ${err.message}`,
         );
     }
 }
