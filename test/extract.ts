@@ -240,30 +240,30 @@ describe('extractResult()', function() {
             ],
         },
         {
-            tool: 'custom-ascending-benchmark',
+            tool: 'custom-bigger-is-better',
             expected: [
                 {
-                    name: 'My Custom Ascending Benchmark - Throughput',
+                    name: 'My Custom Bigger Is Better Benchmark - Throughput',
                     unit: 'req/s',
                     value: 70,
                 },
                 {
-                    name: 'My Custom Ascending Benchmark - Free Memory',
+                    name: 'My Custom Bigger Is Better Benchmark - Free Memory',
                     unit: 'Megabytes',
                     value: 150,
                 },
             ],
         },
         {
-            tool: 'custom-descending-benchmark',
+            tool: 'custom-smaller-is-better',
             expected: [
                 {
-                    name: 'My Custom Descending Benchmark - CPU Load',
+                    name: 'My Custom Smaller Is Better Benchmark - CPU Load',
                     unit: 'Percent',
                     value: 50,
                 },
                 {
-                    name: 'My Custom Descending Benchmark - Memory Used',
+                    name: 'My Custom Smaller Is Better Benchmark - Memory Used',
                     unit: 'Megabytes',
                     value: 100,
                 },
@@ -318,7 +318,7 @@ describe('extractResult()', function() {
         file: string;
         expected: RegExp;
     }> = [
-        ...(['pytest', 'googlecpp', 'custom-ascending-benchmark', 'custom-descending-benchmark'] as const).map(
+        ...(['pytest', 'googlecpp', 'custom-bigger-is-better', 'custom-smaller-is-better'] as const).map(
             tool => ({
                 it: `raises an error when output file is not in JSON with tool '${tool}'`,
                 tool,

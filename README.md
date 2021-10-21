@@ -22,7 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
-- Custom benchmarks either 'ascending' or 'descending'
+- Custom benchmarks either 'bigger-is-better' or 'smaller-is-better'
 
 Multiple languages in the same repository are supported for polyglot projects.
 
@@ -49,7 +49,7 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 
 Additionally, even though there is no explicit example, you can use
-`custom-ascending-benchmark` and `custom-descending-benchmark` to use this
+`custom-bigger-is-better` and `custom-smaller-is-better` to use this
 action and create your own graphs from your own benchmark data. The name in
 these tools define which direction "is better" for your benchmarks.
 
@@ -59,12 +59,12 @@ and `value`. Like this:
 ```json
 [
     {
-        "name": "My Custom Descending Benchmark - CPU Load",
+        "name": "My Custom Smaller Is Better Benchmark - CPU Load",
         "unit": "Percent",
         "value": 50
     },
     {
-        "name": "My Custom Descending Benchmark - Memory Used",
+        "name": "My Custom Smaller Is Better Benchmark - Memory Used",
         "unit": "Megabytes",
         "value": 100
     }

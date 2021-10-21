@@ -1,0 +1,12 @@
+[
+    {
+        "name": "My Custom Smaller Is Better Benchmark - CPU Load",
+        "unit": "Percent",
+        "value": 50
+    },
+    {
+        "name": "My Custom Smaller Is Better Benchmark - Memory Used",
+        "unit": "Megabytes",
+        "value": 100
+    }
+]

@@ -10,8 +10,8 @@ export type ToolType =
     | 'pytest'
     | 'googlecpp'
     | 'catch2'
-    | 'custom-ascending-benchmark'
-    | 'custom-descending-benchmark';
+    | 'custom-bigger-is-better'
+    | 'custom-smaller-is-better';
 export interface Config {
     name: string;
     tool: ToolType;
@@ -39,8 +39,8 @@ export const VALID_TOOLS: ToolType[] = [
     'pytest',
     'googlecpp',
     'catch2',
-    'custom-ascending-benchmark',
-    'custom-descending-benchmark',
+    'custom-bigger-is-better',
+    'custom-smaller-is-better',
 ];
 const RE_UINT = /^\d+$/;
 

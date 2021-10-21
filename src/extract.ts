@@ -473,7 +473,7 @@ function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
         });
     } catch (err) {
         throw new Error(
-            `Output file for 'custom-(ascending|descending)-benchmark' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`,
+            `Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`,
         );
     }
 }
@@ -502,10 +502,10 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         case 'catch2':
             benches = extractCatch2Result(output);
             break;
-        case 'custom-ascending-benchmark':
+        case 'custom-bigger-is-better':
             benches = extractCustomBenchmarkResult(output);
             break;
-        case 'custom-descending-benchmark':
+        case 'custom-smaller-is-better':
             benches = extractCustomBenchmarkResult(output);
             break;
         default:

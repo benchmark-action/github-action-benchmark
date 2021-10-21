@@ -1,0 +1,12 @@
+[
+    {
+        "name": "My Custom Bigger Is Better Benchmark - Throughput",
+        "unit": "req/s",
+        "value": 70
+    },
+    {
+        "name": "My Custom Bigger Is Better Benchmark - Free Memory",
+        "unit": "Megabytes",
+        "value": 150
+    }
+]
