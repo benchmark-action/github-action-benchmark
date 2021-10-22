@@ -22,7 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
-- Custom benchmarks either 'bigger-is-better' or 'smaller-is-better'
+- Custom benchmarks where either 'bigger-is-better' or 'smaller-is-better'
 
 Multiple languages in the same repository are supported for polyglot projects.
 
@@ -53,7 +53,7 @@ Additionally, even though there is no explicit example, you can use
 action and create your own graphs from your own benchmark data. The name in
 these tools define which direction "is better" for your benchmarks.
 
-Every entry in the JSON file you provide only need to provide `name`, `unit`,
+Every entry in the JSON file you provide only needs to provide `name`, `unit`,
 and `value`. Like this:
 
 ```json
