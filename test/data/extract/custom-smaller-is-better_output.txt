@@ -2,7 +2,9 @@
     {
         "name": "My Custom Smaller Is Better Benchmark - CPU Load",
         "unit": "Percent",
-        "value": 50
+        "value": 50,
+        "range": "5%",
+        "extra": "My Optional Information for the tooltip"
     },
     {
         "name": "My Custom Smaller Is Better Benchmark - Memory Used",

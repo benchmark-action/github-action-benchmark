@@ -54,7 +54,9 @@ action and create your own graphs from your own benchmark data. The name in
 these tools define which direction "is better" for your benchmarks.
 
 Every entry in the JSON file you provide only needs to provide `name`, `unit`,
-and `value`. Like this:
+and `value`. You can also provide optional `range` (results' variance) and
+`extra` (any additional information that might be useful to your benchmark's
+context) properties. Like this:
 
 ```json
 [
@@ -66,7 +68,9 @@ and `value`. Like this:
     {
         "name": "My Custom Smaller Is Better Benchmark - Memory Used",
         "unit": "Megabytes",
-        "value": 100
+        "value": 100,
+        "range": "3",
+        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!",
     }
 ]
 ```
