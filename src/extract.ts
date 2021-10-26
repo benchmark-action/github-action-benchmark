@@ -501,10 +501,10 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         case 'catch2':
             benches = extractCatch2Result(output);
             break;
-        case 'custom-bigger-is-better':
+        case 'custom_bigger_is_better':
             benches = extractCustomBenchmarkResult(output);
             break;
-        case 'custom-smaller-is-better':
+        case 'custom_smaller_is_better':
             benches = extractCustomBenchmarkResult(output);
             break;
         default:

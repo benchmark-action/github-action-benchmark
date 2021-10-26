@@ -117,8 +117,8 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           pytest: '#3572a5',
           googlecpp: '#f34b7d',
           catch2: '#f34b7d',
-          custom-bigger-is-better: '#38ff38',
-          custom-smaller-is-better: '#ff3838',
+          custom_bigger_is_better: '#38ff38',
+          custom_smaller_is_better: '#ff3838',
           _: '#333333'
         };
 
