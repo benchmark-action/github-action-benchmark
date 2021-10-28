@@ -240,7 +240,7 @@ describe('extractResult()', function() {
             ],
         },
         {
-            tool: 'custom_bigger_is_better',
+            tool: 'customBiggerIsBetter',
             expected: [
                 {
                     name: 'My Custom Bigger Is Better Benchmark - Throughput',
@@ -259,7 +259,7 @@ describe('extractResult()', function() {
             ],
         },
         {
-            tool: 'custom_smaller_is_better',
+            tool: 'customSmallerIsBetter',
             expected: [
                 {
                     name: 'My Custom Smaller Is Better Benchmark - CPU Load',
@@ -326,7 +326,7 @@ describe('extractResult()', function() {
         file: string;
         expected: RegExp;
     }> = [
-        ...(['pytest', 'googlecpp', 'custom_bigger_is_better', 'custom_smaller_is_better'] as const).map(tool => ({
+        ...(['pytest', 'googlecpp', 'customBiggerIsBetter', 'customSmallerIsBetter'] as const).map(tool => ({
             it: `raises an error when output file is not in JSON with tool '${tool}'`,
             tool,
             file: 'go_output.txt',

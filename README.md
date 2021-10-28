@@ -49,7 +49,7 @@ All benchmark charts from above workflows are gathered in GitHub pages:
 https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 
 Additionally, even though there is no explicit example for them, you can use
-`custom_bigger_is_better` and `custom_smaller_is_better` to use this
+`customBiggerIsBetter` and `customSmallerIsBetter` to use this
 action and create your own graphs from your own benchmark data. The name in
 these tools define which direction "is better" for your benchmarks.
 

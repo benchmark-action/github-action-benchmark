@@ -70,9 +70,9 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'catch2':
             return false;
-        case 'custom_bigger_is_better':
+        case 'customBiggerIsBetter':
             return true;
-        case 'custom_smaller_is_better':
+        case 'customSmallerIsBetter':
             return false;
     }
 }
