@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635453524034,
+  "lastUpdate": 1635453526896,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28319,6 +28319,42 @@ window.BENCHMARK_DATA = {
             "value": 25631.515444228222,
             "unit": "ns/iter",
             "extra": "iterations: 27227\ncpu: 25628.448819186833 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "enruizno@uwaterloo.ca",
+            "name": "(Eliseo) Nathaniel Ruiz Nowell",
+            "username": "NathanielRN"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736",
+          "message": "Allow user defined custom benchmarks (#81)\n\nAllow user defined custom benchmarks (\"customBiggerIsBetter\" and \"customSmallerIsBetter\")\r\n\r\nCo-authored-by: Troy Rosenberg <tmr08c@gmail.com>\r\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2021-10-28T22:38:21+02:00",
+          "tree_id": "494492f347dcc6947c7bfe1e71a0cd16aea5be2a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736"
+        },
+        "date": 1635453525172,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 218.78917326383885,
+            "unit": "ns/iter",
+            "extra": "iterations: 3172572\ncpu: 218.7576222068404 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 28690.258826004734,
+            "unit": "ns/iter",
+            "extra": "iterations: 23765\ncpu: 28687.809888491473 ns\nthreads: 1"
           }
         ]
       }
