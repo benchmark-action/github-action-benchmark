@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635454556245,
+  "lastUpdate": 1635454558576,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25059,6 +25059,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00026585548042234466",
             "extra": "mean: 2.2506995792950195 msec\nrounds: 454"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "582e655b92b0adfa991e7943884a247e07f6e4e1",
+          "message": "Bump py from 1.8.0 to 1.10.0 in /examples/pytest (#62)\n\nBumps [py](https://github.com/pytest-dev/py) from 1.8.0 to 1.10.0.\r\n- [Release notes](https://github.com/pytest-dev/py/releases)\r\n- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/py/compare/1.8.0...1.10.0)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T22:55:32+02:00",
+          "tree_id": "7bdc65eab0b166d5d11f0ac2007bdb72e48f50c6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/582e655b92b0adfa991e7943884a247e07f6e4e1"
+        },
+        "date": 1635454555722,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 41915.844037121875,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000045719816880268046",
+            "extra": "mean: 23.85732705547743 usec\nrounds: 30212"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 355.65361692563624,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004581090955617596",
+            "extra": "mean: 2.8117245331124816 msec\nrounds: 302"
           }
         ]
       }
