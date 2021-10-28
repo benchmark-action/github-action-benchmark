@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635452761454,
+  "lastUpdate": 1635452809766,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28185,6 +28185,42 @@ window.BENCHMARK_DATA = {
             "value": 23299.27261757199,
             "unit": "ns/iter",
             "extra": "iterations: 30662\ncpu: 23297.923162220333 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9809903e6a217958565095db6e26671f9112dd5f",
+          "message": "pin python version to 3.9 (#82)",
+          "timestamp": "2021-10-28T22:25:18+02:00",
+          "tree_id": "c6f9795c41cd2b462bc901c8b0fa3089867509b6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9809903e6a217958565095db6e26671f9112dd5f"
+        },
+        "date": 1635452808118,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 199.40240181953862,
+            "unit": "ns/iter",
+            "extra": "iterations: 3421073\ncpu: 199.3847143863928 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25631.515444228222,
+            "unit": "ns/iter",
+            "extra": "iterations: 27227\ncpu: 25628.448819186833 ns\nthreads: 1"
           }
         ]
       }
