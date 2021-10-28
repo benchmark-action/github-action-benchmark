@@ -66,6 +66,10 @@ function biggerIsBetter(tool) {
             return false;
         case 'catch2':
             return false;
+        case 'customBiggerIsBetter':
+            return true;
+        case 'customSmallerIsBetter':
+            return false;
     }
 }
 function findAlerts(curSuite, prevSuite, threshold) {

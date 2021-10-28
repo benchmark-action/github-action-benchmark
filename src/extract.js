@@ -279,6 +279,17 @@ function extractCatch2Result(output) {
     }
     return ret;
 }
+function extractCustomBenchmarkResult(output) {
+    try {
+        const json = JSON.parse(output);
+        return json.map(({ name, value, unit, range, extra }) => {
+            return { name, value, unit, range, extra };
+        });
+    }
+    catch (err) {
+        throw new Error(`Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`);
+    }
+}
 async function extractResult(config) {
     const output = await fs_1.promises.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken } = config;
@@ -301,6 +312,12 @@ async function extractResult(config) {
             break;
         case 'catch2':
             benches = extractCatch2Result(output);
+            break;
+        case 'customBiggerIsBetter':
+            benches = extractCustomBenchmarkResult(output);
+            break;
+        case 'customSmallerIsBetter':
+            benches = extractCustomBenchmarkResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
