@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635454582040,
+  "lastUpdate": 1635454752633,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7342,6 +7342,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24053,
             "range": "± 186",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "582e655b92b0adfa991e7943884a247e07f6e4e1",
+          "message": "Bump py from 1.8.0 to 1.10.0 in /examples/pytest (#62)\n\nBumps [py](https://github.com/pytest-dev/py) from 1.8.0 to 1.10.0.\r\n- [Release notes](https://github.com/pytest-dev/py/releases)\r\n- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/py/compare/1.8.0...1.10.0)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T22:55:32+02:00",
+          "tree_id": "7bdc65eab0b166d5d11f0ac2007bdb72e48f50c6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/582e655b92b0adfa991e7943884a247e07f6e4e1"
+        },
+        "date": 1635454750412,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 228,
+            "range": "± 14",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30668,
+            "range": "± 2406",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 31469,
+            "range": "± 6248",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 49763,
+            "range": "± 4161",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
