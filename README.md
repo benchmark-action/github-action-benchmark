@@ -22,7 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
-- Custom benchmarks where either 'bigger-is-better' or 'smaller-is-better'
+- Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
 
