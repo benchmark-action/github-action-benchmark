@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635452748302,
+  "lastUpdate": 1635452751318,
   "entries": {
     "Rust Benchmark": [
       {
@@ -19643,6 +19643,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.05%",
             "unit": "ops/sec",
             "extra": "97 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9809903e6a217958565095db6e26671f9112dd5f",
+          "message": "pin python version to 3.9 (#82)",
+          "timestamp": "2021-10-28T22:25:18+02:00",
+          "tree_id": "c6f9795c41cd2b462bc901c8b0fa3089867509b6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9809903e6a217958565095db6e26671f9112dd5f"
+        },
+        "date": 1635452749280,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1053896,
+            "range": "±1.03%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8883,
+            "range": "±0.36%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
           }
         ]
       }
