@@ -1,3 +1,8 @@
+<a name="v1.10.0"></a>
+# [v1.10.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.10.0) - 28 Oct 2021
+
+- **New:** Allow user defined custom benchmarks (#81)
+
 <a name="v1.9.0"></a>
 # [v1.9.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.9.0) - 12 Oct 2021
 
