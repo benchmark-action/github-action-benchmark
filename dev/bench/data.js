@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635455135717,
+  "lastUpdate": 1635455145895,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20359,6 +20359,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.04%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e72e01c2086ca7a908331d538bbd8932e577640b",
+          "message": "Bump @actions/core from 1.2.3 to 1.2.6 (#47)\n\nBumps [@actions/core](https://github.com/actions/toolkit/tree/HEAD/packages/core) from 1.2.3 to 1.2.6.\r\n- [Release notes](https://github.com/actions/toolkit/releases)\r\n- [Changelog](https://github.com/actions/toolkit/blob/main/packages/core/RELEASES.md)\r\n- [Commits](https://github.com/actions/toolkit/commits/HEAD/packages/core)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T23:05:04+02:00",
+          "tree_id": "d316b91086d0eddb3404de196bbb127c52a947e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e72e01c2086ca7a908331d538bbd8932e577640b"
+        },
+        "date": 1635455143737,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1127513,
+            "range": "±0.55%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9582,
+            "range": "±1.25%",
+            "unit": "ops/sec",
+            "extra": "92 samples"
           }
         ]
       }
