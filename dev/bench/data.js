@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635453544414,
+  "lastUpdate": 1635453692447,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7150,6 +7150,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 34530,
             "range": "± 2372",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "enruizno@uwaterloo.ca",
+            "name": "(Eliseo) Nathaniel Ruiz Nowell",
+            "username": "NathanielRN"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736",
+          "message": "Allow user defined custom benchmarks (#81)\n\nAllow user defined custom benchmarks (\"customBiggerIsBetter\" and \"customSmallerIsBetter\")\r\n\r\nCo-authored-by: Troy Rosenberg <tmr08c@gmail.com>\r\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2021-10-28T22:38:21+02:00",
+          "tree_id": "494492f347dcc6947c7bfe1e71a0cd16aea5be2a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736"
+        },
+        "date": 1635453690939,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24065,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24080,
+            "range": "± 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38999,
+            "range": "± 179",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
