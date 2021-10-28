@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635452744767,
+  "lastUpdate": 1635452748302,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13155,6 +13155,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 50055,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9809903e6a217958565095db6e26671f9112dd5f",
+          "message": "pin python version to 3.9 (#82)",
+          "timestamp": "2021-10-28T22:25:18+02:00",
+          "tree_id": "c6f9795c41cd2b462bc901c8b0fa3089867509b6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9809903e6a217958565095db6e26671f9112dd5f"
+        },
+        "date": 1635452746541,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 387,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 48109,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
