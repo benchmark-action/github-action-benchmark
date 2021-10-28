@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635454566195,
+  "lastUpdate": 1635454568243,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20189,6 +20189,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.21%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "582e655b92b0adfa991e7943884a247e07f6e4e1",
+          "message": "Bump py from 1.8.0 to 1.10.0 in /examples/pytest (#62)\n\nBumps [py](https://github.com/pytest-dev/py) from 1.8.0 to 1.10.0.\r\n- [Release notes](https://github.com/pytest-dev/py/releases)\r\n- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/py/compare/1.8.0...1.10.0)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T22:55:32+02:00",
+          "tree_id": "7bdc65eab0b166d5d11f0ac2007bdb72e48f50c6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/582e655b92b0adfa991e7943884a247e07f6e4e1"
+        },
+        "date": 1635454563052,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1324136,
+            "range": "±0.09%",
+            "unit": "ops/sec",
+            "extra": "95 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11029,
+            "range": "±0.04%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
