@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635455125534,
+  "lastUpdate": 1635455132095,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25267,6 +25267,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0004581090955617596",
             "extra": "mean: 2.8117245331124816 msec\nrounds: 302"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e72e01c2086ca7a908331d538bbd8932e577640b",
+          "message": "Bump @actions/core from 1.2.3 to 1.2.6 (#47)\n\nBumps [@actions/core](https://github.com/actions/toolkit/tree/HEAD/packages/core) from 1.2.3 to 1.2.6.\r\n- [Release notes](https://github.com/actions/toolkit/releases)\r\n- [Changelog](https://github.com/actions/toolkit/blob/main/packages/core/RELEASES.md)\r\n- [Commits](https://github.com/actions/toolkit/commits/HEAD/packages/core)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T23:05:04+02:00",
+          "tree_id": "d316b91086d0eddb3404de196bbb127c52a947e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e72e01c2086ca7a908331d538bbd8932e577640b"
+        },
+        "date": 1635455130186,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45747.53005896403,
+            "unit": "iter/sec",
+            "range": "stddev: 5.800796064403906e-7",
+            "extra": "mean: 21.85910362179333 usec\nrounds: 30206"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 377.7166963223026,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000008695946106195323",
+            "extra": "mean: 2.647486885638511 msec\nrounds: 376"
           }
         ]
       }
