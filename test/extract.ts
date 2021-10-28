@@ -239,6 +239,44 @@ describe('extractResult()', function() {
                 },
             ],
         },
+        {
+            tool: 'customBiggerIsBetter',
+            expected: [
+                {
+                    name: 'My Custom Bigger Is Better Benchmark - Throughput',
+                    unit: 'req/s',
+                    value: 70,
+                    range: undefined,
+                    extra: undefined,
+                },
+                {
+                    name: 'My Custom Bigger Is Better Benchmark - Free Memory',
+                    unit: 'Megabytes',
+                    value: 150,
+                    range: '3',
+                    extra: 'Optional Value #1: 25\nHelpful Num #2: 100\nAnything Else!',
+                },
+            ],
+        },
+        {
+            tool: 'customSmallerIsBetter',
+            expected: [
+                {
+                    name: 'My Custom Smaller Is Better Benchmark - CPU Load',
+                    unit: 'Percent',
+                    value: 50,
+                    range: '5%',
+                    extra: 'My Optional Information for the tooltip',
+                },
+                {
+                    name: 'My Custom Smaller Is Better Benchmark - Memory Used',
+                    unit: 'Megabytes',
+                    value: 100,
+                    range: undefined,
+                    extra: undefined,
+                },
+            ],
+        },
     ];
 
     for (const test of normalCases) {
@@ -288,7 +326,7 @@ describe('extractResult()', function() {
         file: string;
         expected: RegExp;
     }> = [
-        ...(['pytest', 'googlecpp'] as const).map(tool => ({
+        ...(['pytest', 'googlecpp', 'customBiggerIsBetter', 'customSmallerIsBetter'] as const).map(tool => ({
             it: `raises an error when output file is not in JSON with tool '${tool}'`,
             tool,
             file: 'go_output.txt',

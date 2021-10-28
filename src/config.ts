@@ -3,7 +3,15 @@ import { promises as fs } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
-export type ToolType = 'cargo' | 'go' | 'benchmarkjs' | 'pytest' | 'googlecpp' | 'catch2';
+export type ToolType =
+    | 'cargo'
+    | 'go'
+    | 'benchmarkjs'
+    | 'pytest'
+    | 'googlecpp'
+    | 'catch2'
+    | 'customBiggerIsBetter'
+    | 'customSmallerIsBetter';
 export interface Config {
     name: string;
     tool: ToolType;
@@ -24,7 +32,16 @@ export interface Config {
     maxItemsInChart: number | null;
 }
 
-export const VALID_TOOLS: ToolType[] = ['cargo', 'go', 'benchmarkjs', 'pytest', 'googlecpp', 'catch2'];
+export const VALID_TOOLS: ToolType[] = [
+    'cargo',
+    'go',
+    'benchmarkjs',
+    'pytest',
+    'googlecpp',
+    'catch2',
+    'customBiggerIsBetter',
+    'customSmallerIsBetter',
+];
 const RE_UINT = /^\d+$/;
 
 function validateToolType(tool: string): asserts tool is ToolType {

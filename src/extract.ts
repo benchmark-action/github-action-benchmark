@@ -464,6 +464,19 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     return ret;
 }
 
+function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
+    try {
+        const json: BenchmarkResult[] = JSON.parse(output);
+        return json.map(({ name, value, unit, range, extra }) => {
+            return { name, value, unit, range, extra };
+        });
+    } catch (err) {
+        throw new Error(
+            `Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`,
+        );
+    }
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken } = config;
@@ -487,6 +500,12 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'catch2':
             benches = extractCatch2Result(output);
+            break;
+        case 'customBiggerIsBetter':
+            benches = extractCustomBenchmarkResult(output);
+            break;
+        case 'customSmallerIsBetter':
+            benches = extractCustomBenchmarkResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
