@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/benchmark-action/github-action-benchmark#readme",
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.3",
     "@actions/github": "^2.1.1",
     "@actions/io": "^1.0.2"
