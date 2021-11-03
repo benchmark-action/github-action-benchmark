@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635935079732,
+  "lastUpdate": 1635935092247,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31379,6 +31379,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 28.859,
             "range": "± 9.322",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935089899,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 164,
+            "range": "± 3",
+            "unit": "ns",
+            "extra": "100 samples\n180 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.26,
+            "range": "± 310",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
