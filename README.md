@@ -344,7 +344,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`.
+`"googlecpp"`, `"catch2"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
 
 #### `output-file-path` (Required)
 
