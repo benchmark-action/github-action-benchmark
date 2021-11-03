@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635455346075,
+  "lastUpdate": 1635935070626,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29257,6 +29257,42 @@ window.BENCHMARK_DATA = {
             "value": 25004.142797567227,
             "unit": "ns/iter",
             "extra": "iterations: 28775\ncpu: 24739.881876629013 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935068307,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.480746588885,
+            "unit": "ns/iter",
+            "extra": "iterations: 3900192\ncpu: 179.47228521057426 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24119.785930930022,
+            "unit": "ns/iter",
+            "extra": "iterations: 29014\ncpu: 24117.81457227545 ns\nthreads: 1"
           }
         ]
       }
