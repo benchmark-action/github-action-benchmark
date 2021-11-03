@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635935070626,
+  "lastUpdate": 1635935072116,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13815,6 +13815,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 46638,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935070128,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 478,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 58138,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
