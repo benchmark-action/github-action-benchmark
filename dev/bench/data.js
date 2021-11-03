@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635935073244,
+  "lastUpdate": 1635935075156,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25549,6 +25549,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000008695946106195323",
             "extra": "mean: 2.647486885638511 msec\nrounds: 376"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935068670,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54607.83946002612,
+            "unit": "iter/sec",
+            "range": "stddev: 4.961843011622807e-7",
+            "extra": "mean: 18.3123890248765 usec\nrounds: 37175"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 449.8548730439865,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007298999660276245",
+            "extra": "mean: 2.2229391297540104 msec\nrounds: 447"
           }
         ]
       }
