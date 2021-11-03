@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1635935075156,
+  "lastUpdate": 1635935079732,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7498,6 +7498,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 8,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935077385,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 243,
+            "range": "± 24",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 32605,
+            "range": "± 4010",
             "unit": "ns/iter"
           }
         ]
