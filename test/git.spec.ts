@@ -1,6 +1,4 @@
-import { strict as A } from 'assert';
-import { deepStrictEqual as eq, notDeepStrictEqual as neq } from 'assert';
-import mock = require('mock-require');
+import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
 
 interface ExecOptions {
     listeners: {
@@ -46,7 +44,7 @@ const gitHubContext = {
     };
 };
 
-mock('@actions/exec', {
+jest.mock('@actions/exec', () => ({
     exec: (c: string, a: string[], o: ExecOptions) => {
         fakedExec.lastArgs = [c, a, o];
         o.listeners.stdout(Buffer.from(fakedExec.stdout));
@@ -59,15 +57,15 @@ mock('@actions/exec', {
             return Promise.reject(new Error(fakedExec.error));
         }
     },
-});
-mock('@actions/core', {
+}));
+jest.mock('@actions/core', () => ({
     debug: () => {
         /* do nothing */
     },
-});
-mock('@actions/github', {
+}));
+jest.mock('@actions/github', () => ({
     context: gitHubContext,
-});
+}));
 
 const { cmd, pull, push } = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
@@ -80,19 +78,19 @@ const userArgs = [
     'http.https://github.com/.extraheader=',
 ];
 
-describe('git', function() {
-    after(function() {
-        mock.stop('@actions/exec');
-        mock.stop('@actions/core');
-        mock.stop('@actions/github');
+describe('git', function () {
+    afterAll(function () {
+        jest.unmock('@actions/exec');
+        jest.unmock('@actions/core');
+        jest.unmock('@actions/github');
     });
 
-    afterEach(function() {
+    afterEach(function () {
         fakedExec.reset();
     });
 
-    describe('cmd()', function() {
-        it('runs Git command successfully', async function() {
+    describe('cmd()', function () {
+        it('runs Git command successfully', async function () {
             const stdout = await cmd('log', '--oneline');
             const args = fakedExec.lastArgs;
 
@@ -103,19 +101,19 @@ describe('git', function() {
             ok('listeners' in (args[2] as object));
         });
 
-        it('raises an error when command returns non-zero exit code', async function() {
+        it('raises an error when command returns non-zero exit code', async function () {
             fakedExec.exitCode = 101;
             await A.rejects(() => cmd('show'), /^Error: Command 'git show' failed: /);
             neq(fakedExec.lastArgs, null);
         });
 
-        it('raises an error with stderr output', async function() {
+        it('raises an error with stderr output', async function () {
             fakedExec.exitCode = 101;
             fakedExec.stderr = 'this is error output!';
             await A.rejects(() => cmd('show'), /this is error output!/);
         });
 
-        it('raises an error when exec.exec() threw an error', async function() {
+        it('raises an error when exec.exec() threw an error', async function () {
             fakedExec.error = 'this is error from exec.exec';
             fakedExec.stderr = 'this is stderr output!';
             await A.rejects(() => cmd('show'), /this is error from exec\.exec/);
@@ -123,8 +121,8 @@ describe('git', function() {
         });
     });
 
-    describe('push()', function() {
-        it('runs `git push` with given branch and options', async function() {
+    describe('push()', function () {
+        it('runs `git push` with given branch and options', async function () {
             const stdout = await push('this-is-token', 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
@@ -145,8 +143,8 @@ describe('git', function() {
         });
     });
 
-    describe('pull()', function() {
-        it('runs `git pull` with given branch and options with token', async function() {
+    describe('pull()', function () {
+        it('runs `git pull` with given branch and options with token', async function () {
             const stdout = await pull('this-is-token', 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
@@ -165,7 +163,7 @@ describe('git', function() {
             );
         });
 
-        it('runs `git pull` with given branch and options without token', async function() {
+        it('runs `git pull` with given branch and options without token', async function () {
             const stdout = await pull(undefined, 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 

@@ -3,7 +3,6 @@ import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cheerio from 'cheerio';
 import markdownit = require('markdown-it');
-import mock = require('mock-require');
 import rimraf = require('rimraf');
 import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
@@ -93,16 +92,16 @@ const gitHubContext = {
     workflow: 'Workflow name',
 };
 
-mock('@actions/core', {
+jest.mock('@actions/core', () => ({
     debug: () => {
         /* do nothing */
     },
     warning: () => {
         /* do nothing */
     },
-});
-mock('@actions/github', { context: gitHubContext, GitHub: FakedOctokit });
-mock('../src/git', {
+}));
+jest.mock('@actions/github', () => ({ context: gitHubContext, GitHub: FakedOctokit }));
+jest.mock('../src/git', () => ({
     async cmd(...args: unknown[]) {
         gitSpy.call('cmd', args);
         return '';
@@ -116,25 +115,25 @@ mock('../src/git', {
         gitSpy.call('pull', args);
         return '';
     },
-});
+}));
 
 const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../src/write').writeBenchmark;
 
-describe('writeBenchmark()', function() {
+describe('writeBenchmark()', function () {
     const savedCwd = process.cwd();
 
-    before(function() {
+    beforeAll(function () {
         process.chdir(path.join(__dirname, 'data', 'write'));
     });
 
-    after(function() {
-        mock.stop('@actions/core');
-        mock.stop('@actions/github');
-        mock.stop('../src/git');
+    afterAll(function () {
+        jest.unmock('@actions/core');
+        jest.unmock('@actions/github');
+        jest.unmock('../src/git');
         process.chdir(savedCwd);
     });
 
-    afterEach(function() {
+    afterEach(function () {
         fakedRepos.clear();
     });
 
@@ -169,7 +168,7 @@ describe('writeBenchmark()', function() {
         };
     }
 
-    context('with external json file', function() {
+    describe('with external json file', function () {
         const dataJson = 'data.json';
         const defaultCfg: Config = {
             name: 'Test benchmark',
@@ -193,7 +192,7 @@ describe('writeBenchmark()', function() {
 
         const savedRepository = gitHubContext.payload.repository;
 
-        afterEach(async function() {
+        afterEach(async function () {
             try {
                 await fs.unlink(dataJson);
             } catch (_) {
@@ -533,8 +532,7 @@ describe('writeBenchmark()', function() {
                 commitComment: undefined,
             },
             {
-                it:
-                    'throws an error when GitHub token is not set (though this case should not happen in favor of validation)',
+                it: 'throws an error when GitHub token is not set (though this case should not happen in favor of validation)',
                 config: { ...defaultCfg, commentOnAlert: true },
                 data: {
                     lastUpdate,
@@ -706,7 +704,7 @@ describe('writeBenchmark()', function() {
         ];
 
         for (const t of normalCases) {
-            it(t.it, async function() {
+            it(t.it, async function () {
                 if (t.repoPayload !== undefined) {
                     gitHubContext.payload.repository = t.repoPayload;
                 }
@@ -807,11 +805,11 @@ describe('writeBenchmark()', function() {
     });
 
     // Tests for updating GitHub Pages branch
-    context('with gh-pages branch', function() {
-        beforeEach(async function() {
+    describe('with gh-pages branch', function () {
+        beforeEach(async function () {
             (global as any).window = {}; // Fake window object on browser
         });
-        afterEach(async function() {
+        afterEach(async function () {
             gitSpy.clear();
             delete (global as any).window;
             for (const p of [
@@ -821,7 +819,7 @@ describe('writeBenchmark()', function() {
                 path.join('with-index-html', 'data.js'),
             ]) {
                 // Ignore exception
-                await new Promise(resolve => rimraf(p, resolve));
+                await new Promise((resolve) => rimraf(p, resolve));
             }
         });
 
@@ -1023,8 +1021,7 @@ describe('writeBenchmark()', function() {
                 ],
             },
             {
-                it:
-                    'sends commit message but does not raise an error when exceeding alert threshold but not exceeding failure threshold',
+                it: 'sends commit message but does not raise an error when exceeding alert threshold but not exceeding failure threshold',
                 config: {
                     ...defaultCfg,
                     commentOnAlert: true,
@@ -1044,7 +1041,7 @@ describe('writeBenchmark()', function() {
         ];
 
         for (const t of normalCases) {
-            it(t.it, async function() {
+            it(t.it, async function () {
                 if (t.privateRepo) {
                     gitHubContext.payload.repository = gitHubContext.payload.repository
                         ? { ...gitHubContext.payload.repository, private: true }
@@ -1133,7 +1130,7 @@ describe('writeBenchmark()', function() {
             pushErrorMessage: string;
             pushErrorCount: number;
         }> = [
-            ...[1, 2].map(retries => ({
+            ...[1, 2].map((retries) => ({
                 it: `updates data successfully after ${retries} retries`,
                 pushErrorMessage: '... [remote rejected] ...',
                 pushErrorCount: retries,
@@ -1159,7 +1156,7 @@ describe('writeBenchmark()', function() {
         ];
 
         for (const t of retryCases) {
-            it(t.it, async function() {
+            it(t.it, async function () {
                 gitSpy.pushFailure = t.pushErrorMessage;
                 gitSpy.pushFailureCount = t.pushErrorCount;
                 const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };

@@ -1,7 +1,6 @@
 import { strict as A } from 'assert';
 import * as path from 'path';
 import * as os from 'os';
-import mock = require('mock-require');
 
 type Inputs = { [name: string]: string };
 
@@ -13,22 +12,22 @@ function mockInputs(newInputs: Inputs) {
     Object.assign(inputs, newInputs);
 }
 
-mock('@actions/core', {
+jest.mock('@actions/core', () => ({
     getInput: (name: string) => inputs[name],
-});
+}));
 
 // This line must be called after mocking
 const { configFromJobInput, VALID_TOOLS } = require('../src/config');
 
-describe('configFromJobInput()', function() {
+describe('configFromJobInput()', function () {
     const cwd = process.cwd();
 
-    before(function() {
+    beforeAll(function () {
         process.chdir(path.join(__dirname, 'data', 'config'));
     });
 
-    after(function() {
-        mock.stop('@actions/core');
+    afterAll(function () {
+        jest.unmock('@actions/core');
         process.chdir(cwd);
     });
 
@@ -168,7 +167,7 @@ describe('configFromJobInput()', function() {
     }>;
 
     for (const test of validation_tests) {
-        it('validates ' + test.what, async function() {
+        it(`validates ${test.what}`, async function () {
             mockInputs(test.inputs);
             await A.rejects(configFromJobInput, test.expected);
         });
@@ -212,14 +211,16 @@ describe('configFromJobInput()', function() {
             inputs: { ...defaultInputs, tool },
             expected: { ...defaultExpected, tool },
         })),
-        ...([
-            ['auto-push', 'autoPush'],
-            ['skip-fetch-gh-pages', 'skipFetchGhPages'],
-            ['comment-on-alert', 'commentOnAlert'],
-            ['fail-on-alert', 'failOnAlert'],
-        ] as const)
+        ...(
+            [
+                ['auto-push', 'autoPush'],
+                ['skip-fetch-gh-pages', 'skipFetchGhPages'],
+                ['comment-on-alert', 'commentOnAlert'],
+                ['fail-on-alert', 'failOnAlert'],
+            ] as const
+        )
             .map(([name, prop]) =>
-                ['true', 'false'].map(v => ({
+                ['true', 'false'].map((v) => ({
                     what: `boolean input ${name} set to '${v}'`,
                     inputs: { ...defaultInputs, 'github-token': 'dummy', [name]: v },
                     expected: { ...defaultExpected, githubToken: 'dummy', [prop]: v === 'true' },
@@ -286,7 +287,7 @@ describe('configFromJobInput()', function() {
     }>;
 
     for (const test of returnedConfigTests) {
-        it('returns validated config with ' + test.what, async function() {
+        it(`returns validated config with ${test.what}`, async function () {
             mockInputs(test.inputs);
             const actual = await configFromJobInput();
             A.equal(actual.name, test.expected.name);
@@ -316,7 +317,7 @@ describe('configFromJobInput()', function() {
         });
     }
 
-    it('resolves relative paths in config', async function() {
+    it('resolves relative paths in config', async function () {
         mockInputs({
             ...defaultInputs,
             'output-file-path': 'out.txt',
@@ -332,7 +333,7 @@ describe('configFromJobInput()', function() {
         A.ok(config.benchmarkDataDirPath.endsWith('output'), config.benchmarkDataDirPath);
     });
 
-    it('does not change abusolute paths in config', async function() {
+    it('does not change abusolute paths in config', async function () {
         const outFile = path.resolve('out.txt');
         const dataDir = path.resolve('path/to/output');
         mockInputs({
@@ -346,12 +347,12 @@ describe('configFromJobInput()', function() {
         A.equal(config.benchmarkDataDirPath, dataDir);
     });
 
-    it('resolves home directory in output directory path', async function() {
+    it('resolves home directory in output directory path', async function () {
         const home = os.homedir();
         const absCwd = process.cwd();
         if (!absCwd.startsWith(home)) {
             // Test was not run under home directory so "~" in paths cannot be tested
-            this.skip();
+            fail('Test was not run under home directory so "~" in paths cannot be tested');
         }
 
         const cwd = path.join('~', absCwd.slice(home.length));

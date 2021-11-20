@@ -1,14 +1,15 @@
 {
+    "root": true,
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
-        "prettier/@typescript-eslint",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": ["./tsconfig.build.json", "./tsconfig.spec.json"],
+        "createDefaultProgram": true
     },
     "plugins": [
         "@typescript-eslint",
@@ -16,7 +17,7 @@
     ],
     "env": {
         "es6": true,
-        "mocha": true,
+        "jest/globals": true,
         "node": true
     },
     "rules": {
@@ -32,7 +33,7 @@
         "@typescript-eslint/no-extra-non-null-assertion": "error",
         "@typescript-eslint/prefer-nullish-coalescing": "error",
         "@typescript-eslint/prefer-optional-chain": "error",
-        "@typescript-eslint/ban-ts-ignore": "error",
+        "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/prefer-includes": "error",
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-string-starts-ends-with": "error",
@@ -48,18 +49,12 @@
                 "test/*.ts"
             ],
             "plugins": [
-                "mocha"
-            ],
-            "extends": [
-                "plugin:mocha/recommended"
+                "jest"
             ],
             "rules": {
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/no-var-requires": "off",
-                "@typescript-eslint/camelcase": "off",
-                "mocha/no-setup-in-describe": "off",
-                "mocha/no-hooks-for-single-case": "off",
-                "mocha/no-exclusive-tests": "error"
+                "@typescript-eslint/ban-ts-comment": "warn"
             }
         }
     ]
