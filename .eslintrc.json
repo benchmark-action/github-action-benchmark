@@ -8,8 +8,7 @@
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": ["./tsconfig.build.json", "./tsconfig.spec.json"],
-        "createDefaultProgram": true
+        "project": ["./tsconfig.build.json", "./tsconfig.spec.json"]
     },
     "plugins": [
         "@typescript-eslint",

@@ -715,7 +715,7 @@ describe('writeBenchmark()', function () {
                 let caughtError: Error | null = null;
                 try {
                     await writeBenchmark(t.added, t.config);
-                } catch (err) {
+                } catch (err: any) {
                     if (!t.error && !t.commitComment) {
                         throw err;
                     }
@@ -1068,7 +1068,7 @@ describe('writeBenchmark()', function () {
                 const beforeDate = Date.now();
                 try {
                     await writeBenchmark(t.added, t.config);
-                } catch (err) {
+                } catch (err: any) {
                     if (t.error === undefined) {
                         throw err;
                     }
@@ -1186,7 +1186,7 @@ describe('writeBenchmark()', function () {
                 try {
                     await writeBenchmark(added, config);
                     eq(history, gitSpy.history);
-                } catch (err) {
+                } catch (err: any) {
                     if (t.error === undefined) {
                         throw err;
                     }

@@ -2,8 +2,7 @@
 module.exports = {
     globals: {
         'ts-jest': {
-            tsconfig: 'tsconfig.spec.json',
-            isolatedModules: true,
+            tsconfig: 'tsconfig.spec.json'
         },
     },
     preset: 'ts-jest',
