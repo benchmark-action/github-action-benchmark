@@ -405,7 +405,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
-        } catch (err) {
+        } catch (err: any) {
             if (!isRemoteRejectedError(err)) {
                 throw err;
             }
