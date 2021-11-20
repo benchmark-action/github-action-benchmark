@@ -11,3 +11,4 @@
 /scripts/*.js.map
 /.nyc_output
 /coverage
+/.idea
