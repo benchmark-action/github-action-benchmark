@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1637422666260,
+  "lastUpdate": 1637422712988,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29649,6 +29649,42 @@ window.BENCHMARK_DATA = {
             "value": 24119.785930930022,
             "unit": "ns/iter",
             "extra": "iterations: 29014\ncpu: 24117.81457227545 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "kaancfidan@gmail.com",
+            "name": "Kaan C. Fidan",
+            "username": "kaancfidan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d6c8c4e363c269f9337354a93e6a229f847882e",
+          "message": "Fix/go tabled benchmarks (#32)\n\n* Tabled benchmark support added.\r\n* Test cases added for tabled benchmarks.",
+          "timestamp": "2021-11-20T16:36:55+01:00",
+          "tree_id": "dec9f89bf394b4d3979dce4bb32b5f008d2b9318",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d6c8c4e363c269f9337354a93e6a229f847882e"
+        },
+        "date": 1637422710770,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 194.3011996290559,
+            "unit": "ns/iter",
+            "extra": "iterations: 3602697\ncpu: 194.2682243330483 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25535.01138573607,
+            "unit": "ns/iter",
+            "extra": "iterations: 28281\ncpu: 25533.406103037378 ns\nthreads: 1"
           }
         ]
       }
