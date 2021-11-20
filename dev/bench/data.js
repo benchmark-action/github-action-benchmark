@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1637422648866,
+  "lastUpdate": 1637422650766,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7594,6 +7594,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 6,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "kaancfidan@gmail.com",
+            "name": "Kaan C. Fidan",
+            "username": "kaancfidan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d6c8c4e363c269f9337354a93e6a229f847882e",
+          "message": "Fix/go tabled benchmarks (#32)\n\n* Tabled benchmark support added.\r\n* Test cases added for tabled benchmarks.",
+          "timestamp": "2021-11-20T16:36:55+01:00",
+          "tree_id": "dec9f89bf394b4d3979dce4bb32b5f008d2b9318",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d6c8c4e363c269f9337354a93e6a229f847882e"
+        },
+        "date": 1637422647387,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 211,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 28834,
+            "range": "± 190",
             "unit": "ns/iter"
           }
         ]
