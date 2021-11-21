@@ -6,13 +6,12 @@
   "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "watch:tsc": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
     "lint": "eslint '**/*.ts'",
     "fix": "eslint --fix '**/*.ts'",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
-    "cov": "jest --coverage && open ./coverage/lcov-report/index.html"
+    "coverage:open": "jest --coverage && open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
