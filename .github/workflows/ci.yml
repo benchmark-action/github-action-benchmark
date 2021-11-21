@@ -197,7 +197,7 @@ jobs:
         uses: ./
         with:
           name: Catch2 Benchmark
-          tool: "catch2"
+          tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true

@@ -9,7 +9,7 @@ suite
     .add('fib(20)', () => {
         fib(20);
     })
-    .on('cycle', event => {
+    .on('cycle', (event) => {
         console.log(String(event.target));
     })
     .run();

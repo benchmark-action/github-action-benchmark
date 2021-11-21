@@ -3,9 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "preserveConstEnums": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -30,7 +28,5 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

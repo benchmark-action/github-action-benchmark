@@ -1,1 +1,4 @@
 test/data
+coverage
+dist
+**/*.md
