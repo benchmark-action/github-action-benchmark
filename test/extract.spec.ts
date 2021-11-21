@@ -4,7 +4,6 @@ import { Config, ToolType } from '../src/config';
 import { BenchmarkResult, extractResult } from '../src/extract';
 
 const dummyWebhookPayload = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     head_commit: {
         author: null,
         committer: null,

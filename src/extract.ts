@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
 import { Config, ToolType } from './config';

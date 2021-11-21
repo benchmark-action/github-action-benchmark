@@ -19,6 +19,7 @@
       },
       "plugins": ["@typescript-eslint", "prettier"],
       "rules": {
+        "@typescript-eslint/naming-convention": "error",
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-unnecessary-type-arguments": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
@@ -47,7 +48,8 @@
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/ban-ts-comment": "warn"
+        "@typescript-eslint/ban-ts-comment": "warn",
+        "@typescript-eslint/naming-convention": "off"
       }
     },
     {

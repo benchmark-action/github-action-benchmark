@@ -144,7 +144,6 @@ function strVal(b: BenchmarkResult): string {
 
 function commentFooter(): string {
     const repoMetadata = getCurrentRepoMetadata();
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     const repoUrl = repoMetadata.html_url ?? '';
     const actionUrl = repoUrl + '/actions?query=workflow%3A' + encodeURIComponent(github.context.workflow);
 
@@ -226,7 +225,6 @@ async function leaveComment(commitId: string, body: string, token: string) {
     core.debug('Sending comment:\n' + body);
 
     const repoMetadata = getCurrentRepoMetadata();
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     const repoUrl = repoMetadata.html_url ?? '';
     const client = new github.GitHub(token);
     const res = await client.repos.createCommitComment({
@@ -286,7 +284,6 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
         const res = await leaveComment(curSuite.commit.id, body, githubToken);
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
@@ -318,7 +315,6 @@ function addBenchmarkToDataJson(
     data: DataJson,
     maxItems: number | null,
 ): Benchmark | null {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     const repoMetadata = getCurrentRepoMetadata();
     const htmlUrl = repoMetadata.html_url ?? '';
 
