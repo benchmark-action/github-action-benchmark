@@ -1,14 +1,9 @@
 /node_modules
-/src/*.js
-/src/*.js.map
 /examples/rust/Cargo.lock
 /examples/rust/target
 /examples/criterion-rs/Cargo.lock
 /examples/criterion-rs/target
-/test/*.js
-/test/*.js.map
-/scripts/*.js
-/scripts/*.js.map
 /.nyc_output
 /coverage
+/dist
 /.idea

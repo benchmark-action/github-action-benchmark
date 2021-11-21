@@ -249,7 +249,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run lint
-      - run: npm run build
       - run: npm run coverage
       - name: Apply yamllint
         run: |
@@ -258,4 +257,5 @@ jobs:
       - uses: codecov/codecov-action@v2
         with:
           files: coverage/lcov.info
+          fail_ci_if_error: true
           verbose: true
