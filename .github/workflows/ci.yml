@@ -258,3 +258,4 @@ jobs:
       - uses: codecov/codecov-action@v2
         with:
           files: coverage/lcov.info
+          verbose: true
