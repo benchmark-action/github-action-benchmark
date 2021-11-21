@@ -134,10 +134,17 @@ jest.mock('../src/git', () => ({
 }));
 
 describe('writeBenchmark()', function () {
+    const savedCwd = process.cwd();
+
+    beforeAll(function () {
+        process.chdir(path.join(__dirname, 'data', 'write'));
+    });
+
     afterAll(function () {
         jest.unmock('@actions/core');
         jest.unmock('@actions/github');
         jest.unmock('../src/git');
+        process.chdir(savedCwd);
     });
 
     afterEach(function () {
@@ -822,10 +829,10 @@ describe('writeBenchmark()', function () {
             gitSpy.clear();
             delete (global as any).window;
             for (const p of [
-                path.join(__dirname, 'data', 'write', 'data-dir', 'data.js'),
-                path.join(__dirname, 'data', 'write', 'data-dir', 'index.html'),
+                path.join('data-dir', 'data.js'),
+                path.join('data-dir', 'index.html'),
                 'new-data-dir',
-                path.join(__dirname, 'data', 'write', 'with-index-html', 'data.js'),
+                path.join('with-index-html', 'data.js'),
             ]) {
                 // Ignore exception
                 await new Promise((resolve) => rimraf(p, resolve));
@@ -865,7 +872,7 @@ describe('writeBenchmark()', function () {
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'gh-pages',
-            benchmarkDataDirPath: path.relative(process.cwd(), path.join(__dirname, 'data', 'write', 'data-dir')), // Should not affect
+            benchmarkDataDirPath: 'data-dir', // Should not affect
             githubToken: 'dummy token',
             autoPush: true,
             skipFetchGhPages: false, // Should not affect
@@ -890,7 +897,7 @@ describe('writeBenchmark()', function () {
                 skipFetch?: boolean;
             } = {},
         ): [GitFunc, unknown[]][] {
-            const dir = cfg.dir ?? 'test/data/write/data-dir';
+            const dir = cfg.dir ?? 'data-dir';
             const token = 'token' in cfg ? cfg.token : 'dummy token';
             const fetch = cfg.fetch ?? true;
             const addIndexHtml = cfg.addIndexHtml ?? true;
@@ -952,20 +959,14 @@ describe('writeBenchmark()', function () {
             },
             {
                 it: 'does not create index.html if it already exists',
-                config: {
-                    ...defaultCfg,
-                    benchmarkDataDirPath: path.join(__dirname, 'data', 'write', 'with-index-html'),
-                },
+                config: { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' },
                 added: {
                     commit: commit('current commit id'),
                     date: lastUpdate,
                     tool: 'cargo',
                     benches: [bench('bench_fib_10', 100)],
                 },
-                gitHistory: gitHistory({
-                    dir: path.join(__dirname, 'data', 'write', 'with-index-html'),
-                    addIndexHtml: false,
-                }),
+                gitHistory: gitHistory({ dir: 'with-index-html', addIndexHtml: false }),
             },
             {
                 it: 'does not push to remote when auto-push is off',
@@ -1174,10 +1175,7 @@ describe('writeBenchmark()', function () {
             it(t.it, async function () {
                 gitSpy.pushFailure = t.pushErrorMessage;
                 gitSpy.pushFailureCount = t.pushErrorCount;
-                const config = {
-                    ...defaultCfg,
-                    benchmarkDataDirPath: path.join(__dirname, 'data', 'write', 'with-index-html'),
-                };
+                const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };
                 const added: Benchmark = {
                     commit: commit('current commit id'),
                     date: lastUpdate,
@@ -1189,10 +1187,7 @@ describe('writeBenchmark()', function () {
                 const dataJs = path.join(config.benchmarkDataDirPath, 'data.js');
                 await fs.copyFile(originalDataJs, dataJs);
 
-                const history = gitHistory({
-                    dir: path.join(__dirname, 'data', 'write', 'with-index-html'),
-                    addIndexHtml: false,
-                });
+                const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
                 if (t.pushErrorCount > 0) {
                     // First 2 commands are fetch and switch. They are not repeated on retry
                     const retryHistory = history.slice(2, -1);
