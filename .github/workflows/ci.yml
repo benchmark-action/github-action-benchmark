@@ -30,7 +30,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Rust Benchmark
           tool: 'cargo'
@@ -60,7 +60,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Go Benchmark
           tool: 'go'
@@ -89,7 +89,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Benchmark.js Benchmark
           tool: 'benchmarkjs'
@@ -124,7 +124,7 @@ jobs:
           pip install -r requirements.txt
           pytest bench.py --benchmark-json output.json
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
@@ -160,7 +160,7 @@ jobs:
           cd examples/cpp
           make json
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: C++ Benchmark
           tool: 'googlecpp'
@@ -194,7 +194,7 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Catch2 Benchmark
           tool: "catch2"
@@ -224,7 +224,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
       - name: Store benchmark result
-        uses: ./dist/
+        uses: ./
         with:
           name: Alert setup example with cache
           tool: 'go'
