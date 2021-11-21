@@ -6,8 +6,8 @@
   "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint '**/*.ts'",
-    "fix": "eslint --fix '**/*.ts'",
+    "lint": "eslint '**/*.{ts,js}'",
+    "fix": "eslint --fix '**/*.{ts,js}'",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
