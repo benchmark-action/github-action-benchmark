@@ -1,14 +1,23 @@
-import { deepStrictEqual as eq, ok as assertOk } from 'assert';
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cheerio from 'cheerio';
-import markdownit = require('markdown-it');
-import rimraf = require('rimraf');
+import markdownit from 'markdown-it';
+import rimraf from 'rimraf';
 import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
-import { DataJson } from '../src/write';
+import { DataJson, writeBenchmark } from '../src/write';
+import { expect } from '@jest/globals';
 
-const ok: (x: any, msg?: string) => asserts x = assertOk;
+const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
+    try {
+        expect(x).toBeTruthy();
+    } catch (err) {
+        if (msg) {
+            throw Error(msg);
+        }
+        throw err;
+    }
+};
 
 type OctokitOpts = { owner: string; repo: string; commit_sha: string; body: string };
 class FakedOctokitRepos {
@@ -100,7 +109,14 @@ jest.mock('@actions/core', () => ({
         /* do nothing */
     },
 }));
-jest.mock('@actions/github', () => ({ context: gitHubContext, GitHub: FakedOctokit }));
+jest.mock('@actions/github', () => ({
+    get context() {
+        return gitHubContext;
+    },
+    get GitHub() {
+        return FakedOctokit;
+    },
+}));
 jest.mock('../src/git', () => ({
     async cmd(...args: unknown[]) {
         gitSpy.call('cmd', args);
@@ -117,20 +133,11 @@ jest.mock('../src/git', () => ({
     },
 }));
 
-const writeBenchmark: (b: Benchmark, c: Config) => Promise<any> = require('../src/write').writeBenchmark;
-
 describe('writeBenchmark()', function () {
-    const savedCwd = process.cwd();
-
-    beforeAll(function () {
-        process.chdir(path.join(__dirname, 'data', 'write'));
-    });
-
     afterAll(function () {
         jest.unmock('@actions/core');
         jest.unmock('@actions/github');
         jest.unmock('../src/git');
-        process.chdir(savedCwd);
     });
 
     afterEach(function () {
@@ -724,29 +731,29 @@ describe('writeBenchmark()', function () {
 
                 const json: DataJson = JSON.parse(await fs.readFile(dataJson, 'utf8'));
 
-                eq(typeof json.lastUpdate, 'number');
-                ok(json.entries[t.config.name]);
+                expect('number').toEqual(typeof json.lastUpdate);
+                expect(json.entries[t.config.name]).toBeTruthy();
                 const len = json.entries[t.config.name].length;
                 ok(len > 0);
-                eq(json.entries[t.config.name][len - 1], t.added); // Check last item is the newest
+                expect(t.added).toEqual(json.entries[t.config.name][len - 1]); // Check last item is the newest
 
                 if (t.data !== null) {
                     ok(json.lastUpdate > t.data.lastUpdate);
-                    eq(json.repoUrl, t.data.repoUrl);
+                    expect(t.data.repoUrl).toEqual(json.repoUrl);
                     for (const name of Object.keys(t.data.entries)) {
                         const entries = t.data.entries[name];
                         if (name === t.config.name) {
                             if (t.config.maxItemsInChart === null || len < t.config.maxItemsInChart) {
-                                eq(len, entries.length + 1, name);
+                                expect(entries.length + 1).toEqual(len);
                                 // Check benchmark data except for the last appended one are not modified
-                                eq(json.entries[name].slice(0, -1), entries, name);
+                                expect(entries).toEqual(json.entries[name].slice(0, -1));
                             } else {
                                 // When data items was truncated due to max-items-in-chart
-                                eq(len, entries.length, name); // Number of items did not change because first item was shifted
-                                eq(json.entries[name].slice(0, -1), entries.slice(1), name);
+                                expect(entries.length).toEqual(len); // Number of items did not change because first item was shifted
+                                expect(entries.slice(1)).toEqual(json.entries[name].slice(0, -1));
                             }
                         } else {
-                            eq(json.entries[name], entries, name);
+                            expect(entries).toEqual(json.entries[name]); // eq(json.entries[name], entries, name);
                         }
                     }
                 }
@@ -754,7 +761,7 @@ describe('writeBenchmark()', function () {
                 if (t.error) {
                     ok(caughtError);
                     const expected = t.error.join('\n');
-                    eq(expected, caughtError.message);
+                    expect(caughtError.message).toEqual(expected);
                 }
 
                 if (t.commitComment !== undefined) {
@@ -768,12 +775,12 @@ describe('writeBenchmark()', function () {
                         `len: ${fakedRepos.spyOpts.length}, caught: ${caughtError.message}`,
                     );
                     const opts = fakedRepos.lastCall();
-                    eq(opts.owner, 'user');
-                    eq(opts.repo, 'repo');
-                    eq(opts.commit_sha, 'current commit id');
-                    eq(opts.body, expectedMessage);
+                    expect('user').toEqual(opts.owner);
+                    expect('repo').toEqual(opts.repo);
+                    expect('current commit id').toEqual(opts.commit_sha);
+                    expect(expectedMessage).toEqual(opts.body);
                     const commentLine = messageLines[messageLines.length - 1];
-                    eq(commentLine, t.commitComment);
+                    expect(t.commitComment).toEqual(commentLine);
 
                     // Check the body is a correct markdown document by markdown parser
                     // Validate markdown content via HTML
@@ -782,23 +789,25 @@ describe('writeBenchmark()', function () {
                     const query = cheerio.load(html);
 
                     const h1 = query('h1');
-                    eq(h1.length, 1);
-                    eq(h1.text(), ':warning: Performance Alert :warning:');
+                    expect(1).toEqual(h1.length);
+                    expect(':warning: Performance Alert :warning:').toEqual(h1.text());
 
                     const tr = query('tbody tr');
-                    eq(tr.length, t.added.benches.length);
+                    expect(t.added.benches.length).toEqual(tr.length);
 
                     const a = query('a');
-                    eq(a.length, 2);
+                    expect(2).toEqual(a.length);
 
                     const workflowLink = a.first();
-                    eq(workflowLink.text(), 'workflow');
+                    expect('workflow').toEqual(workflowLink.text());
                     const workflowUrl = workflowLink.attr('href');
                     ok(workflowUrl?.startsWith(json.repoUrl), workflowUrl);
 
                     const actionLink = a.last();
-                    eq(actionLink.text(), 'github-action-benchmark');
-                    eq(actionLink.attr('href'), 'https://github.com/marketplace/actions/continuous-benchmark');
+                    expect('github-action-benchmark').toEqual(actionLink.text());
+                    expect('https://github.com/marketplace/actions/continuous-benchmark').toEqual(
+                        actionLink.attr('href'),
+                    );
                 }
             });
         }
@@ -813,10 +822,10 @@ describe('writeBenchmark()', function () {
             gitSpy.clear();
             delete (global as any).window;
             for (const p of [
-                path.join('data-dir', 'data.js'),
-                path.join('data-dir', 'index.html'),
+                path.join(__dirname, 'data', 'write', 'data-dir', 'data.js'),
+                path.join(__dirname, 'data', 'write', 'data-dir', 'index.html'),
                 'new-data-dir',
-                path.join('with-index-html', 'data.js'),
+                path.join(__dirname, 'data', 'write', 'with-index-html', 'data.js'),
             ]) {
                 // Ignore exception
                 await new Promise((resolve) => rimraf(p, resolve));
@@ -856,7 +865,7 @@ describe('writeBenchmark()', function () {
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'gh-pages',
-            benchmarkDataDirPath: 'data-dir', // Should not affect
+            benchmarkDataDirPath: path.relative(process.cwd(), path.join(__dirname, 'data', 'write', 'data-dir')), // Should not affect
             githubToken: 'dummy token',
             autoPush: true,
             skipFetchGhPages: false, // Should not affect
@@ -881,7 +890,7 @@ describe('writeBenchmark()', function () {
                 skipFetch?: boolean;
             } = {},
         ): [GitFunc, unknown[]][] {
-            const dir = cfg.dir ?? 'data-dir';
+            const dir = cfg.dir ?? 'test/data/write/data-dir';
             const token = 'token' in cfg ? cfg.token : 'dummy token';
             const fetch = cfg.fetch ?? true;
             const addIndexHtml = cfg.addIndexHtml ?? true;
@@ -943,14 +952,20 @@ describe('writeBenchmark()', function () {
             },
             {
                 it: 'does not create index.html if it already exists',
-                config: { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' },
+                config: {
+                    ...defaultCfg,
+                    benchmarkDataDirPath: path.join(__dirname, 'data', 'write', 'with-index-html'),
+                },
                 added: {
                     commit: commit('current commit id'),
                     date: lastUpdate,
                     tool: 'cargo',
                     benches: [bench('bench_fib_10', 100)],
                 },
-                gitHistory: gitHistory({ dir: 'with-index-html', addIndexHtml: false }),
+                gitHistory: gitHistory({
+                    dir: path.join(__dirname, 'data', 'write', 'with-index-html'),
+                    addIndexHtml: false,
+                }),
             },
             {
                 it: 'does not push to remote when auto-push is off',
@@ -1078,7 +1093,7 @@ describe('writeBenchmark()', function () {
                 if (t.error) {
                     ok(caughtError);
                     const expected = t.error.join('\n');
-                    eq(expected, caughtError.message);
+                    expect(caughtError.message).toEqual(expected);
                     return;
                 }
 
@@ -1086,7 +1101,7 @@ describe('writeBenchmark()', function () {
 
                 const afterDate = Date.now();
 
-                eq(t.gitHistory, gitSpy.history);
+                expect(gitSpy.history).toEqual(t.gitHistory);
 
                 ok(await isDir(t.config.benchmarkDataDirPath));
                 ok(await isFile(path.join(t.config.benchmarkDataDirPath, 'index.html')));
@@ -1095,7 +1110,7 @@ describe('writeBenchmark()', function () {
                 const data = await loadDataJs(t.config.benchmarkDataDirPath);
                 ok(data);
 
-                eq(typeof data.lastUpdate, 'number');
+                expect('number').toEqual(typeof data.lastUpdate);
                 ok(
                     beforeDate <= data.lastUpdate && data.lastUpdate <= afterDate,
                     `Should be ${beforeDate} <= ${data.lastUpdate} <= ${afterDate}`,
@@ -1103,22 +1118,22 @@ describe('writeBenchmark()', function () {
                 ok(data.entries[t.config.name]);
                 const len = data.entries[t.config.name].length;
                 ok(len > 0);
-                eq(data.entries[t.config.name][len - 1], t.added); // Check last item is the newest
+                expect(t.added).toEqual(data.entries[t.config.name][len - 1]); // Check last item is the newest
 
                 if (beforeData !== null) {
-                    eq(beforeData.repoUrl, data.repoUrl);
+                    expect(data.repoUrl).toEqual(beforeData.repoUrl);
                     for (const name of Object.keys(beforeData.entries)) {
                         if (name === t.config.name) {
-                            eq(beforeData.entries[name], data.entries[name].slice(0, -1)); // New data was appended
+                            expect(data.entries[name].slice(0, -1)).toEqual(beforeData.entries[name]); // New data was appended
                         } else {
-                            eq(beforeData.entries[name], data.entries[name]);
+                            expect(data.entries[name]).toEqual(beforeData.entries[name]);
                         }
                     }
                 }
 
                 if (indexHtmlBefore !== null) {
                     const indexHtmlAfter = await fs.readFile(indexHtml);
-                    eq(indexHtmlBefore, indexHtmlAfter); // If index.html is already existing, do not touch it
+                    expect(indexHtmlAfter).toEqual(indexHtmlBefore); // If index.html is already existing, do not touch it
                 }
             });
         }
@@ -1159,7 +1174,10 @@ describe('writeBenchmark()', function () {
             it(t.it, async function () {
                 gitSpy.pushFailure = t.pushErrorMessage;
                 gitSpy.pushFailureCount = t.pushErrorCount;
-                const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };
+                const config = {
+                    ...defaultCfg,
+                    benchmarkDataDirPath: path.join(__dirname, 'data', 'write', 'with-index-html'),
+                };
                 const added: Benchmark = {
                     commit: commit('current commit id'),
                     date: lastUpdate,
@@ -1171,7 +1189,10 @@ describe('writeBenchmark()', function () {
                 const dataJs = path.join(config.benchmarkDataDirPath, 'data.js');
                 await fs.copyFile(originalDataJs, dataJs);
 
-                const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
+                const history = gitHistory({
+                    dir: path.join(__dirname, 'data', 'write', 'with-index-html'),
+                    addIndexHtml: false,
+                });
                 if (t.pushErrorCount > 0) {
                     // First 2 commands are fetch and switch. They are not repeated on retry
                     const retryHistory = history.slice(2, -1);
@@ -1185,7 +1206,7 @@ describe('writeBenchmark()', function () {
 
                 try {
                     await writeBenchmark(added, config);
-                    eq(history, gitSpy.history);
+                    expect(gitSpy.history).toEqual(history);
                 } catch (err: any) {
                     if (t.error === undefined) {
                         throw err;

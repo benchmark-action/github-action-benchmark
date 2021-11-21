@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { strict as A } from 'assert';
-import { ToolType } from '../src/config';
-import { BenchmarkResult } from '../src/extract';
+import { Config, ToolType } from '../src/config';
+import { BenchmarkResult, extractResult } from '../src/extract';
 
 const dummyWebhookPayload = {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -35,11 +35,13 @@ const dummyGitHubContext = {
 };
 
 jest.mock('@actions/github', () => ({
-    context: dummyGitHubContext,
-    GitHub: DummyGitHub,
+    get context() {
+        return dummyGitHubContext;
+    },
+    get GitHub() {
+        return DummyGitHub;
+    },
 }));
-
-const { extractResult } = require('../src/extract');
 
 describe('extractResult()', function () {
     afterAll(function () {
@@ -303,7 +305,7 @@ describe('extractResult()', function () {
             const config = {
                 tool: test.tool,
                 outputFilePath,
-            };
+            } as Config;
             const bench = await extractResult(config);
 
             A.equal(bench.commit, dummyWebhookPayload.head_commit);
@@ -315,9 +317,9 @@ describe('extractResult()', function () {
 
     it('raises an error on unexpected tool', async function () {
         const config = {
-            tool: 'foo',
+            tool: 'foo' as any,
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
-        };
+        } as Config;
         await A.rejects(extractResult(config), /^Error: FATAL: Unexpected tool: 'foo'$/);
     });
 
@@ -325,7 +327,7 @@ describe('extractResult()', function () {
         const config = {
             tool: 'go',
             outputFilePath: 'path/does/not/exist.txt',
-        };
+        } as Config;
         await A.rejects(extractResult(config));
     });
 
@@ -333,7 +335,7 @@ describe('extractResult()', function () {
         const config = {
             tool: 'cargo',
             outputFilePath: path.join(__dirname, 'data', 'extract', 'go_output.txt'),
-        };
+        } as Config;
         await A.rejects(extractResult(config), /^Error: No benchmark result was found in /);
     });
 
@@ -355,7 +357,7 @@ describe('extractResult()', function () {
         it(t.it, async function () {
             // Note: go_output.txt is not in JSON format!
             const outputFilePath = path.join(__dirname, 'data', 'extract', t.file);
-            const config = { tool: t.tool, outputFilePath };
+            const config = { tool: t.tool, outputFilePath } as Config;
             await A.rejects(extractResult(config), t.expected);
         });
     }
@@ -380,7 +382,7 @@ describe('extractResult()', function () {
         const config = {
             tool: 'go',
             outputFilePath,
-        };
+        } as Config;
         const { commit } = await extractResult(config);
         const expectedUser = {
             name: 'user',
@@ -425,7 +427,7 @@ describe('extractResult()', function () {
             tool: 'go',
             outputFilePath,
             githubToken: 'abcd1234',
-        };
+        } as Config;
 
         const { commit } = await extractResult(config);
 
@@ -454,7 +456,7 @@ describe('extractResult()', function () {
         const config = {
             tool: 'go',
             outputFilePath,
-        };
+        } as Config;
         await A.rejects(extractResult(config), /^Error: No commit information is found in payload/);
     });
 });

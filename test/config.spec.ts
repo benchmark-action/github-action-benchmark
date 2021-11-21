@@ -1,6 +1,7 @@
 import { strict as A } from 'assert';
 import * as path from 'path';
 import * as os from 'os';
+import { configFromJobInput, VALID_TOOLS } from '../src/config';
 
 type Inputs = { [name: string]: string };
 
@@ -15,9 +16,6 @@ function mockInputs(newInputs: Inputs) {
 jest.mock('@actions/core', () => ({
     getInput: (name: string) => inputs[name],
 }));
-
-// This line must be called after mocking
-const { configFromJobInput, VALID_TOOLS } = require('../src/config');
 
 describe('configFromJobInput()', function () {
     const cwd = process.cwd();
@@ -310,7 +308,7 @@ describe('configFromJobInput()', function () {
 
             if (test.expected.hasExternalDataJsonPath) {
                 A.equal(typeof actual.externalDataJsonPath, 'string');
-                A.ok(path.isAbsolute(actual.externalDataJsonPath), actual.externalDataJsonPath);
+                A.ok(path.isAbsolute(actual.externalDataJsonPath as string), actual.externalDataJsonPath);
             } else {
                 A.equal(actual.externalDataJsonPath, undefined);
             }

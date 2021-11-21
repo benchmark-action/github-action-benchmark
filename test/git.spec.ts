@@ -1,4 +1,5 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
+import { cmd, pull, push } from '../src/git';
 
 interface ExecOptions {
     listeners: {
@@ -64,10 +65,11 @@ jest.mock('@actions/core', () => ({
     },
 }));
 jest.mock('@actions/github', () => ({
-    context: gitHubContext,
+    get context() {
+        return gitHubContext;
+    },
 }));
 
-const { cmd, pull, push } = require('../src/git');
 const ok: (x: any) => asserts x = A.ok;
 const userArgs = [
     '-c',
