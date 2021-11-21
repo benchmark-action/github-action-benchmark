@@ -30,14 +30,14 @@ jobs:
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
   go:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
@@ -60,14 +60,14 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Go Benchmark
           tool: 'go'
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
   benchmarkjs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
@@ -89,14 +89,14 @@ jobs:
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Benchmark.js Benchmark
           tool: 'benchmarkjs'
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
   pytest-benchmark:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
@@ -124,14 +124,14 @@ jobs:
           pip install -r requirements.txt
           pytest bench.py --benchmark-json output.json
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -160,14 +160,14 @@ jobs:
           cd examples/cpp
           make json
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: C++ Benchmark
           tool: 'googlecpp'
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -194,14 +194,14 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Catch2 Benchmark
           tool: "catch2"
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
@@ -224,7 +224,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
       - name: Store benchmark result
-        uses: ./
+        uses: ./dist/
         with:
           name: Alert setup example with cache
           tool: 'go'
@@ -234,7 +234,7 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@rhysd'
+          alert-comment-cc-users: '@ktrz'
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
