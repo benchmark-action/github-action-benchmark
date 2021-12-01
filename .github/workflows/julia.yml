@@ -19,8 +19,6 @@ jobs:
           - '1'
         os:
           - ubuntu-latest
-          - windows-latest
-          - macOS-latest
         arch:
           - x64
     steps:
@@ -61,4 +59,3 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@findmyway'
-
