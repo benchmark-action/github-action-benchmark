@@ -10,6 +10,7 @@ export type ToolType =
     | 'pytest'
     | 'googlecpp'
     | 'catch2'
+    | 'julia'
     | 'customBiggerIsBetter'
     | 'customSmallerIsBetter';
 export interface Config {
@@ -39,6 +40,7 @@ export const VALID_TOOLS: ToolType[] = [
     'pytest',
     'googlecpp',
     'catch2',
+    'julia',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
 ];

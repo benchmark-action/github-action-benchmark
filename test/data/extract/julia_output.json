@@ -1,0 +1,71 @@
+[
+    {
+        "Julia": "1.7.0-rc3",
+        "BenchmarkTools": "1.0.0"
+    },
+    [
+        [
+            "BenchmarkGroup",
+            {
+                "data": {
+                    "fib": [
+                        "BenchmarkGroup",
+                        {
+                            "data": {
+                                "20": [
+                                    "TrialEstimate",
+                                    {
+                                        "allocs": 0,
+                                        "time": 31028.0,
+                                        "memory": 0,
+                                        "params": [
+                                            "Parameters",
+                                            {
+                                                "gctrial": true,
+                                                "time_tolerance": 0.05,
+                                                "samples": 10000,
+                                                "evals": 1,
+                                                "gcsample": false,
+                                                "seconds": 5.0,
+                                                "overhead": 0.0,
+                                                "memory_tolerance": 0.01
+                                            }
+                                        ],
+                                        "gctime": 0.0
+                                    }
+                                ],
+                                "10": [
+                                    "TrialEstimate",
+                                    {
+                                        "allocs": 0,
+                                        "time": 246.03846153846155,
+                                        "memory": 0,
+                                        "params": [
+                                            "Parameters",
+                                            {
+                                                "gctrial": true,
+                                                "time_tolerance": 0.05,
+                                                "samples": 10000,
+                                                "evals": 390,
+                                                "gcsample": false,
+                                                "seconds": 5.0,
+                                                "overhead": 0.0,
+                                                "memory_tolerance": 0.01
+                                            }
+                                        ],
+                                        "gctime": 0.0
+                                    }
+                                ]
+                            },
+                            "tags": [
+                                "tag1",
+                                "tag2"
+                            ]
+                        }
+                    ]
+                },
+                "tags": []
+            }
+        ]
+    ]
+]

@@ -22,6 +22,7 @@ This action currently supports the following tools:
 - [pytest-benchmark][] for Python projects with [pytest][]
 - [Google Benchmark Framework][google-benchmark] for C++ projects
 - [Catch2][catch2] for C++ projects
+- [BenchmarkTools.jl][]
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -43,6 +44,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
 | C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
 | C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
+| Julia | [![Julia Example][TODO]][catch2-workflow-example]                 | [examples/julia](./examples/julia)           |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -602,3 +604,4 @@ Every release will appear on your GitHub notifications page.
 [catch2]: https://github.com/catchorg/Catch2
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
+[BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
