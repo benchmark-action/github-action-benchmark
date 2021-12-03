@@ -35,7 +35,6 @@
     "@actions/io": "^1.0.2"
   },
   "devDependencies": {
-    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/acorn": "^4.0.5",
     "@types/cheerio": "^0.22.16",
     "@types/deep-diff": "^1.0.0",
