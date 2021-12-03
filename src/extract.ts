@@ -134,8 +134,13 @@ export interface PytestBenchmarkJson {
     version: string;
 }
 
+type JuliaBenchmark = JuliaBenchmarkGroup | JuliaBenchmarkTrialEstimate | JuliaBenchmarkOther
+
+type JuliaBenchmarkOther = [string, unknown]
+
+
 type JuliaBenchmarkTrialEstimate = [
-    string,
+    'TrialEstimate',
     {
         params: [
             string,
@@ -158,14 +163,14 @@ type JuliaBenchmarkTrialEstimate = [
 ];
 
 type JuliaBenchmarkGroup = [
-    string,
+    'BenchmarkGroup',
     {
-        data: Record<string, JuliaBenchmarkGroup | JuliaBenchmarkTrialEstimate>;
+        data: Record<string, JuliaBenchmark>;
         tags: string[];
     },
 ];
 
-type JuliaBenchmarkJson = [string, JuliaBenchmarkGroup[]];
+type JuliaBenchmarkJson = [Object, JuliaBenchmarkGroup[]];
 
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
@@ -500,14 +505,12 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     return ret;
 }
 
-function extractJuliaBenchmarkHelper(g: JuliaBenchmarkGroup, labels: string[] = []): BenchmarkResult[] {
+function extractJuliaBenchmarkHelper([_, bench]: JuliaBenchmarkGroup, labels: string[] = []): BenchmarkResult[] {
     const res: BenchmarkResult[] = [];
-    for (const key in g[1].data) {
-        const value = g[1].data[key];
+    for (const key in bench.data) {
+        const value = bench.data[key];
         if (value[0] === 'BenchmarkGroup') {
-            for (const x of extractJuliaBenchmarkHelper(value as JuliaBenchmarkGroup, [...labels, key])) {
-                res.push(x);
-            }
+            res.push(...extractJuliaBenchmarkHelper(value, [...labels, key]))
         } else if (value[0] === 'TrialEstimate') {
             const v = value as JuliaBenchmarkTrialEstimate;
             res.push({
@@ -541,9 +544,7 @@ function extractJuliaBenchmarkResult(output: string): BenchmarkResult[] {
 
     const res: BenchmarkResult[] = [];
     for (const group of json[1]) {
-        for (const r of extractJuliaBenchmarkHelper(group)) {
-            res.push(r);
-        }
+        res.push(...extractJuliaBenchmarkHelper(group));
     }
 
     return res;
