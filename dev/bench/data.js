@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638523431875,
+  "lastUpdate": 1638523433226,
   "entries": {
     "Rust Benchmark": [
       {
@@ -20797,6 +20797,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.10%",
             "unit": "ops/sec",
             "extra": "97 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
+          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
+          "timestamp": "2021-12-03T10:23:23+01:00",
+          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
+        },
+        "date": 1638523431392,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1324710,
+            "range": "±0.07%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11056,
+            "range": "±0.02%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
