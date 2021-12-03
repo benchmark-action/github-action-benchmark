@@ -134,9 +134,9 @@ export interface PytestBenchmarkJson {
     version: string;
 }
 
-type JuliaBenchmark = JuliaBenchmarkGroup | JuliaBenchmarkTrialEstimate | JuliaBenchmarkOther
+type JuliaBenchmark = JuliaBenchmarkGroup | JuliaBenchmarkTrialEstimate | JuliaBenchmarkOther;
 
-type JuliaBenchmarkOther = [string, unknown]
+type JuliaBenchmarkOther = [string, unknown];
 
 type JuliaBenchmarkTrialEstimate = [
     'TrialEstimate',
@@ -169,7 +169,12 @@ type JuliaBenchmarkGroup = [
     },
 ];
 
-type JuliaBenchmarkJson = [Object, JuliaBenchmarkGroup[]];
+type JuliaBenchmarkVersion = {
+    Julia: string;
+    BenchmarkTools: string;
+};
+
+type JuliaBenchmarkJson = [JuliaBenchmarkVersion, JuliaBenchmarkGroup[]];
 
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
@@ -509,9 +514,9 @@ function extractJuliaBenchmarkHelper([_, bench]: JuliaBenchmarkGroup, labels: st
     for (const key in bench.data) {
         const value = bench.data[key];
         if (value[0] === 'BenchmarkGroup') {
-            res.push(...extractJuliaBenchmarkHelper(value as JuliaBenchmarkGroup, [...labels, key]))
+            res.push(...extractJuliaBenchmarkHelper(value as JuliaBenchmarkGroup, [...labels, key]));
         } else if (value[0] === 'TrialEstimate') {
-            const v = value as JuliaBenchmarkTrialEstimate
+            const v = value as JuliaBenchmarkTrialEstimate;
             res.push({
                 name: [...labels, key].join('/'),
                 value: v[1].time,

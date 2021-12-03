@@ -262,15 +262,13 @@ describe('extractResult()', function () {
             file: 'julia_output.json',
             expected: [
                 {
-                    extra:
-                        'gctime=0\nmemory=0\nallocs=0\nparams={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":390,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}',
+                    extra: 'gctime=0\nmemory=0\nallocs=0\nparams={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":390,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}',
                     name: 'fib/10',
                     unit: 'ns',
                     value: 246.03846153846155,
                 },
                 {
-                    extra:
-                        'gctime=0\nmemory=0\nallocs=0\nparams={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":1,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}',
+                    extra: 'gctime=0\nmemory=0\nallocs=0\nparams={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":1,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}',
                     name: 'fib/20',
                     unit: 'ns',
                     value: 31028,
