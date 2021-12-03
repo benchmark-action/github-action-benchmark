@@ -169,12 +169,7 @@ type JuliaBenchmarkGroup = [
     },
 ];
 
-type JuliaBenchmarkVersion = {
-    Julia: string;
-    BenchmarkTools: string;
-};
-
-type JuliaBenchmarkJson = [JuliaBenchmarkVersion, JuliaBenchmarkGroup[]];
+type JuliaBenchmarkJson = [object, JuliaBenchmarkGroup[]];
 
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
