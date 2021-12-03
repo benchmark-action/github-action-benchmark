@@ -138,7 +138,6 @@ type JuliaBenchmark = JuliaBenchmarkGroup | JuliaBenchmarkTrialEstimate | JuliaB
 
 type JuliaBenchmarkOther = [string, unknown]
 
-
 type JuliaBenchmarkTrialEstimate = [
     'TrialEstimate',
     {
@@ -512,13 +511,12 @@ function extractJuliaBenchmarkHelper([_, bench]: JuliaBenchmarkGroup, labels: st
         if (value[0] === 'BenchmarkGroup') {
             res.push(...extractJuliaBenchmarkHelper(value, [...labels, key]))
         } else if (value[0] === 'TrialEstimate') {
-            const v = value as JuliaBenchmarkTrialEstimate;
             res.push({
                 name: [...labels, key].join('/'),
-                value: v[1].time,
+                value: value[1].time,
                 unit: 'ns',
-                extra: `gctime=${v[1].gctime}\nmemory=${v[1].memory}\nallocs=${v[1].allocs}\nparams=${JSON.stringify(
-                    v[1].params[1],
+                extra: `gctime=${value[1].gctime}\nmemory=${value[1].memory}\nallocs=${value[1].allocs}\nparams=${JSON.stringify(
+                    value[1].params[1],
                 )}`,
             });
         } else if (value[0] === 'Trial') {
