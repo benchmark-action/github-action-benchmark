@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638523505754,
+  "lastUpdate": 1638523617575,
   "entries": {
     "Rust Benchmark": [
       {
@@ -7726,6 +7726,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27000,
             "range": "± 182",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
+          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
+          "timestamp": "2021-12-03T10:23:23+01:00",
+          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
+        },
+        "date": 1638523615051,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24393,
+            "range": "± 46",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24325,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39388,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
