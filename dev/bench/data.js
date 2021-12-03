@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1637422819318,
+  "lastUpdate": 1638523431875,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25891,6 +25891,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00032611231614389176",
             "extra": "mean: 2.6515920072640626 msec\nrounds: 413"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
+          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
+          "timestamp": "2021-12-03T10:23:23+01:00",
+          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
+        },
+        "date": 1638523429349,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 53960.05548120367,
+            "unit": "iter/sec",
+            "range": "stddev: 9.130505493040143e-7",
+            "extra": "mean: 18.532227053553306 usec\nrounds: 34842"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 441.2478988058051,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000007813601213746411",
+            "extra": "mean: 2.266299743764001 msec\nrounds: 441"
           }
         ]
       }
