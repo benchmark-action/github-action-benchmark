@@ -248,10 +248,25 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
-      - run: npm run lint
       - run: npm run coverage
       - name: Apply yamllint
         run: |
           sudo pip install yamllint
           yamllint --strict .github/workflows
       - uses: codecov/codecov-action@v2
+
+  lint:
+    name: Run linting and formatting check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check

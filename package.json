@@ -8,6 +8,8 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint '**/*.{ts,js}'",
     "fix": "eslint --fix '**/*.{ts,js}'",
+    "format": "prettier -w **",
+    "format:check": "prettier -c **",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
