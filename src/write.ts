@@ -90,7 +90,7 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
 
     const alerts = [];
     for (const current of curSuite.benches) {
-        const prev = prevSuite.benches.find(b => b.name === current.name);
+        const prev = prevSuite.benches.find((b) => b.name === current.name);
         if (prev === undefined) {
             core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
             continue;
@@ -119,7 +119,7 @@ function getCurrentRepoMetadata() {
         owner: {
             login: owner,
         },
-        // eslint-disable-next-line @typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         html_url: `https://github.com/${owner}/${repo}`,
     };
 }
@@ -146,7 +146,6 @@ function strVal(b: BenchmarkResult): string {
 
 function commentFooter(): string {
     const repoMetadata = getCurrentRepoMetadata();
-    // eslint-disable-next-line @typescript-eslint/camelcase
     const repoUrl = repoMetadata.html_url ?? '';
     const actionUrl = repoUrl + '/actions?query=workflow%3A' + encodeURIComponent(github.context.workflow);
 
@@ -165,7 +164,7 @@ function buildComment(benchName: string, curSuite: Benchmark, prevSuite: Benchma
 
     for (const current of curSuite.benches) {
         let line;
-        const prev = prevSuite.benches.find(i => i.name === current.name);
+        const prev = prevSuite.benches.find((i) => i.name === current.name);
 
         if (prev) {
             const ratio = biggerIsBetter(curSuite.tool)
@@ -228,13 +227,12 @@ async function leaveComment(commitId: string, body: string, token: string) {
     core.debug('Sending comment:\n' + body);
 
     const repoMetadata = getCurrentRepoMetadata();
-    // eslint-disable-next-line @typescript-eslint/camelcase
     const repoUrl = repoMetadata.html_url ?? '';
     const client = new github.GitHub(token);
     const res = await client.repos.createCommitComment({
         owner: repoMetadata.owner.login,
         repo: repoMetadata.name,
-        // eslint-disable-next-line @typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         commit_sha: commitId,
         body,
     });
@@ -288,7 +286,6 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
         const res = await leaveComment(curSuite.commit.id, body, githubToken);
-        // eslint-disable-next-line @typescript-eslint/camelcase
         url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
@@ -297,7 +294,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
         // Note: alertThreshold is smaller than failThreshold. It was checked in config.ts
         const len = alerts.length;
         const threshold = floatStr(failThreshold);
-        const failures = alerts.filter(a => a.ratio > failThreshold);
+        const failures = alerts.filter((a) => a.ratio > failThreshold);
         if (failures.length > 0) {
             core.debug('Mark this workflow as fail since one or more fatal alerts found');
             if (failThreshold !== alertThreshold) {
@@ -320,7 +317,6 @@ function addBenchmarkToDataJson(
     data: DataJson,
     maxItems: number | null,
 ): Benchmark | null {
-    // eslint-disable-next-line @typescript-eslint/camelcase
     const repoMetadata = getCurrentRepoMetadata();
     const htmlUrl = repoMetadata.html_url ?? '';
 
@@ -357,7 +353,7 @@ function addBenchmarkToDataJson(
 
 function isRemoteRejectedError(err: unknown) {
     if (err instanceof Error) {
-        return ['[remote rejected]', '[rejected]'].some(l => err.message.includes(l));
+        return ['[remote rejected]', '[rejected]'].some((l) => err.message.includes(l));
     }
     return false;
 }
@@ -407,7 +403,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
-        } catch (err) {
+        } catch (err: any) {
             if (!isRemoteRejectedError(err)) {
                 throw err;
             }

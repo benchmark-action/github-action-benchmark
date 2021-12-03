@@ -1,29 +1,25 @@
 {
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "./tsconfig.json"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "env": {
-        "es6": true,
-        "mocha": true,
-        "node": true
-    },
-    "rules": {
-        "prefer-spread": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-member-accessibility": "off",
-        "eqeqeq": "error",
+  "root": true,
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended"],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "prefer-spread": "off",
+    "eqeqeq": "error"
+  },
+  "ignorePatterns": ["examples/**", "dist/**"],
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["./tsconfig.build.json", "./tsconfig.spec.json"]
+      },
+      "plugins": ["@typescript-eslint", "prettier"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "error",
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-unnecessary-type-arguments": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
@@ -32,7 +28,7 @@
         "@typescript-eslint/no-extra-non-null-assertion": "error",
         "@typescript-eslint/prefer-nullish-coalescing": "error",
         "@typescript-eslint/prefer-optional-chain": "error",
-        "@typescript-eslint/ban-ts-ignore": "error",
+        "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/prefer-includes": "error",
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-string-starts-ends-with": "error",
@@ -41,26 +37,27 @@
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
         "@typescript-eslint/switch-exhaustiveness-check": "error"
+      }
     },
-    "overrides": [
-        {
-            "files": [
-                "test/*.ts"
-            ],
-            "plugins": [
-                "mocha"
-            ],
-            "extends": [
-                "plugin:mocha/recommended"
-            ],
-            "rules": {
-                "@typescript-eslint/no-explicit-any": "off",
-                "@typescript-eslint/no-var-requires": "off",
-                "@typescript-eslint/camelcase": "off",
-                "mocha/no-setup-in-describe": "off",
-                "mocha/no-hooks-for-single-case": "off",
-                "mocha/no-exclusive-tests": "error"
-            }
-        }
-    ]
+    {
+      "files": ["test/*.ts"],
+      "plugins": ["jest"],
+      "env": {
+        "jest/globals": true
+      },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/ban-ts-comment": "warn",
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": ["**/*.js"],
+      "env": {
+        "browser": true
+      },
+      "rules": {}
+    }
+  ]
 }

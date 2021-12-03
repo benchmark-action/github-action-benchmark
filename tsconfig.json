@@ -2,9 +2,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "lib": [
-      "esnext"
-    ],
+    "outDir": "dist",
+    "lib": ["esnext"],
     "preserveConstEnums": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -19,18 +18,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "files": [
-    "src/index.ts",
-    "src/config.ts",
-    "src/extract.ts",
-    "src/git.ts",
-    "src/write.ts",
-    "src/default_index_html.ts",
-    "test/extract.ts",
-    "test/config.ts",
-    "test/git.ts",
-    "test/write.ts",
-    "test/default_index_html.ts",
-    "scripts/ci_validate_modification.ts"
-  ]
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "exclude": ["node_modules"]
 }
