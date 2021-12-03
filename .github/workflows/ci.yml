@@ -240,7 +240,7 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
