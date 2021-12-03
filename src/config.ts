@@ -148,7 +148,7 @@ function getCommaSeparatedInput(name: string): string[] {
     if (!input) {
         return [];
     }
-    return input.split(',').map(s => s.trim());
+    return input.split(',').map((s) => s.trim());
 }
 
 function validateAlertCommentCcUsers(users: string[]) {

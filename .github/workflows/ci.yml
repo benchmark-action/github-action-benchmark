@@ -1,5 +1,11 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   rust:
@@ -31,7 +37,7 @@ jobs:
           output-file-path: examples/rust/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
   go:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
@@ -61,7 +67,7 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
   benchmarkjs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
@@ -90,7 +96,7 @@ jobs:
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
   pytest-benchmark:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
@@ -125,7 +131,7 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -161,7 +167,7 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -191,11 +197,11 @@ jobs:
         uses: ./
         with:
           name: Catch2 Benchmark
-          tool: "catch2"
+          tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
@@ -228,7 +234,7 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@rhysd'
+          alert-comment-cc-users: '@ktrz'
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
@@ -242,11 +248,25 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
-      - run: npm run lint
-      - run: npm run build
       - run: npm run coverage
       - name: Apply yamllint
         run: |
           sudo pip install yamllint
           yamllint --strict .github/workflows
       - uses: codecov/codecov-action@v2
+
+  lint:
+    name: Run linting and formatting check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
