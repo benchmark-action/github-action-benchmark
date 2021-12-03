@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638523459789,
+  "lastUpdate": 1638523505754,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29893,6 +29893,42 @@ window.BENCHMARK_DATA = {
             "value": 25535.01138573607,
             "unit": "ns/iter",
             "extra": "iterations: 28281\ncpu: 25533.406103037378 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
+          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
+          "timestamp": "2021-12-03T10:23:23+01:00",
+          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
+        },
+        "date": 1638523503509,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 200.02161254621555,
+            "unit": "ns/iter",
+            "extra": "iterations: 3498616\ncpu: 200.0094077200813 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27357.855842009994,
+            "unit": "ns/iter",
+            "extra": "iterations: 26027\ncpu: 27355.135589964262 ns\nthreads: 1"
           }
         ]
       }
