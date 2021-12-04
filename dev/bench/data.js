@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638623261751,
+  "lastUpdate": 1638626754774,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32325,6 +32325,44 @@ window.BENCHMARK_DATA = {
             "range": "± 388",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
+          }
+        ]
+      }
+    ],
+    "Julia benchmark result": [
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7",
+          "message": "Support BenchmarkTools.jl in Julia (#89)",
+          "timestamp": "2021-12-04T14:04:00+01:00",
+          "tree_id": "f7e9efe8a202e0b5fcd366abe4c9995df5f8da7e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7"
+        },
+        "date": 1638626751466,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 334.3521739130435,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":230,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 40900,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
