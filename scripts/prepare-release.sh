@@ -32,6 +32,8 @@ fi
 
 echo "Releasing to $version branch..."
 
+rm -rf dist
+
 set -x
 npm install
 npm run build
@@ -42,21 +44,24 @@ npm prune --production
 rm -rf .release
 mkdir -p .release
 
-cp action.yml src/*.js package.json package-lock.json .release/
+cp action.yml package.json package-lock.json .release/
+rsync -R dist/src/*.js .release/
 cp -R node_modules .release/node_modules
 
 git checkout "$version"
 git pull
 git rm -rf node_modules
 rm -rf node_modules  # remove node_modules/.cache
-mkdir -p src
+
+rm -rf dist
+mkdir -p dist/src
 
 mv .release/action.yml .
-mv .release/*.js ./src/
+mv .release/dist/src/ ./dist/
 mv .release/*.json .
 mv .release/node_modules .
 
-git add action.yml ./src/*.js package.json package-lock.json node_modules
+git add action.yml ./dist/src/*.js package.json package-lock.json node_modules
 set +x
 
 echo "Done. Please check 'git diff --cached' to verify changes. If ok, add version tag and push it to remote"
