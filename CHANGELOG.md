@@ -1,3 +1,11 @@
+<a name="v1.11.1"></a>
+# [v1.11.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.1) - 04 Dec 2021
+
+- **Fix:** Fix/go tabled benchmarks (#32)
+- **New:** Support BenchmarkTools.jl in Julia (#89)
+- **Improve:** Update several dependencies including TypeScript v4.5.2
+- **Improve:** Use [Jest](https://jestjs.io/) for unit testing
+
 <a name="v1.10.0"></a>
 # [v1.10.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.10.0) - 28 Oct 2021
 
