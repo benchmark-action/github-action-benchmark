@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638623077613,
+  "lastUpdate": 1638623078952,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21039,6 +21039,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.02%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7",
+          "message": "Support BenchmarkTools.jl in Julia (#89)",
+          "timestamp": "2021-12-04T14:04:00+01:00",
+          "tree_id": "f7e9efe8a202e0b5fcd366abe4c9995df5f8da7e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7"
+        },
+        "date": 1638623075503,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1070037,
+            "range": "±1.41%",
+            "unit": "ops/sec",
+            "extra": "83 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9016,
+            "range": "±1.22%",
+            "unit": "ops/sec",
+            "extra": "82 samples"
           }
         ]
       }
