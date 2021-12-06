@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638627793179,
+  "lastUpdate": 1638779625691,
   "entries": {
     "Rust Benchmark": [
       {
@@ -30721,6 +30721,42 @@ window.BENCHMARK_DATA = {
             "value": 24136.223670185376,
             "unit": "ns/iter",
             "extra": "iterations: 29083\ncpu: 24135.27149881375 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
+          "message": "Fix broken links in README (#90)",
+          "timestamp": "2021-12-06T09:33:21+01:00",
+          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
+        },
+        "date": 1638779623665,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 186.90225068039695,
+            "unit": "ns/iter",
+            "extra": "iterations: 3781612\ncpu: 186.87455931491652 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25162.519038526705,
+            "unit": "ns/iter",
+            "extra": "iterations: 26709\ncpu: 25161.27642367742 ns\nthreads: 1"
           }
         ]
       }
