@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638779642372,
+  "lastUpdate": 1638779647980,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33181,6 +33181,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 35801,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
+          "message": "Fix broken links in README (#90)",
+          "timestamp": "2021-12-06T09:33:21+01:00",
+          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
+        },
+        "date": 1638779646093,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 294.43122676579924,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":269,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 36701,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
