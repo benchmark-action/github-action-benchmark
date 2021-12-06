@@ -44,7 +44,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
 | C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
 | C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
-| Julia | [![Julia Example][julia-badge]][catch2-workflow-example]                 | [examples/julia](./examples/julia)           |
+| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -582,7 +582,7 @@ Every release will appear on your GitHub notifications page.
 [pytest-benchmark-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Python%20Example%20with%20pytest/badge.svg
 [cpp-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/C%2B%2B%20Example/badge.svg
 [catch2-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
-[julia-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Julia Example%20with%20BenchmarkTools.jl/badge.svg
+[julia-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Julia%20Example%20with%20BenchmarkTools.jl/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
@@ -597,6 +597,7 @@ Every release will appear on your GitHub notifications page.
 [pytest-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Python+Example+with+pytest%22
 [cpp-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22
 [catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
+[julia-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Julia+Example+with+BenchmarkTools.jl%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 [minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
