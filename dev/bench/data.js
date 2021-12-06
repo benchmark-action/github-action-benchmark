@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638779625691,
+  "lastUpdate": 1638779633241,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26723,6 +26723,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00009912816157301379",
             "extra": "mean: 2.2756433273138215 msec\nrounds: 443"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
+          "message": "Fix broken links in README (#90)",
+          "timestamp": "2021-12-06T09:33:21+01:00",
+          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
+        },
+        "date": 1638779630485,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54148.27813893548,
+            "unit": "iter/sec",
+            "range": "stddev: 4.2026541477669324e-7",
+            "extra": "mean: 18.467807922426754 usec\nrounds: 36100"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 442.0929362671988,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000010088540393330697",
+            "extra": "mean: 2.2619678306635618 msec\nrounds: 437"
           }
         ]
       }
