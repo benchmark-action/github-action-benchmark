@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638779639712,
+  "lastUpdate": 1638779642372,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21549,6 +21549,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.12%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
+          "message": "Fix broken links in README (#90)",
+          "timestamp": "2021-12-06T09:33:21+01:00",
+          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
+        },
+        "date": 1638779639083,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 993615,
+            "range": "±0.74%",
+            "unit": "ops/sec",
+            "extra": "91 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8313,
+            "range": "±0.66%",
+            "unit": "ops/sec",
+            "extra": "91 samples"
           }
         ]
       }
