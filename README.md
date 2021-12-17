@@ -72,7 +72,7 @@ context) properties. Like this:
         "unit": "Megabytes",
         "value": 100,
         "range": "3",
-        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!",
+        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!"
     }
 ]
 ```
@@ -469,8 +469,15 @@ with `actions/cache` action. Please read 'Minimal setup' section above.
 
 Max number of data points in a chart for avoiding too busy chart. This value must be unsigned integer
 larger than zero. If the number of benchmark results for some benchmark suite exceeds this value,
-the oldest one will be removed before storing the results to file. By default this value is empty
+the oldest one will be removed before storing the results to file. By default, this value is empty
 which means there is no limit.
+
+#### `commit-sha` (Optional)
+
+- Type: String
+- Default: N/A
+
+The commit SHA to tag the benchmark with. Uses this in place of the payload if provided.
 
 
 ### Action outputs

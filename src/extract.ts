@@ -202,13 +202,13 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
     };
 }
 
-async function getCommitFromGitHubAPIRequest(githubToken: string): Promise<Commit> {
+async function getCommitFromGitHubAPIRequest(githubToken: string, commitSha?: string): Promise<Commit> {
     const octocat = new github.GitHub(githubToken);
 
     const { status, data } = await octocat.repos.getCommit({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
-        ref: github.context.ref,
+        ref: commitSha ?? github.context.ref,
     });
 
     if (!(status === 200 || status === 304)) {
@@ -235,7 +235,11 @@ async function getCommitFromGitHubAPIRequest(githubToken: string): Promise<Commi
     };
 }
 
-async function getCommit(githubToken?: string): Promise<Commit> {
+async function getCommit(githubToken?: string, commitSha?: string): Promise<Commit> {
+    if (commitSha && githubToken) {
+        return getCommitFromGitHubAPIRequest(githubToken, commitSha);
+    }
+
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
     }
@@ -564,7 +568,7 @@ function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
 
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
-    const { tool, githubToken } = config;
+    const { tool, githubToken, commitSha } = config;
     let benches: BenchmarkResult[];
 
     switch (tool) {
@@ -603,7 +607,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
 
-    const commit = await getCommit(githubToken);
+    const commit = await getCommit(githubToken, commitSha);
 
     return {
         commit,
