@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640694134208,
+  "lastUpdate": 1640694160413,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31113,6 +31113,42 @@ window.BENCHMARK_DATA = {
             "value": 25162.519038526705,
             "unit": "ns/iter",
             "extra": "iterations: 26709\ncpu: 25161.27642367742 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "razican@protonmail.ch",
+            "name": "Iban Eguia",
+            "username": "Razican"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c",
+          "message": "Added option to use Rust benchmark names with spaces (#94)\n\n* Added option to use Rust benchmark names with spaces, useful for Criterion\r\n* Added tests",
+          "timestamp": "2021-12-28T13:21:23+01:00",
+          "tree_id": "aadd2cd41a9668e3179874130934435cb49dfce4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c"
+        },
+        "date": 1640694158092,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.6451894626108,
+            "unit": "ns/iter",
+            "extra": "iterations: 3895386\ncpu: 179.63133820371078 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24216.99067720226,
+            "unit": "ns/iter",
+            "extra": "iterations: 28854\ncpu: 24215.744784085386 ns\nthreads: 1"
           }
         ]
       }
