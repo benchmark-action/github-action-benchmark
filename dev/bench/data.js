@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640694116017,
+  "lastUpdate": 1640694119477,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21719,6 +21719,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.66%",
             "unit": "ops/sec",
             "extra": "91 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "razican@protonmail.ch",
+            "name": "Iban Eguia",
+            "username": "Razican"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c",
+          "message": "Added option to use Rust benchmark names with spaces (#94)\n\n* Added option to use Rust benchmark names with spaces, useful for Criterion\r\n* Added tests",
+          "timestamp": "2021-12-28T13:21:23+01:00",
+          "tree_id": "aadd2cd41a9668e3179874130934435cb49dfce4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c"
+        },
+        "date": 1640694117081,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1057274,
+            "range": "±0.94%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9053,
+            "range": "±1.23%",
+            "unit": "ops/sec",
+            "extra": "86 samples"
           }
         ]
       }
