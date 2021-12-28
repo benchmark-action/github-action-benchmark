@@ -74,6 +74,36 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'cargo',
+            file: 'criterion_output.txt',
+            expected: [
+                {
+                    name: 'Create Realm',
+                    range: '± 4',
+                    unit: 'ns/iter',
+                    value: 329,
+                },
+                {
+                    name: 'Symbols (Execution)',
+                    range: '± 47',
+                    unit: 'ns/iter',
+                    value: 3268,
+                },
+                {
+                    name: 'For loop (Execution)',
+                    range: '± 123',
+                    unit: 'ns/iter',
+                    value: 12314,
+                },
+                {
+                    name: 'Fibonacci (Execution)',
+                    range: '± 10166',
+                    unit: 'ns/iter',
+                    value: 1672496,
+                },
+            ],
+        },
+        {
             tool: 'catch2',
             expected: [
                 {
