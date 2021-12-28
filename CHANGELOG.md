@@ -1,3 +1,8 @@
+<a name="v1.11.2"></a>
+# [v1.11.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.2) - 28 Dec 2021
+
+- **Fix:** Added option to use Rust benchmark names with spaces (#94)
+
 <a name="v1.11.1"></a>
 # [v1.11.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.1) - 04 Dec 2021
 
