@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640694111503,
+  "lastUpdate": 1640694113457,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26967,6 +26967,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000010088540393330697",
             "extra": "mean: 2.2619678306635618 msec\nrounds: 437"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "razican@protonmail.ch",
+            "name": "Iban Eguia",
+            "username": "Razican"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c",
+          "message": "Added option to use Rust benchmark names with spaces (#94)\n\n* Added option to use Rust benchmark names with spaces, useful for Criterion\r\n* Added tests",
+          "timestamp": "2021-12-28T13:21:23+01:00",
+          "tree_id": "aadd2cd41a9668e3179874130934435cb49dfce4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c"
+        },
+        "date": 1640694111957,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 53892.0665366135,
+            "unit": "iter/sec",
+            "range": "stddev: 5.72879356654004e-7",
+            "extra": "mean: 18.55560686878864 usec\nrounds: 35843"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 441.79659979829813,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000010820376155829054",
+            "extra": "mean: 2.2634850527517623 msec\nrounds: 436"
           }
         ]
       }
