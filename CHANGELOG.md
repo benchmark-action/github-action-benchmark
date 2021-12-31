@@ -1,3 +1,8 @@
+<a name="v1.11.3"></a>
+# [v1.11.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.3) - 31 Dec 2021
+
+- **Fix:** Fix trailing whitespace characters in cargo benchmarks (#97)
+
 <a name="v1.11.2"></a>
 # [v1.11.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.2) - 28 Dec 2021
 
