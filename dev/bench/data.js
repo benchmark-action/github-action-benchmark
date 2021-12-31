@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640953473691,
+  "lastUpdate": 1640953476613,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34173,6 +34173,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 35800,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
+          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
+          "timestamp": "2021-12-31T13:23:49+01:00",
+          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
+        },
+        "date": 1640953474324,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 319.9194915254237,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":236,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 40301,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
