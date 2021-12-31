@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640953466190,
+  "lastUpdate": 1640953473691,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33917,6 +33917,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.231,
             "range": "± 258",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
+          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
+          "timestamp": "2021-12-31T13:23:49+01:00",
+          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
+        },
+        "date": 1640953471320,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 184,
+            "range": "± 6",
+            "unit": "ns",
+            "extra": "100 samples\n155 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 24.397,
+            "range": "± 508",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
