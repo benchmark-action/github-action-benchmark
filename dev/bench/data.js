@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640694945518,
+  "lastUpdate": 1640953459906,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31453,6 +31453,42 @@ window.BENCHMARK_DATA = {
             "value": 25887.981949027726,
             "unit": "ns/iter",
             "extra": "iterations: 25151\ncpu: 25885.229215538144 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
+          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
+          "timestamp": "2021-12-31T13:23:49+01:00",
+          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
+        },
+        "date": 1640953457748,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 211.834612546797,
+            "unit": "ns/iter",
+            "extra": "iterations: 3411341\ncpu: 211.71504109381036 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 27114.638618210854,
+            "unit": "ns/iter",
+            "extra": "iterations: 25040\ncpu: 27113.841853035137 ns\nthreads: 1"
           }
         ]
       }
