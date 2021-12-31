@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640953459906,
+  "lastUpdate": 1640953461852,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27347,6 +27347,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000010245575761604168",
             "extra": "mean: 2.0860552811839947 msec\nrounds: 473"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
+          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
+          "timestamp": "2021-12-31T13:23:49+01:00",
+          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
+        },
+        "date": 1640953459279,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54081.87934958526,
+            "unit": "iter/sec",
+            "range": "stddev: 4.106517553308754e-7",
+            "extra": "mean: 18.49048169232434 usec\nrounds: 34603"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 441.78053710120736,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000008208889906355262",
+            "extra": "mean: 2.263567350797327 msec\nrounds: 439"
           }
         ]
       }
