@@ -1,0 +1,4 @@
+test bench_engine_new          ... bench:     211,834 ns/iter (+/- 70,126)
+test bench_engine_new_raw      ... bench:         197 ns/iter (+/- 18)
+test bench_engine_new_raw_core ... bench:         196 ns/iter (+/- 31)
+test bench_engine_register_fn  ... bench:         493 ns/iter (+/- 82)

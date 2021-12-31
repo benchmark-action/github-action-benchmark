@@ -75,6 +75,36 @@ describe('extractResult()', function () {
         },
         {
             tool: 'cargo',
+            file: 'cargo_output2.txt',
+            expected: [
+                {
+                    name: 'bench_engine_new',
+                    range: '± 70126',
+                    unit: 'ns/iter',
+                    value: 211834,
+                },
+                {
+                    name: 'bench_engine_new_raw',
+                    range: '± 18',
+                    unit: 'ns/iter',
+                    value: 197,
+                },
+                {
+                    name: 'bench_engine_new_raw_core',
+                    range: '± 31',
+                    unit: 'ns/iter',
+                    value: 196,
+                },
+                {
+                    name: 'bench_engine_register_fn',
+                    range: '± 82',
+                    unit: 'ns/iter',
+                    value: 493,
+                },
+            ],
+        },
+        {
+            tool: 'cargo',
             file: 'criterion_output.txt',
             expected: [
                 {
@@ -346,7 +376,7 @@ describe('extractResult()', function () {
     ];
 
     for (const test of normalCases) {
-        it(`extracts benchmark output from ${test.tool}`, async function () {
+        it(`extracts benchmark output from ${test.tool}${test.file ? ` - ${test.file}` : ''}`, async function () {
             const file = test.file ?? `${test.tool}_output.txt`;
             const outputFilePath = path.join(__dirname, 'data', 'extract', file);
             const config = {
