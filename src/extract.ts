@@ -273,7 +273,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
             continue;
         }
 
-        const name = m[1];
+        const name = m[1].trim();
         const value = parseInt(m[2].replace(reComma, ''), 10);
         const range = m[3].replace(reComma, '');
 
