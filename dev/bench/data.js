@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1640953978402,
+  "lastUpdate": 1640954131214,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8494,6 +8494,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32970,
             "range": "± 5618",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e1d6443a1e89280d0ade9bf2d81050f17c50189b",
+          "message": "Update changelog for v1.11.3",
+          "timestamp": "2021-12-31T13:32:06+01:00",
+          "tree_id": "fda6830d09c92e1b300d46f52312fb9a128ab493",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e1d6443a1e89280d0ade9bf2d81050f17c50189b"
+        },
+        "date": 1640954128791,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26976,
+            "range": "± 28",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26959,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43665,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
