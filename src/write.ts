@@ -311,12 +311,13 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     }
 }
 
-function addBenchmarkToDataJson(
+async function addBenchmarkToDataJson(
     benchName: string,
     bench: Benchmark,
     data: DataJson,
     maxItems: number | null,
-): Benchmark | null {
+    insertMode: boolean,
+): Promise<Benchmark | null> {
     const repoMetadata = getCurrentRepoMetadata();
     const htmlUrl = repoMetadata.html_url ?? '';
 
@@ -337,8 +338,24 @@ function addBenchmarkToDataJson(
                 break;
             }
         }
+        let insertIndex = suites.length;
+        if (insertMode) {
+            // Get index of first suite which is not an ancestor of current commit
+            for (insertIndex = 0; insertIndex < suites.length; insertIndex++) {
+                let isAncestor: boolean;
+                try {
+                    await git.cmd('merge-base', '--is-ancestor', suites[insertIndex].commit.id, bench.commit.id);
+                    isAncestor = true;
+                } catch (error) {
+                    isAncestor = false;
+                }
+                if (!isAncestor) {
+                    break;
+                }
+            }
+        }
 
-        suites.push(bench);
+        suites.splice(insertIndex, 0, bench);
 
         if (maxItems !== null && suites.length > maxItems) {
             suites.splice(0, suites.length - maxItems);
@@ -362,6 +379,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     bench: Benchmark,
     config: Config,
     retry: number,
+    insertMode: boolean,
 ): Promise<Benchmark | null> {
     const {
         name,
@@ -389,7 +407,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     await io.mkdirP(benchmarkDataDirPath);
 
     const data = await loadDataJs(dataPath);
-    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+    const prevBench = await addBenchmarkToDataJson(name, bench, data, maxItemsInChart, insertMode);
 
     await storeDataJs(dataPath, data);
 
@@ -418,7 +436,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
                 core.warning(
                     `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
                 );
-                return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
+                return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1, insertMode); // Recursively retry
             } else {
                 core.warning(`Failed to add benchmark data to '${name}' data: ${JSON.stringify(bench)}`);
                 throw new Error(
@@ -435,14 +453,18 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     return prevBench;
 }
 
-async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
+async function writeBenchmarkToGitHubPages(
+    bench: Benchmark,
+    config: Config,
+    insertMode: boolean,
+): Promise<Benchmark | null> {
     const { ghPagesBranch, skipFetchGhPages } = config;
     if (!skipFetchGhPages) {
         await git.cmd('fetch', 'origin', `${ghPagesBranch}:${ghPagesBranch}`);
     }
     await git.cmd('switch', ghPagesBranch);
     try {
-        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
+        return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10, insertMode);
     } finally {
         // `git switch` does not work for backing to detached head
         await git.cmd('checkout', '-');
@@ -467,10 +489,11 @@ async function writeBenchmarkToExternalJson(
     bench: Benchmark,
     jsonFilePath: string,
     config: Config,
+    insertMode: boolean,
 ): Promise<Benchmark | null> {
     const { name, maxItemsInChart, saveDataFile } = config;
     const data = await loadDataJson(jsonFilePath);
-    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+    const prevBench = await addBenchmarkToDataJson(name, bench, data, maxItemsInChart, insertMode);
 
     if (!saveDataFile) {
         core.debug('Skipping storing benchmarks in external data file');
@@ -488,11 +511,14 @@ async function writeBenchmarkToExternalJson(
     return prevBench;
 }
 
-export async function writeBenchmark(bench: Benchmark, config: Config) {
+/**
+ * @param insertMode Whether the new benchmark should be inserted at a chronological position in the suite rather than being appended to its end.
+ */
+export async function writeBenchmark(bench: Benchmark, config: Config, insertMode = false) {
     const { name, externalDataJsonPath } = config;
     const prevBench = externalDataJsonPath
-        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
-        : await writeBenchmarkToGitHubPages(bench, config);
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config, insertMode)
+        : await writeBenchmarkToGitHubPages(bench, config, insertMode);
 
     // Put this after `git push` for reducing possibility to get conflict on push. Since sending
     // comment take time due to API call, do it after updating remote branch.

@@ -516,6 +516,43 @@ If the amplitude is not acceptable, please prepare a stable environment to run b
 GitHub action supports [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners).
 
 
+### Supplement historic benchmark results manually
+
+If you have started to collect benchmark results at a certain stage of your project but now also would like to compare these results to older historic values, this tool also allows you to check in these historic data at a later point in time so they will appear in the GitHub Pages graphs as well:
+
+1. Create the historic data yourself, and append the hash of the relevant commit to its name (e.g., `benchmark-data-e1d6443a1e89280d0ade9bf2d81050f17c50189b.json`).
+2. Clone & install this repository:
+   ```shell
+   git clone https://github.com/benchmark-action/github-action-benchmark.git
+   cd github-action-benchmark
+   npm install && npm build
+   ```
+3. In your repository folder, create a file that contains the **full** configuration of your job configuration. You can retrieve this config from the job log of any prior workflow run under the `with:` key in line 2 of the step log. For instance, create a file named `config.yml` that looks like this:
+   <details><summary><code>config.yml</code></summary><pre><code>tool: customSmallerIsBetter
+   output-file-path: benchmark-data.json
+   auto-push: true
+   gh-pages-branch: gh-pages
+   comment-always: false
+   fail-on-alert: true
+   name: Benchmark
+   benchmark-data-dir-path: dev/bench
+   skip-fetch-gh-pages: false
+   save-data-file: true
+   comment-on-alert: false
+   alert-threshold: 200%
+   github-token: '<your_token>'</code></pre>
+   </details>
+   For auto-push, you need to generate a new token and insert it above as GitHub will obfuscate it in the log.
+4. For each historic commit, check in the benchmark data by running the following:
+   ```shell
+   GITHUB_REPOSITORY=<owner>/<repo> node /path/to/github-action-benchmark/dist/src/index_local.js config.yml <commit-sha>
+   ```
+   Assuming that you have prepared all historic `benchmark-data-<sha>.json` files in your repo, this one-liner will automatically check in all of them for you:
+   ```shell
+   ls | grep -oP '(?<=^benchmark-data-)\w+(?=\.json$)' | tr '\n' '\0' | GITHUB_REPOSITORY=LinqLover/squeak-tracedebugger xargs -0 -n1 node /path/to/github-action-benchmark/dist/src/index_local.js config.yml
+   ```
+
+
 ### Customizing the benchmarks result page
 
 This action creates the default `index.html` in the directory specified with `benchmark-data-dir-path`

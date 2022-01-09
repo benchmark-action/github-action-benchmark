@@ -34,7 +34,9 @@
     "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.3",
     "@actions/github": "^2.1.1",
-    "@actions/io": "^1.0.2"
+    "@actions/io": "^1.0.2",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/acorn": "^4.0.5",
@@ -42,6 +44,8 @@
     "@types/deep-diff": "^1.0.0",
     "@types/deep-equal": "^1.0.1",
     "@types/jest": "^27.0.3",
+    "@types/js-yaml": "^4.0.5",
+    "@types/lodash": "^4.14.178",
     "@types/markdown-it": "0.0.9",
     "@types/node": "^13.9.1",
     "@types/rimraf": "^2.0.3",
