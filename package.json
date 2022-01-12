@@ -56,7 +56,7 @@
     "eslint-plugin-jest": "^25.2.4",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
