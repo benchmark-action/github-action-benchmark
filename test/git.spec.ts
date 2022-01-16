@@ -38,10 +38,20 @@ const gitHubContext = {
         repo: 'repo',
         owner: 'user',
     },
+    payload: {
+        repository: {
+            html_url: 'https://github.com',
+        },
+    },
 } as {
     repo: {
         repo: string;
         owner: string;
+    };
+    payload: {
+        repository: {
+            html_url: string;
+        };
     };
 };
 
@@ -71,13 +81,15 @@ jest.mock('@actions/github', () => ({
 }));
 
 const ok: (x: any) => asserts x = A.ok;
+const { owner } = gitHubContext.repo;
+const serverUrl = gitHubContext.payload.repository.html_url.split(`/${owner}`)[0];
 const userArgs = [
     '-c',
     'user.name=github-action-benchmark',
     '-c',
     'user.email=github@users.noreply.github.com',
     '-c',
-    'http.https://github.com/.extraheader=',
+    `http.${serverUrl}/.extraheader=`,
 ];
 
 describe('git', function () {

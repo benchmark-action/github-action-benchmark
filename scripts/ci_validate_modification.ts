@@ -36,7 +36,9 @@ function validateDataJson(data: DataJson) {
         throw new Error(`Last update is not correct: ${lastUpdate} v.s. ${now}`);
     }
 
-    if (!/^https:\/\/github\.com\/[^/]+\/github-action-benchmark$/.test(repoUrl)) {
+    const serverUrl = `${repoUrl.split('//')[1]}//${repoUrl.split('//')[1].split('/')}[0]`;
+    let matcher = new RegExp(`^${serverUrl}/[^/]+/github-action-benchmark$`);
+    if (!matcher.test(repoUrl)) {
         throw new Error(`repoUrl is not correct: ${repoUrl}`);
     }
 
@@ -46,8 +48,9 @@ function validateDataJson(data: DataJson) {
             if (!(VALID_TOOLS as string[]).includes(tool)) {
                 throw new Error(`Invalid tool ${tool}`);
             }
+            matcher = new RegExp(`^${serverUrl}/[^/]+/github-action-benchmark/commit/`);
             if (
-                !/^https:\/\/github\.com\/[^/]+\/github-action-benchmark\/commit\//.test(commit.url) &&
+                !matcher.test(commit.url) &&
                 !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)
             ) {
                 throw new Error(`Invalid commit url: ${commit.url}`);

@@ -96,6 +96,7 @@ const gitHubContext = {
     payload: {
         repository: {
             private: false,
+            html_url: 'https://github.com/user/repo',
         } as RepositoryPayloadSubset | null,
     },
     workflow: 'Workflow name',

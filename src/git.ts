@@ -37,13 +37,15 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
 
 export async function cmd(...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
+    const { owner } = github.context.repo;
+    const serverUrl = github.context.payload.repository?.html_url?.split(`/${owner}`)[0];
     const userArgs = [
         '-c',
         'user.name=github-action-benchmark',
         '-c',
         'user.email=github@users.noreply.github.com',
         '-c',
-        'http.https://github.com/.extraheader=', // This config is necessary to support actions/checkout@v2 (#9)
+        `http.${serverUrl}/.extraheader=`, // This config is necessary to support actions/checkout@v2 (#9)
     ];
     const res = await capture('git', userArgs.concat(args));
     if (res.code !== 0) {
@@ -54,7 +56,8 @@ export async function cmd(...args: string[]): Promise<string> {
 
 function getRemoteUrl(token: string): string {
     const { repo, owner } = github.context.repo;
-    return `https://x-access-token:${token}@github.com/${owner}/${repo}.git`;
+    const serverName = github.context.payload.repository?.html_url?.split(`/${owner}`)[0].split('//')[1];
+    return `https://x-access-token:${token}@${serverName}/${owner}/${repo}.git`;
 }
 
 export async function push(token: string, branch: string, ...options: string[]): Promise<string> {
