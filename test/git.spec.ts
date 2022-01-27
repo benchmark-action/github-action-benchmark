@@ -176,8 +176,8 @@ describe('git', function () {
         });
     });
 
-    describe('fetch()', function() {
-        it('runs `git fetch` with given branch and options with token', async function() {
+    describe('fetch()', function () {
+        it('runs `git fetch` with given branch and options with token', async function () {
             const stdout = await fetch('this-is-token', 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
@@ -196,7 +196,7 @@ describe('git', function () {
             );
         });
 
-        it('runs `git fetch` with given branch and options without token', async function() {
+        it('runs `git fetch` with given branch and options without token', async function () {
             const stdout = await fetch(undefined, 'my-branch', 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
