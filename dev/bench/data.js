@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643280017059,
+  "lastUpdate": 1643280023053,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34735,6 +34735,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44803,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "42@dmathieu.com",
+            "name": "Damien Mathieu",
+            "username": "dmathieu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
+          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
+          "timestamp": "2022-01-27T11:39:39+01:00",
+          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
+        },
+        "date": 1643280021073,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 252.84552845528455,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":369,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 31601,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
