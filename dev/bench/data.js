@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643280012946,
+  "lastUpdate": 1643280017059,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27873,6 +27873,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000008648239791237272",
             "extra": "mean: 2.2645130596331278 msec\nrounds: 436"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "42@dmathieu.com",
+            "name": "Damien Mathieu",
+            "username": "dmathieu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
+          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
+          "timestamp": "2022-01-27T11:39:39+01:00",
+          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
+        },
+        "date": 1643280014812,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 48523.31250572345,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000008217979555458636",
+            "extra": "mean: 20.608650736324886 usec\nrounds: 31847"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 372.31056402383257,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002680770181557363",
+            "extra": "mean: 2.6859296958761214 msec\nrounds: 388"
           }
         ]
       }
