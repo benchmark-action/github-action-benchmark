@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643280028003,
+  "lastUpdate": 1643280068049,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32089,6 +32089,42 @@ window.BENCHMARK_DATA = {
             "value": 24117.866003168292,
             "unit": "ns/iter",
             "extra": "iterations: 29038\ncpu: 24118.90281699842 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "42@dmathieu.com",
+            "name": "Damien Mathieu",
+            "username": "dmathieu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
+          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
+          "timestamp": "2022-01-27T11:39:39+01:00",
+          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
+        },
+        "date": 1643280065664,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 183.2086464195325,
+            "unit": "ns/iter",
+            "extra": "iterations: 3854636\ncpu: 183.15501126435802 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24429.657627356537,
+            "unit": "ns/iter",
+            "extra": "iterations: 28542\ncpu: 24428.253100693713 ns\nthreads: 1"
           }
         ]
       }
