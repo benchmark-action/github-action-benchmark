@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643280007341,
+  "lastUpdate": 1643280010937,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15303,6 +15303,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 48086,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "42@dmathieu.com",
+            "name": "Damien Mathieu",
+            "username": "dmathieu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
+          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
+          "timestamp": "2022-01-27T11:39:39+01:00",
+          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
+        },
+        "date": 1643280008526,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 425,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 55316,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
