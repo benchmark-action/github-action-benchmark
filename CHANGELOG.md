@@ -1,6 +1,7 @@
 # Unreleased
 
 - **Fix:** Support private repositories (#105)
+- **Chore** Bump action runner to node v16 (#106)
 
 <a name="v1.11.3"></a>
 # [v1.11.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.11.3) - 31 Dec 2021
