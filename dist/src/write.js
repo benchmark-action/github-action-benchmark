@@ -350,9 +350,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     return prevBench;
 }
 async function writeBenchmarkToGitHubPages(bench, config) {
-    const { ghPagesBranch, skipFetchGhPages } = config;
+    const { ghPagesBranch, skipFetchGhPages, githubToken } = config;
     if (!skipFetchGhPages) {
-        await git.cmd('fetch', 'origin', `${ghPagesBranch}:${ghPagesBranch}`);
+        await git.fetch(githubToken, ghPagesBranch);
     }
     await git.cmd('switch', ghPagesBranch);
     try {

@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pull = exports.push = exports.cmd = void 0;
+exports.fetch = exports.pull = exports.push = exports.cmd = void 0;
 const exec_1 = require("@actions/exec");
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
@@ -90,4 +90,14 @@ async function pull(token, branch, ...options) {
     return cmd(...args);
 }
 exports.pull = pull;
+async function fetch(token, branch, ...options) {
+    core.debug(`Executing 'git fetch' for branch '${branch}' with token and options '${options.join(' ')}'`);
+    const remote = token !== undefined ? getRemoteUrl(token) : 'origin';
+    let args = ['fetch', remote, `${branch}:${branch}`];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+    return cmd(...args);
+}
+exports.fetch = fetch;
 //# sourceMappingURL=git.js.map
