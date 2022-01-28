@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643280213898,
+  "lastUpdate": 1643370118435,
   "entries": {
     "Rust Benchmark": [
       {
@@ -27971,6 +27971,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002680770181557363",
             "extra": "mean: 2.6859296958761214 msec\nrounds: 388"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
+          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
+          "timestamp": "2022-01-28T12:41:33+01:00",
+          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
+        },
+        "date": 1643370116808,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 55862.902895818035,
+            "unit": "iter/sec",
+            "range": "stddev: 5.152806486195716e-7",
+            "extra": "mean: 17.900967335423978 usec\nrounds: 28410"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 461.990826510715,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000018250791854838332",
+            "extra": "mean: 2.1645451437915226 msec\nrounds: 459"
           }
         ]
       }
