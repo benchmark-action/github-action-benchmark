@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643370123536,
+  "lastUpdate": 1643370128261,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22533,6 +22533,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.10%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
+          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
+          "timestamp": "2022-01-28T12:41:33+01:00",
+          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
+        },
+        "date": 1643370126048,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1166326,
+            "range": "±1.14%",
+            "unit": "ops/sec",
+            "extra": "89 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9903,
+            "range": "±0.81%",
+            "unit": "ops/sec",
+            "extra": "91 samples"
           }
         ]
       }
