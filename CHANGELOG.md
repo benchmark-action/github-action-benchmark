@@ -1,6 +1,7 @@
-# Unreleased
+<a name="v1.12.0"></a>
+# [v1.12.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.12.0) - 28 Jan 2022
 
-- **Fix:** Support private repositories (#105)
+- **Feat:** Support private repositories (#105)
 - **Chore** Bump action runner to node v16 (#106)
 
 <a name="v1.11.3"></a>
