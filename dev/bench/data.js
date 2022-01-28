@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643370118435,
+  "lastUpdate": 1643370121158,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15399,6 +15399,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 55316,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
+          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
+          "timestamp": "2022-01-28T12:41:33+01:00",
+          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
+        },
+        "date": 1643370118851,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 409,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 50398,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
