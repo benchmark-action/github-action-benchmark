@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643370128261,
+  "lastUpdate": 1643370131137,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8650,6 +8650,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 7,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
+          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
+          "timestamp": "2022-01-28T12:41:33+01:00",
+          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
+        },
+        "date": 1643370129210,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 202,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26548,
+            "range": "± 2839",
             "unit": "ns/iter"
           }
         ]
