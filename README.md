@@ -327,6 +327,8 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
 - [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
 - [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
+- [catch2 for C++ projects](./examples/cpp/README.md)
+- [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
 - [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
@@ -349,7 +351,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`, `"benchmarkdotnet"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
+`"googlecpp"`, `"catch2"`, `"julia"`, `"benchmarkdotnet"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
 
 #### `output-file-path` (Required)
 
