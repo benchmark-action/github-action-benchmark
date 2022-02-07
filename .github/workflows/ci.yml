@@ -249,7 +249,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.201'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
+          dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - uses: actions/cache@v1
         with:
           path: ~/.npm
