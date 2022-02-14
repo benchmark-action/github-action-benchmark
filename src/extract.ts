@@ -172,66 +172,14 @@ type JuliaBenchmarkGroup = [
 type JuliaBenchmarkJson = [object, JuliaBenchmarkGroup[]];
 
 export interface BenchmarkDotnetBenchmark {
-    DisplayInfo: string;
-    Namespace: string;
-    Type: string;
-    Method: string;
-    MethodTitle: string;
-    Parameters: string;
     FullName: string;
     Statistics: {
         StandardDeviation: number;
-        Mean: number; // there are more, but this is all we care about now.
+        Mean: number;
     };
-    Memory:
-        | {
-              Gen0Collections: number;
-              Gen1Collections: number;
-              Gen2Collections: number;
-              TotalOperations: number;
-              BytesAllocatedPerOperation: number;
-          }
-        | undefined;
-    Measurements: [
-        {
-            IterationMode: 'Overhead' | 'Workload' | 'Unknown';
-            IterationStage: 'Jitting' | 'Pilot' | 'Warmup' | 'Actual' | 'Result' | 'Unknown';
-            LaunchIndex: number;
-            IterationIndex: number;
-            Operations: number;
-            Nanoseconds: number;
-        },
-    ];
-    Metrics: [
-        {
-            Value: number;
-            Descriptor: {
-                Id: string;
-                DisplayName: string;
-                Legend: string;
-                NumberFormat: string;
-                UnitType: 0 | 1 | 2; // unit type
-                Unit: string;
-                TheGreaterTheBetter: boolean;
-            };
-        },
-    ];
 }
 
 export interface BenchmarkDotNetBenchmarkJson {
-    Title: string;
-    HostEnvironmentInfo: {
-        BenchmarkDotNetVersion: string;
-        OsVersion: string;
-        ProcessorName: string;
-        PhysicalProcessorCount: number;
-        PhysicalCoreCount: number;
-        LogicalCoreCount: number;
-        RuntimeVersion: string;
-        Architecture: string;
-        Configuration: string;
-        DotNetCliVersion: string;
-    };
     Benchmarks: BenchmarkDotnetBenchmark[];
 }
 
