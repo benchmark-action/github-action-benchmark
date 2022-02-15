@@ -50,7 +50,7 @@ function validateDataJson(data: DataJson) {
                 throw new Error(`Invalid tool ${tool}`);
             }
             if (
-                !matcher.test(commit.url) &&
+                !commitUrlMatcher.test(commit.url) &&
                 !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)
             ) {
                 throw new Error(`Invalid commit url: ${commit.url}`);
