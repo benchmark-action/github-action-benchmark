@@ -49,7 +49,6 @@ function validateDataJson(data: DataJson) {
             if (!(VALID_TOOLS as string[]).includes(tool)) {
                 throw new Error(`Invalid tool ${tool}`);
             }
-            matcher = new RegExp(`^${serverUrl}/[^/]+/github-action-benchmark/commit/`);
             if (
                 !matcher.test(commit.url) &&
                 !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)
