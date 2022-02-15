@@ -119,6 +119,7 @@ jest.mock('@actions/github', () => ({
     },
 }));
 jest.mock('../src/git', () => ({
+    ...jest.requireActual('../src/git'),
     async cmd(...args: unknown[]) {
         gitSpy.call('cmd', args);
         return '';
@@ -134,7 +135,7 @@ jest.mock('../src/git', () => ({
     },
 }));
 
-describe('writeBenchmark()', function () {
+describe.only('writeBenchmark() github.com', function () {
     const savedCwd = process.cwd();
 
     beforeAll(function () {
@@ -159,7 +160,8 @@ describe('writeBenchmark()', function () {
         name: 'User',
         username: 'user',
     };
-    const repoUrl = 'https://github.com/user/repo';
+    const serverUrl = 'https://github.com';
+    const repoUrl = `${serverUrl}/user/repo`;
 
     function commit(id = 'commit id', message = 'dummy message', u = user) {
         return {
@@ -170,7 +172,7 @@ describe('writeBenchmark()', function () {
             message,
             timestamp: 'dummy stamp',
             tree_id: 'dummy tree id',
-            url: 'https://github.com/user/repo/commit/' + id,
+            url: `${serverUrl}/user/repo/commit/` + id,
         };
     }
 

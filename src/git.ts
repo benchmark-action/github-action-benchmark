@@ -46,7 +46,7 @@ export function getServerName(repositoryUrl: string | undefined, owner?: string)
         repositoryUrl = DEFAULT_GITHUB_URL;
     }
     return owner
-        ? getServerUrl(repositoryUrl, owner).split('//')[1]
+        ? module.exports.getServerUrl(repositoryUrl, owner).split('//')[1]
         : `${repositoryUrl.split('//')[1]}//${repositoryUrl.split('//')[1].split('/')}[0]`;
 }
 
