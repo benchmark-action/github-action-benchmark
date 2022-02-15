@@ -135,7 +135,7 @@ jest.mock('../src/git', () => ({
     },
 }));
 
-describe.only('writeBenchmark() github.com', function () {
+describe('writeBenchmark() github.com', function () {
     const savedCwd = process.cwd();
 
     beforeAll(function () {
