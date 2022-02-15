@@ -40,7 +40,7 @@ const gitHubContext = {
     },
     payload: {
         repository: {
-            html_url: 'https://github.com',
+            html_url: 'https://github.com/benchmark-action/github-action-benchmark',
         },
     },
 } as {
