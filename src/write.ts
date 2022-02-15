@@ -114,7 +114,7 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
 
 function getCurrentRepoMetadata() {
     const { repo, owner } = github.context.repo;
-    const serverUrl = github.context.payload.repository?.html_url?.split(`/${owner}`)[0];
+    const serverUrl = git.getServerUrl(github.context.payload.repository?.html_url, owner);
     return {
         name: repo,
         owner: {

@@ -1,5 +1,5 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
-import { cmd, pull, push } from '../src/git';
+import { cmd, getServerUrl, pull, push } from '../src/git';
 
 interface ExecOptions {
     listeners: {
@@ -82,7 +82,7 @@ jest.mock('@actions/github', () => ({
 
 const ok: (x: any) => asserts x = A.ok;
 const { owner } = gitHubContext.repo;
-const serverUrl = gitHubContext.payload.repository.html_url.split(`/${owner}`)[0];
+const serverUrl = getServerUrl(gitHubContext.payload.repository?.html_url, owner);
 const userArgs = [
     '-c',
     'user.name=github-action-benchmark',

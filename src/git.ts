@@ -2,6 +2,8 @@ import { exec } from '@actions/exec';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 
+const DEFAULT_GITHUB_URL = 'https://github.com';
+
 interface ExecResult {
     stdout: string;
     stderr: string;
@@ -35,10 +37,23 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
     }
 }
 
+export function getServerUrl(repositoryUrl: string | undefined, owner?: string): string {
+    return repositoryUrl ? repositoryUrl.split(`/${owner}`)[0] : DEFAULT_GITHUB_URL;
+}
+
+export function getServerName(repositoryUrl: string | undefined, owner?: string): string {
+    if (!repositoryUrl) {
+        repositoryUrl = DEFAULT_GITHUB_URL;
+    }
+    return owner
+        ? getServerUrl(repositoryUrl, owner).split('//')[1]
+        : `${repositoryUrl.split('//')[1]}//${repositoryUrl.split('//')[1].split('/')}[0]`;
+}
+
 export async function cmd(...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
     const { owner } = github.context.repo;
-    const serverUrl = github.context.payload.repository?.html_url?.split(`/${owner}`)[0];
+    const serverUrl = getServerUrl(github.context.payload.repository?.html_url, owner);
     const userArgs = [
         '-c',
         'user.name=github-action-benchmark',
@@ -56,7 +71,7 @@ export async function cmd(...args: string[]): Promise<string> {
 
 function getRemoteUrl(token: string): string {
     const { repo, owner } = github.context.repo;
-    const serverName = github.context.payload.repository?.html_url?.split(`/${owner}`)[0].split('//')[1];
+    const serverName = getServerName(github.context.payload.repository?.html_url, owner);
     return `https://x-access-token:${token}@${serverName}/${owner}/${repo}.git`;
 }
 
