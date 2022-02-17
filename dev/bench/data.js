@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1643370911936,
+  "lastUpdate": 1645135641156,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28387,6 +28387,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000009341730230615968",
             "extra": "mean: 2.133237570815633 msec\nrounds: 466"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mjochum@users.noreply.github.com",
+            "name": "mjochum",
+            "username": "mjochum"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
+          "message": "Updated urls to support GHES (#104)",
+          "timestamp": "2022-02-17T23:05:45+01:00",
+          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
+        },
+        "date": 1645135639468,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 60406.4751200281,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000003196504505148597",
+            "extra": "mean: 16.55451668075306 usec\nrounds: 44842"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 479.91807613856116,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000238960244921619",
+            "extra": "mean: 2.083688966346168 msec\nrounds: 416"
           }
         ]
       }
