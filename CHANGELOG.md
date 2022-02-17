@@ -1,3 +1,12 @@
+## Unreleased
+
+<a name="v1.13.0"></a>
+# [v1.13.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.13.0) - 17 Feb 2022
+
+- **Feat:** Updated urls to support GHES (#104)
+- **Feat:** Add support for BenchmarkDotNet (#109)
+- **Chore** Bump node-fetch from 2.6.6 to 2.6.7 (#107)
+
 <a name="v1.12.0"></a>
 # [v1.12.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.12.0) - 28 Jan 2022
 
