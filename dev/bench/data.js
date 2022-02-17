@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645135650048,
+  "lastUpdate": 1645135660474,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35689,6 +35689,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 40301,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mjochum@users.noreply.github.com",
+            "name": "mjochum",
+            "username": "mjochum"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
+          "message": "Updated urls to support GHES (#104)",
+          "timestamp": "2022-02-17T23:05:45+01:00",
+          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
+        },
+        "date": 1645135658812,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 286.5248226950355,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":282,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 35800,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
