@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136641135,
+  "lastUpdate": 1645136853940,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28803,6 +28803,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000009393454369739119",
             "extra": "mean: 1.8830280929791858 msec\nrounds: 527"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
+          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
+          "timestamp": "2022-02-17T23:27:08+01:00",
+          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
+        },
+        "date": 1645136851605,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 56534.57796034607,
+            "unit": "iter/sec",
+            "range": "stddev: 4.513861667698257e-7",
+            "extra": "mean: 17.688289823290273 usec\nrounds: 38313"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 468.13497025964494,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000011052992645089834",
+            "extra": "mean: 2.1361360793989888 msec\nrounds: 466"
           }
         ]
       }
