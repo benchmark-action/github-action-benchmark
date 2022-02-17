@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136440189,
+  "lastUpdate": 1645136446053,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28595,6 +28595,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000238960244921619",
             "extra": "mean: 2.083688966346168 msec\nrounds: 416"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6819362+cabauman@users.noreply.github.com",
+            "name": "Colt",
+            "username": "cabauman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
+          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
+          "timestamp": "2022-02-17T23:20:17+01:00",
+          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
+        },
+        "date": 1645136443905,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 64057.18935249444,
+            "unit": "iter/sec",
+            "range": "stddev: 5.258325939379814e-7",
+            "extra": "mean: 15.611050221032828 usec\nrounds: 43667"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 531.0595225469392,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000009393454369739119",
+            "extra": "mean: 1.8830280929791858 msec\nrounds: 527"
           }
         ]
       }
