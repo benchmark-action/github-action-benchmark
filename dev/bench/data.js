@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136449589,
+  "lastUpdate": 1645136471644,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35535,6 +35535,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 28.005,
             "range": "± 1.211",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6819362+cabauman@users.noreply.github.com",
+            "name": "Colt",
+            "username": "cabauman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
+          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
+          "timestamp": "2022-02-17T23:20:17+01:00",
+          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
+        },
+        "date": 1645136469049,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 144,
+            "range": "± 1",
+            "unit": "ns",
+            "extra": "100 samples\n197 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.81,
+            "range": "± 453",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
