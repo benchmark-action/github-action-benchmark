@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645135660474,
+  "lastUpdate": 1645135668912,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35291,6 +35291,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 24.327,
             "range": "± 281",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mjochum@users.noreply.github.com",
+            "name": "mjochum",
+            "username": "mjochum"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
+          "message": "Updated urls to support GHES (#104)",
+          "timestamp": "2022-02-17T23:05:45+01:00",
+          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
+        },
+        "date": 1645135665881,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 194,
+            "range": "± 18",
+            "unit": "ns",
+            "extra": "100 samples\n194 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 28.005,
+            "range": "± 1.211",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
