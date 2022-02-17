@@ -336,6 +336,24 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'benchmarkdotnet',
+            file: 'benchmarkdotnet.json',
+            expected: [
+                {
+                    name: 'Sample.Benchmarks.Fib10',
+                    range: '± 0.1981212530783709',
+                    unit: 'ns',
+                    value: 24.4202085009643,
+                },
+                {
+                    name: 'Sample.Benchmarks.Fib20',
+                    range: '± 0.7903737021529575',
+                    unit: 'ns',
+                    value: 51.52008151549559,
+                },
+            ],
+        },
+        {
             tool: 'customBiggerIsBetter',
             expected: [
                 {

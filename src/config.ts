@@ -11,6 +11,7 @@ export type ToolType =
     | 'googlecpp'
     | 'catch2'
     | 'julia'
+    | 'benchmarkdotnet'
     | 'customBiggerIsBetter'
     | 'customSmallerIsBetter';
 export interface Config {
@@ -41,6 +42,7 @@ export const VALID_TOOLS: ToolType[] = [
     'googlecpp',
     'catch2',
     'julia',
+    'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
 ];
