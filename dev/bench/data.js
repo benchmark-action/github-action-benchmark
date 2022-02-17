@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139230231,
+  "lastUpdate": 1645139234523,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29403,6 +29403,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000034514547424765086",
             "extra": "mean: 1.537479325000124 msec\nrounds: 640"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e",
+          "message": "Update URL to main website from Benchmark.NET README (#111)",
+          "timestamp": "2022-02-18T00:06:38+01:00",
+          "tree_id": "1ddbe434e88cf4cfc7372f8441df294afa0054dd",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e"
+        },
+        "date": 1645139231889,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 80673.47868124237,
+            "unit": "iter/sec",
+            "range": "stddev: 9.154348765767719e-7",
+            "extra": "mean: 12.395647446308931 usec\nrounds: 48126"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 627.0559096388055,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019082063151303047",
+            "extra": "mean: 1.5947541273887629 msec\nrounds: 628"
           }
         ]
       }
