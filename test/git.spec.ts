@@ -81,8 +81,7 @@ jest.mock('@actions/github', () => ({
 }));
 
 const ok: (x: any) => asserts x = A.ok;
-const { owner } = gitHubContext.repo;
-const serverUrl = getServerUrl(gitHubContext.payload.repository?.html_url, owner);
+const serverUrl = getServerUrl(gitHubContext.payload.repository?.html_url);
 const userArgs = [
     '-c',
     'user.name=github-action-benchmark',

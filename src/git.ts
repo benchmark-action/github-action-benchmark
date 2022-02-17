@@ -1,6 +1,7 @@
 import { exec } from '@actions/exec';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { URL } from 'url';
 
 const DEFAULT_GITHUB_URL = 'https://github.com';
 
@@ -37,23 +38,19 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
     }
 }
 
-export function getServerUrl(repositoryUrl: string | undefined, owner?: string): string {
-    return repositoryUrl ? repositoryUrl.split(`/${owner}`)[0] : DEFAULT_GITHUB_URL;
+export function getServerUrl(repositoryUrl: string | undefined): string {
+    const urlObj = repositoryUrl ? new URL(repositoryUrl) : new URL(DEFAULT_GITHUB_URL);
+    return repositoryUrl ? `https://${urlObj.hostname}` : DEFAULT_GITHUB_URL;
 }
 
-export function getServerName(repositoryUrl: string | undefined, owner?: string): string {
-    if (!repositoryUrl) {
-        repositoryUrl = DEFAULT_GITHUB_URL;
-    }
-    return owner
-        ? module.exports.getServerUrl(repositoryUrl, owner).split('//')[1]
-        : `${repositoryUrl.split('//')[1]}//${repositoryUrl.split('//')[1].split('/')}[0]`;
+export function getServerName(repositoryUrl: string | undefined): string {
+    const urlObj = repositoryUrl ? new URL(repositoryUrl) : new URL(DEFAULT_GITHUB_URL);
+    return repositoryUrl ? urlObj.hostname : DEFAULT_GITHUB_URL.replace('https://', '');
 }
 
 export async function cmd(...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
-    const { owner } = github.context.repo;
-    const serverUrl = getServerUrl(github.context.payload.repository?.html_url, owner);
+    const serverUrl = getServerUrl(github.context.payload.repository?.html_url);
     const userArgs = [
         '-c',
         'user.name=github-action-benchmark',
@@ -71,7 +68,7 @@ export async function cmd(...args: string[]): Promise<string> {
 
 function getRemoteUrl(token: string): string {
     const { repo, owner } = github.context.repo;
-    const serverName = getServerName(github.context.payload.repository?.html_url, owner);
+    const serverName = getServerName(github.context.payload.repository?.html_url);
     return `https://x-access-token:${token}@${serverName}/${owner}/${repo}.git`;
 }
 
