@@ -1,5 +1,5 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
-import { cmd, pull, push, fetch } from '../src/git';
+import { cmd, getServerUrl, pull, push, fetch } from '../src/git';
 
 interface ExecOptions {
     listeners: {
@@ -38,10 +38,20 @@ const gitHubContext = {
         repo: 'repo',
         owner: 'user',
     },
+    payload: {
+        repository: {
+            html_url: 'https://github.com/user/benchmark-action/github-action-benchmark',
+        },
+    },
 } as {
     repo: {
         repo: string;
         owner: string;
+    };
+    payload: {
+        repository: {
+            html_url: string;
+        };
     };
 };
 
@@ -71,13 +81,14 @@ jest.mock('@actions/github', () => ({
 }));
 
 const ok: (x: any) => asserts x = A.ok;
+const serverUrl = getServerUrl(gitHubContext.payload.repository?.html_url);
 const userArgs = [
     '-c',
     'user.name=github-action-benchmark',
     '-c',
     'user.email=github@users.noreply.github.com',
     '-c',
-    'http.https://github.com/.extraheader=',
+    `http.${serverUrl}/.extraheader=`,
 ];
 
 describe('git', function () {

@@ -6,6 +6,7 @@ import { VALID_TOOLS } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
 import deepEq = require('deep-equal');
+import { getServerUrl } from '../src/git';
 
 function help(): never {
     throw new Error('Usage: node ci_validate_modification.js before_data.js "bechmark name"');
@@ -36,7 +37,10 @@ function validateDataJson(data: DataJson) {
         throw new Error(`Last update is not correct: ${lastUpdate} v.s. ${now}`);
     }
 
-    if (!/^https:\/\/github\.com\/[^/]+\/github-action-benchmark$/.test(repoUrl)) {
+    const serverUrl = getServerUrl(repoUrl);
+    const repoUrlMatcher = new RegExp(`^${serverUrl}/[^/]+/github-action-benchmark$`);
+    const commitUrlMatcher = new RegExp(`^${serverUrl}/[^/]+/github-action-benchmark/commit/`);
+    if (!repoUrlMatcher.test(repoUrl)) {
         throw new Error(`repoUrl is not correct: ${repoUrl}`);
     }
 
@@ -46,10 +50,7 @@ function validateDataJson(data: DataJson) {
             if (!(VALID_TOOLS as string[]).includes(tool)) {
                 throw new Error(`Invalid tool ${tool}`);
             }
-            if (
-                !/^https:\/\/github\.com\/[^/]+\/github-action-benchmark\/commit\//.test(commit.url) &&
-                !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)
-            ) {
+            if (!commitUrlMatcher.test(commit.url) && !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)) {
                 throw new Error(`Invalid commit url: ${commit.url}`);
             }
             if (!commit.url.endsWith(commit.id)) {
