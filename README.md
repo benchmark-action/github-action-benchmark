@@ -612,6 +612,6 @@ Every release will appear on your GitHub notifications page.
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
 [BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
-[benchmarkdotnet]: [https://benchmarkdotnet.org]
-[benchmarkdotnet-badge]: [https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg]
-[benchmarkdotnet-workflow-example]: [https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22]
+[benchmarkdotnet]: https://benchmarkdotnet.org
+[benchmarkdotnet-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg
+[benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
