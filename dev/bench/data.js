@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136880944,
+  "lastUpdate": 1645136889517,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33271,6 +33271,42 @@ window.BENCHMARK_DATA = {
             "value": 25781.208578359914,
             "unit": "ns/iter",
             "extra": "iterations: 27208\ncpu: 25771.423845927668 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
+          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
+          "timestamp": "2022-02-17T23:27:08+01:00",
+          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
+        },
+        "date": 1645136887052,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.83838653600924,
+            "unit": "ns/iter",
+            "extra": "iterations: 4418419\ncpu: 158.62275623927925 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19991.077102803585,
+            "unit": "ns/iter",
+            "extra": "iterations: 33812\ncpu: 19990.041996924167 ns\nthreads: 1"
           }
         ]
       }
