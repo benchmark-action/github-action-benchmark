@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645135862992,
+  "lastUpdate": 1645136440189,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32917,6 +32917,42 @@ window.BENCHMARK_DATA = {
             "value": 28433.413318723782,
             "unit": "ns/iter",
             "extra": "iterations: 24642\ncpu: 28429.401022644266 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6819362+cabauman@users.noreply.github.com",
+            "name": "Colt",
+            "username": "cabauman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
+          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
+          "timestamp": "2022-02-17T23:20:17+01:00",
+          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
+        },
+        "date": 1645136437576,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 200.92140903338552,
+            "unit": "ns/iter",
+            "extra": "iterations: 3509271\ncpu: 199.91337232148786 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25781.208578359914,
+            "unit": "ns/iter",
+            "extra": "iterations: 27208\ncpu: 25771.423845927668 ns\nthreads: 1"
           }
         ]
       }
