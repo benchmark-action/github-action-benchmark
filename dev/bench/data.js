@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136889517,
+  "lastUpdate": 1645136893483,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23249,6 +23249,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.45%",
             "unit": "ops/sec",
             "extra": "94 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
+          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
+          "timestamp": "2022-02-17T23:27:08+01:00",
+          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
+        },
+        "date": 1645136890875,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1373061,
+            "range": "±0.16%",
+            "unit": "ops/sec",
+            "extra": "92 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11404,
+            "range": "±0.03%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
           }
         ]
       }
