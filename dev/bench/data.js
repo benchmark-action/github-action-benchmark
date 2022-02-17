@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139243271,
+  "lastUpdate": 1645139255703,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33943,6 +33943,42 @@ window.BENCHMARK_DATA = {
             "value": 25731.586170134742,
             "unit": "ns/iter",
             "extra": "iterations: 27202\ncpu: 25729.784574663627 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e",
+          "message": "Update URL to main website from Benchmark.NET README (#111)",
+          "timestamp": "2022-02-18T00:06:38+01:00",
+          "tree_id": "1ddbe434e88cf4cfc7372f8441df294afa0054dd",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e"
+        },
+        "date": 1645139253359,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.4538892982183,
+            "unit": "ns/iter",
+            "extra": "iterations: 3900678\ncpu: 179.38978813426797 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24154.156635642976,
+            "unit": "ns/iter",
+            "extra": "iterations: 29010\ncpu: 24151.05825577387 ns\nthreads: 1"
           }
         ]
       }
