@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139151476,
+  "lastUpdate": 1645139166350,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36343,6 +36343,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.231,
             "range": "± 216",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12c672174b09de673b5eda4e88afa9669b38a5c6",
+          "message": "Fix a couple errant links for Benchmark.NET (#110)",
+          "timestamp": "2022-02-18T00:05:13+01:00",
+          "tree_id": "526893def1ae76c5a671e48b167495affb2caed0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/12c672174b09de673b5eda4e88afa9669b38a5c6"
+        },
+        "date": 1645139163903,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 164,
+            "range": "± 2",
+            "unit": "ns",
+            "extra": "100 samples\n180 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.234,
+            "range": "± 514",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
