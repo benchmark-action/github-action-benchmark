@@ -3,7 +3,7 @@ C# example for benchmarking with `Benchmark.Net`
 
 - [Workflow for this example](../../.github/workflows/benchmarkdotnet.yml)
 - [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+example%22)
-- [Benchmark results on GitHub pages](https://rhysd.github.io/github-action-benchmark/dev/bench/)
+- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
 
 This directory shows how to use [`github-action-benchmark`](https://github.com/rhysd/github-action-benchmark)
 with [`Benchmark.Net`](https://benchmarkdotnet.org/).
