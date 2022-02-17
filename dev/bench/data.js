@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645135648623,
+  "lastUpdate": 1645135650048,
   "entries": {
     "Rust Benchmark": [
       {
@@ -8842,6 +8842,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 6,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mjochum@users.noreply.github.com",
+            "name": "mjochum",
+            "username": "mjochum"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
+          "message": "Updated urls to support GHES (#104)",
+          "timestamp": "2022-02-17T23:05:45+01:00",
+          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
+        },
+        "date": 1645135645732,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 228,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 29064,
+            "range": "± 82",
             "unit": "ns/iter"
           }
         ]
