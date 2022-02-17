@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139324513,
+  "lastUpdate": 1645139343227,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9298,6 +9298,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 25289,
             "range": "± 5979",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12c672174b09de673b5eda4e88afa9669b38a5c6",
+          "message": "Fix a couple errant links for Benchmark.NET (#110)",
+          "timestamp": "2022-02-18T00:05:13+01:00",
+          "tree_id": "526893def1ae76c5a671e48b167495affb2caed0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/12c672174b09de673b5eda4e88afa9669b38a5c6"
+        },
+        "date": 1645139340487,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26964,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26970,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43662,
+            "range": "± 64",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
