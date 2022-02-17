@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136471644,
+  "lastUpdate": 1645136474103,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36007,6 +36007,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 35800,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6819362+cabauman@users.noreply.github.com",
+            "name": "Colt",
+            "username": "cabauman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
+          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
+          "timestamp": "2022-02-17T23:20:17+01:00",
+          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
+        },
+        "date": 1645136470366,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 350.90909090909093,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":220,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 43900,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
