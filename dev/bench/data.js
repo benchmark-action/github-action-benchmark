@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645136859844,
+  "lastUpdate": 1645136863886,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9034,6 +9034,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
+          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
+          "timestamp": "2022-02-17T23:27:08+01:00",
+          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
+        },
+        "date": 1645136861953,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 213,
+            "range": "± 16",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 28350,
+            "range": "± 1999",
             "unit": "ns/iter"
           }
         ]
