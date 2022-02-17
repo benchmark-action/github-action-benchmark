@@ -19,10 +19,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetch = exports.pull = exports.push = exports.cmd = void 0;
+exports.fetch = exports.pull = exports.push = exports.cmd = exports.getServerName = exports.getServerUrl = void 0;
 const exec_1 = require("@actions/exec");
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
+const url_1 = require("url");
+const DEFAULT_GITHUB_URL = 'https://github.com';
 async function capture(cmd, args) {
     const res = {
         stdout: '',
@@ -49,15 +51,27 @@ async function capture(cmd, args) {
         throw new Error(msg);
     }
 }
+function getServerUrl(repositoryUrl) {
+    const urlObj = repositoryUrl ? new url_1.URL(repositoryUrl) : new url_1.URL(DEFAULT_GITHUB_URL);
+    return repositoryUrl ? urlObj.origin : DEFAULT_GITHUB_URL;
+}
+exports.getServerUrl = getServerUrl;
+function getServerName(repositoryUrl) {
+    const urlObj = repositoryUrl ? new url_1.URL(repositoryUrl) : new url_1.URL(DEFAULT_GITHUB_URL);
+    return repositoryUrl ? urlObj.hostname : DEFAULT_GITHUB_URL.replace('https://', '');
+}
+exports.getServerName = getServerName;
 async function cmd(...args) {
+    var _a;
     core.debug(`Executing Git: ${args.join(' ')}`);
+    const serverUrl = getServerUrl((_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url);
     const userArgs = [
         '-c',
         'user.name=github-action-benchmark',
         '-c',
         'user.email=github@users.noreply.github.com',
         '-c',
-        'http.https://github.com/.extraheader=', // This config is necessary to support actions/checkout@v2 (#9)
+        `http.${serverUrl}/.extraheader=`, // This config is necessary to support actions/checkout@v2 (#9)
     ];
     const res = await capture('git', userArgs.concat(args));
     if (res.code !== 0) {
@@ -67,8 +81,10 @@ async function cmd(...args) {
 }
 exports.cmd = cmd;
 function getRemoteUrl(token) {
+    var _a;
     const { repo, owner } = github.context.repo;
-    return `https://x-access-token:${token}@github.com/${owner}/${repo}.git`;
+    const serverName = getServerName((_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url);
+    return `https://x-access-token:${token}@${serverName}/${owner}/${repo}.git`;
 }
 async function push(token, branch, ...options) {
     core.debug(`Executing 'git push' to branch '${branch}' with token and options '${options.join(' ')}'`);

@@ -81,6 +81,8 @@ function biggerIsBetter(tool) {
             return false;
         case 'julia':
             return false;
+        case 'benchmarkdotnet':
+            return false;
         case 'customBiggerIsBetter':
             return true;
         case 'customSmallerIsBetter':
@@ -108,14 +110,16 @@ function findAlerts(curSuite, prevSuite, threshold) {
     return alerts;
 }
 function getCurrentRepoMetadata() {
+    var _a;
     const { repo, owner } = github.context.repo;
+    const serverUrl = git.getServerUrl((_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.html_url);
     return {
         name: repo,
         owner: {
             login: owner,
         },
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        html_url: `https://github.com/${owner}/${repo}`,
+        html_url: `${serverUrl}/${owner}/${repo}`,
     };
 }
 function floatStr(n) {
