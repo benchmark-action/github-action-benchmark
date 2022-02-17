@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139300600,
+  "lastUpdate": 1645139324513,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37441,6 +37441,42 @@ window.BENCHMARK_DATA = {
             "value": 45.83769960914339,
             "unit": "ns",
             "range": "± 0.019213857622186626"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e",
+          "message": "Update URL to main website from Benchmark.NET README (#111)",
+          "timestamp": "2022-02-18T00:06:38+01:00",
+          "tree_id": "1ddbe434e88cf4cfc7372f8441df294afa0054dd",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e"
+        },
+        "date": 1645139321776,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 20.307371674105525,
+            "unit": "ns",
+            "range": "± 0.42772991981768355"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 41.406548589468,
+            "unit": "ns",
+            "range": "± 0.4315434760843233"
           }
         ]
       }
