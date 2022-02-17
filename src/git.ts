@@ -40,7 +40,7 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
 
 export function getServerUrl(repositoryUrl: string | undefined): string {
     const urlObj = repositoryUrl ? new URL(repositoryUrl) : new URL(DEFAULT_GITHUB_URL);
-    return repositoryUrl ? `https://${urlObj.hostname}` : DEFAULT_GITHUB_URL;
+    return repositoryUrl ? urlObj.origin : DEFAULT_GITHUB_URL;
 }
 
 export function getServerName(repositoryUrl: string | undefined): string {
