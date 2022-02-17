@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1645139182686,
+  "lastUpdate": 1645139184883,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33797,6 +33797,42 @@ window.BENCHMARK_DATA = {
             "value": 24098.29379951776,
             "unit": "ns/iter",
             "extra": "iterations: 29030\ncpu: 24097.685153289705 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12c672174b09de673b5eda4e88afa9669b38a5c6",
+          "message": "Fix a couple errant links for Benchmark.NET (#110)",
+          "timestamp": "2022-02-18T00:05:13+01:00",
+          "tree_id": "526893def1ae76c5a671e48b167495affb2caed0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/12c672174b09de673b5eda4e88afa9669b38a5c6"
+        },
+        "date": 1645139182038,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 199.92325486969884,
+            "unit": "ns/iter",
+            "extra": "iterations: 3499753\ncpu: 199.87896288680943 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25731.586170134742,
+            "unit": "ns/iter",
+            "extra": "iterations: 27202\ncpu: 25729.784574663627 ns\nthreads: 1"
           }
         ]
       }
