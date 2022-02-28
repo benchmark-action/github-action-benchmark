@@ -116,7 +116,7 @@ export async function clone(
     branch: string,
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git fetch' to branch '${branch}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git clone' to branch '${branch}' with token and options '${options.join(' ')}'`);
 
     const remote = token !== undefined ? getRemoteUrl(token, ghRepository) : 'origin';
     let args = ['clone', remote, branch];
