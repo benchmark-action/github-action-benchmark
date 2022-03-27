@@ -333,7 +333,7 @@ describe('configFromJobInput()', function () {
         A.ok(config.benchmarkDataDirPath.endsWith('output'), config.benchmarkDataDirPath);
     });
 
-    it('does not change abusolute paths in config', async function () {
+    it('does not change absolute paths in config', async function () {
         const outFile = path.resolve('out.txt');
         const dataDir = path.resolve('path/to/output');
         mockInputs({

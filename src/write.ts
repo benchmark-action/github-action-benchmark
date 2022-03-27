@@ -384,8 +384,8 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     let extraGitArguments: string[] = [];
 
     if (!skipFetchGhPages && ghRepository) {
-        await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmarkDataRepository');
-        benchmarkBaseDir = './benchmarkDataRepository';
+        await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmark-data-repository');
+        benchmarkBaseDir = './benchmark-data-repository';
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}.git`];
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
