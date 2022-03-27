@@ -250,10 +250,10 @@ async function main() {
     console.log('Validating diffs:', diffs);
 
     if (!diffs || diffs.length !== 2) {
-        console.log('--- beforeJSON ---');
-        console.log(JSON.stringify(beforeJson));
-        console.log('-----------------');
-        console.log();
+        // console.log('--- beforeJSON ---');
+        // console.log(JSON.stringify(beforeJson));
+        // console.log('-----------------');
+        // console.log();
         console.log('--- afterJSON ---');
         console.log(JSON.stringify(afterJson));
         console.log('-----------------');
