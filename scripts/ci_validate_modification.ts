@@ -251,11 +251,11 @@ async function main() {
 
     if (!diffs || diffs.length !== 2) {
         console.log('--- beforeJSON ---');
-        console.log(JSON.stringify(beforeJson, undefined, 2));
+        console.log(JSON.stringify(beforeJson));
         console.log('-----------------');
         console.log();
         console.log('--- afterJSON ---');
-        console.log(JSON.stringify(afterJson, undefined, 2));
+        console.log(JSON.stringify(afterJson));
         console.log('-----------------');
 
         throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
