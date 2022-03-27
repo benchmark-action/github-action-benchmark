@@ -377,7 +377,6 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         skipFetchGhPages,
         maxItemsInChart,
     } = config;
-    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     // FIXME: This payload is not available on `schedule:` or `workflow_dispatch:` events.
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
@@ -386,8 +385,8 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     if (!skipFetchGhPages && ghRepository) {
         await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmarkDataRepository');
-        benchmarkBaseDir = './benchmarkDataRepository/';
-        extraGitArguments = ['--work-tree=' + benchmarkBaseDir, '--git-dir=' + benchmarkBaseDir + '.git'];
+        benchmarkBaseDir = './benchmarkDataRepository';
+        extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}.git`];
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
@@ -397,15 +396,18 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         );
     }
 
-    await io.mkdirP(benchmarkBaseDir + benchmarkDataDirPath);
+    const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataDirPath);
+    const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
-    const data = await loadDataJs(benchmarkBaseDir + dataPath);
+    await io.mkdirP(benchmarkDataDirFullPath);
+
+    const data = await loadDataJs(dataPath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
-    await storeDataJs(benchmarkBaseDir + dataPath, data);
+    await storeDataJs(dataPath, data);
 
     await git.cmd('add', dataPath);
-    await addIndexHtmlIfNeeded(benchmarkBaseDir + benchmarkDataDirPath);
+    await addIndexHtmlIfNeeded(benchmarkDataDirFullPath);
     await git.cmd(
         'commit',
         '-m',
