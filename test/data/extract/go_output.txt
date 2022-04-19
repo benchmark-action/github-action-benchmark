@@ -5,5 +5,8 @@ BenchmarkFib20  	 	   					30000		40537.123 ns/op
 BenchmarkFib/my_tabled_benchmark_-_10-8    	5000000		325 ns/op
 BenchmarkFib/my_tabled_benchmark_-_20		30000		40537.123 ns/op
 BenchmarkFib/my/tabled/benchmark_-_20		30001		40537.456 ns/op
+BenchmarkFib11-16    	 4587789	       262.7 ns/op	         3.000 auxMetricUnits
+BenchmarkFib22-16    	   37653	     31915 ns/op	         4.000 auxMetricUnits
+PASS
 PASS
 ok  	_/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/go	3.614s

@@ -199,6 +199,32 @@ describe('extractResult()', function () {
                     value: 40537.456,
                     extra: '30001 times',
                 },
+
+                {
+                    name: 'BenchmarkFib11',
+                    unit: 'auxMetricUnits',
+                    value: 3,
+                    extra: '4587789	times',
+                },
+                {
+                    name: 'BenchmarkFib11',
+                    unit: 'ns/op',
+                    value: 262.7,
+                    extra: '4587789	times',
+                },
+
+                {
+                    name: 'BenchmarkFib22',
+                    unit: 'ns/op',
+                    value: 31915,
+                    extra: '37653 times',
+                },
+                {
+                    name: 'BenchmarkFib22',
+                    unit: 'auxMetricUnits',
+                    value: 4,
+                    extra: '37653 times',
+                },
             ],
         },
         {
