@@ -306,7 +306,13 @@ function extractGoResult(output: string): BenchmarkResult[] {
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
     //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
-    const reExtract = /^(Benchmark\w+(?:\/?[\w()$%^&*-]*?)*?)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
+    // Example if someone has used the ReportMetric function to add additional metrics to each benchmark:
+    // BenchmarkThing-16    	       1	95258906556 ns/op	        64.02 UnitsForMeasure2	        31.13 UnitsForMeasure3
+
+    // reference, "Proposal: Go Benchmark Data Format": https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
+    // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
+    // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
+    const reExtract = /^(Benchmark\w+(?:\/?[\w()$%^&*-]*?)*?)(-\d+)?\s+(\d+)\s+(.+)$/;
 
     for (const line of lines) {
         const m = line.match(reExtract);
@@ -317,15 +323,18 @@ function extractGoResult(output: string): BenchmarkResult[] {
         const name = m[1];
         const procs = m[2] !== undefined ? m[2].slice(1) : null;
         const times = m[3];
-        const value = parseFloat(m[4]);
-        const unit = m[5];
+        const remainder = m[4];
 
-        let extra = `${times} times`;
-        if (procs !== null) {
-            extra += `\n${procs} procs`;
+        const pieces = remainder.split(/[ \t]+/);
+        for (let i = 0; i < pieces.length; i = i + 2) {
+            let extra = `${times} times`.replace(/\s\s+/g, ' ');
+            if (procs !== null) {
+                extra += `\n${procs} procs`;
+            }
+            const value = parseFloat(pieces[i]);
+            const unit = pieces[i + 1];
+            ret.push({ name, value, unit, extra });
         }
-
-        ret.push({ name, value, unit, extra });
     }
 
     return ret;
