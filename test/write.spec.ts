@@ -727,6 +727,31 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 error: undefined,
             },
+            {
+                it: 'does not raise an alert when the benchmark is better irrespective of the alertThreshold',
+                config: { ...defaultCfg, alertThreshold: 0.01, failThreshold: 0.01 },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'go',
+                                benches: [bench('bench_fib_10', 14)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'go',
+                    benches: [bench('bench_fib_10', 11)], // Exceeds 1.0 alertthreshold
+                },
+                error: undefined,
+            },
         ];
 
         for (const t of normalCases) {
