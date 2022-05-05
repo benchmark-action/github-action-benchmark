@@ -228,6 +228,32 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'benchmarkluau',
+            expected: [
+                {
+                    name: 'base64',
+                    range: '±0.636%',
+                    unit: 'ms',
+                    value: 15.041,
+                    extra: 'luau',
+                },
+                {
+                    name: 'chess',
+                    range: '±0.212%',
+                    unit: 'ms',
+                    value: 69.56,
+                    extra: 'luau',
+                },
+                {
+                    name: 'life',
+                    range: '±0.187%',
+                    unit: 'ms',
+                    value: 85.089,
+                    extra: 'luau',
+                },
+            ],
+        },
+        {
             tool: 'pytest',
             expected: [
                 {
