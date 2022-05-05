@@ -593,6 +593,30 @@ function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
     }
 }
 
+function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
+    const lines = output.split(/\n/);
+    const results: BenchmarkResult[] = [];
+
+    for (const line of lines) {
+        if (line === '') break;
+        const words = line.split(/\s+/);
+
+        const valueStr = words[3];
+
+        results.push({
+            name: words[1],
+            value: parseFloat(valueStr),
+            unit: valueStr.replaceAll(/.[0-9]+/g, ''),
+            range: `±${words[5]}`,
+            extra: words[words.length - 1],
+        });
+    }
+
+    results; //?
+
+    return results;
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken } = config;
@@ -628,6 +652,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'customSmallerIsBetter':
             benches = extractCustomBenchmarkResult(output);
+            break;
+        case 'benchmarkluau':
+            benches = extractLuauBenchmarkResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
