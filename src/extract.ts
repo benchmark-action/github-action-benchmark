@@ -605,7 +605,7 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
         results.push({
             name: name,
             value: parseFloat(valueStr),
-            unit: valueStr.replaceAll(/.[0-9]+/g, ''),
+            unit: valueStr.replace(/.[0-9]+/g, ''),
             range: `±${range}`,
             extra: extra,
         });
