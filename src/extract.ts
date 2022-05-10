@@ -597,22 +597,19 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\n/);
     const results: BenchmarkResult[] = [];
 
+    output;
     for (const line of lines) {
-        if (line === '') break;
-        const words = line.split(/\s+/);
-
-        const valueStr = words[3];
+        if (!line.startsWith('SUCCESS')) continue;
+        const [_0, name, _2, valueStr, _4, range, _6, extra] = line.split(/\s+/);
 
         results.push({
-            name: words[1],
+            name: name,
             value: parseFloat(valueStr),
             unit: valueStr.replaceAll(/.[0-9]+/g, ''),
-            range: `±${words[5]}`,
-            extra: words[words.length - 1],
+            range: `±${range}`,
+            extra: extra,
         });
     }
-
-    results;
 
     return results;
 }
