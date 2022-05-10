@@ -612,7 +612,7 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
         });
     }
 
-    results; //?
+    results;
 
     return results;
 }
