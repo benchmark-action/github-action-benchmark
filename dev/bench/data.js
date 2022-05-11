@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276237084,
+  "lastUpdate": 1652276239862,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23929,6 +23929,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.10%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276237042,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1371688,
+            "range": "±0.22%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11382,
+            "range": "±0.02%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
