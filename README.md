@@ -24,6 +24,7 @@ This action currently supports the following tools:
 - [Catch2][catch2] for C++ projects
 - [BenchmarkTools.jl][] for Julia packages
 - [Benchmark.Net][benchmarkdotnet] for .Net projects
+- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -330,6 +331,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [catch2 for C++ projects](./examples/cpp/README.md)
 - [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
 - [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
+- [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
 
@@ -351,7 +353,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`, `"julia"`, `"benchmarkdotnet"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
+`"googlecpp"`, `"catch2"`, `"julia"`, `"benchmarkdotnet"`,`"benchmarkluau"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
 
 #### `output-file-path` (Required)
 
