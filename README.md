@@ -48,6 +48,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
 | Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
 | .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
+| Luau         | Coming soon | Coming soon |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
