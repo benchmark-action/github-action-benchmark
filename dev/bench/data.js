@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276251077,
+  "lastUpdate": 1652276253837,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36983,6 +36983,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.238,
             "range": "± 434",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276250994,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 187,
+            "range": "± 3",
+            "unit": "ns",
+            "extra": "100 samples\n153 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 24.358,
+            "range": "± 500",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
