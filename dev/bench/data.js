@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276253837,
+  "lastUpdate": 1652276281708,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34285,6 +34285,42 @@ window.BENCHMARK_DATA = {
             "value": 24154.156635642976,
             "unit": "ns/iter",
             "extra": "iterations: 29010\ncpu: 24151.05825577387 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276279863,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.4496614213011,
+            "unit": "ns/iter",
+            "extra": "iterations: 3902047\ncpu: 179.36946940926134 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24148.22124443507,
+            "unit": "ns/iter",
+            "extra": "iterations: 28977\ncpu: 24145.932981330017 ns\nthreads: 1"
           }
         ]
       }
