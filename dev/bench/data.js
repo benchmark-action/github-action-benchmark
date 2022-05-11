@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276241629,
+  "lastUpdate": 1652276251077,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37597,6 +37597,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 33600,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276249260,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 320.0897435897436,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":234,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 40301,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
