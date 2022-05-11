@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276522507,
+  "lastUpdate": 1652276525492,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29953,6 +29953,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00011559321540051448",
             "extra": "mean: 2.5603934373179404 msec\nrounds: 343"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "318404ebff79bbdd2746ee919ad02e0f02c881bc",
+          "message": "Bump minimist from 1.2.5 to 1.2.6 (#114)\n\nBumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.\r\n- [Release notes](https://github.com/substack/minimist/releases)\r\n- [Commits](https://github.com/substack/minimist/compare/1.2.5...1.2.6)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: minimist\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2022-05-11T15:41:12+02:00",
+          "tree_id": "4b85ce8bf2f12f3ff20ef8073ba6cab298f0896f",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/318404ebff79bbdd2746ee919ad02e0f02c881bc"
+        },
+        "date": 1652276523228,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45231.42393541657,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000001380078807688804",
+            "extra": "mean: 22.108523521785305 usec\nrounds: 25317"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 383.6730153185761,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000032747032000880234",
+            "extra": "mean: 2.606386063324437 msec\nrounds: 379"
           }
         ]
       }
