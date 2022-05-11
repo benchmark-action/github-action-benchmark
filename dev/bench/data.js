@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276293206,
+  "lastUpdate": 1652276444729,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9454,6 +9454,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24358,
             "range": "± 148",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276442929,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24278,
+            "range": "± 98",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24306,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39422,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
