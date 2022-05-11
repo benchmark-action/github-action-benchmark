@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652276550525,
+  "lastUpdate": 1652276576879,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38209,6 +38209,42 @@ window.BENCHMARK_DATA = {
             "value": 49.349615541788246,
             "unit": "ns",
             "range": "± 0.007090225186436579"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "318404ebff79bbdd2746ee919ad02e0f02c881bc",
+          "message": "Bump minimist from 1.2.5 to 1.2.6 (#114)\n\nBumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.\r\n- [Release notes](https://github.com/substack/minimist/releases)\r\n- [Commits](https://github.com/substack/minimist/compare/1.2.5...1.2.6)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: minimist\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2022-05-11T15:41:12+02:00",
+          "tree_id": "4b85ce8bf2f12f3ff20ef8073ba6cab298f0896f",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/318404ebff79bbdd2746ee919ad02e0f02c881bc"
+        },
+        "date": 1652276574190,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 28.40444545886096,
+            "unit": "ns",
+            "range": "± 0.9786576767527347"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 53.17214369277159,
+            "unit": "ns",
+            "range": "± 1.4009999739713053"
           }
         ]
       }
