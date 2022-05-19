@@ -37,6 +37,10 @@ async function loadDataJs(dataPath: string): Promise<DataJson> {
 
 async function storeDataJs(dataPath: string, data: DataJson) {
     const script = SCRIPT_PREFIX + JSON.stringify(data, null, 2);
+    console.log('--------- SCRIPT START ---------\n');
+    console.log(script);
+    console.log('\n--------- SCRIPT END ---------');
+
     await fs.writeFile(dataPath, script, 'utf8');
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
