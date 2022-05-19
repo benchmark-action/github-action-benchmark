@@ -43,7 +43,7 @@ jobs:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
-          skip-fetch-gh-pages: $${{ matrix.ghRepository && true || false }}
+          skip-fetch-gh-pages: $${{ !!matrix.ghRepository }}
           fail-on-alert: true
           gh-repository: ${{ matrix.ghRepository }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
