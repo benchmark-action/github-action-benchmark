@@ -7,6 +7,7 @@ export type ToolType =
     | 'cargo'
     | 'go'
     | 'benchmarkjs'
+    | 'benchmarkluau'
     | 'pytest'
     | 'googlecpp'
     | 'catch2'
