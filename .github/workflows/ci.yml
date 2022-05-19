@@ -26,7 +26,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dist/other-repo/dev/bench/data.js before_data.js
+          cp ./dev/bench/data.js before_data.js
           git checkout -
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
