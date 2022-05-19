@@ -8,6 +8,7 @@ import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
 import deepEq = require('deep-equal');
 import { getServerUrl } from '../src/git';
 import assert from 'assert';
+import chalk from 'chalk';
 
 function help(): never {
     throw new Error('Usage: node ci_validate_modification.js before_data.js "benchmark name"');
@@ -190,6 +191,9 @@ function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchNa
     console.log('Validating diffs:', diffs);
 
     if (!diffs || diffs.length !== 2) {
+        console.log('Before:\n', chalk.green(JSON.stringify(beforeJson, undefined, 2)));
+        console.log('After:\n', chalk.red(JSON.stringify(beforeJson, undefined, 2)));
+
         throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
     }
 
