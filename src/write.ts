@@ -7,7 +7,6 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
-import { exec } from '@actions/exec';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -399,17 +398,10 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         );
     }
 
-    console.log('cwd', process.cwd());
-    console.log('benchmarkBaseDir:', benchmarkBaseDir);
-    console.log('benchmarkDataDirPath:', benchmarkDataDirPath);
+    // `benchmarkDataDirPath` is an absolute path at this stage,
+    // so we need to convert it to relative to be able to prepend the `benchmarkBaseDir`
     const benchmarkDataRelativeDirPath = path.relative(process.cwd(), benchmarkDataDirPath);
-    console.log('benchmarkDataRelativeDirPath:', benchmarkDataRelativeDirPath);
     const benchmarkDataDirFullPath = path.resolve(path.join(benchmarkBaseDir, benchmarkDataRelativeDirPath));
-    console.log('benchmarkDataDirFullPath:', benchmarkDataDirFullPath);
-
-    await exec(`ls .`);
-    await exec(`ls ./dev/bench`);
-    // await exec(`ls ${benchmarkDataDirFullPath}`);
 
     const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
@@ -474,7 +466,6 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
             await git.fetch(githubToken, ghPagesBranch);
         }
         await git.cmd('switch', ghPagesBranch);
-        await git.cmd('status');
     }
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
