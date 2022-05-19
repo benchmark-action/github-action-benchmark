@@ -260,13 +260,19 @@ async function main() {
         throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     }
 
-    const dataResults = await Promise.allSettled([
-        readDataJson('benchmark-data-repository/dev/bench/data.js'),
-        readDataJson('dev/bench/data.js'),
-    ]);
+    const dataResults = await Promise.allSettled(
+        ['benchmark-data-repository/dev/bench/data.js', 'dev/bench/data.js'].map((fileName) =>
+            readDataJson(fileName).then((results) => ({
+                results,
+                fileName,
+            })),
+        ),
+    );
 
     const jsonResults = dataResults
-        .filter((res): res is PromiseFulfilledResult<DataJson> => res.status === 'fulfilled')
+        .filter(
+            (res): res is PromiseFulfilledResult<{ results: DataJson; fileName: string }> => res.status === 'fulfilled',
+        )
         .map((res) => res.value);
 
     assert(jsonResults.length > 0 && jsonResults.length <= 2, 'Maximum 2 data.js files should be present in the repo');
@@ -275,10 +281,12 @@ async function main() {
     await exec('git checkout -');
 
     console.log('Validating data.js both before/after action');
+    console.log('before: ', beforeDataJs);
+    console.log('after: ', afterJson.fileName);
     validateDataJson(beforeJson);
-    validateDataJson(afterJson);
+    validateDataJson(afterJson.results);
 
-    validateDiff(beforeJson, afterJson, expectedBenchName);
+    validateDiff(beforeJson, afterJson.results, expectedBenchName);
 }
 
 main().catch((err) => {
