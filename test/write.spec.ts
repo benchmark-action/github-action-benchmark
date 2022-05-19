@@ -1002,8 +1002,6 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'checkout',
                         [
-                            // 'dummy token',
-                            // 'https://github.com/user/other-repo',
                             'gh-pages',
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
@@ -1041,7 +1039,6 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
                     ],
-                    ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
@@ -1063,8 +1060,6 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'checkout',
                         [
-                            // 'dummy token',
-                            // 'https://github.com/user/other-repo',
                             'gh-pages',
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
@@ -1102,7 +1097,6 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
                     ],
-                    ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
