@@ -50,7 +50,6 @@ export function getServerName(repositoryUrl: string | undefined): string {
 
 export async function cmd(additionalGitOptions: string[], ...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
-    console.log(`Executing Git: ${args.join(' ')}`);
     const serverUrl = getServerUrl(github.context.payload.repository?.html_url);
     const userArgs = [
         ...additionalGitOptions,

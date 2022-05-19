@@ -187,12 +187,9 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
 
 function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchName: string) {
     const diffs = diff(beforeJson, afterJson);
-    console.log('Validating diffs:', JSON.stringify(diffs, undefined, 2));
+    console.log('Validating diffs:', diffs);
 
     if (!diffs || diffs.length !== 2) {
-        // console.log('Before:\n', chalk.green(JSON.stringify(beforeJson)));
-        // console.log('After:\n', chalk.red(JSON.stringify(beforeJson)));
-
         throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
     }
 
@@ -260,19 +257,13 @@ async function main() {
         throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     }
 
-    const dataResults = await Promise.allSettled(
-        ['benchmark-data-repository/dev/bench/data.js', 'dev/bench/data.js'].map((fileName) =>
-            readDataJson(fileName).then((results) => ({
-                results,
-                fileName,
-            })),
-        ),
-    );
+    const dataResults = await Promise.allSettled([
+        readDataJson('benchmark-data-repository/dev/bench/data.js'),
+        readDataJson('dev/bench/data.js'),
+    ]);
 
     const jsonResults = dataResults
-        .filter(
-            (res): res is PromiseFulfilledResult<{ results: DataJson; fileName: string }> => res.status === 'fulfilled',
-        )
+        .filter((res): res is PromiseFulfilledResult<DataJson> => res.status === 'fulfilled')
         .map((res) => res.value);
 
     assert(jsonResults.length > 0 && jsonResults.length <= 2, 'Maximum 2 data.js files should be present in the repo');
@@ -281,12 +272,10 @@ async function main() {
     await exec('git checkout -');
 
     console.log('Validating data.js both before/after action');
-    console.log('before: ', beforeDataJs);
-    console.log('after: ', afterJson.fileName);
     validateDataJson(beforeJson);
-    validateDataJson(afterJson.results);
+    validateDataJson(afterJson);
 
-    validateDiff(beforeJson, afterJson.results, expectedBenchName);
+    validateDiff(beforeJson, afterJson, expectedBenchName);
 }
 
 main().catch((err) => {

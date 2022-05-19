@@ -37,10 +37,6 @@ async function loadDataJs(dataPath: string): Promise<DataJson> {
 
 async function storeDataJs(dataPath: string, data: DataJson) {
     const script = SCRIPT_PREFIX + JSON.stringify(data, null, 2);
-    // console.log('--------- SCRIPT START ---------\n');
-    // console.log(script);
-    // console.log('\n--------- SCRIPT END ---------');
-
     await fs.writeFile(dataPath, script, 'utf8');
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
@@ -391,13 +387,11 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     let extraGitArguments: string[] = [];
 
     if (githubToken && !skipFetchGhPages && ghRepository) {
-        console.log('GIT CLONE', ghRepository, ghPagesBranch);
         benchmarkBaseDir = './benchmark-data-repository';
         await git.clone(githubToken, ghRepository, benchmarkBaseDir);
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
         await git.checkout(ghPagesBranch, extraGitArguments);
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
-        console.log('GIT PULL', ghPagesBranch);
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning(
