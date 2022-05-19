@@ -401,7 +401,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     // `benchmarkDataDirPath` is an absolute path at this stage,
     // so we need to convert it to relative to be able to prepend the `benchmarkBaseDir`
     const benchmarkDataRelativeDirPath = path.relative(process.cwd(), benchmarkDataDirPath);
-    const benchmarkDataDirFullPath = path.resolve(path.join(benchmarkBaseDir, benchmarkDataRelativeDirPath));
+    const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataRelativeDirPath);
 
     const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
