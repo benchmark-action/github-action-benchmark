@@ -386,16 +386,25 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     let extraGitArguments: string[] = [];
 
     if (!skipFetchGhPages && ghRepository) {
+        console.log('GIT CLONE', ghRepository, ghPagesBranch);
         await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmark-data-repository');
         benchmarkBaseDir = './benchmark-data-repository';
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}.git`];
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
+        console.log('GIT PULL', ghPagesBranch);
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning(
             "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
                 "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
         );
+    } else {
+        console.warn('NOTHING EXECUTED:', {
+            skipFetchGhPages,
+            ghRepository,
+            isPrivateRepo,
+            githubToken: !!githubToken,
+        });
     }
 
     // `benchmarkDataDirPath` is an absolute path at this stage,
