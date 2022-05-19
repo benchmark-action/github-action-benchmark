@@ -9,7 +9,12 @@ on:
 
 jobs:
   rust:
-    name: Run Rust benchmark example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Rust benchmark example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,19 +42,16 @@ jobs:
           output-file-path: examples/rust/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Rust Benchmark
-          tool: 'cargo'
-          output-file-path: examples/rust/output.txt
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
-    name: Run Go benchmark example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Go benchmark example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -77,19 +79,16 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Go Benchmark
-          tool: 'go'
-          output-file-path: examples/go/output.txt
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   benchmarkjs:
-    name: Run JavaScript benchmark example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run JavaScript benchmark example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -116,19 +115,16 @@ jobs:
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Benchmark.js Benchmark
-          tool: 'benchmarkjs'
-          output-file-path: examples/benchmarkjs/output.txt
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   pytest-benchmark:
-    name: Run Pytest benchmark example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Pytest benchmark example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -161,19 +157,16 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Python Benchmark with pytest-benchmark
-          tool: 'pytest'
-          output-file-path: examples/pytest/output.json
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   google-benchmark-framework:
-    name: Run Google C++ Benchmark Framework example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Google C++ Benchmark Framework example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -207,19 +200,16 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: C++ Benchmark
-          tool: 'googlecpp'
-          output-file-path: examples/cpp/benchmark_result.json
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   catch2-framework:
-    name: Run Catch2 C++ Benchmark Framework example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Catch2 C++ Benchmark Framework example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -251,19 +241,16 @@ jobs:
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Catch2 Benchmark
-          tool: 'catch2'
-          output-file-path: examples/catch2/benchmark_result.txt
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   julia-benchmark:
-    name: Run Julia benchmark example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Julia benchmark example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -299,19 +286,16 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Julia benchmark
-          tool: 'julia'
-          output-file-path: examples/julia/output.json
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   benchmarkdotnet-framework:
-    name: Run Benchmark.Net .Net Benchmark Framework example
+    strategy:
+      matrix:
+        ghRepository:
+          - ''
+          - 'github.com/benchmark-action/github-action-benchmark-results'
+    name: Run Benchmark.Net .Net Benchmark Framework example - ${{ matrix.ghRepository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -340,15 +324,7 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - name: Store benchmark result - other repo
-        uses: ./
-        with:
-          name: Benchmark.Net Benchmark
-          tool: 'benchmarkdotnet'
-          output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
-          skip-fetch-gh-pages: true
-          fail-on-alert: true
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: ${{ matrix.ghRepository }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   only-alert-with-cache:
