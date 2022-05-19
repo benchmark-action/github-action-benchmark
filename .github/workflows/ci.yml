@@ -46,7 +46,7 @@ jobs:
           skip-fetch-gh-pages: ${{ !matrix.ghRepository }}
           fail-on-alert: true
           gh-repository: ${{ matrix.ghRepository }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
           auto-push: ${{ !!matrix.ghRepository }}
 #      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
