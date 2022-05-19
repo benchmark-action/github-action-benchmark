@@ -130,7 +130,7 @@ export async function fetch(
 }
 
 export async function clone(
-    token: string | undefined,
+    token: string,
     ghRepository: string,
     baseDirectory: string,
     additionalGitOptions: string[] = [],
@@ -138,7 +138,7 @@ export async function clone(
 ): Promise<string> {
     core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
 
-    const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
+    const remote = getRepoRemoteUrl(token, ghRepository);
     let args = ['clone', remote, baseDirectory];
     if (options.length > 0) {
         args = args.concat(options);
@@ -147,8 +147,6 @@ export async function clone(
     return cmd(additionalGitOptions, ...args);
 }
 export async function checkout(
-    // token: string | undefined,
-    // ghRepository: string,
     ghRef: string,
     additionalGitOptions: string[] = [],
     ...options: string[]

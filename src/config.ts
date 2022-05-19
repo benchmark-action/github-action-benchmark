@@ -260,6 +260,9 @@ export async function configFromJobInput(): Promise<Config> {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    if (ghRepository) {
+        validateGitHubToken('gh-repository', githubToken, 'to clone the repository');
+    }
     validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
