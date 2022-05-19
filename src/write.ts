@@ -422,7 +422,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     await storeDataJs(dataPath, data);
 
-    await git.cmd([], 'add', dataPath);
+    await git.cmd(extraGitArguments, 'add', benchmarkDataRelativeDirPath);
     await addIndexHtmlIfNeeded(benchmarkDataDirFullPath);
     await git.cmd(extraGitArguments, 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
