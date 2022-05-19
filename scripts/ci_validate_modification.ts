@@ -191,8 +191,8 @@ function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchNa
     console.log('Validating diffs:', diffs);
 
     if (!diffs || diffs.length !== 2) {
-        console.log('Before:\n', chalk.green(JSON.stringify(beforeJson, undefined, 2)));
-        console.log('After:\n', chalk.red(JSON.stringify(beforeJson, undefined, 2)));
+        console.log('Before:\n', chalk.green(JSON.stringify(beforeJson)));
+        console.log('After:\n', chalk.red(JSON.stringify(beforeJson)));
 
         throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
     }
