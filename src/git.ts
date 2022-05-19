@@ -139,7 +139,7 @@ export async function clone(
     core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
 
     const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
-    let args = ['clone', remote];
+    let args = ['clone', remote, baseDirectory];
     if (options.length > 0) {
         args = args.concat(options);
     }
