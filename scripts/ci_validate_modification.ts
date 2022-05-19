@@ -187,7 +187,7 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
 
 function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchName: string) {
     const diffs = diff(beforeJson, afterJson);
-    console.log('Validating diffs:', diffs);
+    console.log('Validating diffs:', JSON.stringify(diffs, undefined, 2));
 
     if (!diffs || diffs.length !== 2) {
         // console.log('Before:\n', chalk.green(JSON.stringify(beforeJson)));
