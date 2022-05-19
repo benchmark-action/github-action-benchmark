@@ -389,7 +389,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         console.log('GIT CLONE', ghRepository, ghPagesBranch);
         benchmarkBaseDir = './benchmark-data-repository';
         await git.clone(githubToken, ghRepository, benchmarkBaseDir);
-        extraGitArguments = ['-C benchmark-data-repository'];
+        extraGitArguments = ['--work-dir=benchmark-data-repository'];
         await git.checkout(ghPagesBranch, extraGitArguments);
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         console.log('GIT PULL', ghPagesBranch);
