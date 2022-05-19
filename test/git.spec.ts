@@ -136,7 +136,7 @@ describe('git', function () {
 
     describe('push()', function () {
         it('runs `git push` with given branch and options', async function () {
-            const stdout = await push('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const stdout = await push('this-is-token', 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -158,7 +158,7 @@ describe('git', function () {
 
     describe('pull()', function () {
         it('runs `git pull` with given branch and options with token', async function () {
-            const stdout = await pull('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const stdout = await pull('this-is-token', 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -177,7 +177,7 @@ describe('git', function () {
         });
 
         it('runs `git pull` with given branch and options without token', async function () {
-            const stdout = await pull(undefined, 'my-branch', 'opt1', 'opt2');
+            const stdout = await pull(undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -189,7 +189,7 @@ describe('git', function () {
 
     describe('fetch()', function () {
         it('runs `git fetch` with given branch and options with token', async function () {
-            const stdout = await fetch('this-is-token', 'my-branch', 'opt1', 'opt2');
+            const stdout = await fetch('this-is-token', 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -208,7 +208,7 @@ describe('git', function () {
         });
 
         it('runs `git fetch` with given branch and options without token', async function () {
-            const stdout = await fetch(undefined, 'my-branch', 'opt1', 'opt2');
+            const stdout = await fetch(undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');

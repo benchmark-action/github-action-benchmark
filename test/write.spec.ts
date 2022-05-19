@@ -53,7 +53,7 @@ class FakedOctokit {
     }
 }
 
-type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone';
+type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone' | 'checkout';
 class GitSpy {
     history: [GitFunc, unknown[]][];
     pushFailure: null | string;
@@ -140,6 +140,10 @@ jest.mock('../src/git', () => ({
     },
     async clone(...args: unknown[]) {
         gitSpy.call('clone', args);
+        return '';
+    },
+    async checkout(...args: unknown[]) {
+        gitSpy.call('checkout', args);
         return '';
     },
 }));
@@ -939,7 +943,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 ['cmd', ['add', path.join(dir, 'data.js')]],
                 addIndexHtml ? ['cmd', ['add', path.join(dir, 'index.html')]] : undefined,
                 ['cmd', ['commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
-                autoPush ? ['push', [token, 'gh-pages']] : undefined,
+                autoPush ? ['push', [token, 'gh-pages', []]] : undefined,
                 ['cmd', ['checkout', '-']], // Return from gh-pages
             ];
             return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
@@ -994,20 +998,26 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 gitServerUrl: serverUrl,
                 gitHistory: [
+                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                     [
-                        'clone',
-                        ['dummy token', 'https://github.com/user/other-repo', 'gh-pages', 'benchmark-data-repository'],
+                        'checkout',
+                        [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository.git'],
+                        ],
                     ],
                     ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
                     ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
                     [
                         'cmd',
                         [
+                            '--work-tree=./benchmark-data-repository',
+                            '--git-dir=./benchmark-data-repository.git',
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
-                            '--work-tree=./benchmark-data-repository',
-                            '--git-dir=./benchmark-data-repository.git',
                         ],
                     ],
                     [
@@ -1015,8 +1025,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                         [
                             'dummy token',
                             'gh-pages',
-                            '--work-tree=./benchmark-data-repository',
-                            '--git-dir=./benchmark-data-repository.git',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository.git'],
                         ],
                     ],
                     ['cmd', ['checkout', '-']], // Return from gh-pages
@@ -1037,20 +1046,26 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 gitServerUrl: serverUrl,
                 gitHistory: [
+                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                     [
-                        'clone',
-                        ['dummy token', 'https://github.com/user/other-repo', 'gh-pages', 'benchmark-data-repository'],
+                        'checkout',
+                        [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository.git'],
+                        ],
                     ],
                     ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
                     ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
                     [
                         'cmd',
                         [
+                            '--work-tree=./benchmark-data-repository',
+                            '--git-dir=./benchmark-data-repository.git',
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
-                            '--work-tree=./benchmark-data-repository',
-                            '--git-dir=./benchmark-data-repository.git',
                         ],
                     ],
                     [
@@ -1058,8 +1073,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                         [
                             'dummy token',
                             'gh-pages',
-                            '--work-tree=./benchmark-data-repository',
-                            '--git-dir=./benchmark-data-repository.git',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository.git'],
                         ],
                     ],
                     ['cmd', ['checkout', '-']], // Return from gh-pages

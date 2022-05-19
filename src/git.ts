@@ -77,11 +77,16 @@ function getRepoRemoteUrl(token: string, repoUrl: string): string {
     return `https://x-access-token:${token}@${repoUrl}.git`;
 }
 
-export async function push(token: string, branch: string, ...options: string[]): Promise<string> {
+export async function push(
+    token: string,
+    branch: string,
+    additionalGitOptions: string[] = [],
+    ...options: string[]
+): Promise<string> {
     core.debug(`Executing 'git push' to branch '${branch}' with token and options '${options.join(' ')}'`);
 
     const remote = getCurrentRepoRemoteUrl(token);
-    let args = ['push', remote, `${branch}:${branch}`, '--no-verify'];
+    let args = [...additionalGitOptions, 'push', remote, `${branch}:${branch}`, '--no-verify'];
     if (options.length > 0) {
         args = args.concat(options);
     }
@@ -89,11 +94,16 @@ export async function push(token: string, branch: string, ...options: string[]):
     return cmd(...args);
 }
 
-export async function pull(token: string | undefined, branch: string, ...options: string[]): Promise<string> {
+export async function pull(
+    token: string | undefined,
+    branch: string,
+    additionalGitOptions: string[] = [],
+    ...options: string[]
+): Promise<string> {
     core.debug(`Executing 'git pull' to branch '${branch}' with token and options '${options.join(' ')}'`);
 
     const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
-    let args = ['pull', remote, branch];
+    let args = [...additionalGitOptions, 'pull', remote, branch];
     if (options.length > 0) {
         args = args.concat(options);
     }
@@ -101,11 +111,16 @@ export async function pull(token: string | undefined, branch: string, ...options
     return cmd(...args);
 }
 
-export async function fetch(token: string | undefined, branch: string, ...options: string[]): Promise<string> {
+export async function fetch(
+    token: string | undefined,
+    branch: string,
+    additionalGitOptions: string[] = [],
+    ...options: string[]
+): Promise<string> {
     core.debug(`Executing 'git fetch' for branch '${branch}' with token and options '${options.join(' ')}'`);
 
     const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
-    let args = ['fetch', remote, `${branch}:${branch}`];
+    let args = [...additionalGitOptions, 'fetch', remote, `${branch}:${branch}`];
     if (options.length > 0) {
         args = args.concat(options);
     }
@@ -116,13 +131,31 @@ export async function fetch(token: string | undefined, branch: string, ...option
 export async function clone(
     token: string | undefined,
     ghRepository: string,
-    branch: string,
+    baseDirectory: string,
+    additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git clone' to branch '${branch}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
 
     const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
-    let args = ['clone', remote, branch];
+    let args = [...additionalGitOptions, 'clone', remote];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(...args);
+}
+export async function checkout(
+    token: string | undefined,
+    ghRepository: string,
+    ghRef: string,
+    additionalGitOptions: string[] = [],
+    ...options: string[]
+): Promise<string> {
+    core.debug(`Executing 'git checkout' to ref '${ghRef}' with token and options '${options.join(' ')}'`);
+
+    const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
+    let args = [...additionalGitOptions, 'checkout', remote, ghRef];
     if (options.length > 0) {
         args = args.concat(options);
     }
