@@ -10,7 +10,9 @@ import assert from 'assert';
 import deepEq = require('deep-equal');
 
 function help(): never {
-    throw new Error('Usage: node ci_validate_modification.js before_data.js "benchmark name"');
+    throw new Error(
+        'Usage: node ci_validate_modification.js before_data.js "benchmark name" [benchmark-data-repository-directory]',
+    );
 }
 
 async function exec(cmd: string): Promise<string> {
@@ -205,7 +207,7 @@ function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchNa
 async function main() {
     console.log('Start validating modifications by action with args', process.argv);
 
-    if (process.argv.length !== 4) {
+    if (process.argv.length !== 4 && process.argv.length !== 5) {
         help();
     }
 
@@ -221,6 +223,11 @@ async function main() {
 
     const beforeDataJs = path.resolve(process.argv[2]);
     const expectedBenchName = process.argv[3];
+    const benchmarkDataDirectory = process.argv[4];
+
+    const additionalGitParams = benchmarkDataDirectory
+        ? `--work-tree=${benchmarkDataDirectory} --git-dir=${benchmarkDataDirectory}/.git`
+        : '';
 
     console.log('Validating modifications by action');
     console.log(`  data.js before action: ${beforeDataJs}`);
@@ -229,14 +236,14 @@ async function main() {
     const beforeJson = await readDataJson(beforeDataJs);
 
     console.log('Validating current branch');
-    const branch = await exec('git rev-parse --abbrev-ref HEAD');
+    const branch = await exec(`git ${additionalGitParams} rev-parse --abbrev-ref HEAD`);
     if (branch === 'gh-pages') {
         throw new Error(`Current branch is still on '${branch}'`);
     }
 
     console.log('Retrieving data.js after action');
-    await exec('git checkout gh-pages');
-    const latestCommitLog = await exec('git log -n 1');
+    await exec(`git ${additionalGitParams} checkout gh-pages`);
+    const latestCommitLog = await exec(`git ${additionalGitParams} log -n 1`);
 
     console.log('Validating auto commit');
     const commitLogLines = latestCommitLog.split('\n');
@@ -269,7 +276,7 @@ async function main() {
     assert(jsonResults.length > 0 && jsonResults.length <= 2, 'Maximum 2 data.js files should be present in the repo');
 
     const afterJson = jsonResults[0];
-    await exec('git checkout -');
+    await exec(`git ${additionalGitParams} checkout -`);
 
     console.log('Validating data.js both before/after action');
     validateDataJson(beforeJson);

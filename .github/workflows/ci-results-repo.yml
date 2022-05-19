@@ -43,7 +43,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark' './benchmark-data-repository'
 
   go:
     name: Run Go benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -79,7 +79,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark' './benchmark-data-repository'
 
   benchmarkjs:
     name: Run JavaScript benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -114,7 +115,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark' './benchmark-data-repository'
 
   pytest-benchmark:
     name: Run Pytest benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -155,7 +157,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark' './benchmark-data-repository'
 
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
@@ -197,7 +200,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark' './benchmark-data-repository'
 
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
@@ -237,7 +241,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
 
   julia-benchmark:
     name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -281,7 +286,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark' './benchmark-data-repository'
 
   benchmarkdotnet-framework:
     name: Run Benchmark.Net .Net Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
@@ -311,7 +317,8 @@ jobs:
           skip-fetch-gh-pages: false
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark' './benchmark-data-repository'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
