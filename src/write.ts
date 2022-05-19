@@ -407,7 +407,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     await exec(`ls .`);
     await exec(`ls ./dev/bench`);
-    await exec(`ls ${benchmarkDataDirFullPath}`);
+    // await exec(`ls ${benchmarkDataDirFullPath}`);
 
     const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
