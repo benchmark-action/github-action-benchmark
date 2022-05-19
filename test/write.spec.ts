@@ -1005,7 +1005,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             // 'dummy token',
                             // 'https://github.com/user/other-repo',
                             'gh-pages',
-                            ['--work-dir=benchmark-data-repository'],
+                            ['--work-tree=benchmark-data-repository'],
                         ],
                     ],
                     ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
@@ -1013,13 +1013,13 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'cmd',
                         [
-                            ['--work-dir=benchmark-data-repository'],
+                            ['--work-tree=benchmark-data-repository'],
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
                         ],
                     ],
-                    ['push', ['dummy token', 'gh-pages', ['--work-dir=benchmark-data-repository']]],
+                    ['push', ['dummy token', 'gh-pages', ['--work-tree=benchmark-data-repository']]],
                     ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
@@ -1045,7 +1045,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             // 'dummy token',
                             // 'https://github.com/user/other-repo',
                             'gh-pages',
-                            ['--work-dir=benchmark-data-repository'],
+                            ['--work-tree=benchmark-data-repository'],
                         ],
                     ],
                     ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
@@ -1053,13 +1053,13 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'cmd',
                         [
-                            ['--work-dir=benchmark-data-repository'],
+                            ['--work-tree=benchmark-data-repository'],
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
                         ],
                     ],
-                    ['push', ['dummy token', 'gh-pages', ['--work-dir=benchmark-data-repository']]],
+                    ['push', ['dummy token', 'gh-pages', ['--work-tree=benchmark-data-repository']]],
                     ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
