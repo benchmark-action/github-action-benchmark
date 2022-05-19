@@ -1002,8 +1002,8 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'checkout',
                         [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
+                            // 'dummy token',
+                            // 'https://github.com/user/other-repo',
                             'gh-pages',
                             ['-C benchmark-data-repository'],
                         ],
@@ -1042,8 +1042,8 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     [
                         'checkout',
                         [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
+                            // 'dummy token',
+                            // 'https://github.com/user/other-repo',
                             'gh-pages',
                             ['-C benchmark-data-repository'],
                         ],

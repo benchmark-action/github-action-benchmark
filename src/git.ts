@@ -147,16 +147,16 @@ export async function clone(
     return cmd(additionalGitOptions, ...args);
 }
 export async function checkout(
-    token: string | undefined,
-    ghRepository: string,
+    // token: string | undefined,
+    // ghRepository: string,
     ghRef: string,
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
     core.debug(`Executing 'git checkout' to ref '${ghRef}' with token and options '${options.join(' ')}'`);
 
-    const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
-    let args = ['checkout', remote, ghRef];
+    // const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
+    let args = ['checkout', ghRef];
     if (options.length > 0) {
         args = args.concat(options);
     }
