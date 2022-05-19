@@ -7,6 +7,7 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
+import { exec } from '@actions/exec';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -403,6 +404,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     console.log('benchmarkDataDirPath:', benchmarkDataDirPath);
     const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataDirPath);
     console.log('benchmarkDataDirFullPath:', benchmarkDataDirFullPath);
+
+    await exec(`ls`);
+    await exec(`ls ${benchmarkDataDirFullPath}`);
 
     const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
