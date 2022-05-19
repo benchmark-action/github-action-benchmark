@@ -7,6 +7,7 @@ import { Benchmark } from '../src/extract';
 import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
 import deepEq = require('deep-equal');
 import { getServerUrl } from '../src/git';
+import assert from 'assert';
 
 function help(): never {
     throw new Error('Usage: node ci_validate_modification.js before_data.js "benchmark name"');
@@ -256,17 +257,25 @@ async function main() {
         throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     }
 
-    const afterJson = await readDataJson('dev/bench/data.js');
-    const afterJsonOtherRepo = await readDataJson('benchmark-data-repository/dev/bench/data.js');
+    const dataResults = await Promise.allSettled([
+        readDataJson('benchmark-data-repository/dev/bench/data.js'),
+        readDataJson('dev/bench/data.js'),
+    ]);
+
+    const jsonResults = dataResults
+        .filter((res): res is PromiseFulfilledResult<DataJson> => res.status === 'fulfilled')
+        .map((res) => res.value);
+
+    assert(jsonResults.length > 0 && jsonResults.length < 2, 'Maximum 2 data.js files should be present in the repo');
+
+    const afterJson = jsonResults[0];
     await exec('git checkout -');
 
     console.log('Validating data.js both before/after action');
     validateDataJson(beforeJson);
     validateDataJson(afterJson);
-    validateDataJson(afterJsonOtherRepo);
 
     validateDiff(beforeJson, afterJson, expectedBenchName);
-    validateDiff(beforeJson, afterJsonOtherRepo, expectedBenchName);
 }
 
 main().catch((err) => {
