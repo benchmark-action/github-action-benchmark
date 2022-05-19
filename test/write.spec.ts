@@ -1008,8 +1008,22 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
                     ],
-                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
-                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'data.js'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'index.html'),
+                        ],
+                    ],
                     [
                         'cmd',
                         [
@@ -1055,8 +1069,22 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
                     ],
-                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
-                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'data.js'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'index.html'),
+                        ],
+                    ],
                     [
                         'cmd',
                         [

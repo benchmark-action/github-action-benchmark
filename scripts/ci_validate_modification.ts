@@ -266,7 +266,7 @@ async function main() {
         .filter((res): res is PromiseFulfilledResult<DataJson> => res.status === 'fulfilled')
         .map((res) => res.value);
 
-    assert(jsonResults.length > 0 && jsonResults.length < 2, 'Maximum 2 data.js files should be present in the repo');
+    assert(jsonResults.length > 0 && jsonResults.length <= 2, 'Maximum 2 data.js files should be present in the repo');
 
     const afterJson = jsonResults[0];
     await exec('git checkout -');

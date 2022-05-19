@@ -41,19 +41,20 @@ async function storeDataJs(dataPath: string, data: DataJson) {
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
 
-async function addIndexHtmlIfNeeded(dir: string) {
-    const indexHtml = path.join(dir, 'index.html');
+async function addIndexHtmlIfNeeded(additionalGitArguments: string[], dir: string, baseDir: string) {
+    const indexHtmlRelativePath = path.join(dir, 'index.html');
+    const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
     try {
-        await fs.stat(indexHtml);
-        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtml}`);
+        await fs.stat(indexHtmlFullPath);
+        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtmlFullPath}`);
         return;
     } catch (_) {
         // Continue
     }
 
-    await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
-    await git.cmd([], 'add', indexHtml);
-    console.log('Created default index.html at', indexHtml);
+    await fs.writeFile(indexHtmlFullPath, DEFAULT_INDEX_HTML, 'utf8');
+    await git.cmd(additionalGitArguments, 'add', indexHtmlRelativePath);
+    console.log('Created default index.html at', indexHtmlFullPath);
 }
 
 function biggerIsBetter(tool: ToolType): boolean {
@@ -422,8 +423,8 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     await storeDataJs(dataPath, data);
 
-    await git.cmd(extraGitArguments, 'add', benchmarkDataRelativeDirPath);
-    await addIndexHtmlIfNeeded(benchmarkDataDirFullPath);
+    await git.cmd(extraGitArguments, 'add', path.join(benchmarkDataRelativeDirPath, 'data.js'));
+    await addIndexHtmlIfNeeded(extraGitArguments, benchmarkDataRelativeDirPath, benchmarkBaseDir);
     await git.cmd(extraGitArguments, 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
     if (githubToken && autoPush) {
