@@ -47,7 +47,8 @@ jobs:
           fail-on-alert: true
           gh-repository: ${{ matrix.ghRepository }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+          auto-push: ${{ !!matrix.ghRepository }}
+#      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
 #  go:
 #    strategy:
