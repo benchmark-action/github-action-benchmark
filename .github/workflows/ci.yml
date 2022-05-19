@@ -15,11 +15,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Rust benchmark example - ${{ matrix.ghRepository }}
+    name: Run Rust benchmark example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -53,11 +55,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Go benchmark example - ${{ matrix.ghRepository }}
+    name: Run Go benchmark example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/setup-go@v1
       - uses: actions/cache@v1
         with:
@@ -91,11 +95,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run JavaScript benchmark example - ${{ matrix.ghRepository }}
+    name: Run JavaScript benchmark example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -128,11 +134,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Pytest benchmark example - ${{ matrix.ghRepository }}
+    name: Run Pytest benchmark example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
@@ -171,11 +179,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Google C++ Benchmark Framework example - ${{ matrix.ghRepository }}
+    name: Run Google C++ Benchmark Framework example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -215,11 +225,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Catch2 C++ Benchmark Framework example - ${{ matrix.ghRepository }}
+    name: Run Catch2 C++ Benchmark Framework example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -257,11 +269,13 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Julia benchmark example - ${{ matrix.ghRepository }}
+    name: Run Julia benchmark example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -303,7 +317,7 @@ jobs:
         ghRepository:
           - ''
           - 'github.com/benchmark-action/github-action-benchmark-results'
-    name: Run Benchmark.Net .Net Benchmark Framework example - ${{ matrix.ghRepository }}
+    name: Run Benchmark.Net .Net Benchmark Framework example ${{ matrix.ghRepository && format('- {0}', matrix.ghRepository) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -340,7 +354,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -372,9 +388,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -392,9 +408,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
       - uses: actions/cache@v1
         with:
           path: ~/.npm
