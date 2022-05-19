@@ -938,13 +938,13 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             const skipFetch = cfg.skipFetch ?? false;
             const hist: Array<[GitFunc, unknown[]] | undefined> = [
                 skipFetch ? undefined : ['fetch', [token, 'gh-pages']],
-                ['cmd', ['switch', 'gh-pages']],
+                ['cmd', [[], 'switch', 'gh-pages']],
                 fetch ? ['pull', [token, 'gh-pages']] : undefined,
-                ['cmd', ['add', path.join(dir, 'data.js')]],
-                addIndexHtml ? ['cmd', ['add', path.join(dir, 'index.html')]] : undefined,
-                ['cmd', ['commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
+                ['cmd', [[], 'add', path.join(dir, 'data.js')]],
+                addIndexHtml ? ['cmd', [[], 'add', path.join(dir, 'index.html')]] : undefined,
+                ['cmd', [[], 'commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
                 autoPush ? ['push', [token, 'gh-pages', []]] : undefined,
-                ['cmd', ['checkout', '-']], // Return from gh-pages
+                ['cmd', [[], 'checkout', '-']], // Return from gh-pages
             ];
             return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
         }
@@ -1008,19 +1008,19 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['-C "./benchmark-data-repository"'],
                         ],
                     ],
-                    ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
-                    ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
+                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
+                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
                     [
                         'cmd',
                         [
-                            '-C "./benchmark-data-repository"',
+                            ['-C "./benchmark-data-repository"'],
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
                         ],
                     ],
                     ['push', ['dummy token', 'gh-pages', ['-C "./benchmark-data-repository"']]],
-                    ['cmd', ['checkout', '-']], // Return from gh-pages
+                    ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
@@ -1048,19 +1048,19 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                             ['-C "./benchmark-data-repository"'],
                         ],
                     ],
-                    ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
-                    ['cmd', ['add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
+                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'data.js')]],
+                    ['cmd', [[], 'add', path.join('benchmark-data-repository', 'data-dir', 'index.html')]],
                     [
                         'cmd',
                         [
-                            '-C "./benchmark-data-repository"',
+                            ['-C "./benchmark-data-repository"'],
                             'commit',
                             '-m',
                             'add Test benchmark (cargo) benchmark result for current commit id',
                         ],
                     ],
                     ['push', ['dummy token', 'gh-pages', ['-C "./benchmark-data-repository"']]],
-                    ['cmd', ['checkout', '-']], // Return from gh-pages
+                    ['cmd', [[], 'checkout', '-']], // Return from gh-pages
                 ],
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
@@ -1318,7 +1318,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 if (t.pushErrorCount > 0) {
                     // First 2 commands are fetch and switch. They are not repeated on retry
                     const retryHistory = history.slice(2, -1);
-                    retryHistory.push(['cmd', ['reset', '--hard', 'HEAD~1']]);
+                    retryHistory.push(['cmd', [[], 'reset', '--hard', 'HEAD~1']]);
 
                     const retries = Math.min(t.pushErrorCount, maxRetries);
                     for (let i = 0; i < retries; i++) {

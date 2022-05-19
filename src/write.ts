@@ -52,7 +52,7 @@ async function addIndexHtmlIfNeeded(dir: string) {
     }
 
     await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
-    await git.cmd('add', indexHtml);
+    await git.cmd([], 'add', indexHtml);
     console.log('Created default index.html at', indexHtml);
 }
 
@@ -422,14 +422,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     await storeDataJs(dataPath, data);
 
-    await git.cmd('add', dataPath);
+    await git.cmd([], 'add', dataPath);
     await addIndexHtmlIfNeeded(benchmarkDataDirFullPath);
-    await git.cmd(
-        ...extraGitArguments,
-        'commit',
-        '-m',
-        `add ${name} (${tool}) benchmark result for ${bench.commit.id}`,
-    );
+    await git.cmd(extraGitArguments, 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
     if (githubToken && autoPush) {
         try {
@@ -447,7 +442,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
             if (retry > 0) {
                 core.debug('Rollback the auto-generated commit before retry');
-                await git.cmd(...extraGitArguments, 'reset', '--hard', 'HEAD~1');
+                await git.cmd(extraGitArguments, 'reset', '--hard', 'HEAD~1');
 
                 core.warning(
                     `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
@@ -475,13 +470,13 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
         if (!skipFetchGhPages) {
             await git.fetch(githubToken, ghPagesBranch);
         }
-        await git.cmd('switch', ghPagesBranch);
+        await git.cmd([], 'switch', ghPagesBranch);
     }
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     } finally {
         // `git switch` does not work for backing to detached head
-        await git.cmd('checkout', '-');
+        await git.cmd([], 'checkout', '-');
     }
 }
 

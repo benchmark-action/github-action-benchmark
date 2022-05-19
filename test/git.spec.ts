@@ -104,7 +104,7 @@ describe('git', function () {
 
     describe('cmd()', function () {
         it('runs Git command successfully', async function () {
-            const stdout = await cmd('log', '--oneline');
+            const stdout = await cmd([], 'log', '--oneline');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -116,21 +116,21 @@ describe('git', function () {
 
         it('raises an error when command returns non-zero exit code', async function () {
             fakedExec.exitCode = 101;
-            await A.rejects(() => cmd('show'), /^Error: Command 'git show' failed: /);
+            await A.rejects(() => cmd([], 'show'), /^Error: Command 'git show' failed: /);
             neq(fakedExec.lastArgs, null);
         });
 
         it('raises an error with stderr output', async function () {
             fakedExec.exitCode = 101;
             fakedExec.stderr = 'this is error output!';
-            await A.rejects(() => cmd('show'), /this is error output!/);
+            await A.rejects(() => cmd([], 'show'), /this is error output!/);
         });
 
         it('raises an error when exec.exec() threw an error', async function () {
             fakedExec.error = 'this is error from exec.exec';
             fakedExec.stderr = 'this is stderr output!';
-            await A.rejects(() => cmd('show'), /this is error from exec\.exec/);
-            await A.rejects(() => cmd('show'), /this is stderr output!/);
+            await A.rejects(() => cmd([], 'show'), /this is error from exec\.exec/);
+            await A.rejects(() => cmd([], 'show'), /this is stderr output!/);
         });
     });
 
