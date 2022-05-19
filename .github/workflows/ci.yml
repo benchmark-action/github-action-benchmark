@@ -37,6 +37,15 @@ jobs:
           output-file-path: examples/rust/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Rust Benchmark
+          tool: 'cargo'
+          output-file-path: examples/rust/output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
@@ -68,6 +77,15 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Go Benchmark
+          tool: 'go'
+          output-file-path: examples/go/output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   benchmarkjs:
@@ -98,6 +116,15 @@ jobs:
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Benchmark.js Benchmark
+          tool: 'benchmarkjs'
+          output-file-path: examples/benchmarkjs/output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   pytest-benchmark:
@@ -134,6 +161,15 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Python Benchmark with pytest-benchmark
+          tool: 'pytest'
+          output-file-path: examples/pytest/output.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   google-benchmark-framework:
@@ -171,6 +207,15 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: C++ Benchmark
+          tool: 'googlecpp'
+          output-file-path: examples/cpp/benchmark_result.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   catch2-framework:
@@ -206,6 +251,15 @@ jobs:
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Catch2 Benchmark
+          tool: 'catch2'
+          output-file-path: examples/catch2/benchmark_result.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   julia-benchmark:
@@ -245,6 +299,15 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Julia benchmark
+          tool: 'julia'
+          output-file-path: examples/julia/output.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   benchmarkdotnet-framework:
@@ -277,6 +340,15 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - name: Store benchmark result - other repo
+        uses: ./
+        with:
+          name: Benchmark.Net Benchmark
+          tool: 'benchmarkdotnet'
+          output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          gh-repository: 'https://github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   only-alert-with-cache:

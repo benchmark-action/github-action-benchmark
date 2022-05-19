@@ -9,7 +9,7 @@ import deepEq = require('deep-equal');
 import { getServerUrl } from '../src/git';
 
 function help(): never {
-    throw new Error('Usage: node ci_validate_modification.js before_data.js "bechmark name"');
+    throw new Error('Usage: node ci_validate_modification.js before_data.js "benchmark name"');
 }
 
 async function exec(cmd: string): Promise<string> {
@@ -184,6 +184,23 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
     }
 }
 
+function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchName: string) {
+    const diffs = diff(beforeJson, afterJson);
+    console.log('Validating diffs:', diffs);
+
+    if (!diffs || diffs.length !== 2) {
+        throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
+    }
+
+    console.log('Validating lastUpdate modification');
+    validateLastUpdateMod(diffs[0]);
+
+    console.log('Validating benchmark result modification');
+    validateBenchmarkResultMod(diffs[1], expectedBenchName, afterJson.entries);
+
+    console.log('👌');
+}
+
 async function main() {
     console.log('Start validating modifications by action with args', process.argv);
 
@@ -240,26 +257,16 @@ async function main() {
     }
 
     const afterJson = await readDataJson('dev/bench/data.js');
+    const afterJsonOtherRepo = await readDataJson('benchmark-data-repository/dev/bench/data.js');
     await exec('git checkout -');
 
     console.log('Validating data.js both before/after action');
     validateDataJson(beforeJson);
     validateDataJson(afterJson);
+    validateDataJson(afterJsonOtherRepo);
 
-    const diffs = diff(beforeJson, afterJson);
-    console.log('Validating diffs:', diffs);
-
-    if (!diffs || diffs.length !== 2) {
-        throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
-    }
-
-    console.log('Validating lastUpdate modification');
-    validateLastUpdateMod(diffs[0]);
-
-    console.log('Validating benchmark result modification');
-    validateBenchmarkResultMod(diffs[1], expectedBenchName, afterJson.entries);
-
-    console.log('👌');
+    validateDiff(beforeJson, afterJson, expectedBenchName);
+    validateDiff(beforeJson, afterJsonOtherRepo, expectedBenchName);
 }
 
 main().catch((err) => {
