@@ -398,7 +398,11 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         );
     }
 
+    console.log('benchmarkBaseDir:', benchmarkBaseDir);
+    console.log('benchmarkDataDirPath:', benchmarkDataDirPath);
     const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataDirPath);
+    console.log('benchmarkDataDirFullPath:', benchmarkDataDirFullPath);
+
     const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
 
     await io.mkdirP(benchmarkDataDirFullPath);
