@@ -43,9 +43,10 @@ jobs:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
-          skip-fetch-gh-pages: true
+          skip-fetch-gh-pages: $${{ matrix.ghRepository and true or false }}
           fail-on-alert: true
           gh-repository: ${{ matrix.ghRepository }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
 #  go:

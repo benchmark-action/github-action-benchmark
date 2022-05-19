@@ -385,7 +385,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     let benchmarkBaseDir = './';
     let extraGitArguments: string[] = [];
 
-    if (ghRepository) {
+    if (!skipFetchGhPages && ghRepository) {
         console.log('GIT CLONE', ghRepository, ghPagesBranch);
         await git.clone(githubToken, ghRepository, ghPagesBranch, 'benchmark-data-repository');
         benchmarkBaseDir = './benchmark-data-repository';
