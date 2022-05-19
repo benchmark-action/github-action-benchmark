@@ -1,14 +1,13 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cp from 'child_process';
-import { DataJson, BenchmarkSuites, SCRIPT_PREFIX } from '../src/write';
+import { BenchmarkSuites, DataJson, SCRIPT_PREFIX } from '../src/write';
 import { VALID_TOOLS } from '../src/config';
 import { Benchmark } from '../src/extract';
-import { diff, Diff, DiffNew, DiffEdit, DiffArray } from 'deep-diff';
-import deepEq = require('deep-equal');
+import { diff, Diff, DiffArray, DiffEdit, DiffNew } from 'deep-diff';
 import { getServerUrl } from '../src/git';
 import assert from 'assert';
-import chalk from 'chalk';
+import deepEq = require('deep-equal');
 
 function help(): never {
     throw new Error('Usage: node ci_validate_modification.js before_data.js "benchmark name"');
@@ -191,8 +190,8 @@ function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchNa
     console.log('Validating diffs:', diffs);
 
     if (!diffs || diffs.length !== 2) {
-        console.log('Before:\n', chalk.green(JSON.stringify(beforeJson)));
-        console.log('After:\n', chalk.red(JSON.stringify(beforeJson)));
+        // console.log('Before:\n', chalk.green(JSON.stringify(beforeJson)));
+        // console.log('After:\n', chalk.red(JSON.stringify(beforeJson)));
 
         throw new Error('Number of diffs are incorrect. Exact 2 diffs are expected');
     }
