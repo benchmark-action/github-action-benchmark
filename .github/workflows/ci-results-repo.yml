@@ -67,7 +67,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
@@ -100,7 +100,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
@@ -136,7 +136,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Run benchmark
         run: |
@@ -172,7 +172,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Cache Benchmark library
         uses: actions/cache@v1
@@ -212,7 +212,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Run benchmark
         run: |
@@ -250,7 +250,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - uses: julia-actions/setup-julia@v1
         with:
@@ -292,7 +292,7 @@ jobs:
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
           git checkout -
       - name: Run benchmark
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
