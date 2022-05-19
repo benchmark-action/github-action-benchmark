@@ -1,4 +1,4 @@
-name: CI
+name: CI - separate results repo
 on:
   push:
     branches:
@@ -9,10 +9,15 @@ on:
 
 jobs:
   rust:
-    name: Run Rust benchmark example
+    name: Run Rust benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: benchmark-action/github-action-benchmark-results
+          ref: 'gh-pages'
+          path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -37,12 +42,14 @@ jobs:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
+          skip-fetch-gh-pages: false
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
-    name: Run Go benchmark example
+    name: Run Go benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -72,10 +79,11 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   benchmarkjs:
-    name: Run JavaScript benchmark example
+    name: Run JavaScript benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -104,10 +112,11 @@ jobs:
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   pytest-benchmark:
-    name: Run Pytest benchmark example
+    name: Run Pytest benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -142,10 +151,11 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   google-benchmark-framework:
-    name: Run Google C++ Benchmark Framework example
+    name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -181,10 +191,11 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   catch2-framework:
-    name: Run Catch2 C++ Benchmark Framework example
+    name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -218,10 +229,11 @@ jobs:
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   julia-benchmark:
-    name: Run Julia benchmark example
+    name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -259,10 +271,11 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   benchmarkdotnet-framework:
-    name: Run Benchmark.Net .Net Benchmark Framework example
+    name: Run Benchmark.Net .Net Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -291,6 +304,7 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   only-alert-with-cache:
