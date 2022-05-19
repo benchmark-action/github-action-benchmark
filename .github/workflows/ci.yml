@@ -38,6 +38,7 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+
   go:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
@@ -68,6 +69,7 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+
   benchmarkjs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
@@ -97,6 +99,7 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+
   pytest-benchmark:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
@@ -132,6 +135,7 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -168,6 +172,7 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example
     runs-on: ubuntu-latest
@@ -272,6 +277,7 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache

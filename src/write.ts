@@ -462,6 +462,7 @@ async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Pr
             await git.fetch(githubToken, ghPagesBranch);
         }
         await git.cmd('switch', ghPagesBranch);
+        await git.cmd('status');
     }
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
