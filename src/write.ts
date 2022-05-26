@@ -89,12 +89,22 @@ interface Alert {
     ratio: number;
 }
 
-function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number): Alert[] {
-    core.debug(`Comparing current:${curSuite.commit.id} and prev:${prevSuite.commit.id} for alert`);
+function findAlerts(
+    curSuite: Benchmark,
+    prevSuite: Benchmark,
+    prevBest: { [key: string]: BenchmarkResult },
+    threshold: number,
+    compareWithBest: boolean,
+): Alert[] {
+    if (compareWithBest) {
+        core.debug(`Comparing current:${curSuite.commit.id} and prev:${prevSuite.commit.id} for alert`);
+    } else {
+        core.debug(`Comparing current:${curSuite.commit.id} and best results for alert`);
+    }
 
     const alerts = [];
     for (const current of curSuite.benches) {
-        const prev = prevSuite.benches.find((b) => b.name === current.name);
+        const prev = compareWithBest ? prevBest[current.name] : prevSuite.benches.find((b) => b.name === current.name);
         if (prev === undefined) {
             core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
             continue;
@@ -165,28 +175,31 @@ function buildComment(
     curSuite: Benchmark,
     prevSuite: Benchmark,
     prevBest: { [key: string]: BenchmarkResult },
+    compareWithBest: boolean,
 ): string {
+    const ratioStr = compareWithBest ? 'Ratio vs. Best' : 'Ratio';
     const lines = [
         `# ${benchName}`,
         '',
         '<details>',
         '',
-        `| Benchmark suite | Best | Previous: ${prevSuite.commit.id} | Current: ${curSuite.commit.id} | Ratio |`,
+        `| Benchmark suite | Best | Previous: ${prevSuite.commit.id} | Current: ${curSuite.commit.id} | ${ratioStr} |`,
         '|-|-|-|-|-|',
     ];
 
     for (const current of curSuite.benches) {
-        let line = `| \`${current.name}\` | ${strVal(prevBest[current.name])} |`;
-
+        const best = prevBest[current.name];
         const prev = prevSuite.benches.find((i) => i.name === current.name);
-        if (prev) {
-            const ratio = biggerIsBetter(curSuite.tool)
-                ? prev.value / current.value // e.g. current=100, prev=200
-                : current.value / prev.value;
+        let line = `| \`${current.name}\` | ${strVal(best)} | ${strVal(prev)} | ${strVal(current)}`;
 
-            line = line + `${strVal(prev)} | ${strVal(current)} | \`${floatStr(ratio)}\` |`;
+        const base = compareWithBest ? best : prev;
+        if (base) {
+            const ratio = biggerIsBetter(curSuite.tool)
+                ? base.value / current.value // e.g. current=100, prev=200
+                : current.value / base.value;
+            line = line + ` | \`${floatStr(ratio)}\` |`;
         } else {
-            line = line + ` | ${strVal(current)} | |`;
+            line = line + ` | |`;
         }
 
         lines.push(line);
@@ -205,25 +218,28 @@ function buildAlertComment(
     prevSuite: Benchmark,
     prevBest: { [key: string]: BenchmarkResult },
     threshold: number,
+    compareWithBest: boolean,
     cc: string[],
 ): string {
     // Do not show benchmark name if it is the default value 'Benchmark'.
     const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
     const title = threshold === 0 ? '# Performance Report' : '# :warning: **Performance Alert** :warning:';
     const thresholdString = floatStr(threshold);
+    const ratioStr = compareWithBest ? 'Ratio vs. Best' : 'Ratio';
     const lines = [
         title,
         '',
         `Possible performance regression was detected for benchmark${benchmarkText}.`,
         `Benchmark result of this commit is worse than the previous benchmark result exceeding threshold \`${thresholdString}\`.`,
         '',
-        `| Benchmark suite | Best | Previous: ${prevSuite.commit.id} | Current: ${curSuite.commit.id} | Ratio |`,
+        `| Benchmark suite | Best | Previous: ${prevSuite.commit.id} | Current: ${curSuite.commit.id} | ${ratioStr} |`,
         '|-|-|-|-|-|',
     ];
 
     for (const alert of alerts) {
-        const { current, prev, ratio } = alert;
+        const { current, ratio } = alert;
         const best = prevBest[current.name];
+        const prev = prevSuite.benches.find((b) => b.name === current.name);
         const line =
             `| \`${current.name}\` | ${strVal(best)} | ${strVal(prev)} ` +
             `| ${strVal(current)} | \`${floatStr(ratio)}\` |`;
@@ -267,7 +283,7 @@ async function handleComment(
     prevBest: { [key: string]: BenchmarkResult },
     config: Config,
 ) {
-    const { commentAlways, githubToken } = config;
+    const { commentAlways, githubToken, compareWithBest } = config;
 
     if (!commentAlways) {
         core.debug('Comment check was skipped because comment-always is disabled');
@@ -280,7 +296,7 @@ async function handleComment(
 
     core.debug('Commenting about benchmark comparison');
 
-    const body = buildComment(benchName, curSuite, prevSuite, prevBest);
+    const body = buildComment(benchName, curSuite, prevSuite, prevBest, compareWithBest);
 
     await leaveComment(curSuite.commit.id, body, githubToken);
 }
@@ -292,14 +308,22 @@ async function handleAlert(
     prevBest: { [key: string]: BenchmarkResult },
     config: Config,
 ) {
-    const { alertThreshold, githubToken, commentOnAlert, failOnAlert, alertCommentCcUsers, failThreshold } = config;
+    const {
+        alertThreshold,
+        githubToken,
+        commentOnAlert,
+        failOnAlert,
+        alertCommentCcUsers,
+        failThreshold,
+        compareWithBest,
+    } = config;
 
     if (!commentOnAlert && !failOnAlert) {
         core.debug('Alert check was skipped because both comment-on-alert and fail-on-alert were disabled');
         return;
     }
 
-    const alerts = findAlerts(curSuite, prevSuite, alertThreshold);
+    const alerts = findAlerts(curSuite, prevSuite, prevBest, alertThreshold, compareWithBest);
     if (alerts.length === 0) {
         core.debug('No performance alert found happily');
         return;
@@ -313,6 +337,7 @@ async function handleAlert(
         prevSuite,
         prevBest,
         alertThreshold,
+        compareWithBest,
         alertCommentCcUsers,
     );
     let message = body;
