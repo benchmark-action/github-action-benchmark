@@ -33,6 +33,7 @@ export interface Config {
     alertCommentCcUsers: string[];
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
+    commitSha: string | undefined;
 }
 
 export const VALID_TOOLS: ToolType[] = [
@@ -243,6 +244,7 @@ export async function configFromJobInput(): Promise<Config> {
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
     let failThreshold = getPercentageInput('fail-threshold');
+    const commitSha: string | undefined = core.getInput('commit-sha') || undefined;
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -257,6 +259,9 @@ export async function configFromJobInput(): Promise<Config> {
     }
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
+    }
+    if (commitSha) {
+        validateGitHubToken('commit-sha', githubToken, 'to retrieve the commit info');
     }
     validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
@@ -284,5 +289,6 @@ export async function configFromJobInput(): Promise<Config> {
         externalDataJsonPath,
         maxItemsInChart,
         failThreshold,
+        commitSha,
     };
 }

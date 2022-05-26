@@ -209,6 +209,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             externalDataJsonPath: dataJson,
             maxItemsInChart: null,
             failThreshold: 2.0,
+            commitSha: undefined,
         };
 
         const savedRepository = {
@@ -905,6 +906,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             externalDataJsonPath: undefined,
             maxItemsInChart: null,
             failThreshold: 2.0,
+            commitSha: 'dummy sha',
         };
 
         function gitHistory(

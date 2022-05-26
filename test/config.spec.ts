@@ -44,6 +44,7 @@ describe('configFromJobInput()', function () {
         'alert-comment-cc-users': '',
         'external-data-json-path': '',
         'max-items-in-chart': '',
+        'commit-sha': '',
     };
 
     const validation_tests = [
@@ -158,6 +159,11 @@ describe('configFromJobInput()', function () {
             inputs: { ...defaultInputs, 'alert-threshold': '150%', 'fail-threshold': '120%' },
             expected: /'alert-threshold' value must be smaller than 'fail-threshold' value but got 1.5 > 1.2/,
         },
+        {
+            what: 'commit-sha is set but github-token is not set',
+            inputs: { ...defaultInputs, 'commit-sha': 'dummy sha', 'github-token': '' },
+            expected: /'commit-sha' is enabled but 'github-token' is not set/,
+        },
     ] as Array<{
         what: string;
         inputs: Inputs;
@@ -185,6 +191,7 @@ describe('configFromJobInput()', function () {
         hasExternalDataJsonPath: boolean;
         maxItemsInChart: null | number;
         failThreshold: number | null;
+        commitSha: string | undefined;
     }
 
     const defaultExpected: ExpectedResult = {
@@ -201,6 +208,7 @@ describe('configFromJobInput()', function () {
         hasExternalDataJsonPath: false,
         maxItemsInChart: null,
         failThreshold: null,
+        commitSha: undefined,
     };
 
     const returnedConfigTests = [
@@ -350,7 +358,7 @@ describe('configFromJobInput()', function () {
         const absCwd = process.cwd();
         if (!absCwd.startsWith(home)) {
             // Test was not run under home directory so "~" in paths cannot be tested
-            fail('Test was not run under home directory so "~" in paths cannot be tested');
+            A.fail('Test was not run under home directory so "~" in paths cannot be tested');
         }
 
         const cwd = path.join('~', absCwd.slice(home.length));

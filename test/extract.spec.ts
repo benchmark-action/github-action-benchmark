@@ -16,7 +16,7 @@ const dummyWebhookPayload = {
 let dummyCommitData = {};
 class DummyGitHub {
     repos = {
-        getCommit: () => {
+        getCommit: async () => {
             return {
                 status: 200,
                 data: dummyCommitData,
