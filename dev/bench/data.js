@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653753287194,
+  "lastUpdate": 1653753291885,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37827,6 +37827,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 20.882,
             "range": "± 214",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dev.ktbarrett@gmail.com",
+            "name": "Kaleb Barrett",
+            "username": "ktbarrett"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
+          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-05-28T17:54:07+02:00",
+          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
+        },
+        "date": 1653753290080,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 164,
+            "range": "± 2",
+            "unit": "ns",
+            "extra": "100 samples\n181 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.225,
+            "range": "± 226",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
