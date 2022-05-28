@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653753329174,
+  "lastUpdate": 1653753460839,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9742,6 +9742,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 34195,
             "range": "± 5097",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dev.ktbarrett@gmail.com",
+            "name": "Kaleb Barrett",
+            "username": "ktbarrett"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
+          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-05-28T17:54:07+02:00",
+          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
+        },
+        "date": 1653753459109,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 23839,
+            "range": "± 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 23830,
+            "range": "± 1254",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38611,
+            "range": "± 67",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
