@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653753299912,
+  "lastUpdate": 1653753328298,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38879,6 +38879,42 @@ window.BENCHMARK_DATA = {
             "value": 47.16562035679817,
             "unit": "ns",
             "range": "± 0.01537944463085121"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dev.ktbarrett@gmail.com",
+            "name": "Kaleb Barrett",
+            "username": "ktbarrett"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
+          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-05-28T17:54:07+02:00",
+          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
+        },
+        "date": 1653753326499,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 24.94229934994991,
+            "unit": "ns",
+            "range": "± 0.03148036755747009"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 45.85402451356252,
+            "unit": "ns",
+            "range": "± 0.006536064210627981"
           }
         ]
       }
