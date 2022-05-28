@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653753273818,
+  "lastUpdate": 1653753278857,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34943,6 +34943,42 @@ window.BENCHMARK_DATA = {
             "value": 28748.525774897516,
             "unit": "ns/iter",
             "extra": "iterations: 24229\ncpu: 28745.4042676132 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dev.ktbarrett@gmail.com",
+            "name": "Kaleb Barrett",
+            "username": "ktbarrett"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
+          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-05-28T17:54:07+02:00",
+          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
+        },
+        "date": 1653753276208,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 193.26004537226063,
+            "unit": "ns/iter",
+            "extra": "iterations: 3695209\ncpu: 193.23486168170732 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25420.26226988227,
+            "unit": "ns/iter",
+            "extra": "iterations: 27323\ncpu: 25418.083665776077 ns\nthreads: 1"
           }
         ]
       }
