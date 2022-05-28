@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653751180440,
+  "lastUpdate": 1653751193030,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34773,6 +34773,42 @@ window.BENCHMARK_DATA = {
             "value": 25748.425083649046,
             "unit": "ns/iter",
             "extra": "iterations: 27197\ncpu: 25745.83593778725 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
+          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
+          "timestamp": "2022-05-28T17:18:33+02:00",
+          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
+        },
+        "date": 1653751190858,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 212.8863532536711,
+            "unit": "ns/iter",
+            "extra": "iterations: 3300948\ncpu: 212.85721556352902 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 28748.525774897516,
+            "unit": "ns/iter",
+            "extra": "iterations: 24229\ncpu: 28745.4042676132 ns\nthreads: 1"
           }
         ]
       }
