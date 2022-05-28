@@ -35,7 +35,6 @@ jobs:
           alert-comment-cc-users: '@ktrz'
 
       - name: Store benchmark result - separate results repo
-        if: false  # enable after releasing a new version
         uses: rhysd/github-action-benchmark@v1
         with:
           name: Benchmark.Net Benchmark
