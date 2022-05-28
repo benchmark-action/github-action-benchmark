@@ -3,18 +3,7 @@ import { promises as fs } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
-export type ToolType =
-    | 'cargo'
-    | 'go'
-    | 'benchmarkjs'
-    | 'benchmarkluau'
-    | 'pytest'
-    | 'googlecpp'
-    | 'catch2'
-    | 'julia'
-    | 'benchmarkdotnet'
-    | 'customBiggerIsBetter'
-    | 'customSmallerIsBetter';
+export type ToolType = typeof VALID_TOOLS[number];
 export interface Config {
     name: string;
     tool: ToolType;
@@ -35,10 +24,11 @@ export interface Config {
     maxItemsInChart: number | null;
 }
 
-export const VALID_TOOLS: ToolType[] = [
+export const VALID_TOOLS = [
     'cargo',
     'go',
     'benchmarkjs',
+    'benchmarkluau',
     'pytest',
     'googlecpp',
     'catch2',
@@ -46,11 +36,11 @@ export const VALID_TOOLS: ToolType[] = [
     'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
-];
+] as const;
 const RE_UINT = /^\d+$/;
 
 function validateToolType(tool: string): asserts tool is ToolType {
-    if ((VALID_TOOLS as string[]).includes(tool)) {
+    if ((VALID_TOOLS as ReadonlyArray<string>).includes(tool)) {
         return;
     }
     throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
