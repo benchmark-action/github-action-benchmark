@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653753929407,
+  "lastUpdate": 1653753931613,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38943,6 +38943,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 42301,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "ba450747be524122c5ce53c8d9587160154eaed3",
+          "message": "enable push benchmarks to separate results repo",
+          "timestamp": "2022-05-28T18:04:35+02:00",
+          "tree_id": "a56e6ed3ffea4c45877131c022d728dbcc397ca4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ba450747be524122c5ce53c8d9587160154eaed3"
+        },
+        "date": 1653753929374,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 295.1385767790262,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":267,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 36800,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
