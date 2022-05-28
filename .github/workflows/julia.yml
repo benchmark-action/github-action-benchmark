@@ -59,9 +59,10 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@ktrz, @findmyway'
+          alert-comment-cc-users: '@ktrz,@findmyway'
 
       - name: Store benchmark result - separate results repo
+        if: false # enable after releasing a new version
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Julia benchmark result
