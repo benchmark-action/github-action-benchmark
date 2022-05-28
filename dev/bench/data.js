@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653751141614,
+  "lastUpdate": 1653751149914,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24269,6 +24269,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.12%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
+          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
+          "timestamp": "2022-05-28T17:18:33+02:00",
+          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
+        },
+        "date": 1653751147244,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1318294,
+            "range": "±0.24%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 10978,
+            "range": "±0.20%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
           }
         ]
       }
