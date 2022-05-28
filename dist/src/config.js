@@ -28,6 +28,7 @@ exports.VALID_TOOLS = [
     'cargo',
     'go',
     'benchmarkjs',
+    'benchmarkluau',
     'pytest',
     'googlecpp',
     'catch2',
@@ -196,6 +197,7 @@ async function configFromJobInput() {
     const tool = core.getInput('tool');
     let outputFilePath = core.getInput('output-file-path');
     const ghPagesBranch = core.getInput('gh-pages-branch');
+    const ghRepository = core.getInput('gh-repository');
     let benchmarkDataDirPath = core.getInput('benchmark-data-dir-path');
     const name = core.getInput('name');
     const githubToken = core.getInput('github-token') || undefined;
@@ -224,6 +226,9 @@ async function configFromJobInput() {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    if (ghRepository) {
+        validateGitHubToken('gh-repository', githubToken, 'to clone the repository');
+    }
     validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
@@ -236,6 +241,7 @@ async function configFromJobInput() {
         tool,
         outputFilePath,
         ghPagesBranch,
+        ghRepository,
         benchmarkDataDirPath,
         githubToken,
         autoPush,

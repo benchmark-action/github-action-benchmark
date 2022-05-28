@@ -51,19 +51,20 @@ async function storeDataJs(dataPath, data) {
     await fs_1.promises.writeFile(dataPath, script, 'utf8');
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
-async function addIndexHtmlIfNeeded(dir) {
-    const indexHtml = path.join(dir, 'index.html');
+async function addIndexHtmlIfNeeded(additionalGitArguments, dir, baseDir) {
+    const indexHtmlRelativePath = path.join(dir, 'index.html');
+    const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
     try {
-        await fs_1.promises.stat(indexHtml);
-        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtml}`);
+        await fs_1.promises.stat(indexHtmlFullPath);
+        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtmlFullPath}`);
         return;
     }
     catch (_) {
         // Continue
     }
-    await fs_1.promises.writeFile(indexHtml, default_index_html_1.DEFAULT_INDEX_HTML, 'utf8');
-    await git.cmd('add', indexHtml);
-    console.log('Created default index.html at', indexHtml);
+    await fs_1.promises.writeFile(indexHtmlFullPath, default_index_html_1.DEFAULT_INDEX_HTML, 'utf8');
+    await git.cmd(additionalGitArguments, 'add', indexHtmlRelativePath);
+    console.log('Created default index.html at', indexHtmlFullPath);
 }
 function biggerIsBetter(tool) {
     switch (tool) {
@@ -73,6 +74,8 @@ function biggerIsBetter(tool) {
             return false;
         case 'benchmarkjs':
             return true;
+        case 'benchmarkluau':
+            return false;
         case 'pytest':
             return true;
         case 'googlecpp':
@@ -307,27 +310,47 @@ function isRemoteRejectedError(err) {
 }
 async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     var _a, _b;
-    const { name, tool, ghPagesBranch, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages, maxItemsInChart, } = config;
-    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
+    const { name, tool, ghPagesBranch, ghRepository, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages, maxItemsInChart, } = config;
     // FIXME: This payload is not available on `schedule:` or `workflow_dispatch:` events.
     const isPrivateRepo = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.private) !== null && _b !== void 0 ? _b : false;
-    if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
+    let benchmarkBaseDir = './';
+    let extraGitArguments = [];
+    if (githubToken && !skipFetchGhPages && ghRepository) {
+        benchmarkBaseDir = './benchmark-data-repository';
+        await git.clone(githubToken, ghRepository, benchmarkBaseDir);
+        extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
+        await git.checkout(ghPagesBranch, extraGitArguments);
+    }
+    else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     }
     else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning("'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
             "before generating a commit, please set 'github-token' input to pull GitHub pages branch");
     }
-    await io.mkdirP(benchmarkDataDirPath);
+    else {
+        console.warn('NOTHING EXECUTED:', {
+            skipFetchGhPages,
+            ghRepository,
+            isPrivateRepo,
+            githubToken: !!githubToken,
+        });
+    }
+    // `benchmarkDataDirPath` is an absolute path at this stage,
+    // so we need to convert it to relative to be able to prepend the `benchmarkBaseDir`
+    const benchmarkDataRelativeDirPath = path.relative(process.cwd(), benchmarkDataDirPath);
+    const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataRelativeDirPath);
+    const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
+    await io.mkdirP(benchmarkDataDirFullPath);
     const data = await loadDataJs(dataPath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
     await storeDataJs(dataPath, data);
-    await git.cmd('add', dataPath);
-    await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-    await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+    await git.cmd(extraGitArguments, 'add', path.join(benchmarkDataRelativeDirPath, 'data.js'));
+    await addIndexHtmlIfNeeded(extraGitArguments, benchmarkDataRelativeDirPath, benchmarkBaseDir);
+    await git.cmd(extraGitArguments, 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
     if (githubToken && autoPush) {
         try {
-            await git.push(githubToken, ghPagesBranch);
+            await git.push(githubToken, ghRepository, ghPagesBranch, extraGitArguments);
             console.log(`Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`);
         }
         catch (err) {
@@ -338,7 +361,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
             core.warning(`Auto-push failed because the remote ${ghPagesBranch} was updated after git pull`);
             if (retry > 0) {
                 core.debug('Rollback the auto-generated commit before retry');
-                await git.cmd('reset', '--hard', 'HEAD~1');
+                await git.cmd(extraGitArguments, 'reset', '--hard', 'HEAD~1');
                 core.warning(`Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`);
                 return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
             }
@@ -354,17 +377,21 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     return prevBench;
 }
 async function writeBenchmarkToGitHubPages(bench, config) {
-    const { ghPagesBranch, skipFetchGhPages, githubToken } = config;
-    if (!skipFetchGhPages) {
-        await git.fetch(githubToken, ghPagesBranch);
+    const { ghPagesBranch, skipFetchGhPages, ghRepository, githubToken } = config;
+    if (!ghRepository) {
+        if (!skipFetchGhPages) {
+            await git.fetch(githubToken, ghPagesBranch);
+        }
+        await git.cmd([], 'switch', ghPagesBranch);
     }
-    await git.cmd('switch', ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     }
     finally {
-        // `git switch` does not work for backing to detached head
-        await git.cmd('checkout', '-');
+        if (!ghRepository) {
+            // `git switch` does not work for backing to detached head
+            await git.cmd([], 'checkout', '-');
+        }
     }
 }
 async function loadDataJson(jsonPath) {

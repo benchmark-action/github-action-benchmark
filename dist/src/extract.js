@@ -358,6 +358,24 @@ function extractCustomBenchmarkResult(output) {
         throw new Error(`Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`);
     }
 }
+function extractLuauBenchmarkResult(output) {
+    const lines = output.split(/\n/);
+    const results = [];
+    output;
+    for (const line of lines) {
+        if (!line.startsWith('SUCCESS'))
+            continue;
+        const [_0, name, _2, valueStr, _4, range, _6, extra] = line.split(/\s+/);
+        results.push({
+            name: name,
+            value: parseFloat(valueStr),
+            unit: valueStr.replace(/.[0-9]+/g, ''),
+            range: `±${range}`,
+            extra: extra,
+        });
+    }
+    return results;
+}
 async function extractResult(config) {
     const output = await fs_1.promises.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken } = config;
@@ -392,6 +410,9 @@ async function extractResult(config) {
             break;
         case 'customSmallerIsBetter':
             benches = extractCustomBenchmarkResult(output);
+            break;
+        case 'benchmarkluau':
+            benches = extractLuauBenchmarkResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
