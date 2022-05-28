@@ -76,7 +76,7 @@ context) properties. Like this:
         "unit": "Megabytes",
         "value": 100,
         "range": "3",
-        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!",
+        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!"
     }
 ]
 ```
@@ -292,7 +292,7 @@ After the first workflow run, you will get the first result on `https://you.gith
 
 By default, this action assumes that `gh-pages` is your GitHub Pages branch and that `/dev/bench` is
 a path to put the benchmark dashboard page. If they don't fit your use case, please tweak them by
-`gh-pages-branch` and `benchmark-data-dir-path` inputs.
+`gh-pages-branch`, `gh-repository` and `benchmark-data-dir-path` inputs.
 
 This action merges all benchmark results into one GitHub pages branch. If your workflows have multiple
 steps to check benchmarks from multiple tools, please give `name` input to each step to make each
@@ -372,6 +372,15 @@ Name of your GitHub pages branch.
 
 Note: If you're using `docs/` directory of `master` branch for GitHub pages, please set `gh-pages-branch`
 to `master` and `benchmark-data-dir-path` to the directory under `docs` like `docs/dev/bench`.
+
+#### `gh-repository`
+
+- Type: String
+
+Url to an optional different repository to store benchmark results (eg. `github.com/benchmark-action/github-action-benchmark-results`)
+
+NOTE: if you want to auto push to a different repository you need to use a separate Personal Access Token that has a write access to the specified repository.
+If you are not using the `auto-push` option then you can avoid passing the `gh-token` if your data repository is public
 
 #### `benchmark-data-dir-path` (Required)
 
