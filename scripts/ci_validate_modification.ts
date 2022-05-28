@@ -47,7 +47,7 @@ function validateDataJson(data: DataJson) {
     for (const benchName of Object.keys(suites)) {
         for (const suite of suites[benchName]) {
             const { commit, tool, date, benches } = suite;
-            if (!(VALID_TOOLS as string[]).includes(tool)) {
+            if (!(VALID_TOOLS as ReadonlyArray<string>).includes(tool)) {
                 throw new Error(`Invalid tool ${tool}`);
             }
             if (!commitUrlMatcher.test(commit.url) && !/\/pull\/\d+\/commits\/[a-f0-9]+$/.test(commit.url)) {
