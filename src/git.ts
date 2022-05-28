@@ -153,7 +153,6 @@ export async function checkout(
 ): Promise<string> {
     core.debug(`Executing 'git checkout' to ref '${ghRef}' with token and options '${options.join(' ')}'`);
 
-    // const remote = token !== undefined ? getRepoRemoteUrl(token, ghRepository) : 'origin';
     let args = ['checkout', ghRef];
     if (options.length > 0) {
         args = args.concat(options);
