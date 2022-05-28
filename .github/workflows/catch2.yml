@@ -37,7 +37,7 @@ jobs:
           alert-comment-cc-users: '@bernedom,@ktrz'
 
       - name: Store benchmark result - separate results repo
-        if: false # enable after releasing a new version
+        if: false  # enable after releasing a new version
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Catch2 Benchmark
