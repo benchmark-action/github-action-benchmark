@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653751149914,
+  "lastUpdate": 1653751170757,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37547,6 +37547,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.269,
             "range": "± 323",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
+          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
+          "timestamp": "2022-05-28T17:18:33+02:00",
+          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
+        },
+        "date": 1653751167518,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 163,
+            "range": "± 0",
+            "unit": "ns",
+            "extra": "100 samples\n153 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 20.882,
+            "range": "± 214",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
