@@ -20,6 +20,9 @@ inputs:
     description: 'Branch for gh-pages'
     required: true
     default: 'gh-pages'
+  gh-repository:
+    description: 'Url to an optional different repository to store benchmark results'
+    required: false
   benchmark-data-dir-path:
     description: 'Path to directory which contains benchmark files on GitHub pages branch'
     required: true

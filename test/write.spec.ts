@@ -53,7 +53,7 @@ class FakedOctokit {
     }
 }
 
-type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch';
+type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone' | 'checkout';
 class GitSpy {
     history: [GitFunc, unknown[]][];
     pushFailure: null | string;
@@ -138,6 +138,14 @@ jest.mock('../src/git', () => ({
         gitSpy.call('fetch', args);
         return '';
     },
+    async clone(...args: unknown[]) {
+        gitSpy.call('clone', args);
+        return '';
+    },
+    async checkout(...args: unknown[]) {
+        gitSpy.call('checkout', args);
+        return '';
+    },
 }));
 
 describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBenchmark() - %s', function (serverUrl) {
@@ -196,6 +204,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'dummy', // Should not affect
+            ghRepository: undefined,
             benchmarkDataDirPath: 'dummy', // Should not affect
             githubToken: undefined,
             autoPush: false,
@@ -850,6 +859,9 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 path.join('data-dir', 'index.html'),
                 'new-data-dir',
                 path.join('with-index-html', 'data.js'),
+                path.join('benchmark-data-repository', 'data-dir', 'data.js'),
+                path.join('benchmark-data-repository', 'data-dir', 'index.html'),
+                path.join('benchmark-data-repository', 'new-data-dir'),
             ]) {
                 // Ignore exception
                 await new Promise((resolve) => rimraf(p, resolve));
@@ -892,6 +904,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             tool: 'cargo',
             outputFilePath: 'dummy', // Should not affect
             ghPagesBranch: 'gh-pages',
+            ghRepository: undefined,
             benchmarkDataDirPath: 'data-dir', // Should not affect
             githubToken: 'dummy token',
             autoPush: true,
@@ -925,13 +938,13 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             const skipFetch = cfg.skipFetch ?? false;
             const hist: Array<[GitFunc, unknown[]] | undefined> = [
                 skipFetch ? undefined : ['fetch', [token, 'gh-pages']],
-                ['cmd', ['switch', 'gh-pages']],
+                ['cmd', [[], 'switch', 'gh-pages']],
                 fetch ? ['pull', [token, 'gh-pages']] : undefined,
-                ['cmd', ['add', path.join(dir, 'data.js')]],
-                addIndexHtml ? ['cmd', ['add', path.join(dir, 'index.html')]] : undefined,
-                ['cmd', ['commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
-                autoPush ? ['push', [token, 'gh-pages']] : undefined,
-                ['cmd', ['checkout', '-']], // Return from gh-pages
+                ['cmd', [[], 'add', path.join(dir, 'data.js')]],
+                addIndexHtml ? ['cmd', [[], 'add', path.join(dir, 'index.html')]] : undefined,
+                ['cmd', [[], 'commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
+                autoPush ? ['push', [token, undefined, 'gh-pages', []]] : undefined,
+                ['cmd', [[], 'checkout', '-']], // Return from gh-pages
             ];
             return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
         }
@@ -944,6 +957,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             gitHistory: [GitFunc, unknown[]][];
             privateRepo?: boolean;
             error?: string[];
+            expectedDataBaseDirectory?: string;
         }> = [
             {
                 it: 'appends new data',
@@ -968,6 +982,125 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 gitServerUrl: serverUrl,
                 gitHistory: gitHistory({ dir: 'new-data-dir' }),
+            },
+            {
+                it: 'appends new data in other repository',
+                config: {
+                    ...defaultCfg,
+                    ghRepository: 'https://github.com/user/other-repo',
+                    benchmarkDataDirPath: 'data-dir',
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+                gitServerUrl: serverUrl,
+                gitHistory: [
+                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
+                    [
+                        'checkout',
+                        [
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'data.js'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'index.html'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'commit',
+                            '-m',
+                            'add Test benchmark (cargo) benchmark result for current commit id',
+                        ],
+                    ],
+                    [
+                        'push',
+                        [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                        ],
+                    ],
+                ],
+                expectedDataBaseDirectory: 'benchmark-data-repository',
+            },
+            {
+                it: 'creates new data file in other repository',
+                config: {
+                    ...defaultCfg,
+                    ghRepository: 'https://github.com/user/other-repo',
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+                gitServerUrl: serverUrl,
+                gitHistory: [
+                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
+                    [
+                        'checkout',
+                        [
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'data.js'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'add',
+                            path.join('data-dir', 'index.html'),
+                        ],
+                    ],
+                    [
+                        'cmd',
+                        [
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'commit',
+                            '-m',
+                            'add Test benchmark (cargo) benchmark result for current commit id',
+                        ],
+                    ],
+                    [
+                        'push',
+                        [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            'gh-pages',
+                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                        ],
+                    ],
+                ],
+                expectedDataBaseDirectory: 'benchmark-data-repository',
             },
             {
                 it: 'creates new suite in data',
@@ -1086,8 +1219,8 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 error: undefined,
             },
         ];
-
         for (const t of normalCases) {
+            // FIXME: can't use `it.each` currently as tests running in parallel interfere with each other
             it(t.it, async function () {
                 if (t.privateRepo) {
                     gitHubContext.payload.repository = gitHubContext.payload.repository
@@ -1095,9 +1228,10 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                         : null;
                 }
 
-                const originalDataJs = path.join(t.config.benchmarkDataDirPath, 'original_data.js');
-                const dataJs = path.join(t.config.benchmarkDataDirPath, 'data.js');
-                const indexHtml = path.join(t.config.benchmarkDataDirPath, 'index.html');
+                const dataDirPath = path.join(t.expectedDataBaseDirectory ?? '', t.config.benchmarkDataDirPath);
+                const originalDataJs = path.join(dataDirPath, 'original_data.js');
+                const dataJs = path.join(dataDirPath, 'data.js');
+                const indexHtml = path.join(dataDirPath, 'index.html');
 
                 if (await isFile(originalDataJs)) {
                     await fs.copyFile(originalDataJs, dataJs);
@@ -1111,7 +1245,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 }
 
                 let caughtError: Error | null = null;
-                const beforeData = await loadDataJs(t.config.benchmarkDataDirPath, t.gitServerUrl);
+                const beforeData = await loadDataJs(dataDirPath, t.gitServerUrl);
                 const beforeDate = Date.now();
                 try {
                     await writeBenchmark(t.added, t.config);
@@ -1135,11 +1269,11 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
 
                 expect(gitSpy.history).toEqual(t.gitHistory);
 
-                ok(await isDir(t.config.benchmarkDataDirPath));
-                ok(await isFile(path.join(t.config.benchmarkDataDirPath, 'index.html')));
+                ok(await isDir(dataDirPath));
+                ok(await isFile(path.join(dataDirPath, 'index.html')));
                 ok(await isFile(dataJs));
 
-                const data = await loadDataJs(t.config.benchmarkDataDirPath, t.gitServerUrl);
+                const data = await loadDataJs(dataDirPath, t.gitServerUrl);
                 ok(data);
 
                 expect('number').toEqual(typeof data.lastUpdate);
@@ -1222,7 +1356,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 if (t.pushErrorCount > 0) {
                     // First 2 commands are fetch and switch. They are not repeated on retry
                     const retryHistory = history.slice(2, -1);
-                    retryHistory.push(['cmd', ['reset', '--hard', 'HEAD~1']]);
+                    retryHistory.push(['cmd', [[], 'reset', '--hard', 'HEAD~1']]);
 
                     const retries = Math.min(t.pushErrorCount, maxRetries);
                     for (let i = 0; i < retries; i++) {

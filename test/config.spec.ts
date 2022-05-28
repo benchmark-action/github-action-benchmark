@@ -175,6 +175,7 @@ describe('configFromJobInput()', function () {
         name: string;
         tool: string;
         ghPagesBranch: string;
+        ghRepository: string | undefined;
         githubToken: string | undefined;
         autoPush: boolean;
         skipFetchGhPages: boolean;
@@ -191,6 +192,7 @@ describe('configFromJobInput()', function () {
         name: 'Benchmark',
         tool: 'cargo',
         ghPagesBranch: 'gh-pages',
+        ghRepository: undefined,
         autoPush: false,
         skipFetchGhPages: false,
         githubToken: undefined,
@@ -331,7 +333,7 @@ describe('configFromJobInput()', function () {
         A.ok(config.benchmarkDataDirPath.endsWith('output'), config.benchmarkDataDirPath);
     });
 
-    it('does not change abusolute paths in config', async function () {
+    it('does not change absolute paths in config', async function () {
         const outFile = path.resolve('out.txt');
         const dataDir = path.resolve('path/to/output');
         mockInputs({

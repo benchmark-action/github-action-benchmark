@@ -9,6 +9,7 @@ export interface Config {
     tool: ToolType;
     outputFilePath: string;
     ghPagesBranch: string;
+    ghRepository: string | undefined;
     benchmarkDataDirPath: string;
     githubToken: string | undefined;
     autoPush: boolean;
@@ -219,6 +220,7 @@ export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
+    const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
@@ -248,6 +250,9 @@ export async function configFromJobInput(): Promise<Config> {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    if (ghRepository) {
+        validateGitHubToken('gh-repository', githubToken, 'to clone the repository');
+    }
     validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
@@ -261,6 +266,7 @@ export async function configFromJobInput(): Promise<Config> {
         tool,
         outputFilePath,
         ghPagesBranch,
+        ghRepository,
         benchmarkDataDirPath,
         githubToken,
         autoPush,
