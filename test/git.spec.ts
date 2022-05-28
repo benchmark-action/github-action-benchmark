@@ -136,7 +136,7 @@ describe('git', function () {
 
     describe('push()', function () {
         it('runs `git push` with given branch and options', async function () {
-            const stdout = await push('this-is-token', 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await push('this-is-token', undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');

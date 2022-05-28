@@ -79,13 +79,14 @@ function getRepoRemoteUrl(token: string, repoUrl: string): string {
 
 export async function push(
     token: string,
+    repoUrl: string | undefined,
     branch: string,
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
     core.debug(`Executing 'git push' to branch '${branch}' with token and options '${options.join(' ')}'`);
 
-    const remote = getCurrentRepoRemoteUrl(token);
+    const remote = repoUrl ? getRepoRemoteUrl(token, repoUrl) : getCurrentRepoRemoteUrl(token);
     let args = ['push', remote, `${branch}:${branch}`, '--no-verify'];
     if (options.length > 0) {
         args = args.concat(options);

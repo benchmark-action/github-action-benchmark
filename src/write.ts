@@ -427,7 +427,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     if (githubToken && autoPush) {
         try {
-            await git.push(githubToken, ghPagesBranch, extraGitArguments);
+            await git.push(githubToken, ghRepository, ghPagesBranch, extraGitArguments);
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );

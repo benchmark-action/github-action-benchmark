@@ -943,7 +943,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 ['cmd', [[], 'add', path.join(dir, 'data.js')]],
                 addIndexHtml ? ['cmd', [[], 'add', path.join(dir, 'index.html')]] : undefined,
                 ['cmd', [[], 'commit', '-m', 'add Test benchmark (cargo) benchmark result for current commit id']],
-                autoPush ? ['push', [token, 'gh-pages', []]] : undefined,
+                autoPush ? ['push', [token, undefined, 'gh-pages', []]] : undefined,
                 ['cmd', [[], 'checkout', '-']], // Return from gh-pages
             ];
             return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
@@ -1035,6 +1035,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                         'push',
                         [
                             'dummy token',
+                            'https://github.com/user/other-repo',
                             'gh-pages',
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
@@ -1093,6 +1094,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                         'push',
                         [
                             'dummy token',
+                            'https://github.com/user/other-repo',
                             'gh-pages',
                             ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
                         ],
