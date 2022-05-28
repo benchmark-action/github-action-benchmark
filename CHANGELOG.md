@@ -1,5 +1,8 @@
 ## Unreleased
 
+<a name="v1.14.0"></a>
+# [v1.14.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.14.0) - 28 May 2022
+
 - **Feat** Added benchmark luau support (#123)
 - **Chore** Bump minimist from 1.2.5 to 1.2.6 (#114)
 - **Feat** Implement deploy to another repository (#112)
