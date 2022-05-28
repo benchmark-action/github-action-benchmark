@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653751170757,
+  "lastUpdate": 1653751180440,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38271,6 +38271,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 46301,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
+          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
+          "timestamp": "2022-05-28T17:18:33+02:00",
+          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
+        },
+        "date": 1653751178683,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 286.33812949640287,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":278,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 35801,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
