@@ -345,7 +345,7 @@ function extractBenchmarkJsResult(output: string): BenchmarkResult[] {
         if (idx === -1) {
             continue;
         }
-        const name = line.slice(0, idx);
+        const name = line.slice(0, idx).trim();
         const rest = line.slice(idx);
 
         const m = rest.match(reExtract);
