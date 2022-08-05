@@ -614,6 +614,32 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
     return results;
 }
 
+function extractCabalBenchmarkResult(output: string): BenchmarkResult[] {
+    const lines0 = output.split(/\n/);
+    const lines = lines0.splice(0, 1);
+    const res = [];
+
+    for (const line of lines) {
+        const [name, meanSec, meanLBSec, meanUBSec, stddevSec, stddevLBSec, stddevUBSec] = line.split(',');
+        const [mean, meanUnit] = getHumanReadableUnitValue(parseFloat(meanSec));
+        const [meanLB, meanLBUnit] = getHumanReadableUnitValue(parseFloat(meanLBSec));
+        const [meanUB, meanUBUnit] = getHumanReadableUnitValue(parseFloat(meanUBSec));
+        const [stddev, stddevUnit] = getHumanReadableUnitValue(parseFloat(stddevSec));
+        const [stddevLB, stddevLBUnit] = getHumanReadableUnitValue(parseFloat(stddevLBSec));
+        const [stddevUB, stddevUBUnit] = getHumanReadableUnitValue(parseFloat(stddevUBSec));
+
+        res.push({
+            name: name,
+            value: mean,
+            unit: meanUnit,
+            range: `±${stddev} ${stddevUnit}`,
+            extra: `Mean lower bound: ${meanLB} ${meanLBUnit}\nMean upper bound: ${meanUB} ${meanUBUnit}\nStandard deviation LB: ${stddevLB} ${stddevLBUnit}\nStandard deviation UB: ${stddevUB} ${stddevUBUnit}`,
+        });
+    }
+
+    return res;
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken } = config;
@@ -643,6 +669,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'benchmarkdotnet':
             benches = extractBenchmarkDotnetResult(output);
+            break;
+        case 'cabal':
+            benches = extractCabalBenchmarkResult(output);
             break;
         case 'customBiggerIsBetter':
             benches = extractCustomBenchmarkResult(output);

@@ -417,6 +417,25 @@ describe('extractResult()', function () {
                 },
             ],
         },
+        {
+            tool: 'cabal',
+            expected: [
+                {
+                    name: 'fib/1',
+                    unit: 'nsec',
+                    value: 12.128410840686445,
+                    range: '±0.2145268159803889 nsec',
+                    extra: 'Mean lower bound: 12.074536540005713 nsec\nMean upper bound: 12.20221697579002 nsec\nStandard deviation LB: 0.16198043933498568 nsec\nStandard deviation UB: 0.27812295435222917 nsec',
+                },
+                {
+                    name: 'fib/5',
+                    unit: 'nsec',
+                    value: 237.76579995877364,
+                    range: '±13.331560091086645 nsec',
+                    extra: 'Mean lower bound: 234.3297169016553 nsec\nMean upper bound: 242.62841729253594 nsec\nStandard deviation LB: 9.007202760821372 nsec\nStandard deviation UB: 19.96951369185613 nsec',
+                },
+            ],
+        },
     ];
 
     for (const test of normalCases) {

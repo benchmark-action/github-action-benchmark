@@ -35,6 +35,7 @@ export const VALID_TOOLS = [
     'catch2',
     'julia',
     'benchmarkdotnet',
+    'cabal',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
 ] as const;

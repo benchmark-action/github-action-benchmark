@@ -122,6 +122,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           benchmarkdotnet: '#178600',
           customBiggerIsBetter: '#38ff38',
           customSmallerIsBetter: '#ff3838',
+          cabal: '#5e5086'
           _: '#333333'
         };
 
