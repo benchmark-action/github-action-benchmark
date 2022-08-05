@@ -620,7 +620,6 @@ function extractCabalBenchmarkResult(output: string): BenchmarkResult[] {
     const res = [];
 
     for (const line of lines) {
-
         const [name, meanSec, meanLBSec, meanUBSec, stddevSec, stddevLBSec, stddevUBSec] = line.split(',');
         const [mean, meanUnit] = getHumanReadableUnitValue(parseFloat(meanSec));
         const [meanLB, meanLBUnit] = getHumanReadableUnitValue(parseFloat(meanLBSec));
