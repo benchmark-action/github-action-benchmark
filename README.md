@@ -25,6 +25,7 @@ This action currently supports the following tools:
 - [BenchmarkTools.jl][] for Julia packages
 - [Benchmark.Net][benchmarkdotnet] for .Net projects
 - [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
+- [criterion](https://hackage.haskell.org/package/criterion) for Haskell projects
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -46,9 +47,11 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
 | C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
 | C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
-| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
+| Julia        | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
 | .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 | Luau         | Coming soon | Coming soon |
+| Haskell      |             |             |
+
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 

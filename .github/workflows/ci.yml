@@ -293,6 +293,39 @@ jobs:
           fail-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
+  cabal:
+    name: Run Cabal benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: haskell/actions/setup@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
+      - name: Run benchmark
+        run: cd examples/cabal && cabal run -- --csv output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Cabal Benchmark
+          tool: 'cabal'
+          output-file-path: examples/cabal/output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+
   only-alert-with-cache:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest

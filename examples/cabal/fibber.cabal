@@ -1,0 +1,40 @@
+name:          fibber
+version:       0
+synopsis:      Examples for the criterion benchmarking system
+description:   Examples for the criterion benchmarking system.
+homepage:      https://github.com/haskell/criterion
+license:       BSD3
+license-file:  LICENSE
+author:        Bryan O'Sullivan <bos@serpentine.com>
+maintainer:    Bryan O'Sullivan <bos@serpentine.com>
+category:      Benchmarks
+build-type:    Simple
+cabal-version: >=1.10
+tested-with:
+  GHC==7.4.2,
+  GHC==7.6.3,
+  GHC==7.8.4,
+  GHC==7.10.3,
+  GHC==8.0.2,
+  GHC==8.2.2,
+  GHC==8.4.4,
+  GHC==8.6.5,
+  GHC==8.8.4,
+  GHC==8.10.7,
+  GHC==9.0.2,
+  GHC==9.2.2
+
+flag conduit-vs-pipes
+  default: True
+
+flag maps
+  default: True
+
+executable fibber
+  main-is: Fibber.hs
+
+  default-language: Haskell2010
+  ghc-options: -Wall -rtsopts
+  build-depends:
+    base == 4.*,
+    criterion
