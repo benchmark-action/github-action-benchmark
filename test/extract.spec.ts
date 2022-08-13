@@ -199,6 +199,12 @@ describe('extractResult()', function () {
                     value: 40537.456,
                     extra: '30001 times',
                 },
+                {
+                    name: 'BenchmarkFib/my/tabled/benchmark_-_20,var1=13,var2=14',
+                    unit: 'ns/op',
+                    value: 40537.456,
+                    extra: '30001 times',
+                },
             ],
         },
         {
