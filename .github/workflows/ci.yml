@@ -328,7 +328,7 @@ jobs:
           output-file-path: examples/java/jmh-result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
-      - run: node ./scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
