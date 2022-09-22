@@ -75,6 +75,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'julia':
             return false;
+        case 'jmh':
+            return false;
         case 'benchmarkdotnet':
             return false;
         case 'customBiggerIsBetter':
