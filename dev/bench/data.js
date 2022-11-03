@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667465103068,
+  "lastUpdate": 1667465139243,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31237,6 +31237,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00028795186421571754",
             "extra": "mean: 2.6599954005380626 msec\nrounds: 372"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d4d45b573a9995079f8612227b7f7be12d8f221c",
+          "message": "Chore/update deps (#137)\n\n* update actions dependencies\r\n* npm audit fix",
+          "timestamp": "2022-11-03T09:44:21+01:00",
+          "tree_id": "340349c418dcf58812cf3386682b912a40b41893",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d4d45b573a9995079f8612227b7f7be12d8f221c"
+        },
+        "date": 1667465136989,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 53774.05322204051,
+            "unit": "iter/sec",
+            "range": "stddev: 5.149752398955429e-7",
+            "extra": "mean: 18.596329271867635 usec\nrounds: 30121"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 443.6476393922271,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000005621593694103427",
+            "extra": "mean: 2.2540410704538965 msec\nrounds: 440"
           }
         ]
       }
