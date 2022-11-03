@@ -122,6 +122,7 @@ exports.DEFAULT_INDEX_HTML = String.raw `<!DOCTYPE html>
           googlecpp: '#f34b7d',
           catch2: '#f34b7d',
           julia: '#a270ba',
+          jmh: '#b07219',
           benchmarkdotnet: '#178600',
           customBiggerIsBetter: '#38ff38',
           customSmallerIsBetter: '#ff3838',

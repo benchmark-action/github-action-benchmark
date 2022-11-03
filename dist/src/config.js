@@ -33,6 +33,7 @@ exports.VALID_TOOLS = [
     'googlecpp',
     'catch2',
     'julia',
+    'jmh',
     'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',

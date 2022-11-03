@@ -84,6 +84,8 @@ function biggerIsBetter(tool) {
             return false;
         case 'julia':
             return false;
+        case 'jmh':
+            return false;
         case 'benchmarkdotnet':
             return false;
         case 'customBiggerIsBetter':
