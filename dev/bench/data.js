@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667461836373,
+  "lastUpdate": 1667462012496,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10066,6 +10066,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 31102,
             "range": "± 5060",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mmior@mail.rit.edu",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
+          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-11-03T08:49:06+01:00",
+          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
+        },
+        "date": 1667462010494,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 224,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28519,
+            "range": "± 121",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28469,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46082,
+            "range": "± 136",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
