@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667465094499,
+  "lastUpdate": 1667465097647,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10126,6 +10126,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d4d45b573a9995079f8612227b7f7be12d8f221c",
+          "message": "Chore/update deps (#137)\n\n* update actions dependencies\r\n* npm audit fix",
+          "timestamp": "2022-11-03T09:44:21+01:00",
+          "tree_id": "340349c418dcf58812cf3386682b912a40b41893",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d4d45b573a9995079f8612227b7f7be12d8f221c"
+        },
+        "date": 1667465094719,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 219,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 29389,
+            "range": "± 1899",
             "unit": "ns/iter"
           }
         ]
