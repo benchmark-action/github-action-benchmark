@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1653754836577,
+  "lastUpdate": 1667461773561,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17283,6 +17283,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 50376,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mmior@mail.rit.edu",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
+          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-11-03T08:49:06+01:00",
+          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
+        },
+        "date": 1667461771636,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 389,
+            "unit": "ns/op",
+            "extra": "5000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 48133,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
