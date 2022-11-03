@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667462012496,
+  "lastUpdate": 1667465094499,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35881,6 +35881,42 @@ window.BENCHMARK_DATA = {
             "value": 21668.984912883177,
             "unit": "ns/iter",
             "extra": "iterations: 30821\ncpu: 21666.98030563577 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d4d45b573a9995079f8612227b7f7be12d8f221c",
+          "message": "Chore/update deps (#137)\n\n* update actions dependencies\r\n* npm audit fix",
+          "timestamp": "2022-11-03T09:44:21+01:00",
+          "tree_id": "340349c418dcf58812cf3386682b912a40b41893",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d4d45b573a9995079f8612227b7f7be12d8f221c"
+        },
+        "date": 1667465092469,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.43326521028487,
+            "unit": "ns/iter",
+            "extra": "iterations: 3900784\ncpu: 179.39388594703016 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24171.182875883733,
+            "unit": "ns/iter",
+            "extra": "iterations: 28965\ncpu: 24169.549456240286 ns\nthreads: 1"
           }
         ]
       }
