@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667461783872,
+  "lastUpdate": 1667461790683,
   "entries": {
     "Rust Benchmark": [
       {
@@ -39503,6 +39503,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 42903,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mmior@mail.rit.edu",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
+          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-11-03T08:49:06+01:00",
+          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
+        },
+        "date": 1667461788675,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 270.28482972136226,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":323,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 33701,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
