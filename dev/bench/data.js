@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667461773561,
+  "lastUpdate": 1667461776617,
   "entries": {
     "Rust Benchmark": [
       {
@@ -30955,6 +30955,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000296440723834803",
             "extra": "mean: 2.7224939031407485 msec\nrounds: 382"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mmior@mail.rit.edu",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
+          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-11-03T08:49:06+01:00",
+          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
+        },
+        "date": 1667461772457,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 45067.176246077346,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00004861041335779897",
+            "extra": "mean: 22.189098215068228 usec\nrounds: 32154"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 375.94049967068383,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00028795186421571754",
+            "extra": "mean: 2.6599954005380626 msec\nrounds: 372"
           }
         ]
       }
