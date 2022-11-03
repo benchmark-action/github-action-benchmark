@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667488266557,
+  "lastUpdate": 1667488276433,
   "entries": {
     "Rust Benchmark": [
       {
@@ -40175,6 +40175,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 33700,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "b2887b657da81fdbbd1b8f8653099da5b246e259",
+          "message": "Update changelog for v1.15.0",
+          "timestamp": "2022-11-03T16:09:08+01:00",
+          "tree_id": "44376a4cfbda3e5d68c4b22452d70c37ec951616",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b2887b657da81fdbbd1b8f8653099da5b246e259"
+        },
+        "date": 1667488273955,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 346.64125560538116,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":223,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 42900,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
