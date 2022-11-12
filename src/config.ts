@@ -23,6 +23,7 @@ export interface Config {
     alertCommentCcUsers: string[];
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
+    readCommitIdFromGit: boolean;
 }
 
 export const VALID_TOOLS = [
@@ -233,6 +234,7 @@ export async function configFromJobInput(): Promise<Config> {
     const alertThreshold = getPercentageInput('alert-threshold');
     const failOnAlert = getBoolInput('fail-on-alert');
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
+    const readCommitIdFromGit = getBoolInput('read-commit-id-from-git');
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
     let failThreshold = getPercentageInput('fail-threshold');
@@ -281,5 +283,6 @@ export async function configFromJobInput(): Promise<Config> {
         externalDataJsonPath,
         maxItemsInChart,
         failThreshold,
+        readCommitIdFromGit,
     };
 }
