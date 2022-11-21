@@ -224,6 +224,29 @@ that this value must be quoted like `'@rhysd'` because [`@` is an indicator in Y
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
 
+### PR Summary
+
+Similar to how is done with [Commit comment](#commit-comment), [Job Summaries][job-summaries] are
+also supported. In order to use Job Summaries you must turn on the `summary-always`
+option.
+
+```yaml
+- name: Store benchmark result
+  uses: benchmark-action/github-action-benchmark@v1
+  with:
+    tool: 'cargo'
+    output-file-path: output.txt
+    external-data-json-path: ./cache/benchmark-data.json
+    fail-on-alert: true
+    # GitHub API token to make a commit comment
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    # Enable alert commit comment
+    comment-on-alert: true
+    # Enable Job Summary for PRs
+    summary-always: true
+    # Mention @rhysd in the commit comment
+    alert-comment-cc-users: '@rhysd'
+```
 
 ### Charts on GitHub Pages
 
@@ -632,3 +655,4 @@ Every release will appear on your GitHub notifications page.
 [benchmarkdotnet]: https://benchmarkdotnet.org
 [benchmarkdotnet-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
+[job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
