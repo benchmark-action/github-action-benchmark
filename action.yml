@@ -1,4 +1,4 @@
-name: 'Continuous Benchmark'
+name: 'Continuous Benchmark With PR Comments'
 author: 'github-action-benchmark developers <https://github.com/benchmark-action>'
 description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
 branding:
