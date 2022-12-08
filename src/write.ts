@@ -248,10 +248,10 @@ async function leaveComment(commitId: string, body: string, token: string) {
     const commitUrl = `${repoUrl}/commit/${commitId}`;
     console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);
 
-    const pr = github.context.payload.pull_request;
-    const issueNumber = github.context.issue.number;
-    if (pr) {
-        core.debug('Sending PR comment IN:'+ issueNumber' - PR:' + pr ':\n' + body);
+    // const pr = github.context.payload?.pull_request?.number;
+    const issueNumber = github.context.issue?.number;
+    if (issueNumber) {
+        core.debug('Sending PR comment IN: ${issueNumber} PR: ${pr} \n' + body);
         const res = await client.issues.createComment({
             owner: repoMetadata.owner.login,
             repo: repoMetadata.name,
@@ -259,6 +259,7 @@ async function leaveComment(commitId: string, body: string, token: string) {
             issue_number: issueNumber,
             body,
         });
+        console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);
     } else {
         core.debug('No PR - not sending PR comment:\n' + body);
     }
