@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871823627,
+  "lastUpdate": 1670871827600,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41393,6 +41393,42 @@ window.BENCHMARK_DATA = {
             "value": 54.60347499847412,
             "unit": "ns",
             "range": "± 0.5543120988732118"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670871825114,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 27.651911870791363,
+            "unit": "ns",
+            "range": "± 0.8055934526272444"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 50.71212410430113,
+            "unit": "ns",
+            "range": "± 1.3634024537343374"
           }
         ]
       }
