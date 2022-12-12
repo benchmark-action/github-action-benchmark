@@ -422,7 +422,7 @@ If it is set to `true`, this action will leave a commit comment comparing the cu
 - Type: Boolean
 - Default: `true`
 
-If it is set to `true`, this action will not save the current benchmark to the external data file.
+If it is set to `false`, this action will not save the current benchmark to the external data file.
 You can use this option to set up your action to compare the benchmarks between PR and base branch.
 
 #### `alert-threshold` (Optional)
