@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871765201,
+  "lastUpdate": 1670871783109,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10414,6 +10414,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 6,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670871780016,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 232,
+            "range": "± 51",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 30377,
+            "range": "± 6130",
             "unit": "ns/iter"
           }
         ]
