@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871405041,
+  "lastUpdate": 1670871448008,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41143,6 +41143,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1689130414.496377,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
+          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
+          "timestamp": "2022-12-12T19:55:14+01:00",
+          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
+        },
+        "date": 1670871445105,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1388436718.067195,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
