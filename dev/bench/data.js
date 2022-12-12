@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1667488458982,
+  "lastUpdate": 1670871347624,
   "entries": {
     "Rust Benchmark": [
       {
@@ -25423,6 +25423,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.11%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
+          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
+          "timestamp": "2022-12-12T19:55:14+01:00",
+          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
+        },
+        "date": 1670871345578,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1323875,
+            "range": "±0.11%",
+            "unit": "ops/sec",
+            "extra": "95 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 10911,
+            "range": "±1.55%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
           }
         ]
       }
