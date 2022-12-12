@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871833817,
+  "lastUpdate": 1670871864615,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41527,6 +41527,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1388436718.067195,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670871862006,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1657716527.9289982,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
