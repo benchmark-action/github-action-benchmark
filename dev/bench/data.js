@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871391486,
+  "lastUpdate": 1670871396574,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31653,6 +31653,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00016599692056384264",
             "extra": "mean: 2.9188453104474483 msec\nrounds: 335"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
+          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
+          "timestamp": "2022-12-12T19:55:14+01:00",
+          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
+        },
+        "date": 1670871393576,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 54909.10875188174,
+            "unit": "iter/sec",
+            "range": "stddev: 5.339975225640882e-7",
+            "extra": "mean: 18.21191461181256 usec\nrounds: 37593"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 447.06668704269293,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013465977670919707",
+            "extra": "mean: 2.236802761160561 msec\nrounds: 448"
           }
         ]
       }
