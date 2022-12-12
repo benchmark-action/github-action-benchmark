@@ -146,7 +146,7 @@ jobs:
 
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -185,7 +185,7 @@ jobs:
 
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
