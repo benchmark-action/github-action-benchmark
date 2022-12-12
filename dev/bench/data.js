@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871579265,
+  "lastUpdate": 1670871759977,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36613,6 +36613,42 @@ window.BENCHMARK_DATA = {
             "value": 24105.253057287766,
             "unit": "ns/iter",
             "extra": "iterations: 29029\ncpu: 24104.13035240621 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670871757473,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 201.47202472731777,
+            "unit": "ns/iter",
+            "extra": "iterations: 3508670\ncpu: 200.02100511019844 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25743.850847208978,
+            "unit": "ns/iter",
+            "extra": "iterations: 27207\ncpu: 25741.184254052274 ns\nthreads: 1"
           }
         ]
       }
