@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871971696,
+  "lastUpdate": 1670872667331,
   "entries": {
     "Rust Benchmark": [
       {
@@ -31959,6 +31959,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000009027064789338518",
             "extra": "mean: 2.0271353401634413 msec\nrounds: 488"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670872664993,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 58178.43317018798,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000002693553053632989",
+            "extra": "mean: 17.18850002499593 usec\nrounds: 40002"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 483.18798439380834,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000007248428623467266",
+            "extra": "mean: 2.069587887733936 msec\nrounds: 481"
           }
         ]
       }
