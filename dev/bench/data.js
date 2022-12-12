@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670871369869,
+  "lastUpdate": 1670871391486,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36479,6 +36479,42 @@ window.BENCHMARK_DATA = {
             "value": 24205.748141745487,
             "unit": "ns/iter",
             "extra": "iterations: 28925\ncpu: 24188.038029386338 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
+          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
+          "timestamp": "2022-12-12T19:55:14+01:00",
+          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
+        },
+        "date": 1670871388416,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.5231435975648,
+            "unit": "ns/iter",
+            "extra": "iterations: 3901619\ncpu: 179.37438278827332 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24105.253057287766,
+            "unit": "ns/iter",
+            "extra": "iterations: 29029\ncpu: 24104.13035240621 ns\nthreads: 1"
           }
         ]
       }
