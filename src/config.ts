@@ -38,6 +38,7 @@ export const VALID_TOOLS = [
     'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
+    'cargo-criterion'
 ] as const;
 const RE_UINT = /^\d+$/;
 

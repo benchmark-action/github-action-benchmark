@@ -104,6 +104,18 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'cargo-criterion',
+            file: 'criterion_output.json',
+            expected: [
+                {
+                    name: 'bench_engine_new',
+                    range: '± 70126',
+                    unit: 'ns/iter',
+                    value: 211834,
+                }
+            ],
+        },
+        {
             tool: 'cargo',
             file: 'criterion_output.txt',
             expected: [
