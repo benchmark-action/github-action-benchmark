@@ -381,7 +381,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 }
 
 function extractCriterionResult(output: string): BenchmarkResult[] {
-    let json: CargoCriterionBenchmarkJson; // TODO: Multiple benchmarks, collated JSONs
+    let json: CargoCriterionBenchmarkJson; // TODO: Support multiple benchmarks, see test/data/extract/criterion_output_multi.json
     const ret = [];
 
     try {
@@ -398,7 +398,7 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
     console.log(criterion_benchmark_reports);
 
     const name = json.id;
-    const value = json.median.estimate; // TODO: Check if most statistically relevant here?
+    const value = json.median.estimate; // Is this the most statistically relevant here for perf regressions?
     const extra = JSON.stringify([criterion_benchmark_reports, JSON.stringify(json.iteration_count),
                                   JSON.stringify(json.measured_values), JSON.stringify(json.typical),
                                   JSON.stringify(json.mean),JSON.stringify(json.median_abs_dev),

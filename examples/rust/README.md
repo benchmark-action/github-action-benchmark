@@ -69,7 +69,7 @@ https://bheisler.github.io/criterion.rs/book/cargo_criterion/cargo_criterion.htm
 
 There are two notable differences in cargo-criterion:
 
-  1. Since the output is machine-readable JSON, the extract process only parses the result file and maps the required data into github-action-benchmark plotting system.
+  1. Since the output is machine-readable JSON, the extract process only parses the result file and maps the required data into github-action-benchmark plotting system. In fact, [cargo-criterion][cargo-criterion] only supports JSON as `message-format` (output format).
   2. cargo-criterion incorporates [its own HTML benchmark reports system][criterion-rs-own-html], which can be stored alongside if desired through the `store-native-benchmark-report` flag.
 
 ```yaml
