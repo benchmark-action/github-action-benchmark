@@ -89,6 +89,12 @@ export interface CargoCriterionBenchmarkJson {
         upper_bount: number,
         unit: string
     },
+    median: {
+        estimate: number,
+        lower_bound: number,
+        upper_bount: number,
+        unit: string
+    },
     median_abs_dev: {
         estimate: number,
         lower_bound: number,
@@ -392,12 +398,17 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
     console.log(criterion_benchmark_reports);
 
     const name = json.id;
-    const value = json.typical.estimate;
+    const value = json.median.estimate; // TODO: Check if most statistically relevant here?
+    const extra = JSON.stringify([criterion_benchmark_reports, JSON.stringify(json.iteration_count),
+                                  JSON.stringify(json.measured_values), JSON.stringify(json.typical),
+                                  JSON.stringify(json.mean),JSON.stringify(json.median_abs_dev),
+                                  JSON.stringify(json.slope)])
 
     ret.push({
         name,
         value,
         unit: 'ns',
+        extra
     });
 
     return ret;
