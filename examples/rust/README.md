@@ -1,5 +1,4 @@
-Rust example for benchmarking with `cargo bench`
-================================================
+# Rust example for benchmarking with `cargo bench`
 
 - [Workflow for this example](../../.github/workflows/rust.yml)
 - [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22)
@@ -46,4 +45,41 @@ Store the benchmark results with step using the action. Please set `cargo` to `t
 
 Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
 
+# Rust example for benchmarking with cargo-criterion
 
+In the previous section, both regular and criterion-rs can be used through the regular `cargo bench` facility, but there's an additional crate and cargo extension named [`cargo-criterion`][cargo-criterion].
+
+ The improvements in [cargo-criterion][cargo-criterion] do [match the goals of github-action-benchmark](https://crates.io/crates/cargo-criterion#goals), so it makes sense to include support for it.
+
+
+## Run benchmarks
+
+Official documentation for usage of `cargo criterion`:
+
+https://bheisler.github.io/criterion.rs/book/cargo_criterion/cargo_criterion.html
+
+.e.g: 
+
+```yaml
+- name: Run search benchmarks
+  run: cargo criterion --bench search-benchmarks --message-format=json -- LIGHT | tee output.txt
+```
+
+## Process benchmarks results
+
+There are two notable differences in cargo-criterion:
+
+  1. Since the output is machine-readable JSON, the extract process only parses the result file and maps the required data into github-action-benchmark plotting system.
+  2. cargo-criterion incorporates [its own HTML benchmark reports system][criterion-rs-own-html], which can be stored alongside if desired through the `store-native-benchmark-report` flag.
+
+```yaml
+- name: Store benchmark result
+  uses: benchmark-action/github-action-benchmark@v1
+  with:
+    tool: 'cargo-criterion'
+    output-file-path: output.json
+    store-native-benchmark-report: true
+```
+
+[cargo-criterion]: https://crates.io/crates/cargo-criterion
+[criterion-rs-own-html]: https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html
