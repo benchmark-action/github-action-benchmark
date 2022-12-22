@@ -69,10 +69,10 @@ export interface GoogleCppBenchmarkJson {
 }
 
 export interface CargoCriterionBenchmarkJson {
+    id: string; // a.k.a benchmark id
     commit: Commit;
     date: string;
     reason: string;
-    benchmark_id: string;
     iteration_count: [];
     measured_values: [];
     unit: string;
@@ -376,6 +376,8 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 
 function extractCriterionResult(output: string): BenchmarkResult[] {
     let json: CargoCriterionBenchmarkJson; // TODO: Multiple benchmarks, collated JSONs
+    const ret = [];
+
     try {
         json = JSON.parse(output);
     } catch (err: any) {
@@ -388,13 +390,17 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
     const criterion_benchmark_reports = json.report_directory;
 
     console.log(criterion_benchmark_reports);
-    return {
-        json;
-        const value = b.real_time;
-        const unit = b.time_unit + '/iter';
-        const extra = `iterations: ${b.iterations}\ncpu: ${b.cpu_time} ${b.time_unit}\nthreads: ${b.threads}`;
-        return { name, value, unit, extra };
+
+    const name = json.id;
+    const value = json.typical.estimate;
+
+    ret.push({
+        name,
+        value,
+        unit: 'ns',
     });
+
+    return ret;
 }
 
 function extractGoResult(output: string): BenchmarkResult[] {

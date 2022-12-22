@@ -108,10 +108,9 @@ describe('extractResult()', function () {
             file: 'criterion_output.json',
             expected: [
                 {
-                    name: 'bench_engine_new',
-                    range: '± 70126',
-                    unit: 'ns/iter',
-                    value: 211834,
+                    name: 'Queries/[LIGHT] Bam query all',
+                    unit: 'ns',
+                    value: 12481.003131880992,
                 }
             ],
         },
