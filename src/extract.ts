@@ -78,35 +78,35 @@ export interface CargoCriterionBenchmarkJson {
     unit: string;
     throughput: [];
     typical: {
-        estimate: number,
-        lower_bound: number,
-        upper_bount: number,
-        unit: string
-    },
+        estimate: number;
+        lower_bound: number;
+        upper_bount: number;
+        unit: string;
+    };
     mean: {
-        estimate: number,
-        lower_bound: number,
-        upper_bount: number,
-        unit: string
-    },
+        estimate: number;
+        lower_bound: number;
+        upper_bount: number;
+        unit: string;
+    };
     median: {
-        estimate: number,
-        lower_bound: number,
-        upper_bount: number,
-        unit: string
-    },
+        estimate: number;
+        lower_bound: number;
+        upper_bount: number;
+        unit: string;
+    };
     median_abs_dev: {
-        estimate: number,
-        lower_bound: number,
-        upper_bount: number,
-        unit: string
-    },
+        estimate: number;
+        lower_bound: number;
+        upper_bount: number;
+        unit: string;
+    };
     slope: {
-        estimate: number,
-        lower_bound: number,
-        upper_bount: number,
-        unit: string
-    }
+        estimate: number;
+        lower_bound: number;
+        upper_bount: number;
+        unit: string;
+    };
     report_directory: string;
 }
 
@@ -399,16 +399,21 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
 
     const name = json.id;
     const value = json.median.estimate; // Is this the most statistically relevant here for perf regressions?
-    const extra = JSON.stringify([criterion_benchmark_reports, JSON.stringify(json.iteration_count),
-                                  JSON.stringify(json.measured_values), JSON.stringify(json.typical),
-                                  JSON.stringify(json.mean),JSON.stringify(json.median_abs_dev),
-                                  JSON.stringify(json.slope)])
+    const extra = JSON.stringify([
+        criterion_benchmark_reports,
+        JSON.stringify(json.iteration_count),
+        JSON.stringify(json.measured_values),
+        JSON.stringify(json.typical),
+        JSON.stringify(json.mean),
+        JSON.stringify(json.median_abs_dev),
+        JSON.stringify(json.slope),
+    ]);
 
     ret.push({
         name,
         value,
         unit: 'ns',
-        extra
+        extra,
     });
 
     return ret;
