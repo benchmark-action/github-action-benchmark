@@ -45,7 +45,7 @@ Store the benchmark results with step using the action. Please set `cargo` to `t
 
 Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
 
-# Rust example for benchmarking with cargo-criterion
+# Rust example for benchmarking with `cargo-criterion`
 
 In the previous section, both regular and criterion-rs can be used through the regular `cargo bench` facility, but there's an additional crate and cargo extension named [`cargo-criterion`][cargo-criterion].
 
