@@ -395,8 +395,6 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
     // TODO: Also git add and push the report_directory in github pages, timestamped?
     const criterion_benchmark_reports = json.report_directory;
 
-    console.log(criterion_benchmark_reports);
-
     const name = json.id;
     const value = json.median.estimate; // Is this the most statistically relevant here for perf regressions?
     const extra = JSON.stringify([

@@ -16,7 +16,7 @@ and monitor the results on GitHub Actions workflow.
 
 This action currently supports the following tools:
 
-- [`cargo bench`][cargo-bench] for Rust projects
+- [`cargo bench`][cargo-bench] and [`cargo criterion`][cargo-criterion] for Rust projects
 - `go test -bench` for Go projects
 - [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
 - [pytest-benchmark][] for Python projects with [pytest][]
@@ -605,6 +605,7 @@ Every release will appear on your GitHub notifications page.
 [java-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/JMH%20Example/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
+[cargo-criterion]: https://crates.io/crates/cargo-criterion
 [benchmarkjs]: https://benchmarkjs.com/
 [gh-pages]: https://pages.github.com/
 [examples-page]: https://benchmark-action.github.io/github-action-benchmark/dev/bench/

@@ -10,5 +10,6 @@
 /coverage
 /dist
 /.idea
+.release
 target/
 jmh-result.json
