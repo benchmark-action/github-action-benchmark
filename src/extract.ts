@@ -2,6 +2,7 @@
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
 import { Config, ToolType } from './config';
+import { EOL } from 'os';
 
 export interface BenchmarkResult {
     name: string;
@@ -384,7 +385,6 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 function extractCriterionResult(output: string): BenchmarkResult[] {
     let json: CargoCriterionBenchmarkJson;
     const ret = [];
-    const { EOL } = require('os');
 
     try {
         // Output for group benchmarks is a Newline separated (streamed) JSON:
@@ -396,12 +396,14 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         for (const line of lines) {
             json = JSON.parse(line);
 
-            if (json.reason == "group-complete") break;
+            // No data in this sub-JSON, just a summary of which benchmarks were run
+            if (json.reason === 'group-complete') break;
 
             const criterion_benchmark_reports = json.report_directory;
 
             const name = json.id;
             const value = json.median.estimate; // Is this the most statistically relevant here for perf regressions?
+            const unit = json.median.unit;
             const extra = JSON.stringify([
                 criterion_benchmark_reports,
                 JSON.stringify(json.iteration_count),
@@ -411,10 +413,9 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
                 JSON.stringify(json.median_abs_dev),
                 JSON.stringify(json.slope),
             ]);
-        
-            ret.push({ name, value, unit: json.median.unit, extra });
-        }
 
+            ret.push({ name, value, unit, extra });
+        }
     } catch (err: any) {
         console.log(err);
         throw new Error(
@@ -641,7 +642,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     return ret;
 }
 
-function extractJuliaBenchmarkHelper([_, bench]: JuliaBenchmarkGroup, labels: string[] = []): BenchmarkResult[] {
+function extractJuliaBenchmarkHelper([, bench]: JuliaBenchmarkGroup, labels: string[] = []): BenchmarkResult[] {
     const res: BenchmarkResult[] = [];
     for (const key in bench.data) {
         const value = bench.data[key];
