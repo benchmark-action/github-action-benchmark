@@ -384,14 +384,14 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 function extractCriterionResult(output: string): BenchmarkResult[] {
     let json: CargoCriterionBenchmarkJson; // TODO: Support multiple benchmarks, see test/data/extract/criterion_output_multi.json
     const ret = [];
-    //const { EOL } = require('os');
+    const { EOL } = require('os');
 
     try {
         // Output for group benchmarks is a Newline separated (streamed) JSON:
         // https://en.wikipedia.org/wiki/JSON_streaming#Newline-Delimited_JSON
         //
         // Therefore iterate over those and parse individually
-        const lines = output.split(/\n/);
+        const lines = output.split(EOL);
 
         // TODO: When there's a single output, there are no newlines to split with :_/
         // TODO: Add https://www.npmjs.com/package/ndjson as a dep for this?
@@ -400,7 +400,6 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         for (const line of lines) {
             json = JSON.parse(line);
 
-            //json = JSON.parse(line);
             if (json.reason == "group-complete") break;
 
             const criterion_benchmark_reports = json.report_directory;
