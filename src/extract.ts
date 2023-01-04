@@ -398,7 +398,6 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         //console.log(lines);
 
         for (const line of lines) {
-            console.log(line);
             json = JSON.parse(line);
 
             //json = JSON.parse(line);
