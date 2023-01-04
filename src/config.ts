@@ -11,6 +11,7 @@ export interface Config {
     ghPagesBranch: string;
     ghRepository: string | undefined;
     benchmarkDataDirPath: string;
+    nativeBenchmarkDataDirPath: string;
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
@@ -224,6 +225,7 @@ export async function configFromJobInput(): Promise<Config> {
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
     const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
+    let nativeBenchmarkDataDirPath: string = core.getInput('native-benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
@@ -270,6 +272,7 @@ export async function configFromJobInput(): Promise<Config> {
         ghPagesBranch,
         ghRepository,
         benchmarkDataDirPath,
+        nativeBenchmarkDataDirPath,
         githubToken,
         autoPush,
         skipFetchGhPages,
