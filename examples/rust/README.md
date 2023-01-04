@@ -81,5 +81,7 @@ There are two notable differences in cargo-criterion:
     store-native-benchmark-report: true
 ```
 
+TBD: The native benchmark reports is simply copied from `target/criterion/reports` and pushed to the github results repo.
+
 [cargo-criterion]: https://crates.io/crates/cargo-criterion
 [criterion-rs-own-html]: https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html
