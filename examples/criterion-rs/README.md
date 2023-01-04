@@ -21,6 +21,18 @@ e.g.
 
 Note that you should run the benchmarks using the bencher output format.
 
+If one wishes to use JSON as output format, you can install `cargo-criterion` crate with the accompanying `tool:` YAML definition in the action:
+
+```yaml
+- name: Install cargo-criterion
+  uses: baptiste0928/cargo-install@v1
+  with:
+    crate: cargo-criterion
+- name: Run benchmarks
+  run: cargo criterion 1> output.json
+```
+
+Further details are described in [the cargo-criterion Rust example](../rust/README.md).
 
 ## Process benchmark results
 

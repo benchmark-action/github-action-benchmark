@@ -61,9 +61,11 @@ https://bheisler.github.io/criterion.rs/book/cargo_criterion/cargo_criterion.htm
 .e.g: 
 
 ```yaml
-- name: Run search benchmarks
-  run: cargo criterion --bench search-benchmarks --message-format=json -- LIGHT | tee output.txt
+- name: Run benchmarks 
+  run: cargo criterion 1> output.json
 ```
+
+If you have a group of benchmarks, cargo criterion will output a [ndJSON][ndjson].
 
 ## Process benchmarks results
 
@@ -85,3 +87,4 @@ TBD: The native benchmark reports is simply copied from `target/criterion/report
 
 [cargo-criterion]: https://crates.io/crates/cargo-criterion
 [criterion-rs-own-html]: https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html
+[ndjson]: http://ndjson.org/
