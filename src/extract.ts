@@ -382,7 +382,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 
 // TODO: Also git add and push the 'native' report_directory in github pages, timestamped?
 function extractCriterionResult(output: string): BenchmarkResult[] {
-    let json: CargoCriterionBenchmarkJson; // TODO: Support multiple benchmarks, see test/data/extract/criterion_output_multi.json
+    let json: CargoCriterionBenchmarkJson;
     const ret = [];
     const { EOL } = require('os');
 
@@ -392,10 +392,6 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         //
         // Therefore iterate over those and parse individually
         const lines = output.split(EOL);
-
-        // TODO: When there's a single output, there are no newlines to split with :_/
-        // TODO: Add https://www.npmjs.com/package/ndjson as a dep for this?
-        //console.log(lines);
 
         for (const line of lines) {
             json = JSON.parse(line);
