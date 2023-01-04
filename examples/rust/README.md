@@ -72,7 +72,7 @@ If you have a group of benchmarks, cargo criterion will output a [ndJSON][ndjson
 There are two notable differences in cargo-criterion:
 
   1. Since the output is machine-readable JSON, the extract process only parses the result file and maps the required data into github-action-benchmark plotting system. In fact, [cargo-criterion][cargo-criterion] only supports JSON as `message-format` (output format).
-  2. cargo-criterion incorporates [its own HTML benchmark reports system][criterion-rs-own-html], which can be stored alongside if desired through the `store-native-benchmark-report` flag.
+  2. cargo-criterion incorporates [its own HTML benchmark reports system][criterion-rs-own-html], which can be stored alongside if desired through the `native-benchmark-data-dir-path`.
 
 ```yaml
 - name: Store benchmark result
@@ -80,10 +80,10 @@ There are two notable differences in cargo-criterion:
   with:
     tool: 'cargo-criterion'
     output-file-path: output.json
-    store-native-benchmark-report: true
+    native-benchmark-data-dir-path: target/criterion/reports
 ```
 
-TBD: The native benchmark reports is simply copied from `target/criterion/reports` and pushed to the github results repo.
+The native benchmark reports is simply copied from `target/criterion/reports` and pushed to the github results repo.
 
 [cargo-criterion]: https://crates.io/crates/cargo-criterion
 [criterion-rs-own-html]: https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html

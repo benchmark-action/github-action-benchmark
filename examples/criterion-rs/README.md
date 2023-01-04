@@ -36,7 +36,7 @@ Further details are described in [the cargo-criterion Rust example](../rust/READ
 
 ## Process benchmark results
 
-Store the benchmark results with step using the action. Please set `cargo` to `tool` input.
+Store the benchmark results with step using the action. Please set `cargo` to `tool` input:
 
 ```yaml
 - name: Store benchmark result
@@ -44,6 +44,16 @@ Store the benchmark results with step using the action. Please set `cargo` to `t
   with:
       tool: 'cargo'
       output-file-path: output.txt
+```
+
+Or `cargo-criterion` if JSON output is preferred instead.
+
+```yaml
+- name: Store benchmark result
+  uses: benchmark-action/github-action-benchmark@v1
+  with:
+      tool: 'cargo-criterion'
+      output-file-path: output.json
 ```
 
 Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
