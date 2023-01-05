@@ -441,7 +441,12 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         await io.mkdirP(nativeBenchmarkDataPathDst);
         await io.cp(nativeBenchmarkDataDirPath, nativeBenchmarkDataPathDst, { recursive: true });
         await git.cmd(extraGitArguments, 'add', nativeBenchmarkDataPathDst);
-        await git.cmd(extraGitArguments, 'commit', '-m', `add native (${tool}) benchmark result for ${bench.commit.id}`);
+        await git.cmd(
+            extraGitArguments,
+            'commit',
+            '-m',
+            `add native (${tool}) benchmark result for ${bench.commit.id}`,
+        );
     }
 
     if (githubToken && autoPush) {
