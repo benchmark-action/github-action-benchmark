@@ -83,6 +83,10 @@ context) properties. Like this:
 ]
 ```
 
+Furthermore, option `nativeBenchmarkDataDirPath` will also store your tool's native reports under github pages, i.e:
+
+https://umccr.github.io/htsget-rs/dev/bench/native/criterion/reports/
+
 ## Screenshots
 
 ### Charts on GitHub Pages

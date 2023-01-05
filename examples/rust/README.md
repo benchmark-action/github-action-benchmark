@@ -80,10 +80,12 @@ There are two notable differences in cargo-criterion:
   with:
     tool: 'cargo-criterion'
     output-file-path: output.json
-    native-benchmark-data-dir-path: target/criterion/reports
+    native-benchmark-data-dir-path: target/criterion
 ```
 
-The native benchmark reports is simply copied from `target/criterion/reports` and pushed to the github results repo.
+The native benchmark reports is simply copied from `target/criterion/reports` and pushed to the github results repo so that they are available under:
+
+https://YOUR_ORG.github.io/YOUR_REPO/dev/bench/native/criterion/reports/
 
 [cargo-criterion]: https://crates.io/crates/cargo-criterion
 [criterion-rs-own-html]: https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html
