@@ -103,14 +103,14 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
             continue;
         }
 
-        const ratio = biggerIsBetter(curSuite.tool)
+        const ratio = biggerIsBetter(curSuite.tool) || threshold < 0
             ? prev.value / current.value // e.g. current=100, prev=200
             : current.value / prev.value; // e.g. current=200, prev=100
 
-        if (ratio > threshold) {
+        if (ratio > Math.abs(threshold)) {
             core.warning(
                 `Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
-                    ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`,
+                    ` It is ${ratio}x worse than previous exceeding a ratio threshold ${Math.abs(threshold)}`,
             );
             alerts.push({ current, prev, ratio });
         }
@@ -272,6 +272,8 @@ async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: 
 
 async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
     const { alertThreshold, githubToken, commentOnAlert, failOnAlert, alertCommentCcUsers, failThreshold } = config;
+    const absAlertThreshold = Math.abs(alertThreshold);
+    const absFailThreshold = Math.abs(failThreshold);
 
     if (!commentOnAlert && !failOnAlert) {
         core.debug('Alert check was skipped because both comment-on-alert and fail-on-alert were disabled');
@@ -285,7 +287,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     }
 
     core.debug(`Found ${alerts.length} alerts`);
-    const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, alertThreshold, alertCommentCcUsers);
+    const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, absAlertThreshold, alertCommentCcUsers);
     let message = body;
     let url = null;
 
@@ -301,8 +303,8 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     if (failOnAlert) {
         // Note: alertThreshold is smaller than failThreshold. It was checked in config.ts
         const len = alerts.length;
-        const threshold = floatStr(failThreshold);
-        const failures = alerts.filter((a) => a.ratio > failThreshold);
+        const threshold = floatStr(absFailThreshold);
+        const failures = alerts.filter((a) => a.ratio > absFailThreshold);
         if (failures.length > 0) {
             core.debug('Mark this workflow as fail since one or more fatal alerts found');
             if (failThreshold !== alertThreshold) {
@@ -312,7 +314,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
             throw new Error(message);
         } else {
             core.debug(
-                `${len} alerts exceeding the alert threshold ${alertThreshold} were found but` +
+                `${len} alerts exceeding the alert threshold ${absAlertThreshold} were found but` +
                     ` all of them did not exceed the failure threshold ${threshold}`,
             );
         }
