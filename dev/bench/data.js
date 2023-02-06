@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675670912579,
+  "lastUpdate": 1675670954690,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41823,6 +41823,42 @@ window.BENCHMARK_DATA = {
             "value": 50.71212410430113,
             "unit": "ns",
             "range": "± 1.3634024537343374"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "epompeii@protonmail.com",
+            "name": "Everett Pompeii",
+            "username": "epompeii"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
+          "message": "jmh in code block (#151)",
+          "timestamp": "2023-02-06T09:07:10+01:00",
+          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
+        },
+        "date": 1675670951572,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 24.176382931379173,
+            "unit": "ns",
+            "range": "± 0.30125478973014463"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 45.99364856737001,
+            "unit": "ns",
+            "range": "± 0.652910089496007"
           }
         ]
       }
