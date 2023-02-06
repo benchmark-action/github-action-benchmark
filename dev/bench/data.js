@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675671239121,
+  "lastUpdate": 1675671242450,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32241,6 +32241,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00043467896870006133",
             "extra": "mean: 2.4996635483866183 msec\nrounds: 434"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7eeba8924d4ed651010d72d7319b064fc0c10355",
+          "message": "Bump json5 from 2.2.0 to 2.2.3 (#148)\n\nBumps [json5](https://github.com/json5/json5) from 2.2.0 to 2.2.3.\r\n- [Release notes](https://github.com/json5/json5/releases)\r\n- [Changelog](https://github.com/json5/json5/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/json5/json5/compare/v2.2.0...v2.2.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: json5\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-02-06T09:13:29+01:00",
+          "tree_id": "dd7b551a82c74b71157a331ca1c23323387b1d18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7eeba8924d4ed651010d72d7319b064fc0c10355"
+        },
+        "date": 1675671239991,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 56854.29262033073,
+            "unit": "iter/sec",
+            "range": "stddev: 5.672748793896873e-7",
+            "extra": "mean: 17.58882142247262 usec\nrounds: 41321"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 478.0026950277733,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000014365028693109497",
+            "extra": "mean: 2.0920384140133295 msec\nrounds: 471"
           }
         ]
       }
