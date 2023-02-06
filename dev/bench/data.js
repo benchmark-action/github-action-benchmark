@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675670911139,
+  "lastUpdate": 1675670912579,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41913,6 +41913,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1657716527.9289982,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "epompeii@protonmail.com",
+            "name": "Everett Pompeii",
+            "username": "epompeii"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
+          "message": "jmh in code block (#151)",
+          "timestamp": "2023-02-06T09:07:10+01:00",
+          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
+        },
+        "date": 1675670908874,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1658471126.0091476,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
