@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675670861543,
+  "lastUpdate": 1675670863022,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10510,6 +10510,42 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 5,
             "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "epompeii@protonmail.com",
+            "name": "Everett Pompeii",
+            "username": "epompeii"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
+          "message": "jmh in code block (#151)",
+          "timestamp": "2023-02-06T09:07:10+01:00",
+          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
+        },
+        "date": 1675670860532,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 208,
+            "range": "± 20",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26802,
+            "range": "± 169",
             "unit": "ns/iter"
           }
         ]
