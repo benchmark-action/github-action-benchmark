@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670872667331,
+  "lastUpdate": 1675670861543,
   "entries": {
     "Rust Benchmark": [
       {
@@ -17943,6 +17943,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "BenchmarkFib20",
             "value": 56341,
+            "unit": "ns/op",
+            "extra": "30000 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "epompeii@protonmail.com",
+            "name": "Everett Pompeii",
+            "username": "epompeii"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
+          "message": "jmh in code block (#151)",
+          "timestamp": "2023-02-06T09:07:10+01:00",
+          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
+        },
+        "date": 1675670859221,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 403,
+            "unit": "ns/op",
+            "extra": "3000000 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 49907,
             "unit": "ns/op",
             "extra": "30000 times\n2 procs"
           }
