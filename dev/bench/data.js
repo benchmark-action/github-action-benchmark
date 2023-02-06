@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675671038712,
+  "lastUpdate": 1675671237214,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37139,6 +37139,42 @@ window.BENCHMARK_DATA = {
             "value": 25699.177038941307,
             "unit": "ns/iter",
             "extra": "iterations: 27220\ncpu: 25697.30345334314 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7eeba8924d4ed651010d72d7319b064fc0c10355",
+          "message": "Bump json5 from 2.2.0 to 2.2.3 (#148)\n\nBumps [json5](https://github.com/json5/json5) from 2.2.0 to 2.2.3.\r\n- [Release notes](https://github.com/json5/json5/releases)\r\n- [Changelog](https://github.com/json5/json5/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/json5/json5/compare/v2.2.0...v2.2.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: json5\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-02-06T09:13:29+01:00",
+          "tree_id": "dd7b551a82c74b71157a331ca1c23323387b1d18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7eeba8924d4ed651010d72d7319b064fc0c10355"
+        },
+        "date": 1675671234147,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 199.27924136401788,
+            "unit": "ns/iter",
+            "extra": "iterations: 3507822\ncpu: 199.2690621131859 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 25717.620945251805,
+            "unit": "ns/iter",
+            "extra": "iterations: 27252\ncpu: 25716.094231616036 ns\nthreads: 1"
           }
         ]
       }
