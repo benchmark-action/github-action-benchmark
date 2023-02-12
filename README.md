@@ -226,8 +226,8 @@ can be seen [here][commit-comment-workflow-example].
 
 ### PR Summary
 
-Similar to how is done with [Commit comment](#commit-comment), [Job Summaries][job-summaries] are
-also supported. In order to use Job Summaries you must turn on the `summary-always`
+Similar to the [Commit comment](#commit-comment) feature, Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
+also supported. In order to use Job Summaries, turn on the `summary-always`
 option.
 
 ```yaml
