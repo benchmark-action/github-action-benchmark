@@ -608,7 +608,7 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
         ];
     });
 
-    core.summary
+    await core.summary
         .addHeading(`Benchmarks: ${name}`)
         .addTable([headers, ...rows])
         .write();
