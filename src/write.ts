@@ -608,5 +608,8 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
         ];
     });
 
-    core.summary.addHeading(`Benchmarks: ${name}`).addTable([headers, ...rows]).write();
+    core.summary
+        .addHeading(`Benchmarks: ${name}`)
+        .addTable([headers, ...rows])
+        .write();
 }
