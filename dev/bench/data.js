@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678056958336,
+  "lastUpdate": 1678057039095,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10870,6 +10870,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29949,
             "range": "± 98",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "7d3c4707bd1eb03ba1d0b413b58090cb78320b06",
+          "message": "Update changelog for v1.16.0",
+          "timestamp": "2023-03-05T23:50:11+01:00",
+          "tree_id": "76403ad7f658496f49eb3a07b69f2f4fdf3945e0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7d3c4707bd1eb03ba1d0b413b58090cb78320b06"
+        },
+        "date": 1678057036387,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24436,
+            "range": "± 319",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24424,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39589,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
