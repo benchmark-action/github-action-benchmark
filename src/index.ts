@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { configFromJobInput } from './config';
 import { extractResult } from './extract';
-import { writeBenchmark } from './write';
+import { writeBenchmark, writeSummary } from './write';
 
 async function main() {
     const config = await configFromJobInput();
@@ -11,6 +11,11 @@ async function main() {
     core.debug(`Benchmark result was extracted: ${bench}`);
 
     await writeBenchmark(bench, config);
+
+    if (config.summaryAlways) {
+        await writeSummary(bench, config);
+    }
+
     console.log('github-action-benchmark was run successfully!', '\nData:', bench);
 }
 
