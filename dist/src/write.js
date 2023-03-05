@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeBenchmark = exports.SCRIPT_PREFIX = void 0;
+exports.writeSummary = exports.writeBenchmark = exports.SCRIPT_PREFIX = void 0;
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
 const io = __importStar(require("@actions/io"));
@@ -442,4 +442,73 @@ async function writeBenchmark(bench, config) {
     }
 }
 exports.writeBenchmark = writeBenchmark;
+async function writeSummary(bench, config) {
+    const { name, externalDataJsonPath } = config;
+    const prevBench = externalDataJsonPath
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
+        : await writeBenchmarkToGitHubPages(bench, config);
+    if (prevBench === null) {
+        core.debug('Alert check was skipped because previous benchmark result was not found');
+        return;
+    }
+    const headers = [
+        {
+            data: 'Benchmark Suite',
+            header: true,
+        },
+        {
+            data: `Current: "${bench.commit}"`,
+            header: true,
+        },
+        {
+            data: `Previous: "${prevBench.commit}"`,
+            header: true,
+        },
+        {
+            data: 'Ratio',
+            header: true,
+        },
+    ];
+    const rows = bench.benches.map((bench) => {
+        const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
+        if (previousBench) {
+            const ratio = biggerIsBetter(config.tool)
+                ? previousBench.value / bench.value
+                : bench.value / previousBench.value;
+            return [
+                {
+                    data: bench.name,
+                },
+                {
+                    data: strVal(bench),
+                },
+                {
+                    data: strVal(previousBench),
+                },
+                {
+                    data: floatStr(ratio),
+                },
+            ];
+        }
+        return [
+            {
+                data: bench.name,
+            },
+            {
+                data: strVal(bench),
+            },
+            {
+                data: '-',
+            },
+            {
+                data: '-',
+            },
+        ];
+    });
+    await core.summary
+        .addHeading(`Benchmarks: ${name}`)
+        .addTable([headers, ...rows])
+        .write();
+}
+exports.writeSummary = writeSummary;
 //# sourceMappingURL=write.js.map

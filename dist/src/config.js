@@ -205,6 +205,7 @@ async function configFromJobInput() {
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
+    const summaryAlways = getBoolInput('summary-always');
     const saveDataFile = getBoolInput('save-data-file');
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
@@ -248,6 +249,7 @@ async function configFromJobInput() {
         autoPush,
         skipFetchGhPages,
         commentAlways,
+        summaryAlways,
         saveDataFile,
         commentOnAlert,
         alertThreshold,
