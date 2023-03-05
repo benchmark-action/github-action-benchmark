@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676987709549,
+  "lastUpdate": 1678056469326,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32449,6 +32449,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000014365028693109497",
             "extra": "mean: 2.0920384140133295 msec\nrounds: 471"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407",
+          "message": "feat: support pr summary for benchmark output (#138)",
+          "timestamp": "2023-03-05T23:47:19+01:00",
+          "tree_id": "75acd869eebcc7e0c9a63c7882cb345c537bb20d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407"
+        },
+        "date": 1678056466052,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 60064.02541891636,
+            "unit": "iter/sec",
+            "range": "stddev: 5.481886582009362e-7",
+            "extra": "mean: 16.64890078587812 usec\nrounds: 42373"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 496.5686026773673,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000011917406901237887",
+            "extra": "mean: 2.0138204361054304 msec\nrounds: 493"
           }
         ]
       }
