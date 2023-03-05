@@ -16,6 +16,7 @@ export interface Config {
     autoPush: boolean;
     skipFetchGhPages: boolean;
     commentAlways: boolean;
+    summaryAlways: boolean;
     saveDataFile: boolean;
     commentOnAlert: boolean;
     alertThreshold: number;
@@ -231,6 +232,7 @@ export async function configFromJobInput(): Promise<Config> {
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
+    const summaryAlways = getBoolInput('summary-always');
     const saveDataFile = getBoolInput('save-data-file');
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
@@ -277,6 +279,7 @@ export async function configFromJobInput(): Promise<Config> {
         autoPush,
         skipFetchGhPages,
         commentAlways,
+        summaryAlways,
         saveDataFile,
         commentOnAlert,
         alertThreshold,

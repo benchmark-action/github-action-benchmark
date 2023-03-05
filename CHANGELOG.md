@@ -1,5 +1,10 @@
 ## Unreleased
 
+<a name="v1.16.0"></a>
+# [v1.16.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.0) - 05 Feb 2023
+
+- **Feat** Support pr summary for benchmark output (#138)
+
 <a name="v1.15.0"></a>
 # [v1.15.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.15.0) - 03 Nov 2022
 
