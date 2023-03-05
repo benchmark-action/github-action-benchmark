@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678056512986,
+  "lastUpdate": 1678056516741,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37567,6 +37567,42 @@ window.BENCHMARK_DATA = {
             "value": 25717.620945251805,
             "unit": "ns/iter",
             "extra": "iterations: 27252\ncpu: 25716.094231616036 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407",
+          "message": "feat: support pr summary for benchmark output (#138)",
+          "timestamp": "2023-03-05T23:47:19+01:00",
+          "tree_id": "75acd869eebcc7e0c9a63c7882cb345c537bb20d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407"
+        },
+        "date": 1678056514600,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.50243467055375,
+            "unit": "ns/iter",
+            "extra": "iterations: 3900117\ncpu: 179.36997787502273 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24147.126123953203,
+            "unit": "ns/iter",
+            "extra": "iterations: 29027\ncpu: 24143.952182450823 ns\nthreads: 1"
           }
         ]
       }
