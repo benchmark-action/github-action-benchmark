@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678056472849,
+  "lastUpdate": 1678056474236,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26211,6 +26211,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.03%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407",
+          "message": "feat: support pr summary for benchmark output (#138)",
+          "timestamp": "2023-03-05T23:47:19+01:00",
+          "tree_id": "75acd869eebcc7e0c9a63c7882cb345c537bb20d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407"
+        },
+        "date": 1678056471614,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1380640,
+            "range": "±0.06%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11447,
+            "range": "±0.15%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
