@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678056874898,
+  "lastUpdate": 1678056902783,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32731,6 +32731,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000011917406901237887",
             "extra": "mean: 2.0138204361054304 msec\nrounds: 493"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "7d3c4707bd1eb03ba1d0b413b58090cb78320b06",
+          "message": "Update changelog for v1.16.0",
+          "timestamp": "2023-03-05T23:50:11+01:00",
+          "tree_id": "76403ad7f658496f49eb3a07b69f2f4fdf3945e0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7d3c4707bd1eb03ba1d0b413b58090cb78320b06"
+        },
+        "date": 1678056900524,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 52644.20272079449,
+            "unit": "iter/sec",
+            "range": "stddev: 4.643792370033659e-7",
+            "extra": "mean: 18.99544391057896 usec\nrounds: 35586"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 434.3990119672543,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000012612170335726209",
+            "extra": "mean: 2.3020310186050366 msec\nrounds: 430"
           }
         ]
       }
