@@ -556,11 +556,11 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
             header: true,
         },
         {
-            data: `Current: "${bench.commit}"`,
+            data: `Current: "${bench.commit.id}"`,
             header: true,
         },
         {
-            data: `Previous: "${prevBench.commit}"`,
+            data: `Previous: "${prevBench.commit.id}"`,
             header: true,
         },
         {
