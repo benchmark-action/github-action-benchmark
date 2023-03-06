@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678057039095,
+  "lastUpdate": 1678112280770,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32865,6 +32865,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000012612170335726209",
             "extra": "mean: 2.3020310186050366 msec\nrounds: 430"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "220a02320fbf9ed2a4e84228530fa2024c285bcf",
+          "message": "fix: add summary-always parameter to action.yml",
+          "timestamp": "2023-03-06T15:17:19+01:00",
+          "tree_id": "981547bda54b3d64d578036164b472e39cbfe49e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/220a02320fbf9ed2a4e84228530fa2024c285bcf"
+        },
+        "date": 1678112277498,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 43485.91280869916,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00003082775461854793",
+            "extra": "mean: 22.995952836477066 usec\nrounds: 34603"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 363.76109573592254,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00043986585017693775",
+            "extra": "mean: 2.7490570369459304 msec\nrounds: 406"
           }
         ]
       }
