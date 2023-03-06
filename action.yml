@@ -42,6 +42,10 @@ inputs:
     description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
     required: false
     default: false
+  summary-always:
+    description: 'Leave a job summary with benchmark result comparison'
+    required: false
+    default: false
   save-data-file:
     description: 'Save the benchmark data to external file'
     required: false
