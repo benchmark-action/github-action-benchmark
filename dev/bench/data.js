@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678307813748,
+  "lastUpdate": 1678307828033,
   "entries": {
     "Rust Benchmark": [
       {
@@ -42905,6 +42905,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 33700,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18d5a3a02a05d291c28beca4134d6d02751e6ced",
+          "message": "fix: use `commit.id` over `commit` object (#155)",
+          "timestamp": "2023-03-08T21:35:50+01:00",
+          "tree_id": "435bc60b10ab3b66ce15a2acc6799266a116e4d2",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18d5a3a02a05d291c28beca4134d6d02751e6ced"
+        },
+        "date": 1678307825194,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 331.13229571984436,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 39001,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
