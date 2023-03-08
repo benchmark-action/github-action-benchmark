@@ -1,5 +1,15 @@
 ## Unreleased
 
+<a name="v1.16.2"></a>
+# [v1.16.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.2) - 08 Feb 2023
+
+- **Fix** use commit.id over commit object (#155)
+
+<a name="v1.16.1"></a>
+# [v1.16.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.1) - 06 Feb 2023
+
+- **Fix** action.yml missing `summary-always` input
+
 <a name="v1.16.0"></a>
 # [v1.16.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.0) - 05 Feb 2023
 
