@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678377561304,
+  "lastUpdate": 1679836036461,
   "entries": {
     "Rust Benchmark": [
       {
@@ -33633,6 +33633,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000013007635112727525",
             "extra": "mean: 2.058076802874831 msec\nrounds: 487"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "89384881+matyasberry@users.noreply.github.com",
+            "name": "Matyas B",
+            "username": "matyasberry"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5112d4a6bcc0377392283d37b648acc987555249",
+          "message": "support for JMH parameters (as separate charts) (#161)",
+          "timestamp": "2023-03-26T15:06:49+02:00",
+          "tree_id": "adee13455550e5b530fa67dbb8476d1fbcba0b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5112d4a6bcc0377392283d37b648acc987555249"
+        },
+        "date": 1679836034104,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 52726.40819944898,
+            "unit": "iter/sec",
+            "range": "stddev: 4.0242917422484284e-7",
+            "extra": "mean: 18.965828209220792 usec\nrounds: 36364"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 428.12072316953714,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00000498525895833518",
+            "extra": "mean: 2.335789757142863 msec\nrounds: 420"
           }
         ]
       }
