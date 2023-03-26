@@ -73,6 +73,50 @@ function getCurrentRepoRemoteUrl(token: string): string {
     return getRepoRemoteUrl(token, `${serverName}/${owner}/${repo}`);
 }
 
+export async function readCommitId(...options: string[]): Promise<string> {
+    core.debug(`Executing 'git rev-parse HEAD' with options '${options.join(' ')}'`);
+
+    let args = ['rev-parse', 'HEAD'];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(options, ...args);
+}
+
+export async function readCommitTimestamp(...options: string[]): Promise<string> {
+    core.debug(`Executing 'git show -s --format=%ci HEAD' with options '${options.join(' ')}'`);
+
+    let args = ['show', '-s', '--format=%ci', 'HEAD'];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(options, ...args);
+}
+
+export async function readCommitEmail(...options: string[]): Promise<string> {
+    core.debug(`Executing 'git show -s --format='%ae' HEAD' with options '${options.join(' ')}'`);
+
+    let args = ['show', '-s', '--format=%ae', 'HEAD'];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(options, ...args);
+}
+
+export async function readCommitMessage(...options: string[]): Promise<string> {
+    core.debug(`Executing 'git show -s --format='%s' HEAD' with options '${options.join(' ')}'`);
+
+    let args = ['show', '-s', '--format=%s', 'HEAD'];
+    if (options.length > 0) {
+        args = args.concat(options);
+    }
+
+    return cmd(options, ...args);
+}
+
 function getRepoRemoteUrl(token: string, repoUrl: string): string {
     return `https://x-access-token:${token}@${repoUrl}.git`;
 }

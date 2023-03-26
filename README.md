@@ -514,6 +514,14 @@ larger than zero. If the number of benchmark results for some benchmark suite ex
 the oldest one will be removed before storing the results to file. By default this value is empty
 which means there is no limit.
 
+#### `read-commit-id-from-git` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+Read the commit id from the workspace. This is useful when you have switched the repository away
+from the commit that started this action.
+
 
 ### Action outputs
 

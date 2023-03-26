@@ -217,6 +217,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             failOnAlert: true,
             alertCommentCcUsers: ['@user'],
             externalDataJsonPath: dataJson,
+            readCommitIdFromGit: false,
             maxItemsInChart: null,
             failThreshold: 2.0,
         };
@@ -918,6 +919,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             failOnAlert: true,
             alertCommentCcUsers: [],
             externalDataJsonPath: undefined,
+            readCommitIdFromGit: false,
             maxItemsInChart: null,
             failThreshold: 2.0,
         };
