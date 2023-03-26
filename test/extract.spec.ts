@@ -374,6 +374,18 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'jmh',
+            file: 'jmh_output_2.json',
+            expected: [
+                {
+                    extra: 'iterations: 3\nforks: 1\nthreads: 1',
+                    name: 'org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere ( {"paramA":"17","paramB":"33"} )',
+                    unit: 'ops/s',
+                    value: 3.3762388731228185e9,
+                },
+            ],
+        },
+        {
             tool: 'benchmarkdotnet',
             file: 'benchmarkdotnet.json',
             expected: [

@@ -188,6 +188,7 @@ export interface JmhBenchmarkJson {
     measurementIterations: number;
     measurementTime: string;
     measurementBatchSize: number;
+    params: object;
     primaryMetric: {
         score: number;
         scoreError: number;
@@ -610,8 +611,9 @@ function extractJmhResult(output: string): BenchmarkResult[] {
         const name = b.benchmark;
         const value = b.primaryMetric.score;
         const unit = b.primaryMetric.scoreUnit;
+        const params = b.params ? ' ( ' + JSON.stringify(b.params) + ' )' : '';
         const extra = `iterations: ${b.measurementIterations}\nforks: ${b.forks}\nthreads: ${b.threads}`;
-        return { name, value, unit, extra };
+        return { name: name + params, value, unit, extra };
     });
 }
 
