@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1679836036461,
+  "lastUpdate": 1679836041662,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11362,6 +11362,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29943,
             "range": "± 45",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "89384881+matyasberry@users.noreply.github.com",
+            "name": "Matyas B",
+            "username": "matyasberry"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5112d4a6bcc0377392283d37b648acc987555249",
+          "message": "support for JMH parameters (as separate charts) (#161)",
+          "timestamp": "2023-03-26T15:06:49+02:00",
+          "tree_id": "adee13455550e5b530fa67dbb8476d1fbcba0b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5112d4a6bcc0377392283d37b648acc987555249"
+        },
+        "date": 1679836038882,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 211,
+            "range": "± 20",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 27022,
+            "range": "± 286",
             "unit": "ns/iter"
           }
         ]
