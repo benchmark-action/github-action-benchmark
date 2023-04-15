@@ -7,6 +7,7 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
+import { SummaryTableRow } from '@actions/core/lib/summary';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -74,6 +75,8 @@ function biggerIsBetter(tool: ToolType): boolean {
         case 'catch2':
             return false;
         case 'julia':
+            return false;
+        case 'jmh':
             return false;
         case 'benchmarkdotnet':
             return false;
@@ -534,4 +537,79 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
         await handleComment(name, bench, prevBench, config);
         await handleAlert(name, bench, prevBench, config);
     }
+}
+
+export async function writeSummary(bench: Benchmark, config: Config): Promise<void> {
+    const { name, externalDataJsonPath } = config;
+    const prevBench = externalDataJsonPath
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
+        : await writeBenchmarkToGitHubPages(bench, config);
+
+    if (prevBench === null) {
+        core.debug('Alert check was skipped because previous benchmark result was not found');
+        return;
+    }
+
+    const headers = [
+        {
+            data: 'Benchmark Suite',
+            header: true,
+        },
+        {
+            data: `Current: "${bench.commit.id}"`,
+            header: true,
+        },
+        {
+            data: `Previous: "${prevBench.commit.id}"`,
+            header: true,
+        },
+        {
+            data: 'Ratio',
+            header: true,
+        },
+    ];
+    const rows: SummaryTableRow[] = bench.benches.map((bench) => {
+        const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
+
+        if (previousBench) {
+            const ratio = biggerIsBetter(config.tool)
+                ? previousBench.value / bench.value
+                : bench.value / previousBench.value;
+
+            return [
+                {
+                    data: bench.name,
+                },
+                {
+                    data: strVal(bench),
+                },
+                {
+                    data: strVal(previousBench),
+                },
+                {
+                    data: floatStr(ratio),
+                },
+            ];
+        }
+
+        return [
+            {
+                data: bench.name,
+            },
+            {
+                data: strVal(bench),
+            },
+            {
+                data: '-',
+            },
+            {
+                data: '-',
+            },
+        ];
+    });
+
+    await core.summary
+        .addHeading(`Benchmarks: ${name}`)
+        .addTable([headers, ...rows])
+        .write();
 }

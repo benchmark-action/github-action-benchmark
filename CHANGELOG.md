@@ -1,5 +1,26 @@
 ## Unreleased
 
+<a name="v1.16.2"></a>
+# [v1.16.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.2) - 08 Feb 2023
+
+- **Fix** use commit.id over commit object (#155)
+
+<a name="v1.16.1"></a>
+# [v1.16.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.1) - 06 Feb 2023
+
+- **Fix** action.yml missing `summary-always` input
+
+<a name="v1.16.0"></a>
+# [v1.16.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.0) - 05 Feb 2023
+
+- **Feat** Support pr summary for benchmark output (#138)
+
+<a name="v1.15.0"></a>
+# [v1.15.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.15.0) - 03 Nov 2022
+
+- **Feat** Add support for Java via JMH (#134)
+- **Chore** Update @actions/core, @actions/exec and @actions/io to the latest version (#137)
+
 <a name="v1.14.0"></a>
 # [v1.14.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.14.0) - 28 May 2022
 
