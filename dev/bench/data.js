@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682488674990,
+  "lastUpdate": 1682488688238,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45165,6 +45165,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1658467842.55499,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertyoungnz@gmail.com",
+            "name": "Robert Young",
+            "username": "robobario"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "87c65e849517e0afeffc99eb5c17e225dd88169a",
+          "message": "feat: enable user to specify the ref being tested (#163)\n\nThe ref will be used preferentially (if specified) when looking up the details\r\nof the commit to record the results against.\r\n\r\nWhy:\r\nWhen used to record results from a performance test run triggered by a\r\ncomment on a PR, the results were recorded against the head commit of main\r\non our branch. Not the tested commit. This change allows users to specify\r\nthe tested ref.\r\n\r\nExample usage:\r\n```\r\nwith:\r\n  ref: refs/pull/${{ github.event.issue.number }}/head\r\n```",
+          "timestamp": "2023-04-26T07:56:46+02:00",
+          "tree_id": "c85336bb4842208afd85660757c345d8ca4ab889",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/87c65e849517e0afeffc99eb5c17e225dd88169a"
+        },
+        "date": 1682488685472,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1659045548.7165556,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
