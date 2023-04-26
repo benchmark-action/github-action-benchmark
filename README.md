@@ -424,6 +424,13 @@ The path can be relative to repository root.
 
 GitHub API access token.
 
+#### `ref` (Optional)
+
+- Type: String
+- Default: N/A
+
+Ref to use for reporting the commit
+
 #### `auto-push` (Optional)
 
 - Type: Boolean
