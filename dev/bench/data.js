@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682488672431,
+  "lastUpdate": 1682488674990,
   "entries": {
     "Rust Benchmark": [
       {
@@ -39175,6 +39175,42 @@ window.BENCHMARK_DATA = {
             "value": 25751.837362233695,
             "unit": "ns/iter",
             "extra": "iterations: 27220\ncpu: 25736.891991182958 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertyoungnz@gmail.com",
+            "name": "Robert Young",
+            "username": "robobario"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "87c65e849517e0afeffc99eb5c17e225dd88169a",
+          "message": "feat: enable user to specify the ref being tested (#163)\n\nThe ref will be used preferentially (if specified) when looking up the details\r\nof the commit to record the results against.\r\n\r\nWhy:\r\nWhen used to record results from a performance test run triggered by a\r\ncomment on a PR, the results were recorded against the head commit of main\r\non our branch. Not the tested commit. This change allows users to specify\r\nthe tested ref.\r\n\r\nExample usage:\r\n```\r\nwith:\r\n  ref: refs/pull/${{ github.event.issue.number }}/head\r\n```",
+          "timestamp": "2023-04-26T07:56:46+02:00",
+          "tree_id": "c85336bb4842208afd85660757c345d8ca4ab889",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/87c65e849517e0afeffc99eb5c17e225dd88169a"
+        },
+        "date": 1682488672549,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.34555562020458,
+            "unit": "ns/iter",
+            "extra": "iterations: 3901343\ncpu: 179.33265544711145 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24152.55486099159,
+            "unit": "ns/iter",
+            "extra": "iterations: 28955\ncpu: 24151.44534622691 ns\nthreads: 1"
           }
         ]
       }
