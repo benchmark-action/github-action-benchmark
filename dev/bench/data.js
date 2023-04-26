@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682490026530,
+  "lastUpdate": 1682490032610,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45259,6 +45259,42 @@ window.BENCHMARK_DATA = {
             "value": 47.15465066066155,
             "unit": "ns",
             "range": "± 0.016499143812416503"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andrewcook1990@gmail.com",
+            "name": "Vaeryn",
+            "username": "vaeryn-uk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
+          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
+          "timestamp": "2023-04-26T08:19:03+02:00",
+          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
+        },
+        "date": 1682490029967,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 26.45902674473249,
+            "unit": "ns",
+            "range": "± 0.006742187456233649"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 49.34760478990419,
+            "unit": "ns",
+            "range": "± 0.007255223860463368"
           }
         ]
       }
