@@ -30,6 +30,9 @@ inputs:
   github-token:
     description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
     required: false
+  ref:
+    description: 'optional Ref to use when finding commit'
+    required: false
   auto-push:
     description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
     required: false
