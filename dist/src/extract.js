@@ -54,12 +54,12 @@ function getCommitFromPullRequestPayload(pr) {
         url: `${pr.html_url}/commits/${id}`,
     };
 }
-async function getCommitFromGitHubAPIRequest(githubToken) {
+async function getCommitFromGitHubAPIRequest(githubToken, ref) {
     const octocat = new github.GitHub(githubToken);
     const { status, data } = await octocat.repos.getCommit({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
-        ref: github.context.ref,
+        ref: ref !== null && ref !== void 0 ? ref : github.context.ref,
     });
     if (!(status === 200 || status === 304)) {
         throw new Error(`Could not fetch the head commit. Received code: ${status}`);
@@ -82,7 +82,7 @@ async function getCommitFromGitHubAPIRequest(githubToken) {
         url: data.html_url,
     };
 }
-async function getCommit(githubToken) {
+async function getCommit(githubToken, ref) {
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
     }
@@ -93,7 +93,7 @@ async function getCommit(githubToken) {
     if (!githubToken) {
         throw new Error(`No commit information is found in payload: ${JSON.stringify(github.context.payload, null, 2)}. Also, no 'github-token' provided, could not fallback to GitHub API Request.`);
     }
-    return getCommitFromGitHubAPIRequest(githubToken);
+    return getCommitFromGitHubAPIRequest(githubToken, ref);
 }
 function extractCargoResult(output) {
     const lines = output.split(/\r?\n/g);
@@ -125,7 +125,7 @@ function extractGoResult(output) {
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
     //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
-    const reExtract = /^(Benchmark\w+(?:\/?[\w()$%^&*-]*?)*?)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
+    const reExtract = /^(Benchmark\w+(?:\/?[\w()$%^&*-=,]*?)*?)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
     for (const line of lines) {
         const m = line.match(reExtract);
         if (m === null) {
@@ -343,8 +343,9 @@ function extractJmhResult(output) {
         const name = b.benchmark;
         const value = b.primaryMetric.score;
         const unit = b.primaryMetric.scoreUnit;
+        const params = b.params ? ' ( ' + JSON.stringify(b.params) + ' )' : '';
         const extra = `iterations: ${b.measurementIterations}\nforks: ${b.forks}\nthreads: ${b.threads}`;
-        return { name, value, unit, extra };
+        return { name: name + params, value, unit, extra };
     });
 }
 function extractBenchmarkDotnetResult(output) {
@@ -394,7 +395,7 @@ function extractLuauBenchmarkResult(output) {
 }
 async function extractResult(config) {
     const output = await fs_1.promises.readFile(config.outputFilePath, 'utf8');
-    const { tool, githubToken } = config;
+    const { tool, githubToken, ref } = config;
     let benches;
     switch (tool) {
         case 'cargo':
@@ -440,7 +441,7 @@ async function extractResult(config) {
     if (benches.length === 0) {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
-    const commit = await getCommit(githubToken);
+    const commit = await getCommit(githubToken, ref);
     return {
         commit,
         date: Date.now(),

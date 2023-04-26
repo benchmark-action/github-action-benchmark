@@ -202,6 +202,7 @@ async function configFromJobInput() {
     let benchmarkDataDirPath = core.getInput('benchmark-data-dir-path');
     const name = core.getInput('name');
     const githubToken = core.getInput('github-token') || undefined;
+    const ref = core.getInput('ref') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
@@ -258,6 +259,7 @@ async function configFromJobInput() {
         externalDataJsonPath,
         maxItemsInChart,
         failThreshold,
+        ref,
     };
 }
 exports.configFromJobInput = configFromJobInput;
