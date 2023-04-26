@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682491210481,
+  "lastUpdate": 1682491221714,
   "entries": {
     "Rust Benchmark": [
       {
@@ -39977,6 +39977,42 @@ window.BENCHMARK_DATA = {
             "value": 27944.00771749263,
             "unit": "ns/iter",
             "extra": "iterations: 25656\ncpu: 27841.623791705653 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "dab8151f6fdb1e54129d864377379c8043779dc8",
+          "message": "update README.md for v1.17.0",
+          "timestamp": "2023-04-26T08:39:10+02:00",
+          "tree_id": "caa79e1e47b9cf411d46ed66e8e0cb673706e0df",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/dab8151f6fdb1e54129d864377379c8043779dc8"
+        },
+        "date": 1682491219283,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.5201479302486,
+            "unit": "ns/iter",
+            "extra": "iterations: 3899135\ncpu: 179.49950437725295 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24141.956490236058,
+            "unit": "ns/iter",
+            "extra": "iterations: 28982\ncpu: 24138.903457318338 ns\nthreads: 1"
           }
         ]
       }
