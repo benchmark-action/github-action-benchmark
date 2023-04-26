@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682489542137,
+  "lastUpdate": 1682489710871,
   "entries": {
     "Rust Benchmark": [
       {
@@ -11626,6 +11626,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 31008,
             "range": "± 4922",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertyoungnz@gmail.com",
+            "name": "Robert Young",
+            "username": "robobario"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "87c65e849517e0afeffc99eb5c17e225dd88169a",
+          "message": "feat: enable user to specify the ref being tested (#163)\n\nThe ref will be used preferentially (if specified) when looking up the details\r\nof the commit to record the results against.\r\n\r\nWhy:\r\nWhen used to record results from a performance test run triggered by a\r\ncomment on a PR, the results were recorded against the head commit of main\r\non our branch. Not the tested commit. This change allows users to specify\r\nthe tested ref.\r\n\r\nExample usage:\r\n```\r\nwith:\r\n  ref: refs/pull/${{ github.event.issue.number }}/head\r\n```",
+          "timestamp": "2023-04-26T07:56:46+02:00",
+          "tree_id": "c85336bb4842208afd85660757c345d8ca4ab889",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/87c65e849517e0afeffc99eb5c17e225dd88169a"
+        },
+        "date": 1682489707327,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 195,
+            "range": "± 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26276,
+            "range": "± 2811",
             "unit": "ns/iter"
           }
         ]
