@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682489710871,
+  "lastUpdate": 1682489973363,
   "entries": {
     "Rust Benchmark": [
       {
@@ -34157,6 +34157,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000012112008250281404",
             "extra": "mean: 2.077105484535172 msec\nrounds: 485"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andrewcook1990@gmail.com",
+            "name": "Vaeryn",
+            "username": "vaeryn-uk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
+          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
+          "timestamp": "2023-04-26T08:19:03+02:00",
+          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
+        },
+        "date": 1682489970285,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 59014.482930155944,
+            "unit": "iter/sec",
+            "range": "stddev: 7.108584272785218e-7",
+            "extra": "mean: 16.944992997456353 usec\nrounds: 41842"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 481.6836639641517,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000011163415619670444",
+            "extra": "mean: 2.0760513067232083 msec\nrounds: 476"
           }
         ]
       }
