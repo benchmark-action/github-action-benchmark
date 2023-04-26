@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682489980586,
+  "lastUpdate": 1682489999997,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44319,6 +44319,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 33700,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andrewcook1990@gmail.com",
+            "name": "Vaeryn",
+            "username": "vaeryn-uk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
+          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
+          "timestamp": "2023-04-26T08:19:03+02:00",
+          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
+        },
+        "date": 1682489996598,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 343.53333333333336,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":255,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 43200,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
