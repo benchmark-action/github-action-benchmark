@@ -1,5 +1,12 @@
 ## Unreleased
 
+<a name="v1.17.0"></a>
+# [v1.17.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.17.0) - 26 Apr 2023
+
+- **feat** support for JMH parameters (as separate charts) (#161)
+- **feat** enable user to specify the ref being tested (#163)
+- **feat** allow more characters in Golang bench outputs (#131)
+
 <a name="v1.16.2"></a>
 # [v1.16.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.16.2) - 08 Feb 2023
 
