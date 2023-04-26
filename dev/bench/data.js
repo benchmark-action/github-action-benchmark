@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682490032610,
+  "lastUpdate": 1682490048356,
   "entries": {
     "Rust Benchmark": [
       {
@@ -43021,6 +43021,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 27.936,
             "range": "± 919",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andrewcook1990@gmail.com",
+            "name": "Vaeryn",
+            "username": "vaeryn-uk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
+          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
+          "timestamp": "2023-04-26T08:19:03+02:00",
+          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
+        },
+        "date": 1682490045651,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 187,
+            "range": "± 5",
+            "unit": "ns",
+            "extra": "100 samples\n153 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 24.364,
+            "range": "± 374",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
