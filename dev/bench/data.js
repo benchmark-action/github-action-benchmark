@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682490863247,
+  "lastUpdate": 1682490865833,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44745,6 +44745,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 43200,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "990219421ea3837999d49fc6461a3ad83a47502d",
+          "message": "update CHANGELOG.md for v1.17.0",
+          "timestamp": "2023-04-26T08:29:27+02:00",
+          "tree_id": "fa17bfc02e978124f73b6ac1bc51ae752e75beed",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/990219421ea3837999d49fc6461a3ad83a47502d"
+        },
+        "date": 1682490862796,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 279.54125412541254,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":303,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 33700,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
