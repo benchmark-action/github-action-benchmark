@@ -252,6 +252,32 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'benchmarkluau',
+            expected: [
+                {
+                    name: 'base64',
+                    range: '±0.636%',
+                    unit: 'ms',
+                    value: 15.041,
+                    extra: 'luau',
+                },
+                {
+                    name: 'chess',
+                    range: '±0.212%',
+                    unit: 'ms',
+                    value: 69.56,
+                    extra: 'luau',
+                },
+                {
+                    name: 'life',
+                    range: '±0.187%',
+                    unit: 'ms',
+                    value: 85.089,
+                    extra: 'luau',
+                },
+            ],
+        },
+        {
             tool: 'pytest',
             expected: [
                 {
@@ -360,6 +386,30 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'jmh',
+            file: 'jmh_output.json',
+            expected: [
+                {
+                    extra: 'iterations: 3\nforks: 1\nthreads: 1',
+                    name: 'org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere',
+                    unit: 'ops/s',
+                    value: 3.3762388731228185e9,
+                },
+            ],
+        },
+        {
+            tool: 'jmh',
+            file: 'jmh_output_2.json',
+            expected: [
+                {
+                    extra: 'iterations: 3\nforks: 1\nthreads: 1',
+                    name: 'org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere ( {"paramA":"17","paramB":"33"} )',
+                    unit: 'ops/s',
+                    value: 3.3762388731228185e9,
+                },
+            ],
+        },
+        {
             tool: 'benchmarkdotnet',
             file: 'benchmarkdotnet.json',
             expected: [
@@ -464,7 +514,7 @@ describe('extractResult()', function () {
         file: string;
         expected: RegExp;
     }> = [
-        ...(['pytest', 'googlecpp', 'customBiggerIsBetter', 'customSmallerIsBetter'] as const).map((tool) => ({
+        ...(['pytest', 'googlecpp', 'jmh', 'customBiggerIsBetter', 'customSmallerIsBetter'] as const).map((tool) => ({
             it: `raises an error when output file is not in JSON with tool '${tool}'`,
             tool,
             file: 'go_output.txt',

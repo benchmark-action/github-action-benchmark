@@ -3,27 +3,19 @@ import { promises as fs } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
-export type ToolType =
-    | 'cargo'
-    | 'go'
-    | 'benchmarkjs'
-    | 'pytest'
-    | 'googlecpp'
-    | 'catch2'
-    | 'julia'
-    | 'benchmarkdotnet'
-    | 'customBiggerIsBetter'
-    | 'customSmallerIsBetter';
+export type ToolType = typeof VALID_TOOLS[number];
 export interface Config {
     name: string;
     tool: ToolType;
     outputFilePath: string;
     ghPagesBranch: string;
+    ghRepository: string | undefined;
     benchmarkDataDirPath: string;
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
     commentAlways: boolean;
+    summaryAlways: boolean;
     saveDataFile: boolean;
     commentOnAlert: boolean;
     alertThreshold: number;
@@ -34,22 +26,24 @@ export interface Config {
     maxItemsInChart: number | null;
 }
 
-export const VALID_TOOLS: ToolType[] = [
+export const VALID_TOOLS = [
     'cargo',
     'go',
     'benchmarkjs',
+    'benchmarkluau',
     'pytest',
     'googlecpp',
     'catch2',
     'julia',
+    'jmh',
     'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
-];
+] as const;
 const RE_UINT = /^\d+$/;
 
 function validateToolType(tool: string): asserts tool is ToolType {
-    if ((VALID_TOOLS as string[]).includes(tool)) {
+    if ((VALID_TOOLS as ReadonlyArray<string>).includes(tool)) {
         return;
     }
     throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
@@ -228,12 +222,14 @@ export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path');
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
+    const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
+    const summaryAlways = getBoolInput('summary-always');
     const saveDataFile = getBoolInput('save-data-file');
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
@@ -257,6 +253,9 @@ export async function configFromJobInput(): Promise<Config> {
     if (commentOnAlert) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
+    if (ghRepository) {
+        validateGitHubToken('gh-repository', githubToken, 'to clone the repository');
+    }
     validateAlertThreshold(alertThreshold, failThreshold);
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
@@ -270,11 +269,13 @@ export async function configFromJobInput(): Promise<Config> {
         tool,
         outputFilePath,
         ghPagesBranch,
+        ghRepository,
         benchmarkDataDirPath,
         githubToken,
         autoPush,
         skipFetchGhPages,
         commentAlways,
+        summaryAlways,
         saveDataFile,
         commentOnAlert,
         alertThreshold,

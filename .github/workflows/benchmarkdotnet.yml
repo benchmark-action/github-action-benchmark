@@ -19,6 +19,7 @@ jobs:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - name: Run benchmark
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
+
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
@@ -32,3 +33,18 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
+
+      - name: Store benchmark result - separate results repo
+        uses: rhysd/github-action-benchmark@v1
+        with:
+          name: Benchmark.Net Benchmark
+          tool: 'benchmarkdotnet'
+          output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
+          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz'
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'

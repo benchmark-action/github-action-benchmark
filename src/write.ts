@@ -7,6 +7,7 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
+import { SummaryTableRow } from '@actions/core/lib/summary';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -41,19 +42,20 @@ async function storeDataJs(dataPath: string, data: DataJson) {
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
 
-async function addIndexHtmlIfNeeded(dir: string) {
-    const indexHtml = path.join(dir, 'index.html');
+async function addIndexHtmlIfNeeded(additionalGitArguments: string[], dir: string, baseDir: string) {
+    const indexHtmlRelativePath = path.join(dir, 'index.html');
+    const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
     try {
-        await fs.stat(indexHtml);
-        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtml}`);
+        await fs.stat(indexHtmlFullPath);
+        core.debug(`Skipped to create default index.html since it is already existing: ${indexHtmlFullPath}`);
         return;
     } catch (_) {
         // Continue
     }
 
-    await fs.writeFile(indexHtml, DEFAULT_INDEX_HTML, 'utf8');
-    await git.cmd('add', indexHtml);
-    console.log('Created default index.html at', indexHtml);
+    await fs.writeFile(indexHtmlFullPath, DEFAULT_INDEX_HTML, 'utf8');
+    await git.cmd(additionalGitArguments, 'add', indexHtmlRelativePath);
+    console.log('Created default index.html at', indexHtmlFullPath);
 }
 
 function biggerIsBetter(tool: ToolType): boolean {
@@ -64,6 +66,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'benchmarkjs':
             return true;
+        case 'benchmarkluau':
+            return false;
         case 'pytest':
             return true;
         case 'googlecpp':
@@ -71,6 +75,8 @@ function biggerIsBetter(tool: ToolType): boolean {
         case 'catch2':
             return false;
         case 'julia':
+            return false;
+        case 'jmh':
             return false;
         case 'benchmarkdotnet':
             return false;
@@ -370,39 +376,61 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         name,
         tool,
         ghPagesBranch,
+        ghRepository,
         benchmarkDataDirPath,
         githubToken,
         autoPush,
         skipFetchGhPages,
         maxItemsInChart,
     } = config;
-    const dataPath = path.join(benchmarkDataDirPath, 'data.js');
     // FIXME: This payload is not available on `schedule:` or `workflow_dispatch:` events.
     const isPrivateRepo = github.context.payload.repository?.private ?? false;
 
-    if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
+    let benchmarkBaseDir = './';
+    let extraGitArguments: string[] = [];
+
+    if (githubToken && !skipFetchGhPages && ghRepository) {
+        benchmarkBaseDir = './benchmark-data-repository';
+        await git.clone(githubToken, ghRepository, benchmarkBaseDir);
+        extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
+        await git.checkout(ghPagesBranch, extraGitArguments);
+    } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
         core.warning(
             "'git pull' was skipped. If you want to ensure GitHub Pages branch is up-to-date " +
                 "before generating a commit, please set 'github-token' input to pull GitHub pages branch",
         );
+    } else {
+        console.warn('NOTHING EXECUTED:', {
+            skipFetchGhPages,
+            ghRepository,
+            isPrivateRepo,
+            githubToken: !!githubToken,
+        });
     }
 
-    await io.mkdirP(benchmarkDataDirPath);
+    // `benchmarkDataDirPath` is an absolute path at this stage,
+    // so we need to convert it to relative to be able to prepend the `benchmarkBaseDir`
+    const benchmarkDataRelativeDirPath = path.relative(process.cwd(), benchmarkDataDirPath);
+    const benchmarkDataDirFullPath = path.join(benchmarkBaseDir, benchmarkDataRelativeDirPath);
+
+    const dataPath = path.join(benchmarkDataDirFullPath, 'data.js');
+
+    await io.mkdirP(benchmarkDataDirFullPath);
 
     const data = await loadDataJs(dataPath);
     const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
     await storeDataJs(dataPath, data);
 
-    await git.cmd('add', dataPath);
-    await addIndexHtmlIfNeeded(benchmarkDataDirPath);
-    await git.cmd('commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
+    await git.cmd(extraGitArguments, 'add', path.join(benchmarkDataRelativeDirPath, 'data.js'));
+    await addIndexHtmlIfNeeded(extraGitArguments, benchmarkDataRelativeDirPath, benchmarkBaseDir);
+    await git.cmd(extraGitArguments, 'commit', '-m', `add ${name} (${tool}) benchmark result for ${bench.commit.id}`);
 
     if (githubToken && autoPush) {
         try {
-            await git.push(githubToken, ghPagesBranch);
+            await git.push(githubToken, ghRepository, ghPagesBranch, extraGitArguments);
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
@@ -416,7 +444,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
             if (retry > 0) {
                 core.debug('Rollback the auto-generated commit before retry');
-                await git.cmd('reset', '--hard', 'HEAD~1');
+                await git.cmd(extraGitArguments, 'reset', '--hard', 'HEAD~1');
 
                 core.warning(
                     `Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`,
@@ -439,16 +467,20 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 }
 
 async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
-    const { ghPagesBranch, skipFetchGhPages, githubToken } = config;
-    if (!skipFetchGhPages) {
-        await git.fetch(githubToken, ghPagesBranch);
+    const { ghPagesBranch, skipFetchGhPages, ghRepository, githubToken } = config;
+    if (!ghRepository) {
+        if (!skipFetchGhPages) {
+            await git.fetch(githubToken, ghPagesBranch);
+        }
+        await git.cmd([], 'switch', ghPagesBranch);
     }
-    await git.cmd('switch', ghPagesBranch);
     try {
         return await writeBenchmarkToGitHubPagesWithRetry(bench, config, 10);
     } finally {
-        // `git switch` does not work for backing to detached head
-        await git.cmd('checkout', '-');
+        if (!ghRepository) {
+            // `git switch` does not work for backing to detached head
+            await git.cmd([], 'checkout', '-');
+        }
     }
 }
 
@@ -505,4 +537,79 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
         await handleComment(name, bench, prevBench, config);
         await handleAlert(name, bench, prevBench, config);
     }
+}
+
+export async function writeSummary(bench: Benchmark, config: Config): Promise<void> {
+    const { name, externalDataJsonPath } = config;
+    const prevBench = externalDataJsonPath
+        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
+        : await writeBenchmarkToGitHubPages(bench, config);
+
+    if (prevBench === null) {
+        core.debug('Alert check was skipped because previous benchmark result was not found');
+        return;
+    }
+
+    const headers = [
+        {
+            data: 'Benchmark Suite',
+            header: true,
+        },
+        {
+            data: `Current: "${bench.commit.id}"`,
+            header: true,
+        },
+        {
+            data: `Previous: "${prevBench.commit.id}"`,
+            header: true,
+        },
+        {
+            data: 'Ratio',
+            header: true,
+        },
+    ];
+    const rows: SummaryTableRow[] = bench.benches.map((bench) => {
+        const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
+
+        if (previousBench) {
+            const ratio = biggerIsBetter(config.tool)
+                ? previousBench.value / bench.value
+                : bench.value / previousBench.value;
+
+            return [
+                {
+                    data: bench.name,
+                },
+                {
+                    data: strVal(bench),
+                },
+                {
+                    data: strVal(previousBench),
+                },
+                {
+                    data: floatStr(ratio),
+                },
+            ];
+        }
+
+        return [
+            {
+                data: bench.name,
+            },
+            {
+                data: strVal(bench),
+            },
+            {
+                data: '-',
+            },
+            {
+                data: '-',
+            },
+        ];
+    });
+
+    await core.summary
+        .addHeading(`Benchmarks: ${name}`)
+        .addTable([headers, ...rows])
+        .write();
 }

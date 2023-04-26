@@ -20,6 +20,9 @@ inputs:
     description: 'Branch for gh-pages'
     required: true
     default: 'gh-pages'
+  gh-repository:
+    description: 'Url to an optional different repository to store benchmark results'
+    required: false
   benchmark-data-dir-path:
     description: 'Path to directory which contains benchmark files on GitHub pages branch'
     required: true
@@ -37,6 +40,10 @@ inputs:
     default: false
   comment-always:
     description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
+    required: false
+    default: false
+  summary-always:
+    description: 'Leave a job summary with benchmark result comparison'
     required: false
     default: false
   save-data-file:
