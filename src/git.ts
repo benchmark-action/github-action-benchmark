@@ -39,10 +39,9 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
 }
 
 export function getServerUrlObj(repositoryUrl: string | undefined): URL {
-  const urlValue =
-    url && url.trim().length > 0
-      ? url
-      : process.env['GITHUB_SERVER_URL'] || DEFAULT_GITHUB_URL
+    const urlValue = url && url.trim().length > 0
+        ? url
+        : process.env['GITHUB_SERVER_URL'] || DEFAULT_GITHUB_URL
     return new URL(urlValue);
 }
 
