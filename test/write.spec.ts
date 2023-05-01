@@ -45,11 +45,12 @@ class FakedOctokitRepos {
 const fakedRepos = new FakedOctokitRepos();
 
 class FakedOctokit {
-    repos: FakedOctokitRepos;
+    rest = {
+        repos: fakedRepos,
+    };
     opt: { token: string };
     constructor(token: string) {
         this.opt = { token };
-        this.repos = fakedRepos;
     }
 }
 
@@ -115,8 +116,8 @@ jest.mock('@actions/github', () => ({
     get context() {
         return gitHubContext;
     },
-    get GitHub() {
-        return FakedOctokit;
+    getOctokit(token: string) {
+        return new FakedOctokit(token);
     },
 }));
 jest.mock('../src/git', () => ({

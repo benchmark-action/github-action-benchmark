@@ -13,8 +13,8 @@ export interface BenchmarkResult {
 
 interface GitHubUser {
     email?: string;
-    name: string;
-    username: string;
+    name?: string;
+    username?: string;
 }
 
 interface Commit {
@@ -23,7 +23,7 @@ interface Commit {
     distinct?: unknown; // Unused
     id: string;
     message: string;
-    timestamp: string;
+    timestamp?: string;
     tree_id?: unknown; // Unused
     url: string;
 }
@@ -254,9 +254,9 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
 }
 
 async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string): Promise<Commit> {
-    const octocat = new github.GitHub(githubToken);
+    const octocat = github.getOctokit(githubToken);
 
-    const { status, data } = await octocat.repos.getCommit({
+    const { status, data } = await octocat.rest.repos.getCommit({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         ref: ref ?? github.context.ref,
@@ -270,18 +270,18 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
 
     return {
         author: {
-            name: commit.author.name,
-            username: data.author.login,
-            email: commit.author.email,
+            name: commit.author?.name,
+            username: data.author?.login,
+            email: commit.author?.email,
         },
         committer: {
-            name: commit.committer.name,
-            username: data.committer.login,
-            email: commit.committer.email,
+            name: commit.committer?.name,
+            username: data.committer?.login,
+            email: commit.committer?.email,
         },
         id: data.sha,
         message: commit.message,
-        timestamp: commit.author.date,
+        timestamp: commit.author?.date ?? commit.committer?.date,
         url: data.html_url,
     };
 }

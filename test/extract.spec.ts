@@ -16,13 +16,15 @@ const dummyWebhookPayload = {
 let dummyCommitData = {};
 let lastCommitRequestData = {};
 class DummyGitHub {
-    repos = {
-        getCommit: (data: any) => {
-            lastCommitRequestData = data;
-            return {
-                status: 200,
-                data: dummyCommitData,
-            };
+    rest = {
+        repos: {
+            getCommit: (data: any) => {
+                lastCommitRequestData = data;
+                return {
+                    status: 200,
+                    data: dummyCommitData,
+                };
+            },
         },
     };
 }
@@ -39,8 +41,8 @@ jest.mock('@actions/github', () => ({
     get context() {
         return dummyGitHubContext;
     },
-    get GitHub() {
-        return DummyGitHub;
+    getOctokit() {
+        return new DummyGitHub();
     },
 }));
 
