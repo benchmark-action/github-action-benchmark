@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683331918357,
+  "lastUpdate": 1683331955377,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12058,6 +12058,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26997,
             "range": "± 70",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331952863,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 27000,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26971,
+            "range": "± 35",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43714,
+            "range": "± 521",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
