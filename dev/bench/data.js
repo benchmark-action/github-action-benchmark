@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683331838979,
+  "lastUpdate": 1683331852832,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44013,6 +44013,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 28.846,
             "range": "± 7.19",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331849408,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 237,
+            "range": "± 311",
+            "unit": "ns",
+            "extra": "100 samples\n149 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 30.044,
+            "range": "± 1.178",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
