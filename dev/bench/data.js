@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683331822031,
+  "lastUpdate": 1683331823436,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35037,6 +35037,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00001201616280674254",
             "extra": "mean: 2.0550949832637255 msec\nrounds: 478"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331819613,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 52537.449970519454,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000014405962442452708",
+            "extra": "mean: 19.03404144207863 usec\nrounds: 36364"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 433.35270274442644,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000007411853384131946",
+            "extra": "mean: 2.307589161592835 msec\nrounds: 427"
           }
         ]
       }
