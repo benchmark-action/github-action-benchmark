@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683331837011,
+  "lastUpdate": 1683331838979,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45455,6 +45455,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 48700,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331834960,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 319.9237288135593,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":236,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 40301,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
