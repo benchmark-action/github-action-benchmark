@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683331852832,
+  "lastUpdate": 1683331918357,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46505,6 +46505,42 @@ window.BENCHMARK_DATA = {
             "value": 48.324278473854065,
             "unit": "ns",
             "range": "± 3.4779762904168163"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331915422,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 24.451745772361754,
+            "unit": "ns",
+            "range": "± 0.0023814366513107287"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 47.140373117648636,
+            "unit": "ns",
+            "range": "± 0.002471045562652971"
           }
         ]
       }
