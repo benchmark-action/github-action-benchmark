@@ -38,14 +38,20 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
     }
 }
 
+export function getServerUrlObj(repositoryUrl: string | undefined): URL {
+    const urlValue =
+        repositoryUrl && repositoryUrl.trim().length > 0
+            ? repositoryUrl
+            : process.env['GITHUB_SERVER_URL'] ?? DEFAULT_GITHUB_URL;
+    return new URL(urlValue);
+}
+
 export function getServerUrl(repositoryUrl: string | undefined): string {
-    const urlObj = repositoryUrl ? new URL(repositoryUrl) : new URL(DEFAULT_GITHUB_URL);
-    return repositoryUrl ? urlObj.origin : DEFAULT_GITHUB_URL;
+    return getServerUrlObj(repositoryUrl).origin;
 }
 
 export function getServerName(repositoryUrl: string | undefined): string {
-    const urlObj = repositoryUrl ? new URL(repositoryUrl) : new URL(DEFAULT_GITHUB_URL);
-    return repositoryUrl ? urlObj.hostname : DEFAULT_GITHUB_URL.replace('https://', '');
+    return getServerUrlObj(repositoryUrl).hostname;
 }
 
 export async function cmd(additionalGitOptions: string[], ...args: string[]): Promise<string> {
