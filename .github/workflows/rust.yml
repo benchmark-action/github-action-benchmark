@@ -42,6 +42,7 @@ jobs:
           auto-push: true
           # Show alert with commit comment on detecting possible performance regression
           alert-threshold: '200%'
+          summary-always: true
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'

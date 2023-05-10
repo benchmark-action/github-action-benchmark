@@ -209,6 +209,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             githubToken: undefined,
             autoPush: false,
             skipFetchGhPages: false, // Should not affect
+            summaryAlways: false,
             commentAlways: false,
             saveDataFile: true,
             commentOnAlert: false,
@@ -218,6 +219,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             externalDataJsonPath: dataJson,
             maxItemsInChart: null,
             failThreshold: 2.0,
+            ref: undefined,
         };
 
         const savedRepository = {
@@ -910,6 +912,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             autoPush: true,
             skipFetchGhPages: false, // Should not affect
             commentAlways: false,
+            summaryAlways: false,
             saveDataFile: true,
             commentOnAlert: false,
             alertThreshold: 2.0,
@@ -918,6 +921,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             externalDataJsonPath: undefined,
             maxItemsInChart: null,
             failThreshold: 2.0,
+            ref: undefined,
         };
 
         function gitHistory(

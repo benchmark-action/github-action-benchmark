@@ -30,6 +30,9 @@ inputs:
   github-token:
     description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
     required: false
+  ref:
+    description: 'optional Ref to use when finding commit'
+    required: false
   auto-push:
     description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
     required: false
@@ -40,6 +43,10 @@ inputs:
     default: false
   comment-always:
     description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
+    required: false
+    default: false
+  summary-always:
+    description: 'Leave a job summary with benchmark result comparison'
     required: false
     default: false
   save-data-file:

@@ -15,6 +15,7 @@ export interface Config {
     autoPush: boolean;
     skipFetchGhPages: boolean;
     commentAlways: boolean;
+    summaryAlways: boolean;
     saveDataFile: boolean;
     commentOnAlert: boolean;
     alertThreshold: number;
@@ -23,6 +24,7 @@ export interface Config {
     alertCommentCcUsers: string[];
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
+    ref: string | undefined;
 }
 
 export const VALID_TOOLS = [
@@ -225,9 +227,11 @@ export async function configFromJobInput(): Promise<Config> {
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
+    const ref: string | undefined = core.getInput('ref') || undefined;
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
+    const summaryAlways = getBoolInput('summary-always');
     const saveDataFile = getBoolInput('save-data-file');
     const commentOnAlert = getBoolInput('comment-on-alert');
     const alertThreshold = getPercentageInput('alert-threshold');
@@ -273,6 +277,7 @@ export async function configFromJobInput(): Promise<Config> {
         autoPush,
         skipFetchGhPages,
         commentAlways,
+        summaryAlways,
         saveDataFile,
         commentOnAlert,
         alertThreshold,
@@ -281,5 +286,6 @@ export async function configFromJobInput(): Promise<Config> {
         externalDataJsonPath,
         maxItemsInChart,
         failThreshold,
+        ref,
     };
 }
