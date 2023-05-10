@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683712587958,
+  "lastUpdate": 1683712589523,
   "entries": {
     "Rust Benchmark": [
       {
@@ -28443,6 +28443,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.90%",
             "unit": "ops/sec",
             "extra": "91 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "masafumi.o1988@gmail.com",
+            "name": "OKURA Masafumi",
+            "username": "okuramasafumi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6b33125fdd5070057463689ccbff4728d45fdf03",
+          "message": "Remove unreachable code from extract.ts (#153)",
+          "timestamp": "2023-05-10T11:55:57+02:00",
+          "tree_id": "9d16e84d09162336e18346919cc8c1f4f4529e9a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6b33125fdd5070057463689ccbff4728d45fdf03"
+        },
+        "date": 1683712586814,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1317156,
+            "range": "±0.38%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11051,
+            "range": "±0.02%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
           }
         ]
       }
