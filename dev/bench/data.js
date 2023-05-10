@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683712660124,
+  "lastUpdate": 1683712699107,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12154,6 +12154,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30994,
             "range": "± 6521",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "masafumi.o1988@gmail.com",
+            "name": "OKURA Masafumi",
+            "username": "okuramasafumi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6b33125fdd5070057463689ccbff4728d45fdf03",
+          "message": "Remove unreachable code from extract.ts (#153)",
+          "timestamp": "2023-05-10T11:55:57+02:00",
+          "tree_id": "9d16e84d09162336e18346919cc8c1f4f4529e9a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6b33125fdd5070057463689ccbff4728d45fdf03"
+        },
+        "date": 1683712696286,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 283,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 35757,
+            "range": "± 31",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 35742,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 57849,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
