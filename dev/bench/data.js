@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1683712611799,
+  "lastUpdate": 1683712613434,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45811,6 +45811,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 40301,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "masafumi.o1988@gmail.com",
+            "name": "OKURA Masafumi",
+            "username": "okuramasafumi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6b33125fdd5070057463689ccbff4728d45fdf03",
+          "message": "Remove unreachable code from extract.ts (#153)",
+          "timestamp": "2023-05-10T11:55:57+02:00",
+          "tree_id": "9d16e84d09162336e18346919cc8c1f4f4529e9a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6b33125fdd5070057463689ccbff4728d45fdf03"
+        },
+        "date": 1683712610247,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 319.2393162393162,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":234,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 39601,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
