@@ -14,9 +14,11 @@ const dummyWebhookPayload = {
     },
 } as { [key: string]: any };
 let dummyCommitData = {};
+let lastCommitRequestData = {};
 class DummyGitHub {
     repos = {
-        getCommit: () => {
+        getCommit: (data: any) => {
+            lastCommitRequestData = data;
             return {
                 status: 200,
                 data: dummyCommitData,
@@ -217,6 +219,12 @@ describe('extractResult()', function () {
                     value: 40537.456,
                     extra: '30001 times',
                 },
+                {
+                    name: 'BenchmarkFib/my/tabled/benchmark_-_20,var1=13,var2=14',
+                    unit: 'ns/op',
+                    value: 40537.456,
+                    extra: '30001 times',
+                },
             ],
         },
         {
@@ -392,6 +400,18 @@ describe('extractResult()', function () {
             ],
         },
         {
+            tool: 'jmh',
+            file: 'jmh_output_2.json',
+            expected: [
+                {
+                    extra: 'iterations: 3\nforks: 1\nthreads: 1',
+                    name: 'org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere ( {"paramA":"17","paramB":"33"} )',
+                    unit: 'ops/s',
+                    value: 3.3762388731228185e9,
+                },
+            ],
+        },
+        {
             tool: 'benchmarkdotnet',
             file: 'benchmarkdotnet.json',
             expected: [
@@ -550,7 +570,7 @@ describe('extractResult()', function () {
         A.equal(commit.url, 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789');
     });
 
-    it('collects the commit information from current head via REST API as fallback when githubToken is provided', async function () {
+    it('collects the commit information from specified ref via REST API as fallback when githubToken and ref provided', async function () {
         dummyGitHubContext.payload = {};
         dummyCommitData = {
             author: {
@@ -581,6 +601,7 @@ describe('extractResult()', function () {
             tool: 'go',
             outputFilePath,
             githubToken: 'abcd1234',
+            ref: 'refs/pull/123/head',
         } as Config;
 
         const { commit } = await extractResult(config);
@@ -601,6 +622,70 @@ describe('extractResult()', function () {
                 email: 'committer@testdummy.com',
             },
         };
+        A.deepEqual(lastCommitRequestData, {
+            owner: 'dummy',
+            repo: 'repo',
+            ref: 'refs/pull/123/head',
+        });
+        A.deepEqual(commit, expectedCommit);
+    });
+
+    it('collects the commit information from current head via REST API as fallback when githubToken is provided', async function () {
+        dummyGitHubContext.payload = {};
+        dummyCommitData = {
+            author: {
+                login: 'testAuthorLogin',
+            },
+            committer: {
+                login: 'testCommitterLogin',
+            },
+            commit: {
+                author: {
+                    name: 'test author',
+                    date: 'author updated at timestamp',
+                    email: 'author@testdummy.com',
+                },
+                committer: {
+                    name: 'test committer',
+                    // We use the `author.date` instead.
+                    // date: 'committer updated at timestamp',
+                    email: 'committer@testdummy.com',
+                },
+                message: 'test message',
+            },
+            sha: 'abcd1235',
+            html_url: 'https://github.com/dymmy/repo/commit/abcd1234',
+        };
+        const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
+        const config = {
+            tool: 'go',
+            outputFilePath,
+            githubToken: 'abcd1234',
+        } as Config;
+
+        const { commit } = await extractResult(config);
+
+        const expectedCommit = {
+            id: 'abcd1235',
+            message: 'test message',
+            timestamp: 'author updated at timestamp',
+            url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            author: {
+                name: 'test author',
+                username: 'testAuthorLogin',
+                email: 'author@testdummy.com',
+            },
+            committer: {
+                name: 'test committer',
+                username: 'testCommitterLogin',
+                email: 'committer@testdummy.com',
+            },
+        };
+        A.deepEqual(lastCommitRequestData, {
+            owner: 'dummy',
+            repo: 'repo',
+            ref: 'abcd1234',
+        });
         A.deepEqual(commit, expectedCommit);
     });
 
