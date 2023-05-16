@@ -697,7 +697,6 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         case 'julia':
             benches = extractJuliaBenchmarkResult(output);
             break;
-            break;
         case 'jmh':
             benches = extractJmhResult(output);
             break;
