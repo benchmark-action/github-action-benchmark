@@ -281,7 +281,7 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
         },
         id: data.sha,
         message: commit.message,
-        timestamp: commit.author?.date ?? commit.committer?.date,
+        timestamp: commit.author?.date,
         url: data.html_url,
     };
 }
