@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1684396804642,
+  "lastUpdate": 1684396821078,
   "entries": {
     "Rust Benchmark": [
       {
@@ -47649,6 +47649,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1704490248.3816326,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221",
+          "message": "Fixed getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)\n\n* update actions/github and use getOctkit\r\n\r\n* Fixed not to change behavior\r\n\r\nfix: https://github.com/benchmark-action/github-action-benchmark/pull/171#discussion_r1194677871",
+          "timestamp": "2023-05-18T00:58:57-07:00",
+          "tree_id": "134d744add0eb00be96283ffaea1b8a98a0bfc26",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221"
+        },
+        "date": 1684396817765,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1818232658.356412,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
