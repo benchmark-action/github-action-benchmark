@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1684396856120,
+  "lastUpdate": 1684396915028,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12250,6 +12250,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30391,
             "range": "± 129",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221",
+          "message": "Fixed getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)\n\n* update actions/github and use getOctkit\r\n\r\n* Fixed not to change behavior\r\n\r\nfix: https://github.com/benchmark-action/github-action-benchmark/pull/171#discussion_r1194677871",
+          "timestamp": "2023-05-18T00:58:57-07:00",
+          "tree_id": "134d744add0eb00be96283ffaea1b8a98a0bfc26",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221"
+        },
+        "date": 1684396912458,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26873,
+            "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26823,
+            "range": "± 42",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43445,
+            "range": "± 72",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
