@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1684396772172,
+  "lastUpdate": 1684396773938,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35453,6 +35453,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00027507459664480836",
             "extra": "mean: 2.795103054381669 msec\nrounds: 331"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221",
+          "message": "Fixed getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)\n\n* update actions/github and use getOctkit\r\n\r\n* Fixed not to change behavior\r\n\r\nfix: https://github.com/benchmark-action/github-action-benchmark/pull/171#discussion_r1194677871",
+          "timestamp": "2023-05-18T00:58:57-07:00",
+          "tree_id": "134d744add0eb00be96283ffaea1b8a98a0bfc26",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221"
+        },
+        "date": 1684396769042,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 59120.08789295481,
+            "unit": "iter/sec",
+            "range": "stddev: 4.693925125789305e-7",
+            "extra": "mean: 16.914724514798422 usec\nrounds: 42554"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 475.5442254978032,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002647172569087542",
+            "extra": "mean: 2.1028538385745144 msec\nrounds: 477"
           }
         ]
       }
