@@ -210,25 +210,25 @@ describe('extractResult()', function () {
                     extra: '30001 times',
                 },
                 {
-                    name: 'BenchmarkFib11',
+                    name: 'BenchmarkFib11 - ns/op',
                     unit: 'ns/op',
                     value: 262.7,
                     extra: '4587789 times\n16 procs',
                 },
                 {
-                    name: 'BenchmarkFib11',
+                    name: 'BenchmarkFib11 - auxMetricUnits',
                     unit: 'auxMetricUnits',
                     value: 3,
                     extra: '4587789 times\n16 procs',
                 },
                 {
-                    name: 'BenchmarkFib22',
+                    name: 'BenchmarkFib22 - ns/op',
                     unit: 'ns/op',
                     value: 31915,
                     extra: '37653 times\n16 procs',
                 },
                 {
-                    name: 'BenchmarkFib22',
+                    name: 'BenchmarkFib22 - auxMetricUnits',
                     unit: 'auxMetricUnits',
                     value: 4,
                     extra: '37653 times\n16 procs',
@@ -490,7 +490,7 @@ describe('extractResult()', function () {
             A.equal(bench.commit, dummyWebhookPayload.head_commit);
             A.ok(bench.date <= Date.now(), bench.date.toString());
             A.equal(bench.tool, test.tool);
-            A.deepEqual(test.expected, bench.benches);
+            A.deepEqual(bench.benches, test.expected);
         });
     }
 
