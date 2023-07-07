@@ -1,5 +1,13 @@
 ## Unreleased
 
+<a name="v1.18.0"></a>
+# [v1.18.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.18.0) - 07 Jul 2023
+
+- **feat** getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)
+- **feat** extract multiple metrics from Golang benchmarks (#177)
+- **fix** getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)
+- **chore** Remove unreachable code from extract.ts (#153)
+
 <a name="v1.17.0"></a>
 # [v1.17.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.17.0) - 26 Apr 2023
 
