@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688727006676,
+  "lastUpdate": 1688727017626,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46417,6 +46417,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 43102,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i@ningziwen.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0c70f157d50ac07c1a3ecf43d9044e4e16cd1276",
+          "message": "feat: extract multiple metrics from golang benchmarks (#177)\n\n* use a more recent version of go\r\n* allows go benchmarks to work with extra metrics\r\n\r\nCo-authored-by: Joe Kimmel <jkimmel@vmware.com>",
+          "timestamp": "2023-07-07T12:49:05+02:00",
+          "tree_id": "da453c4c605083a2ae099bd9c81e02c610e1b090",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0c70f157d50ac07c1a3ecf43d9044e4e16cd1276"
+        },
+        "date": 1688727013469,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 412.6829268292683,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":205,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 51601,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
