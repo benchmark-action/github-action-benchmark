@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1684396915028,
+  "lastUpdate": 1688726973839,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35551,6 +35551,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002647172569087542",
             "extra": "mean: 2.1028538385745144 msec\nrounds: 477"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i@ningziwen.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0c70f157d50ac07c1a3ecf43d9044e4e16cd1276",
+          "message": "feat: extract multiple metrics from golang benchmarks (#177)\n\n* use a more recent version of go\r\n* allows go benchmarks to work with extra metrics\r\n\r\nCo-authored-by: Joe Kimmel <jkimmel@vmware.com>",
+          "timestamp": "2023-07-07T12:49:05+02:00",
+          "tree_id": "da453c4c605083a2ae099bd9c81e02c610e1b090",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0c70f157d50ac07c1a3ecf43d9044e4e16cd1276"
+        },
+        "date": 1688726971187,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 49862.3084679863,
+            "unit": "iter/sec",
+            "range": "stddev: 8.075198518495869e-7",
+            "extra": "mean: 20.055228703300852 usec\nrounds: 28819"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 407.24979974621795,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000014735217926133806",
+            "extra": "mean: 2.4554953756224327 msec\nrounds: 402"
           }
         ]
       }
