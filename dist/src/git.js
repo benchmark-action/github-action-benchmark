@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkout = exports.clone = exports.fetch = exports.pull = exports.push = exports.cmd = exports.getServerName = exports.getServerUrl = void 0;
+exports.checkout = exports.clone = exports.fetch = exports.pull = exports.push = exports.cmd = exports.getServerName = exports.getServerUrl = exports.getServerUrlObj = void 0;
 const exec_1 = require("@actions/exec");
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
@@ -51,14 +51,20 @@ async function capture(cmd, args) {
         throw new Error(msg);
     }
 }
+function getServerUrlObj(repositoryUrl) {
+    var _a;
+    const urlValue = repositoryUrl && repositoryUrl.trim().length > 0
+        ? repositoryUrl
+        : (_a = process.env['GITHUB_SERVER_URL']) !== null && _a !== void 0 ? _a : DEFAULT_GITHUB_URL;
+    return new url_1.URL(urlValue);
+}
+exports.getServerUrlObj = getServerUrlObj;
 function getServerUrl(repositoryUrl) {
-    const urlObj = repositoryUrl ? new url_1.URL(repositoryUrl) : new url_1.URL(DEFAULT_GITHUB_URL);
-    return repositoryUrl ? urlObj.origin : DEFAULT_GITHUB_URL;
+    return getServerUrlObj(repositoryUrl).origin;
 }
 exports.getServerUrl = getServerUrl;
 function getServerName(repositoryUrl) {
-    const urlObj = repositoryUrl ? new url_1.URL(repositoryUrl) : new url_1.URL(DEFAULT_GITHUB_URL);
-    return repositoryUrl ? urlObj.hostname : DEFAULT_GITHUB_URL.replace('https://', '');
+    return getServerUrlObj(repositoryUrl).hostname;
 }
 exports.getServerName = getServerName;
 async function cmd(additionalGitOptions, ...args) {

@@ -208,8 +208,8 @@ async function leaveComment(commitId, body, token) {
     core.debug('Sending comment:\n' + body);
     const repoMetadata = getCurrentRepoMetadata();
     const repoUrl = (_a = repoMetadata.html_url) !== null && _a !== void 0 ? _a : '';
-    const client = new github.GitHub(token);
-    const res = await client.repos.createCommitComment({
+    const client = github.getOctokit(token);
+    const res = await client.rest.repos.createCommitComment({
         owner: repoMetadata.owner.login,
         repo: repoMetadata.name,
         // eslint-disable-next-line @typescript-eslint/naming-convention
