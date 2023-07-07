@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688726983971,
+  "lastUpdate": 1688726993498,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44791,6 +44791,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.197,
             "range": "± 223",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i@ningziwen.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0c70f157d50ac07c1a3ecf43d9044e4e16cd1276",
+          "message": "feat: extract multiple metrics from golang benchmarks (#177)\n\n* use a more recent version of go\r\n* allows go benchmarks to work with extra metrics\r\n\r\nCo-authored-by: Joe Kimmel <jkimmel@vmware.com>",
+          "timestamp": "2023-07-07T12:49:05+02:00",
+          "tree_id": "da453c4c605083a2ae099bd9c81e02c610e1b090",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0c70f157d50ac07c1a3ecf43d9044e4e16cd1276"
+        },
+        "date": 1688726990108,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 189,
+            "range": "± 3",
+            "unit": "ns",
+            "extra": "100 samples\n154 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 24.307,
+            "range": "± 275",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
