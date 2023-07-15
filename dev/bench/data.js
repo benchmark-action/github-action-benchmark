@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688847091629,
+  "lastUpdate": 1689448189953,
   "entries": {
     "Rust Benchmark": [
       {
@@ -12574,6 +12574,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27467,
             "range": "± 70",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ffcca1399b1fa1117c091fe6b8c18670942859d9",
+          "message": "Bump tough-cookie from 4.0.0 to 4.1.3 (#178)\n\nBumps [tough-cookie](https://github.com/salesforce/tough-cookie) from 4.0.0 to 4.1.3.\r\n- [Release notes](https://github.com/salesforce/tough-cookie/releases)\r\n- [Changelog](https://github.com/salesforce/tough-cookie/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/salesforce/tough-cookie/compare/v4.0.0...v4.1.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: tough-cookie\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-15T12:09:20-07:00",
+          "tree_id": "0899639e26893d07126e9ff3eb02751382bce006",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ffcca1399b1fa1117c091fe6b8c18670942859d9"
+        },
+        "date": 1689448187197,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 214,
+            "range": "± 11",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 27770,
+            "range": "± 165",
             "unit": "ns/iter"
           }
         ]
