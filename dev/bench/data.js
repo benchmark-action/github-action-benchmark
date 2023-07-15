@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689448225114,
+  "lastUpdate": 1689448234179,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36217,6 +36217,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00000536290349518281",
             "extra": "mean: 2.4483572004888057 msec\nrounds: 409"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ffcca1399b1fa1117c091fe6b8c18670942859d9",
+          "message": "Bump tough-cookie from 4.0.0 to 4.1.3 (#178)\n\nBumps [tough-cookie](https://github.com/salesforce/tough-cookie) from 4.0.0 to 4.1.3.\r\n- [Release notes](https://github.com/salesforce/tough-cookie/releases)\r\n- [Changelog](https://github.com/salesforce/tough-cookie/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/salesforce/tough-cookie/compare/v4.0.0...v4.1.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: tough-cookie\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-15T12:09:20-07:00",
+          "tree_id": "0899639e26893d07126e9ff3eb02751382bce006",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ffcca1399b1fa1117c091fe6b8c18670942859d9"
+        },
+        "date": 1689448230464,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 60106.089883456894,
+            "unit": "iter/sec",
+            "range": "stddev: 5.007185955445874e-7",
+            "extra": "mean: 16.637249269399433 usec\nrounds: 35588"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 497.8254445439407,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000019020942292471943",
+            "extra": "mean: 2.0087362165991793 msec\nrounds: 494"
           }
         ]
       }
