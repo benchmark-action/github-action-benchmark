@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689448189953,
+  "lastUpdate": 1689448199217,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29251,6 +29251,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.13%",
             "unit": "ops/sec",
             "extra": "96 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ffcca1399b1fa1117c091fe6b8c18670942859d9",
+          "message": "Bump tough-cookie from 4.0.0 to 4.1.3 (#178)\n\nBumps [tough-cookie](https://github.com/salesforce/tough-cookie) from 4.0.0 to 4.1.3.\r\n- [Release notes](https://github.com/salesforce/tough-cookie/releases)\r\n- [Changelog](https://github.com/salesforce/tough-cookie/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/salesforce/tough-cookie/compare/v4.0.0...v4.1.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: tough-cookie\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-15T12:09:20-07:00",
+          "tree_id": "0899639e26893d07126e9ff3eb02751382bce006",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ffcca1399b1fa1117c091fe6b8c18670942859d9"
+        },
+        "date": 1689448196103,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1072614,
+            "range": "±1.54%",
+            "unit": "ops/sec",
+            "extra": "83 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8909,
+            "range": "±1.35%",
+            "unit": "ops/sec",
+            "extra": "84 samples"
           }
         ]
       }
