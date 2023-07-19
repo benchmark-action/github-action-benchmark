@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689732665114,
+  "lastUpdate": 1689732673730,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45857,6 +45857,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.244,
             "range": "± 355",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
+          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-18T19:09:29-07:00",
+          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
+        },
+        "date": 1689732671127,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 165,
+            "range": "± 9",
+            "unit": "ns",
+            "extra": "100 samples\n180 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 23.235,
+            "range": "± 339",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
