@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689732641311,
+  "lastUpdate": 1689732652459,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29445,6 +29445,44 @@ window.BENCHMARK_DATA = {
             "range": "±1.35%",
             "unit": "ops/sec",
             "extra": "84 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
+          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-18T19:09:29-07:00",
+          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
+        },
+        "date": 1689732649820,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1196964,
+            "range": "±0.20%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 9989,
+            "range": "±0.08%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
           }
         ]
       }
