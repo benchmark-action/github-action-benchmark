@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689732652459,
+  "lastUpdate": 1689732665114,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36401,6 +36401,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000019020942292471943",
             "extra": "mean: 2.0087362165991793 msec\nrounds: 494"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
+          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-18T19:09:29-07:00",
+          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
+        },
+        "date": 1689732661839,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 48813.304779824604,
+            "unit": "iter/sec",
+            "range": "stddev: 5.44791993126198e-7",
+            "extra": "mean: 20.48621793813308 usec\nrounds: 29412"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 399.4796091297081,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00000804838272778488",
+            "extra": "mean: 2.50325667980542 msec\nrounds: 406"
           }
         ]
       }
