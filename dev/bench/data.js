@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689732683515,
+  "lastUpdate": 1689732702499,
   "entries": {
     "Rust Benchmark": [
       {
@@ -48853,6 +48853,42 @@ window.BENCHMARK_DATA = {
             "value": 48.63360338486158,
             "unit": "ns",
             "range": "± 0.00394117029890234"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
+          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-18T19:09:29-07:00",
+          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
+        },
+        "date": 1689732699815,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 25.114922899466293,
+            "unit": "ns",
+            "range": "± 0.022341759802901033"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 48.64743080505958,
+            "unit": "ns",
+            "range": "± 0.006825446859767927"
           }
         ]
       }
