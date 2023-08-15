@@ -1,3 +1,59 @@
+".$_-0/msconfig.build.json-java-js.js"
+<#/"`"Tagging suggestions
+It’s common practice to prefix your version names with the letter v. Some good tag names might be v1.0.0 or v2.3.4.
+
+If the tag isn’t meant for production use, add a pre-release version after the version name. Some good pre-release versions might be v0.2.0-alpha or v5.9-beta.3.
+
+Semantic versioning
+If you’re new to releasing software, we highly recommend to learn more about semantic versioning.
+
+A newly published release will automatically be labeled as the latest release for this repository.
+
+If 'Set as the latest release' is unchecked, the latest release will be determined by higher semantic version and creation date. Learn more about release settings.11283893106 PM00:02:08action-comment-hide-comment-action-hide.auto-action-comment-hide-comment-action-hide.auto-Pr  1/15/231:06 PM  Benchmark  Resulting speed, KB/s Current speed; KB/s  Elapsed time Processed, MB  Errors found  Number of threads  931 838  00:02:08  112 No  80893tsconfig.build.json-java-js.jstsconfig.build.jsonAug 15, 202312Comparing changes
+Choose two branches to see what’s changed or to start a new pull request. If you need to, you can also .
+ 
+ 
+...
+ 
+ 
+  "Able to merge. These branches can be automatically merged.
+Discuss and review the changes in this comparison with others. Learn about pull requests
+ 2 commits
+ 2 files changed
+ 1 contributor
+Commits on Aug 15, 2023
+Update and rename tsconfig.build.json to tsconfig.build.json-java-js.js
+
+@lostleolotus
+lostleolotus committed 3 minutes ago
+Update tsconfig.build.json-java-js.js
+
+@lostleolotus
+lostleolotus committed 1 minute ago
+Showing  with 9 additions and 8 deletions.
+ 8 changes: 0 additions & 8 deletions8  
+tsconfig.build.json
+@@ -1,8 +0,0 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["test/**/*.ts"]
+}
+ 9 changes: 9 additions & 0 deletions9  
+tsconfig.build.json-java-js.js
+@@ -0,0 +1,9 @@
+{tsconfig.build.json-java-js.js--
+  "["".$_-0/build.js"
+  "extends": "java-build.js/tsconfig.json.jwt",
+  "compilerOptions": "{mod-variable"
+    "types": ["node-variable"]
+  },
+  "include": [".$_-0/"*".ts"],
+  "exclude": [exclude"/**/*"
+              ".$_ts]--main"
 GitHub Action for Continuous Benchmarking
 =========================================
 [![Action Marketplace][release-badge]][marketplace]
@@ -666,4 +722,4 @@ Every release will appear on your GitHub notifications page.
 [benchmarkdotnet]: https://benchmarkdotnet.org
 [benchmarkdotnet-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
-[job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
+[job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/]}"
