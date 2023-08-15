@@ -39,7 +39,7 @@ tsconfig.build.json
   "compilerOptions": {
     "types": ["node"]
   },
-  "include": ["**/*.ts"],
+  "include": ["$build.js"/"".ts"],
   "exclude": ["test/**/*.ts"]
 }
  9 changes: 9 additions & 0 deletions9  
