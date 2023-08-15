@@ -1,15 +1,29 @@
-".$_-0/msconfig.build.json-java-js.js"
-<#/"`"Tagging suggestions
-It’s common practice to prefix your version names with the letter v. Some good tag names might be v1.0.0 or v2.3.4.
-
-If the tag isn’t meant for production use, add a pre-release version after the version name. Some good pre-release versions might be v0.2.0-alpha or v5.9-beta.3.
+README.js"
+".$_-0/"msconfig.build.json-java-js.js"
+<#/"`"
+# Tagging suggestions
+-
+- It’s common practice to prefix your version names with the letter v. 
+- Some good tag names might be 
+- v1.0.0 or v2.3.4.
+-
+- If the tag isn’t meant for production use, 
+- add a pre-release version after the version name. Some good pre-
+- release versions might be 
+-v0.2.0-alpha or v5.9-beta.3.
 
 Semantic versioning
 If you’re new to releasing software, we highly recommend to learn more about semantic versioning.
 
 A newly published release will automatically be labeled as the latest release for this repository.
 
-If 'Set as the latest release' is unchecked, the latest release will be determined by higher semantic version and creation date. Learn more about release settings.11283893106 PM00:02:08action-comment-hide-comment-action-hide.auto-action-comment-hide-comment-action-hide.auto-Pr  1/15/231:06 PM  Benchmark  Resulting speed, KB/s Current speed; KB/s  Elapsed time Processed, MB  Errors found  Number of threads  931 838  00:02:08  112 No  80893tsconfig.build.json-java-js.jstsconfig.build.jsonAug 15, 202312Comparing changes
+If 'Set as the latest release' is unchecked, the latest release will be determined by higher semantic version and creation date. Learn more about 
+"release settings.11283893106 
+PM00:02:08
+"action-comment-hide-comment-action-hide.auto-action-comment-hide-comment-action-hide.auto-Pr"  
+1/15/231:06 PM  
+|Benchmark | Resulting speed, KB/s Current speed; KB/s | Elapsed time Processed, MB | No Errors found | Number of threads  931 | 838  00:02:08 | 112 | No  80893 | tsconfig.build.json-java-js.jstsconfig.build.json | Aug 15, 202312 |
+# Comparing changes
 Choose two branches to see what’s changed or to start a new pull request. If you need to, you can also .
  
  
