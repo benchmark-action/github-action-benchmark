@@ -239,8 +239,8 @@ async function leaveComment(commitId: string, body: string, token: string) {
 
     const repoMetadata = getCurrentRepoMetadata();
     const repoUrl = repoMetadata.html_url ?? '';
-    const client = new github.GitHub(token);
-    const res = await client.repos.createCommitComment({
+    const client = github.getOctokit(token);
+    const res = await client.rest.repos.createCommitComment({
         owner: repoMetadata.owner.login,
         repo: repoMetadata.name,
         // eslint-disable-next-line @typescript-eslint/naming-convention

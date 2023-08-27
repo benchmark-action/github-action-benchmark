@@ -14,8 +14,8 @@ export interface BenchmarkResult {
 
 interface GitHubUser {
     email?: string;
-    name: string;
-    username: string;
+    name?: string;
+    username?: string;
 }
 
 interface Commit {
@@ -24,7 +24,7 @@ interface Commit {
     distinct?: unknown; // Unused
     id: string;
     message: string;
-    timestamp: string;
+    timestamp?: string;
     tree_id?: unknown; // Unused
     url: string;
 }
@@ -297,9 +297,9 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
 }
 
 async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string): Promise<Commit> {
-    const octocat = new github.GitHub(githubToken);
+    const octocat = github.getOctokit(githubToken);
 
-    const { status, data } = await octocat.repos.getCommit({
+    const { status, data } = await octocat.rest.repos.getCommit({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         ref: ref ?? github.context.ref,
@@ -313,18 +313,18 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
 
     return {
         author: {
-            name: commit.author.name,
-            username: data.author.login,
-            email: commit.author.email,
+            name: commit.author?.name,
+            username: data.author?.login,
+            email: commit.author?.email,
         },
         committer: {
-            name: commit.committer.name,
-            username: data.committer.login,
-            email: commit.committer.email,
+            name: commit.committer?.name,
+            username: data.committer?.login,
+            email: commit.committer?.email,
         },
         id: data.sha,
         message: commit.message,
-        timestamp: commit.author.date,
+        timestamp: commit.author?.date,
         url: data.html_url,
     };
 }
@@ -433,26 +433,40 @@ function extractGoResult(output: string): BenchmarkResult[] {
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
     //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
-    const reExtract = /^(Benchmark\w+(?:\/?[\w()$%^&*-=,]*?)*?)(-\d+)?\s+(\d+)\s+([0-9.]+)\s+(.+)$/;
+
+    // Example if someone has used the ReportMetric function to add additional metrics to each benchmark:
+    // BenchmarkThing-16    	       1	95258906556 ns/op	        64.02 UnitsForMeasure2	        31.13 UnitsForMeasure3
+
+    // reference, "Proposal: Go Benchmark Data Format": https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
+    // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
+    // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
+    const reExtract =
+        /^(?<name>Benchmark\w+(?:\/?[\w()$%^&*-=,]*?)*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
 
     for (const line of lines) {
         const m = line.match(reExtract);
-        if (m === null) {
-            continue;
+        if (m?.groups) {
+            const procs = m.groups.procs !== undefined ? m.groups.procs.slice(1) : null;
+            const times = m.groups.times;
+            const remainder = m.groups.remainder;
+
+            const pieces = remainder.split(/[ \t]+/);
+            for (let i = 0; i < pieces.length; i = i + 2) {
+                let extra = `${times} times`.replace(/\s\s+/g, ' ');
+                if (procs !== null) {
+                    extra += `\n${procs} procs`;
+                }
+                const value = parseFloat(pieces[i]);
+                const unit = pieces[i + 1];
+                let name;
+                if (pieces.length > 2) {
+                    name = m.groups.name + ' - ' + unit;
+                } else {
+                    name = m.groups.name;
+                }
+                ret.push({ name, value, unit, extra });
+            }
         }
-
-        const name = m[1];
-        const procs = m[2] !== undefined ? m[2].slice(1) : null;
-        const times = m[3];
-        const value = parseFloat(m[4]);
-        const unit = m[5];
-
-        let extra = `${times} times`;
-        if (procs !== null) {
-            extra += `\n${procs} procs`;
-        }
-
-        ret.push({ name, value, unit, extra });
     }
 
     return ret;

@@ -57,7 +57,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "stable"
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -336,7 +338,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "stable"
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Download previous benchmark data

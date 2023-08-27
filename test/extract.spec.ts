@@ -16,13 +16,15 @@ const dummyWebhookPayload = {
 let dummyCommitData = {};
 let lastCommitRequestData = {};
 class DummyGitHub {
-    repos = {
-        getCommit: (data: any) => {
-            lastCommitRequestData = data;
-            return {
-                status: 200,
-                data: dummyCommitData,
-            };
+    rest = {
+        repos: {
+            getCommit: (data: any) => {
+                lastCommitRequestData = data;
+                return {
+                    status: 200,
+                    data: dummyCommitData,
+                };
+            },
         },
     };
 }
@@ -39,8 +41,8 @@ jest.mock('@actions/github', () => ({
     get context() {
         return dummyGitHubContext;
     },
-    get GitHub() {
-        return DummyGitHub;
+    getOctokit() {
+        return new DummyGitHub();
     },
 }));
 
@@ -224,6 +226,30 @@ describe('extractResult()', function () {
                     unit: 'ns/op',
                     value: 40537.456,
                     extra: '30001 times',
+                },
+                {
+                    name: 'BenchmarkFib11 - ns/op',
+                    unit: 'ns/op',
+                    value: 262.7,
+                    extra: '4587789 times\n16 procs',
+                },
+                {
+                    name: 'BenchmarkFib11 - auxMetricUnits',
+                    unit: 'auxMetricUnits',
+                    value: 3,
+                    extra: '4587789 times\n16 procs',
+                },
+                {
+                    name: 'BenchmarkFib22 - ns/op',
+                    unit: 'ns/op',
+                    value: 31915,
+                    extra: '37653 times\n16 procs',
+                },
+                {
+                    name: 'BenchmarkFib22 - auxMetricUnits',
+                    unit: 'auxMetricUnits',
+                    value: 4,
+                    extra: '37653 times\n16 procs',
                 },
             ],
         },
@@ -482,10 +508,7 @@ describe('extractResult()', function () {
             A.equal(bench.commit, dummyWebhookPayload.head_commit);
             A.ok(bench.date <= Date.now(), bench.date.toString());
             A.equal(bench.tool, test.tool);
-            // TODO: Discuss with author how to tackle JSON expected/received extra on cargo-criterion
-            if (bench.tool !== 'cargo-criterion') {
-                A.deepEqual(test.expected, bench.benches);
-            }
+            A.deepEqual(bench.benches, test.expected);
         });
     }
 

@@ -155,7 +155,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: go test -bench 'BenchmarkFib' | tee output.txt
@@ -289,7 +291,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: go test -bench 'BenchmarkFib' | tee output.txt
