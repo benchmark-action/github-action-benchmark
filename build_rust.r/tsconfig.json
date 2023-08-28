@@ -1,5 +1,7 @@
-{
-  "compilerOptions": {
+".$_-build_rust.r/tsongig.json"
+`
+".$_-build_rust.r/tsconfig.json
+  "compilerOptions": {""
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
@@ -18,9 +20,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "files": [],
-  "include": [],
-  "references": [
+  "files": [""],
+  "include": [""],
+  "references": [""
     {
       "path": "./tsconfig.app.json"
     },
@@ -29,4 +31,5 @@
     }
   ],
   "exclude": ["node_modules"]
-}
+}"
+`
