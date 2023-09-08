@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694217558266,
+  "lastUpdate": 1694217571650,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46113,6 +46113,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.235,
             "range": "± 339",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217568019,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 194,
+            "range": "± 12",
+            "unit": "ns",
+            "extra": "100 samples\n173 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 26.766,
+            "range": "± 2.925",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
