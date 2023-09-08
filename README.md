@@ -525,6 +525,13 @@ larger than zero. If the number of benchmark results for some benchmark suite ex
 the oldest one will be removed before storing the results to file. By default this value is empty
 which means there is no limit.
 
+#### `skip-fetch-gh-pages` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
+
 
 ### Action outputs
 
