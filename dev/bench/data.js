@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694217591926,
+  "lastUpdate": 1694217595802,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49843,6 +49843,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1657367339.1667922,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217592692,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1382888154.7932327,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
