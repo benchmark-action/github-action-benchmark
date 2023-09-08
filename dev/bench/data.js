@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694217546740,
+  "lastUpdate": 1694217548333,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36571,6 +36571,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00000804838272778488",
             "extra": "mean: 2.50325667980542 msec\nrounds: 406"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217545456,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 49651.82553836592,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000015345514681978136",
+            "extra": "mean: 20.140246388872466 usec\nrounds: 27623"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 409.40386314256637,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000006660376737929077",
+            "extra": "mean: 2.442575876846992 msec\nrounds: 406"
           }
         ]
       }
