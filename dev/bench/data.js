@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218093925,
+  "lastUpdate": 1694218095663,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50235,6 +50235,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1382888154.7932327,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218089993,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1563184113.0938408,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
