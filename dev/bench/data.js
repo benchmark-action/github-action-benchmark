@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218051819,
+  "lastUpdate": 1694218064403,
   "entries": {
     "Rust Benchmark": [
       {
@@ -21143,6 +21143,54 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "29344 times\n2 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218060459,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 414.7,
+            "unit": "ns/op",
+            "extra": "2860159 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 52126,
+            "unit": "ns/op",
+            "extra": "22593 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 50924,
+            "unit": "ns/op",
+            "extra": "23394 times\n2 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "23394 times\n2 procs"
           }
         ]
       }
