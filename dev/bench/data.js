@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218040942,
+  "lastUpdate": 1694218051819,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29797,6 +29797,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.17%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218047787,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 980610,
+            "range": "±1.10%",
+            "unit": "ops/sec",
+            "extra": "87 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 8362,
+            "range": "±0.76%",
+            "unit": "ops/sec",
+            "extra": "88 samples"
           }
         ]
       }
