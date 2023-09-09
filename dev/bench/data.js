@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694217595802,
+  "lastUpdate": 1694217623744,
   "entries": {
     "Rust Benchmark": [
       {
@@ -42313,6 +42313,42 @@ window.BENCHMARK_DATA = {
             "value": 24115.081577861238,
             "unit": "ns/iter",
             "extra": "iterations: 29052\ncpu: 24112.560236816742 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217621102,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 179.3357594349721,
+            "unit": "ns/iter",
+            "extra": "iterations: 3903244\ncpu: 179.3275542087556 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 24225.849731479066,
+            "unit": "ns/iter",
+            "extra": "iterations: 29048\ncpu: 24225.12049022308 ns\nthreads: 1"
           }
         ]
       }
