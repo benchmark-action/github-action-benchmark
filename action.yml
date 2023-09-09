@@ -54,7 +54,7 @@ inputs:
     required: false
     default: true
   comment-on-alert:
-    description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-comment-threshold input. To enable this feature, github-token input must be given as well'
+    description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-threshold input. To enable this feature, github-token input must be given as well'
     required: false
     default: false
   alert-threshold:
