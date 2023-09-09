@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218095663,
+  "lastUpdate": 1694218098277,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36877,6 +36877,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000006660376737929077",
             "extra": "mean: 2.442575876846992 msec\nrounds: 406"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218095256,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 49970.75095881963,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000011240139884566328",
+            "extra": "mean: 20.01170646452941 usec\nrounds: 29499"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 412.04989452905033,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000006525233499903969",
+            "extra": "mean: 2.4268905617436047 msec\nrounds: 413"
           }
         ]
       }
