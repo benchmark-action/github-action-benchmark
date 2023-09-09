@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694217623744,
+  "lastUpdate": 1694217628562,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49219,6 +49219,42 @@ window.BENCHMARK_DATA = {
             "value": 48.64743080505958,
             "unit": "ns",
             "range": "± 0.006825446859767927"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217625820,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 25.0014147735559,
+            "unit": "ns",
+            "range": "± 0.006141630107288781"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 46.02460513796125,
+            "unit": "ns",
+            "range": "± 0.012322879314435996"
           }
         ]
       }
