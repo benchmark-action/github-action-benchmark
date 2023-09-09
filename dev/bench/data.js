@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218064403,
+  "lastUpdate": 1694218068811,
   "entries": {
     "Rust Benchmark": [
       {
@@ -48209,6 +48209,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 47301,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218065401,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 367.78846153846155,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":208,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 46900,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
