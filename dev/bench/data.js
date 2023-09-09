@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694218068811,
+  "lastUpdate": 1694218093925,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49509,6 +49509,42 @@ window.BENCHMARK_DATA = {
             "value": 46.02460513796125,
             "unit": "ns",
             "range": "± 0.012322879314435996"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218091115,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 24.99869425021685,
+            "unit": "ns",
+            "range": "± 0.011538260730769493"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 46.03570516506831,
+            "unit": "ns",
+            "range": "± 0.007276895768528571"
           }
         ]
       }
