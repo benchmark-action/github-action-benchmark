@@ -4,6 +4,10 @@ on:
     branches:
       - master
 
+permissions:
+  # we don't publish anything
+  contents: read
+
 jobs:
   benchmark:
     name: Performance regression check
