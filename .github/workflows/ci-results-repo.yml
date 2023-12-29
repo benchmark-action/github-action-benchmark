@@ -20,7 +20,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -56,7 +56,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/setup-go@v4
         with:
           go-version: "stable"
@@ -94,7 +94,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -129,7 +129,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
@@ -170,7 +170,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -212,7 +212,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -252,7 +252,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -331,7 +331,7 @@ jobs:
           path: 'dist/other-repo'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - uses: actions/cache@v1
         with:
           path: ~/.npm
