@@ -13,8 +13,8 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
@@ -27,20 +27,14 @@ jobs:
           fail-on-cache-miss: true
           path: ./cache/benchmark-data.json
           key: ${{ runner.os }}-benchmark
-      - name: Compare results
+      - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
           tool: 'go'
-          # Extract benchmark result from here
+          # Where the output from the benchmark tool is stored
           output-file-path: output.txt
-          # Where the previous data file is stored
+          # Write benchmarks to this file
           external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: true
-      # Upload the updated cache file for the next job by actions/cache
-      - name: Save benchmark JSON
-        uses: actions/cache/save@v3
-        with:
-          path: ./cache/benchmark-data.json
-          key: ${{ runner.os }}-benchmark

@@ -104,8 +104,8 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
@@ -134,6 +134,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: ./cache/benchmark-data.json
+          # Include OS in key so that we don't compare benchmarks across different OSes
           key: ${{ runner.os }}-benchmark
 ```
 
@@ -292,6 +293,23 @@ If you don't want to pass GitHub API token to this action:
 ```
 
 Please add a step to push the branch to the remote.
+
+### Tool specific setup
+
+Please read `README.md` files at each example directory. Usually, take stdout from a benchmark tool
+and store it to file. Then specify the file path to `output-file-path` input.
+
+- [`cargo bench` for Rust projects](./examples/rust/README.md)
+- [`go test` for Go projects](./examples/go/README.md)
+- [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
+- [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
+- [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
+- [catch2 for C++ projects](./examples/cpp/README.md)
+- [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
+- [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
+- [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
+
+These examples are run in workflows of this repository as described in the 'Examples' section above.
 
 
 ### Action inputs
