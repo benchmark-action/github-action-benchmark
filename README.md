@@ -88,6 +88,35 @@ context) properties. Like this:
 ]
 ```
 
+## Screenshots
+
+### Charts on GitHub Pages
+
+![page screenshot](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/main.png)
+
+Mouseover on data point shows a tooltip. It includes
+
+- Commit hash
+- Commit message
+- Date and committer
+- Benchmark value
+
+Clicking data point in chart opens the commit page on a GitHub repository.
+
+![tooltip](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/tooltip.png)
+
+At bottom of the page, the download button is available for downloading benchmark results as a JSON file.
+
+![download button](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/download.png)
+
+
+### Alert comment on commit page
+
+This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
+results are worse than previous exceeding a specified threshold.
+
+![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
+
 ## How to use
 
 ### Minimal setup
