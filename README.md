@@ -19,21 +19,22 @@ and monitor the results on GitHub Actions workflow.
 
 ## Supported tools
 
-This action currently supports the following tools:
+This action currently supports the following tools. Please read the README file in each example directory.
 
-- [`cargo bench`][cargo-bench] for Rust projects
-- `go test -bench` for Go projects
-- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
-- [pytest-benchmark][] for Python projects with [pytest][]
-- [Google Benchmark Framework][google-benchmark] for C++ projects
-- [Catch2][catch2] for C++ projects
-- [BenchmarkTools.jl][] for Julia packages
-- [Benchmark.Net][benchmarkdotnet] for .Net projects
-- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
+- [`cargo bench`][cargo-bench] for Rust projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/rust/README.md)
+- `go test -bench` for Go projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/go/README.md)
+- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkjs/README.md)
+- [pytest-benchmark][] for Python projects with [pytest][]. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkjs/README.md)
+- [Google Benchmark Framework][google-benchmark] for C++ projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/cpp/README.md)
+- [Catch2][catch2] for C++ projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/cpp/README.md)
+- [BenchmarkTools.jl][] for Julia packages. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/julia/README.md)
+- [Benchmark.Net][benchmarkdotnet] for .Net projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkdotnet/README.md)
+- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark?tab=readme-ov-file#)
 - [JMH][jmh] for Java projects
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
-Multiple languages in the same repository are supported for polyglot projects.
+Multiple languages in the same repository are supported for polyglot projects.. Usually, take stdout from a benchmark tool and store it to file. Then specify the file path to output-file-path input.
+
 
 [Japanese Blog post](https://rhysd.hatenablog.com/entry/2019/11/11/131505)
 
