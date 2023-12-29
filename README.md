@@ -17,50 +17,28 @@ and monitor the results on GitHub Actions workflow.
 
 ![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
 
-## Supported tools
-
-This action currently supports the following tools. Please read the README file in each example directory.
-
-- [`cargo bench`][cargo-bench] for Rust projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/rust/README.md)
-- `go test -bench` for Go projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/go/README.md)
-- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkjs/README.md)
-- [pytest-benchmark][] for Python projects with [pytest][]. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkjs/README.md)
-- [Google Benchmark Framework][google-benchmark] for C++ projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/cpp/README.md)
-- [Catch2][catch2] for C++ projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/cpp/README.md)
-- [BenchmarkTools.jl][] for Julia packages. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/julia/README.md)
-- [Benchmark.Net][benchmarkdotnet] for .Net projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/benchmarkdotnet/README.md)
-- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects. [Example setup](https://github.com/benchmark-action/github-action-benchmark?tab=readme-ov-file#)
-- [JMH][jmh] for Java projects
-- Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
-
-Multiple languages in the same repository are supported for polyglot projects.. Usually, take stdout from a benchmark tool and store it to file. Then specify the file path to output-file-path input.
-
-
 [Japanese Blog post](https://rhysd.hatenablog.com/entry/2019/11/11/131505)
 
+## Supported languages & examples
 
-
-## Examples
-
-Example projects for each language are in [examples/](./examples) directory. Live example workflow
-definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
-
-| Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
-| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
-| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
-| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
-| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
-| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
-| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
-| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
-| Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
-| Luau         | Coming soon | Coming soon |
+| Language     | Supported | Example Workflow                                                            | Example Project                                        |
+|--------------|-----------|-----------------------------------------------------------------------------|--------------------------------------------------------|
+| Rust         | Yes       | [![cargo bench][rust-badge]][rust-workflow-example]                         | [examples/rust](./examples/rust)                       |
+| Go           | Yes       | [![go test -bench][go-badge]][go-workflow-example]                          | [examples/go](./examples/go)                           |
+| JavaScript   | Yes       | [![benchmark.js][benchmarkjs-badge]][benchmarkjs-workflow-example]          | [examples/benchmarkjs](./examples/benchmarkjs)         |
+| Python       | Yes       | [![pytest-benchmark][pytest-benchmark-badge]][pytest-workflow-example]      | [examples/pytest](./examples/pytest)                   |
+| C++          | Yes       | [![Google Benchmark Framework][cpp-badge]][cpp-workflow-example]            | [examples/cpp](./examples/cpp)                         |
+| C++ (Catch2) | Yes       | [![Catch2][catch2-badge]][catch2-workflow-example]                          | [examples/catch2](./examples/catch2)                   |
+| Julia        | Yes       | [![BenchmarkTools.jl][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)                     |
+| .Net         | Yes       | [![Benchmark.Net][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
+| Java         | Yes       | [![JMH][java-badge]][java-workflow-example]                                 | [examples/java](./examples/java)                       |
+| Luau         | Yes       | Coming soon for benchmarkluau                                               | Coming soon                                            |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://benchmark-action.github.io/github-action-benchmark/dev/bench/
+
+## Custom benchmarks
 
 Additionally, even though there is no explicit example for them, you can use
 `customBiggerIsBetter` and `customSmallerIsBetter` to use this
@@ -88,36 +66,6 @@ context) properties. Like this:
     }
 ]
 ```
-
-## Screenshots
-
-### Charts on GitHub Pages
-
-![page screenshot](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/main.png)
-
-Mouseover on data point shows a tooltip. It includes
-
-- Commit hash
-- Commit message
-- Date and committer
-- Benchmark value
-
-Clicking data point in chart opens the commit page on a GitHub repository.
-
-![tooltip](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/tooltip.png)
-
-At bottom of the page, the download button is available for downloading benchmark results as a JSON file.
-
-![download button](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/download.png)
-
-
-### Alert comment on commit page
-
-This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
-results are worse than previous exceeding a specified threshold.
-
-![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
-
 ## How to use
 
 ### Minimal setup
@@ -323,24 +271,6 @@ If you don't want to pass GitHub API token to this action:
 ```
 
 Please add a step to push the branch to the remote.
-
-### Tool specific setup
-
-Please read `README.md` files at each example directory. Usually, take stdout from a benchmark tool
-and store it to file. Then specify the file path to `output-file-path` input.
-
-- [`cargo bench` for Rust projects](./examples/rust/README.md)
-- [`go test` for Go projects](./examples/go/README.md)
-- [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
-- [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
-- [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
-- [catch2 for C++ projects](./examples/cpp/README.md)
-- [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
-- [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
-- [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
-
-These examples are run in workflows of this repository as described in the 'Examples' section above.
-
 
 ### Action inputs
 
