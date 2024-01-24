@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706106590923,
+  "lastUpdate": 1706106599604,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49829,6 +49829,42 @@ window.BENCHMARK_DATA = {
             "value": 46.03570516506831,
             "unit": "ns",
             "range": "± 0.007276895768528571"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106597219,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.05453028357946,
+            "unit": "ns",
+            "range": "± 0.015953755798910535"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.74653223156929,
+            "unit": "ns",
+            "range": "± 0.07568304698625979"
           }
         ]
       }
