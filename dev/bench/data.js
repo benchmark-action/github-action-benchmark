@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706106556902,
+  "lastUpdate": 1706106565359,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46617,6 +46617,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 23.2,
             "range": "± 334",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106563124,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 145,
+            "range": "± 1",
+            "unit": "ns",
+            "extra": "100 samples\n199 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.785,
+            "range": "± 205",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
