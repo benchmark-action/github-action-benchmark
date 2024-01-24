@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706106601037,
+  "lastUpdate": 1706106602823,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50623,6 +50623,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1563184113.0938408,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106599319,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1978320643.1486561,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
