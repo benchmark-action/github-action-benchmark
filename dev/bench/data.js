@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706111404665,
+  "lastUpdate": 1706111406622,
   "entries": {
     "Rust Benchmark": [
       {
@@ -30499,6 +30499,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.09%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "83426c04e20ff3faef1257b544e08620a88c4551",
+          "message": "chore: update actions/* (#212)\n\n* update actions/checkout to v4\r\n* update actions/cache to v4\r\n* update actions/setup-node to v4\r\n* remove unnecessary usages of action/cache for node\r\n* update actions/setup-python to v5\r\n* update actions/setup-dotnet to v3\r\n* update actions/setup-java to v4",
+          "timestamp": "2024-01-24T16:49:01+01:00",
+          "tree_id": "441b45a8ec7c4c508ba15f086a4a2360eec3cb47",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/83426c04e20ff3faef1257b544e08620a88c4551"
+        },
+        "date": 1706111401993,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1633236,
+            "range": "±0.98%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13442,
+            "range": "±0.18%",
+            "unit": "ops/sec",
+            "extra": "95 samples"
           }
         ]
       }
