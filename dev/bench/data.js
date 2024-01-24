@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706106565359,
+  "lastUpdate": 1706106584407,
   "entries": {
     "Rust Benchmark": [
       {
@@ -48459,6 +48459,42 @@ window.BENCHMARK_DATA = {
             "value": 46900,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106581702,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 300.9922178988327,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 38172,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
