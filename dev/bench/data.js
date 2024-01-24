@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706106599604,
+  "lastUpdate": 1706106601037,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37049,6 +37049,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000006525233499903969",
             "extra": "mean: 2.4268905617436047 msec\nrounds: 413"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106598006,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76661.55435671395,
+            "unit": "iter/sec",
+            "range": "stddev: 6.720366894511564e-7",
+            "extra": "mean: 13.044348088050745 usec\nrounds: 44483"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 608.563278265089,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000014339117841284671",
+            "extra": "mean: 1.6432144950494398 msec\nrounds: 606"
           }
         ]
       }
