@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706110455644,
+  "lastUpdate": 1706110465531,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50463,6 +50463,42 @@ window.BENCHMARK_DATA = {
             "value": 42.74653223156929,
             "unit": "ns",
             "range": "± 0.07568304698625979"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "maria.inesparnisari@okta.com",
+            "name": "Maria Ines Parnisari",
+            "username": "miparnisari"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "036be2a998715b878d1dae2f88bd8ce86ca79ab7",
+          "message": "update to node 20 (#208)",
+          "timestamp": "2024-01-24T16:32:24+01:00",
+          "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
+        },
+        "date": 1706110463420,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.805716338065956,
+            "unit": "ns",
+            "range": "± 0.12697222115613424"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.75342971086502,
+            "unit": "ns",
+            "range": "± 0.10527722562188216"
           }
         ]
       }
