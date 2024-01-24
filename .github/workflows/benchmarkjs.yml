@@ -13,8 +13,11 @@ jobs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
 
