@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706110647180,
+  "lastUpdate": 1706111395079,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37597,6 +37597,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00003500342843784141",
             "extra": "mean: 1.623543835796644 msec\nrounds: 609"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "83426c04e20ff3faef1257b544e08620a88c4551",
+          "message": "chore: update actions/* (#212)\n\n* update actions/checkout to v4\r\n* update actions/cache to v4\r\n* update actions/setup-node to v4\r\n* remove unnecessary usages of action/cache for node\r\n* update actions/setup-python to v5\r\n* update actions/setup-dotnet to v3\r\n* update actions/setup-java to v4",
+          "timestamp": "2024-01-24T16:49:01+01:00",
+          "tree_id": "441b45a8ec7c4c508ba15f086a4a2360eec3cb47",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/83426c04e20ff3faef1257b544e08620a88c4551"
+        },
+        "date": 1706111392165,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76182.57419721228,
+            "unit": "iter/sec",
+            "range": "stddev: 7.069432253097017e-7",
+            "extra": "mean: 13.12636138300237 usec\nrounds: 43530"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 594.8055749304576,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000021072145406916787",
+            "extra": "mean: 1.68122163299649 msec\nrounds: 594"
           }
         ]
       }
