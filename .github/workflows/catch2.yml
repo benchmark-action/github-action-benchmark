@@ -13,7 +13,7 @@ jobs:
     name: Run C++ benchmark example
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build and run benchmarks with Catch2
         run: |
           cd examples/catch2

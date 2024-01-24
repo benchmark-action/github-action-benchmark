@@ -12,14 +12,11 @@ jobs:
     name: Run Rust benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -45,17 +42,14 @@ jobs:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       - uses: actions/setup-go@v4
         with:
           go-version: "stable"
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -80,14 +74,11 @@ jobs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -112,17 +103,14 @@ jobs:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/setup-python@v2
+          cache: 'npm'
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -150,14 +138,11 @@ jobs:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -167,7 +152,7 @@ jobs:
           cp ./dev/bench/data.js before_data.js
           git checkout -
       - name: Cache Benchmark library
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: examples/cpp/benchmark
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
@@ -189,14 +174,11 @@ jobs:
     name: Run Catch2 C++ Benchmark Framework example
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -226,14 +208,11 @@ jobs:
     name: Run Julia benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -267,14 +246,14 @@ jobs:
     name: Run Benchmark.Net .Net Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -299,18 +278,15 @@ jobs:
     name: Run JMH Java Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/setup-java@v2
+          cache: 'npm'
+      - uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: '11'
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -338,14 +314,11 @@ jobs:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - uses: actions/setup-go@v4
@@ -354,7 +327,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Download previous benchmark data
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
@@ -374,14 +347,11 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run coverage
       - name: Apply yamllint
@@ -394,14 +364,11 @@ jobs:
     name: Run linting and formatting check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
