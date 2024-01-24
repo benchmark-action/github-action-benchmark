@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706110418173,
+  "lastUpdate": 1706110424738,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37377,6 +37377,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003167003478176933",
             "extra": "mean: 1.7438904112769864 msec\nrounds: 603"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "maria.inesparnisari@okta.com",
+            "name": "Maria Ines Parnisari",
+            "username": "miparnisari"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "036be2a998715b878d1dae2f88bd8ce86ca79ab7",
+          "message": "update to node 20 (#208)",
+          "timestamp": "2024-01-24T16:32:24+01:00",
+          "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
+        },
+        "date": 1706110422725,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77600.4434930214,
+            "unit": "iter/sec",
+            "range": "stddev: 6.06172330793672e-7",
+            "extra": "mean: 12.886524290159885 usec\nrounds: 39625"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 615.9365567787813,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00003500342843784141",
+            "extra": "mean: 1.623543835796644 msec\nrounds: 609"
           }
         ]
       }
