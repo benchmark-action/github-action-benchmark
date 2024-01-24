@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706111453110,
+  "lastUpdate": 1706111455707,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51681,6 +51681,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1975459770.4430034,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "83426c04e20ff3faef1257b544e08620a88c4551",
+          "message": "chore: update actions/* (#212)\n\n* update actions/checkout to v4\r\n* update actions/cache to v4\r\n* update actions/setup-node to v4\r\n* remove unnecessary usages of action/cache for node\r\n* update actions/setup-python to v5\r\n* update actions/setup-dotnet to v3\r\n* update actions/setup-java to v4",
+          "timestamp": "2024-01-24T16:49:01+01:00",
+          "tree_id": "441b45a8ec7c4c508ba15f086a4a2360eec3cb47",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/83426c04e20ff3faef1257b544e08620a88c4551"
+        },
+        "date": 1706111452750,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1975369870.4607096,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
