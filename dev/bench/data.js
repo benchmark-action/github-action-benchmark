@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706108725803,
+  "lastUpdate": 1706110389594,
   "entries": {
     "Rust Benchmark": [
       {
@@ -47019,6 +47019,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.785,
             "range": "± 205",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "maria.inesparnisari@okta.com",
+            "name": "Maria Ines Parnisari",
+            "username": "miparnisari"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "036be2a998715b878d1dae2f88bd8ce86ca79ab7",
+          "message": "update to node 20 (#208)",
+          "timestamp": "2024-01-24T16:32:24+01:00",
+          "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
+        },
+        "date": 1706110386630,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 144,
+            "range": "± 0",
+            "unit": "ns",
+            "extra": "100 samples\n199 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.788,
+            "range": "± 206",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
