@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706198404121,
+  "lastUpdate": 1706198421131,
   "entries": {
     "Rust Benchmark": [
       {
@@ -52719,6 +52719,42 @@ window.BENCHMARK_DATA = {
             "value": 42.870778616269426,
             "unit": "ns",
             "range": "± 0.1348936816251561"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198418644,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.109090364405088,
+            "unit": "ns",
+            "range": "± 0.051660945574015425"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.790380213941845,
+            "unit": "ns",
+            "range": "± 0.07085713336975354"
           }
         ]
       }
