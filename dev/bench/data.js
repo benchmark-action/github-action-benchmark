@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706168064137,
+  "lastUpdate": 1706168075727,
   "entries": {
     "Rust Benchmark": [
       {
@@ -43849,6 +43849,42 @@ window.BENCHMARK_DATA = {
             "value": 19977.16827897358,
             "unit": "ns/iter",
             "extra": "iterations: 35043\ncpu: 19976.394715064343 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706168073013,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.5501274119364,
+            "unit": "ns/iter",
+            "extra": "iterations: 4412067\ncpu: 158.5477509747699 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19965.125214604835,
+            "unit": "ns/iter",
+            "extra": "iterations: 34948\ncpu: 19964.75907061921 ns\nthreads: 1"
           }
         ]
       }
