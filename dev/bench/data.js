@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706196966215,
+  "lastUpdate": 1706196968005,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38525,6 +38525,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000027748635662116795",
             "extra": "mean: 1.6257410049587078 msec\nrounds: 605"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0",
+          "message": "fix: improve flaky CI runs (#215)\n\n* move saving of previous benchmarks results further in the workflow files so that there is a smaller window when other action might push new changes",
+          "timestamp": "2024-01-25T16:35:35+01:00",
+          "tree_id": "fb7a8f28b5e468b032fb618803d585d49e500fda",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0"
+        },
+        "date": 1706196963491,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76483.93410568028,
+            "unit": "iter/sec",
+            "range": "stddev: 7.308067024540872e-7",
+            "extra": "mean: 13.074641252348083 usec\nrounds: 39925"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 616.2125936772769,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001629352342050949",
+            "extra": "mean: 1.6228165575657165 msec\nrounds: 608"
           }
         ]
       }
