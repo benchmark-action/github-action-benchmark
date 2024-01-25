@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706198371144,
+  "lastUpdate": 1706198383840,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49075,6 +49075,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.773,
             "range": "± 214",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198381365,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 144,
+            "range": "± 2",
+            "unit": "ns",
+            "extra": "100 samples\n199 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.781,
+            "range": "± 184",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
