@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706192534974,
+  "lastUpdate": 1706192537328,
   "entries": {
     "Rust Benchmark": [
       {
@@ -30963,6 +30963,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.53%",
             "unit": "ops/sec",
             "extra": "94 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "65ff1d7044a47da1556d17eb0a7b4784969becbf",
+          "message": "update CHANGELOG.md for v1.19.0",
+          "timestamp": "2024-01-25T15:21:39+01:00",
+          "tree_id": "04c5d063ab75038e2d6aa23beb40dd1011515f32",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/65ff1d7044a47da1556d17eb0a7b4784969becbf"
+        },
+        "date": 1706192534245,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1652896,
+            "range": "±0.15%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13320,
+            "range": "±0.40%",
+            "unit": "ops/sec",
+            "extra": "96 samples"
           }
         ]
       }
