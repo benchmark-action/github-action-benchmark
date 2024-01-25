@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706168117459,
+  "lastUpdate": 1706168135230,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13426,6 +13426,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19975,
             "range": "± 98",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706168133064,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 219,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22181,
+            "range": "± 177",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22192,
+            "range": "± 454",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35906,
+            "range": "± 257",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
