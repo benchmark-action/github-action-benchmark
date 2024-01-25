@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706198364437,
+  "lastUpdate": 1706198367459,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38917,6 +38917,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000019115905004558607",
             "extra": "mean: 1.619106717821727 msec\nrounds: 606"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198364970,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 78125.42317868595,
+            "unit": "iter/sec",
+            "range": "stddev: 6.875991071306142e-7",
+            "extra": "mean: 12.79993066677965 usec\nrounds: 47827"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 627.8045809494289,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000030915544865757084",
+            "extra": "mean: 1.5928523466453526 msec\nrounds: 626"
           }
         ]
       }
