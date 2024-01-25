@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706192553127,
+  "lastUpdate": 1706192570291,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44215,6 +44215,42 @@ window.BENCHMARK_DATA = {
             "value": 19965.125214604835,
             "unit": "ns/iter",
             "extra": "iterations: 34948\ncpu: 19964.75907061921 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "65ff1d7044a47da1556d17eb0a7b4784969becbf",
+          "message": "update CHANGELOG.md for v1.19.0",
+          "timestamp": "2024-01-25T15:21:39+01:00",
+          "tree_id": "04c5d063ab75038e2d6aa23beb40dd1011515f32",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/65ff1d7044a47da1556d17eb0a7b4784969becbf"
+        },
+        "date": 1706192567468,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.5124060956633,
+            "unit": "ns/iter",
+            "extra": "iterations: 4411138\ncpu: 158.50945946374839 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 20005.481272124787,
+            "unit": "ns/iter",
+            "extra": "iterations: 35028\ncpu: 20005.258650222677 ns\nthreads: 1"
           }
         ]
       }
