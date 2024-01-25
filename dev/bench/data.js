@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706196973038,
+  "lastUpdate": 1706196978128,
   "entries": {
     "Rust Benchmark": [
       {
@@ -48647,6 +48647,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 18.798,
             "range": "± 297",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0",
+          "message": "fix: improve flaky CI runs (#215)\n\n* move saving of previous benchmarks results further in the workflow files so that there is a smaller window when other action might push new changes",
+          "timestamp": "2024-01-25T16:35:35+01:00",
+          "tree_id": "fb7a8f28b5e468b032fb618803d585d49e500fda",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0"
+        },
+        "date": 1706196975725,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 144,
+            "range": "± 0",
+            "unit": "ns",
+            "extra": "100 samples\n198 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.773,
+            "range": "± 214",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
