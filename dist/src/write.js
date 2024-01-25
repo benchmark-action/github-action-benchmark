@@ -313,6 +313,7 @@ function isRemoteRejectedError(err) {
 async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     var _a, _b;
     const { name, tool, ghPagesBranch, ghRepository, benchmarkDataDirPath, githubToken, autoPush, skipFetchGhPages, maxItemsInChart, } = config;
+    const rollbackActions = new Array();
     // FIXME: This payload is not available on `schedule:` or `workflow_dispatch:` events.
     const isPrivateRepo = (_b = (_a = github.context.payload.repository) === null || _a === void 0 ? void 0 : _a.private) !== null && _b !== void 0 ? _b : false;
     let benchmarkBaseDir = './';
@@ -320,6 +321,9 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     if (githubToken && !skipFetchGhPages && ghRepository) {
         benchmarkBaseDir = './benchmark-data-repository';
         await git.clone(githubToken, ghRepository, benchmarkBaseDir);
+        rollbackActions.push(async () => {
+            await io.rmRF(benchmarkBaseDir);
+        });
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
         await git.checkout(ghPagesBranch, extraGitArguments);
     }
@@ -364,6 +368,10 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
             if (retry > 0) {
                 core.debug('Rollback the auto-generated commit before retry');
                 await git.cmd(extraGitArguments, 'reset', '--hard', 'HEAD~1');
+                // we need to rollback actions in order so not running them concurrently
+                for (const action of rollbackActions) {
+                    await action();
+                }
                 core.warning(`Retrying to generate a commit and push to remote ${ghPagesBranch} with retry count ${retry}...`);
                 return await writeBenchmarkToGitHubPagesWithRetry(bench, config, retry - 1); // Recursively retry
             }
