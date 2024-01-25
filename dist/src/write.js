@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeSummary = exports.writeBenchmark = exports.SCRIPT_PREFIX = void 0;
+exports.writeBenchmark = exports.SCRIPT_PREFIX = void 0;
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
 const io = __importStar(require("@actions/io"));
@@ -439,16 +439,14 @@ async function writeBenchmark(bench, config) {
     else {
         await handleComment(name, bench, prevBench, config);
         await handleAlert(name, bench, prevBench, config);
+        await handleSummary(name, bench, prevBench, config);
     }
 }
 exports.writeBenchmark = writeBenchmark;
-async function writeSummary(bench, config) {
-    const { name, externalDataJsonPath } = config;
-    const prevBench = externalDataJsonPath
-        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
-        : await writeBenchmarkToGitHubPages(bench, config);
-    if (prevBench === null) {
-        core.debug('Alert check was skipped because previous benchmark result was not found');
+async function handleSummary(benchName, currBench, prevBench, config) {
+    const { summaryAlways } = config;
+    if (!summaryAlways) {
+        core.debug('Summary was skipped because summary-always is disabled');
         return;
     }
     const headers = [
@@ -457,7 +455,7 @@ async function writeSummary(bench, config) {
             header: true,
         },
         {
-            data: `Current: "${bench.commit.id}"`,
+            data: `Current: "${currBench.commit.id}"`,
             header: true,
         },
         {
@@ -469,7 +467,7 @@ async function writeSummary(bench, config) {
             header: true,
         },
     ];
-    const rows = bench.benches.map((bench) => {
+    const rows = currBench.benches.map((bench) => {
         const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
         if (previousBench) {
             const ratio = biggerIsBetter(config.tool)
@@ -506,9 +504,8 @@ async function writeSummary(bench, config) {
         ];
     });
     await core.summary
-        .addHeading(`Benchmarks: ${name}`)
+        .addHeading(`Benchmarks: ${benchName}`)
         .addTable([headers, ...rows])
         .write();
 }
-exports.writeSummary = writeSummary;
 //# sourceMappingURL=write.js.map
