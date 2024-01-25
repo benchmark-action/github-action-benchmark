@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706168135230,
+  "lastUpdate": 1706191186363,
   "entries": {
     "Rust Benchmark": [
       {
@@ -30853,6 +30853,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.36%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706191184246,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1559068,
+            "range": "±0.57%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 11448,
+            "range": "±0.53%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
           }
         ]
       }
