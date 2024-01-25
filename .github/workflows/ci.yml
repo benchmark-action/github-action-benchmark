@@ -19,15 +19,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - run: rustup toolchain update nightly && rustup default nightly
+      - name: Run benchmark
+        run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - run: rustup toolchain update nightly && rustup default nightly
-      - name: Run benchmark
-        run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -52,14 +52,14 @@ jobs:
           go-version: "stable"
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -81,14 +81,14 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -113,17 +113,17 @@ jobs:
           python-version: 3.9
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/pytest
+          pip install -r requirements.txt
+          pytest bench.py --benchmark-json output.json
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: |
-          cd examples/pytest
-          pip install -r requirements.txt
-          pytest bench.py --benchmark-json output.json
       - name: Store benchmark result
         uses: ./
         with:
@@ -145,12 +145,6 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Cache Benchmark library
         uses: actions/cache@v4
         with:
@@ -160,6 +154,12 @@ jobs:
         run: |
           cd examples/cpp
           make json
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -181,12 +181,6 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Run benchmark
         run: |
           cd examples/catch2
@@ -194,6 +188,12 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -215,12 +215,6 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
@@ -232,6 +226,12 @@ jobs:
             using Pkg;
             Pkg.instantiate();
             include("fib.jl")'
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -256,14 +256,14 @@ jobs:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
       - name: Store benchmark result
         uses: ./
         with:
@@ -289,17 +289,17 @@ jobs:
           java-version: '11'
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/java
+          mvn clean verify
+          java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: |
-          cd examples/java
-          mvn clean verify
-          java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
       - name: Store benchmark result
         uses: ./
         with:
