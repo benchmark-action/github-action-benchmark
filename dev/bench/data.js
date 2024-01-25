@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706111578659,
+  "lastUpdate": 1706168041165,
   "entries": {
     "Rust Benchmark": [
       {
@@ -37855,6 +37855,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000021072145406916787",
             "extra": "mean: 1.68122163299649 msec\nrounds: 594"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706168039111,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75454.72150990121,
+            "unit": "iter/sec",
+            "range": "stddev: 6.65053296754e-7",
+            "extra": "mean: 13.252981125492319 usec\nrounds: 36928"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 611.269093257849,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000021506769737556416",
+            "extra": "mean: 1.6359407191198758 msec\nrounds: 591"
           }
         ]
       }
