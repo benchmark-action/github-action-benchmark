@@ -536,17 +536,15 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
     } else {
         await handleComment(name, bench, prevBench, config);
         await handleAlert(name, bench, prevBench, config);
+        await handleSummary(name, bench, prevBench, config);
     }
 }
 
-export async function writeSummary(bench: Benchmark, config: Config): Promise<void> {
-    const { name, externalDataJsonPath } = config;
-    const prevBench = externalDataJsonPath
-        ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
-        : await writeBenchmarkToGitHubPages(bench, config);
+async function handleSummary(benchName: string, currBench: Benchmark, prevBench: Benchmark, config: Config) {
+    const { summaryAlways } = config;
 
-    if (prevBench === null) {
-        core.debug('Alert check was skipped because previous benchmark result was not found');
+    if (!summaryAlways) {
+        core.debug('Summary was skipped because summary-always is disabled');
         return;
     }
 
@@ -556,7 +554,7 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
             header: true,
         },
         {
-            data: `Current: "${bench.commit.id}"`,
+            data: `Current: "${currBench.commit.id}"`,
             header: true,
         },
         {
@@ -568,7 +566,7 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
             header: true,
         },
     ];
-    const rows: SummaryTableRow[] = bench.benches.map((bench) => {
+    const rows: SummaryTableRow[] = currBench.benches.map((bench) => {
         const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
 
         if (previousBench) {
@@ -609,7 +607,7 @@ export async function writeSummary(bench: Benchmark, config: Config): Promise<vo
     });
 
     await core.summary
-        .addHeading(`Benchmarks: ${name}`)
+        .addHeading(`Benchmarks: ${benchName}`)
         .addTable([headers, ...rows])
         .write();
 }
