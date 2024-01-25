@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706197022984,
+  "lastUpdate": 1706197083222,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13726,6 +13726,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19963,
             "range": "± 11110",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0",
+          "message": "fix: improve flaky CI runs (#215)\n\n* move saving of previous benchmarks results further in the workflow files so that there is a smaller window when other action might push new changes",
+          "timestamp": "2024-01-25T16:35:35+01:00",
+          "tree_id": "fb7a8f28b5e468b032fb618803d585d49e500fda",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0"
+        },
+        "date": 1706197079986,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 175,
+            "range": "± 5",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22188,
+            "range": "± 1841",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22182,
+            "range": "± 249",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35900,
+            "range": "± 141",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
