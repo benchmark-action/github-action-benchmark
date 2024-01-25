@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706198367459,
+  "lastUpdate": 1706198371144,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53545,6 +53545,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1974169072.9991534,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198368603,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1957672704.534282,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
