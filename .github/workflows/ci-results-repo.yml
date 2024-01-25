@@ -12,19 +12,16 @@ jobs:
     name: Run Rust benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -48,22 +45,19 @@ jobs:
     name: Run Go benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
+          cache: 'npm'
       - uses: actions/setup-go@v4
         with:
           go-version: "stable"
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -86,19 +80,16 @@ jobs:
     name: Run JavaScript benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -121,22 +112,19 @@ jobs:
     name: Run Pytest benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/setup-python@v2
+          node-version: 20
+          cache: 'npm'
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -162,26 +150,23 @@ jobs:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
         run: |
           cp ./dist/other-repo/dev/bench/data.js before_data.js
       - name: Cache Benchmark library
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: examples/cpp/benchmark
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
@@ -204,19 +189,16 @@ jobs:
     name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -244,19 +226,16 @@ jobs:
     name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -288,19 +267,19 @@ jobs:
     name: Run Benchmark.Net .Net Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
-      - uses: actions/cache@v1
+      - uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Save previous data.js
@@ -323,19 +302,16 @@ jobs:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - uses: actions/setup-go@v4
@@ -344,7 +320,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Download previous benchmark data
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
