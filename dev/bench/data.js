@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706192895033,
+  "lastUpdate": 1706196962634,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44395,6 +44395,42 @@ window.BENCHMARK_DATA = {
             "value": 20005.481272124787,
             "unit": "ns/iter",
             "extra": "iterations: 35028\ncpu: 20005.258650222677 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0",
+          "message": "fix: improve flaky CI runs (#215)\n\n* move saving of previous benchmarks results further in the workflow files so that there is a smaller window when other action might push new changes",
+          "timestamp": "2024-01-25T16:35:35+01:00",
+          "tree_id": "fb7a8f28b5e468b032fb618803d585d49e500fda",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18a79536bf4e8f94c418cd5dbc72d8250bb5a1c0"
+        },
+        "date": 1706196960437,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.48183714986652,
+            "unit": "ns/iter",
+            "extra": "iterations: 4411725\ncpu: 158.4822943406491 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19966.55294791078,
+            "unit": "ns/iter",
+            "extra": "iterations: 34940\ncpu: 19965.847166571268 ns\nthreads: 1"
           }
         ]
       }
