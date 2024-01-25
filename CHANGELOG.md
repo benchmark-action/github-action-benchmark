@@ -1,5 +1,10 @@
 ## Unreleased
 
+<a name="v1.19.1"></a>
+# [v1.19.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.1) - 25 Jan 2024
+- **fix** improve flaky CI runs (#215)
+- **fix** write with retry fails with the separate repository (#216)
+
 <a name="v1.19.0"></a>
 # [v1.19.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.0) - 25 Jan 2024
 
