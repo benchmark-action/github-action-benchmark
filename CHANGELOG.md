@@ -1,5 +1,15 @@
 ## Unreleased
 
+<a name="v1.19.0"></a>
+# [v1.19.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.0) - 25 Jan 2024
+
+- **docs** Add description for skip-fetch-gh-pages (#180)
+- **fix** Mismatch input in action.yml (#191)
+- **fix** Update Manifest.toml to fix julia test failure (#210)
+- **chore** update to node 20 (#208)
+- **chore** update actions/* (#212)
+- **fix** summary-always and gh-repository don't work together (#214)
+
 <a name="v1.18.0"></a>
 # [v1.18.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.18.0) - 07 Jul 2023
 
