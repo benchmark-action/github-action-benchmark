@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706198360853,
+  "lastUpdate": 1706198364437,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44859,6 +44859,42 @@ window.BENCHMARK_DATA = {
             "value": 19966.55294791078,
             "unit": "ns/iter",
             "extra": "iterations: 34940\ncpu: 19965.847166571268 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198362102,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.58901887153297,
+            "unit": "ns/iter",
+            "extra": "iterations: 4412042\ncpu: 158.5763916118659 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19973.19164528137,
+            "unit": "ns/iter",
+            "extra": "iterations: 35070\ncpu: 19971.528371827768 ns\nthreads: 1"
           }
         ]
       }
