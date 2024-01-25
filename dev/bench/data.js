@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706168096975,
+  "lastUpdate": 1706168117459,
   "entries": {
     "Rust Benchmark": [
       {
@@ -52151,6 +52151,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1975369870.4607096,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706168115345,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1976128502.1868076,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
