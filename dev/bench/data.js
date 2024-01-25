@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706200817644,
+  "lastUpdate": 1706200861685,
   "entries": {
     "Rust Benchmark": [
       {
@@ -13918,6 +13918,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 20015,
             "range": "± 1228",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "6fc0096d895f7376fa701d73d34c3d3e71d113e7",
+          "message": "update CHANGELOG.md for v1.19.1",
+          "timestamp": "2024-01-25T17:38:50+01:00",
+          "tree_id": "52ffa6ea2d31240f6f2cce21625a8cf8c15b9c27",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6fc0096d895f7376fa701d73d34c3d3e71d113e7"
+        },
+        "date": 1706200859449,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 24",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22179,
+            "range": "± 82",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22185,
+            "range": "± 481",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35906,
+            "range": "± 76",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
