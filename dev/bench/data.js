@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706284812758,
+  "lastUpdate": 1706284820412,
   "entries": {
     "Rust Benchmark": [
       {
@@ -39357,6 +39357,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00012199532483983873",
             "extra": "mean: 1.6180347609053178 msec\nrounds: 619"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284817000,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77154.72930387272,
+            "unit": "iter/sec",
+            "range": "stddev: 6.941862968803637e-7",
+            "extra": "mean: 12.960968290893941 usec\nrounds: 37024"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 641.6327282039814,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00004187035903025878",
+            "extra": "mean: 1.5585239905064352 msec\nrounds: 632"
           }
         ]
       }
