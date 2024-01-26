@@ -35,9 +35,7 @@ jobs:
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
           fail-on-alert: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           summary-always: true
-          comment-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
@@ -71,8 +69,6 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
-          comment-always: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   benchmarkjs:
@@ -103,8 +99,6 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
-          comment-always: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   pytest-benchmark:
@@ -140,6 +134,7 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   google-benchmark-framework:
@@ -176,6 +171,7 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   catch2-framework:
@@ -210,6 +206,7 @@ jobs:
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   julia-benchmark:
@@ -248,6 +245,7 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   benchmarkdotnet-framework:
@@ -280,6 +278,7 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   jmh:
@@ -316,6 +315,7 @@ jobs:
           output-file-path: examples/java/jmh-result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   only-alert-with-cache:
