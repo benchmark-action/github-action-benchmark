@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706284885076,
+  "lastUpdate": 1706284890834,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53511,6 +53511,42 @@ window.BENCHMARK_DATA = {
             "value": 42.755172959395814,
             "unit": "ns",
             "range": "± 0.07391445291324393"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284888041,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.110599417771613,
+            "unit": "ns",
+            "range": "± 0.032573228134170684"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.646489995718,
+            "unit": "ns",
+            "range": "± 0.11048730371911601"
           }
         ]
       }
