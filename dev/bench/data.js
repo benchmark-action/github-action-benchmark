@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706285194070,
+  "lastUpdate": 1706285231279,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51961,6 +51961,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 38171,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "459adab4c5b707e1fc01f761a7b337144a9bed56",
+          "message": "update CHANGELOG.md for v1.19.2",
+          "timestamp": "2024-01-26T17:06:03+01:00",
+          "tree_id": "61e400e4bb7f6b3ed72fbb7220774f8a044c971c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/459adab4c5b707e1fc01f761a7b337144a9bed56"
+        },
+        "date": 1706285229050,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 292.5167286245353,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":269,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44985,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
