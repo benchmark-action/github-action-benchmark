@@ -7,7 +7,6 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
-import { SummaryTableRow } from '@actions/core/lib/summary';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -558,66 +557,65 @@ async function handleSummary(benchName: string, currBench: Benchmark, prevBench:
         return;
     }
 
-    const headers = [
-        {
-            data: 'Benchmark Suite',
-            header: true,
-        },
-        {
-            data: `Current: "${currBench.commit.id}"`,
-            header: true,
-        },
-        {
-            data: `Previous: "${prevBench.commit.id}"`,
-            header: true,
-        },
-        {
-            data: 'Ratio',
-            header: true,
-        },
-    ];
-    const rows: SummaryTableRow[] = currBench.benches.map((bench) => {
-        const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
+    // const headers = [
+    //     {
+    //         data: 'Benchmark Suite',
+    //         header: true,
+    //     },
+    //     {
+    //         data: `Current: "${currBench.commit.id}"`,
+    //         header: true,
+    //     },
+    //     {
+    //         data: `Previous: "${prevBench.commit.id}"`,
+    //         header: true,
+    //     },
+    //     {
+    //         data: 'Ratio',
+    //         header: true,
+    //     },
+    // ];
+    // const rows: SummaryTableRow[] = currBench.benches.map((bench) => {
+    //     const previousBench = prevBench.benches.find((pb) => pb.name === bench.name);
+    //
+    //     if (previousBench) {
+    //         const ratio = biggerIsBetter(config.tool)
+    //             ? previousBench.value / bench.value
+    //             : bench.value / previousBench.value;
+    //
+    //         return [
+    //             {
+    //                 data: bench.name,
+    //             },
+    //             {
+    //                 data: strVal(bench),
+    //             },
+    //             {
+    //                 data: strVal(previousBench),
+    //             },
+    //             {
+    //                 data: floatStr(ratio),
+    //             },
+    //         ];
+    //     }
+    //
+    //     return [
+    //         {
+    //             data: bench.name,
+    //         },
+    //         {
+    //             data: strVal(bench),
+    //         },
+    //         {
+    //             data: '-',
+    //         },
+    //         {
+    //             data: '-',
+    //         },
+    //     ];
+    // });
 
-        if (previousBench) {
-            const ratio = biggerIsBetter(config.tool)
-                ? previousBench.value / bench.value
-                : bench.value / previousBench.value;
+    const body = buildComment(benchName, currBench, prevBench);
 
-            return [
-                {
-                    data: bench.name,
-                },
-                {
-                    data: strVal(bench),
-                },
-                {
-                    data: strVal(previousBench),
-                },
-                {
-                    data: floatStr(ratio),
-                },
-            ];
-        }
-
-        return [
-            {
-                data: bench.name,
-            },
-            {
-                data: strVal(bench),
-            },
-            {
-                data: '-',
-            },
-            {
-                data: '-',
-            },
-        ];
-    });
-
-    await core.summary
-        .addHeading(`Benchmarks: ${benchName}`)
-        .addTable([headers, ...rows])
-        .write();
+    await core.summary.addHeading(`Benchmarks: ${benchName}`).addRaw(body).write();
 }
