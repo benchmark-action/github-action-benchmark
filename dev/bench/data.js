@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706284794345,
+  "lastUpdate": 1706284797244,
   "entries": {
     "Rust Benchmark": [
       {
@@ -22751,6 +22751,54 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "29833 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284793948,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 311.4,
+            "unit": "ns/op",
+            "extra": "3867097 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 39717,
+            "unit": "ns/op",
+            "extra": "30349 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 39601,
+            "unit": "ns/op",
+            "extra": "30433 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "30433 times\n4 procs"
           }
         ]
       }
