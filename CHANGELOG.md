@@ -1,5 +1,10 @@
 ## Unreleased
 
+<a name="v1.19.2"></a>
+# [v1.19.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.2) - 26 Jan 2024
+- **fix** markdown rendering for summary is broken (#218)
+
+
 <a name="v1.19.1"></a>
 # [v1.19.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.1) - 25 Jan 2024
 - **fix** improve flaky CI runs (#215)
