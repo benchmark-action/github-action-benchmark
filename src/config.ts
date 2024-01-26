@@ -11,6 +11,7 @@ export interface Config {
     ghPagesBranch: string;
     ghRepository: string | undefined;
     benchmarkDataDirPath: string;
+    nativeBenchmarkDataDirPath: string;
     githubToken: string | undefined;
     autoPush: boolean;
     skipFetchGhPages: boolean;
@@ -29,6 +30,7 @@ export interface Config {
 
 export const VALID_TOOLS = [
     'cargo',
+    'cargo-criterion',
     'go',
     'benchmarkjs',
     'benchmarkluau',
@@ -225,6 +227,7 @@ export async function configFromJobInput(): Promise<Config> {
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
     const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
+    const nativeBenchmarkDataDirPath: string = core.getInput('native-benchmark-data-dir-path');
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const ref: string | undefined = core.getInput('ref') || undefined;
@@ -273,6 +276,7 @@ export async function configFromJobInput(): Promise<Config> {
         ghPagesBranch,
         ghRepository,
         benchmarkDataDirPath,
+        nativeBenchmarkDataDirPath,
         githubToken,
         autoPush,
         skipFetchGhPages,

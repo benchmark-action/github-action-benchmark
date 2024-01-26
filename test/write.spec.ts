@@ -207,6 +207,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             ghPagesBranch: 'dummy', // Should not affect
             ghRepository: undefined,
             benchmarkDataDirPath: 'dummy', // Should not affect
+            nativeBenchmarkDataDirPath: '',
             githubToken: undefined,
             autoPush: false,
             skipFetchGhPages: false, // Should not affect
@@ -909,6 +910,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             ghPagesBranch: 'gh-pages',
             ghRepository: undefined,
             benchmarkDataDirPath: 'data-dir', // Should not affect
+            nativeBenchmarkDataDirPath: '',
             githubToken: 'dummy token',
             autoPush: true,
             skipFetchGhPages: false, // Should not affect

@@ -24,11 +24,11 @@ if ! git diff --cached --quiet; then
     exit 1
 fi
 
-branch="$(git symbolic-ref --short HEAD)"
-if [[ "$branch" != "master" ]]; then
-    echo 'Current branch is not master. Please move to master before running this script' >&2
-    exit 1
-fi
+# branch="$(git symbolic-ref --short HEAD)"
+# if [[ "$branch" != "master" ]]; then
+#     echo 'Current branch is not master. Please move to master before running this script' >&2
+#     exit 1
+# fi
 
 echo "Releasing to $version branch..."
 
@@ -49,8 +49,8 @@ rsync -R dist/src/*.js .release/
 cp -R node_modules .release/node_modules
 
 git checkout "$version"
-git pull
-git rm -rf node_modules
+#git pull
+#git rm -rf node_modules
 rm -rf node_modules  # remove node_modules/.cache
 
 rm -rf dist
@@ -61,7 +61,8 @@ mv .release/dist/src/ ./dist/
 mv .release/*.json .
 mv .release/node_modules .
 
-git add action.yml ./dist/src/*.js package.json package-lock.json node_modules
+git add -f action.yml ./dist/src/*.js package.json package-lock.json node_modules
 set +x
 
 echo "Done. Please check 'git diff --cached' to verify changes. If ok, add version tag and push it to remote"
+echo "i.e: git commit -am 'New release' && git push && git tag v2.0.0 && git push --tags"
