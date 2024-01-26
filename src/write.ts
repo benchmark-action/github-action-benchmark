@@ -617,5 +617,11 @@ async function handleSummary(benchName: string, currBench: Benchmark, prevBench:
 
     const body = buildComment(benchName, currBench, prevBench);
 
-    await core.summary.addHeading(`Benchmarks: ${benchName}`).addRaw(body).write();
+    const summary = core.summary.addHeading(`Benchmarks: ${benchName}`).addRaw(body);
+
+    core.debug('Writing a summary about benchmark comparison');
+
+    core.debug('Writing :\n' + summary.stringify());
+
+    await summary.write();
 }
