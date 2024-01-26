@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706200861685,
+  "lastUpdate": 1706284790849,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45249,6 +45249,42 @@ window.BENCHMARK_DATA = {
             "value": 19958.49757336998,
             "unit": "ns/iter",
             "extra": "iterations: 35028\ncpu: 19957.248486924742 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284788691,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.56675977045418,
+            "unit": "ns/iter",
+            "extra": "iterations: 4411564\ncpu: 158.55483452127186 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19963.25711103542,
+            "unit": "ns/iter",
+            "extra": "iterations: 35016\ncpu: 19961.974525931004 ns\nthreads: 1"
           }
         ]
       }
