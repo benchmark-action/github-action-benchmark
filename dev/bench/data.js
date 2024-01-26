@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706285252359,
+  "lastUpdate": 1706285341603,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14110,6 +14110,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19979,
             "range": "± 11684",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "459adab4c5b707e1fc01f761a7b337144a9bed56",
+          "message": "update CHANGELOG.md for v1.19.2",
+          "timestamp": "2024-01-26T17:06:03+01:00",
+          "tree_id": "61e400e4bb7f6b3ed72fbb7220774f8a044c971c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/459adab4c5b707e1fc01f761a7b337144a9bed56"
+        },
+        "date": 1706285339251,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 225,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22183,
+            "range": "± 146",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22184,
+            "range": "± 387",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35908,
+            "range": "± 113",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
