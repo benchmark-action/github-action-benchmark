@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706284830091,
+  "lastUpdate": 1706284866287,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54411,6 +54411,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1975215177.5747411,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284863866,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1974890218.1806583,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
