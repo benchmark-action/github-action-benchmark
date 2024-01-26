@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706284820412,
+  "lastUpdate": 1706284822308,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51789,6 +51789,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44824,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284819214,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 300.94941634241246,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 38171,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
