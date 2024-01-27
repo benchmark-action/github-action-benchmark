@@ -12,25 +12,22 @@ jobs:
     name: Run Rust benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - run: rustup toolchain update nightly && rustup default nightly
+      - name: Run benchmark
+        run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - run: rustup toolchain update nightly && rustup default nightly
-      - name: Run benchmark
-        run: cd examples/rust && cargo +nightly bench | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -38,34 +35,31 @@ jobs:
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
           fail-on-alert: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
     name: Run Go benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
+          cache: 'npm'
       - uses: actions/setup-go@v4
         with:
           go-version: "stable"
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -74,30 +68,28 @@ jobs:
           output-file-path: examples/go/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   benchmarkjs:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Store benchmark result
         uses: ./
         with:
@@ -106,36 +98,34 @@ jobs:
           output-file-path: examples/benchmarkjs/output.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   pytest-benchmark:
     name: Run Pytest benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/setup-python@v2
+          node-version: 20
+          cache: 'npm'
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/pytest
+          pip install -r requirements.txt
+          pytest bench.py --benchmark-json output.json
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: |
-          cd examples/pytest
-          pip install -r requirements.txt
-          pytest bench.py --benchmark-json output.json
       - name: Store benchmark result
         uses: ./
         with:
@@ -144,30 +134,22 @@ jobs:
           output-file-path: examples/pytest/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   google-benchmark-framework:
     name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Cache Benchmark library
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: examples/cpp/benchmark
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
@@ -175,6 +157,12 @@ jobs:
         run: |
           cd examples/cpp
           make json
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -183,28 +171,20 @@ jobs:
           output-file-path: examples/cpp/benchmark_result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   catch2-framework:
     name: Run Catch2 C++ Benchmark Framework example
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Run benchmark
         run: |
           cd examples/catch2
@@ -212,6 +192,12 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -220,28 +206,20 @@ jobs:
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   julia-benchmark:
     name: Run Julia benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
@@ -253,6 +231,12 @@ jobs:
             using Pkg;
             Pkg.instantiate();
             include("fib.jl")'
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -261,30 +245,31 @@ jobs:
           output-file-path: examples/julia/output.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   benchmarkdotnet-framework:
     name: Run Benchmark.Net .Net Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
       - name: Store benchmark result
         uses: ./
         with:
@@ -293,37 +278,35 @@ jobs:
           output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   jmh:
     name: Run JMH Java Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/setup-java@v2
+          node-version: 20
+          cache: 'npm'
+      - uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: '11'
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/java
+          mvn clean verify
+          java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
       - name: Save previous data.js
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           cp ./dev/bench/data.js before_data.js
           git checkout -
-      - name: Run benchmark
-        run: |
-          cd examples/java
-          mvn clean verify
-          java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
       - name: Store benchmark result
         uses: ./
         with:
@@ -332,20 +315,18 @@ jobs:
           output-file-path: examples/java/jmh-result.json
           skip-fetch-gh-pages: true
           fail-on-alert: true
+          summary-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - uses: actions/setup-go@v4
@@ -354,7 +335,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Download previous benchmark data
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
@@ -374,14 +355,11 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run coverage
       - name: Apply yamllint
@@ -394,14 +372,11 @@ jobs:
     name: Run linting and formatting check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check

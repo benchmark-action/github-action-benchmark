@@ -91,7 +91,7 @@ jobs:
         run: go test -bench 'BenchmarkFib' | tee output.txt
       # Download previous benchmark result from cache
       - name: Download previous benchmark data
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
           path: ./cache/benchmark-data.json
@@ -211,7 +211,7 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
         with:
           go-version: "stable"
