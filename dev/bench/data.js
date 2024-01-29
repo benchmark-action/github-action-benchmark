@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706542482909,
+  "lastUpdate": 1706542484588,
   "entries": {
     "Rust Benchmark": [
       {
@@ -39933,6 +39933,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00004991799618835247",
             "extra": "mean: 1.5985053463415018 msec\nrounds: 615"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "785a741b25e511f0051633d64400bf7e9da9a58d",
+          "message": "chore: update jest to 29.7.0 (#219)",
+          "timestamp": "2024-01-29T16:34:12+01:00",
+          "tree_id": "4310ccfcfbedefa0718b6bc73caeb5b38f5c6f37",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/785a741b25e511f0051633d64400bf7e9da9a58d"
+        },
+        "date": 1706542481155,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77090.29237481412,
+            "unit": "iter/sec",
+            "range": "stddev: 7.499412281340495e-7",
+            "extra": "mean: 12.971801885741794 usec\nrounds: 36060"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 614.271964932034,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000031605949735809975",
+            "extra": "mean: 1.6279434144624274 msec\nrounds: 567"
           }
         ]
       }
