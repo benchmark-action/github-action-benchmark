@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706542495459,
+  "lastUpdate": 1706542507731,
   "entries": {
     "Rust Benchmark": [
       {
@@ -52733,6 +52733,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44824,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "785a741b25e511f0051633d64400bf7e9da9a58d",
+          "message": "chore: update jest to 29.7.0 (#219)",
+          "timestamp": "2024-01-29T16:34:12+01:00",
+          "tree_id": "4310ccfcfbedefa0718b6bc73caeb5b38f5c6f37",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/785a741b25e511f0051633d64400bf7e9da9a58d"
+        },
+        "date": 1706542505405,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 301.0272373540856,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 38191,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
