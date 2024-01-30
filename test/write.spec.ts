@@ -5,8 +5,9 @@ import markdownit from 'markdown-it';
 import rimraf from 'rimraf';
 import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
-import { DataJson, writeBenchmark } from '../src/write';
+import { DataJson } from '../src/write/types';
 import { expect } from '@jest/globals';
+import { writeBenchmark } from '../src/write';
 
 const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
     try {
