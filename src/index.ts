@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import { configFromJobInput } from './config';
 import { extractResult } from './extract';
+
 import { writeBenchmark } from './write';
 
 async function main() {

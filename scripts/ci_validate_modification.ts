@@ -1,7 +1,8 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cp from 'child_process';
-import { BenchmarkSuites, DataJson, SCRIPT_PREFIX } from '../src/write';
+import { BenchmarkSuites, DataJson } from '../src/write/types';
+import { SCRIPT_PREFIX } from '../src/write/loadData';
 import { VALID_TOOLS } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { diff, Diff, DiffArray, DiffEdit, DiffNew } from 'deep-diff';
