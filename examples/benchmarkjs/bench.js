@@ -9,6 +9,9 @@ suite
     .add('fib(20)', () => {
         fib(20);
     })
+    .add('fib<Twenty>', () => {
+        fib(20);
+    })
     .on('cycle', (event) => {
         console.log(String(event.target));
     })
