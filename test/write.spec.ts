@@ -7,6 +7,7 @@ import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { DataJson, writeBenchmark } from '../src/write';
 import { expect } from '@jest/globals';
+import { FakedOctokit, fakedRepos } from './fakedOctokit';
 
 const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
     try {
@@ -18,41 +19,6 @@ const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
         throw err;
     }
 };
-
-type OctokitOpts = { owner: string; repo: string; commit_sha: string; body: string };
-class FakedOctokitRepos {
-    spyOpts: OctokitOpts[];
-    constructor() {
-        this.spyOpts = [];
-    }
-    createCommitComment(opt: OctokitOpts) {
-        this.spyOpts.push(opt);
-        return Promise.resolve({
-            status: 201,
-            data: {
-                html_url: 'https://dummy-comment-url',
-            },
-        });
-    }
-    lastCall(): OctokitOpts {
-        return this.spyOpts[this.spyOpts.length - 1];
-    }
-    clear() {
-        this.spyOpts = [];
-    }
-}
-
-const fakedRepos = new FakedOctokitRepos();
-
-class FakedOctokit {
-    rest = {
-        repos: fakedRepos,
-    };
-    opt: { token: string };
-    constructor(token: string) {
-        this.opt = { token };
-    }
-}
 
 type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone' | 'checkout';
 class GitSpy {
