@@ -244,7 +244,7 @@ async function leaveComment(commitId: string, body: string, token: string) {
     const pr = github.context.payload.pull_request;
     const client = github.getOctokit(token);
     const res = await (pr?.number
-        ? client.rest.pulls.createReviewComment({
+        ? client.rest.pulls.createReview({
               owner: repoMetadata.owner.login,
               repo: repoMetadata.name,
               // eslint-disable-next-line @typescript-eslint/naming-convention
