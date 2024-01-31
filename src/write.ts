@@ -90,6 +90,7 @@ interface Alert {
     current: BenchmarkResult;
     prev: BenchmarkResult;
     ratio: number;
+    isPerformanceBetter: boolean;
 }
 
 function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number): Alert[] {
@@ -103,7 +104,9 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
             continue;
         }
 
-        const ratio = biggerIsBetter(curSuite.tool)
+        const isBiggerBetter = biggerIsBetter(curSuite.tool);
+        const isPerformanceBetter = isBiggerBetter ? current.value > prev.value : current.value < prev.value;
+        const ratio = isBiggerBetter
             ? prev.value / current.value // e.g. current=100, prev=200
             : current.value / prev.value; // e.g. current=200, prev=100
 
@@ -112,7 +115,7 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
                 `Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
                     ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`,
             );
-            alerts.push({ current, prev, ratio });
+            alerts.push({ current, prev, ratio, isPerformanceBetter });
         }
     }
 
@@ -302,7 +305,12 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
         // Note: alertThreshold is smaller than failThreshold. It was checked in config.ts
         const len = alerts.length;
         const threshold = floatStr(failThreshold);
-        const failures = alerts.filter((a) => a.ratio > failThreshold);
+
+        //Only consider it as failure if the benchmark performed better irrespective of the alert threshold
+        // For ex if there is a massive performance improvement between commits
+        // or the alert threshold and failure threshold is lower the failure might be triggered.
+        // This check ensures that the check is failure only if the performance is not better
+        const failures = alerts.filter((a) => !a.isPerformanceBetter).filter((a) => a.ratio > failThreshold);
         if (failures.length > 0) {
             core.debug('Mark this workflow as fail since one or more fatal alerts found');
             if (failThreshold !== alertThreshold) {
