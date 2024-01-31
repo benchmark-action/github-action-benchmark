@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706709696380,
+  "lastUpdate": 1706709706527,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50839,6 +50839,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 19.176,
             "range": "± 716",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709703992,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 144,
+            "range": "± 1",
+            "unit": "ns",
+            "extra": "100 samples\n199 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 18.816,
+            "range": "± 501",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
