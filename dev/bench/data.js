@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706709694209,
+  "lastUpdate": 1706709696380,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46433,6 +46433,42 @@ window.BENCHMARK_DATA = {
             "value": 20022.425425711106,
             "unit": "ns/iter",
             "extra": "iterations: 35059\ncpu: 20021.729085256284 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709693332,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.40822793183602,
+            "unit": "ns/iter",
+            "extra": "iterations: 4421743\ncpu: 158.40289677622602 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 20431.828220673524,
+            "unit": "ns/iter",
+            "extra": "iterations: 33153\ncpu: 20431.28223690165 ns\nthreads: 1"
           }
         ]
       }
