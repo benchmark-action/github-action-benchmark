@@ -108,7 +108,9 @@ At bottom of the page, the download button is available for downloading benchmar
 ### Alert comment on commit page
 
 This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
-results are worse than previous exceeding a specified threshold.
+results are worse than previous exceeding a specified threshold. If negative the threshold will alert
+if the benchmark result decreases over the specified threshold, and if positive it will alert if the
+benchmark result increase over the specified threshold.
 
 ![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
 
@@ -186,8 +188,10 @@ The step which runs `github-action-benchmark` does followings:
    the workflow fails and the failure is notified to you
 
 By default, this action marks the result as performance regression when it is worse than the previous
-exceeding 200% threshold. For example, if the previous benchmark result was 100 iter/ns and this time
-it is 230 iter/ns, it means 230% worse than the previous and an alert will happen. The threshold can
+exceeding 200% threshold. For example, if the previous benchmark result was 100 ns and this time
+it is 230 ns, it means 230% worse than the previous and an alert will happen. If the threshold specified is negative it
+will alert when the benchmark result decreases, so if the previous benchmark result was 230 ops/ns and this time
+it is 100 ops/ns, if the threshold is set to -200% then an alert will happen. The threshold can
 be changed by `alert-threshold` input.
 
 A live workflow example is [here](.github/workflows/minimal.yml). And the results of the workflow can

@@ -212,7 +212,7 @@ function validateAlertThreshold(alertThreshold: number | null, failThreshold: nu
     if (alertThreshold === null) {
         throw new Error("'alert-threshold' input must not be empty");
     }
-    if (failThreshold && alertThreshold > failThreshold) {
+    if (failThreshold && Math.abs(alertThreshold) > Math.abs(failThreshold)) {
         throw new Error(
             `'alert-threshold' value must be smaller than 'fail-threshold' value but got ${alertThreshold} > ${failThreshold}`,
         );
