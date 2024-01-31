@@ -241,14 +241,23 @@ async function leaveComment(commitId: string, body: string, token: string) {
 
     const repoMetadata = getCurrentRepoMetadata();
     const repoUrl = repoMetadata.html_url ?? '';
+    const pr = github.context.payload.pull_request;
     const client = github.getOctokit(token);
-    const res = await client.rest.repos.createCommitComment({
-        owner: repoMetadata.owner.login,
-        repo: repoMetadata.name,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        commit_sha: commitId,
-        body,
-    });
+    const res = await (pr?.number
+        ? client.rest.pulls.createReviewComment({
+              owner: repoMetadata.owner.login,
+              repo: repoMetadata.name,
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              pull_number: pr.number,
+              body,
+          })
+        : client.rest.repos.createCommitComment({
+              owner: repoMetadata.owner.login,
+              repo: repoMetadata.name,
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              commit_sha: commitId,
+              body,
+          }));
 
     const commitUrl = `${repoUrl}/commit/${commitId}`;
     console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);

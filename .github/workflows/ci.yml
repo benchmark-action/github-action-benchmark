@@ -36,6 +36,7 @@ jobs:
           output-file-path: examples/rust/output.txt
           fail-on-alert: true
           summary-always: true
+          comment-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   go:
