@@ -1,6 +1,6 @@
 ## Unreleased
 
-- **fix** ratio is NaN when previous value is 0 (#222)
+- **fix** ratio is NaN when previous value is 0. Now, print 1 when both values are 0 and `+-∞` when divisor is 0 (#222)
 
 <a name="v1.19.2"></a>
 # [v1.19.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.2) - 26 Jan 2024
