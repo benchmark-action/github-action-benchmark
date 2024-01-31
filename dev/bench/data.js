@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706709737252,
+  "lastUpdate": 1706709786173,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14398,6 +14398,66 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26308,
             "range": "± 355",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709783524,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 175,
+            "range": "± 2",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22196,
+            "range": "± 213",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22200,
+            "range": "± 100",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35909,
+            "range": "± 176",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
