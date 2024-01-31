@@ -34,6 +34,7 @@ jobs:
           name: Rust Benchmark
           tool: 'cargo'
           output-file-path: examples/rust/output.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-alert: true
           summary-always: true
           comment-always: true
