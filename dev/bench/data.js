@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706542572317,
+  "lastUpdate": 1706709686936,
   "entries": {
     "Rust Benchmark": [
       {
@@ -40115,6 +40115,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000031605949735809975",
             "extra": "mean: 1.6279434144624274 msec\nrounds: 567"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709684612,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77169.27972850733,
+            "unit": "iter/sec",
+            "range": "stddev: 6.372004944528741e-7",
+            "extra": "mean: 12.95852447396353 usec\nrounds: 45579"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 636.548536777358,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00002223885697547758",
+            "extra": "mean: 1.5709721132384982 msec\nrounds: 627"
           }
         ]
       }
