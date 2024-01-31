@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706709691357,
+  "lastUpdate": 1706709694209,
   "entries": {
     "Rust Benchmark": [
       {
@@ -32635,6 +32635,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.13%",
             "unit": "ops/sec",
             "extra": "99 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709690552,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1625791,
+            "range": "±0.15%",
+            "unit": "ops/sec",
+            "extra": "99 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13401,
+            "range": "±0.30%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
           }
         ]
       }
