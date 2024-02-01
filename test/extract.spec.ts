@@ -211,6 +211,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: 'BenchmarkFib11',
+                    unit: 'ns/op\t         3.000 auxMetricUnits',
+                    value: 262.7,
+                    extra: '4587789 times\n16 procs',
+                },
+                {
+                    name: 'BenchmarkFib11 - ns/op',
                     unit: 'ns/op',
                     value: 262.7,
                     extra: '4587789 times\n16 procs',
@@ -223,6 +229,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: 'BenchmarkFib22',
+                    unit: 'ns/op\t         4.000 auxMetricUnits',
+                    value: 31915,
+                    extra: '37653 times\n16 procs',
+                },
+                {
+                    name: 'BenchmarkFib22 - ns/op',
                     unit: 'ns/op',
                     value: 31915,
                     extra: '37653 times\n16 procs',
@@ -241,6 +253,12 @@ describe('extractResult()', function () {
             expected: [
                 {
                     name: `Benchmark_Ctx_Accepts/run-[]string{".xml"}`,
+                    unit: 'ns/op	       0 B/op	       0 allocs/op',
+                    value: 247.6,
+                    extra: '4846809 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Ctx_Accepts/run-[]string{".xml"} - ns/op`,
                     unit: 'ns/op',
                     value: 247.6,
                     extra: '4846809 times\n4 procs',
@@ -259,6 +277,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: `Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"}`,
+                    unit: 'ns/op	       0 B/op	       0 allocs/op',
+                    value: 307.1,
+                    extra: '3900769 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"} - ns/op`,
                     unit: 'ns/op',
                     value: 307.1,
                     extra: '3900769 times\n4 procs',
@@ -277,6 +301,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: `Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"}`,
+                    unit: 'ns/op	       0 B/op	       0 allocs/op',
+                    value: 316.1,
+                    extra: '5118646 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"} - ns/op`,
                     unit: 'ns/op',
                     value: 316.1,
                     extra: '5118646 times\n4 procs',
@@ -295,6 +325,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: `Benchmark_Utils_GetOffer/mime_extension#01`,
+                    unit: 'ns/op	      48 B/op	       2 allocs/op',
+                    value: 390.7,
+                    extra: '3067818 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Utils_GetOffer/mime_extension#01 - ns/op`,
                     unit: 'ns/op',
                     value: 390.7,
                     extra: '3067818 times\n4 procs',
@@ -313,6 +349,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: `Benchmark_Utils_GetOffer/mime_extension#02`,
+                    unit: 'ns/op	      48 B/op	       2 allocs/op',
+                    value: 602.1,
+                    extra: '1992943 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Utils_GetOffer/mime_extension#02 - ns/op`,
                     unit: 'ns/op',
                     value: 602.1,
                     extra: '1992943 times\n4 procs',
@@ -331,6 +373,12 @@ describe('extractResult()', function () {
                 },
                 {
                     name: `Benchmark_Utils_GetOffer/mime_extension#03`,
+                    unit: 'ns/op	       0 B/op	       0 allocs/op',
+                    value: 286.3,
+                    extra: '4180965 times\n4 procs',
+                },
+                {
+                    name: `Benchmark_Utils_GetOffer/mime_extension#03 - ns/op`,
                     unit: 'ns/op',
                     value: 286.3,
                     extra: '4180965 times\n4 procs',

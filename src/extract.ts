@@ -363,6 +363,13 @@ function extractGoResult(output: string): BenchmarkResult[] {
             const remainder = m.groups.remainder;
 
             const pieces = remainder.split(/[ \t]+/);
+
+            // This is done for backwards compatibility with Go benchmarks that had multiple metrics in output,
+            // but they were not extracted properly before v1.18.0
+            if (pieces.length > 2) {
+                pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
+            }
+
             for (let i = 0; i < pieces.length; i = i + 2) {
                 let extra = `${times} times`.replace(/\s\s+/g, ' ');
                 if (procs !== null) {
