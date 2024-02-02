@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863356096,
+  "lastUpdate": 1706863371278,
   "entries": {
     "Rust Benchmark": [
       {
@@ -23507,6 +23507,54 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "29798 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
+          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
+          "timestamp": "2024-02-02T09:41:53+01:00",
+          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
+        },
+        "date": 1706863368938,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 310.6,
+            "unit": "ns/op",
+            "extra": "3863491 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 39618,
+            "unit": "ns/op",
+            "extra": "30404 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 40350,
+            "unit": "ns/op",
+            "extra": "30421 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "30421 times\n4 procs"
           }
         ]
       }
