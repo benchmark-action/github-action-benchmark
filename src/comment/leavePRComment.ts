@@ -54,7 +54,6 @@ export async function leavePRComment(
             pull_number: pullRequestNumber,
             // eslint-disable-next-line @typescript-eslint/naming-convention
             review_id: existingCommentId,
-            event: 'COMMENT',
             body: bodyWithTags,
         });
 
