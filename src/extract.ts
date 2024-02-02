@@ -353,7 +353,7 @@ function extractGoResult(output: string): BenchmarkResult[] {
     // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
     // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
     const reExtract =
-        /^(?<name>Benchmark\w+(?:\/?[\w()$%^&*-=,]*?)*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
+        /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
 
     for (const line of lines) {
         const m = line.match(reExtract);
@@ -363,6 +363,13 @@ function extractGoResult(output: string): BenchmarkResult[] {
             const remainder = m.groups.remainder;
 
             const pieces = remainder.split(/[ \t]+/);
+
+            // This is done for backwards compatibility with Go benchmarks that had multiple metrics in output,
+            // but they were not extracted properly before v1.18.0
+            if (pieces.length > 2) {
+                pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
+            }
+
             for (let i = 0; i < pieces.length; i = i + 2) {
                 let extra = `${times} times`.replace(/\s\s+/g, ' ');
                 if (procs !== null) {
@@ -371,7 +378,7 @@ function extractGoResult(output: string): BenchmarkResult[] {
                 const value = parseFloat(pieces[i]);
                 const unit = pieces[i + 1];
                 let name;
-                if (pieces.length > 2) {
+                if (i > 0) {
                     name = m.groups.name + ' - ' + unit;
                 } else {
                     name = m.groups.name;
