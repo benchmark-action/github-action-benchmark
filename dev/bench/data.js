@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863388428,
+  "lastUpdate": 1706863391787,
   "entries": {
     "Rust Benchmark": [
       {
@@ -55245,6 +55245,42 @@ window.BENCHMARK_DATA = {
             "value": 42.82399124304454,
             "unit": "ns",
             "range": "± 0.0882457772270542"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
+          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
+          "timestamp": "2024-02-02T09:41:53+01:00",
+          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
+        },
+        "date": 1706863389433,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.097559277500427,
+            "unit": "ns",
+            "range": "± 0.05200350769036397"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.768423484904424,
+            "unit": "ns",
+            "range": "± 0.06895028483861418"
           }
         ]
       }
