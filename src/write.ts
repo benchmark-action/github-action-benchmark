@@ -243,27 +243,6 @@ async function leaveComment(commitId: string, body: string, token: string) {
     const repoUrl = repoMetadata.html_url ?? '';
     const pr = github.context.payload.pull_request;
     const client = github.getOctokit(token);
-    const reviews = await client.rest.pulls.listReviews({
-        owner: repoMetadata.owner.login,
-        repo: repoMetadata.name,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        pull_number: pr?.number ?? 0,
-    });
-
-    await Promise.all(
-        reviews.data
-            .filter((r) => r.state === 'PENDING')
-            .map((r) =>
-                client.rest.pulls.deletePendingReview({
-                    owner: repoMetadata.owner.login,
-                    repo: repoMetadata.name,
-                    // eslint-disable-next-line @typescript-eslint/naming-convention
-                    pull_number: pr?.number ?? 0,
-                    // eslint-disable-next-line @typescript-eslint/naming-convention
-                    review_id: r.id,
-                }),
-            ),
-    );
 
     const res = await (pr?.number
         ? client.rest.pulls.createReview({
