@@ -1,5 +1,6 @@
 import * as github from '@actions/github';
 import { benchmarkStartTag } from './benchmarkCommentTags';
+import * as core from '@actions/core';
 
 export async function findExistingPRReviewId(
     repoOwner: string,
@@ -8,6 +9,7 @@ export async function findExistingPRReviewId(
     benchName: string,
     token: string,
 ) {
+    core.debug('findExistingPRReviewId start');
     const client = github.getOctokit(token);
 
     const existingReviewsResponse = await client.rest.pulls.listReviews({
@@ -21,5 +23,6 @@ export async function findExistingPRReviewId(
         review.body.startsWith(benchmarkStartTag(benchName)),
     );
 
+    core.debug('findExistingPRReviewId start');
     return existingReview?.id;
 }
