@@ -131,7 +131,7 @@ function extractGoResult(output) {
     // reference, "Proposal: Go Benchmark Data Format": https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
     // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
     // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
-    const reExtract = /^(?<name>Benchmark\w+(?:\/?[\w()$%^&*-=,]*?)*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
+    const reExtract = /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
     for (const line of lines) {
         const m = line.match(reExtract);
         if (m === null || m === void 0 ? void 0 : m.groups) {
@@ -139,6 +139,11 @@ function extractGoResult(output) {
             const times = m.groups.times;
             const remainder = m.groups.remainder;
             const pieces = remainder.split(/[ \t]+/);
+            // This is done for backwards compatibility with Go benchmarks that had multiple metrics in output,
+            // but they were not extracted properly before v1.18.0
+            if (pieces.length > 2) {
+                pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
+            }
             for (let i = 0; i < pieces.length; i = i + 2) {
                 let extra = `${times} times`.replace(/\s\s+/g, ' ');
                 if (procs !== null) {
@@ -147,7 +152,7 @@ function extractGoResult(output) {
                 const value = parseFloat(pieces[i]);
                 const unit = pieces[i + 1];
                 let name;
-                if (pieces.length > 2) {
+                if (i > 0) {
                     name = m.groups.name + ' - ' + unit;
                 }
                 else {

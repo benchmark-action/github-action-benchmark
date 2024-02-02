@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeBenchmark = exports.SCRIPT_PREFIX = void 0;
+exports.writeBenchmark = exports.buildComment = exports.SCRIPT_PREFIX = void 0;
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
 const io = __importStar(require("@actions/io"));
@@ -103,9 +103,7 @@ function findAlerts(curSuite, prevSuite, threshold) {
             core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
             continue;
         }
-        const ratio = biggerIsBetter(curSuite.tool)
-            ? prev.value / current.value // e.g. current=100, prev=200
-            : current.value / prev.value; // e.g. current=200, prev=100
+        const ratio = getRatio(curSuite.tool, prev, current);
         if (ratio > threshold) {
             core.warning(`Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
                 ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`);
@@ -128,6 +126,9 @@ function getCurrentRepoMetadata() {
     };
 }
 function floatStr(n) {
+    if (!Number.isFinite(n)) {
+        return `${n > 0 ? '+' : '-'}∞`;
+    }
     if (Number.isInteger(n)) {
         return n.toFixed(0);
     }
@@ -163,9 +164,7 @@ function buildComment(benchName, curSuite, prevSuite, expandableDetails = true) 
         let line;
         const prev = prevSuite.benches.find((i) => i.name === current.name);
         if (prev) {
-            const ratio = biggerIsBetter(curSuite.tool)
-                ? prev.value / current.value // e.g. current=100, prev=200
-                : current.value / prev.value;
+            const ratio = getRatio(curSuite.tool, prev, current);
             line = `| \`${current.name}\` | ${strVal(current)} | ${strVal(prev)} | \`${floatStr(ratio)}\` |`;
         }
         else {
@@ -177,6 +176,7 @@ function buildComment(benchName, curSuite, prevSuite, expandableDetails = true) 
     lines.push('', expandableDetails ? '</details>' : '', '', commentFooter());
     return lines.join('\n');
 }
+exports.buildComment = buildComment;
 function buildAlertComment(alerts, benchName, curSuite, prevSuite, threshold, cc) {
     // Do not show benchmark name if it is the default value 'Benchmark'.
     const benchmarkText = benchName === 'Benchmark' ? '' : ` **'${benchName}'**`;
@@ -462,5 +462,12 @@ async function handleSummary(benchName, currBench, prevBench, config) {
     core.debug('Writing a summary about benchmark comparison');
     core.debug(summary.stringify());
     await summary.write();
+}
+function getRatio(tool, prev, current) {
+    if (prev.value === 0 && current.value === 0)
+        return 1;
+    return biggerIsBetter(tool)
+        ? prev.value / current.value // e.g. current=100, prev=200
+        : current.value / prev.value; // e.g. current=200, prev=100
 }
 //# sourceMappingURL=write.js.map
