@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863781185,
+  "lastUpdate": 1706863792300,
   "entries": {
     "Rust Benchmark": [
       {
@@ -56793,6 +56793,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1952203656.1881714,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e7180f51a3e2d715fd8990ea6ad8ca50034100d6",
+          "message": "release v1.19.3",
+          "timestamp": "2024-02-02T09:48:37+01:00",
+          "tree_id": "e42d9865719ca2154f82bcec5c0dacbe5723073d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e7180f51a3e2d715fd8990ea6ad8ca50034100d6"
+        },
+        "date": 1706863789913,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1972698812.7414649,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
