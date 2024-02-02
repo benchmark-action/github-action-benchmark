@@ -1,6 +1,9 @@
 ## Unreleased
 
+<a name="v1.19.3"></a>
+# [v1.19.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.3) - 02 Feb 2024
 - **fix** ratio is NaN when previous value is 0. Now, print 1 when both values are 0 and `+-∞` when divisor is 0 (#222)
+- **fix** action hangs in some cases for go fiber benchmarks (#225)
 
 <a name="v1.19.2"></a>
 # [v1.19.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.2) - 26 Jan 2024
