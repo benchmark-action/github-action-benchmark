@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863760347,
+  "lastUpdate": 1706863781185,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53813,6 +53813,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 38181,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e7180f51a3e2d715fd8990ea6ad8ca50034100d6",
+          "message": "release v1.19.3",
+          "timestamp": "2024-02-02T09:48:37+01:00",
+          "tree_id": "e42d9865719ca2154f82bcec5c0dacbe5723073d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e7180f51a3e2d715fd8990ea6ad8ca50034100d6"
+        },
+        "date": 1706863778001,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 379.57587548638134,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 38171,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
