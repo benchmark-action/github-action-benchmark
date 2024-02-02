@@ -7,6 +7,8 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
+import { leavePRComment } from './comment/leavePRComment';
+import { leaveCommitComment } from './comment/leaveCommitComment';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -236,35 +238,15 @@ function buildAlertComment(
     return lines.join('\n');
 }
 
-async function leaveComment(commitId: string, body: string, token: string) {
+async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
     core.debug('Sending comment:\n' + body);
 
     const repoMetadata = getCurrentRepoMetadata();
-    const repoUrl = repoMetadata.html_url ?? '';
     const pr = github.context.payload.pull_request;
-    const client = github.getOctokit(token);
 
-    const res = await (pr?.number
-        ? client.rest.pulls.createReview({
-              owner: repoMetadata.owner.login,
-              repo: repoMetadata.name,
-              // eslint-disable-next-line @typescript-eslint/naming-convention
-              pull_number: pr.number,
-              event: 'COMMENT',
-              body,
-          })
-        : client.rest.repos.createCommitComment({
-              owner: repoMetadata.owner.login,
-              repo: repoMetadata.name,
-              // eslint-disable-next-line @typescript-eslint/naming-convention
-              commit_sha: commitId,
-              body,
-          }));
-
-    const commitUrl = `${repoUrl}/commit/${commitId}`;
-    console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);
-
-    return res;
+    return await (pr?.number
+        ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
+        : leaveCommitComment(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
 }
 
 async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
@@ -283,7 +265,7 @@ async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: 
 
     const body = buildComment(benchName, curSuite, prevSuite);
 
-    await leaveComment(curSuite.commit.id, body, githubToken);
+    await leaveComment(curSuite.commit.id, body, `${benchName} Summary`, githubToken);
 }
 
 async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
@@ -309,7 +291,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
         if (!githubToken) {
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
-        const res = await leaveComment(curSuite.commit.id, body, githubToken);
+        const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
         url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
