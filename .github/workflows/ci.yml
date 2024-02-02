@@ -77,36 +77,38 @@ jobs:
           summary-always: true
           comment-always: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
-#
-#  benchmarkjs:
-#    name: Run JavaScript benchmark example
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#          cache: 'npm'
-#      - run: npm ci
-#      - run: npm run build
-#      - name: Run benchmark
-#        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
-#      - name: Save previous data.js
-#        run: |
-#          git fetch origin gh-pages
-#          git checkout gh-pages
-#          cp ./dev/bench/data.js before_data.js
-#          git checkout -
-#      - name: Store benchmark result
-#        uses: ./
-#        with:
-#          name: Benchmark.js Benchmark
-#          tool: 'benchmarkjs'
-#          output-file-path: examples/benchmarkjs/output.txt
-#          skip-fetch-gh-pages: true
-#          fail-on-alert: true
-#          summary-always: true
-#      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+
+  benchmarkjs:
+    name: Run JavaScript benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Run benchmark
+        run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Benchmark.js Benchmark
+          tool: 'benchmarkjs'
+          output-file-path: examples/benchmarkjs/output.txt
+          skip-fetch-gh-pages: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-alert: true
+          summary-always: true
+          comment-always: true
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 #
 #  pytest-benchmark:
 #    name: Run Pytest benchmark example
