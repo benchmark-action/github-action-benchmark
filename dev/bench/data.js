@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863391787,
+  "lastUpdate": 1706863414042,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53477,6 +53477,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 38171,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
+          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
+          "timestamp": "2024-02-02T09:41:53+01:00",
+          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
+        },
+        "date": 1706863411724,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 300.988326848249,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 38181,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
