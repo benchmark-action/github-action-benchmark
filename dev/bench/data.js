@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863343674,
+  "lastUpdate": 1706863345061,
   "entries": {
     "Rust Benchmark": [
       {
@@ -40371,6 +40371,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00002223885697547758",
             "extra": "mean: 1.5709721132384982 msec\nrounds: 627"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
+          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
+          "timestamp": "2024-02-02T09:41:53+01:00",
+          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
+        },
+        "date": 1706863340643,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77506.71056697141,
+            "unit": "iter/sec",
+            "range": "stddev: 7.012584129972331e-7",
+            "extra": "mean: 12.902108639172962 usec\nrounds: 43511"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 616.290867061602,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005025300280507565",
+            "extra": "mean: 1.6226104481604202 msec\nrounds: 598"
           }
         ]
       }
