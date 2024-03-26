@@ -323,6 +323,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
         run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
