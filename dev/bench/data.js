@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711450230988,
+  "lastUpdate": 1711450243411,
   "entries": {
     "Rust Benchmark": [
       {
@@ -40839,6 +40839,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000014462637854490043",
             "extra": "mean: 1.6574990895518211 msec\nrounds: 603"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95",
+          "message": "fix: 231 rust bench not comparing to baseline (#235)\n\n* sort jobs in ci workflows\r\n* add missing benches to ci jobs\r\n* rename CriterionRS bench to distinguish between default Rust and Criterion benchmarks",
+          "timestamp": "2024-03-26T11:49:09+01:00",
+          "tree_id": "208d89f1397b3417b9ca2008b8ac12caddb592eb",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95"
+        },
+        "date": 1711450241014,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76322.25409653576,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000010082750379909067",
+            "extra": "mean: 13.102338391829411 usec\nrounds: 40790"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 620.0468031518758,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001294268552372628",
+            "extra": "mean: 1.6127814786185706 msec\nrounds: 608"
           }
         ]
       }
