@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711450207771,
+  "lastUpdate": 1711450211363,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53949,6 +53949,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 38171,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95",
+          "message": "fix: 231 rust bench not comparing to baseline (#235)\n\n* sort jobs in ci workflows\r\n* add missing benches to ci jobs\r\n* rename CriterionRS bench to distinguish between default Rust and Criterion benchmarks",
+          "timestamp": "2024-03-26T11:49:09+01:00",
+          "tree_id": "208d89f1397b3417b9ca2008b8ac12caddb592eb",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95"
+        },
+        "date": 1711450208141,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 292.59448818897636,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":254,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44994,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
