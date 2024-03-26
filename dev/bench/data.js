@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711450184376,
+  "lastUpdate": 1711450207771,
   "entries": {
     "Rust Benchmark": [
       {
@@ -47051,6 +47051,42 @@ window.BENCHMARK_DATA = {
             "value": 20011.178494746728,
             "unit": "ns/iter",
             "extra": "iterations: 34931\ncpu: 20009.639002605138 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95",
+          "message": "fix: 231 rust bench not comparing to baseline (#235)\n\n* sort jobs in ci workflows\r\n* add missing benches to ci jobs\r\n* rename CriterionRS bench to distinguish between default Rust and Criterion benchmarks",
+          "timestamp": "2024-03-26T11:49:09+01:00",
+          "tree_id": "208d89f1397b3417b9ca2008b8ac12caddb592eb",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a6c4f1c31d68159af7621fe2f45c3c33b6e5fb95"
+        },
+        "date": 1711450204621,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.5773734900016,
+            "unit": "ns/iter",
+            "extra": "iterations: 4419789\ncpu: 158.5718232250454 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 21280.30560862275,
+            "unit": "ns/iter",
+            "extra": "iterations: 35071\ncpu: 21279.82663739272 ns\nthreads: 1"
           }
         ]
       }
