@@ -9721,7 +9721,7 @@ window.BENCHMARK_DATA = {
             "unit": "ns/iter"
           }
         ]
-      },
+      }
     ],
     "Criterion.rs Benchmark": [
       {
