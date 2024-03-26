@@ -6171,66 +6171,6 @@ window.BENCHMARK_DATA = {
             "username": "rhysd"
           },
           "distinct": true,
-          "id": "a1914d7dcbe14d006e4b5f12c7ff303a82a411f1",
-          "message": "update changelog for v1.8.1",
-          "timestamp": "2020-06-10T22:41:53+09:00",
-          "tree_id": "ef826a918d186917372f542a1216379da3f53d13",
-          "url": "https://github.com/rhysd/github-action-benchmark/commit/a1914d7dcbe14d006e4b5f12c7ff303a82a411f1"
-        },
-        "date": 1591796790437,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 241,
-            "range": "± 10",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 32168,
-            "range": "± 1813",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 31611,
-            "range": "± 1727",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 51099,
-            "range": "± 2802",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
           "id": "212bdda1ace705087217d259c353e145c520701e",
           "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
           "timestamp": "2021-10-02T12:39:37+09:00",
@@ -6250,66 +6190,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29091,
             "range": "± 3460",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
-          "id": "212bdda1ace705087217d259c353e145c520701e",
-          "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
-          "timestamp": "2021-10-02T12:39:37+09:00",
-          "tree_id": "0433fdf672992005a340ecfe0fea07301a25839e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/212bdda1ace705087217d259c353e145c520701e"
-        },
-        "date": 1633146251625,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 200,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26957,
-            "range": "± 40",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26972,
-            "range": "± 45",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43670,
-            "range": "± 56",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -6399,66 +6279,6 @@ window.BENCHMARK_DATA = {
             "username": "rhysd"
           },
           "distinct": true,
-          "id": "6ed7bce2e0810467febf7b42f94671f0b0e6ebba",
-          "message": "fix criterion example workflow",
-          "timestamp": "2021-10-02T12:56:30+09:00",
-          "tree_id": "51bf74f1304dece2011c87e2b1b8ec8f3a5cc63e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6ed7bce2e0810467febf7b42f94671f0b0e6ebba"
-        },
-        "date": 1633147202712,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 200,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26973,
-            "range": "± 26",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26963,
-            "range": "± 23",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43705,
-            "range": "± 76",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
           "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
           "message": "fix pytest example workflow",
           "timestamp": "2021-10-02T13:01:21+09:00",
@@ -6478,66 +6298,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 23813,
             "range": "± 4007",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
-          "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
-          "message": "fix pytest example workflow",
-          "timestamp": "2021-10-02T13:01:21+09:00",
-          "tree_id": "907b77cf2252b6bbde997aedee7cc8dda37e0f93",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b66943d1565db5d7fc7f206625fa19c2e9cee0cd"
-        },
-        "date": 1633147781434,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 200,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26965,
-            "range": "± 26",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26976,
-            "range": "± 136",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43693,
-            "range": "± 298",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -6574,66 +6334,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 25857,
             "range": "± 5329",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rhysd@users.noreply.github.com",
-            "name": "Linda_pp",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "92a87597923a9ef11cdb364b7a4603190b0ae889",
-          "message": "Merge pull request #80 from HerringtonDarkholme/patch-1\n\nfix: allow more test name",
-          "timestamp": "2021-10-02T16:22:51+09:00",
-          "tree_id": "dd1785058dc01cee20ca13bfeb3f3bb6c9827eac",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/92a87597923a9ef11cdb364b7a4603190b0ae889"
-        },
-        "date": 1633159583434,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 27534,
-            "range": "± 1027",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 27120,
-            "range": "± 102",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43911,
-            "range": "± 85",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -6687,66 +6387,6 @@ window.BENCHMARK_DATA = {
             "username": "rhysd"
           },
           "distinct": true,
-          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
-          "message": "remove husky and update old lockfile",
-          "timestamp": "2021-10-02T16:42:01+09:00",
-          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
-        },
-        "date": 1633160755253,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 244,
-            "range": "± 17",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 31401,
-            "range": "± 1454",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 33071,
-            "range": "± 1718",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 50471,
-            "range": "± 3269",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
           "id": "cf314e1991c86f79890dfb5947c2cced39e956f0",
           "message": "use codecov-action v2",
           "timestamp": "2021-10-02T21:44:27+09:00",
@@ -6766,66 +6406,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 31405,
             "range": "± 3736",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "committer": {
-            "email": "lin90162@yahoo.co.jp",
-            "name": "rhysd",
-            "username": "rhysd"
-          },
-          "distinct": true,
-          "id": "cf314e1991c86f79890dfb5947c2cced39e956f0",
-          "message": "use codecov-action v2",
-          "timestamp": "2021-10-02T21:44:27+09:00",
-          "tree_id": "cb7344445981bd54c30a35eed7990e3dbcfab42a",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/cf314e1991c86f79890dfb5947c2cced39e956f0"
-        },
-        "date": 1633178870809,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 200,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26964,
-            "range": "± 34",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26981,
-            "range": "± 40",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43682,
-            "range": "± 358",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -6870,66 +6450,6 @@ window.BENCHMARK_DATA = {
         "commit": {
           "author": {
             "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "14b2070940dcc2738ed750544834dd425afabeed",
-          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
-          "timestamp": "2021-10-12T21:30:21+02:00",
-          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
-        },
-        "date": 1634067218129,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 177,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 27005,
-            "range": "± 32",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 23791,
-            "range": "± 27",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43731,
-            "range": "± 69",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
           },
@@ -6958,66 +6478,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29676,
             "range": "± 4131",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "daca3ae613f1675d98fe0011aad5f702bf938325",
-          "message": "update changelog for v1.9.0",
-          "timestamp": "2021-10-12T21:52:30+02:00",
-          "tree_id": "773979b9c0d4e5da2897684b17ca74e5f25f726e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/daca3ae613f1675d98fe0011aad5f702bf938325"
-        },
-        "date": 1634068565431,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 187,
-            "range": "± 9",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 25052,
-            "range": "± 1664",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 25262,
-            "range": "± 2459",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 40643,
-            "range": "± 2505",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -7061,66 +6521,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "9809903e6a217958565095db6e26671f9112dd5f",
-          "message": "pin python version to 3.9 (#82)",
-          "timestamp": "2021-10-28T22:25:18+02:00",
-          "tree_id": "c6f9795c41cd2b462bc901c8b0fa3089867509b6",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9809903e6a217958565095db6e26671f9112dd5f"
-        },
-        "date": 1635452950337,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 265,
-            "range": "± 11",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 34805,
-            "range": "± 1941",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 35369,
-            "range": "± 4640",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 1",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 57324,
-            "range": "± 3326",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "enruizno@uwaterloo.ca",
             "name": "(Eliseo) Nathaniel Ruiz Nowell",
             "username": "NathanielRN"
@@ -7157,66 +6557,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "enruizno@uwaterloo.ca",
-            "name": "(Eliseo) Nathaniel Ruiz Nowell",
-            "username": "NathanielRN"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736",
-          "message": "Allow user defined custom benchmarks (#81)\n\nAllow user defined custom benchmarks (\"customBiggerIsBetter\" and \"customSmallerIsBetter\")\r\n\r\nCo-authored-by: Troy Rosenberg <tmr08c@gmail.com>\r\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
-          "timestamp": "2021-10-28T22:38:21+02:00",
-          "tree_id": "494492f347dcc6947c7bfe1e71a0cd16aea5be2a",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736"
-        },
-        "date": 1635453690939,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 177,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24065,
-            "range": "± 43",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24080,
-            "range": "± 34",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38999,
-            "range": "± 179",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -7246,66 +6586,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27646,
             "range": "± 5641",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "966110397e0e7fcf49dc9dbf8a35fe9ff95a15cf",
-          "message": "update changelog for v1.10.0",
-          "timestamp": "2021-10-28T22:41:48+02:00",
-          "tree_id": "e139d04418cacef86dd544115b35d3a5159be76e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/966110397e0e7fcf49dc9dbf8a35fe9ff95a15cf"
-        },
-        "date": 1635454107583,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 265,
-            "range": "± 13",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 34624,
-            "range": "± 1608",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 35551,
-            "range": "± 2362",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 56529,
-            "range": "± 2302",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -7359,66 +6639,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "582e655b92b0adfa991e7943884a247e07f6e4e1",
-          "message": "Bump py from 1.8.0 to 1.10.0 in /examples/pytest (#62)\n\nBumps [py](https://github.com/pytest-dev/py) from 1.8.0 to 1.10.0.\r\n- [Release notes](https://github.com/pytest-dev/py/releases)\r\n- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/py/compare/1.8.0...1.10.0)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2021-10-28T22:55:32+02:00",
-          "tree_id": "7bdc65eab0b166d5d11f0ac2007bdb72e48f50c6",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/582e655b92b0adfa991e7943884a247e07f6e4e1"
-        },
-        "date": 1635454750412,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 228,
-            "range": "± 14",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 30668,
-            "range": "± 2406",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 31469,
-            "range": "± 6248",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 49763,
-            "range": "± 4161",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "e72e01c2086ca7a908331d538bbd8932e577640b",
           "message": "Bump @actions/core from 1.2.3 to 1.2.6 (#47)\n\nBumps [@actions/core](https://github.com/actions/toolkit/tree/HEAD/packages/core) from 1.2.3 to 1.2.6.\r\n- [Release notes](https://github.com/actions/toolkit/releases)\r\n- [Changelog](https://github.com/actions/toolkit/blob/main/packages/core/RELEASES.md)\r\n- [Commits](https://github.com/actions/toolkit/commits/HEAD/packages/core)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2021-10-28T23:05:04+02:00",
@@ -7438,66 +6658,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 33557,
             "range": "± 10330",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e72e01c2086ca7a908331d538bbd8932e577640b",
-          "message": "Bump @actions/core from 1.2.3 to 1.2.6 (#47)\n\nBumps [@actions/core](https://github.com/actions/toolkit/tree/HEAD/packages/core) from 1.2.3 to 1.2.6.\r\n- [Release notes](https://github.com/actions/toolkit/releases)\r\n- [Changelog](https://github.com/actions/toolkit/blob/main/packages/core/RELEASES.md)\r\n- [Commits](https://github.com/actions/toolkit/commits/HEAD/packages/core)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2021-10-28T23:05:04+02:00",
-          "tree_id": "d316b91086d0eddb3404de196bbb127c52a947e3",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e72e01c2086ca7a908331d538bbd8932e577640b"
-        },
-        "date": 1635455343738,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 251,
-            "range": "± 7",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 33160,
-            "range": "± 875",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 33042,
-            "range": "± 829",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 53807,
-            "range": "± 2062",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -7541,66 +6701,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "michael.mior@gmail.com",
-            "name": "Michael Mior",
-            "username": "michaelmior"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
-          "message": "Add new custom types to README (#83)",
-          "timestamp": "2021-11-03T11:23:58+01:00",
-          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
-        },
-        "date": 1635935236560,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24322,
-            "range": "± 41",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24295,
-            "range": "± 32",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39421,
-            "range": "± 58",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "kaancfidan@gmail.com",
             "name": "Kaan C. Fidan",
             "username": "kaancfidan"
@@ -7630,66 +6730,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 28834,
             "range": "± 190",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "kaancfidan@gmail.com",
-            "name": "Kaan C. Fidan",
-            "username": "kaancfidan"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "5d6c8c4e363c269f9337354a93e6a229f847882e",
-          "message": "Fix/go tabled benchmarks (#32)\n\n* Tabled benchmark support added.\r\n* Test cases added for tabled benchmarks.",
-          "timestamp": "2021-11-20T16:36:55+01:00",
-          "tree_id": "dec9f89bf394b4d3979dce4bb32b5f008d2b9318",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d6c8c4e363c269f9337354a93e6a229f847882e"
-        },
-        "date": 1637422817770,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 177,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24090,
-            "range": "± 35",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24112,
-            "range": "± 44",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38985,
-            "range": "± 83",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -7733,66 +6773,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
-          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
-          "timestamp": "2021-12-03T10:23:23+01:00",
-          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
-        },
-        "date": 1638523615051,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24393,
-            "range": "± 46",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24325,
-            "range": "± 47",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39388,
-            "range": "± 65",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "find_my_way@foxmail.com",
             "name": "Jun Tian",
             "username": "findmyway"
@@ -7822,66 +6802,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26990,
             "range": "± 159",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "find_my_way@foxmail.com",
-            "name": "Jun Tian",
-            "username": "findmyway"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7",
-          "message": "Support BenchmarkTools.jl in Julia (#89)",
-          "timestamp": "2021-12-04T14:04:00+01:00",
-          "tree_id": "f7e9efe8a202e0b5fcd366abe4c9995df5f8da7e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7"
-        },
-        "date": 1638623259328,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24046,
-            "range": "± 56",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24055,
-            "range": "± 131",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38967,
-            "range": "± 84",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -7935,66 +6855,6 @@ window.BENCHMARK_DATA = {
             "username": "ktrz"
           },
           "distinct": true,
-          "id": "1ee468601709b6c9b714ada96aba43a39e3da985",
-          "message": "fix release script",
-          "timestamp": "2021-12-04T15:10:44+01:00",
-          "tree_id": "a41cfce3de5fe9f043afed8c756a7cdef3e58ce5",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1ee468601709b6c9b714ada96aba43a39e3da985"
-        },
-        "date": 1638627406344,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24089,
-            "range": "± 39",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24112,
-            "range": "± 60",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38926,
-            "range": "± 87",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
           "id": "8e6628b190e9c7aae45b5ab7ea8645c5ca617697",
           "message": "update changelog for v1.11.1",
           "timestamp": "2021-12-04T15:19:14+01:00",
@@ -8014,66 +6874,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27132,
             "range": "± 202",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "8e6628b190e9c7aae45b5ab7ea8645c5ca617697",
-          "message": "update changelog for v1.11.1",
-          "timestamp": "2021-12-04T15:19:14+01:00",
-          "tree_id": "d2900f29208bd85b6bee9d300776f747c4a602ae",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8e6628b190e9c7aae45b5ab7ea8645c5ca617697"
-        },
-        "date": 1638627790720,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24060,
-            "range": "± 687",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24086,
-            "range": "± 180",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38973,
-            "range": "± 79",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -8117,66 +6917,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "find_my_way@foxmail.com",
-            "name": "Jun Tian",
-            "username": "findmyway"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
-          "message": "Fix broken links in README (#90)",
-          "timestamp": "2021-12-06T09:33:21+01:00",
-          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
-        },
-        "date": 1638779821510,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 200,
-            "range": "± 9",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28319,
-            "range": "± 1877",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26553,
-            "range": "± 1873",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46659,
-            "range": "± 2805",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "razican@protonmail.ch",
             "name": "Iban Eguia",
             "username": "Razican"
@@ -8213,66 +6953,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "razican@protonmail.ch",
-            "name": "Iban Eguia",
-            "username": "Razican"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c",
-          "message": "Added option to use Rust benchmark names with spaces (#94)\n\n* Added option to use Rust benchmark names with spaces, useful for Criterion\r\n* Added tests",
-          "timestamp": "2021-12-28T13:21:23+01:00",
-          "tree_id": "aadd2cd41a9668e3179874130934435cb49dfce4",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c"
-        },
-        "date": 1640694299683,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 232,
-            "range": "± 8",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 31322,
-            "range": "± 1262",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 30701,
-            "range": "± 1829",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 50390,
-            "range": "± 2185",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -8302,66 +6982,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 38781,
             "range": "± 6457",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "2eac1b86380d9dda933d62e0b984946cec84476b",
-          "message": "update changelog for v1.11.2",
-          "timestamp": "2021-12-28T13:32:22+01:00",
-          "tree_id": "59510913e08a2680ddf2bd7086521bf7e62aceb0",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2eac1b86380d9dda933d62e0b984946cec84476b"
-        },
-        "date": 1640694942881,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 227,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28895,
-            "range": "± 30",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28894,
-            "range": "± 43",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46738,
-            "range": "± 37",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -8410,66 +7030,6 @@ window.BENCHMARK_DATA = {
             "username": "ktrz"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
-          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
-          "timestamp": "2021-12-31T13:23:49+01:00",
-          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
-        },
-        "date": 1640953632578,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 237,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 30070,
-            "range": "± 19",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 30069,
-            "range": "± 17",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 48660,
-            "range": "± 48",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trześniewski",
             "username": "ktrz"
@@ -8494,66 +7054,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 32970,
             "range": "± 5618",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "e1d6443a1e89280d0ade9bf2d81050f17c50189b",
-          "message": "Update changelog for v1.11.3",
-          "timestamp": "2021-12-31T13:32:06+01:00",
-          "tree_id": "fda6830d09c92e1b300d46f52312fb9a128ab493",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e1d6443a1e89280d0ade9bf2d81050f17c50189b"
-        },
-        "date": 1640954128791,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26976,
-            "range": "± 28",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26959,
-            "range": "± 33",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43665,
-            "range": "± 57",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -8590,66 +7090,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24333,
             "range": "± 143",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "42@dmathieu.com",
-            "name": "Damien Mathieu",
-            "username": "dmathieu"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
-          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
-          "timestamp": "2022-01-27T11:39:39+01:00",
-          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
-        },
-        "date": 1643280211891,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 206,
-            "range": "± 13",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28541,
-            "range": "± 1660",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 29296,
-            "range": "± 2403",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 41120,
-            "range": "± 2285",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -8694,66 +7134,6 @@ window.BENCHMARK_DATA = {
         "commit": {
           "author": {
             "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
-          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
-          "timestamp": "2022-01-28T12:41:33+01:00",
-          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
-        },
-        "date": 1643370299887,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24081,
-            "range": "± 212",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24081,
-            "range": "± 40",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38945,
-            "range": "± 81",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
           },
@@ -8782,66 +7162,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24303,
             "range": "± 134",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "aa331d94f2909cbf04ed0aadb2b5717e86709db0",
-          "message": "Update changelog for v1.12.0",
-          "timestamp": "2022-01-28T12:51:42+01:00",
-          "tree_id": "1b546558f830852682fb737552cb5ab53258f8ae",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/aa331d94f2909cbf04ed0aadb2b5717e86709db0"
-        },
-        "date": 1643370909523,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 155,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 21250,
-            "range": "± 50",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 21252,
-            "range": "± 44",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 34391,
-            "range": "± 82",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -8885,66 +7205,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "mjochum@users.noreply.github.com",
-            "name": "mjochum",
-            "username": "mjochum"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
-          "message": "Updated urls to support GHES (#104)",
-          "timestamp": "2022-02-17T23:05:45+01:00",
-          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
-        },
-        "date": 1645135860355,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 158,
-            "range": "± 21",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26251,
-            "range": "± 2180",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26235,
-            "range": "± 1052",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 42458,
-            "range": "± 3478",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "6819362+cabauman@users.noreply.github.com",
             "name": "Colt",
             "username": "cabauman"
@@ -8974,66 +7234,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 25821,
             "range": "± 3175",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "6819362+cabauman@users.noreply.github.com",
-            "name": "Colt",
-            "username": "cabauman"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
-          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
-          "timestamp": "2022-02-17T23:20:17+01:00",
-          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
-        },
-        "date": 1645136638456,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 237,
-            "range": "± 2",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 30072,
-            "range": "± 17",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 30070,
-            "range": "± 123",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 48657,
-            "range": "± 29",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -9077,66 +7277,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
-          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
-          "timestamp": "2022-02-17T23:27:08+01:00",
-          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
-        },
-        "date": 1645137077501,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 239,
-            "range": "± 13",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 29420,
-            "range": "± 1484",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 32339,
-            "range": "± 3860",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 49780,
-            "range": "± 2420",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -9166,66 +7306,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24567,
             "range": "± 286",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "b116644fde10e8f512be89dd50ddd8ea38828582",
-          "message": "Update changelog for v1.13.0",
-          "timestamp": "2022-02-17T23:37:42+01:00",
-          "tree_id": "b3464779860a887a90f66bf0d93af1030efcfafc",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b116644fde10e8f512be89dd50ddd8ea38828582"
-        },
-        "date": 1645137701854,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 158,
-            "range": "± 6",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26235,
-            "range": "± 3093",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 19973,
-            "range": "± 332",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 32310,
-            "range": "± 395",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -9305,126 +7385,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "baronfel@users.noreply.github.com",
-            "name": "Chet Husk",
-            "username": "baronfel"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "12c672174b09de673b5eda4e88afa9669b38a5c6",
-          "message": "Fix a couple errant links for Benchmark.NET (#110)",
-          "timestamp": "2022-02-18T00:05:13+01:00",
-          "tree_id": "526893def1ae76c5a671e48b167495affb2caed0",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/12c672174b09de673b5eda4e88afa9669b38a5c6"
-        },
-        "date": 1645139340487,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26964,
-            "range": "± 27",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26970,
-            "range": "± 33",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43662,
-            "range": "± 64",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "baronfel@users.noreply.github.com",
-            "name": "Chet Husk",
-            "username": "baronfel"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e",
-          "message": "Update URL to main website from Benchmark.NET README (#111)",
-          "timestamp": "2022-02-18T00:06:38+01:00",
-          "tree_id": "1ddbe434e88cf4cfc7372f8441df294afa0054dd",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e"
-        },
-        "date": 1645139459200,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26992,
-            "range": "± 39",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26990,
-            "range": "± 36",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43704,
-            "range": "± 74",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "AllanJeremy@users.noreply.github.com",
             "name": "Allan N Jeremy",
             "username": "AllanJeremy"
@@ -9454,66 +7414,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24358,
             "range": "± 148",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "AllanJeremy@users.noreply.github.com",
-            "name": "Allan N Jeremy",
-            "username": "AllanJeremy"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
-          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
-          "timestamp": "2022-05-11T15:36:44+02:00",
-          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
-        },
-        "date": 1652276442929,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24278,
-            "range": "± 98",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24306,
-            "range": "± 30",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39422,
-            "range": "± 65",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -9557,66 +7457,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "318404ebff79bbdd2746ee919ad02e0f02c881bc",
-          "message": "Bump minimist from 1.2.5 to 1.2.6 (#114)\n\nBumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.\r\n- [Release notes](https://github.com/substack/minimist/releases)\r\n- [Commits](https://github.com/substack/minimist/compare/1.2.5...1.2.6)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: minimist\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2022-05-11T15:41:12+02:00",
-          "tree_id": "4b85ce8bf2f12f3ff20ef8073ba6cab298f0896f",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/318404ebff79bbdd2746ee919ad02e0f02c881bc"
-        },
-        "date": 1652276698561,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 227,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28899,
-            "range": "± 16",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28891,
-            "range": "± 205",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46743,
-            "range": "± 39",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trześniewski",
             "username": "ktrz"
@@ -9653,66 +7493,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
-          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
-          "timestamp": "2022-05-28T17:18:33+02:00",
-          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
-        },
-        "date": 1653751359816,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26975,
-            "range": "± 49",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26953,
-            "range": "± 28",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43653,
-            "range": "± 51",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "dev.ktbarrett@gmail.com",
             "name": "Kaleb Barrett",
             "username": "ktbarrett"
@@ -9742,66 +7522,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 34195,
             "range": "± 5097",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "dev.ktbarrett@gmail.com",
-            "name": "Kaleb Barrett",
-            "username": "ktbarrett"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
-          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
-          "timestamp": "2022-05-28T17:54:07+02:00",
-          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
-        },
-        "date": 1653753459109,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 177,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 23839,
-            "range": "± 54",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 23830,
-            "range": "± 1254",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38611,
-            "range": "± 67",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -9855,66 +7575,6 @@ window.BENCHMARK_DATA = {
             "username": "ktrz"
           },
           "distinct": true,
-          "id": "ba450747be524122c5ce53c8d9587160154eaed3",
-          "message": "enable push benchmarks to separate results repo",
-          "timestamp": "2022-05-28T18:04:35+02:00",
-          "tree_id": "a56e6ed3ffea4c45877131c022d728dbcc397ca4",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ba450747be524122c5ce53c8d9587160154eaed3"
-        },
-        "date": 1653754120553,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 205,
-            "range": "± 18",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26312,
-            "range": "± 2054",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 27413,
-            "range": "± 2324",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 42960,
-            "range": "± 2928",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
           "id": "5f23f8dd2d0399e874150b5eb29213dd80e79af9",
           "message": "Update changelog for v1.14.0",
           "timestamp": "2022-05-28T18:13:44+02:00",
@@ -9934,66 +7594,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24106,
             "range": "± 157",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "5f23f8dd2d0399e874150b5eb29213dd80e79af9",
-          "message": "Update changelog for v1.14.0",
-          "timestamp": "2022-05-28T18:13:44+02:00",
-          "tree_id": "ee09bcc02e903c0a498337b64d256f39d1b0d272",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5f23f8dd2d0399e874150b5eb29213dd80e79af9"
-        },
-        "date": 1653754698765,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 244,
-            "range": "± 7",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 32688,
-            "range": "± 938",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 32697,
-            "range": "± 1779",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 52877,
-            "range": "± 1376",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -10073,66 +7673,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "mmior@mail.rit.edu",
-            "name": "Michael Mior",
-            "username": "michaelmior"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
-          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
-          "timestamp": "2022-11-03T08:49:06+01:00",
-          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
-        },
-        "date": 1667462010494,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 224,
-            "range": "± 1",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28519,
-            "range": "± 121",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28469,
-            "range": "± 57",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46082,
-            "range": "± 136",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trześniewski",
             "username": "ktrz"
@@ -10162,66 +7702,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 29389,
             "range": "± 1899",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "d4d45b573a9995079f8612227b7f7be12d8f221c",
-          "message": "Chore/update deps (#137)\n\n* update actions dependencies\r\n* npm audit fix",
-          "timestamp": "2022-11-03T09:44:21+01:00",
-          "tree_id": "340349c418dcf58812cf3386682b912a40b41893",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d4d45b573a9995079f8612227b7f7be12d8f221c"
-        },
-        "date": 1667465306136,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 224,
-            "range": "± 1",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28530,
-            "range": "± 140",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28449,
-            "range": "± 52",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46072,
-            "range": "± 200",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -10266,66 +7746,6 @@ window.BENCHMARK_DATA = {
         "commit": {
           "author": {
             "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "b2887b657da81fdbbd1b8f8653099da5b246e259",
-          "message": "Update changelog for v1.15.0",
-          "timestamp": "2022-11-03T16:09:08+01:00",
-          "tree_id": "44376a4cfbda3e5d68c4b22452d70c37ec951616",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b2887b657da81fdbbd1b8f8653099da5b246e259"
-        },
-        "date": 1667488456529,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24424,
-            "range": "± 127",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24420,
-            "range": "± 26",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39530,
-            "range": "± 39",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trześniewski",
             "username": "ktrz"
           },
@@ -10354,66 +7774,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 23985,
             "range": "± 228",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
-          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
-          "timestamp": "2022-12-12T19:55:14+01:00",
-          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
-        },
-        "date": 1670871576926,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 208,
-            "range": "± 5",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28682,
-            "range": "± 692",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28640,
-            "range": "± 634",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 46142,
-            "range": "± 1051",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -10457,66 +7817,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "20799702+jofas@users.noreply.github.com",
-            "name": "Jonas Fassbender",
-            "username": "jofas"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
-          "message": "fix: fixed small error in documentation (#140)",
-          "timestamp": "2022-12-12T20:02:16+01:00",
-          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
-        },
-        "date": 1670871969544,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24417,
-            "range": "± 19",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24425,
-            "range": "± 25",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39537,
-            "range": "± 42",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "epompeii@protonmail.com",
             "name": "Everett Pompeii",
             "username": "epompeii"
@@ -10553,66 +7853,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "epompeii@protonmail.com",
-            "name": "Everett Pompeii",
-            "username": "epompeii"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
-          "message": "jmh in code block (#151)",
-          "timestamp": "2023-02-06T09:07:10+01:00",
-          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
-        },
-        "date": 1675671035785,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 221,
-            "range": "± 2",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28398,
-            "range": "± 24",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28358,
-            "range": "± 21",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 45866,
-            "range": "± 48",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "49699333+dependabot[bot]@users.noreply.github.com",
             "name": "dependabot[bot]",
             "username": "dependabot[bot]"
@@ -10642,66 +7882,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 24166,
             "range": "± 177",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "7eeba8924d4ed651010d72d7319b064fc0c10355",
-          "message": "Bump json5 from 2.2.0 to 2.2.3 (#148)\n\nBumps [json5](https://github.com/json5/json5) from 2.2.0 to 2.2.3.\r\n- [Release notes](https://github.com/json5/json5/releases)\r\n- [Changelog](https://github.com/json5/json5/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/json5/json5/compare/v2.2.0...v2.2.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: json5\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2023-02-06T09:13:29+01:00",
-          "tree_id": "dd7b551a82c74b71157a331ca1c23323387b1d18",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7eeba8924d4ed651010d72d7319b064fc0c10355"
-        },
-        "date": 1675671387129,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 221,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28404,
-            "range": "± 27",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 28345,
-            "range": "± 13",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 45853,
-            "range": "± 15",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -10781,66 +7961,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "estebanborai@gmail.com",
-            "name": "Esteban Borai",
-            "username": "EstebanBorai"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407",
-          "message": "feat: support pr summary for benchmark output (#138)",
-          "timestamp": "2023-03-05T23:47:19+01:00",
-          "tree_id": "75acd869eebcc7e0c9a63c7882cb345c537bb20d",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407"
-        },
-        "date": 1678056673278,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 253,
-            "range": "± 17",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 33885,
-            "range": "± 2277",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 34078,
-            "range": "± 2074",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 53706,
-            "range": "± 3651",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -10887,66 +8007,6 @@ window.BENCHMARK_DATA = {
             "username": "ktrz"
           },
           "distinct": true,
-          "id": "7d3c4707bd1eb03ba1d0b413b58090cb78320b06",
-          "message": "Update changelog for v1.16.0",
-          "timestamp": "2023-03-05T23:50:11+01:00",
-          "tree_id": "76403ad7f658496f49eb3a07b69f2f4fdf3945e0",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7d3c4707bd1eb03ba1d0b413b58090cb78320b06"
-        },
-        "date": 1678057036387,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 179,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24436,
-            "range": "± 319",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24424,
-            "range": "± 30",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 39589,
-            "range": "± 43",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
           "id": "220a02320fbf9ed2a4e84228530fa2024c285bcf",
           "message": "fix: add summary-always parameter to action.yml",
           "timestamp": "2023-03-06T15:17:19+01:00",
@@ -10966,66 +8026,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26968,
             "range": "± 253",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "220a02320fbf9ed2a4e84228530fa2024c285bcf",
-          "message": "fix: add summary-always parameter to action.yml",
-          "timestamp": "2023-03-06T15:17:19+01:00",
-          "tree_id": "981547bda54b3d64d578036164b472e39cbfe49e",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/220a02320fbf9ed2a4e84228530fa2024c285bcf"
-        },
-        "date": 1678112454196,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26977,
-            "range": "± 33",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26970,
-            "range": "± 51",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43653,
-            "range": "± 82",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -11105,66 +8105,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "estebanborai@gmail.com",
-            "name": "Esteban Borai",
-            "username": "EstebanBorai"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "18d5a3a02a05d291c28beca4134d6d02751e6ced",
-          "message": "fix: use `commit.id` over `commit` object (#155)",
-          "timestamp": "2023-03-08T21:35:50+01:00",
-          "tree_id": "435bc60b10ab3b66ce15a2acc6799266a116e4d2",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18d5a3a02a05d291c28beca4134d6d02751e6ced"
-        },
-        "date": 1678307987154,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 241,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 32392,
-            "range": "± 509",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 31744,
-            "range": "± 791",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 50871,
-            "range": "± 1216",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -11194,66 +8134,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26979,
             "range": "± 217",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "060e11092cdc7b319ecc1abdc3d96debaeeec72b",
-          "message": "update CHANGELOG.md for v1.16.1 & v1.16.2",
-          "timestamp": "2023-03-08T21:41:46+01:00",
-          "tree_id": "1bcb2d8f8cee53b23063905e8c8c495de6866c2f",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/060e11092cdc7b319ecc1abdc3d96debaeeec72b"
-        },
-        "date": 1678308316150,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 235,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 29945,
-            "range": "± 169",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 29944,
-            "range": "± 18",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 48454,
-            "range": "± 129",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -11405,66 +8285,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "89384881+matyasberry@users.noreply.github.com",
-            "name": "Matyas B",
-            "username": "matyasberry"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "5112d4a6bcc0377392283d37b648acc987555249",
-          "message": "support for JMH parameters (as separate charts) (#161)",
-          "timestamp": "2023-03-26T15:06:49+02:00",
-          "tree_id": "adee13455550e5b530fa67dbb8476d1fbcba0b7c",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5112d4a6bcc0377392283d37b648acc987555249"
-        },
-        "date": 1679836167810,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 221,
-            "range": "± 10",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 29224,
-            "range": "± 2352",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 29324,
-            "range": "± 1897",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 47950,
-            "range": "± 1869",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "robertyoungnz@gmail.com",
             "name": "Robert Young",
             "username": "robobario"
@@ -11494,66 +8314,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 26998,
             "range": "± 62",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "robertyoungnz@gmail.com",
-            "name": "Robert Young",
-            "username": "robobario"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "87c65e849517e0afeffc99eb5c17e225dd88169a",
-          "message": "feat: enable user to specify the ref being tested (#163)\n\nThe ref will be used preferentially (if specified) when looking up the details\r\nof the commit to record the results against.\r\n\r\nWhy:\r\nWhen used to record results from a performance test run triggered by a\r\ncomment on a PR, the results were recorded against the head commit of main\r\non our branch. Not the tested commit. This change allows users to specify\r\nthe tested ref.\r\n\r\nExample usage:\r\n```\r\nwith:\r\n  ref: refs/pull/${{ github.event.issue.number }}/head\r\n```",
-          "timestamp": "2023-04-26T07:56:46+02:00",
-          "tree_id": "c85336bb4842208afd85660757c345d8ca4ab889",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/87c65e849517e0afeffc99eb5c17e225dd88169a"
-        },
-        "date": 1682488773496,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26834,
-            "range": "± 48",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26832,
-            "range": "± 44",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43483,
-            "range": "± 1016",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -11721,66 +8481,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
         },
-        "date": 1682490083770,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26851,
-            "range": "± 54",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26826,
-            "range": "± 47",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43410,
-            "range": "± 57",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "andrewcook1990@gmail.com",
-            "name": "Vaeryn",
-            "username": "vaeryn-uk"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
-          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
-          "timestamp": "2023-04-26T08:19:03+02:00",
-          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
-        },
         "date": 1682490702126,
         "tool": "cargo",
         "benches": [
@@ -11847,66 +8547,6 @@ window.BENCHMARK_DATA = {
             "username": "ktrz"
           },
           "distinct": true,
-          "id": "990219421ea3837999d49fc6461a3ad83a47502d",
-          "message": "update CHANGELOG.md for v1.17.0",
-          "timestamp": "2023-04-26T08:29:27+02:00",
-          "tree_id": "fa17bfc02e978124f73b6ac1bc51ae752e75beed",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/990219421ea3837999d49fc6461a3ad83a47502d"
-        },
-        "date": 1682490950169,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 239,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 30386,
-            "range": "± 27",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 30376,
-            "range": "± 24",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 49145,
-            "range": "± 35",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
           "id": "dab8151f6fdb1e54129d864377379c8043779dc8",
           "message": "update README.md for v1.17.0",
           "timestamp": "2023-04-26T08:39:10+02:00",
@@ -11926,66 +8566,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30038,
             "range": "± 3049",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "dab8151f6fdb1e54129d864377379c8043779dc8",
-          "message": "update README.md for v1.17.0",
-          "timestamp": "2023-04-26T08:39:10+02:00",
-          "tree_id": "caa79e1e47b9cf411d46ed66e8e0cb673706e0df",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/dab8151f6fdb1e54129d864377379c8043779dc8"
-        },
-        "date": 1682491359875,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 234,
-            "range": "± 4",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 31283,
-            "range": "± 723",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 31084,
-            "range": "± 891",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 51802,
-            "range": "± 1877",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -12065,66 +8645,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "zumix.cpp@gmail.com",
-            "name": "srz_zumix",
-            "username": "srz-zumix"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
-          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
-          "timestamp": "2023-05-05T17:09:10-07:00",
-          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
-        },
-        "date": 1683331952863,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 27000,
-            "range": "± 33",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26971,
-            "range": "± 35",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43714,
-            "range": "± 521",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "masafumi.o1988@gmail.com",
             "name": "OKURA Masafumi",
             "username": "okuramasafumi"
@@ -12154,66 +8674,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 30994,
             "range": "± 6521",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "masafumi.o1988@gmail.com",
-            "name": "OKURA Masafumi",
-            "username": "okuramasafumi"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "6b33125fdd5070057463689ccbff4728d45fdf03",
-          "message": "Remove unreachable code from extract.ts (#153)",
-          "timestamp": "2023-05-10T11:55:57+02:00",
-          "tree_id": "9d16e84d09162336e18346919cc8c1f4f4529e9a",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6b33125fdd5070057463689ccbff4728d45fdf03"
-        },
-        "date": 1683712696286,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 283,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 35757,
-            "range": "± 31",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 35742,
-            "range": "± 19",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 57849,
-            "range": "± 40",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -12257,66 +8717,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "zumix.cpp@gmail.com",
-            "name": "srz_zumix",
-            "username": "srz-zumix"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221",
-          "message": "Fixed getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)\n\n* update actions/github and use getOctkit\r\n\r\n* Fixed not to change behavior\r\n\r\nfix: https://github.com/benchmark-action/github-action-benchmark/pull/171#discussion_r1194677871",
-          "timestamp": "2023-05-18T00:58:57-07:00",
-          "tree_id": "134d744add0eb00be96283ffaea1b8a98a0bfc26",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221"
-        },
-        "date": 1684396912458,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 201,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26873,
-            "range": "± 45",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26823,
-            "range": "± 42",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43445,
-            "range": "± 72",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "i@ningziwen.com",
             "name": "Ziwen Ning",
             "username": "ningziwen"
@@ -12353,66 +8753,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "i@ningziwen.com",
-            "name": "Ziwen Ning",
-            "username": "ningziwen"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0c70f157d50ac07c1a3ecf43d9044e4e16cd1276",
-          "message": "feat: extract multiple metrics from golang benchmarks (#177)\n\n* use a more recent version of go\r\n* allows go benchmarks to work with extra metrics\r\n\r\nCo-authored-by: Joe Kimmel <jkimmel@vmware.com>",
-          "timestamp": "2023-07-07T12:49:05+02:00",
-          "tree_id": "da453c4c605083a2ae099bd9c81e02c610e1b090",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0c70f157d50ac07c1a3ecf43d9044e4e16cd1276"
-        },
-        "date": 1688727138148,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 270,
-            "range": "± 14",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 35485,
-            "range": "± 2702",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 35752,
-            "range": "± 1313",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 58277,
-            "range": "± 4774",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "k.trzesniewski@gmail.com",
             "name": "Chris Trzesniewski",
             "username": "ktrz"
@@ -12442,66 +8782,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 35760,
             "range": "± 139",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "e85c505602a87fc804839010d78a930ece11a3ce",
-          "message": "update CHANGELOG.md for v1.18.0",
-          "timestamp": "2023-07-07T13:00:52+02:00",
-          "tree_id": "7e379be4801098b5b3bbe950f03bc2de43e5704c",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e85c505602a87fc804839010d78a930ece11a3ce"
-        },
-        "date": 1688727818380,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 211,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 26879,
-            "range": "± 33",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 26837,
-            "range": "± 40",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 43416,
-            "range": "± 37",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -12627,66 +8907,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "ffcca1399b1fa1117c091fe6b8c18670942859d9",
-          "message": "Bump tough-cookie from 4.0.0 to 4.1.3 (#178)\n\nBumps [tough-cookie](https://github.com/salesforce/tough-cookie) from 4.0.0 to 4.1.3.\r\n- [Release notes](https://github.com/salesforce/tough-cookie/releases)\r\n- [Changelog](https://github.com/salesforce/tough-cookie/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/salesforce/tough-cookie/compare/v4.0.0...v4.1.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: tough-cookie\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2023-07-15T12:09:20-07:00",
-          "tree_id": "0899639e26893d07126e9ff3eb02751382bce006",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ffcca1399b1fa1117c091fe6b8c18670942859d9"
-        },
-        "date": 1689448314785,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 24074,
-            "range": "± 51",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 24066,
-            "range": "± 46",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 38996,
-            "range": "± 82",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 7,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
           "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2023-07-18T19:09:29-07:00",
@@ -12706,66 +8926,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 27394,
             "range": "± 3242",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
-          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2023-07-18T19:09:29-07:00",
-          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
-        },
-        "date": 1689732802008,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 233,
-            "range": "± 24",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 30259,
-            "range": "± 2143",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 30468,
-            "range": "± 2757",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 8,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 48231,
-            "range": "± 2780",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 8,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -12809,66 +8969,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "41779041+alvicsam@users.noreply.github.com",
-            "name": "Alexander Samusev",
-            "username": "alvicsam"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
-          "message": "Add description for skip-fetch-gh-pages (#180)",
-          "timestamp": "2023-09-08T16:58:41-07:00",
-          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
-        },
-        "date": 1694217694962,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 210,
-            "range": "± 2",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 27529,
-            "range": "± 32",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 27518,
-            "range": "± 212",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 6,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 44441,
-            "range": "± 46",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "58044437+ChinYikMing@users.noreply.github.com",
             "name": "ChinYikMing",
             "username": "ChinYikMing"
@@ -12905,66 +9005,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "58044437+ChinYikMing@users.noreply.github.com",
-            "name": "ChinYikMing",
-            "username": "ChinYikMing"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
-          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
-          "timestamp": "2023-09-08T17:06:49-07:00",
-          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
-        },
-        "date": 1694218226842,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 215,
-            "range": "± 17",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28479,
-            "range": "± 3707",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 29153,
-            "range": "± 2936",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 49438,
-            "range": "± 3686",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 5,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "ningziwe@amazon.com",
             "name": "Ziwen Ning",
             "username": "ningziwen"
@@ -12994,66 +9034,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19981,
             "range": "± 517",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "ningziwe@amazon.com",
-            "name": "Ziwen Ning",
-            "username": "ningziwen"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
-          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
-          "timestamp": "2024-01-24T15:28:42+01:00",
-          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
-        },
-        "date": 1706106688694,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 27",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28426,
-            "range": "± 3086",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 22191,
-            "range": "± 131",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 35908,
-            "range": "± 62",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -13221,66 +9201,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
         },
-        "date": 1706110530665,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 176,
-            "range": "± 23",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 22175,
-            "range": "± 158",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 22183,
-            "range": "± 253",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 35909,
-            "range": "± 108",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "maria.inesparnisari@okta.com",
-            "name": "Maria Ines Parnisari",
-            "username": "miparnisari"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "036be2a998715b878d1dae2f88bd8ce86ca79ab7",
-          "message": "update to node 20 (#208)",
-          "timestamp": "2024-01-24T16:32:24+01:00",
-          "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
-        },
         "date": 1706110644832,
         "tool": "cargo",
         "benches": [
@@ -13347,66 +9267,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "83426c04e20ff3faef1257b544e08620a88c4551",
-          "message": "chore: update actions/* (#212)\n\n* update actions/checkout to v4\r\n* update actions/cache to v4\r\n* update actions/setup-node to v4\r\n* remove unnecessary usages of action/cache for node\r\n* update actions/setup-python to v5\r\n* update actions/setup-dotnet to v3\r\n* update actions/setup-java to v4",
-          "timestamp": "2024-01-24T16:49:01+01:00",
-          "tree_id": "441b45a8ec7c4c508ba15f086a4a2360eec3cb47",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/83426c04e20ff3faef1257b544e08620a88c4551"
-        },
-        "date": 1706111487021,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 181,
-            "range": "± 32",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 22184,
-            "range": "± 724",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 22196,
-            "range": "± 268",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 35908,
-            "range": "± 534",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "029e9b87f033929420da337eca96176c8d18969e",
           "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
           "timestamp": "2024-01-24T23:33:33-08:00",
@@ -13426,66 +9286,6 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19975,
             "range": "± 98",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "029e9b87f033929420da337eca96176c8d18969e",
-          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
-          "timestamp": "2024-01-24T23:33:33-08:00",
-          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
-        },
-        "date": 1706168133064,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 219,
-            "range": "± 25",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 22181,
-            "range": "± 177",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 22192,
-            "range": "± 454",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 3,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 35906,
-            "range": "± 257",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -13617,66 +9417,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "04c5d063ab75038e2d6aa23beb40dd1011515f32",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/65ff1d7044a47da1556d17eb0a7b4784969becbf"
         },
-        "date": 1706192623617,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "BenchFib10",
-            "value": 226,
-            "range": "± 18",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "BenchFib20",
-            "value": 28442,
-            "range": "± 89",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/20",
-            "value": 22199,
-            "range": "± 154",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/20",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Recursive/21",
-            "value": 35906,
-            "range": "± 72",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "Fibonacci/Iterative/21",
-            "value": 4,
-            "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "65ff1d7044a47da1556d17eb0a7b4784969becbf",
-          "message": "update CHANGELOG.md for v1.19.0",
-          "timestamp": "2024-01-25T15:21:39+01:00",
-          "tree_id": "04c5d063ab75038e2d6aa23beb40dd1011515f32",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/65ff1d7044a47da1556d17eb0a7b4784969becbf"
-        },
         "date": 1706192866580,
         "tool": "cargo",
         "benches": [
@@ -13726,6 +9466,4592 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 19963,
             "range": "± 11110",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
+          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
+          "timestamp": "2024-01-25T16:57:43+01:00",
+          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
+        },
+        "date": 1706198358607,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 8",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 19979,
+            "range": "± 982",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "6fc0096d895f7376fa701d73d34c3d3e71d113e7",
+          "message": "update CHANGELOG.md for v1.19.1",
+          "timestamp": "2024-01-25T17:38:50+01:00",
+          "tree_id": "52ffa6ea2d31240f6f2cce21625a8cf8c15b9c27",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6fc0096d895f7376fa701d73d34c3d3e71d113e7"
+        },
+        "date": 1706200760671,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 20015,
+            "range": "± 1228",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58623da745369a45ff17969861cc094e98d1f83",
+          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
+          "timestamp": "2024-01-26T16:59:21+01:00",
+          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
+        },
+        "date": 1706284810527,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 4",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 19970,
+            "range": "± 1147",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "459adab4c5b707e1fc01f761a7b337144a9bed56",
+          "message": "update CHANGELOG.md for v1.19.2",
+          "timestamp": "2024-01-26T17:06:03+01:00",
+          "tree_id": "61e400e4bb7f6b3ed72fbb7220774f8a044c971c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/459adab4c5b707e1fc01f761a7b337144a9bed56"
+        },
+        "date": 1706285242583,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 19979,
+            "range": "± 11684",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "6911be98bdb946a1516d81b7e9fedb5b932b806b",
+          "message": "fix badges urls",
+          "timestamp": "2024-01-27T20:02:56+01:00",
+          "tree_id": "d5d5a7d72d2004bcc898740b3a4292f0b77917ae",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6911be98bdb946a1516d81b7e9fedb5b932b806b"
+        },
+        "date": 1706382214012,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 19971,
+            "range": "± 116",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "785a741b25e511f0051633d64400bf7e9da9a58d",
+          "message": "chore: update jest to 29.7.0 (#219)",
+          "timestamp": "2024-01-29T16:34:12+01:00",
+          "tree_id": "4310ccfcfbedefa0718b6bc73caeb5b38f5c6f37",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/785a741b25e511f0051633d64400bf7e9da9a58d"
+        },
+        "date": 1706542509500,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 159,
+            "range": "± 9",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 19962,
+            "range": "± 116",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
+          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
+          "timestamp": "2024-01-31T15:01:02+01:00",
+          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
+        },
+        "date": 1706709685495,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26308,
+            "range": "± 355",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
+          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
+          "timestamp": "2024-02-02T09:41:53+01:00",
+          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
+        },
+        "date": 1706863337679,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 158,
+            "range": "± 61",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 20001,
+            "range": "± 1758",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e7180f51a3e2d715fd8990ea6ad8ca50034100d6",
+          "message": "release v1.19.3",
+          "timestamp": "2024-02-02T09:48:37+01:00",
+          "tree_id": "e42d9865719ca2154f82bcec5c0dacbe5723073d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e7180f51a3e2d715fd8990ea6ad8ca50034100d6"
+        },
+        "date": 1706863742922,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 159,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 26244,
+            "range": "± 677",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+    ],
+    "Criterion.rs Benchmark": [
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "a1914d7dcbe14d006e4b5f12c7ff303a82a411f1",
+          "message": "update changelog for v1.8.1",
+          "timestamp": "2020-06-10T22:41:53+09:00",
+          "tree_id": "ef826a918d186917372f542a1216379da3f53d13",
+          "url": "https://github.com/rhysd/github-action-benchmark/commit/a1914d7dcbe14d006e4b5f12c7ff303a82a411f1"
+        },
+        "date": 1591796790437,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 241,
+            "range": "± 10",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 32168,
+            "range": "± 1813",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 31611,
+            "range": "± 1727",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 51099,
+            "range": "± 2802",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "212bdda1ace705087217d259c353e145c520701e",
+          "message": "personal access token seems no longer necessary\n\nhttps://github.community/t/github-action-not-triggering-gh-pages-upon-push/16096/29",
+          "timestamp": "2021-10-02T12:39:37+09:00",
+          "tree_id": "0433fdf672992005a340ecfe0fea07301a25839e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/212bdda1ace705087217d259c353e145c520701e"
+        },
+        "date": 1633146251625,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 200,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26957,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26972,
+            "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43670,
+            "range": "± 56",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "6ed7bce2e0810467febf7b42f94671f0b0e6ebba",
+          "message": "fix criterion example workflow",
+          "timestamp": "2021-10-02T12:56:30+09:00",
+          "tree_id": "51bf74f1304dece2011c87e2b1b8ec8f3a5cc63e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6ed7bce2e0810467febf7b42f94671f0b0e6ebba"
+        },
+        "date": 1633147202712,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 200,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26973,
+            "range": "± 26",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26963,
+            "range": "± 23",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43705,
+            "range": "± 76",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "b66943d1565db5d7fc7f206625fa19c2e9cee0cd",
+          "message": "fix pytest example workflow",
+          "timestamp": "2021-10-02T13:01:21+09:00",
+          "tree_id": "907b77cf2252b6bbde997aedee7cc8dda37e0f93",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b66943d1565db5d7fc7f206625fa19c2e9cee0cd"
+        },
+        "date": 1633147781434,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 200,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26965,
+            "range": "± 26",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26976,
+            "range": "± 136",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43693,
+            "range": "± 298",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rhysd@users.noreply.github.com",
+            "name": "Linda_pp",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "92a87597923a9ef11cdb364b7a4603190b0ae889",
+          "message": "Merge pull request #80 from HerringtonDarkholme/patch-1\n\nfix: allow more test name",
+          "timestamp": "2021-10-02T16:22:51+09:00",
+          "tree_id": "dd1785058dc01cee20ca13bfeb3f3bb6c9827eac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/92a87597923a9ef11cdb364b7a4603190b0ae889"
+        },
+        "date": 1633159583434,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 27534,
+            "range": "± 1027",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 27120,
+            "range": "± 102",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43911,
+            "range": "± 85",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "c2487746742cc00e4978d8415008f54e79a81fb5",
+          "message": "remove husky and update old lockfile",
+          "timestamp": "2021-10-02T16:42:01+09:00",
+          "tree_id": "0553a586e160ecc556baf8c1f822a5c9618b4c3e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c2487746742cc00e4978d8415008f54e79a81fb5"
+        },
+        "date": 1633160755253,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 244,
+            "range": "± 17",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 31401,
+            "range": "± 1454",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 33071,
+            "range": "± 1718",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 50471,
+            "range": "± 3269",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "committer": {
+            "email": "lin90162@yahoo.co.jp",
+            "name": "rhysd",
+            "username": "rhysd"
+          },
+          "distinct": true,
+          "id": "cf314e1991c86f79890dfb5947c2cced39e956f0",
+          "message": "use codecov-action v2",
+          "timestamp": "2021-10-02T21:44:27+09:00",
+          "tree_id": "cb7344445981bd54c30a35eed7990e3dbcfab42a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/cf314e1991c86f79890dfb5947c2cced39e956f0"
+        },
+        "date": 1633178870809,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 200,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26964,
+            "range": "± 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26981,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43682,
+            "range": "± 358",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14b2070940dcc2738ed750544834dd425afabeed",
+          "message": "Merge pull request #74 from ktrz/fix/manual-and-scheduled-runs\n\nFix manual and scheduled runs",
+          "timestamp": "2021-10-12T21:30:21+02:00",
+          "tree_id": "6a39f37436147d99fb7eb0632fd9065fc5492c13",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/14b2070940dcc2738ed750544834dd425afabeed"
+        },
+        "date": 1634067218129,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 27005,
+            "range": "± 32",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 23791,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43731,
+            "range": "± 69",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "daca3ae613f1675d98fe0011aad5f702bf938325",
+          "message": "update changelog for v1.9.0",
+          "timestamp": "2021-10-12T21:52:30+02:00",
+          "tree_id": "773979b9c0d4e5da2897684b17ca74e5f25f726e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/daca3ae613f1675d98fe0011aad5f702bf938325"
+        },
+        "date": 1634068565431,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 187,
+            "range": "± 9",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 25052,
+            "range": "± 1664",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 25262,
+            "range": "± 2459",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 40643,
+            "range": "± 2505",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9809903e6a217958565095db6e26671f9112dd5f",
+          "message": "pin python version to 3.9 (#82)",
+          "timestamp": "2021-10-28T22:25:18+02:00",
+          "tree_id": "c6f9795c41cd2b462bc901c8b0fa3089867509b6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9809903e6a217958565095db6e26671f9112dd5f"
+        },
+        "date": 1635452950337,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 265,
+            "range": "± 11",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 34805,
+            "range": "± 1941",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 35369,
+            "range": "± 4640",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 57324,
+            "range": "± 3326",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "enruizno@uwaterloo.ca",
+            "name": "(Eliseo) Nathaniel Ruiz Nowell",
+            "username": "NathanielRN"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736",
+          "message": "Allow user defined custom benchmarks (#81)\n\nAllow user defined custom benchmarks (\"customBiggerIsBetter\" and \"customSmallerIsBetter\")\r\n\r\nCo-authored-by: Troy Rosenberg <tmr08c@gmail.com>\r\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2021-10-28T22:38:21+02:00",
+          "tree_id": "494492f347dcc6947c7bfe1e71a0cd16aea5be2a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c5dfc9dd7f1dda2d72e9cd2d84a9e54b2c72a736"
+        },
+        "date": 1635453690939,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24065,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24080,
+            "range": "± 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38999,
+            "range": "± 179",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "966110397e0e7fcf49dc9dbf8a35fe9ff95a15cf",
+          "message": "update changelog for v1.10.0",
+          "timestamp": "2021-10-28T22:41:48+02:00",
+          "tree_id": "e139d04418cacef86dd544115b35d3a5159be76e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/966110397e0e7fcf49dc9dbf8a35fe9ff95a15cf"
+        },
+        "date": 1635454107583,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 265,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 34624,
+            "range": "± 1608",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 35551,
+            "range": "± 2362",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 56529,
+            "range": "± 2302",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "582e655b92b0adfa991e7943884a247e07f6e4e1",
+          "message": "Bump py from 1.8.0 to 1.10.0 in /examples/pytest (#62)\n\nBumps [py](https://github.com/pytest-dev/py) from 1.8.0 to 1.10.0.\r\n- [Release notes](https://github.com/pytest-dev/py/releases)\r\n- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/py/compare/1.8.0...1.10.0)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T22:55:32+02:00",
+          "tree_id": "7bdc65eab0b166d5d11f0ac2007bdb72e48f50c6",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/582e655b92b0adfa991e7943884a247e07f6e4e1"
+        },
+        "date": 1635454750412,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 228,
+            "range": "± 14",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30668,
+            "range": "± 2406",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 31469,
+            "range": "± 6248",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 49763,
+            "range": "± 4161",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e72e01c2086ca7a908331d538bbd8932e577640b",
+          "message": "Bump @actions/core from 1.2.3 to 1.2.6 (#47)\n\nBumps [@actions/core](https://github.com/actions/toolkit/tree/HEAD/packages/core) from 1.2.3 to 1.2.6.\r\n- [Release notes](https://github.com/actions/toolkit/releases)\r\n- [Changelog](https://github.com/actions/toolkit/blob/main/packages/core/RELEASES.md)\r\n- [Commits](https://github.com/actions/toolkit/commits/HEAD/packages/core)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2021-10-28T23:05:04+02:00",
+          "tree_id": "d316b91086d0eddb3404de196bbb127c52a947e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e72e01c2086ca7a908331d538bbd8932e577640b"
+        },
+        "date": 1635455343738,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 251,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 33160,
+            "range": "± 875",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 33042,
+            "range": "± 829",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 53807,
+            "range": "± 2062",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.mior@gmail.com",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80bf8111c6663bbac4b47a87fd9dc9609eb85e80",
+          "message": "Add new custom types to README (#83)",
+          "timestamp": "2021-11-03T11:23:58+01:00",
+          "tree_id": "59b44f1037b1238a5fb25c865644bd3085e203c9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/80bf8111c6663bbac4b47a87fd9dc9609eb85e80"
+        },
+        "date": 1635935236560,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24322,
+            "range": "± 41",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24295,
+            "range": "± 32",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39421,
+            "range": "± 58",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "kaancfidan@gmail.com",
+            "name": "Kaan C. Fidan",
+            "username": "kaancfidan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d6c8c4e363c269f9337354a93e6a229f847882e",
+          "message": "Fix/go tabled benchmarks (#32)\n\n* Tabled benchmark support added.\r\n* Test cases added for tabled benchmarks.",
+          "timestamp": "2021-11-20T16:36:55+01:00",
+          "tree_id": "dec9f89bf394b4d3979dce4bb32b5f008d2b9318",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d6c8c4e363c269f9337354a93e6a229f847882e"
+        },
+        "date": 1637422817770,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24090,
+            "range": "± 35",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24112,
+            "range": "± 44",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38985,
+            "range": "± 83",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3f97db687ed47d54879c9183b4c297f6de783d26",
+          "message": "Chore/add jest (#88)\n\nupdate dependencies and remove unnecessary ones\r\nsetup jest and ESLint\r\nlimit CI jobs\r\nadjust ci for new ts output directory\r\ncc @ktrz on performance alert",
+          "timestamp": "2021-12-03T10:23:23+01:00",
+          "tree_id": "dcc822b559afa8601ff86fbd42cf45ce8ea3e0d7",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3f97db687ed47d54879c9183b4c297f6de783d26"
+        },
+        "date": 1638523615051,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24393,
+            "range": "± 46",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24325,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39388,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7",
+          "message": "Support BenchmarkTools.jl in Julia (#89)",
+          "timestamp": "2021-12-04T14:04:00+01:00",
+          "tree_id": "f7e9efe8a202e0b5fcd366abe4c9995df5f8da7e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c0e5b7a11f3b188f0cf2287d8bb60c029c530d7"
+        },
+        "date": 1638623259328,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24046,
+            "range": "± 56",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24055,
+            "range": "± 131",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38967,
+            "range": "± 84",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "1ee468601709b6c9b714ada96aba43a39e3da985",
+          "message": "fix release script",
+          "timestamp": "2021-12-04T15:10:44+01:00",
+          "tree_id": "a41cfce3de5fe9f043afed8c756a7cdef3e58ce5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1ee468601709b6c9b714ada96aba43a39e3da985"
+        },
+        "date": 1638627406344,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24089,
+            "range": "± 39",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24112,
+            "range": "± 60",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38926,
+            "range": "± 87",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "8e6628b190e9c7aae45b5ab7ea8645c5ca617697",
+          "message": "update changelog for v1.11.1",
+          "timestamp": "2021-12-04T15:19:14+01:00",
+          "tree_id": "d2900f29208bd85b6bee9d300776f747c4a602ae",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8e6628b190e9c7aae45b5ab7ea8645c5ca617697"
+        },
+        "date": 1638627790720,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24060,
+            "range": "± 687",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24086,
+            "range": "± 180",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38973,
+            "range": "± 79",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "find_my_way@foxmail.com",
+            "name": "Jun Tian",
+            "username": "findmyway"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ab49d1af3e2e1be70f7698804226e399cf9e8efb",
+          "message": "Fix broken links in README (#90)",
+          "timestamp": "2021-12-06T09:33:21+01:00",
+          "tree_id": "023814a7c0ec634c8d237db316eacb29e5758ece",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ab49d1af3e2e1be70f7698804226e399cf9e8efb"
+        },
+        "date": 1638779821510,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 200,
+            "range": "± 9",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28319,
+            "range": "± 1877",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26553,
+            "range": "± 1873",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46659,
+            "range": "± 2805",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "razican@protonmail.ch",
+            "name": "Iban Eguia",
+            "username": "Razican"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c",
+          "message": "Added option to use Rust benchmark names with spaces (#94)\n\n* Added option to use Rust benchmark names with spaces, useful for Criterion\r\n* Added tests",
+          "timestamp": "2021-12-28T13:21:23+01:00",
+          "tree_id": "aadd2cd41a9668e3179874130934435cb49dfce4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/558af0c6fa9d6d95b1d1ee6d1d0e7d3978a6943c"
+        },
+        "date": 1640694299683,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 232,
+            "range": "± 8",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 31322,
+            "range": "± 1262",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 30701,
+            "range": "± 1829",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 50390,
+            "range": "± 2185",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "2eac1b86380d9dda933d62e0b984946cec84476b",
+          "message": "update changelog for v1.11.2",
+          "timestamp": "2021-12-28T13:32:22+01:00",
+          "tree_id": "59510913e08a2680ddf2bd7086521bf7e62aceb0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2eac1b86380d9dda933d62e0b984946cec84476b"
+        },
+        "date": 1640694942881,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 227,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28895,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28894,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46738,
+            "range": "± 37",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fda486edb0b1cff4a25e89c426212333031300d6",
+          "message": "fix trailing whitespace characters in cargo benchmarks (#97)",
+          "timestamp": "2021-12-31T13:23:49+01:00",
+          "tree_id": "23c1558a77958307e6c55f112b0dd5dc31d07869",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fda486edb0b1cff4a25e89c426212333031300d6"
+        },
+        "date": 1640953632578,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 237,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30070,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 30069,
+            "range": "± 17",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 48660,
+            "range": "± 48",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e1d6443a1e89280d0ade9bf2d81050f17c50189b",
+          "message": "Update changelog for v1.11.3",
+          "timestamp": "2021-12-31T13:32:06+01:00",
+          "tree_id": "fda6830d09c92e1b300d46f52312fb9a128ab493",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e1d6443a1e89280d0ade9bf2d81050f17c50189b"
+        },
+        "date": 1640954128791,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26976,
+            "range": "± 28",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26959,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43665,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "42@dmathieu.com",
+            "name": "Damien Mathieu",
+            "username": "dmathieu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e670e22dabf690b4a513048f5926ac3335b2a34",
+          "message": "Fetch gh-pages branch using github token (#105)\n\n\r\nCo-authored-by: Leonhard Holz <leonhard.holz@googlemail.com>",
+          "timestamp": "2022-01-27T11:39:39+01:00",
+          "tree_id": "1beb09c9c998826071fba1c84438c14b41071055",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e670e22dabf690b4a513048f5926ac3335b2a34"
+        },
+        "date": 1643280211891,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 206,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28541,
+            "range": "± 1660",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 29296,
+            "range": "± 2403",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 41120,
+            "range": "± 2285",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5408d6aa787d11a2bd0c753b77979517a9b819e9",
+          "message": "Bump action runner to node v16 (#106)\n\nbump runner node version to 16\r\nbump markdown-it to v12.3.2",
+          "timestamp": "2022-01-28T12:41:33+01:00",
+          "tree_id": "ff86ba0d12b7ae0051f9518252b4a9d56bb0434b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5408d6aa787d11a2bd0c753b77979517a9b819e9"
+        },
+        "date": 1643370299887,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24081,
+            "range": "± 212",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24081,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38945,
+            "range": "± 81",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "aa331d94f2909cbf04ed0aadb2b5717e86709db0",
+          "message": "Update changelog for v1.12.0",
+          "timestamp": "2022-01-28T12:51:42+01:00",
+          "tree_id": "1b546558f830852682fb737552cb5ab53258f8ae",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/aa331d94f2909cbf04ed0aadb2b5717e86709db0"
+        },
+        "date": 1643370909523,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 155,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 21250,
+            "range": "± 50",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 21252,
+            "range": "± 44",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 34391,
+            "range": "± 82",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mjochum@users.noreply.github.com",
+            "name": "mjochum",
+            "username": "mjochum"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "24ebbdea0df82867f5da1bc380babd8714721fa8",
+          "message": "Updated urls to support GHES (#104)",
+          "timestamp": "2022-02-17T23:05:45+01:00",
+          "tree_id": "0da0a1ede9dbe82bcd50f6fb25c68825f3ed65b4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/24ebbdea0df82867f5da1bc380babd8714721fa8"
+        },
+        "date": 1645135860355,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 158,
+            "range": "± 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26251,
+            "range": "± 2180",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26235,
+            "range": "± 1052",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 42458,
+            "range": "± 3478",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6819362+cabauman@users.noreply.github.com",
+            "name": "Colt",
+            "username": "cabauman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3c12e55ac9d320afe6af3d1d4d1470c300250db",
+          "message": "Add support for BenchmarkDotNet (#109)\n\n* add support for benchmark.net JSON result files\r\n* Add supported tools to README and action.yml\r\n\r\nCo-authored-by: Chet Husk <chusk3@gmail.com>",
+          "timestamp": "2022-02-17T23:20:17+01:00",
+          "tree_id": "e9d9a33038dc3d47400a63b257cb4bb5dd73ce50",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b3c12e55ac9d320afe6af3d1d4d1470c300250db"
+        },
+        "date": 1645136638456,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 237,
+            "range": "± 2",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30072,
+            "range": "± 17",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 30070,
+            "range": "± 123",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 48657,
+            "range": "± 29",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc37892a11e1e7c3ec6e75939e84f6fe157679fa",
+          "message": "Bump node-fetch from 2.6.6 to 2.6.7 (#107)",
+          "timestamp": "2022-02-17T23:27:08+01:00",
+          "tree_id": "b1c6da917d264a940b3677254a7c5641b4047087",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/bc37892a11e1e7c3ec6e75939e84f6fe157679fa"
+        },
+        "date": 1645137077501,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 239,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 29420,
+            "range": "± 1484",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 32339,
+            "range": "± 3860",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 49780,
+            "range": "± 2420",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "b116644fde10e8f512be89dd50ddd8ea38828582",
+          "message": "Update changelog for v1.13.0",
+          "timestamp": "2022-02-17T23:37:42+01:00",
+          "tree_id": "b3464779860a887a90f66bf0d93af1030efcfafc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b116644fde10e8f512be89dd50ddd8ea38828582"
+        },
+        "date": 1645137701854,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 158,
+            "range": "± 6",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26235,
+            "range": "± 3093",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 19973,
+            "range": "± 332",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 32310,
+            "range": "± 395",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12c672174b09de673b5eda4e88afa9669b38a5c6",
+          "message": "Fix a couple errant links for Benchmark.NET (#110)",
+          "timestamp": "2022-02-18T00:05:13+01:00",
+          "tree_id": "526893def1ae76c5a671e48b167495affb2caed0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/12c672174b09de673b5eda4e88afa9669b38a5c6"
+        },
+        "date": 1645139340487,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26964,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26970,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43662,
+            "range": "± 64",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "baronfel@users.noreply.github.com",
+            "name": "Chet Husk",
+            "username": "baronfel"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e",
+          "message": "Update URL to main website from Benchmark.NET README (#111)",
+          "timestamp": "2022-02-18T00:06:38+01:00",
+          "tree_id": "1ddbe434e88cf4cfc7372f8441df294afa0054dd",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/4cd86fc1c5d611f9abde220a9e7d4b3fa64aa87e"
+        },
+        "date": 1645139459200,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26992,
+            "range": "± 39",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26990,
+            "range": "± 36",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43704,
+            "range": "± 74",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "AllanJeremy@users.noreply.github.com",
+            "name": "Allan N Jeremy",
+            "username": "AllanJeremy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6baee197e0c4ad2726f683b4456429709f59675",
+          "message": "Added benchmark luau support (#123)\n\n* added benchmark luau support\r\n* added unit tests for luau benchmarks output\r\n* updated README.md with the new tool",
+          "timestamp": "2022-05-11T15:36:44+02:00",
+          "tree_id": "773500539056e07c361c52eee3ea55e7e662953a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6baee197e0c4ad2726f683b4456429709f59675"
+        },
+        "date": 1652276442929,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24278,
+            "range": "± 98",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24306,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39422,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "318404ebff79bbdd2746ee919ad02e0f02c881bc",
+          "message": "Bump minimist from 1.2.5 to 1.2.6 (#114)\n\nBumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.\r\n- [Release notes](https://github.com/substack/minimist/releases)\r\n- [Commits](https://github.com/substack/minimist/compare/1.2.5...1.2.6)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: minimist\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2022-05-11T15:41:12+02:00",
+          "tree_id": "4b85ce8bf2f12f3ff20ef8073ba6cab298f0896f",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/318404ebff79bbdd2746ee919ad02e0f02c881bc"
+        },
+        "date": 1652276698561,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 227,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28899,
+            "range": "± 16",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28891,
+            "range": "± 205",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46743,
+            "range": "± 39",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7a4e68b9a43d54c60c65223b505d30002790c254",
+          "message": "fix: benchmarkluau not included in a list of valid tools (#125)\n\n* include `benchmarkluau` in a list of valid tools\r\n* use const list for VALID_TOOLS to avoid having to declare tools twice\r\n* update CHANGELOG.md",
+          "timestamp": "2022-05-28T17:18:33+02:00",
+          "tree_id": "921a961a0aee9c2ce043e63cf6b0d07053da4322",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7a4e68b9a43d54c60c65223b505d30002790c254"
+        },
+        "date": 1653751359816,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26975,
+            "range": "± 49",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26953,
+            "range": "± 28",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43653,
+            "range": "± 51",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dev.ktbarrett@gmail.com",
+            "name": "Kaleb Barrett",
+            "username": "ktbarrett"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0e77d47f88d46be363b44052613c0b60bf208243",
+          "message": "Implement deploy to another repository (#112)\n\n* Implement deploy to another repository\r\n* add additional tests\r\n* add additional CI checks for the new `gh-repository` input param\r\n\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Ebrahim Byagowi <ebrahim@gnu.org>\r\nCo-authored-by: Marlon James <marlon.james@gmail.com>\r\nCo-authored-by: Chris Trzesniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-05-28T17:54:07+02:00",
+          "tree_id": "50e5650d1749f1150b591c9e554da8d7c00df441",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0e77d47f88d46be363b44052613c0b60bf208243"
+        },
+        "date": 1653753459109,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 23839,
+            "range": "± 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 23830,
+            "range": "± 1254",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38611,
+            "range": "± 67",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "ba450747be524122c5ce53c8d9587160154eaed3",
+          "message": "enable push benchmarks to separate results repo",
+          "timestamp": "2022-05-28T18:04:35+02:00",
+          "tree_id": "a56e6ed3ffea4c45877131c022d728dbcc397ca4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ba450747be524122c5ce53c8d9587160154eaed3"
+        },
+        "date": 1653754120553,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 205,
+            "range": "± 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26312,
+            "range": "± 2054",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 27413,
+            "range": "± 2324",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 42960,
+            "range": "± 2928",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "5f23f8dd2d0399e874150b5eb29213dd80e79af9",
+          "message": "Update changelog for v1.14.0",
+          "timestamp": "2022-05-28T18:13:44+02:00",
+          "tree_id": "ee09bcc02e903c0a498337b64d256f39d1b0d272",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5f23f8dd2d0399e874150b5eb29213dd80e79af9"
+        },
+        "date": 1653754698765,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 244,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 32688,
+            "range": "± 938",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 32697,
+            "range": "± 1779",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 52877,
+            "range": "± 1376",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mmior@mail.rit.edu",
+            "name": "Michael Mior",
+            "username": "michaelmior"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75e5716791928a4e597eb911cc07245d7bca0ee7",
+          "message": "Add support for Java via JMH (#134)\n\nCo-authored-by: Chris Trześniewski <k.trzesniewski@gmail.com>",
+          "timestamp": "2022-11-03T08:49:06+01:00",
+          "tree_id": "37b867dd9146cceb5294894a538a614769e506ca",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/75e5716791928a4e597eb911cc07245d7bca0ee7"
+        },
+        "date": 1667462010494,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 224,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28519,
+            "range": "± 121",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28469,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46082,
+            "range": "± 136",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d4d45b573a9995079f8612227b7f7be12d8f221c",
+          "message": "Chore/update deps (#137)\n\n* update actions dependencies\r\n* npm audit fix",
+          "timestamp": "2022-11-03T09:44:21+01:00",
+          "tree_id": "340349c418dcf58812cf3386682b912a40b41893",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d4d45b573a9995079f8612227b7f7be12d8f221c"
+        },
+        "date": 1667465306136,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 224,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28530,
+            "range": "± 140",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28449,
+            "range": "± 52",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46072,
+            "range": "± 200",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "b2887b657da81fdbbd1b8f8653099da5b246e259",
+          "message": "Update changelog for v1.15.0",
+          "timestamp": "2022-11-03T16:09:08+01:00",
+          "tree_id": "44376a4cfbda3e5d68c4b22452d70c37ec951616",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b2887b657da81fdbbd1b8f8653099da5b246e259"
+        },
+        "date": 1667488456529,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24424,
+            "range": "± 127",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24420,
+            "range": "± 26",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39530,
+            "range": "± 39",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef8d556d76cbe71516aef7a08c1345672e79705e",
+          "message": "fix: use ubuntu-20.04 for C++ benchmarks (#143)",
+          "timestamp": "2022-12-12T19:55:14+01:00",
+          "tree_id": "f0b67540ad58d545db2a5029329a705206afda18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ef8d556d76cbe71516aef7a08c1345672e79705e"
+        },
+        "date": 1670871576926,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 208,
+            "range": "± 5",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28682,
+            "range": "± 692",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28640,
+            "range": "± 634",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 46142,
+            "range": "± 1051",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "20799702+jofas@users.noreply.github.com",
+            "name": "Jonas Fassbender",
+            "username": "jofas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3c04a912823d9081e2e0bf4f2e3b5cfb91b22518",
+          "message": "fix: fixed small error in documentation (#140)",
+          "timestamp": "2022-12-12T20:02:16+01:00",
+          "tree_id": "3d3261740e951b5e655f9aea9a48c6d53cb7ef43",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3c04a912823d9081e2e0bf4f2e3b5cfb91b22518"
+        },
+        "date": 1670871969544,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24417,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24425,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39537,
+            "range": "± 42",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "epompeii@protonmail.com",
+            "name": "Everett Pompeii",
+            "username": "epompeii"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "241e9fd18168e1ea7e369bb3c179c5c4828bb4a0",
+          "message": "jmh in code block (#151)",
+          "timestamp": "2023-02-06T09:07:10+01:00",
+          "tree_id": "b1de62089a97e34d9dd7e2bd3a438c75741ce3c0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/241e9fd18168e1ea7e369bb3c179c5c4828bb4a0"
+        },
+        "date": 1675671035785,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 221,
+            "range": "± 2",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28398,
+            "range": "± 24",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28358,
+            "range": "± 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 45866,
+            "range": "± 48",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7eeba8924d4ed651010d72d7319b064fc0c10355",
+          "message": "Bump json5 from 2.2.0 to 2.2.3 (#148)\n\nBumps [json5](https://github.com/json5/json5) from 2.2.0 to 2.2.3.\r\n- [Release notes](https://github.com/json5/json5/releases)\r\n- [Changelog](https://github.com/json5/json5/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/json5/json5/compare/v2.2.0...v2.2.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: json5\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-02-06T09:13:29+01:00",
+          "tree_id": "dd7b551a82c74b71157a331ca1c23323387b1d18",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7eeba8924d4ed651010d72d7319b064fc0c10355"
+        },
+        "date": 1675671387129,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 221,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28404,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 28345,
+            "range": "± 13",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 45853,
+            "range": "± 15",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407",
+          "message": "feat: support pr summary for benchmark output (#138)",
+          "timestamp": "2023-03-05T23:47:19+01:00",
+          "tree_id": "75acd869eebcc7e0c9a63c7882cb345c537bb20d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/78c0eb2b7f02752b1fb84a91a0ba6d2f37daa407"
+        },
+        "date": 1678056673278,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 253,
+            "range": "± 17",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 33885,
+            "range": "± 2277",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 34078,
+            "range": "± 2074",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 53706,
+            "range": "± 3651",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "7d3c4707bd1eb03ba1d0b413b58090cb78320b06",
+          "message": "Update changelog for v1.16.0",
+          "timestamp": "2023-03-05T23:50:11+01:00",
+          "tree_id": "76403ad7f658496f49eb3a07b69f2f4fdf3945e0",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7d3c4707bd1eb03ba1d0b413b58090cb78320b06"
+        },
+        "date": 1678057036387,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 179,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24436,
+            "range": "± 319",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24424,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 39589,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "220a02320fbf9ed2a4e84228530fa2024c285bcf",
+          "message": "fix: add summary-always parameter to action.yml",
+          "timestamp": "2023-03-06T15:17:19+01:00",
+          "tree_id": "981547bda54b3d64d578036164b472e39cbfe49e",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/220a02320fbf9ed2a4e84228530fa2024c285bcf"
+        },
+        "date": 1678112454196,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26977,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26970,
+            "range": "± 51",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43653,
+            "range": "± 82",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "estebanborai@gmail.com",
+            "name": "Esteban Borai",
+            "username": "EstebanBorai"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18d5a3a02a05d291c28beca4134d6d02751e6ced",
+          "message": "fix: use `commit.id` over `commit` object (#155)",
+          "timestamp": "2023-03-08T21:35:50+01:00",
+          "tree_id": "435bc60b10ab3b66ce15a2acc6799266a116e4d2",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/18d5a3a02a05d291c28beca4134d6d02751e6ced"
+        },
+        "date": 1678307987154,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 241,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 32392,
+            "range": "± 509",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 31744,
+            "range": "± 791",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 50871,
+            "range": "± 1216",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "060e11092cdc7b319ecc1abdc3d96debaeeec72b",
+          "message": "update CHANGELOG.md for v1.16.1 & v1.16.2",
+          "timestamp": "2023-03-08T21:41:46+01:00",
+          "tree_id": "1bcb2d8f8cee53b23063905e8c8c495de6866c2f",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/060e11092cdc7b319ecc1abdc3d96debaeeec72b"
+        },
+        "date": 1678308316150,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 235,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 29945,
+            "range": "± 169",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 29944,
+            "range": "± 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 48454,
+            "range": "± 129",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "89384881+matyasberry@users.noreply.github.com",
+            "name": "Matyas B",
+            "username": "matyasberry"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5112d4a6bcc0377392283d37b648acc987555249",
+          "message": "support for JMH parameters (as separate charts) (#161)",
+          "timestamp": "2023-03-26T15:06:49+02:00",
+          "tree_id": "adee13455550e5b530fa67dbb8476d1fbcba0b7c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5112d4a6bcc0377392283d37b648acc987555249"
+        },
+        "date": 1679836167810,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 221,
+            "range": "± 10",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 29224,
+            "range": "± 2352",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 29324,
+            "range": "± 1897",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 47950,
+            "range": "± 1869",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertyoungnz@gmail.com",
+            "name": "Robert Young",
+            "username": "robobario"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "87c65e849517e0afeffc99eb5c17e225dd88169a",
+          "message": "feat: enable user to specify the ref being tested (#163)\n\nThe ref will be used preferentially (if specified) when looking up the details\r\nof the commit to record the results against.\r\n\r\nWhy:\r\nWhen used to record results from a performance test run triggered by a\r\ncomment on a PR, the results were recorded against the head commit of main\r\non our branch. Not the tested commit. This change allows users to specify\r\nthe tested ref.\r\n\r\nExample usage:\r\n```\r\nwith:\r\n  ref: refs/pull/${{ github.event.issue.number }}/head\r\n```",
+          "timestamp": "2023-04-26T07:56:46+02:00",
+          "tree_id": "c85336bb4842208afd85660757c345d8ca4ab889",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/87c65e849517e0afeffc99eb5c17e225dd88169a"
+        },
+        "date": 1682488773496,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26834,
+            "range": "± 48",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26832,
+            "range": "± 44",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43483,
+            "range": "± 1016",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andrewcook1990@gmail.com",
+            "name": "Vaeryn",
+            "username": "vaeryn-uk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5d67cdc179ff52b986e9b6ab40a42196694e0c88",
+          "message": "feat: allow more characters in Golang bench outputs (#131)\n\nThis adds, and = as acceptable characters as Go benchmark names.\r\nPreviously benchmarks with these characters were not detected by this\r\naction.",
+          "timestamp": "2023-04-26T08:19:03+02:00",
+          "tree_id": "b55461e2a1fbb22e4ab2b68da5a089e9e903a83b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5d67cdc179ff52b986e9b6ab40a42196694e0c88"
+        },
+        "date": 1682490083770,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26851,
+            "range": "± 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26826,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43410,
+            "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "990219421ea3837999d49fc6461a3ad83a47502d",
+          "message": "update CHANGELOG.md for v1.17.0",
+          "timestamp": "2023-04-26T08:29:27+02:00",
+          "tree_id": "fa17bfc02e978124f73b6ac1bc51ae752e75beed",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/990219421ea3837999d49fc6461a3ad83a47502d"
+        },
+        "date": 1682490950169,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 239,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30386,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 30376,
+            "range": "± 24",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 49145,
+            "range": "± 35",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "dab8151f6fdb1e54129d864377379c8043779dc8",
+          "message": "update README.md for v1.17.0",
+          "timestamp": "2023-04-26T08:39:10+02:00",
+          "tree_id": "caa79e1e47b9cf411d46ed66e8e0cb673706e0df",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/dab8151f6fdb1e54129d864377379c8043779dc8"
+        },
+        "date": 1682491359875,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 234,
+            "range": "± 4",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 31283,
+            "range": "± 723",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 31084,
+            "range": "± 891",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 51802,
+            "range": "± 1877",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ee5f49dd203dbbd2557b10683a04112ed7e1e850",
+          "message": "getServerUrl refers to the GITHUB_SERVER_URL environment variable (#169)\n\n* getServerUrl refers to the GITHUB_SERVER_URL environment variable\r\n\r\n* fix indent\r\n\r\n* fix error\r\n\r\n* eslint fix",
+          "timestamp": "2023-05-05T17:09:10-07:00",
+          "tree_id": "3f5aeb9a03b3a75c9ac1c6afbf87288db9f83502",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ee5f49dd203dbbd2557b10683a04112ed7e1e850"
+        },
+        "date": 1683331952863,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 27000,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26971,
+            "range": "± 35",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43714,
+            "range": "± 521",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "masafumi.o1988@gmail.com",
+            "name": "OKURA Masafumi",
+            "username": "okuramasafumi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6b33125fdd5070057463689ccbff4728d45fdf03",
+          "message": "Remove unreachable code from extract.ts (#153)",
+          "timestamp": "2023-05-10T11:55:57+02:00",
+          "tree_id": "9d16e84d09162336e18346919cc8c1f4f4529e9a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6b33125fdd5070057463689ccbff4728d45fdf03"
+        },
+        "date": 1683712696286,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 283,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 35757,
+            "range": "± 31",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 35742,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 57849,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zumix.cpp@gmail.com",
+            "name": "srz_zumix",
+            "username": "srz-zumix"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221",
+          "message": "Fixed getCommitFromGitHubAPIRequest to refer to GITHUB_API_URL (#171)\n\n* update actions/github and use getOctkit\r\n\r\n* Fixed not to change behavior\r\n\r\nfix: https://github.com/benchmark-action/github-action-benchmark/pull/171#discussion_r1194677871",
+          "timestamp": "2023-05-18T00:58:57-07:00",
+          "tree_id": "134d744add0eb00be96283ffaea1b8a98a0bfc26",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3dc9c9ff90a6ad2ea89ea4f254918eb837ab0221"
+        },
+        "date": 1684396912458,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 201,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26873,
+            "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26823,
+            "range": "± 42",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43445,
+            "range": "± 72",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i@ningziwen.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0c70f157d50ac07c1a3ecf43d9044e4e16cd1276",
+          "message": "feat: extract multiple metrics from golang benchmarks (#177)\n\n* use a more recent version of go\r\n* allows go benchmarks to work with extra metrics\r\n\r\nCo-authored-by: Joe Kimmel <jkimmel@vmware.com>",
+          "timestamp": "2023-07-07T12:49:05+02:00",
+          "tree_id": "da453c4c605083a2ae099bd9c81e02c610e1b090",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/0c70f157d50ac07c1a3ecf43d9044e4e16cd1276"
+        },
+        "date": 1688727138148,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 270,
+            "range": "± 14",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 35485,
+            "range": "± 2702",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 35752,
+            "range": "± 1313",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 58277,
+            "range": "± 4774",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "e85c505602a87fc804839010d78a930ece11a3ce",
+          "message": "update CHANGELOG.md for v1.18.0",
+          "timestamp": "2023-07-07T13:00:52+02:00",
+          "tree_id": "7e379be4801098b5b3bbe950f03bc2de43e5704c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e85c505602a87fc804839010d78a930ece11a3ce"
+        },
+        "date": 1688727818380,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 211,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26879,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 26837,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 43416,
+            "range": "± 37",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ffcca1399b1fa1117c091fe6b8c18670942859d9",
+          "message": "Bump tough-cookie from 4.0.0 to 4.1.3 (#178)\n\nBumps [tough-cookie](https://github.com/salesforce/tough-cookie) from 4.0.0 to 4.1.3.\r\n- [Release notes](https://github.com/salesforce/tough-cookie/releases)\r\n- [Changelog](https://github.com/salesforce/tough-cookie/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/salesforce/tough-cookie/compare/v4.0.0...v4.1.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: tough-cookie\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-15T12:09:20-07:00",
+          "tree_id": "0899639e26893d07126e9ff3eb02751382bce006",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/ffcca1399b1fa1117c091fe6b8c18670942859d9"
+        },
+        "date": 1689448314785,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 24074,
+            "range": "± 51",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 24066,
+            "range": "± 46",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 38996,
+            "range": "± 82",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 7,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deaf0e0f02808664480ed5bdd31f175936e1fb81",
+          "message": "Bump word-wrap from 1.2.3 to 1.2.4 (#179)\n\nBumps [word-wrap](https://github.com/jonschlinkert/word-wrap) from 1.2.3 to 1.2.4.\r\n- [Release notes](https://github.com/jonschlinkert/word-wrap/releases)\r\n- [Commits](https://github.com/jonschlinkert/word-wrap/compare/1.2.3...1.2.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: word-wrap\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-07-18T19:09:29-07:00",
+          "tree_id": "9b9bf339ccf8b74d3da633e49e417252c5b9302d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/deaf0e0f02808664480ed5bdd31f175936e1fb81"
+        },
+        "date": 1689732802008,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 233,
+            "range": "± 24",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 30259,
+            "range": "± 2143",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 30468,
+            "range": "± 2757",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 48231,
+            "range": "± 2780",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41779041+alvicsam@users.noreply.github.com",
+            "name": "Alexander Samusev",
+            "username": "alvicsam"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d1eb523313eadd361d2e4a77975d810ed721b01d",
+          "message": "Add description for skip-fetch-gh-pages (#180)",
+          "timestamp": "2023-09-08T16:58:41-07:00",
+          "tree_id": "1857b0e61bd0151368ecb88beb38b74fdf4c9afc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d1eb523313eadd361d2e4a77975d810ed721b01d"
+        },
+        "date": 1694217694962,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 210,
+            "range": "± 2",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 27529,
+            "range": "± 32",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 27518,
+            "range": "± 212",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 44441,
+            "range": "± 46",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "58044437+ChinYikMing@users.noreply.github.com",
+            "name": "ChinYikMing",
+            "username": "ChinYikMing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a22966853b1f1f852ff25c3f894a929694b27e1e",
+          "message": "fix: mismatch input in action.yml (#191)\n\nalert-comment-threshold should be alert-threshold",
+          "timestamp": "2023-09-08T17:06:49-07:00",
+          "tree_id": "c0b689c7277554e370dc229e65e31745ff1d19d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a22966853b1f1f852ff25c3f894a929694b27e1e"
+        },
+        "date": 1694218226842,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 215,
+            "range": "± 17",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28479,
+            "range": "± 3707",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 29153,
+            "range": "± 2936",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 49438,
+            "range": "± 3686",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 5,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ningziwe@amazon.com",
+            "name": "Ziwen Ning",
+            "username": "ningziwen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da5ac2ec683f23c0f95b24561135c6eff701747f",
+          "message": "fix: update Manifest.toml to fix julia test failure (#210)",
+          "timestamp": "2024-01-24T15:28:42+01:00",
+          "tree_id": "801eb7ff0e514140aef0088f3fed36791e9430e3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/da5ac2ec683f23c0f95b24561135c6eff701747f"
+        },
+        "date": 1706106688694,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 27",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28426,
+            "range": "± 3086",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22191,
+            "range": "± 131",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35908,
+            "range": "± 62",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "maria.inesparnisari@okta.com",
+            "name": "Maria Ines Parnisari",
+            "username": "miparnisari"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "036be2a998715b878d1dae2f88bd8ce86ca79ab7",
+          "message": "update to node 20 (#208)",
+          "timestamp": "2024-01-24T16:32:24+01:00",
+          "tree_id": "ca32c0dfe4c5cd2b4f64baa56a4081243b7fd211",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/036be2a998715b878d1dae2f88bd8ce86ca79ab7"
+        },
+        "date": 1706110530665,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 23",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22175,
+            "range": "± 158",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22183,
+            "range": "± 253",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35909,
+            "range": "± 108",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "83426c04e20ff3faef1257b544e08620a88c4551",
+          "message": "chore: update actions/* (#212)\n\n* update actions/checkout to v4\r\n* update actions/cache to v4\r\n* update actions/setup-node to v4\r\n* remove unnecessary usages of action/cache for node\r\n* update actions/setup-python to v5\r\n* update actions/setup-dotnet to v3\r\n* update actions/setup-java to v4",
+          "timestamp": "2024-01-24T16:49:01+01:00",
+          "tree_id": "441b45a8ec7c4c508ba15f086a4a2360eec3cb47",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/83426c04e20ff3faef1257b544e08620a88c4551"
+        },
+        "date": 1706111487021,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 181,
+            "range": "± 32",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22184,
+            "range": "± 724",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22196,
+            "range": "± 268",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35908,
+            "range": "± 534",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "029e9b87f033929420da337eca96176c8d18969e",
+          "message": "fix: 213 summary-always and gh-repository don't work together (#214)\n\n* move summary logic into writeBenchmark function so that we only clone repo once",
+          "timestamp": "2024-01-24T23:33:33-08:00",
+          "tree_id": "bb734aa285b908b0e84c362ae163abd2385a48d5",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/029e9b87f033929420da337eca96176c8d18969e"
+        },
+        "date": 1706168133064,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 219,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22181,
+            "range": "± 177",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22192,
+            "range": "± 454",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35906,
+            "range": "± 257",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "65ff1d7044a47da1556d17eb0a7b4784969becbf",
+          "message": "update CHANGELOG.md for v1.19.0",
+          "timestamp": "2024-01-25T15:21:39+01:00",
+          "tree_id": "04c5d063ab75038e2d6aa23beb40dd1011515f32",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/65ff1d7044a47da1556d17eb0a7b4784969becbf"
+        },
+        "date": 1706192623617,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 226,
+            "range": "± 18",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28442,
+            "range": "± 89",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22199,
+            "range": "± 154",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35906,
+            "range": "± 72",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
             "unit": "ns/iter"
           }
         ]
@@ -13809,42 +14135,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
         },
-        "date": 1706198358607,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 8",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 19979,
-            "range": "± 982",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "9598b26311c7676864d32a709a922b8ec823fa82",
-          "message": "fix: write with retry fails with separate repository (#216)\n\n* remove the cloned directory when push fails so that next clone will work",
-          "timestamp": "2024-01-25T16:57:43+01:00",
-          "tree_id": "9e5989ba9256c1940c56fe218128bdba443f542a",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9598b26311c7676864d32a709a922b8ec823fa82"
-        },
         "date": 1706198458210,
         "tool": "cargo",
         "benches": [
@@ -13882,42 +14172,6 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 4,
             "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "6fc0096d895f7376fa701d73d34c3d3e71d113e7",
-          "message": "update CHANGELOG.md for v1.19.1",
-          "timestamp": "2024-01-25T17:38:50+01:00",
-          "tree_id": "52ffa6ea2d31240f6f2cce21625a8cf8c15b9c27",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6fc0096d895f7376fa701d73d34c3d3e71d113e7"
-        },
-        "date": 1706200760671,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 7",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 20015,
-            "range": "± 1228",
             "unit": "ns/iter"
           }
         ]
@@ -14001,42 +14255,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
         },
-        "date": 1706284810527,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 4",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 19970,
-            "range": "± 1147",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "d58623da745369a45ff17969861cc094e98d1f83",
-          "message": "fix: 159 markdown rendering for summary is broken (#218)\n\n* add additional debug lines to `handleSummary` function\r\n* create a summary without expandable details\r\n* add summary always to all CI benchmarks",
-          "timestamp": "2024-01-26T16:59:21+01:00",
-          "tree_id": "3ad26409a97b59afb746ab9d061625de5f47f0c7",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/d58623da745369a45ff17969861cc094e98d1f83"
-        },
         "date": 1706284882850,
         "tool": "cargo",
         "benches": [
@@ -14074,42 +14292,6 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 4,
             "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "459adab4c5b707e1fc01f761a7b337144a9bed56",
-          "message": "update CHANGELOG.md for v1.19.2",
-          "timestamp": "2024-01-26T17:06:03+01:00",
-          "tree_id": "61e400e4bb7f6b3ed72fbb7220774f8a044c971c",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/459adab4c5b707e1fc01f761a7b337144a9bed56"
-        },
-        "date": 1706285242583,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 7",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 19979,
-            "range": "± 11684",
             "unit": "ns/iter"
           }
         ]
@@ -14193,42 +14375,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "d5d5a7d72d2004bcc898740b3a4292f0b77917ae",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6911be98bdb946a1516d81b7e9fedb5b932b806b"
         },
-        "date": 1706382214012,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 1",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 19971,
-            "range": "± 116",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "6911be98bdb946a1516d81b7e9fedb5b932b806b",
-          "message": "fix badges urls",
-          "timestamp": "2024-01-27T20:02:56+01:00",
-          "tree_id": "d5d5a7d72d2004bcc898740b3a4292f0b77917ae",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/6911be98bdb946a1516d81b7e9fedb5b932b806b"
-        },
         "date": 1706382313350,
         "tool": "cargo",
         "benches": [
@@ -14266,42 +14412,6 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 4,
             "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "785a741b25e511f0051633d64400bf7e9da9a58d",
-          "message": "chore: update jest to 29.7.0 (#219)",
-          "timestamp": "2024-01-29T16:34:12+01:00",
-          "tree_id": "4310ccfcfbedefa0718b6bc73caeb5b38f5c6f37",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/785a741b25e511f0051633d64400bf7e9da9a58d"
-        },
-        "date": 1706542509500,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 159,
-            "range": "± 9",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 19962,
-            "range": "± 116",
             "unit": "ns/iter"
           }
         ]
@@ -14385,42 +14495,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
         },
-        "date": 1706709685495,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 18",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 26308,
-            "range": "± 355",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e108afd01ab131e06b44c1a5ae340e4dc02163e8",
-          "message": "fix: 204 ratio is NaN when previous value is 0 (#222)\n\n* extract getRatio function\r\n* print 1 when both values are 0\r\n* print +-∞ when divisor is 0",
-          "timestamp": "2024-01-31T15:01:02+01:00",
-          "tree_id": "637971633a79fe1baecabb68ff012fbeedbf6b7c",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e108afd01ab131e06b44c1a5ae340e4dc02163e8"
-        },
         "date": 1706709783524,
         "tool": "cargo",
         "benches": [
@@ -14481,42 +14555,6 @@ window.BENCHMARK_DATA = {
           "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
           "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
         },
-        "date": 1706863337679,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 158,
-            "range": "± 61",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 20001,
-            "range": "± 1758",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trześniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "1c81dfd30c6e9315370479bc83399761946e2edc",
-          "message": "fix: 224 action hangs in some cases for go fiber benchmarks (#225)\n\n* fix reExtract regexp to avoid catastrophic backtracking\r\n* add test cases from fiber that were causing issues\r\n* add backwards compatibility for benchmarks that used to have multiple metrics in Go but they were not extracted properly before v1.18.0",
-          "timestamp": "2024-02-02T09:41:53+01:00",
-          "tree_id": "d0d64d12d2351358c5df691a9f2006f90d0b2990",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1c81dfd30c6e9315370479bc83399761946e2edc"
-        },
         "date": 1706863437012,
         "tool": "cargo",
         "benches": [
@@ -14554,42 +14592,6 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Iterative/21",
             "value": 4,
             "range": "± 0",
-            "unit": "ns/iter"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "committer": {
-            "email": "k.trzesniewski@gmail.com",
-            "name": "Chris Trzesniewski",
-            "username": "ktrz"
-          },
-          "distinct": true,
-          "id": "e7180f51a3e2d715fd8990ea6ad8ca50034100d6",
-          "message": "release v1.19.3",
-          "timestamp": "2024-02-02T09:48:37+01:00",
-          "tree_id": "e42d9865719ca2154f82bcec5c0dacbe5723073d",
-          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e7180f51a3e2d715fd8990ea6ad8ca50034100d6"
-        },
-        "date": 1706863742922,
-        "tool": "cargo",
-        "benches": [
-          {
-            "name": "bench_fib_10",
-            "value": 159,
-            "range": "± 57",
-            "unit": "ns/iter"
-          },
-          {
-            "name": "bench_fib_20",
-            "value": 26244,
-            "range": "± 677",
             "unit": "ns/iter"
           }
         ]
