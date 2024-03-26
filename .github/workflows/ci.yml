@@ -346,7 +346,7 @@ jobs:
           output-file-path: examples/criterion-rs/output.txt
           fail-on-alert: true
           summary-always: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
