@@ -230,7 +230,6 @@ jobs:
           name: JMH Benchmark
           tool: "jmh"
           output-file-path: examples/java/jmh-result.json
-          skip-fetch-gh-pages: true
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
