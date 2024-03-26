@@ -1,4 +1,5 @@
 ## Unreleased
+- **fix** Rust benchmarks not comparing to baseline (#235)
 
 <a name="v1.19.3"></a>
 # [v1.19.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.3) - 02 Feb 2024

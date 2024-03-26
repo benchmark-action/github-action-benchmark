@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   benchmark:
-    name: Run C++ benchmark example
+    name: Run Google C++ Benchmark Framework example
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
