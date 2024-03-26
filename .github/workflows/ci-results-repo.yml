@@ -234,7 +234,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark' './benchmark-data-repository'
 
   julia-benchmark:
     name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -381,7 +381,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark' './benchmark-data-repository'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark' './benchmark-data-repository'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache

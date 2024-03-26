@@ -94,7 +94,6 @@ interface Alert {
 
 function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number): Alert[] {
     core.debug(`Comparing current:${curSuite.commit.id} and prev:${prevSuite.commit.id} for alert`);
-    core.debug(`Previous suite benches: ${JSON.stringify(prevSuite.benches)}`);
 
     const alerts = [];
     for (const current of curSuite.benches) {
