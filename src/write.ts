@@ -241,7 +241,7 @@ function buildAlertComment(
 
 async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
     try {
-        core.debug('Sending comment:\n' + body);
+        core.warning('Sending comment:\n' + body);
         core.warning('Boo');
 
         const repoMetadata = getCurrentRepoMetadata();

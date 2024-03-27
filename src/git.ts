@@ -39,6 +39,7 @@ async function capture(cmd: string, args: string[]): Promise<ExecResult> {
 }
 
 export function getServerUrlObj(repositoryUrl: string | undefined): URL {
+    core.warning(`getServerUrlObj ${repositoryUrl}`);
     const urlValue =
         repositoryUrl && repositoryUrl.trim().length > 0
             ? repositoryUrl
