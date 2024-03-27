@@ -7,9 +7,6 @@ on:
     branches:
       - master
 
-#permissions:
-#  pull-requests: write
-
 jobs:
   benchmarkdotnet-framework:
     name: Run Benchmark.Net .Net Benchmark Framework example
