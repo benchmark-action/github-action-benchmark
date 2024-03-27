@@ -15,7 +15,7 @@ namespace Sample
         }
 
         [Benchmark]
-        public void Fib10() => Fib(15);
+        public void Fib10() => Fib(20);
 
         [Benchmark]
         public void Fib20() => Fib(20);
