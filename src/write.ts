@@ -242,6 +242,7 @@ function buildAlertComment(
 async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
     try {
         core.debug('Sending comment:\n' + body);
+        core.debug('Boo');
 
         const repoMetadata = getCurrentRepoMetadata();
         const pr = github.context.payload.pull_request;
