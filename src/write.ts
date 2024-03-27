@@ -240,14 +240,19 @@ function buildAlertComment(
 }
 
 async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
-    core.debug('Sending comment:\n' + body);
+    try {
+        core.debug('Sending comment:\n' + body);
 
-    const repoMetadata = getCurrentRepoMetadata();
-    const pr = github.context.payload.pull_request;
+        const repoMetadata = getCurrentRepoMetadata();
+        const pr = github.context.payload.pull_request;
 
-    return await (pr?.number
-        ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
-        : leaveCommitComment(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
+        return await (pr?.number
+            ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
+            : leaveCommitComment(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
+    } catch (e) {
+        core.warning(`error: ${e}`);
+        return;
+    }
 }
 
 async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
