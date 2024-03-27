@@ -120,7 +120,7 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
 }
 
 function getCurrentRepoMetadata() {
-    core.debug('getCurrentRepoMetadata');
+    core.warning('getCurrentRepoMetadata');
     const { repo, owner } = github.context.repo;
     const serverUrl = git.getServerUrl(github.context.payload.repository?.html_url);
     return {
@@ -242,7 +242,7 @@ function buildAlertComment(
 async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
     try {
         core.debug('Sending comment:\n' + body);
-        core.debug('Boo');
+        core.warning('Boo');
 
         const repoMetadata = getCurrentRepoMetadata();
         const pr = github.context.payload.pull_request;
