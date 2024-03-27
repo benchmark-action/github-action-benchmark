@@ -4,7 +4,7 @@ const { fib } = require('./index');
 
 suite
     .add('fib(10)', () => {
-        fib(16);
+        fib(10);
     })
     .add('fib(20)', () => {
         fib(20);
