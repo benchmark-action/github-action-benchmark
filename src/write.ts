@@ -298,7 +298,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
         const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
-        url = res.data.html_url;
+        url = res?.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
 
