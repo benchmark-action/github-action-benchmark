@@ -12,3 +12,4 @@
 /.idea
 target/
 jmh-result.json
+.env
