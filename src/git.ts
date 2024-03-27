@@ -47,6 +47,7 @@ export function getServerUrlObj(repositoryUrl: string | undefined): URL {
 }
 
 export function getServerUrl(repositoryUrl: string | undefined): string {
+    core.debug(`getServerUrl ${repositoryUrl}`);
     return getServerUrlObj(repositoryUrl).origin;
 }
 
