@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711611569997,
+  "lastUpdate": 1711611587208,
   "entries": {
     "Rust Benchmark": [
       {
@@ -41065,6 +41065,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00001294268552372628",
             "extra": "mean: 1.6127814786185706 msec\nrounds: 608"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f65fed889e56954a4d856177a68fe51ecd583865",
+          "message": "feat: Comment on PR and auto update comment (#223)\n\n* create PR comment when PR is available\r\n* auto-update existing PR comment\r\n* add comment-on-alert and gh token to ci jobs",
+          "timestamp": "2024-03-28T08:38:54+01:00",
+          "tree_id": "a8897cd674424617c3afb1e37578f782d01c8978",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f65fed889e56954a4d856177a68fe51ecd583865"
+        },
+        "date": 1711611584276,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77086.44140750842,
+            "unit": "iter/sec",
+            "range": "stddev: 6.382913058033661e-7",
+            "extra": "mean: 12.972449911309532 usec\nrounds: 59165"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 622.2828073823563,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000018263144748196808",
+            "extra": "mean: 1.6069863864735676 msec\nrounds: 621"
           }
         ]
       }
