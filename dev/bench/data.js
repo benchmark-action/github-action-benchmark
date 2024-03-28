@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711611603724,
+  "lastUpdate": 1711611607922,
   "entries": {
     "Rust Benchmark": [
       {
@@ -56327,6 +56327,42 @@ window.BENCHMARK_DATA = {
             "value": 42.762034581257744,
             "unit": "ns",
             "range": "± 0.07720966000547073"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f65fed889e56954a4d856177a68fe51ecd583865",
+          "message": "feat: Comment on PR and auto update comment (#223)\n\n* create PR comment when PR is available\r\n* auto-update existing PR comment\r\n* add comment-on-alert and gh token to ci jobs",
+          "timestamp": "2024-03-28T08:38:54+01:00",
+          "tree_id": "a8897cd674424617c3afb1e37578f782d01c8978",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f65fed889e56954a4d856177a68fe51ecd583865"
+        },
+        "date": 1711611605575,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.066399196783703,
+            "unit": "ns",
+            "range": "± 0.028898322708416968"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.728127172360054,
+            "unit": "ns",
+            "range": "± 0.0442976637735302"
           }
         ]
       }
