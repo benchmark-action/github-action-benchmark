@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711611607922,
+  "lastUpdate": 1711611655813,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14706,6 +14706,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 30435,
             "range": "± 57",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f65fed889e56954a4d856177a68fe51ecd583865",
+          "message": "feat: Comment on PR and auto update comment (#223)\n\n* create PR comment when PR is available\r\n* auto-update existing PR comment\r\n* add comment-on-alert and gh token to ci jobs",
+          "timestamp": "2024-03-28T08:38:54+01:00",
+          "tree_id": "a8897cd674424617c3afb1e37578f782d01c8978",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f65fed889e56954a4d856177a68fe51ecd583865"
+        },
+        "date": 1711611653428,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 226,
+            "range": "± 23",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22186,
+            "range": "± 96",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22206,
+            "range": "± 2011",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 35908,
+            "range": "± 78",
             "unit": "ns/iter"
           },
           {
