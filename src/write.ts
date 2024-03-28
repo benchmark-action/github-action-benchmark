@@ -285,14 +285,13 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     core.debug(`Found ${alerts.length} alerts`);
     const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, alertThreshold, alertCommentCcUsers);
     let message = body;
-    let url = null;
 
     if (commentOnAlert) {
         if (!githubToken) {
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
         const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
-        url = res.data.html_url;
+        const url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
 
@@ -357,7 +356,7 @@ function addBenchmarkToDataJson(
     return prevBench;
 }
 
-function isRemoteRejectedError(err: unknown) {
+function isRemoteRejectedError(err: unknown): err is Error {
     if (err instanceof Error) {
         return ['[remote rejected]', '[rejected]'].some((l) => err.message.includes(l));
     }
@@ -436,7 +435,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
-        } catch (err: any) {
+        } catch (err: unknown) {
             if (!isRemoteRejectedError(err)) {
                 throw err;
             }
