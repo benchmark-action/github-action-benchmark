@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711611587208,
+  "lastUpdate": 1711611590757,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54415,6 +54415,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44994,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f65fed889e56954a4d856177a68fe51ecd583865",
+          "message": "feat: Comment on PR and auto update comment (#223)\n\n* create PR comment when PR is available\r\n* auto-update existing PR comment\r\n* add comment-on-alert and gh token to ci jobs",
+          "timestamp": "2024-03-28T08:38:54+01:00",
+          "tree_id": "a8897cd674424617c3afb1e37578f782d01c8978",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f65fed889e56954a4d856177a68fe51ecd583865"
+        },
+        "date": 1711611587836,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 297.8614232209738,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":267,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44844,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
