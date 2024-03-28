@@ -7,6 +7,8 @@ import * as git from './git';
 import { Benchmark, BenchmarkResult } from './extract';
 import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
+import { leavePRComment } from './comment/leavePRComment';
+import { leaveCommitComment } from './comment/leaveCommitComment';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -236,24 +238,15 @@ function buildAlertComment(
     return lines.join('\n');
 }
 
-async function leaveComment(commitId: string, body: string, token: string) {
+async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
     core.debug('Sending comment:\n' + body);
 
     const repoMetadata = getCurrentRepoMetadata();
-    const repoUrl = repoMetadata.html_url ?? '';
-    const client = github.getOctokit(token);
-    const res = await client.rest.repos.createCommitComment({
-        owner: repoMetadata.owner.login,
-        repo: repoMetadata.name,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        commit_sha: commitId,
-        body,
-    });
+    const pr = github.context.payload.pull_request;
 
-    const commitUrl = `${repoUrl}/commit/${commitId}`;
-    console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);
-
-    return res;
+    return await (pr?.number
+        ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
+        : leaveCommitComment(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
 }
 
 async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
@@ -272,7 +265,7 @@ async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: 
 
     const body = buildComment(benchName, curSuite, prevSuite);
 
-    await leaveComment(curSuite.commit.id, body, githubToken);
+    await leaveComment(curSuite.commit.id, body, `${benchName} Summary`, githubToken);
 }
 
 async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
@@ -292,14 +285,13 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
     core.debug(`Found ${alerts.length} alerts`);
     const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, alertThreshold, alertCommentCcUsers);
     let message = body;
-    let url = null;
 
     if (commentOnAlert) {
         if (!githubToken) {
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
-        const res = await leaveComment(curSuite.commit.id, body, githubToken);
-        url = res.data.html_url;
+        const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
+        const url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
 
@@ -364,7 +356,7 @@ function addBenchmarkToDataJson(
     return prevBench;
 }
 
-function isRemoteRejectedError(err: unknown) {
+function isRemoteRejectedError(err: unknown): err is Error {
     if (err instanceof Error) {
         return ['[remote rejected]', '[rejected]'].some((l) => err.message.includes(l));
     }
@@ -443,7 +435,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
             console.log(
                 `Automatically pushed the generated commit to ${ghPagesBranch} branch since 'auto-push' is set to true`,
             );
-        } catch (err: any) {
+        } catch (err: unknown) {
             if (!isRemoteRejectedError(err)) {
                 throw err;
             }

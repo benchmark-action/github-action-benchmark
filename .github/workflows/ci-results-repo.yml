@@ -378,7 +378,7 @@ jobs:
           cp ./dist/other-repo/dev/bench/data.js before_data.js
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: ./
         with:
           name: Criterion.rs Benchmark
           tool: 'cargo'

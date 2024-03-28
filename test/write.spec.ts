@@ -8,6 +8,7 @@ import { Benchmark } from '../src/extract';
 import { DataJson, writeBenchmark } from '../src/write';
 import { expect } from '@jest/globals';
 import { FakedOctokit, fakedRepos } from './fakedOctokit';
+import { wrapBodyWithBenchmarkTags } from '../src/comment/benchmarkCommentTags';
 
 const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
     try {
@@ -771,7 +772,10 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     // Last line is appended only for failure message
                     const messageLines = caughtError.message.split('\n');
                     ok(messageLines.length > 0);
-                    const expectedMessage = messageLines.slice(0, -1).join('\n');
+                    const expectedMessage = wrapBodyWithBenchmarkTags(
+                        'Test benchmark Alert',
+                        messageLines.slice(0, -1).join('\n'),
+                    );
                     ok(
                         fakedRepos.spyOpts.length > 0,
                         `len: ${fakedRepos.spyOpts.length}, caught: ${caughtError.message}`,

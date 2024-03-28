@@ -39,6 +39,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   benchmarkjs:
@@ -69,6 +71,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
   catch2-framework:
@@ -104,6 +108,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   cpp-framework:
@@ -141,6 +147,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   go:
@@ -174,6 +182,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
   java-jmh:
@@ -211,6 +221,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   julia-benchmark:
@@ -250,6 +262,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   pytest-benchmark:
@@ -286,6 +300,8 @@ jobs:
           skip-fetch-gh-pages: true
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   rust:
@@ -316,6 +332,8 @@ jobs:
           output-file-path: examples/rust/output.txt
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   rust-criterion-rs-framework:
@@ -339,13 +357,15 @@ jobs:
           cp ./dev/bench/data.js before_data.js
           git checkout -
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: ./
         with:
           name: Criterion.rs Benchmark
           tool: 'cargo'
           output-file-path: examples/criterion-rs/output.txt
           fail-on-alert: true
           summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark'
 
   only-alert-with-cache:
