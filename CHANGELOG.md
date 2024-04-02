@@ -1,4 +1,7 @@
 ## Unreleased
+
+<a name="v1.20.0"></a>
+# [v1.20.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.0) - 02 Feb 2024
 - **fix** Rust benchmarks not comparing to baseline (#235)
 - **feat** Comment on PR and auto update comment (#223)
 
