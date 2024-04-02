@@ -45,7 +45,8 @@ rm -rf .release
 mkdir -p .release
 
 cp action.yml package.json package-lock.json .release/
-rsync -R dist/src/*.js .release/
+rsync -R -v dist/src/*.js .release/
+rsync -R -v dist/src/**/*.js .release/
 cp -R node_modules .release/node_modules
 
 git checkout "$version"
