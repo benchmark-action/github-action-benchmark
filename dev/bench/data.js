@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712046248024,
+  "lastUpdate": 1712046257485,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24031,6 +24031,60 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "30372 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "680c6850672a99a3e2e422e0baa0c4120befd86b",
+          "message": "release v1.20.1",
+          "timestamp": "2024-04-02T10:22:57+02:00",
+          "tree_id": "322077eff6270a9b1706872d4c677750176af5d4",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/680c6850672a99a3e2e422e0baa0c4120befd86b"
+        },
+        "date": 1712046254764,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 310.8,
+            "unit": "ns/op",
+            "extra": "3872418 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 39760,
+            "unit": "ns/op",
+            "extra": "30396 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric",
+            "value": 39760,
+            "unit": "ns/op\t         4.000 auxMetricUnits",
+            "extra": "30367 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 39760,
+            "unit": "ns/op",
+            "extra": "30367 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "30367 times\n4 procs"
           }
         ]
       }
