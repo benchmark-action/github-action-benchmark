@@ -27,8 +27,6 @@ const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
 const git = __importStar(require("./git"));
 const default_index_html_1 = require("./default_index_html");
-const leavePRComment_1 = require("./comment/leavePRComment");
-const leaveCommitComment_1 = require("./comment/leaveCommitComment");
 exports.SCRIPT_PREFIX = 'window.BENCHMARK_DATA = ';
 const DEFAULT_DATA_JSON = {
     lastUpdate: 0,
@@ -205,13 +203,22 @@ function buildAlertComment(alerts, benchName, curSuite, prevSuite, threshold, cc
     }
     return lines.join('\n');
 }
-async function leaveComment(commitId, body, commentId, token) {
+async function leaveComment(commitId, body, token) {
+    var _a;
     core.debug('Sending comment:\n' + body);
     const repoMetadata = getCurrentRepoMetadata();
-    const pr = github.context.payload.pull_request;
-    return await ((pr === null || pr === void 0 ? void 0 : pr.number)
-        ? (0, leavePRComment_1.leavePRComment)(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
-        : (0, leaveCommitComment_1.leaveCommitComment)(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
+    const repoUrl = (_a = repoMetadata.html_url) !== null && _a !== void 0 ? _a : '';
+    const client = github.getOctokit(token);
+    const res = await client.rest.repos.createCommitComment({
+        owner: repoMetadata.owner.login,
+        repo: repoMetadata.name,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        commit_sha: commitId,
+        body,
+    });
+    const commitUrl = `${repoUrl}/commit/${commitId}`;
+    console.log(`Comment was sent to ${commitUrl}. Response:`, res.status, res.data);
+    return res;
 }
 async function handleComment(benchName, curSuite, prevSuite, config) {
     const { commentAlways, githubToken } = config;
@@ -224,7 +231,7 @@ async function handleComment(benchName, curSuite, prevSuite, config) {
     }
     core.debug('Commenting about benchmark comparison');
     const body = buildComment(benchName, curSuite, prevSuite);
-    await leaveComment(curSuite.commit.id, body, `${benchName} Summary`, githubToken);
+    await leaveComment(curSuite.commit.id, body, githubToken);
 }
 async function handleAlert(benchName, curSuite, prevSuite, config) {
     const { alertThreshold, githubToken, commentOnAlert, failOnAlert, alertCommentCcUsers, failThreshold } = config;
@@ -240,12 +247,13 @@ async function handleAlert(benchName, curSuite, prevSuite, config) {
     core.debug(`Found ${alerts.length} alerts`);
     const body = buildAlertComment(alerts, benchName, curSuite, prevSuite, alertThreshold, alertCommentCcUsers);
     let message = body;
+    let url = null;
     if (commentOnAlert) {
         if (!githubToken) {
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
-        const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
-        const url = res.data.html_url;
+        const res = await leaveComment(curSuite.commit.id, body, githubToken);
+        url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
     if (failOnAlert) {
