@@ -298,7 +298,7 @@ exports[`extractResult() extracts benchmark output from catch2 - issue16_output.
 }
 `;
 
-exports[`extractResult() extracts benchmark output from customBiggerIsBetter - customBiggerIsBetter_output.txt 1`] = `
+exports[`extractResult() extracts benchmark output from customBiggerIsBetter - customBiggerIsBetter_output.json 1`] = `
 {
   "benches": [
     {
@@ -331,7 +331,7 @@ Anything Else!",
 }
 `;
 
-exports[`extractResult() extracts benchmark output from customSmallerIsBetter - customSmallerIsBetter_output.txt 1`] = `
+exports[`extractResult() extracts benchmark output from customSmallerIsBetter - customSmallerIsBetter_output.json 1`] = `
 {
   "benches": [
     {
@@ -644,7 +644,7 @@ exports[`extractResult() extracts benchmark output from go - go_output.txt 1`] =
 }
 `;
 
-exports[`extractResult() extracts benchmark output from googlecpp - googlecpp_output.txt 1`] = `
+exports[`extractResult() extracts benchmark output from googlecpp - googlecpp_output.json 1`] = `
 {
   "benches": [
     {

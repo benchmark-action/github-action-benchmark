@@ -97,7 +97,7 @@ describe('extractResult()', function () {
         },
         {
             tool: 'googlecpp',
-            file: 'googlecpp_output.txt',
+            file: 'googlecpp_output.json',
         },
         {
             tool: 'pytest',
@@ -125,11 +125,11 @@ describe('extractResult()', function () {
         },
         {
             tool: 'customBiggerIsBetter',
-            file: 'customBiggerIsBetter_output.txt',
+            file: 'customBiggerIsBetter_output.json',
         },
         {
             tool: 'customSmallerIsBetter',
-            file: 'customSmallerIsBetter_output.txt',
+            file: 'customSmallerIsBetter_output.json',
         },
     ];
 
