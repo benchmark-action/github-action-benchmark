@@ -46,7 +46,11 @@ describe('configFromJobInput()', function () {
         'max-items-in-chart': '',
     };
 
-    const validation_tests = [
+    const validationTests: Array<{
+        what: string;
+        inputs: Inputs;
+        expected: RegExp;
+    }> = [
         {
             what: 'wrong name',
             inputs: { ...defaultInputs, name: '' },
@@ -158,18 +162,12 @@ describe('configFromJobInput()', function () {
             inputs: { ...defaultInputs, 'alert-threshold': '150%', 'fail-threshold': '120%' },
             expected: /'alert-threshold' value must be smaller than 'fail-threshold' value but got 1.5 > 1.2/,
         },
-    ] as Array<{
-        what: string;
-        inputs: Inputs;
-        expected: RegExp;
-    }>;
+    ];
 
-    for (const test of validation_tests) {
-        it(`validates ${test.what}`, async function () {
-            mockInputs(test.inputs);
-            await A.rejects(configFromJobInput, test.expected);
-        });
-    }
+    it.each(validationTests)('validates $what', async function (test) {
+        mockInputs(test.inputs);
+        await A.rejects(configFromJobInput, test.expected);
+    });
 
     interface ExpectedResult {
         name: string;
@@ -205,7 +203,11 @@ describe('configFromJobInput()', function () {
         failThreshold: null,
     };
 
-    const returnedConfigTests = [
+    const returnedConfigTests: Array<{
+        what: string;
+        inputs: any;
+        expected: ExpectedResult;
+    }> = [
         ...VALID_TOOLS.map((tool: string) => ({
             what: 'valid tool ' + tool,
             inputs: { ...defaultInputs, tool },
@@ -237,20 +239,24 @@ describe('configFromJobInput()', function () {
             inputs: { ...defaultInputs, 'gh-pages-branch': 'master' },
             expected: { ...defaultExpected, ghPagesBranch: 'master' },
         },
-        ...[
-            ['150%', 1.5],
-            ['0%', 0],
-            ['123.4%', 1.234],
-        ].map(([v, e]) => ({
+        ...(
+            [
+                ['150%', 1.5],
+                ['0%', 0],
+                ['123.4%', 1.234],
+            ] as Array<[string, number]>
+        ).map(([v, e]) => ({
             what: `with alert threshold ${v}`,
             inputs: { ...defaultInputs, 'alert-threshold': v },
             expected: { ...defaultExpected, alertThreshold: e },
         })),
-        ...[
-            ['@foo', ['@foo']],
-            ['@foo,@bar', ['@foo', '@bar']],
-            ['@foo, @bar ', ['@foo', '@bar']],
-        ].map(([v, e]) => ({
+        ...(
+            [
+                ['@foo', ['@foo']],
+                ['@foo,@bar', ['@foo', '@bar']],
+                ['@foo, @bar ', ['@foo', '@bar']],
+            ] as Array<[string, string[]]>
+        ).map(([v, e]) => ({
             what: `with comment CC users ${v}`,
             inputs: { ...defaultInputs, 'alert-comment-cc-users': v },
             expected: { ...defaultExpected, alertCommentCcUsers: e },
@@ -280,42 +286,36 @@ describe('configFromJobInput()', function () {
             },
             expected: defaultExpected,
         },
-    ] as Array<{
-        what: string;
-        inputs: Inputs;
-        expected: ExpectedResult;
-    }>;
+    ];
 
-    for (const test of returnedConfigTests) {
-        it(`returns validated config with ${test.what}`, async function () {
-            mockInputs(test.inputs);
-            const actual = await configFromJobInput();
-            A.equal(actual.name, test.expected.name);
-            A.equal(actual.tool, test.expected.tool);
-            A.equal(actual.ghPagesBranch, test.expected.ghPagesBranch);
-            A.equal(actual.githubToken, test.expected.githubToken);
-            A.equal(actual.skipFetchGhPages, test.expected.skipFetchGhPages);
-            A.equal(actual.commentOnAlert, test.expected.commentOnAlert);
-            A.equal(actual.failOnAlert, test.expected.failOnAlert);
-            A.equal(actual.alertThreshold, test.expected.alertThreshold);
-            A.deepEqual(actual.alertCommentCcUsers, test.expected.alertCommentCcUsers);
-            A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
-            A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
-            A.equal(actual.maxItemsInChart, test.expected.maxItemsInChart);
-            if (test.expected.failThreshold === null) {
-                A.equal(actual.failThreshold, test.expected.alertThreshold);
-            } else {
-                A.equal(actual.failThreshold, test.expected.failThreshold);
-            }
+    it.each(returnedConfigTests)('returns validated config with $what', async function (test) {
+        mockInputs(test.inputs);
+        const actual = await configFromJobInput();
+        A.equal(actual.name, test.expected.name);
+        A.equal(actual.tool, test.expected.tool);
+        A.equal(actual.ghPagesBranch, test.expected.ghPagesBranch);
+        A.equal(actual.githubToken, test.expected.githubToken);
+        A.equal(actual.skipFetchGhPages, test.expected.skipFetchGhPages);
+        A.equal(actual.commentOnAlert, test.expected.commentOnAlert);
+        A.equal(actual.failOnAlert, test.expected.failOnAlert);
+        A.equal(actual.alertThreshold, test.expected.alertThreshold);
+        A.deepEqual(actual.alertCommentCcUsers, test.expected.alertCommentCcUsers);
+        A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
+        A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
+        A.equal(actual.maxItemsInChart, test.expected.maxItemsInChart);
+        if (test.expected.failThreshold === null) {
+            A.equal(actual.failThreshold, test.expected.alertThreshold);
+        } else {
+            A.equal(actual.failThreshold, test.expected.failThreshold);
+        }
 
-            if (test.expected.hasExternalDataJsonPath) {
-                A.equal(typeof actual.externalDataJsonPath, 'string');
-                A.ok(path.isAbsolute(actual.externalDataJsonPath as string), actual.externalDataJsonPath);
-            } else {
-                A.equal(actual.externalDataJsonPath, undefined);
-            }
-        });
-    }
+        if (test.expected.hasExternalDataJsonPath) {
+            A.equal(typeof actual.externalDataJsonPath, 'string');
+            A.ok(path.isAbsolute(actual.externalDataJsonPath as string), actual.externalDataJsonPath);
+        } else {
+            A.equal(actual.externalDataJsonPath, undefined);
+        }
+    });
 
     it('resolves relative paths in config', async function () {
         mockInputs({

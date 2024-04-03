@@ -708,115 +708,108 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             },
         ];
 
-        for (const t of normalCases) {
-            it(t.it, async function () {
-                gitHubContext.payload.repository = {
-                    private: false,
-                    html_url: `${serverUrl}/user/repo`,
-                } as RepositoryPayloadSubset | null;
+        it.each(normalCases)('$it', async function (t) {
+            gitHubContext.payload.repository = {
+                private: false,
+                html_url: `${serverUrl}/user/repo`,
+            } as RepositoryPayloadSubset | null;
 
-                if (t.repoPayload !== undefined) {
-                    gitHubContext.payload.repository = t.repoPayload;
+            if (t.repoPayload !== undefined) {
+                gitHubContext.payload.repository = t.repoPayload;
+            }
+            if (t.data !== null) {
+                await fs.writeFile(dataJson, JSON.stringify(t.data), 'utf8');
+            }
+
+            let caughtError: Error | null = null;
+            try {
+                await writeBenchmark(t.added, t.config);
+            } catch (err: any) {
+                if (!t.error && !t.commitComment) {
+                    throw err;
                 }
-                if (t.data !== null) {
-                    await fs.writeFile(dataJson, JSON.stringify(t.data), 'utf8');
-                }
+                caughtError = err;
+            }
 
-                let caughtError: Error | null = null;
-                try {
-                    await writeBenchmark(t.added, t.config);
-                } catch (err: any) {
-                    if (!t.error && !t.commitComment) {
-                        throw err;
-                    }
-                    caughtError = err;
-                }
+            const json: DataJson = JSON.parse(await fs.readFile(dataJson, 'utf8'));
 
-                const json: DataJson = JSON.parse(await fs.readFile(dataJson, 'utf8'));
+            expect('number').toEqual(typeof json.lastUpdate);
+            expect(json.entries[t.config.name]).toBeTruthy();
+            const len = json.entries[t.config.name].length;
+            ok(len > 0);
+            expect(t.added).toEqual(json.entries[t.config.name][len - 1]); // Check last item is the newest
 
-                expect('number').toEqual(typeof json.lastUpdate);
-                expect(json.entries[t.config.name]).toBeTruthy();
-                const len = json.entries[t.config.name].length;
-                ok(len > 0);
-                expect(t.added).toEqual(json.entries[t.config.name][len - 1]); // Check last item is the newest
-
-                if (t.data !== null) {
-                    ok(json.lastUpdate > t.data.lastUpdate);
-                    expect(t.data.repoUrl).toEqual(json.repoUrl);
-                    for (const name of Object.keys(t.data.entries)) {
-                        const entries = t.data.entries[name];
-                        if (name === t.config.name) {
-                            if (t.config.maxItemsInChart === null || len < t.config.maxItemsInChart) {
-                                expect(entries.length + 1).toEqual(len);
-                                // Check benchmark data except for the last appended one are not modified
-                                expect(entries).toEqual(json.entries[name].slice(0, -1));
-                            } else {
-                                // When data items was truncated due to max-items-in-chart
-                                expect(entries.length).toEqual(len); // Number of items did not change because first item was shifted
-                                expect(entries.slice(1)).toEqual(json.entries[name].slice(0, -1));
-                            }
+            if (t.data !== null) {
+                ok(json.lastUpdate > t.data.lastUpdate);
+                expect(t.data.repoUrl).toEqual(json.repoUrl);
+                for (const name of Object.keys(t.data.entries)) {
+                    const entries = t.data.entries[name];
+                    if (name === t.config.name) {
+                        if (t.config.maxItemsInChart === null || len < t.config.maxItemsInChart) {
+                            expect(entries.length + 1).toEqual(len);
+                            // Check benchmark data except for the last appended one are not modified
+                            expect(entries).toEqual(json.entries[name].slice(0, -1));
                         } else {
-                            expect(entries).toEqual(json.entries[name]); // eq(json.entries[name], entries, name);
+                            // When data items was truncated due to max-items-in-chart
+                            expect(entries.length).toEqual(len); // Number of items did not change because first item was shifted
+                            expect(entries.slice(1)).toEqual(json.entries[name].slice(0, -1));
                         }
+                    } else {
+                        expect(entries).toEqual(json.entries[name]); // eq(json.entries[name], entries, name);
                     }
                 }
+            }
 
-                if (t.error) {
-                    ok(caughtError);
-                    const expected = t.error.join('\n');
-                    expect(caughtError.message).toEqual(expected);
-                }
+            if (t.error) {
+                ok(caughtError);
+                const expected = t.error.join('\n');
+                expect(caughtError.message).toEqual(expected);
+            }
 
-                if (t.commitComment !== undefined) {
-                    ok(caughtError);
-                    // Last line is appended only for failure message
-                    const messageLines = caughtError.message.split('\n');
-                    ok(messageLines.length > 0);
-                    const expectedMessage = wrapBodyWithBenchmarkTags(
-                        'Test benchmark Alert',
-                        messageLines.slice(0, -1).join('\n'),
-                    );
-                    ok(
-                        fakedRepos.spyOpts.length > 0,
-                        `len: ${fakedRepos.spyOpts.length}, caught: ${caughtError.message}`,
-                    );
-                    const opts = fakedRepos.lastCall();
-                    expect('user').toEqual(opts.owner);
-                    expect('repo').toEqual(opts.repo);
-                    expect('current commit id').toEqual(opts.commit_sha);
-                    expect(expectedMessage).toEqual(opts.body);
-                    const commentLine = messageLines[messageLines.length - 1];
-                    expect(t.commitComment).toEqual(commentLine);
+            if (t.commitComment !== undefined) {
+                ok(caughtError);
+                // Last line is appended only for failure message
+                const messageLines = caughtError.message.split('\n');
+                ok(messageLines.length > 0);
+                const expectedMessage = wrapBodyWithBenchmarkTags(
+                    'Test benchmark Alert',
+                    messageLines.slice(0, -1).join('\n'),
+                );
+                ok(fakedRepos.spyOpts.length > 0, `len: ${fakedRepos.spyOpts.length}, caught: ${caughtError.message}`);
+                const opts = fakedRepos.lastCall();
+                expect('user').toEqual(opts.owner);
+                expect('repo').toEqual(opts.repo);
+                expect('current commit id').toEqual(opts.commit_sha);
+                expect(expectedMessage).toEqual(opts.body);
+                const commentLine = messageLines[messageLines.length - 1];
+                expect(t.commitComment).toEqual(commentLine);
 
-                    // Check the body is a correct markdown document by markdown parser
-                    // Validate markdown content via HTML
-                    // TODO: Use Markdown AST instead of DOM API
-                    const html = md2html.render(opts.body);
-                    const query = cheerio.load(html);
+                // Check the body is a correct markdown document by markdown parser
+                // Validate markdown content via HTML
+                // TODO: Use Markdown AST instead of DOM API
+                const html = md2html.render(opts.body);
+                const query = cheerio.load(html);
 
-                    const h1 = query('h1');
-                    expect(1).toEqual(h1.length);
-                    expect(':warning: Performance Alert :warning:').toEqual(h1.text());
+                const h1 = query('h1');
+                expect(1).toEqual(h1.length);
+                expect(':warning: Performance Alert :warning:').toEqual(h1.text());
 
-                    const tr = query('tbody tr');
-                    expect(t.added.benches.length).toEqual(tr.length);
+                const tr = query('tbody tr');
+                expect(t.added.benches.length).toEqual(tr.length);
 
-                    const a = query('a');
-                    expect(2).toEqual(a.length);
+                const a = query('a');
+                expect(2).toEqual(a.length);
 
-                    const workflowLink = a.first();
-                    expect('workflow').toEqual(workflowLink.text());
-                    const workflowUrl = workflowLink.attr('href');
-                    ok(workflowUrl?.startsWith(json.repoUrl), workflowUrl);
+                const workflowLink = a.first();
+                expect('workflow').toEqual(workflowLink.text());
+                const workflowUrl = workflowLink.attr('href');
+                ok(workflowUrl?.startsWith(json.repoUrl), workflowUrl);
 
-                    const actionLink = a.last();
-                    expect('github-action-benchmark').toEqual(actionLink.text());
-                    expect('https://github.com/marketplace/actions/continuous-benchmark').toEqual(
-                        actionLink.attr('href'),
-                    );
-                }
-            });
-        }
+                const actionLink = a.last();
+                expect('github-action-benchmark').toEqual(actionLink.text());
+                expect('https://github.com/marketplace/actions/continuous-benchmark').toEqual(actionLink.attr('href'));
+            }
+        });
     });
 
     // Tests for updating GitHub Pages branch
@@ -1311,44 +1304,42 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             },
         ];
 
-        for (const t of retryCases) {
-            it(t.it, async function () {
-                gitSpy.pushFailure = t.pushErrorMessage;
-                gitSpy.pushFailureCount = t.pushErrorCount;
-                const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };
-                const added: Benchmark = {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 110)],
-                };
+        it.each(retryCases)('$it', async function (t) {
+            gitSpy.pushFailure = t.pushErrorMessage;
+            gitSpy.pushFailureCount = t.pushErrorCount;
+            const config = { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' };
+            const added: Benchmark = {
+                commit: commit('current commit id'),
+                date: lastUpdate,
+                tool: 'cargo',
+                benches: [bench('bench_fib_10', 110)],
+            };
 
-                const originalDataJs = path.join(config.benchmarkDataDirPath, 'original_data.js');
-                const dataJs = path.join(config.benchmarkDataDirPath, 'data.js');
-                await fs.copyFile(originalDataJs, dataJs);
+            const originalDataJs = path.join(config.benchmarkDataDirPath, 'original_data.js');
+            const dataJs = path.join(config.benchmarkDataDirPath, 'data.js');
+            await fs.copyFile(originalDataJs, dataJs);
 
-                const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
-                if (t.pushErrorCount > 0) {
-                    // First 2 commands are fetch and switch. They are not repeated on retry
-                    const retryHistory = history.slice(2, -1);
-                    retryHistory.push(['cmd', [[], 'reset', '--hard', 'HEAD~1']]);
+            const history = gitHistory({ dir: 'with-index-html', addIndexHtml: false });
+            if (t.pushErrorCount > 0) {
+                // First 2 commands are fetch and switch. They are not repeated on retry
+                const retryHistory = history.slice(2, -1);
+                retryHistory.push(['cmd', [[], 'reset', '--hard', 'HEAD~1']]);
 
-                    const retries = Math.min(t.pushErrorCount, maxRetries);
-                    for (let i = 0; i < retries; i++) {
-                        history.splice(2, 0, ...retryHistory);
-                    }
+                const retries = Math.min(t.pushErrorCount, maxRetries);
+                for (let i = 0; i < retries; i++) {
+                    history.splice(2, 0, ...retryHistory);
                 }
+            }
 
-                try {
-                    await writeBenchmark(added, config);
-                    expect(gitSpy.history).toEqual(history);
-                } catch (err: any) {
-                    if (t.error === undefined) {
-                        throw err;
-                    }
-                    ok(t.error.test(err.message), `'${err.message}' did not match to ${t.error}`);
+            try {
+                await writeBenchmark(added, config);
+                expect(gitSpy.history).toEqual(history);
+            } catch (err: any) {
+                if (t.error === undefined) {
+                    throw err;
                 }
-            });
-        }
+                ok(t.error.test(err.message), `'${err.message}' did not match to ${t.error}`);
+            }
+        });
     });
 });
