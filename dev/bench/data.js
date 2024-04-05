@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712304124689,
+  "lastUpdate": 1712304129685,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54995,6 +54995,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44844,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8e749722e912d8d81d0ef090f927695c58efcf5e",
+          "message": "chore: migrate extract tests to use snapshot testing (#236)\n\n* migrate extract tests to use snapshot testing\r\n* use proper json output files\r\n* use it.each where possible",
+          "timestamp": "2024-04-05T10:01:05+02:00",
+          "tree_id": "3a8eda2e525f4c6cd4ec74f71b26139d6d9549fe",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8e749722e912d8d81d0ef090f927695c58efcf5e"
+        },
+        "date": 1712304127144,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 293.3183520599251,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":267,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44823,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
