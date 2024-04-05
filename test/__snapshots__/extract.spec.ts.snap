@@ -1,0 +1,845 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractResult() extracts benchmark output from benchmarkdotnet - benchmarkdotnet.json 1`] = `
+{
+  "benches": [
+    {
+      "name": "Sample.Benchmarks.Fib10",
+      "range": "± 0.1981212530783709",
+      "unit": "ns",
+      "value": 24.4202085009643,
+    },
+    {
+      "name": "Sample.Benchmarks.Fib20",
+      "range": "± 0.7903737021529575",
+      "unit": "ns",
+      "value": 51.52008151549559,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "benchmarkdotnet",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from benchmarkjs - benchmarkjs_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "93 samples",
+      "name": "fib(10)",
+      "range": "±0.74%",
+      "unit": "ops/sec",
+      "value": 1431759,
+    },
+    {
+      "extra": "96 samples",
+      "name": "fib(20)",
+      "range": "±0.32%",
+      "unit": "ops/sec",
+      "value": 12146,
+    },
+    {
+      "extra": "69 samples",
+      "name": "createObjectBuffer with 200 comments",
+      "range": "±1.70%",
+      "unit": "ops/sec",
+      "value": 81.61,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "benchmarkjs",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from benchmarkluau - benchmarkluau_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "luau",
+      "name": "base64",
+      "range": "±0.636%",
+      "unit": "ms",
+      "value": 15.041,
+    },
+    {
+      "extra": "luau",
+      "name": "chess",
+      "range": "±0.212%",
+      "unit": "ms",
+      "value": 69.56,
+    },
+    {
+      "extra": "luau",
+      "name": "life",
+      "range": "±0.187%",
+      "unit": "ms",
+      "value": 85.089,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "benchmarkluau",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from cargo - cargo_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "bench_fib_10",
+      "range": "± 24",
+      "unit": "ns/iter",
+      "value": 135,
+    },
+    {
+      "name": "bench_fib_20",
+      "range": "± 755",
+      "unit": "ns/iter",
+      "value": 18149,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from cargo - cargo_output2.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "bench_engine_new",
+      "range": "± 70126",
+      "unit": "ns/iter",
+      "value": 211834,
+    },
+    {
+      "name": "bench_engine_new_raw",
+      "range": "± 18",
+      "unit": "ns/iter",
+      "value": 197,
+    },
+    {
+      "name": "bench_engine_new_raw_core",
+      "range": "± 31",
+      "unit": "ns/iter",
+      "value": 196,
+    },
+    {
+      "name": "bench_engine_register_fn",
+      "range": "± 82",
+      "unit": "ns/iter",
+      "value": 493,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from cargo - criterion_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "Create Realm",
+      "range": "± 4",
+      "unit": "ns/iter",
+      "value": 329,
+    },
+    {
+      "name": "Symbols (Execution)",
+      "range": "± 47",
+      "unit": "ns/iter",
+      "value": 3268,
+    },
+    {
+      "name": "For loop (Execution)",
+      "range": "± 123",
+      "unit": "ns/iter",
+      "value": 12314,
+    },
+    {
+      "name": "Fibonacci (Execution)",
+      "range": "± 10166",
+      "unit": "ns/iter",
+      "value": 1672496,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from catch2 - catch2_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "100 samples
+208 iterations",
+      "name": "Fibonacci 10",
+      "range": "± 19",
+      "unit": "ns",
+      "value": 344,
+    },
+    {
+      "extra": "100 samples
+2 iterations",
+      "name": "Fibonacci 20",
+      "range": "± 3.256",
+      "unit": "us",
+      "value": 41.731,
+    },
+    {
+      "extra": "100 samples
+1961 iterations",
+      "name": "Fibonacci~ 5!",
+      "range": "± 4",
+      "unit": "ns",
+      "value": 36,
+    },
+    {
+      "extra": "100 samples
+20 iterations",
+      "name": "Fibonacci-15_bench",
+      "range": "± 362",
+      "unit": "us",
+      "value": 3.789,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "catch2",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from catch2 - issue16_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "100 samples
+76353 iterations",
+      "name": "Fibonacci 10",
+      "range": "± 0",
+      "unit": "ns",
+      "value": 0,
+    },
+    {
+      "extra": "100 samples
+75814 iterations",
+      "name": "Fibonacci 20",
+      "range": "± 0",
+      "unit": "ns",
+      "value": 1,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "catch2",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from customBiggerIsBetter - customBiggerIsBetter_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": undefined,
+      "name": "My Custom Bigger Is Better Benchmark - Throughput",
+      "range": undefined,
+      "unit": "req/s",
+      "value": 70,
+    },
+    {
+      "extra": "Optional Value #1: 25
+Helpful Num #2: 100
+Anything Else!",
+      "name": "My Custom Bigger Is Better Benchmark - Free Memory",
+      "range": "3",
+      "unit": "Megabytes",
+      "value": 150,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "customBiggerIsBetter",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from customSmallerIsBetter - customSmallerIsBetter_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "My Optional Information for the tooltip",
+      "name": "My Custom Smaller Is Better Benchmark - CPU Load",
+      "range": "5%",
+      "unit": "Percent",
+      "value": 50,
+    },
+    {
+      "extra": undefined,
+      "name": "My Custom Smaller Is Better Benchmark - Memory Used",
+      "range": undefined,
+      "unit": "Megabytes",
+      "value": 100,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "customSmallerIsBetter",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from go - go_fiber_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "4846809 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{".xml"}",
+      "unit": "ns/op	       0 B/op	       0 allocs/op",
+      "value": 247.6,
+    },
+    {
+      "extra": "4846809 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{".xml"} - ns/op",
+      "unit": "ns/op",
+      "value": 247.6,
+    },
+    {
+      "extra": "4846809 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{".xml"} - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "4846809 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{".xml"} - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "3900769 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"}",
+      "unit": "ns/op	       0 B/op	       0 allocs/op",
+      "value": 307.1,
+    },
+    {
+      "extra": "3900769 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"} - ns/op",
+      "unit": "ns/op",
+      "value": 307.1,
+    },
+    {
+      "extra": "3900769 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"} - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "3900769 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"} - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "5118646 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"}",
+      "unit": "ns/op	       0 B/op	       0 allocs/op",
+      "value": 316.1,
+    },
+    {
+      "extra": "5118646 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"} - ns/op",
+      "unit": "ns/op",
+      "value": 316.1,
+    },
+    {
+      "extra": "5118646 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"} - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "5118646 times
+4 procs",
+      "name": "Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"} - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "3067818 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#01",
+      "unit": "ns/op	      48 B/op	       2 allocs/op",
+      "value": 390.7,
+    },
+    {
+      "extra": "3067818 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#01 - ns/op",
+      "unit": "ns/op",
+      "value": 390.7,
+    },
+    {
+      "extra": "3067818 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#01 - B/op",
+      "unit": "B/op",
+      "value": 48,
+    },
+    {
+      "extra": "3067818 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#01 - allocs/op",
+      "unit": "allocs/op",
+      "value": 2,
+    },
+    {
+      "extra": "1992943 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#02",
+      "unit": "ns/op	      48 B/op	       2 allocs/op",
+      "value": 602.1,
+    },
+    {
+      "extra": "1992943 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#02 - ns/op",
+      "unit": "ns/op",
+      "value": 602.1,
+    },
+    {
+      "extra": "1992943 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#02 - B/op",
+      "unit": "B/op",
+      "value": 48,
+    },
+    {
+      "extra": "1992943 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#02 - allocs/op",
+      "unit": "allocs/op",
+      "value": 2,
+    },
+    {
+      "extra": "4180965 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#03",
+      "unit": "ns/op	       0 B/op	       0 allocs/op",
+      "value": 286.3,
+    },
+    {
+      "extra": "4180965 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#03 - ns/op",
+      "unit": "ns/op",
+      "value": 286.3,
+    },
+    {
+      "extra": "4180965 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#03 - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "4180965 times
+4 procs",
+      "name": "Benchmark_Utils_GetOffer/mime_extension#03 - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "go",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from go - go_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "5000000 times
+8 procs",
+      "name": "BenchmarkFib10",
+      "unit": "ns/op",
+      "value": 325,
+    },
+    {
+      "extra": "30000 times",
+      "name": "BenchmarkFib20",
+      "unit": "ns/op",
+      "value": 40537.123,
+    },
+    {
+      "extra": "5000000 times
+8 procs",
+      "name": "BenchmarkFib/my_tabled_benchmark_-_10",
+      "unit": "ns/op",
+      "value": 325,
+    },
+    {
+      "extra": "30000 times",
+      "name": "BenchmarkFib/my_tabled_benchmark_-_20",
+      "unit": "ns/op",
+      "value": 40537.123,
+    },
+    {
+      "extra": "30001 times",
+      "name": "BenchmarkFib/my/tabled/benchmark_-_20",
+      "unit": "ns/op",
+      "value": 40537.456,
+    },
+    {
+      "extra": "30001 times",
+      "name": "BenchmarkFib/my/tabled/benchmark_-_20,var1=13,var2=14",
+      "unit": "ns/op",
+      "value": 40537.456,
+    },
+    {
+      "extra": "4587789 times
+16 procs",
+      "name": "BenchmarkFib11",
+      "unit": "ns/op	         3.000 auxMetricUnits",
+      "value": 262.7,
+    },
+    {
+      "extra": "4587789 times
+16 procs",
+      "name": "BenchmarkFib11 - ns/op",
+      "unit": "ns/op",
+      "value": 262.7,
+    },
+    {
+      "extra": "4587789 times
+16 procs",
+      "name": "BenchmarkFib11 - auxMetricUnits",
+      "unit": "auxMetricUnits",
+      "value": 3,
+    },
+    {
+      "extra": "37653 times
+16 procs",
+      "name": "BenchmarkFib22",
+      "unit": "ns/op	         4.000 auxMetricUnits",
+      "value": 31915,
+    },
+    {
+      "extra": "37653 times
+16 procs",
+      "name": "BenchmarkFib22 - ns/op",
+      "unit": "ns/op",
+      "value": 31915,
+    },
+    {
+      "extra": "37653 times
+16 procs",
+      "name": "BenchmarkFib22 - auxMetricUnits",
+      "unit": "auxMetricUnits",
+      "value": 4,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "go",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from googlecpp - googlecpp_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "iterations: 3070566
+cpu: 213.65507206163295 ns
+threads: 1",
+      "name": "fib_10",
+      "unit": "ns/iter",
+      "value": 214.98980114547953,
+    },
+    {
+      "extra": "iterations: 23968
+cpu: 27364.90320427236 ns
+threads: 1",
+      "name": "fib_20",
+      "unit": "ns/iter",
+      "value": 27455.600415007055,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "googlecpp",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from jmh - jmh_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "iterations: 3
+forks: 1
+threads: 1",
+      "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+      "unit": "ops/s",
+      "value": 3376238873.1228185,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "jmh",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from jmh - jmh_output_2.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "iterations: 3
+forks: 1
+threads: 1",
+      "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere ( {"paramA":"17","paramB":"33"} )",
+      "unit": "ops/s",
+      "value": 3376238873.1228185,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "jmh",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from julia - julia_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "gctime=0
+memory=0
+allocs=0
+params={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":390,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}",
+      "name": "fib/10",
+      "unit": "ns",
+      "value": 246.03846153846155,
+    },
+    {
+      "extra": "gctime=0
+memory=0
+allocs=0
+params={"gctrial":true,"time_tolerance":0.05,"samples":10000,"evals":1,"gcsample":false,"seconds":5,"overhead":0,"memory_tolerance":0.01}",
+      "name": "fib/20",
+      "unit": "ns",
+      "value": 31028,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "julia",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from pytest - pytest_output.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "mean: 24.08868133322941 usec
+rounds: 38523",
+      "name": "bench.py::test_fib_10",
+      "range": "stddev: 0.000006175090189861328",
+      "unit": "iter/sec",
+      "value": 41513.272817492856,
+    },
+    {
+      "extra": "mean: 2.9850306726618627 msec
+rounds: 278",
+      "name": "bench.py::test_fib_20",
+      "range": "stddev: 0.0001745301654140968",
+      "unit": "iter/sec",
+      "value": 335.0049328331567,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "pytest",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from pytest - pytest_several_units.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "mean: 149.95610248628836 nsec
+rounds: 68536",
+      "name": "bench.py::test_fib_1",
+      "range": "stddev: 2.9351731952139377e-8",
+      "unit": "iter/sec",
+      "value": 6668618.238403659,
+    },
+    {
+      "extra": "mean: 28.85754012484424 usec
+rounds: 20025",
+      "name": "bench.py::test_fib_10",
+      "range": "stddev: 0.000005235937482008476",
+      "unit": "iter/sec",
+      "value": 34652.98828915334,
+    },
+    {
+      "extra": "mean: 3.611916368852473 msec
+rounds: 122",
+      "name": "bench.py::test_fib_20",
+      "range": "stddev: 0.0003737982822178215",
+      "unit": "iter/sec",
+      "value": 276.8613383807958,
+    },
+    {
+      "extra": "mean: 2.0038430469999997 sec
+rounds: 5",
+      "name": "bench.py::test_sleep_2",
+      "range": "stddev: 0.0018776587251587858",
+      "unit": "iter/sec",
+      "value": 0.49904108083570886,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "pytest",
+}
+`;
