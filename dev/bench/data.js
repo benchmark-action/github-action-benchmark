@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712304097331,
+  "lastUpdate": 1712304098613,
   "entries": {
     "Rust Benchmark": [
       {
@@ -47801,6 +47801,42 @@ window.BENCHMARK_DATA = {
             "value": 19984.29150573613,
             "unit": "ns/iter",
             "extra": "iterations: 34953\ncpu: 19983.801104340113 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8e749722e912d8d81d0ef090f927695c58efcf5e",
+          "message": "chore: migrate extract tests to use snapshot testing (#236)\n\n* migrate extract tests to use snapshot testing\r\n* use proper json output files\r\n* use it.each where possible",
+          "timestamp": "2024-04-05T10:01:05+02:00",
+          "tree_id": "3a8eda2e525f4c6cd4ec74f71b26139d6d9549fe",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8e749722e912d8d81d0ef090f927695c58efcf5e"
+        },
+        "date": 1712304095207,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.86885288700532,
+            "unit": "ns/iter",
+            "extra": "iterations: 4404893\ncpu: 158.86417672347548 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19985.4227081483,
+            "unit": "ns/iter",
+            "extra": "iterations: 34939\ncpu: 19985.094021008044 ns\nthreads: 1"
           }
         ]
       }
