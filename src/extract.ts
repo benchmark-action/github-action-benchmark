@@ -462,6 +462,33 @@ function extractGoogleCppResult(output: string): BenchmarkResult[] {
     });
 }
 
+
+function convertTime(value: number, fromUnit: string, toUnit: string): number {
+    if (fromUnit === toUnit) {
+        return value;
+    }
+    let milliValue = value;
+    switch (fromUnit) {
+        case 'us':
+            milliValue = value * 1e-3;
+            break;
+        case 's':
+            milliValue = value * 1e3;
+            break;
+        default:
+            return milliValue;
+    }
+
+    switch (toUnit) {
+        case 'us':
+            return milliValue * 1e3;
+        case 's':
+            return milliValue * 1e-3;
+        default:
+            return milliValue;
+    }
+}
+
 function extractCatch2Result(output: string): BenchmarkResult[] {
     // Example:
 
@@ -524,7 +551,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
             );
         }
 
-        const range = '± ' + stdDev[1].trim();
+        const range = '± ' + convertTime(parseFloat(stdDev[1]), stdDev[2], unit);
 
         // Skip empty line
         const [emptyLine, emptyLineNum] = nextLine();
