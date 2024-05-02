@@ -159,7 +159,7 @@ function strVal(b: BenchmarkResult): string {
 function toMs(value: number, unit: string) {
     if (unit === undefined) return 0;
     switch (unit.toLowerCase()) {
-      case 'us:
+      case 'us':
         return value / 1e3;
       case 'ms':
         return value;
