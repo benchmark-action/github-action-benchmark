@@ -69,6 +69,10 @@ describe('extractResult()', function () {
         },
         {
             tool: 'cargo',
+            file: 'cargo_output3.txt',
+        },
+        {
+            tool: 'cargo',
             file: 'criterion_output.txt',
         },
         {

@@ -314,7 +314,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
-    //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
+    //   test bench_fib_20 ... bench:      37,174.25 ns/iter (+/- 7,527.43)
     const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,.]+) ns\/iter \(\+\/- ([0-9,.]+)\)$/;
     const reComma = /,/g;
 
@@ -325,7 +325,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
         }
 
         const name = m[1].trim();
-        const value = parseInt(m[2].replace(reComma, ''), 10);
+        const value = parseFloat(m[2].replace(reComma, ''));
         const range = m[3].replace(reComma, '');
 
         ret.push({
