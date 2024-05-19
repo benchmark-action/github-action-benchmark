@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716117784280,
+  "lastUpdate": 1716117798226,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15186,6 +15186,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 30418,
             "range": "± 80",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2b82b9a3b5e1e4c363fc6c378818e2e30f635945",
+          "message": "fix: Catch2 v.3.5.0 changed output format (#247)\n\n* create Catch2 v3 example\r\n* add test case for catch2 v3\r\n* modify extract header regexp to work with v3",
+          "timestamp": "2024-05-19T13:21:20+02:00",
+          "tree_id": "959151be13370f6a8155f9bfa7b1b113089c3fb3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2b82b9a3b5e1e4c363fc6c378818e2e30f635945"
+        },
+        "date": 1716117795524,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 198,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 25069,
+            "range": "± 2803",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 18805,
+            "range": "± 359",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 30423,
+            "range": "± 246",
             "unit": "ns/iter"
           },
           {
