@@ -1,0 +1,47 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Catch2_bench is a Catch v2.11.0 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Fibonacci
+-------------------------------------------------------------------------------
+/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/catch2/catch2_bench.cpp:5
+...............................................................................
+
+benchmark name                                  samples       iterations    est run time
+                                                mean          low mean      high mean
+                                                std dev       low std dev   high std dev
+-------------------------------------------------------------------------------
+Fibonacci 10                                              100           208     7.1968 ms 
+                                                       344 ns        341 ns        349 ns 
+                                                        19 ns         11 ns         29 ns 
+                                                                                          
+Fibonacci 20                                              100             2     8.3712 ms 
+                                                    41.731 us      41.25 us     42.622 us 
+                                                     3.256 us      2.163 us      5.353 us 
+                                                                                          
+
+-------------------------------------------------------------------------------
+More Fibonacci
+-------------------------------------------------------------------------------
+/Users/rhayasd/Develop/github.com/benchmark-action/github-action-benchmark/examples/catch2/catch2_bench.cpp:13
+...............................................................................
+
+benchmark name                                  samples       iterations    estimated
+                                                mean          low mean      high mean
+                                                std dev       low std dev   high std dev
+-------------------------------------------------------------------------------
+Fibonacci~ 5!                                             100          1961     7.0596 ms 
+                                                        36 ns         35 ns         37 ns 
+                                                         4 ns          3 ns          6 ns 
+                                                                                          
+Fibonacci-15_bench                                        100            20       7.48 ms 
+                                                     3.789 us      3.734 us      3.888 us 
+                                                       362 ns        234 ns        539 ns 
+                                                                                          
+
+===============================================================================
+test cases: 2 | 2 passed
+assertions: - none -
+
