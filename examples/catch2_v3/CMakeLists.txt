@@ -6,7 +6,7 @@ include(FetchContent)
 FetchContent_Declare(
   catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG v2.11.0)
+  GIT_TAG v3.6.0)
 
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
@@ -16,7 +16,7 @@ endif()
 
 add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME} PRIVATE catch2_bench.cpp)
-target_link_libraries(${PROJECT_NAME} Catch2::Catch2)
+target_link_libraries(${PROJECT_NAME} Catch2::Catch2WithMain)
 
 target_compile_options(
   ${PROJECT_NAME}
