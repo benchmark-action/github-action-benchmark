@@ -77,7 +77,11 @@ describe('extractResult()', function () {
         },
         {
             tool: 'catch2',
-            file: 'catch2_output.txt',
+            file: 'catch2_output_v2.txt',
+        },
+        {
+            tool: 'catch2',
+            file: 'catch2_output_v3.txt',
         },
         {
             tool: 'go',

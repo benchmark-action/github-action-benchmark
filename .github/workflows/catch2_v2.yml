@@ -10,13 +10,13 @@ permissions:
 
 jobs:
   benchmark:
-    name: Run Catch2 C++ Benchmark Framework example (v3.x)
+    name: Run Catch2 C++ Benchmark Framework example (v2.x)
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - name: Build and run benchmarks with Catch2
         run: |
-          cd examples/catch2
+          cd examples/catch2_v2
           mkdir build && cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
@@ -25,9 +25,9 @@ jobs:
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Catch2 Benchmark (v3)
+          name: Catch2 Benchmark
           tool: 'catch2'
-          output-file-path: examples/catch2/benchmark_result.txt
+          output-file-path: examples/catch2_v2/benchmark_result.txt
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
           # Show alert with commit comment on detecting possible performance regression
@@ -39,9 +39,9 @@ jobs:
       - name: Store benchmark result - separate results repo
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Catch2 Benchmark (v3)
+          name: Catch2 Benchmark
           tool: 'catch2'
-          output-file-path: examples/catch2/benchmark_result.txt
+          output-file-path: examples/catch2_v2/benchmark_result.txt
           github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
           auto-push: true
           # Show alert with commit comment on detecting possible performance regression

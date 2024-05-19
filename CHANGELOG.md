@@ -1,4 +1,5 @@
 ## Unreleased
+- **fix** Catch2 v.3.5.0 changed output format [#241]
 
 <a name="v1.20.2"></a>
 # [v1.20.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.2) - 19 May 2024
