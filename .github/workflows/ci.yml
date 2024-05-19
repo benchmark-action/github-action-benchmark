@@ -75,8 +75,45 @@ jobs:
           comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
-  catch2-framework:
-    name: Run Catch2 C++ Benchmark Framework example
+  catch2-v2-framework:
+    name: Run Catch2 C++ Benchmark Framework example (v2.x)
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/catch2_v2
+          mkdir build && cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --config Release
+          ./Catch2_bench > ../benchmark_result.txt
+      - name: Save previous data.js
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp ./dev/bench/data.js before_data.js
+          git checkout -
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Catch2 Benchmark
+          tool: 'catch2'
+          output-file-path: examples/catch2_v2/benchmark_result.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+
+  catch2-v3-framework:
+    name: Run Catch2 C++ Benchmark Framework example (v3.x)
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +139,7 @@ jobs:
       - name: Store benchmark result
         uses: ./
         with:
-          name: Catch2 Benchmark
+          name: Catch2 Benchmark (v3)
           tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           skip-fetch-gh-pages: true
@@ -110,7 +147,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)'
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example
