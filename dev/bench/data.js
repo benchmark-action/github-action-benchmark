@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716111914197,
+  "lastUpdate": 1716111915458,
   "entries": {
     "Rust Benchmark": [
       {
@@ -24295,6 +24295,60 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "30429 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6ab2e28cdaae1cac6972ef469e21e576ead8643",
+          "message": "fix: Support sub-nanosecond precision on Cargo benchmarks (#246)\n\n* add test to cover new more precise format\r\n* change regexp and parsing of the number to cover sub-nanosecond precision\r\n\r\n---------\r\n\r\nCo-authored-by: blaine-arcjet <146491715+blaine-arcjet@users.noreply.github.com>",
+          "timestamp": "2024-05-19T11:44:47+02:00",
+          "tree_id": "c9e84620bf6d14312882f0af010baf48cb27e663",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6ab2e28cdaae1cac6972ef469e21e576ead8643"
+        },
+        "date": 1716111912225,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 312.9,
+            "unit": "ns/op",
+            "extra": "3870391 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 39671,
+            "unit": "ns/op",
+            "extra": "30344 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric",
+            "value": 39648,
+            "unit": "ns/op\t         4.000 auxMetricUnits",
+            "extra": "30301 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 39648,
+            "unit": "ns/op",
+            "extra": "30301 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "30301 times\n4 procs"
           }
         ]
       }
