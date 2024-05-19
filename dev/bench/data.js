@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716117718261,
+  "lastUpdate": 1716117733673,
   "entries": {
     "Rust Benchmark": [
       {
@@ -42195,6 +42195,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000012803498924867062",
             "extra": "mean: 1.8229615926595004 msec\nrounds: 545"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2b82b9a3b5e1e4c363fc6c378818e2e30f635945",
+          "message": "fix: Catch2 v.3.5.0 changed output format (#247)\n\n* create Catch2 v3 example\r\n* add test case for catch2 v3\r\n* modify extract header regexp to work with v3",
+          "timestamp": "2024-05-19T13:21:20+02:00",
+          "tree_id": "959151be13370f6a8155f9bfa7b1b113089c3fb3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2b82b9a3b5e1e4c363fc6c378818e2e30f635945"
+        },
+        "date": 1716117731020,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75753.08319692513,
+            "unit": "iter/sec",
+            "range": "stddev: 6.522426534192578e-7",
+            "extra": "mean: 13.200782830191004 usec\nrounds: 38067"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 612.3146709463763,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000040611293552290665",
+            "extra": "mean: 1.633147215719049 msec\nrounds: 598"
           }
         ]
       }
