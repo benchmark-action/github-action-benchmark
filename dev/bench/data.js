@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716111939238,
+  "lastUpdate": 1716111941048,
   "entries": {
     "Rust Benchmark": [
       {
@@ -55387,6 +55387,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44823,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6ab2e28cdaae1cac6972ef469e21e576ead8643",
+          "message": "fix: Support sub-nanosecond precision on Cargo benchmarks (#246)\n\n* add test to cover new more precise format\r\n* change regexp and parsing of the number to cover sub-nanosecond precision\r\n\r\n---------\r\n\r\nCo-authored-by: blaine-arcjet <146491715+blaine-arcjet@users.noreply.github.com>",
+          "timestamp": "2024-05-19T11:44:47+02:00",
+          "tree_id": "c9e84620bf6d14312882f0af010baf48cb27e663",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6ab2e28cdaae1cac6972ef469e21e576ead8643"
+        },
+        "date": 1716111938510,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 354.33962264150944,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":212,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44924,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
