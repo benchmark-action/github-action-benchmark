@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716111960730,
+  "lastUpdate": 1716112067242,
   "entries": {
     "Rust Benchmark": [
       {
@@ -14958,6 +14958,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 32386,
             "range": "± 834",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6ab2e28cdaae1cac6972ef469e21e576ead8643",
+          "message": "fix: Support sub-nanosecond precision on Cargo benchmarks (#246)\n\n* add test to cover new more precise format\r\n* change regexp and parsing of the number to cover sub-nanosecond precision\r\n\r\n---------\r\n\r\nCo-authored-by: blaine-arcjet <146491715+blaine-arcjet@users.noreply.github.com>",
+          "timestamp": "2024-05-19T11:44:47+02:00",
+          "tree_id": "c9e84620bf6d14312882f0af010baf48cb27e663",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6ab2e28cdaae1cac6972ef469e21e576ead8643"
+        },
+        "date": 1716112064726,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 198,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 21513,
+            "range": "± 3111",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 18806,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 30430,
+            "range": "± 117",
             "unit": "ns/iter"
           },
           {
