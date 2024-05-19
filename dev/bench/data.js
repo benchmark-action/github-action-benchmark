@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716112067242,
+  "lastUpdate": 1716112389548,
   "entries": {
     "Rust Benchmark": [
       {
@@ -9862,6 +9862,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 20001,
             "range": "± 368",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f6ab2e28cdaae1cac6972ef469e21e576ead8643",
+          "message": "fix: Support sub-nanosecond precision on Cargo benchmarks (#246)\n\n* add test to cover new more precise format\r\n* change regexp and parsing of the number to cover sub-nanosecond precision\r\n\r\n---------\r\n\r\nCo-authored-by: blaine-arcjet <146491715+blaine-arcjet@users.noreply.github.com>",
+          "timestamp": "2024-05-19T11:44:47+02:00",
+          "tree_id": "c9e84620bf6d14312882f0af010baf48cb27e663",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/f6ab2e28cdaae1cac6972ef469e21e576ead8643"
+        },
+        "date": 1716112386972,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 148.74,
+            "range": "± 1.70",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 18788.23,
+            "range": "± 216.22",
             "unit": "ns/iter"
           }
         ]
