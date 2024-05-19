@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1716117798226,
+  "lastUpdate": 1716117967986,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59665,6 +59665,46 @@ window.BENCHMARK_DATA = {
             "value": 1970082969.5256188,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      }
+    ],
+    "Catch2 Benchmark (v3)": [
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2b82b9a3b5e1e4c363fc6c378818e2e30f635945",
+          "message": "fix: Catch2 v.3.5.0 changed output format (#247)\n\n* create Catch2 v3 example\r\n* add test case for catch2 v3\r\n* modify extract header regexp to work with v3",
+          "timestamp": "2024-05-19T13:21:20+02:00",
+          "tree_id": "959151be13370f6a8155f9bfa7b1b113089c3fb3",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2b82b9a3b5e1e4c363fc6c378818e2e30f635945"
+        },
+        "date": 1716117964771,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 145.779,
+            "range": "± 2.77021",
+            "unit": "ns",
+            "extra": "100 samples\n197 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.9633,
+            "range": "± 189.51",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
           }
         ]
       }
