@@ -80,7 +80,7 @@ jobs:
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark' './benchmark-data-repository'
 
   catch2-v2-framework:
-    name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
+    name: Run Catch2 C++ Benchmark Framework example (v2.x) - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -119,7 +119,7 @@ jobs:
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
 
   catch2-v3-framework:
-    name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
+    name: Run Catch2 C++ Benchmark Framework example (v3.x) - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
