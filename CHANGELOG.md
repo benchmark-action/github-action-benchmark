@@ -1,4 +1,6 @@
 ## Unreleased
+- **fix** Support sub-nanosecond precision on Cargo benchmarks (#246)
+
 
 <a name="v1.20.1"></a>
 # [v1.20.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.1) - 02 Apr 2024
