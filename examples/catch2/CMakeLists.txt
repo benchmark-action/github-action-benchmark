@@ -16,7 +16,7 @@ endif()
 
 add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME} PRIVATE catch2_bench.cpp)
-target_link_libraries(${PROJECT_NAME} Catch2::Catch2)
+target_link_libraries(${PROJECT_NAME} Catch2::Catch2WithMain)
 
 target_compile_options(
   ${PROJECT_NAME}
