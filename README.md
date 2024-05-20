@@ -10,51 +10,35 @@ and monitor the results on GitHub Actions workflow.
 
 - This action can store collected benchmark results in [GitHub pages][gh-pages] branch and provide
   a chart view. Benchmark results are visualized on the GitHub pages of your project.
+
+  ![page screenshot](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/main.png)
 - This action can detect possible performance regressions by comparing benchmark results. When
-  benchmark results get worse than previous exceeding the specified threshold, it can raise an alert
-  via commit comment or workflow failure.
+  benchmark results get worse than previous exceeding the specified threshold, it can add [an alert comment][alert-comment-example] to the commit.
 
-This action currently supports the following tools:
-
-- [`cargo bench`][cargo-bench] for Rust projects
-- `go test -bench` for Go projects
-- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
-- [pytest-benchmark][] for Python projects with [pytest][]
-- [Google Benchmark Framework][google-benchmark] for C++ projects
-- [Catch2][catch2] for C++ projects
-- [BenchmarkTools.jl][] for Julia packages
-- [Benchmark.Net][benchmarkdotnet] for .Net projects
-- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
-- [JMH][jmh] for Java projects
-- Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
-
-Multiple languages in the same repository are supported for polyglot projects.
+![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
 
 [Japanese Blog post](https://rhysd.hatenablog.com/entry/2019/11/11/131505)
 
+## Supported languages & examples
 
-
-## Examples
-
-Example projects for each language are in [examples/](./examples) directory. Live example workflow
-definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
-
-| Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
-| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
-| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
-| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
-| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
-| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
-| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
-| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
-| Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
-| Luau         | Coming soon | Coming soon |
+| Language     | Supported | Example Workflow                                                            | Example Project                                        |
+|--------------|-----------|-----------------------------------------------------------------------------|--------------------------------------------------------|
+| Rust         | Yes       | [![cargo bench][rust-badge]][rust-workflow-example]                         | [examples/rust](./examples/rust)                       |
+| Go           | Yes       | [![go test -bench][go-badge]][go-workflow-example]                          | [examples/go](./examples/go)                           |
+| JavaScript   | Yes       | [![benchmark.js][benchmarkjs-badge]][benchmarkjs-workflow-example]          | [examples/benchmarkjs](./examples/benchmarkjs)         |
+| Python       | Yes       | [![pytest-benchmark][pytest-benchmark-badge]][pytest-workflow-example]      | [examples/pytest](./examples/pytest)                   |
+| C++          | Yes       | [![Google Benchmark Framework][cpp-badge]][cpp-workflow-example]            | [examples/cpp](./examples/cpp)                         |
+| C++ (Catch2) | Yes       | [![Catch2][catch2-badge]][catch2-workflow-example]                          | [examples/catch2](./examples/catch2)                   |
+| Julia        | Yes       | [![BenchmarkTools.jl][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)                     |
+| .Net         | Yes       | [![Benchmark.Net][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
+| Java         | Yes       | [![JMH][java-badge]][java-workflow-example]                                 | [examples/java](./examples/java)                       |
+| Luau         | Yes       | Coming soon for benchmarkluau                                               | Coming soon                                            |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
 https://benchmark-action.github.io/github-action-benchmark/dev/bench/
+
+## Custom benchmarks
 
 Additionally, even though there is no explicit example for them, you can use
 `customBiggerIsBetter` and `customSmallerIsBetter` to use this
@@ -82,61 +66,9 @@ context) properties. Like this:
     }
 ]
 ```
-
-## Screenshots
-
-### Charts on GitHub Pages
-
-![page screenshot](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/main.png)
-
-Mouseover on data point shows a tooltip. It includes
-
-- Commit hash
-- Commit message
-- Date and committer
-- Benchmark value
-
-Clicking data point in chart opens the commit page on a GitHub repository.
-
-![tooltip](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/tooltip.png)
-
-At bottom of the page, the download button is available for downloading benchmark results as a JSON file.
-
-![download button](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/download.png)
-
-
-### Alert comment on commit page
-
-This action can raise [an alert comment][alert-comment-example]. to the commit when its benchmark
-results are worse than previous exceeding a specified threshold.
-
-![alert comment](https://raw.githubusercontent.com/rhysd/ss/master/github-action-benchmark/alert-comment.png)
-
-
-
-## Why?
-
-Since performance is important. Writing benchmarks is a popular and correct way to visualize a software
-performance. Benchmarks help us to keep performance and to confirm the effects of optimizations.
-For keeping the performance, it's important to monitor the benchmark results along with changes to
-the software. To notice performance regression quickly, it's useful to monitor benchmarking results
-continuously.
-
-However, there is no good free tool to watch the performance easily and continuously across languages
-(as far as I looked into). So I built a new tool on top of GitHub Actions.
-
-
-
 ## How to use
 
-This action takes a file that contains benchmark output. And it outputs the results to GitHub Pages
-branch and/or alert commit comment.
-
-
 ### Minimal setup
-
-Let's start with a minimal workflow setup. For explanation, here let's say we have a Go project. But basic
-setup is the same when you use other languages. For language-specific setup, please read the later section.
 
 ```yaml
 name: Minimal setup
@@ -151,39 +83,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: go test -bench 'BenchmarkFib' | tee output.txt
-      # Download previous benchmark result from cache (if exists)
+      # Download previous benchmark result from cache
       - name: Download previous benchmark data
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
-          path: ./cache
+          fail-on-cache-miss: true
+          path: ./cache/benchmark-data.json
           key: ${{ runner.os }}-benchmark
-      # Run `github-action-benchmark` action
-      - name: Store benchmark result
+      - name: Compare results
         uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
           tool: 'go'
-          # Where the output from the benchmark tool is stored
+          # Extract benchmark result from here
           output-file-path: output.txt
           # Where the previous data file is stored
           external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: true
       # Upload the updated cache file for the next job by actions/cache
+      - name: Save benchmark JSON
+        uses: actions/cache/save@v3
+        with:
+          path: ./cache/benchmark-data.json
+          # Include OS in key so that we don't compare benchmarks across different OSes
+          key: ${{ runner.os }}-benchmark
 ```
-
-The step which runs `github-action-benchmark` does followings:
-
-1. Extract benchmark result from the output in `output.txt`
-2. Update the downloaded cache file with the extracted result
-3. Compare the result with the previous result. If it gets worse than previous exceeding 200% threshold,
-   the workflow fails and the failure is notified to you
 
 By default, this action marks the result as performance regression when it is worse than the previous
 exceeding 200% threshold. For example, if the previous benchmark result was 100 iter/ns and this time
@@ -193,24 +124,23 @@ be changed by `alert-threshold` input.
 A live workflow example is [here](.github/workflows/minimal.yml). And the results of the workflow can
 be seen [here][minimal-workflow-example].
 
-
-### Commit comment
-
-In addition to the above setup, GitHub API token needs to be given to enable `comment-on-alert` feature.
+### Comment on commit when regression is found
 
 ```yaml
-- name: Store benchmark result
+- name: Compare benchmarks and comment on alert
   uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'go'
-    output-file-path: output.txt
+    # Where the output from the current benchmark is stored
+    output-file-path: ${{ github.sha }}_bench_output.txt
+    # Where the previous benchmark is stored
     external-data-json-path: ./cache/benchmark-data.json
     fail-on-alert: true
     # GitHub API token to make a commit comment
     github-token: ${{ secrets.GITHUB_TOKEN }}
     # Enable alert commit comment
     comment-on-alert: true
-    # Mention @rhysd in the commit comment
+    # Mention @rhysd in the commit comment, not mandatory but highly recommended to ensure the comment is seen
     alert-comment-cc-users: '@rhysd'
 ```
 
@@ -220,34 +150,29 @@ performance regression.
 
 Now, in addition to making workflow fail, the step leaves a commit comment when it detects performance
 regression [like this][alert-comment-example]. Though `alert-comment-cc-users` input is not mandatory for
-this, I recommend to set it to make sure you can notice the comment via GitHub notification. Please note
+this, I recommend to set it to make sure you notice the comment via GitHub notification. Please note
 that this value must be quoted like `'@rhysd'` because [`@` is an indicator in YAML syntax](https://yaml.org/spec/1.2/spec.html#id2772075).
 
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
 
-### PR Summary
+### Leave a comment on PR Summary
 
-Similar to the [Commit comment](#commit-comment) feature, Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
-also supported. In order to use Job Summaries, turn on the `summary-always`
-option.
+Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
+also supported. In order to use Job Summaries, turn on the `summary-always` option.
 
 ```yaml
-- name: Store benchmark result
+- name: Compare benchmarks and leave a comment on PR summary
   uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'cargo'
-    output-file-path: output.txt
+    # Where the output from the current benchmark is stored
+    output-file-path: ${{ github.sha }}_bench_output.txt
+    # Where the previous benchmark is stored
     external-data-json-path: ./cache/benchmark-data.json
     fail-on-alert: true
-    # GitHub API token to make a commit comment
-    github-token: ${{ secrets.GITHUB_TOKEN }}
-    # Enable alert commit comment
-    comment-on-alert: true
     # Enable Job Summary for PRs
     summary-always: true
-    # Mention @rhysd in the commit comment
-    alert-comment-cc-users: '@rhysd'
 ```
 
 ### Charts on GitHub Pages
@@ -293,8 +218,8 @@ jobs:
       # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: go test -bench 'BenchmarkFib' | tee output.txt
-      # gh-pages branch is updated and pushed automatically with extracted benchmark data
-      - name: Store benchmark result
+      
+      - name: Compare benchmarks and publish to github pages
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: My Project Go Benchmark
@@ -329,10 +254,10 @@ benchmark results identical.
 
 Please see the above ['Examples' section](#examples) to see live workflow examples for each language.
 
-If you don't want to pass GitHub API token to this action, it's still OK.
+If you don't want to pass GitHub API token to this action:
 
 ```yaml
-- name: Store benchmark result
+- name: Compare benchmarks
   uses: benchmark-action/github-action-benchmark@v1
   with:
     name: My Project Go Benchmark
@@ -341,30 +266,11 @@ If you don't want to pass GitHub API token to this action, it's still OK.
     # Set auto-push to false since GitHub API token is not given
     auto-push: false
 # Push gh-pages branch by yourself
-- name: Push benchmark result
+- name: Publish to github pages without token
   run: git push 'https://you:${{ secrets.GITHUB_TOKEN }}@github.com/you/repo-name.git' gh-pages:gh-pages
 ```
 
 Please add a step to push the branch to the remote.
-
-
-### Tool specific setup
-
-Please read `README.md` files at each example directory. Usually, take stdout from a benchmark tool
-and store it to file. Then specify the file path to `output-file-path` input.
-
-- [`cargo bench` for Rust projects](./examples/rust/README.md)
-- [`go test` for Go projects](./examples/go/README.md)
-- [Benchmark.js for JavaScript/TypeScript projects](./examples/benchmarkjs/README.md)
-- [pytest-benchmark for Python projects with pytest](./examples/pytest/README.md)
-- [Google Benchmark Framework for C++ projects](./examples/cpp/README.md)
-- [catch2 for C++ projects](./examples/cpp/README.md)
-- [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
-- [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
-- [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
-
-These examples are run in workflows of this repository as described in the 'Examples' section above.
-
 
 ### Action inputs
 
