@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718827021791,
+  "lastUpdate": 1718827076359,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15474,6 +15474,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 32342,
             "range": "± 76",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fe4e90e7735310d03ca4b1d8f0eb1d425c55be00",
+          "message": "Fix broken links to github actions (#253)",
+          "timestamp": "2024-06-19T21:55:27+02:00",
+          "tree_id": "133b0c86f676b3f67de7ba8141fe165421647295",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fe4e90e7735310d03ca4b1d8f0eb1d425c55be00"
+        },
+        "date": 1718827073036,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 159,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 19993,
+            "range": "± 226",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 19993,
+            "range": "± 326",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 32352,
+            "range": "± 114",
             "unit": "ns/iter"
           },
           {
