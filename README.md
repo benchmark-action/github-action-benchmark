@@ -226,7 +226,7 @@ that this value must be quoted like `'@rhysd'` because [`@` is an indicator in Y
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
 
-### PR Summary
+### Job Summary
 
 Similar to the [Commit comment](#commit-comment) feature, Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
 also supported. In order to use Job Summaries, turn on the `summary-always`
