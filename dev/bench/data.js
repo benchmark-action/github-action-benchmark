@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826631708,
+  "lastUpdate": 1718826637132,
   "entries": {
     "Rust Benchmark": [
       {
@@ -58895,6 +58895,42 @@ window.BENCHMARK_DATA = {
             "value": 42.86270904966763,
             "unit": "ns",
             "range": "± 0.14135678846207475"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8deacbb847d12b43252e0a2dca86f3e5b3cafb66",
+          "message": "Rename \"PR Summary\" into \"Job Summary\" (#252)",
+          "timestamp": "2024-06-19T21:49:25+02:00",
+          "tree_id": "0efa80f4aa96859083faa9f7dd24d7580956ceac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8deacbb847d12b43252e0a2dca86f3e5b3cafb66"
+        },
+        "date": 1718826634145,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.11982539509024,
+            "unit": "ns",
+            "range": "± 0.08080897213034853"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.74205766274379,
+            "unit": "ns",
+            "range": "± 0.09436515578965828"
           }
         ]
       }
