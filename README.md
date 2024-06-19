@@ -662,8 +662,8 @@ Every release will appear on your GitHub notifications page.
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
-[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
+[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22
+[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment%22
 [google-benchmark]: https://github.com/google/benchmark
 [catch2]: https://github.com/catchorg/Catch2
 [jmh]: https://openjdk.java.net/projects/code-tools/jmh/
