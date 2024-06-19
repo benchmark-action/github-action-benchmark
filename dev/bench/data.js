@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826628706,
+  "lastUpdate": 1718826629498,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49239,6 +49239,42 @@ window.BENCHMARK_DATA = {
             "value": 19964.49629355066,
             "unit": "ns/iter",
             "extra": "iterations: 35074\ncpu: 19963.699606546157 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8deacbb847d12b43252e0a2dca86f3e5b3cafb66",
+          "message": "Rename \"PR Summary\" into \"Job Summary\" (#252)",
+          "timestamp": "2024-06-19T21:49:25+02:00",
+          "tree_id": "0efa80f4aa96859083faa9f7dd24d7580956ceac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8deacbb847d12b43252e0a2dca86f3e5b3cafb66"
+        },
+        "date": 1718826626689,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.62739537981037,
+            "unit": "ns/iter",
+            "extra": "iterations: 4414540\ncpu: 158.61684343102564 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19993.738167916705,
+            "unit": "ns/iter",
+            "extra": "iterations: 35053\ncpu: 19992.833708955015 ns\nthreads: 1"
           }
         ]
       }
