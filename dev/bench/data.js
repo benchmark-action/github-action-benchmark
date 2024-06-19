@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826590606,
+  "lastUpdate": 1718826592682,
   "entries": {
     "Rust Benchmark": [
       {
@@ -42609,6 +42609,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0000465652213147972",
             "extra": "mean: 1.6071273952002456 msec\nrounds: 625"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8deacbb847d12b43252e0a2dca86f3e5b3cafb66",
+          "message": "Rename \"PR Summary\" into \"Job Summary\" (#252)",
+          "timestamp": "2024-06-19T21:49:25+02:00",
+          "tree_id": "0efa80f4aa96859083faa9f7dd24d7580956ceac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8deacbb847d12b43252e0a2dca86f3e5b3cafb66"
+        },
+        "date": 1718826589620,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77199.26726631743,
+            "unit": "iter/sec",
+            "range": "stddev: 9.022819334703802e-7",
+            "extra": "mean: 12.953490822008188 usec\nrounds: 47396"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 621.0287387533125,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005386925744782018",
+            "extra": "mean: 1.6102314395424846 msec\nrounds: 612"
           }
         ]
       }
