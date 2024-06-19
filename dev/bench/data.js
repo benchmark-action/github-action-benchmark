@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826696946,
+  "lastUpdate": 1718826948010,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49335,6 +49335,42 @@ window.BENCHMARK_DATA = {
             "value": 19993.738167916705,
             "unit": "ns/iter",
             "extra": "iterations: 35053\ncpu: 19992.833708955015 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fe4e90e7735310d03ca4b1d8f0eb1d425c55be00",
+          "message": "Fix broken links to github actions (#253)",
+          "timestamp": "2024-06-19T21:55:27+02:00",
+          "tree_id": "133b0c86f676b3f67de7ba8141fe165421647295",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fe4e90e7735310d03ca4b1d8f0eb1d425c55be00"
+        },
+        "date": 1718826944726,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.65421739817137,
+            "unit": "ns/iter",
+            "extra": "iterations: 4411049\ncpu: 158.6481809655708 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19967.20273316046,
+            "unit": "ns/iter",
+            "extra": "iterations: 35051\ncpu: 19966.685686571 ns\nthreads: 1"
           }
         ]
       }
