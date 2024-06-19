@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826601713,
+  "lastUpdate": 1718826628706,
   "entries": {
     "Rust Benchmark": [
       {
@@ -60347,6 +60347,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 19.98,
             "range": "± 225.022",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8deacbb847d12b43252e0a2dca86f3e5b3cafb66",
+          "message": "Rename \"PR Summary\" into \"Job Summary\" (#252)",
+          "timestamp": "2024-06-19T21:49:25+02:00",
+          "tree_id": "0efa80f4aa96859083faa9f7dd24d7580956ceac",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/8deacbb847d12b43252e0a2dca86f3e5b3cafb66"
+        },
+        "date": 1718826626171,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 146.206,
+            "range": "± 1.9899",
+            "unit": "ns",
+            "extra": "100 samples\n197 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.9726,
+            "range": "± 211.812",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
