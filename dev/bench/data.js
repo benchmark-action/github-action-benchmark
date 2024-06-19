@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718826999406,
+  "lastUpdate": 1718827000879,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59267,6 +59267,42 @@ window.BENCHMARK_DATA = {
             "value": 42.74205766274379,
             "unit": "ns",
             "range": "± 0.09436515578965828"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sam@samxie.me",
+            "name": "Sam Xie",
+            "username": "XSAM"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fe4e90e7735310d03ca4b1d8f0eb1d425c55be00",
+          "message": "Fix broken links to github actions (#253)",
+          "timestamp": "2024-06-19T21:55:27+02:00",
+          "tree_id": "133b0c86f676b3f67de7ba8141fe165421647295",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fe4e90e7735310d03ca4b1d8f0eb1d425c55be00"
+        },
+        "date": 1718826997375,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.084933906793594,
+            "unit": "ns",
+            "range": "± 0.059250644504737306"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.76518106919069,
+            "unit": "ns",
+            "range": "± 0.1093384941810064"
           }
         ]
       }
