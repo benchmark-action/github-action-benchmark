@@ -315,7 +315,8 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     const ret = [];
     // Example:
     //   test bench_fib_20 ... bench:      37,174.25 ns/iter (+/- 7,527.43)
-    const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,.]+) ns\/iter \(\+\/- ([0-9,.]+)\)$/;
+    //   test hello_world_16 ... bench:      44,545.33 ns/iter (+/- 8,989.85) = 44 MB/s
+    const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,.]+) ns\/iter \(\+\/- ([0-9,.]+)\)(?: = [0-9,.]+ MB\/s)?$/;
     const reComma = /,/g;
 
     for (const line of lines) {
