@@ -11,6 +11,11 @@ interface ExecResult {
     code: number | null;
 }
 
+interface GitConfig {
+    commitUserName?: string;
+    commitUserEmail?: string;
+}
+
 async function capture(cmd: string, args: string[]): Promise<ExecResult> {
     const res: ExecResult = {
         stdout: '',
@@ -54,15 +59,15 @@ export function getServerName(repositoryUrl: string | undefined): string {
     return getServerUrlObj(repositoryUrl).hostname;
 }
 
-export async function cmd(additionalGitOptions: string[], ...args: string[]): Promise<string> {
+export async function cmd(config: GitConfig, additionalGitOptions: string[], ...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
     const serverUrl = getServerUrl(github.context.payload.repository?.html_url);
     const userArgs = [
         ...additionalGitOptions,
         '-c',
-        'user.name=github-action-benchmark',
+        `user.name=${config.commitUserName ?? 'github-action-benchmark'}`,
         '-c',
-        'user.email=github@users.noreply.github.com',
+        `user.email=${config.commitUserEmail ?? 'github@users.noreply.github.com'}`,
         '-c',
         `http.${serverUrl}/.extraheader=`, // This config is necessary to support actions/checkout@v2 (#9)
     ];
@@ -84,6 +89,7 @@ function getRepoRemoteUrl(token: string, repoUrl: string): string {
 }
 
 export async function push(
+    config: GitConfig,
     token: string,
     repoUrl: string | undefined,
     branch: string,
@@ -98,10 +104,11 @@ export async function push(
         args = args.concat(options);
     }
 
-    return cmd(additionalGitOptions, ...args);
+    return cmd(config, additionalGitOptions, ...args);
 }
 
 export async function pull(
+    config: GitConfig,
     token: string | undefined,
     branch: string,
     additionalGitOptions: string[] = [],
@@ -115,10 +122,11 @@ export async function pull(
         args = args.concat(options);
     }
 
-    return cmd(additionalGitOptions, ...args);
+    return cmd(config, additionalGitOptions, ...args);
 }
 
 export async function fetch(
+    config: GitConfig,
     token: string | undefined,
     branch: string,
     additionalGitOptions: string[] = [],
@@ -132,10 +140,11 @@ export async function fetch(
         args = args.concat(options);
     }
 
-    return cmd(additionalGitOptions, ...args);
+    return cmd(config, additionalGitOptions, ...args);
 }
 
 export async function clone(
+    config: GitConfig,
     token: string,
     ghRepository: string,
     baseDirectory: string,
@@ -150,9 +159,11 @@ export async function clone(
         args = args.concat(options);
     }
 
-    return cmd(additionalGitOptions, ...args);
+    return cmd(config, additionalGitOptions, ...args);
 }
+
 export async function checkout(
+    config: GitConfig,
     ghRef: string,
     additionalGitOptions: string[] = [],
     ...options: string[]
@@ -164,5 +175,5 @@ export async function checkout(
         args = args.concat(options);
     }
 
-    return cmd(additionalGitOptions, ...args);
+    return cmd(config, additionalGitOptions, ...args);
 }

@@ -532,6 +532,26 @@ which means there is no limit.
 
 If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
 
+#### `commit-message` (Optional)
+
+- Type: String
+- Default: `add ${name} (${tool}) benchmark result for ${commit}`
+
+Overrides the message to use when committing the benchmark results to Git.
+
+#### `commit-user-name` (Optional)
+
+- Type: String
+- Default: `github-action-benchmark`
+
+Specifies the value to use for `user.name` when committing the benchmark results to Git.
+
+#### `commit-user-email` (Optional)
+
+- Type: String
+- Default: `github@users.noreply.github.com`
+
+Specifies the value to use for `user.email` when committing the benchmark results to Git.
 
 ### Action outputs
 

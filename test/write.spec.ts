@@ -34,7 +34,7 @@ class GitSpy {
     }
 
     call(func: GitFunc, args: unknown[]) {
-        this.history.push([func, args]);
+        this.history.push([func, args.slice(1)]);
     }
 
     clear() {

@@ -348,6 +348,10 @@ describe('configFromJobInput()', function () {
     });
 
     it('resolves home directory in output directory path', async function () {
+        if (os.platform() === 'win32') {
+            // Home directory is not supported on Windows
+            return;
+        }
         const home = os.homedir();
         const absCwd = process.cwd();
         if (!absCwd.startsWith(home)) {

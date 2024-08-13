@@ -79,6 +79,15 @@ inputs:
   max-items-in-chart:
     description: 'Max data points in a benchmark chart to avoid making the chart too busy. Value must be unsigned integer. No limit by default'
     required: false
+  commit-message:
+    description: 'Optional commit message to use for Git commits'
+    required: false
+  commit-user-name:
+    description: 'Optional user name to use for Git commits'
+    required: false
+  commit-user-email:
+    description: 'Optional email address to use for Git commits'
+    required: false
 
 runs:
   using: 'node20'

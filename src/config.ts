@@ -25,6 +25,9 @@ export interface Config {
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
     ref: string | undefined;
+    commitMessage?: string;
+    commitUserName?: string;
+    commitUserEmail?: string;
 }
 
 export const VALID_TOOLS = [
@@ -240,6 +243,9 @@ export async function configFromJobInput(): Promise<Config> {
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
     let failThreshold = getPercentageInput('fail-threshold');
+    const commitMessage: string | undefined = core.getInput('commit-message') || undefined;
+    const commitUserName: string | undefined = core.getInput('commit-user-name') || undefined;
+    const commitUserEmail: string | undefined = core.getInput('commit-user-name') || undefined;
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -287,5 +293,8 @@ export async function configFromJobInput(): Promise<Config> {
         maxItemsInChart,
         failThreshold,
         ref,
+        commitMessage,
+        commitUserName,
+        commitUserEmail,
     };
 }
