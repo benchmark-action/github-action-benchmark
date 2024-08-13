@@ -80,6 +80,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         width: 100%;
       }
       .benchmark-chart {
+        max-height: 500px;
         max-width: 1000px;
       }
     </style>
@@ -104,7 +105,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
       <div class="small">Powered by <a rel="noopener" href="https://github.com/marketplace/actions/continuous-benchmark">github-action-benchmark</a></div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <script src="data.js"></script>
     <script id="main-script">
       'use strict';
@@ -154,7 +155,13 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
           // Render footer
           document.getElementById('dl-button').onclick = () => {
-            const dataUrl = 'data:,' + JSON.stringify(data, null, 2);
+            const jsonString = JSON.stringify(data, null, 2);
+            // See https://developer.mozilla.org/docs/Glossary/Base64#the_unicode_problem
+            const encoder = new TextEncoder();
+            const bytes = encoder.encode(jsonString);
+            const binaryString = Array.from(bytes, (byte) => String.fromCodePoint(byte)).join('');
+            const jsonAsBase64 = btoa(binaryString);
+            const dataUrl = 'data:text/json;base64,' + jsonAsBase64;
             const a = document.createElement('a');
             a.href = dataUrl;
             a.download = 'benchmark_data.json';
@@ -168,7 +175,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           }));
         }
 
-        function renderAllChars(dataSets) {
+        function renderAllCharts(dataSets) {
 
           function renderGraph(parent, name, dataset) {
             const canvas = document.createElement('canvas');
@@ -184,61 +191,59 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                   data: dataset.map(d => d.bench.value),
                   borderColor: color,
                   backgroundColor: color + '60', // Add alpha for #rrggbbaa
+                  fill: true,
+                  tension: 0.4,
                 }
               ],
             };
             const options = {
               scales: {
-                xAxes: [
-                  {
-                    scaleLabel: {
-                      display: true,
-                      labelString: 'commit',
-                    },
-                  }
-                ],
-                yAxes: [
-                  {
-                    scaleLabel: {
-                      display: true,
-                      labelString: dataset.length > 0 ? dataset[0].bench.unit : '',
-                    },
-                    ticks: {
-                      beginAtZero: true,
-                    }
-                  }
-                ],
-              },
-              tooltips: {
-                callbacks: {
-                  afterTitle: items => {
-                    const {index} = items[0];
-                    const data = dataset[index];
-                    return '\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
+                x: {
+                  title: {
+                    display: true,
+                    text: 'commit',
                   },
-                  label: item => {
-                    let label = item.value;
-                    const { range, unit } = dataset[item.index].bench;
-                    label += ' ' + unit;
-                    if (range) {
-                      label += ' (' + range + ')';
-                    }
-                    return label;
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: dataset.length > 0 ? dataset[0].bench.unit : '',
                   },
-                  afterLabel: item => {
-                    const { extra } = dataset[item.index].bench;
-                    return extra ? '\n' + extra : '';
-                  }
-                }
+                  beginAtZero: true,
+                },
               },
               onClick: (_mouseEvent, activeElems) => {
                 if (activeElems.length === 0) {
                   return;
                 }
-                // XXX: Undocumented. How can we know the index?
-                const index = activeElems[0]._index;
+                const {index} = elements[0];
                 const url = dataset[index].commit.url;
                 window.open(url, '_blank');
+              },
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    afterTitle: items => {
+                      const {dataIndex} = items[0];
+                      const data = dataset[dataIndex];
+                      return '\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
+                    },
+                    label: context => {
+                      const item = dataset[context.dataIndex];
+                      let label = item.bench.value.toString();
+                      const { range, unit } = item.bench;
+                      label += ' ' + unit;
+                      if (range) {
+                        label += ' (' + range + ')';
+                      }
+                      return label;
+                    },
+                    afterLabel: context => {
+                      const {extra} = dataset[context.dataIndex].bench;
+                      return extra ? '\n' + extra : '';
+                    }
+                  }
+                },
               },
             };
 
@@ -274,7 +279,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           }
         }
 
-        renderAllChars(init()); // Start
+        renderAllCharts(init()); // Start
       })();
     </script>
   </body>
