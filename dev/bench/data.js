@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725882069610,
+  "lastUpdate": 1725882085429,
   "entries": {
     "Rust Benchmark": [
       {
@@ -57313,6 +57313,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44975,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882082831,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 293.32209737827714,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":267,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44824,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
