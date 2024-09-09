@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1718827076359,
+  "lastUpdate": 1725882057068,
   "entries": {
     "Rust Benchmark": [
       {
@@ -42971,6 +42971,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00004785957661271587",
             "extra": "mean: 1.6336900048868388 msec\nrounds: 614"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882053889,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 77829.12969333908,
+            "unit": "iter/sec",
+            "range": "stddev: 7.276744415193701e-7",
+            "extra": "mean: 12.848659672030019 usec\nrounds: 37314"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 618.7495273376783,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000013326837708817206",
+            "extra": "mean: 1.6161628507463197 msec\nrounds: 603"
           }
         ]
       }
