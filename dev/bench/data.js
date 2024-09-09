@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725882144152,
+  "lastUpdate": 1725882153242,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15570,6 +15570,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 32352,
             "range": "± 114",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882150463,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 208,
+            "range": "± 5",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 19984,
+            "range": "± 2859",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 19997,
+            "range": "± 106",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 32381,
+            "range": "± 4799",
             "unit": "ns/iter"
           },
           {
