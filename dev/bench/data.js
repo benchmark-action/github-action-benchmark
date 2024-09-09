@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725882059649,
+  "lastUpdate": 1725882069610,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54537,6 +54537,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 19.9721,
             "range": "± 221.766",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882067072,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 146.378,
+            "range": "± 0.0674662",
+            "unit": "ns",
+            "extra": "100 samples\n197 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.9794,
+            "range": "± 281.18",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
