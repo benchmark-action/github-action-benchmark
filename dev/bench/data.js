@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725882100561,
+  "lastUpdate": 1725882107714,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59585,6 +59585,42 @@ window.BENCHMARK_DATA = {
             "value": 42.76518106919069,
             "unit": "ns",
             "range": "± 0.1093384941810064"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882105124,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.10161371414478,
+            "unit": "ns",
+            "range": "± 0.06377801666124656"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 42.71164529827925,
+            "unit": "ns",
+            "range": "± 0.03672167817634692"
           }
         ]
       }
