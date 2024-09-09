@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725882085429,
+  "lastUpdate": 1725882088638,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49673,6 +49673,42 @@ window.BENCHMARK_DATA = {
             "value": 19967.20273316046,
             "unit": "ns/iter",
             "extra": "iterations: 35051\ncpu: 19966.685686571 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "3110813+krzema12@users.noreply.github.com",
+            "name": "Piotr Krzemiński",
+            "username": "krzema12"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54",
+          "message": "Add typings and validation workflow (#257)",
+          "timestamp": "2024-09-09T13:40:31+02:00",
+          "tree_id": "a5b7e6c77343aa076371c2aae5eca85a541bad35",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/9c9d03a24c7dc790ce859e3d2f62d1b0d3b9cb54"
+        },
+        "date": 1725882085690,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.8253176625868,
+            "unit": "ns/iter",
+            "extra": "iterations: 4409238\ncpu: 158.81946041470204 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19998.346260545506,
+            "unit": "ns/iter",
+            "extra": "iterations: 34965\ncpu: 19997.689117689115 ns\nthreads: 1"
           }
         ]
       }
