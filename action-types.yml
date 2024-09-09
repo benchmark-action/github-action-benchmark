@@ -4,18 +4,18 @@ inputs:
   tool:
     type: enum
     allowed-values:
-    - cargo
-    - go
-    - benchmarkjs
-    - pytest
-    - googlecpp
-    - catch2
-    - julia
-    - jmh
-    - benchmarkdotnet
-    - benchmarkluau
-    - customBiggerIsBetter
-    - customSmallerIsBetter
+      - cargo
+      - go
+      - benchmarkjs
+      - pytest
+      - googlecpp
+      - catch2
+      - julia
+      - jmh
+      - benchmarkdotnet
+      - benchmarkluau
+      - customBiggerIsBetter
+      - customSmallerIsBetter
   output-file-path:
     type: string
   gh-pages-branch:
