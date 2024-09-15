@@ -1,0 +1,57 @@
+inputs:
+  name:
+    type: string
+  tool:
+    type: enum
+    allowed-values:
+      - cargo
+      - go
+      - benchmarkjs
+      - pytest
+      - googlecpp
+      - catch2
+      - julia
+      - jmh
+      - benchmarkdotnet
+      - benchmarkluau
+      - customBiggerIsBetter
+      - customSmallerIsBetter
+  output-file-path:
+    type: string
+  gh-pages-branch:
+    type: string
+  gh-repository:
+    type: string
+  benchmark-data-dir-path:
+    type: string
+  github-token:
+    type: string
+  ref:
+    type: string
+  auto-push:
+    type: boolean
+  skip-fetch-gh-pages:
+    type: boolean
+  comment-always:
+    type: boolean
+  summary-always:
+    type: boolean
+  save-data-file:
+    type: boolean
+  comment-on-alert:
+    type: boolean
+  alert-threshold:
+    type: string
+  fail-on-alert:
+    type: boolean
+  fail-threshold:
+    type: string
+  alert-comment-cc-users:
+    type: list
+    separator: ','
+    list-item:
+      type: string
+  external-data-json-path:
+    type: string
+  max-items-in-chart:
+    type: integer
