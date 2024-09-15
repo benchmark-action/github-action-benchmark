@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726424719916,
+  "lastUpdate": 1726424723036,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59921,6 +59921,42 @@ window.BENCHMARK_DATA = {
             "value": 42.71164529827925,
             "unit": "ns",
             "range": "± 0.03672167817634692"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "martin@martincostello.com",
+            "name": "Martin Costello",
+            "username": "martincostello"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c3a5e4ec40b6c935e215555c3440abd1b6891164",
+          "message": "Update C# README (#258)",
+          "timestamp": "2024-09-15T20:24:11+02:00",
+          "tree_id": "ec6bc38243cf0eaf53db94bb42f04b18a32f86a9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c3a5e4ec40b6c935e215555c3440abd1b6891164"
+        },
+        "date": 1726424720483,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 19.853519974152245,
+            "unit": "ns",
+            "range": "± 0.3602747523067702"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 41.45795004897647,
+            "unit": "ns",
+            "range": "± 0.9145617800135687"
           }
         ]
       }
