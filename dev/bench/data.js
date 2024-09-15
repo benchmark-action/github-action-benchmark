@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726424682706,
+  "lastUpdate": 1726424688789,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54873,6 +54873,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 19.9794,
             "range": "± 281.18",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "martin@martincostello.com",
+            "name": "Martin Costello",
+            "username": "martincostello"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c3a5e4ec40b6c935e215555c3440abd1b6891164",
+          "message": "Update C# README (#258)",
+          "timestamp": "2024-09-15T20:24:11+02:00",
+          "tree_id": "ec6bc38243cf0eaf53db94bb42f04b18a32f86a9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c3a5e4ec40b6c935e215555c3440abd1b6891164"
+        },
+        "date": 1726424686203,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 146.853,
+            "range": "± 4.69776",
+            "unit": "ns",
+            "extra": "100 samples\n199 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.9772,
+            "range": "± 294.891",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
