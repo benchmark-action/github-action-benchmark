@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726424674840,
+  "lastUpdate": 1726424678086,
   "entries": {
     "Rust Benchmark": [
       {
@@ -43233,6 +43233,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000013326837708817206",
             "extra": "mean: 1.6161628507463197 msec\nrounds: 603"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "martin@martincostello.com",
+            "name": "Martin Costello",
+            "username": "martincostello"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c3a5e4ec40b6c935e215555c3440abd1b6891164",
+          "message": "Update C# README (#258)",
+          "timestamp": "2024-09-15T20:24:11+02:00",
+          "tree_id": "ec6bc38243cf0eaf53db94bb42f04b18a32f86a9",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/c3a5e4ec40b6c935e215555c3440abd1b6891164"
+        },
+        "date": 1726424675410,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75638.82660629864,
+            "unit": "iter/sec",
+            "range": "stddev: 6.676140543459264e-7",
+            "extra": "mean: 13.220723335715093 usec\nrounds: 54633"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 627.0946692893336,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000011598778360251577",
+            "extra": "mean: 1.594655558359742 msec\nrounds: 634"
           }
         ]
       }
