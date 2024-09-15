@@ -104,7 +104,7 @@ describe('git', function () {
 
     describe('cmd()', function () {
         it('runs Git command successfully', async function () {
-            const stdout = await cmd([], 'log', '--oneline');
+            const stdout = await cmd({}, [], 'log', '--oneline');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -114,29 +114,52 @@ describe('git', function () {
             ok('listeners' in (args[2] as object));
         });
 
+        it('runs Git command successfully with custom config', async function () {
+            const config = {
+                commitUserName: 'some-user',
+                commitUserEmail: 'user@user.internal',
+            };
+            const expectedUserArgs = [
+                '-c',
+                'user.name=some-user',
+                '-c',
+                'user.email=user@user.internal',
+                '-c',
+                `http.${serverUrl}/.extraheader=`,
+            ];
+            const stdout = await cmd(config, [], 'log', '--oneline');
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(args[1], expectedUserArgs.concat(['log', '--oneline']));
+            ok('listeners' in (args[2] as object));
+        });
+
         it('raises an error when command returns non-zero exit code', async function () {
             fakedExec.exitCode = 101;
-            await A.rejects(() => cmd([], 'show'), /^Error: Command 'git show' failed: /);
+            await A.rejects(() => cmd({}, [], 'show'), /^Error: Command 'git show' failed: /);
             neq(fakedExec.lastArgs, null);
         });
 
         it('raises an error with stderr output', async function () {
             fakedExec.exitCode = 101;
             fakedExec.stderr = 'this is error output!';
-            await A.rejects(() => cmd([], 'show'), /this is error output!/);
+            await A.rejects(() => cmd({}, [], 'show'), /this is error output!/);
         });
 
         it('raises an error when exec.exec() threw an error', async function () {
             fakedExec.error = 'this is error from exec.exec';
             fakedExec.stderr = 'this is stderr output!';
-            await A.rejects(() => cmd([], 'show'), /this is error from exec\.exec/);
-            await A.rejects(() => cmd([], 'show'), /this is stderr output!/);
+            await A.rejects(() => cmd({}, [], 'show'), /this is error from exec\.exec/);
+            await A.rejects(() => cmd({}, [], 'show'), /this is stderr output!/);
         });
     });
 
     describe('push()', function () {
         it('runs `git push` with given branch and options', async function () {
-            const stdout = await push('this-is-token', undefined, 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await push({}, 'this-is-token', undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -158,7 +181,7 @@ describe('git', function () {
 
     describe('pull()', function () {
         it('runs `git pull` with given branch and options with token', async function () {
-            const stdout = await pull('this-is-token', 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await pull({}, 'this-is-token', 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -177,7 +200,7 @@ describe('git', function () {
         });
 
         it('runs `git pull` with given branch and options without token', async function () {
-            const stdout = await pull(undefined, 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await pull({}, undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -189,7 +212,7 @@ describe('git', function () {
 
     describe('fetch()', function () {
         it('runs `git fetch` with given branch and options with token', async function () {
-            const stdout = await fetch('this-is-token', 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await fetch({}, 'this-is-token', 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
@@ -208,7 +231,7 @@ describe('git', function () {
         });
 
         it('runs `git fetch` with given branch and options without token', async function () {
-            const stdout = await fetch(undefined, 'my-branch', [], 'opt1', 'opt2');
+            const stdout = await fetch({}, undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
 
             eq(stdout, 'this is test');
