@@ -154,7 +154,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
           // Render footer
           document.getElementById('dl-button').onclick = () => {
-            const dataUrl = 'data:,' + JSON.stringify(data, null, 2);
+            const dataUrl = 'data:,' + encodeURIComponent(JSON.stringify(data, null, 2));
             const a = document.createElement('a');
             a.href = dataUrl;
             a.download = 'benchmark_data.json';
