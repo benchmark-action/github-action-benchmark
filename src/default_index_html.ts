@@ -79,8 +79,18 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         flex-wrap: wrap;
         width: 100%;
       }
-      .benchmark-chart {
+      .benchmark-wrapper {
         max-width: 1000px;
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+      .benchmark-container {
+        position: relative;
+      }
+      .benchmark-chart {
+      }
+      .benchmark-name {
+        text-align: center;
       }
     </style>
     <title>Benchmarks</title>
@@ -128,20 +138,38 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
         function init() {
           function collectBenchesPerTestCase(entries) {
-            const map = new Map();
+            const map = new Map(); // Map BenchName (Map SeriesName (Map Commit BenchResult))
+            const commits = [];
             for (const entry of entries) {
               const {commit, date, tool, benches} = entry;
-              for (const bench of benches) {
-                const result = { commit, date, tool, bench };
-                const arr = map.get(bench.name);
-                if (arr === undefined) {
-                  map.set(bench.name, [result]);
-                } else {
-                  arr.push(result);
+              commits.push(commit.id);
+              for (const series_name in benches) { // Map SeriesName [Benchmark]
+                for (const bench of benches[series_name]) {
+                  const result = { commit, date, tool, bench };
+                  const series_map = map.get(bench.name);
+                  if (series_map === undefined) {
+                    const bench_map = new Map();
+                    bench_map.set(commit.id, result);
+
+                    const series_map = new Map();
+                    series_map.set(series_name, bench_map);
+
+                    map.set(bench.name, series_map);
+                  } else {
+                    const arr = series_map.get(series_name);
+                    if (arr === undefined) {
+                      const bench_map = new Map();
+                      bench_map.set(commit.id, result);
+
+                      series_map.set(series_name, bench_map);
+                    } else {
+                      arr.set(commit.id, result);
+                    }
+                  }
                 }
               }
             }
-            return map;
+            return { commits, dataSet: map };
           }
 
           const data = window.BENCHMARK_DATA;
@@ -162,30 +190,50 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           };
 
           // Prepare data points for charts
-          return Object.keys(data.entries).map(name => ({
-            name,
-            dataSet: collectBenchesPerTestCase(data.entries[name]),
-          }));
+          return Object.keys(data.entries).map(name => {
+              const { commits, dataSet } = collectBenchesPerTestCase(data.entries[name]);
+              return {
+                 name,
+                 commits,
+                 dataSet
+               };
+          });
         }
 
         function renderAllChars(dataSets) {
 
-          function renderGraph(parent, name, dataset) {
+          function renderGraph(parent, commits, name, dataset) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'benchmark-wrapper';
+            const header = document.createElement('h2');
+            header.className = 'benchmark-name';
+            header.innerText = name;
+            wrapper.appendChild(header);
+
+            const canvas_container = document.createElement('div');
+            canvas_container.className = 'benchmark-container';
+
             const canvas = document.createElement('canvas');
             canvas.className = 'benchmark-chart';
-            parent.appendChild(canvas);
+            canvas_container.appendChild(canvas);
+            wrapper.appendChild(canvas_container);
+            parent.appendChild(wrapper);
 
-            const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
+            const colors = Object.entries(toolColors).values();
+            const datasets = [];
+            for (const [series_name, data] of dataset) {
+              const color = colors.next().value[1];
+              datasets.push({
+                label: series_name,
+                data: commits.map(commit => data.get(commit).bench.value),
+                borderColor: color,
+                fill: false,
+                backgroundColor: color + '60', // Add alpha for #rrggbbaa
+              });
+            }
             const data = {
-              labels: dataset.map(d => d.commit.id.slice(0, 7)),
-              datasets: [
-                {
-                  label: name,
-                  data: dataset.map(d => d.bench.value),
-                  borderColor: color,
-                  backgroundColor: color + '60', // Add alpha for #rrggbbaa
-                }
-              ],
+              labels: commits.map(c => c.slice(0, 7)),
+              datasets: datasets,
             };
             const options = {
               scales: {
@@ -212,13 +260,18 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
               tooltips: {
                 callbacks: {
                   afterTitle: items => {
-                    const {index} = items[0];
-                    const data = dataset[index];
+                    const {datasetIndex, index} = items[0];
+                    const series_name = datasets[datasetIndex].label;
+                    const commit = commits[index];
+                    const data = dataset.get(series_name).get(commit);
                     return '\n' + data.commit.message + '\n\n' + data.commit.timestamp + ' committed by @' + data.commit.committer.username + '\n';
                   },
                   label: item => {
+                    const series_name = datasets[item.datasetIndex].label;
+                    const commit = commits[item.index];
+                    const data = dataset.get(series_name).get(commit);
                     let label = item.value;
-                    const { range, unit } = dataset[item.index].bench;
+                    const { range, unit } = data.bench;
                     label += ' ' + unit;
                     if (range) {
                       label += ' (' + range + ')';
@@ -226,7 +279,10 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                     return label;
                   },
                   afterLabel: item => {
-                    const { extra } = dataset[item.index].bench;
+                    const series_name = datasets[item.datasetIndex].label;
+                    const commit = commits[item.index];
+                    const data = dataset.get(series_name).get(commit);
+                    const { extra } = data.bench;
                     return extra ? '\n' + extra : '';
                   }
                 }
@@ -249,7 +305,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
             });
           }
 
-          function renderBenchSet(name, benchSet, main) {
+          function renderBenchSet(name, commits, benchSet, main) {
             const setElem = document.createElement('div');
             setElem.className = 'benchmark-set';
             main.appendChild(setElem);
@@ -264,13 +320,13 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
             setElem.appendChild(graphsElem);
 
             for (const [benchName, benches] of benchSet.entries()) {
-              renderGraph(graphsElem, benchName, benches)
+              renderGraph(graphsElem, commits, benchName, benches)
             }
           }
 
           const main = document.getElementById('main');
-          for (const {name, dataSet} of dataSets) {
-            renderBenchSet(name, dataSet, main);
+          for (const {name, commits, dataSet} of dataSets) {
+            renderBenchSet(name, commits, dataSet, main);
           }
         }
 

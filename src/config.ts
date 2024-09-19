@@ -7,7 +7,7 @@ export type ToolType = typeof VALID_TOOLS[number];
 export interface Config {
     name: string;
     tool: ToolType;
-    outputFilePath: string;
+    outputFilePath: Record<string, string>;
     ghPagesBranch: string;
     ghRepository: string | undefined;
     benchmarkDataDirPath: string;
@@ -78,11 +78,31 @@ async function resolveFilePath(p: string): Promise<string> {
     return p;
 }
 
-async function validateOutputFilePath(filePath: string): Promise<string> {
+function maybeJSON(s: string): Record<string, string> | null {
     try {
-        return await resolveFilePath(filePath);
-    } catch (err) {
-        throw new Error(`Invalid value for 'output-file-path' input: ${err}`);
+        return JSON.parse(s);
+    } catch (_) {
+        return null;
+    }
+}
+
+async function validateOutputFilePath(filePath: string): Promise<Record<string, string>> {
+    const jsonFilePaths = maybeJSON(filePath);
+    if (jsonFilePaths) {
+        const result: Record<string, string> = {};
+        for (const key in jsonFilePaths) {
+            const path = jsonFilePaths[key];
+            result[key] = await resolveFilePath(path);
+        }
+        return result;
+    } else {
+        try {
+            return {
+                default: await resolveFilePath(filePath as string),
+            };
+        } catch (err) {
+            throw new Error(`Invalid value for 'output-file-path' input: ${err}`);
+        }
     }
 }
 
@@ -221,7 +241,7 @@ function validateAlertThreshold(alertThreshold: number | null, failThreshold: nu
 
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
-    let outputFilePath: string = core.getInput('output-file-path');
+    const outputFilePathStr: string = core.getInput('output-file-path');
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
     const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
@@ -242,7 +262,7 @@ export async function configFromJobInput(): Promise<Config> {
     let failThreshold = getPercentageInput('fail-threshold');
 
     validateToolType(tool);
-    outputFilePath = await validateOutputFilePath(outputFilePath);
+    const outputFilePath: Record<string, string> = await validateOutputFilePath(outputFilePathStr);
     validateGhPagesBranch(ghPagesBranch);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
     validateName(name);

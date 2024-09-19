@@ -39,7 +39,7 @@ export interface Benchmark {
     commit: Commit;
     date: number;
     tool: ToolType;
-    benches: BenchmarkResult[];
+    benches: Record<string, BenchmarkResult[]>;
 }
 
 export interface GoogleCppBenchmarkJson {
@@ -692,8 +692,25 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
 }
 
 export async function extractResult(config: Config): Promise<Benchmark> {
-    const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken, ref } = config;
+
+    const benches: Record<string, BenchmarkResult[]> = {};
+    for (const key in config.outputFilePath) {
+        benches[key] = await extractSingleResult(tool, config.outputFilePath[key]);
+    }
+
+    const commit = await getCommit(githubToken, ref);
+
+    return {
+        commit,
+        date: Date.now(),
+        tool,
+        benches,
+    };
+}
+
+export async function extractSingleResult(tool: string, path: string): Promise<BenchmarkResult[]> {
+    const output = await fs.readFile(path, 'utf8');
     let benches: BenchmarkResult[];
 
     switch (tool) {
@@ -738,15 +755,8 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     }
 
     if (benches.length === 0) {
-        throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
+        throw new Error(`No benchmark result was found in ${path}. Benchmark output was '${output}'`);
     }
 
-    const commit = await getCommit(githubToken, ref);
-
-    return {
-        commit,
-        date: Date.now(),
-        tool,
-        benches,
-    };
+    return benches;
 }

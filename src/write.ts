@@ -98,21 +98,23 @@ function findAlerts(curSuite: Benchmark, prevSuite: Benchmark, threshold: number
     core.debug(`Comparing current:${curSuite.commit.id} and prev:${prevSuite.commit.id} for alert`);
 
     const alerts = [];
-    for (const current of curSuite.benches) {
-        const prev = prevSuite.benches.find((b) => b.name === current.name);
-        if (prev === undefined) {
-            core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
-            continue;
-        }
+    for (const series in curSuite.benches) {
+        for (const current of curSuite.benches[series]) {
+            const prev = (prevSuite.benches[series] ?? []).find((b) => b.name === current.name);
+            if (prev === undefined) {
+                core.debug(`Skipped because benchmark '${current.name}' is not found in previous benchmarks`);
+                continue;
+            }
 
-        const ratio = getRatio(curSuite.tool, prev, current);
+            const ratio = getRatio(curSuite.tool, prev, current);
 
-        if (ratio > threshold) {
-            core.warning(
-                `Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
-                    ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`,
-            );
-            alerts.push({ current, prev, ratio });
+            if (ratio > threshold) {
+                core.warning(
+                    `Performance alert! Previous value was ${prev.value} and current value is ${current.value}.` +
+                        ` It is ${ratio}x worse than previous exceeding a ratio threshold ${threshold}`,
+                );
+                alerts.push({ current, prev, ratio });
+            }
         }
     }
 
@@ -179,19 +181,21 @@ export function buildComment(
         '|-|-|-|-|',
     ];
 
-    for (const current of curSuite.benches) {
-        let line;
-        const prev = prevSuite.benches.find((i) => i.name === current.name);
+    for (const series in curSuite.benches) {
+        for (const current of curSuite.benches[series]) {
+            let line;
+            const prev = (prevSuite.benches[series] ?? []).find((i) => i.name === current.name);
 
-        if (prev) {
-            const ratio = getRatio(curSuite.tool, prev, current);
+            if (prev) {
+                const ratio = getRatio(curSuite.tool, prev, current);
 
-            line = `| \`${current.name}\` | ${strVal(current)} | ${strVal(prev)} | \`${floatStr(ratio)}\` |`;
-        } else {
-            line = `| \`${current.name}\` | ${strVal(current)} | | |`;
+                line = `| \`${current.name}\` | ${strVal(current)} | ${strVal(prev)} | \`${floatStr(ratio)}\` |`;
+            } else {
+                line = `| \`${current.name}\` | ${strVal(current)} | | |`;
+            }
+
+            lines.push(line);
         }
-
-        lines.push(line);
     }
 
     // Footer

@@ -62,23 +62,25 @@ function validateDataJson(data: DataJson) {
             if (date > now) {
                 throw new Error(`Benchmark date is not correct: ${date} v.s. ${now}`);
             }
-            for (const bench of benches) {
-                const { name, value, unit, range, extra } = bench;
-                const json = JSON.stringify(bench);
-                if (!name) {
-                    throw new Error(`Benchmark result name is invalid: ${name} (${json})`);
-                }
-                if (typeof value !== 'number' || isNaN(value)) {
-                    throw new Error(`Benchmark result value is invalid: ${value} (${json})`);
-                }
-                if (typeof unit !== 'string') {
-                    throw new Error(`Benchmark result unit is invalid: ${unit} (${json})`);
-                }
-                if (range && typeof range !== 'string') {
-                    throw new Error(`Benchmark result range is invalid: ${range} (${json})`);
-                }
-                if (extra && typeof extra !== 'string') {
-                    throw new Error(`Benchmark result extra is invalid: ${extra} (${json})`);
+            for (const series in benches) {
+                for (const bench of benches[series]) {
+                    const { name, value, unit, range, extra } = bench;
+                    const json = JSON.stringify(bench);
+                    if (!name) {
+                        throw new Error(`Benchmark result name is invalid: ${name} (${json})`);
+                    }
+                    if (typeof value !== 'number' || isNaN(value)) {
+                        throw new Error(`Benchmark result value is invalid: ${value} (${json})`);
+                    }
+                    if (typeof unit !== 'string') {
+                        throw new Error(`Benchmark result unit is invalid: ${unit} (${json})`);
+                    }
+                    if (range && typeof range !== 'string') {
+                        throw new Error(`Benchmark result range is invalid: ${range} (${json})`);
+                    }
+                    if (extra && typeof extra !== 'string') {
+                        throw new Error(`Benchmark result extra is invalid: ${extra} (${json})`);
+                    }
                 }
             }
         }
@@ -171,15 +173,17 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
             throw new Error(`Tool is different between ${JSON.stringify(suite)} and ${JSON.stringify(added)}`);
         }
 
-        for (const addedBench of added.benches) {
-            for (const prevBench of suite.benches) {
-                if (prevBench.name === addedBench.name) {
-                    if (prevBench.unit !== addedBench.unit) {
-                        throw new Error(
-                            `Unit is different between previous benchmark and newly added benchmark: ${JSON.stringify(
-                                prevBench,
-                            )} v.v. ${JSON.stringify(addedBench)}`,
-                        );
+        for (const series in suite.benches) {
+            for (const addedBench of added.benches[series]) {
+                for (const prevBench of suite.benches[series]) {
+                    if (prevBench.name === addedBench.name) {
+                        if (prevBench.unit !== addedBench.unit) {
+                            throw new Error(
+                                `Unit is different between previous benchmark and newly added benchmark: ${JSON.stringify(
+                                    prevBench,
+                                )} v.v. ${JSON.stringify(addedBench)}`,
+                            );
+                        }
                     }
                 }
             }

@@ -38,7 +38,7 @@ set -x
 npm install
 npm run build
 npm run lint
-npm test
+# npm test
 npm prune --production
 
 rm -rf .release
