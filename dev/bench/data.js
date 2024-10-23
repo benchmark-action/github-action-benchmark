@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729675645933,
+  "lastUpdate": 1729675648100,
   "entries": {
     "Rust Benchmark": [
       {
@@ -60419,6 +60419,42 @@ window.BENCHMARK_DATA = {
             "value": 41.45795004897647,
             "unit": "ns",
             "range": "± 0.9145617800135687"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "3ef0ad301d753e8c731de290d42a7a72725d223c",
+          "message": "chore: update prepare-release.sh script\n\n* update prepare-release.sh script to include action-types.yml file in release",
+          "timestamp": "2024-10-23T11:24:07+02:00",
+          "tree_id": "20931ff4b343a5a59d7501c5780710b945e221db",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3ef0ad301d753e8c731de290d42a7a72725d223c"
+        },
+        "date": 1729675645292,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.425098199110764,
+            "unit": "ns",
+            "range": "± 0.06056266903252829"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 43.06403506031403,
+            "unit": "ns",
+            "range": "± 0.0636220743879686"
           }
         ]
       }
