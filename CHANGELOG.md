@@ -1,5 +1,9 @@
 ## Unreleased
 
+<a name="v1.20.4"></a>
+# [v1.20.4](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.4) - 23 Oct 2024
+- **feat** add typings and validation workflow (#257)
+
 <a name="v1.20.3"></a>
 # [v1.20.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.3) - 19 May 2024
 - **fix** Catch2 v.3.5.0 changed output format (#247)
