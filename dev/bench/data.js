@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729675552082,
+  "lastUpdate": 1729675560981,
   "entries": {
     "Rust Benchmark": [
       {
@@ -43513,6 +43513,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000011598778360251577",
             "extra": "mean: 1.594655558359742 msec\nrounds: 634"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "3ef0ad301d753e8c731de290d42a7a72725d223c",
+          "message": "chore: update prepare-release.sh script\n\n* update prepare-release.sh script to include action-types.yml file in release",
+          "timestamp": "2024-10-23T11:24:07+02:00",
+          "tree_id": "20931ff4b343a5a59d7501c5780710b945e221db",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3ef0ad301d753e8c731de290d42a7a72725d223c"
+        },
+        "date": 1729675558384,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 74898.630976804,
+            "unit": "iter/sec",
+            "range": "stddev: 8.525589618956959e-7",
+            "extra": "mean: 13.35137888314272 usec\nrounds: 37051"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 583.4690124089753,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000037552949869414266",
+            "extra": "mean: 1.7138870766611722 msec\nrounds: 587"
           }
         ]
       }
