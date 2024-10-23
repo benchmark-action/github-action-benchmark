@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729675648100,
+  "lastUpdate": 1729675683378,
   "entries": {
     "Rust Benchmark": [
       {
@@ -15762,6 +15762,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 35920,
             "range": "± 132",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 4,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "3ef0ad301d753e8c731de290d42a7a72725d223c",
+          "message": "chore: update prepare-release.sh script\n\n* update prepare-release.sh script to include action-types.yml file in release",
+          "timestamp": "2024-10-23T11:24:07+02:00",
+          "tree_id": "20931ff4b343a5a59d7501c5780710b945e221db",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3ef0ad301d753e8c731de290d42a7a72725d223c"
+        },
+        "date": 1729675680752,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 208,
+            "range": "± 16",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 19992,
+            "range": "± 274",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 19995,
+            "range": "± 224",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 32350,
+            "range": "± 486",
             "unit": "ns/iter"
           },
           {
