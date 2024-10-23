@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729675603455,
+  "lastUpdate": 1729675617001,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50287,6 +50287,42 @@ window.BENCHMARK_DATA = {
             "value": 19984.97779933889,
             "unit": "ns/iter",
             "extra": "iterations: 35044\ncpu: 19984.408172583044 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "3ef0ad301d753e8c731de290d42a7a72725d223c",
+          "message": "chore: update prepare-release.sh script\n\n* update prepare-release.sh script to include action-types.yml file in release",
+          "timestamp": "2024-10-23T11:24:07+02:00",
+          "tree_id": "20931ff4b343a5a59d7501c5780710b945e221db",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/3ef0ad301d753e8c731de290d42a7a72725d223c"
+        },
+        "date": 1729675614316,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 158.6111444635058,
+            "unit": "ns/iter",
+            "extra": "iterations: 4407480\ncpu: 158.60453138755025 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19981.91005744695,
+            "unit": "ns/iter",
+            "extra": "iterations: 34989\ncpu: 19981.688530681076 ns\nthreads: 1"
           }
         ]
       }
