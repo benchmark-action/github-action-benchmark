@@ -313,9 +313,6 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
 function extractCargoResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\r?\n/g);
     const ret = [];
-    // Example:
-    //   test bench_fib_20 ... bench:      37,174.25 ns/iter (+/- 7,527.43)
-    
     const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,.]+) (\w+\/\w+) \(\+\/- ([0-9,.]+)\)$/;
     const reComma = /,/g;
 
