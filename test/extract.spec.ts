@@ -73,6 +73,10 @@ describe('extractResult()', function () {
         },
         {
             tool: 'cargo',
+            file: 'cargo_output_units.txt',
+        },
+        {
+            tool: 'cargo',
             file: 'criterion_output.txt',
         },
         {

@@ -134,6 +134,53 @@ exports[`extractResult() extracts benchmark output from cargo - cargo_output.txt
 }
 `;
 
+exports[`extractResult() extracts benchmark output from cargo - cargo_output_units.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "cmov",
+      "range": "± 14",
+      "unit": "cycles/iter",
+      "value": 2835,
+    },
+    {
+      "name": "cmov2",
+      "range": "± 19",
+      "unit": "cycles/iter",
+      "value": 2845,
+    },
+    {
+      "name": "mov",
+      "range": "± 17",
+      "unit": "cycles/iter",
+      "value": 1508,
+    },
+    {
+      "name": "upload",
+      "range": "± 420",
+      "unit": "MS/s",
+      "value": 1911,
+    },
+    {
+      "name": "download",
+      "range": "± 69",
+      "unit": "MS/s",
+      "value": 9001,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from cargo - cargo_output2.txt 1`] = `
 {
   "benches": [

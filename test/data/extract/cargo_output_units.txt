@@ -1,0 +1,9 @@
+test cmov ... bench:        2835 cycles/iter (+/- 14)
+
+test cmov2 ... bench:        2845 cycles/iter (+/- 19)
+
+test mov ... bench:        1508 cycles/iter (+/- 17)
+
+test upload ... bench:        1911 MS/s (+/- 420)
+
+test download ... bench:        9001 MS/s (+/- 69)
