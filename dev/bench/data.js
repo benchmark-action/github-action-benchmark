@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733770353350,
+  "lastUpdate": 1733770370161,
   "entries": {
     "Rust Benchmark": [
       {
@@ -55697,6 +55697,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 20.0228,
             "range": "± 656.085",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770366837,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 146.673,
+            "range": "± 2.82405",
+            "unit": "ns",
+            "extra": "100 samples\n196 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 20.0381,
+            "range": "± 903.223",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
