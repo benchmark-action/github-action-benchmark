@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733770370161,
+  "lastUpdate": 1733770383297,
   "entries": {
     "Rust Benchmark": [
       {
@@ -43875,6 +43875,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000011739427201018627",
             "extra": "mean: 1.686290977739894 msec\nrounds: 584"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770379983,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75945.36908191726,
+            "unit": "iter/sec",
+            "range": "stddev: 7.860563188150121e-7",
+            "extra": "mean: 13.167359802035671 usec\nrounds: 37793"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 595.1996211618075,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000014943687148430239",
+            "extra": "mean: 1.6801085962521904 msec\nrounds: 587"
           }
         ]
       }
