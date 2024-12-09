@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729676025365,
+  "lastUpdate": 1733770343131,
   "entries": {
     "Rust Benchmark": [
       {
@@ -50645,6 +50645,42 @@ window.BENCHMARK_DATA = {
             "value": 20052.125160996035,
             "unit": "ns/iter",
             "extra": "iterations: 34939\ncpu: 20050.808552047853 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770340257,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 161.55782421551538,
+            "unit": "ns/iter",
+            "extra": "iterations: 4371205\ncpu: 161.5521349376202 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 19996.08303321422,
+            "unit": "ns/iter",
+            "extra": "iterations: 34986\ncpu: 19995.306694106217 ns\nthreads: 1"
           }
         ]
       }
