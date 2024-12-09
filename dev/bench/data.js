@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733770390949,
+  "lastUpdate": 1733770392832,
   "entries": {
     "Rust Benchmark": [
       {
@@ -35719,6 +35719,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.71%",
             "unit": "ops/sec",
             "extra": "97 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770390021,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1631927,
+            "range": "±0.98%",
+            "unit": "ops/sec",
+            "extra": "93 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13088,
+            "range": "±0.20%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
           }
         ]
       }
