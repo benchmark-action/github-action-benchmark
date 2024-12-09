@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733770348695,
+  "lastUpdate": 1733770352417,
   "entries": {
     "Rust Benchmark": [
       {
@@ -62549,6 +62549,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1942758559.5186708,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770349677,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1951082622.8898678,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
