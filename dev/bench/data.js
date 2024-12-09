@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733770343131,
+  "lastUpdate": 1733770348695,
   "entries": {
     "Rust Benchmark": [
       {
@@ -58579,6 +58579,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 41638,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "afonso.tfaria21@gmail.com",
+            "name": "xtrm0",
+            "username": "xtrm0"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3c661617bc6aa55f26ae4457c737a55545a86a4",
+          "message": "feat: allow to parse generic cargo bench/criterion units (#280)",
+          "timestamp": "2024-12-09T19:51:18+01:00",
+          "tree_id": "005f79e62d174cd1a903941ebbf0a13dadda2946",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/e3c661617bc6aa55f26ae4457c737a55545a86a4"
+        },
+        "date": 1733770345870,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 351.8095238095238,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":252,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44844,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
