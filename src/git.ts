@@ -58,21 +58,6 @@ export function getServerName(repositoryUrl: string | undefined): string {
     return getServerUrlObj(repositoryUrl).hostname;
 }
 
-function getCurrentRepoRemoteUrl(token: string | undefined): string {
-    const { repo, owner } = github.context.repo;
-    const serverName = getServerName(github.context.payload.repository?.html_url);
-    return getRepoRemoteUrl(token, `${serverName}/${owner}/${repo}`);
-}
-
-function getRepoRemoteUrl(token: string | undefined, repoUrl: string): string {
-    if (!token) {
-        // Use SSH format when no token is provided
-        const [serverName, owner, repo] = repoUrl.split('/');
-        return `git@${serverName}:${owner}/${repo}.git`;
-    }
-    return `https://x-access-token:${token}@${repoUrl}.git`;
-}
-
 async function setupSshKey(): Promise<void> {
     const sshKey = core.getInput('ssh-key');
     if (!sshKey) {
@@ -114,6 +99,21 @@ export async function cmd(additionalGitOptions: string[], ...args: string[]): Pr
         throw new Error(`Command 'git ${args.join(' ')}' failed: ${JSON.stringify(res)}`);
     }
     return res.stdout;
+}
+
+function getCurrentRepoRemoteUrl(token: string | undefined): string {
+    const { repo, owner } = github.context.repo;
+    const serverName = getServerName(github.context.payload.repository?.html_url);
+    return getRepoRemoteUrl(token, `${serverName}/${owner}/${repo}`);
+}
+
+function getRepoRemoteUrl(token: string | undefined, repoUrl: string): string {
+    if (!token) {
+        // Use SSH format when no token is provided
+        const [serverName, owner, repo] = repoUrl.split('/');
+        return `git@${serverName}:${owner}/${repo}.git`;
+    }
+    return `https://x-access-token:${token}@${repoUrl}.git`;
 }
 
 export async function push(
