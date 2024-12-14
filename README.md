@@ -250,6 +250,29 @@ option.
     alert-comment-cc-users: '@rhysd'
 ```
 
+### SSH Deploy Key Example
+
+This example shows how to use an SSH deploy key for authentication when deploying to GitHub Pages. In order
+to use this, you need to add the [SSH deploy key to your organization secrets](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
+
+```yaml
+- name: Store benchmark result
+  uses: benchmark-action/github-action-benchmark@v1
+  with:
+    tool: 'cargo'
+    output-file-path: output.txt
+    external-data-json-path: ./cache/benchmark-data.json
+    fail-on-alert: true
+    # SSH private key for authentication
+    ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+    # Enable alert commit comment
+    comment-on-alert: true
+    # Enable Job Summary for PRs
+    summary-always: true
+    # Mention @rhysd in the commit comment
+    alert-comment-cc-users: '@rhysd'
+```
+
 ### Charts on GitHub Pages
 
 It is useful to see how the benchmark results changed on each change in time-series charts. This action
@@ -532,6 +555,12 @@ which means there is no limit.
 
 If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
 
+#### `ssh-key` (Optional)
+
+- Type: String
+- Default: N/A
+
+SSH private key used for authentication when pushing to a repository. This key should be provided if you prefer to use SSH instead of a GitHub token for authentication. Ensure that the key is kept secure and is only accessible to authorized users.
 
 ### Action outputs
 

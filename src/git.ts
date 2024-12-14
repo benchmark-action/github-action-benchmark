@@ -2,8 +2,12 @@ import { exec } from '@actions/exec';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { URL } from 'url';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as os from 'os';
 
 const DEFAULT_GITHUB_URL = 'https://github.com';
+const SSH_KEY_PATH = path.join(os.homedir(), '.ssh', 'github_action_key');
 
 interface ExecResult {
     stdout: string;
@@ -54,6 +58,30 @@ export function getServerName(repositoryUrl: string | undefined): string {
     return getServerUrlObj(repositoryUrl).hostname;
 }
 
+async function setupSshKey(): Promise<void> {
+    const sshKey = core.getInput('ssh-key');
+    if (!sshKey) {
+        return;
+    }
+
+    // Ensure .ssh directory exists
+    const sshDir = path.dirname(SSH_KEY_PATH);
+    if (!fs.existsSync(sshDir)) {
+        fs.mkdirSync(sshDir, { recursive: true });
+    }
+
+    // Write SSH key
+    fs.writeFileSync(SSH_KEY_PATH, sshKey, { mode: 0o600 });
+
+    // Configure Git to use SSH key
+    await cmd(
+        [],
+        'config',
+        'core.sshCommand',
+        `ssh -i ${SSH_KEY_PATH} -o StrictHostKeyChecking=no`,
+    );
+}
+
 export async function cmd(additionalGitOptions: string[], ...args: string[]): Promise<string> {
     core.debug(`Executing Git: ${args.join(' ')}`);
     const serverUrl = getServerUrl(github.context.payload.repository?.html_url);
@@ -73,24 +101,33 @@ export async function cmd(additionalGitOptions: string[], ...args: string[]): Pr
     return res.stdout;
 }
 
-function getCurrentRepoRemoteUrl(token: string): string {
+function getCurrentRepoRemoteUrl(token: string | undefined): string {
     const { repo, owner } = github.context.repo;
     const serverName = getServerName(github.context.payload.repository?.html_url);
     return getRepoRemoteUrl(token, `${serverName}/${owner}/${repo}`);
 }
 
-function getRepoRemoteUrl(token: string, repoUrl: string): string {
+function getRepoRemoteUrl(token: string | undefined, repoUrl: string): string {
+    if (!token) {
+        // Use SSH format when no token is provided
+        const [serverName, owner, repo] = repoUrl.split('/');
+        return `git@${serverName}:${owner}/${repo}.git`;
+    }
     return `https://x-access-token:${token}@${repoUrl}.git`;
 }
 
 export async function push(
-    token: string,
+    token: string | undefined,
     repoUrl: string | undefined,
     branch: string,
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git push' to branch '${branch}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git push' to branch '${branch}' with ${token ? 'token' : 'SSH key'} and options '${options.join(' ')}'`);
+
+    if (!token) {
+        await setupSshKey();
+    }
 
     const remote = repoUrl ? getRepoRemoteUrl(token, repoUrl) : getCurrentRepoRemoteUrl(token);
     let args = ['push', remote, `${branch}:${branch}`, '--no-verify'];
@@ -107,9 +144,13 @@ export async function pull(
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git pull' to branch '${branch}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git pull' on branch '${branch}' with ${token ? 'token' : 'SSH key'} and options '${options.join(' ')}'`);
 
-    const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
+    if (!token) {
+        await setupSshKey();
+    }
+
+    const remote = getCurrentRepoRemoteUrl(token);
     let args = ['pull', remote, branch];
     if (options.length > 0) {
         args = args.concat(options);
@@ -124,10 +165,14 @@ export async function fetch(
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git fetch' for branch '${branch}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git fetch' on branch '${branch}' with ${token ? 'token' : 'SSH key'} and options '${options.join(' ')}'`);
 
-    const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
-    let args = ['fetch', remote, `${branch}:${branch}`];
+    if (!token) {
+        await setupSshKey();
+    }
+
+    const remote = getCurrentRepoRemoteUrl(token);
+    let args = ['fetch', remote, branch];
     if (options.length > 0) {
         args = args.concat(options);
     }
@@ -136,13 +181,17 @@ export async function fetch(
 }
 
 export async function clone(
-    token: string,
+    token: string | undefined,
     ghRepository: string,
     baseDirectory: string,
     additionalGitOptions: string[] = [],
     ...options: string[]
 ): Promise<string> {
-    core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
+    core.debug(`Executing 'git clone' for repository '${ghRepository}' with ${token ? 'token' : 'SSH key'} and options '${options.join(' ')}'`);
+
+    if (!token) {
+        await setupSshKey();
+    }
 
     const remote = getRepoRemoteUrl(token, ghRepository);
     let args = ['clone', remote, baseDirectory];
@@ -152,6 +201,7 @@ export async function clone(
 
     return cmd(additionalGitOptions, ...args);
 }
+
 export async function checkout(
     ghRef: string,
     additionalGitOptions: string[] = [],
