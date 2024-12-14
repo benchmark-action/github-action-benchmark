@@ -26,6 +26,8 @@ inputs:
     type: string
   github-token:
     type: string
+  ssh-key:
+    type: string
   ref:
     type: string
   auto-push:

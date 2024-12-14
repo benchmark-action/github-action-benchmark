@@ -1,5 +1,8 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
-import { cmd, getServerUrl, pull, push, fetch } from '../src/git';
+import { cmd, getServerUrl, pull, push, fetch, clone } from '../src/git';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as os from 'os';
 
 interface ExecOptions {
     listeners: {
@@ -55,6 +58,9 @@ const gitHubContext = {
     };
 };
 
+const TEST_SSH_KEY = '-----BEGIN OPENSSH PRIVATE KEY-----\ntest-key-content\n-----END OPENSSH PRIVATE KEY-----';
+const SSH_KEY_PATH = path.join(os.homedir(), '.ssh', 'github_action_key');
+
 jest.mock('@actions/exec', () => ({
     exec: (c: string, a: string[], o: ExecOptions) => {
         fakedExec.lastArgs = [c, a, o];
@@ -73,11 +79,23 @@ jest.mock('@actions/core', () => ({
     debug: () => {
         /* do nothing */
     },
+    getInput: (name: string) => {
+        if (name === 'ssh-key') {
+            return TEST_SSH_KEY;
+        }
+        return '';
+    },
 }));
 jest.mock('@actions/github', () => ({
     get context() {
         return gitHubContext;
     },
+}));
+jest.mock('fs', () => ({
+    ...jest.requireActual('fs'),
+    writeFileSync: jest.fn(),
+    existsSync: jest.fn(),
+    mkdirSync: jest.fn(),
 }));
 
 const ok: (x: any) => asserts x = A.ok;
@@ -96,10 +114,12 @@ describe('git', function () {
         jest.unmock('@actions/exec');
         jest.unmock('@actions/core');
         jest.unmock('@actions/github');
+        jest.unmock('fs');
     });
 
     afterEach(function () {
         fakedExec.reset();
+        jest.clearAllMocks();
     });
 
     describe('cmd()', function () {
@@ -154,6 +174,33 @@ describe('git', function () {
                 ]),
             );
         });
+
+        it('runs `git push` with SSH key authentication', async function () {
+            const stdout = await push(undefined, undefined, 'my-branch', [], 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            // Verify SSH key setup
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                SSH_KEY_PATH,
+                TEST_SSH_KEY,
+                { mode: 0o600 }
+            );
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(
+                args[1],
+                userArgs.concat([
+                    'push',
+                    'git@github.com:user/repo.git',
+                    'my-branch:my-branch',
+                    '--no-verify',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
+        });
     });
 
     describe('pull()', function () {
@@ -176,14 +223,30 @@ describe('git', function () {
             );
         });
 
-        it('runs `git pull` with given branch and options without token', async function () {
+        it('runs `git pull` with SSH key authentication', async function () {
             const stdout = await pull(undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
+
+            // Verify SSH key setup
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                SSH_KEY_PATH,
+                TEST_SSH_KEY,
+                { mode: 0o600 }
+            );
 
             eq(stdout, 'this is test');
             ok(args);
             eq(args[0], 'git');
-            eq(args[1], userArgs.concat(['pull', 'origin', 'my-branch', 'opt1', 'opt2']));
+            eq(
+                args[1],
+                userArgs.concat([
+                    'pull',
+                    'git@github.com:user/repo.git',
+                    'my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
         });
     });
 
@@ -200,21 +263,65 @@ describe('git', function () {
                 userArgs.concat([
                     'fetch',
                     'https://x-access-token:this-is-token@github.com/user/repo.git',
-                    'my-branch:my-branch',
+                    'my-branch',
                     'opt1',
                     'opt2',
                 ]),
             );
         });
 
-        it('runs `git fetch` with given branch and options without token', async function () {
+        it('runs `git fetch` with SSH key authentication', async function () {
             const stdout = await fetch(undefined, 'my-branch', [], 'opt1', 'opt2');
             const args = fakedExec.lastArgs;
+
+            // Verify SSH key setup
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                SSH_KEY_PATH,
+                TEST_SSH_KEY,
+                { mode: 0o600 }
+            );
 
             eq(stdout, 'this is test');
             ok(args);
             eq(args[0], 'git');
-            eq(args[1], userArgs.concat(['fetch', 'origin', 'my-branch:my-branch', 'opt1', 'opt2']));
+            eq(
+                args[1],
+                userArgs.concat([
+                    'fetch',
+                    'git@github.com:user/repo.git',
+                    'my-branch',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
+        });
+    });
+
+    describe('clone()', function () {
+        it('runs `git clone` with SSH key authentication', async function () {
+            const stdout = await clone(undefined, 'github.com/user/repo', 'dest-dir', [], 'opt1', 'opt2');
+            const args = fakedExec.lastArgs;
+
+            // Verify SSH key setup
+            expect(fs.writeFileSync).toHaveBeenCalledWith(
+                SSH_KEY_PATH,
+                TEST_SSH_KEY,
+                { mode: 0o600 }
+            );
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(
+                args[1],
+                userArgs.concat([
+                    'clone',
+                    'git@github.com:user/repo.git',
+                    'dest-dir',
+                    'opt1',
+                    'opt2',
+                ]),
+            );
         });
     });
 });

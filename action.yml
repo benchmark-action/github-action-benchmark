@@ -28,7 +28,10 @@ inputs:
     required: true
     default: 'dev/bench'
   github-token:
-    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
+    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details. Not required if using ssh-key.'
+    required: false
+  ssh-key:
+    description: 'SSH private key for Git operations. Alternative to github-token. The key should have push access to the repository (usually as a deploy key).'
     required: false
   ref:
     description: 'optional Ref to use when finding commit'
