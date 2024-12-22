@@ -310,7 +310,7 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
         } else {
             core.debug(
                 `${len} alerts exceeding the alert threshold ${alertThreshold} were found but` +
-                    ` all of them did not exceed the failure threshold ${threshold}`,
+                    ` none of them exceeded the failure threshold ${threshold}`,
             );
         }
     }
