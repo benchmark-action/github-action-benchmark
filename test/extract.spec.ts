@@ -136,6 +136,14 @@ describe('extractResult()', function () {
             file: 'benchmarkdotnet.json',
         },
         {
+            tool: 'deno',
+            file: 'deno_output1.json',
+        },
+        {
+            tool: 'deno',
+            file: 'deno_output2.json',
+        },
+        {
             tool: 'customBiggerIsBetter',
             file: 'customBiggerIsBetter_output.json',
         },
