@@ -136,6 +136,10 @@ describe('extractResult()', function () {
             file: 'benchmarkdotnet.json',
         },
         {
+            tool: 'lit',
+            file: 'lit_output.json',
+        },
+        {
             tool: 'customBiggerIsBetter',
             file: 'customBiggerIsBetter_output.json',
         },
