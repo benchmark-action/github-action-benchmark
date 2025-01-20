@@ -188,6 +188,11 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            nyrkioEnable: false,
+            nyrkioToken: null,
+            nyrkioApiRoot: 'http://nyrkio.com/api/v0/',
+            nyrkioPvalue: null,
+            nyrkioThreshold: null,
         };
 
         const savedRepository = {
@@ -886,6 +891,11 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            nyrkioEnable: false,
+            nyrkioToken: null,
+            nyrkioApiRoot: 'http://nyrkio.com/api/v0/',
+            nyrkioPvalue: null,
+            nyrkioThreshold: null,
         };
 
         function gitHistory(

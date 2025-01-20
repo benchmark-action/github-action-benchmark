@@ -1,14 +1,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import * as core from '@actions/core';
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
+import gitCommitInfo from 'git-commit-info';
+import { branchName } from './git';
 import { Config, ToolType } from './config';
 
 export interface BenchmarkResult {
-    name: string;
+    name: string; // metric name
     value: number;
     range?: string;
     unit: string;
     extra?: string;
+    testName?: string;
 }
 
 interface GitHubUser {
@@ -17,7 +21,7 @@ interface GitHubUser {
     username?: string;
 }
 
-interface Commit {
+export interface Commit {
     author: GitHubUser;
     committer: GitHubUser;
     distinct?: unknown; // Unused
@@ -26,6 +30,8 @@ interface Commit {
     timestamp?: string;
     tree_id?: unknown; // Unused
     url: string;
+    branch?: string;
+    ref?: string;
 }
 
 interface PullRequest {
@@ -286,6 +292,25 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
     };
 }
 
+async function getCommitFromLocalRepo(commit: any): Promise<Commit> {
+    return {
+        author: {
+            name: commit.author?.name,
+            username: commit.author?.login,
+            email: commit.author?.email,
+        },
+        committer: {
+            name: commit.committer?.name,
+            username: commit.committer?.login,
+            email: commit.committer?.email,
+        },
+        id: commit.commit,
+        message: commit.message,
+        timestamp: commit.date,
+        url: 'file:///' + process.cwd(),
+    };
+}
+
 async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
     if (github.context.payload.head_commit) {
         return github.context.payload.head_commit;
@@ -295,6 +320,11 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
 
     if (pr) {
         return getCommitFromPullRequestPayload(pr);
+    }
+
+    const localRepo = gitCommitInfo();
+    if (localRepo) {
+        return getCommitFromLocalRepo(localRepo);
     }
 
     if (!githubToken) {
@@ -308,6 +338,26 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
     }
 
     return getCommitFromGitHubAPIRequest(githubToken, ref);
+}
+
+async function addCommitBranch(commit: Commit){
+    console.log(commit);
+    if(github.context.payload.ref){
+        const maybeBranch = github.context.payload.ref.split("/")[-1];
+        if(maybeBranch){
+            commit.branch = maybeBranch;
+            return;
+        }
+    }
+    if (commit.ref){
+        commit.branch = commit.ref;
+        return;
+    }
+    const maybeBranch = await branchName();
+    if(maybeBranch!==undefined){
+        console.log("Use the branch name of whatever is checked out in my CWD.");
+        commit.branch = (maybeBranch?maybeBranch:"");
+    }
 }
 
 function extractCargoResult(output: string): BenchmarkResult[] {
@@ -332,6 +382,47 @@ function extractCargoResult(output: string): BenchmarkResult[] {
             value,
             range: `± ${range}`,
             unit: unit,
+        });
+    }
+
+    return ret;
+}
+
+function extractCriterionResult(output: string): BenchmarkResult[] {
+    const lines = output.split(/\r?\n/g);
+    const ret = [];
+    const reTestName = /Benchmarking\W+(.+):\W+Analyzing/;
+    const reResult = /(time|thrpt):\W+\[(.+) (.+) (.+) (.+) (.+) (.+)\]/;
+    const reComma = /,/g;
+    const reColon = /: */g;
+
+    let testName = "default_testname";
+    core.debug(`Processing ${lines.length} lines`);
+    for (const line of lines) {
+        const mm = line.match(reTestName);
+        if (mm) {
+            testName = mm[1].replace(reColon, '/').trim().replace(/'/g, "");
+            core.debug(testName);
+            continue;
+        }
+        const m = line.match(reResult);
+        if (m === null) {
+            continue;
+        }
+
+        const name = m[1];
+        const value = parseFloat(m[4].replace(reComma, ''));
+        const unit = m[5].trim();
+        const min = m[2].replace(reComma, '');
+        const max = m[6].replace(reComma, '');
+        // console.log(name,value,unit);
+
+        ret.push({
+            name,
+            value,
+            range: `[${min}, ${max}]`,
+            unit: unit,
+            testName,
         });
     }
 
@@ -699,6 +790,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         case 'cargo':
             benches = extractCargoResult(output);
             break;
+        case 'criterion':
+            benches = extractCriterionResult(output);
+            break;
         case 'go':
             benches = extractGoResult(output);
             break;
@@ -741,7 +835,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     }
 
     const commit = await getCommit(githubToken, ref);
-
+    await addCommitBranch(commit);
     return {
         commit,
         date: Date.now(),

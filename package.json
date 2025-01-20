@@ -34,7 +34,9 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@actions/io": "^1.1.2"
+    "@actions/io": "^1.1.2",
+    "axios": "^1.7.9",
+    "git-commit-info": "^2.0.2"
   },
   "devDependencies": {
     "@types/acorn": "^4.0.5",
