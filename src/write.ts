@@ -63,6 +63,8 @@ function biggerIsBetter(tool: ToolType): boolean {
     switch (tool) {
         case 'cargo':
             return false;
+        case 'criterion':
+            return true;
         case 'go':
             return false;
         case 'benchmarkjs':

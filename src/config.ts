@@ -25,10 +25,16 @@ export interface Config {
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
     ref: string | undefined;
+    nyrkioEnable: boolean;
+    nyrkioToken: string | null;
+    nyrkioApiRoot: string;
+    nyrkioPvalue: number | null;
+    nyrkioThreshold: number | null;
 }
 
 export const VALID_TOOLS = [
     'cargo',
+    'criterion',
     'go',
     'benchmarkjs',
     'benchmarkluau',
@@ -219,9 +225,26 @@ function validateAlertThreshold(alertThreshold: number | null, failThreshold: nu
     }
 }
 
+function validateNyrkio(
+    nyrkioEnable: boolean,
+    nyrkioToken: string | null,
+    nyrkioApiRoot: string | null,
+): asserts nyrkioToken {
+    if (nyrkioEnable) {
+        if (!nyrkioToken) {
+            throw new Error(
+                'Please use GitHub secrets to supply a JWT token for ${nyrkioApiRoot}. (https://nyrkio.com/docs/getting-started)',
+            );
+        }
+        if (!nyrkioApiRoot) {
+            throw new Error('nyrkio-api-root is required. You probably want https://nyrkio.com/api/v0/');
+        }
+    }
+}
+
 export async function configFromJobInput(): Promise<Config> {
     const tool: string = core.getInput('tool');
-    let outputFilePath: string = core.getInput('output-file-path');
+    let outputFilePath: string = core.getInput('output-file-path', { required: true });
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
     const ghRepository: string = core.getInput('gh-repository');
     let benchmarkDataDirPath: string = core.getInput('benchmark-data-dir-path');
@@ -240,6 +263,12 @@ export async function configFromJobInput(): Promise<Config> {
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
     let failThreshold = getPercentageInput('fail-threshold');
+
+    const nyrkioEnable = getBoolInput('nyrkio-enable');
+    const nyrkioToken: string = core.getInput('nyrkio-token');
+    let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
+    const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue');
+    const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -265,6 +294,9 @@ export async function configFromJobInput(): Promise<Config> {
     if (failThreshold === null) {
         failThreshold = alertThreshold;
     }
+    validateNyrkio(nyrkioEnable, nyrkioToken, nyrkioApiRoot);
+    if (nyrkioApiRoot.substring(nyrkioApiRoot.length-1) !== '/') nyrkioApiRoot = nyrkioApiRoot + '/';
+    core.debug(nyrkioApiRoot);
 
     return {
         name,
@@ -287,5 +319,10 @@ export async function configFromJobInput(): Promise<Config> {
         maxItemsInChart,
         failThreshold,
         ref,
+        nyrkioEnable,
+        nyrkioToken,
+        nyrkioApiRoot,
+        nyrkioPvalue,
+        nyrkioThreshold,
     };
 }

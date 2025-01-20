@@ -11,21 +11,21 @@ inputs:
     required: true
     default: 'Benchmark'
   tool:
-    description: 'Tool to use get benchmark output. One of "cargo", "go", "benchmarkjs", "pytest", "googlecpp", "catch2", "julia", "benchmarkdotnet", "customBiggerIsBetter", "customSmallerIsBetter"'
+    description: 'Tool to use get benchmark output. One of "cargo", "criterion", "go", "benchmarkjs", "pytest", "googlecpp", "catch2", "julia", "benchmarkdotnet", "customBiggerIsBetter", "customSmallerIsBetter"'
     required: true
   output-file-path:
     description: 'A path to file which contains the benchmark output'
     required: true
   gh-pages-branch:
     description: 'Branch for gh-pages'
-    required: true
+    required: false
     default: 'gh-pages'
   gh-repository:
     description: 'Url to an optional different repository to store benchmark results'
     required: false
   benchmark-data-dir-path:
     description: 'Path to directory which contains benchmark files on GitHub pages branch'
-    required: true
+    required: false
     default: 'dev/bench'
   github-token:
     description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
@@ -80,6 +80,38 @@ inputs:
     description: 'Max data points in a benchmark chart to avoid making the chart too busy. Value must be unsigned integer. No limit by default'
     required: false
 
+  nyrkio-enable:
+    description: 'Use Nyrkiö (web service) to store your benchmark results and to find statistically significant change points.'
+    required: false
+    default: false
+  nyrkio-token:
+    description: 'A JWT token from your nyrkio.com settings page'
+    required: false
+  nyrkio-api-root:
+    description: 'The root URL for a Nyrkiö API'
+    required: false
+    default: 'https://nyrkio.com/api/v0/'
+  nyrkio-settings-pvalue:
+    description: 'The p-value used to determine if a change in benchmark results is statistically significant. Example: 1% (If specified, will be applied to all your nyrkio.com test results.)'
+    required: false
+  nyrkio-settings-threshold:
+    description: 'Threshold percentage below which changes will be ignored. Example: 2% (If specified, will be applied to all your nyrkio.com test results.)'
+    required: false
 runs:
-  using: 'node20'
-  main: 'dist/src/index.js'
+  # using: 'composite'
+  # steps:
+  #     # - uses: actions/setup-node@v4
+  #     #   with:
+  #     #     node-version: 20
+  #     #     cache: 'npm'
+  #     - name:  Install dependencies & compile typescript
+  #       shell: bash
+  #       run:   cd ${{ github.action_path }} && npm install && npm run build
+  #
+  #     - name:  Run action
+  #       shell: bash
+  #       run:   cd ${{ github.action_path }} && node dist/src/index.js
+  #       # shell: bash
+  #       # run:   cd ${{ github.action_path }} && node dist/src/index.js
+  using: node20
+  main:  action.js

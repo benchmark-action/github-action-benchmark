@@ -166,3 +166,14 @@ export async function checkout(
 
     return cmd(additionalGitOptions, ...args);
 }
+
+export async function branchName(): Promise<string | undefined> {
+    try {
+        const cmd = `git branch --show-current`;
+
+        const res: ExecResult = await capture(cmd, []);
+        return res.stdout.trim();
+    } catch {
+        return undefined;
+    }
+}
