@@ -101,6 +101,7 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
     const d = bench.date / 1000; // Only Unix timestamps in Nyrkiö context.
     let nyrkioResult = nyrkioJsonInit(bench.commit, d);
     let testName: string | undefined = '';
+    let branch: string | undefined = undefined;
     let nyrkioPath = name;
     for (const b of benches) {
         if (testName !== b.testName) {
@@ -114,8 +115,10 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
 
             nyrkioResult = nyrkioJsonInit(bench.commit, d);
             testName = b.testName;
+            branch = nyrkioResult.attributes.branch;
+            core.debug(branch);
             if (testName && testName.length > 0) {
-                nyrkioPath = name + '/' + testName;
+                nyrkioPath = name + '/' + branch + '/' + testName;
             } else {
                 nyrkioPath = name;
             }
@@ -171,7 +174,7 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
 
     for (const r of allTestResults) {
         const uri = nyrkioApiRoot + 'result/' + r.path;
-        core.debug('PUT results: ' + uri);
+        console.log('PUT results: ' + uri);
         try {
             // Will throw on failure
             const response = await axios.put(uri, r.results, options);
