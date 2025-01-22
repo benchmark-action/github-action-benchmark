@@ -55,3 +55,13 @@ inputs:
     type: string
   max-items-in-chart:
     type: integer
+  nyrkio-enable:
+    type: boolean
+  nyrkio-token:
+    type: string
+  nyrkio-api-root:
+    type: string
+  nyrkio-settings-pvalue:
+    type: string
+  nyrkio-settings-threshold:
+    type: string

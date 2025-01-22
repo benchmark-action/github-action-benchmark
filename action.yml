@@ -114,4 +114,4 @@ runs:
   #       # shell: bash
   #       # run:   cd ${{ github.action_path }} && node dist/src/index.js
   using: node20
-  main:  action.js
+  main: action.js

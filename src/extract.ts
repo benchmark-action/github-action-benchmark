@@ -340,23 +340,23 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
     return getCommitFromGitHubAPIRequest(githubToken, ref);
 }
 
-async function addCommitBranch(commit: Commit){
+async function addCommitBranch(commit: Commit) {
     console.log(commit);
-    if(github.context.payload.ref){
-        const maybeBranch = github.context.payload.ref.split("/")[-1];
-        if(maybeBranch){
+    if (github.context.payload.ref) {
+        const maybeBranch = github.context.payload.ref.split('/')[-1];
+        if (maybeBranch) {
             commit.branch = maybeBranch;
             return;
         }
     }
-    if (commit.ref){
+    if (commit.ref) {
         commit.branch = commit.ref;
         return;
     }
     const maybeBranch = await branchName();
-    if(maybeBranch!==undefined){
-        console.log("Use the branch name of whatever is checked out in my CWD.");
-        commit.branch = (maybeBranch?maybeBranch:"");
+    if (maybeBranch !== undefined) {
+        console.log('Use the branch name of whatever is checked out in my CWD.');
+        commit.branch = maybeBranch ? maybeBranch : '';
     }
 }
 
@@ -396,12 +396,12 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
     const reComma = /,/g;
     const reColon = /: */g;
 
-    let testName = "default_testname";
+    let testName = 'default_testname';
     core.debug(`Processing ${lines.length} lines`);
     for (const line of lines) {
         const mm = line.match(reTestName);
         if (mm) {
-            testName = mm[1].replace(reColon, '/').trim().replace(/'/g, "");
+            testName = mm[1].replace(reColon, '/').trim().replace(/'/g, '');
             core.debug(testName);
             continue;
         }
