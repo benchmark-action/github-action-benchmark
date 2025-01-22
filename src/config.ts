@@ -295,7 +295,7 @@ export async function configFromJobInput(): Promise<Config> {
         failThreshold = alertThreshold;
     }
     validateNyrkio(nyrkioEnable, nyrkioToken, nyrkioApiRoot);
-    if (nyrkioApiRoot.substring(nyrkioApiRoot.length-1) !== '/') nyrkioApiRoot = nyrkioApiRoot + '/';
+    if (!nyrkioApiRoot.endsWith('/')) nyrkioApiRoot = nyrkioApiRoot + '/';
     core.debug(nyrkioApiRoot);
 
     return {
