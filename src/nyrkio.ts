@@ -59,6 +59,12 @@ export interface NyrkioAllChanges {
     changes: NyrkioChanges[];
 }
 
+export function sanitizeForUri(value: string | undefined): string {
+    const v: string = value ?? '';
+    const re = /[^a-zA-Z0-9-_.]/gi;
+    return v.replace(re, '_');
+}
+
 export function nyrkioJsonMetricsInit(b: BenchmarkResult): NyrkioMetrics {
     const NYRKIO_JSON_TEMPLATE_METRICS = { name: b.name, unit: b.unit, value: b.value };
     return NYRKIO_JSON_TEMPLATE_METRICS;
@@ -95,13 +101,14 @@ function convertDateStringToUnixTimestamp(d: string) {
 function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [NyrkioJsonPath] | null {
     let allTestResults: [NyrkioJsonPath] | null = null;
 
-    const { name } = config;
+    let { name } = config;
 
     const benches = bench.benches;
     const d = bench.date / 1000; // Only Unix timestamps in Nyrkiö context.
     let nyrkioResult = nyrkioJsonInit(bench.commit, d);
     let testName: string | undefined = '';
     let branch: string | undefined = undefined;
+    name = sanitizeForUri(name);
     let nyrkioPath = name;
     for (const b of benches) {
         if (testName !== b.testName) {
@@ -114,15 +121,14 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
             }
 
             nyrkioResult = nyrkioJsonInit(bench.commit, d);
-            testName = b.testName;
-            branch = nyrkioResult.attributes.branch;
+            testName = sanitizeForUri(b.testName);
+            branch = sanitizeForUri(nyrkioResult.attributes.branch);
             core.debug(branch);
             if (testName && testName.length > 0) {
                 nyrkioPath = name + '/' + branch + '/' + testName;
             } else {
                 nyrkioPath = name;
             }
-            nyrkioPath = nyrkioPath.replace(/ /g, '_');
         }
         const m = nyrkioJsonMetricsInit(b);
         m.value = b.value;
