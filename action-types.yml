@@ -65,3 +65,5 @@ inputs:
     type: string
   nyrkio-settings-threshold:
     type: string
+  never-fail:
+    type: boolean

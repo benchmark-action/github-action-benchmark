@@ -97,6 +97,10 @@ inputs:
   nyrkio-settings-threshold:
     description: 'Threshold percentage below which changes will be ignored. Example: 2% (If specified, will be applied to all your nyrkio.com test results.)'
     required: false
+  never-fail:
+    description: "Don't fail the workflow, ever. Not even if the action itself fails due to bugs or network or whatever."
+    required: false
+    default: false
 runs:
   # using: 'composite'
   # steps:
