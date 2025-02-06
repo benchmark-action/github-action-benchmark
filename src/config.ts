@@ -30,6 +30,7 @@ export interface Config {
     nyrkioApiRoot: string;
     nyrkioPvalue: number | null;
     nyrkioThreshold: number | null;
+    neverFail: boolean;
 }
 
 export const VALID_TOOLS = [
@@ -269,6 +270,7 @@ export async function configFromJobInput(): Promise<Config> {
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
     const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue');
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold');
+    const neverFail: boolean = getBoolInput('never-fail') || false;
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -324,5 +326,6 @@ export async function configFromJobInput(): Promise<Config> {
         nyrkioApiRoot,
         nyrkioPvalue,
         nyrkioThreshold,
+        neverFail,
     };
 }

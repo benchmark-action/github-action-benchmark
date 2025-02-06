@@ -168,7 +168,7 @@ async function setParameters(config: Config) {
 
 async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Promise<[NyrkioAllChanges] | boolean> {
     await setParameters(config);
-    const { nyrkioToken, nyrkioApiRoot } = config;
+    const { nyrkioToken, nyrkioApiRoot, neverFail } = config;
     core.debug(nyrkioToken ? nyrkioToken.substring(0, 5) : "WHERE's MY TOKEN???");
     const options = {
         headers: {
@@ -206,10 +206,14 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
             }
         } catch (err: any) {
             console.error(`PUT to ${uri} failed. I'll keep trying with the others though.`);
-            console.error(err.status);
-            console.error(err.code);
-            // console.error(err);
-            core.setFailed(`PUT to ${uri} failed. ${err.status} ${err.code}.`);
+            console.error(err.toJSON());
+            if (!neverFail) {
+                core.setFailed(`PUT to ${uri} failed. ${err.status} ${err.code}.`);
+            } else {
+                console.error(
+                    'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+                );
+            }
         }
     }
     if (gotChanges) return allChanges;
@@ -217,7 +221,7 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
 }
 
 export async function nyrkioFindChanges(b: Benchmark, config: Config) {
-    const { nyrkioEnable, failOnAlert } = config;
+    const { nyrkioEnable, failOnAlert, neverFail } = config;
     core.debug('nyrkio-enable=' + nyrkioEnable.toString());
     if (!nyrkioEnable) return;
 
@@ -227,9 +231,17 @@ export async function nyrkioFindChanges(b: Benchmark, config: Config) {
 
     const changes = await postResults(allTestResults, config);
     if (changes && failOnAlert) {
-        core.setFailed('Nyrkiö detected a change in your performance test results. Please see the log for details.');
         core.info('Nyrkiö detected a change in your performance test results. Please see the log for details.');
         core.info(JSON.stringify(changes));
+        if (!neverFail) {
+            core.setFailed(
+                'Nyrkiö detected a change in your performance test results. Please see the log for details.',
+            );
+        } else {
+            console.error(
+                'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+            );
+        }
     } else {
         console.log(
             "Nyrkiö didn't find any changes now. But you should check again in a week or so, smaller changes are detected with a delay to avoid false positives.",

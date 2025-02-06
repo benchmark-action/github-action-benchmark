@@ -24,4 +24,17 @@ async function main() {
     console.log('github-action-benchmark end.', '\nData:', bench);
 }
 
-main().catch((e) => core.setFailed(e.message));
+async function maybeSetFailed(e: any) {
+    const config = await configFromJobInput();
+    const { neverFail } = config;
+
+    if (!neverFail) {
+        core.setFailed(e ? e.message : 'e is undefined');
+        return false;
+    } else {
+        console.error('Note: never-fail is true. Will exit successfully to keep the build green.');
+        return true;
+    }
+}
+
+main().catch(async (e) => await maybeSetFailed(e));
