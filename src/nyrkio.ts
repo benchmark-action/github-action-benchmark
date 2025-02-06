@@ -176,7 +176,6 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
         },
     };
     let allChanges: [NyrkioAllChanges] | boolean = false;
-    let gotChanges = false;
 
     for (const r of allTestResults) {
         const uri = nyrkioApiRoot + 'result/' + r.path;
@@ -190,17 +189,15 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
                 const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>v;
                 if (c.length === 0) continue;
 
-                const cc: NyrkioAllChanges = { path: r.path, changes: c };
-
-                if (allChanges === false) allChanges = [cc];
-                else allChanges.push(cc);
 
                 // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
                 // However, in most cases you'll get a separate alert a few days later, once the statistical
                 // significance accumulates.
                 for (const changePoint of c) {
                     if (changePoint.attributes.git_commit === r.git_commit) {
-                        gotChanges = true;
+                        const cc: NyrkioAllChanges = { path: r.path, changes: c };
+                        if (allChanges === false) allChanges = [cc];
+                        else allChanges.push(cc);
                     }
                 }
             }
@@ -216,8 +213,7 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
             }
         }
     }
-    if (gotChanges) return allChanges;
-    return false;
+    return allChanges;
 }
 
 export async function nyrkioFindChanges(b: Benchmark, config: Config) {
