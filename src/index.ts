@@ -21,7 +21,7 @@ async function main() {
 
     if (ghRepository) await writeBenchmark(bench, config);
 
-    console.log('github-action-benchmark end.', '\nData:', bench);
+    console.log('github-action-benchmark end.');
 }
 
 async function maybeSetFailed(e: any) {

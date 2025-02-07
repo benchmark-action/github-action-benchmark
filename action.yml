@@ -83,7 +83,7 @@ inputs:
   nyrkio-enable:
     description: 'Use Nyrkiö (web service) to store your benchmark results and to find statistically significant change points.'
     required: false
-    default: false
+    default: true
   nyrkio-token:
     description: 'A JWT token from your nyrkio.com settings page'
     required: false

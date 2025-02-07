@@ -30,8 +30,10 @@ export interface Commit {
     timestamp?: string;
     tree_id?: unknown; // Unused
     url: string;
+    repo: string;
     branch?: string;
     ref?: string;
+    prNumber?: number;
 }
 
 interface PullRequest {
@@ -242,6 +244,7 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
 
 function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
     // On pull_request hook, head_commit is not available
+    core.debug(JSON.stringify(pr, null, 4));
     const id: string = pr.head.sha;
     const username: string = pr.head.user.login;
     const user = {
@@ -255,7 +258,10 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
         id,
         message: pr.title,
         timestamp: pr.head.repo.updated_at,
-        url: `${pr.html_url}/commits/${id}`,
+        repo: pr.base.repo.full_name,
+        url: pr.html_url ?? pr.base.repo.full_name ?? pr._links.html,
+        branch: pr.base.ref_name || pr.base.ref,
+        prNumber: pr.number,
     };
 }
 
@@ -289,6 +295,7 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
         message: commit.message,
         timestamp: commit.author?.date,
         url: data.html_url,
+        repo: github.context.repo.repo,
     };
 }
 
@@ -308,17 +315,26 @@ async function getCommitFromLocalRepo(commit: any): Promise<Commit> {
         message: commit.message,
         timestamp: commit.date,
         url: 'file:///' + process.cwd(),
+        repo: 'local_checkout',
     };
 }
 
 async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
     if (github.context.payload.head_commit) {
-        return github.context.payload.head_commit;
+        core.debug('Return head_commit');
+        core.debug(JSON.stringify(github.context.payload, null, 4));
+        const commit: Commit = github.context.payload.head_commit;
+        commit.url =
+            github.context.payload.repository?.html_url ?? github.context.payload.head_commit.split(/\/commit\//)[0];
+        commit.repo = github.context.payload.repository?.full_name ?? commit.url;
+
+        return commit;
     }
 
     const pr = github.context.payload.pull_request;
 
     if (pr) {
+        core.debug('Return github.context.payload.pull_request');
         return getCommitFromPullRequestPayload(pr);
     }
 
@@ -342,6 +358,17 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
 
 async function addCommitBranch(commit: Commit) {
     console.log(commit);
+    if (commit.prNumber) {
+        // For pull requests, we actually want the base (aka target) branch
+        const maybeBranch = github.context.payload.pull_request?.base.ref;
+        if (maybeBranch) {
+            console.log(
+                `Found github.context.payload.pull_request.base.ref = ${github.context.payload.pull_request?.base.ref}`,
+            );
+            commit.branch = maybeBranch;
+            return;
+        }
+    }
     if (github.context.payload.ref) {
         const maybeBranch = github.context.payload.ref.split('/')[-1];
         if (maybeBranch) {

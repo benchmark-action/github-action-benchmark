@@ -80,12 +80,13 @@ export function nyrkioJsonInit(commit: Commit, buildTime: number): NyrkioJson {
     } else {
         core.warning('No timestamp found in commit. Using build time = when the benchmark was run.');
     }
+
     const NYRKIO_JSON_TEMPLATE = {
         timestamp: t,
         metrics: [],
         attributes: {
-            git_repo: commit.url.split(/commit/)[0],
-            branch: commit.branch ? commit.branch : 'unknown',
+            git_repo: commit.url,
+            branch: commit.branch!,
             git_commit: commit.id,
         },
         extra_info: { build_time: buildTime },
@@ -124,19 +125,18 @@ class NyrkioResultSorter {
         core.debug(this.r.toString());
         let ret: [NyrkioJsonPath] | null = null;
 
-        for (let k of this.r.keys()) {
+        for (const k of this.r.keys()) {
             core.debug(k);
-            for (let g of this.r.get(k)!.keys()) {
+            for (const g of this.r.get(k)!.keys()) {
                 core.debug(g);
-                for (let t of this.r.get(k)!.get(g)!.keys()) {
+                for (const t of this.r.get(k)!.get(g)!.keys()) {
                     core.debug(t);
                     if (!ret) {
                         ret = [{ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] }];
                     } else {
                         ret.push({ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] });
                     }
-                    core.debug(this.r.get(k)!.get(g)!.get(t)!.toString());
-                    core.debug(`${ret.length}`);
+                    core.debug(JSON.stringify(this.r.get(k)!.get(g)!.get(t)!, null, 4));
                 }
             }
         }
@@ -203,7 +203,11 @@ async function setParameters(config: Config) {
     core.debug(response.toString());
 }
 
-async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Promise<[NyrkioAllChanges] | boolean> {
+async function postResults(
+    allTestResults: [NyrkioJsonPath],
+    config: Config,
+    commit: Commit,
+): Promise<[NyrkioAllChanges] | boolean> {
     await setParameters(config);
     const { nyrkioToken, nyrkioApiRoot, nyrkioOrg, neverFail } = config;
     core.debug(nyrkioToken ? nyrkioToken.substring(0, 5) : "WHERE's MY TOKEN???");
@@ -217,8 +221,14 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
     for (const r of allTestResults) {
         core.debug(r.path);
         let uri = `${nyrkioApiRoot}result/${r.path}`;
+        if (commit.prNumber) {
+            uri = `${nyrkioApiRoot}pulls/${commit.repo}/${commit.prNumber}/result/${r.path}`;
+        }
         if (nyrkioOrg !== undefined) {
-            uri = nyrkioApiRoot + 'orgs/result/' + nyrkioOrg + '/' + r.path;
+            uri = `${nyrkioApiRoot}orgs/result/${nyrkioOrg}/${r.path}`;
+            if (commit.prNumber) {
+                uri = `${nyrkioApiRoot}orgs/pulls/${commit.repo}/${commit.prNumber}/result/${nyrkioOrg}/${r.path}`;
+            }
         }
         console.log('PUT results: ' + uri);
         try {
@@ -243,7 +253,11 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
             }
         } catch (err: any) {
             console.error(`PUT to ${uri} failed. I'll keep trying with the others though.`);
-            console.error(err.toJSON());
+            if (err & err.toJSON) {
+                console.error(err.toJSON());
+            } else {
+                console.error(err);
+            }
             if (!neverFail) {
                 core.setFailed(`PUT to ${uri} failed. ${err.status} ${err.code}.`);
             } else {
@@ -265,9 +279,11 @@ export async function nyrkioFindChanges(b: Benchmark, config: Config) {
     core.debug(JSON.stringify(allTestResults));
     if (allTestResults === null) return;
 
-    const changes = await postResults(allTestResults, config);
+    const changes = await postResults(allTestResults, config, b.commit);
     if (changes && failOnAlert) {
-        console.error("\n\nNyrkiö detected a change in your performance test results. Please see the log for details.\n");
+        console.error(
+            '\n\nNyrkiö detected a change in your performance test results. Please see the log for details.\n',
+        );
         console.error(JSON.stringify(changes, null, 4));
         if (!neverFail) {
             core.setFailed(
