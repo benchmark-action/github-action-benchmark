@@ -91,6 +91,10 @@ inputs:
     description: 'The root URL for a Nyrkiö API'
     required: false
     default: 'https://nyrkio.com/api/v0/'
+  nyrkio-public:
+    description: 'Publish these benchmark results at nyrkio.com/public. (Recommended for open source projects.)'
+    required: false
+    default: false
   nyrkio-org:
     description: 'The name of a github org where you have installed Nyrkiö. See https://nyrkio.com/user/settings#nyrkio-settings-userinfo'
     required: false

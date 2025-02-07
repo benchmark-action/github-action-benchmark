@@ -61,6 +61,8 @@ inputs:
     type: string
   nyrkio-api-root:
     type: string
+  nyrkio-public:
+    type: boolean
   nyrkio-org:
     type: string
   nyrkio-settings-pvalue:

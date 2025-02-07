@@ -28,6 +28,7 @@ export interface Config {
     nyrkioEnable: boolean;
     nyrkioToken: string | null;
     nyrkioApiRoot: string;
+    nyrkioPublic: boolean;
     nyrkioOrg: string | undefined;
     nyrkioPvalue: number | null;
     nyrkioThreshold: number | null;
@@ -269,10 +270,11 @@ export async function configFromJobInput(): Promise<Config> {
     const nyrkioEnable = getBoolInput('nyrkio-enable');
     const nyrkioToken: string = core.getInput('nyrkio-token');
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
-    const nyrkioOrg: string = core.getInput('nyrkio-org');
+    const nyrkioPublic: boolean = getBoolInput('nyrkio-public');
+    const nyrkioOrg: string|undefined = core.getInput('nyrkio-org') ||undefined;
     const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue');
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold');
-    const neverFail: boolean = getBoolInput('never-fail') || false;
+    const neverFail: boolean = getBoolInput('never-fail');
 
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
@@ -326,6 +328,7 @@ export async function configFromJobInput(): Promise<Config> {
         nyrkioEnable,
         nyrkioToken,
         nyrkioApiRoot,
+        nyrkioPublic,
         nyrkioOrg,
         nyrkioPvalue,
         nyrkioThreshold,

@@ -1,4 +1,7 @@
 /* eslint @typescript-eslint/naming-convention: 0 */
+/* eslint @typescript-eslint/no-non-null-assertion: 0 */
+/* eslint no-useless-escape: 0 */
+
 import { Benchmark, BenchmarkResult, Commit } from './extract';
 import { Config } from './config';
 import * as core from '@actions/core';
@@ -19,7 +22,7 @@ export interface NyrkioJson {
         git_repo: string;
         branch: string;
     };
-    extra_info?: any;
+    extra_info?: object;
 }
 
 export interface NyrkioJsonPath {
@@ -98,9 +101,50 @@ function convertDateStringToUnixTimestamp(d: string) {
     return Date.parse(d) / 1000;
 }
 
-function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [NyrkioJsonPath] | null {
-    let allTestResults: [NyrkioJsonPath] | null = null;
+class NyrkioResultSorter {
+    r: Map<string, Map<string, Map<string, NyrkioJson>>>;
 
+    constructor() {
+        this.r = new Map<string, Map<string, Map<string, NyrkioJson>>>();
+    }
+
+    add(path: string, git_commit: string, result: NyrkioJson) {
+        if (this.r.get(path) === undefined) this.r.set(path, new Map<string, Map<string, NyrkioJson>>());
+        if (this.r.get(path)!.get(git_commit) === undefined)
+            this.r.get(path)!.set(git_commit, new Map<string, NyrkioJson>());
+        if (this.r.get(path)!.get(git_commit)!.get(result.timestamp.toString()) === undefined)
+            this.r.get(path)!.get(git_commit)!.set(result.timestamp.toString(), result);
+        else this.r.get(path)!.get(git_commit)!.get(result.timestamp.toString())!.metrics.concat(result.metrics);
+        core.debug(path);
+        core.debug(git_commit);
+        core.debug(result.timestamp.toString());
+    }
+
+    iterator(): [NyrkioJsonPath] | null {
+        core.debug(this.r.toString());
+        let ret: [NyrkioJsonPath] | null = null;
+
+        for (let k of this.r.keys()) {
+            core.debug(k);
+            for (let g of this.r.get(k)!.keys()) {
+                core.debug(g);
+                for (let t of this.r.get(k)!.get(g)!.keys()) {
+                    core.debug(t);
+                    if (!ret) {
+                        ret = [{ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] }];
+                    } else {
+                        ret.push({ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] });
+                    }
+                    core.debug(this.r.get(k)!.get(g)!.get(t)!.toString());
+                    core.debug(`${ret.length}`);
+                }
+            }
+        }
+        return ret;
+    }
+}
+
+function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [NyrkioJsonPath] | null {
     let { name } = config;
 
     const benches = bench.benches;
@@ -110,14 +154,11 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
     let branch: string | undefined = undefined;
     name = sanitizeForUri(name);
     let nyrkioPath = name;
+    const nsrt = new NyrkioResultSorter();
     for (const b of benches) {
         if (testName !== b.testName) {
             if (nyrkioResult.metrics.length > 0) {
-                if (!allTestResults) {
-                    allTestResults = [{ path: nyrkioPath, git_commit: bench.commit.id, results: [nyrkioResult] }];
-                } else {
-                    allTestResults.push({ path: nyrkioPath, git_commit: bench.commit.id, results: [nyrkioResult] });
-                }
+                nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
             }
 
             nyrkioResult = nyrkioJsonInit(bench.commit, d);
@@ -137,13 +178,9 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
         nyrkioResult.metrics.push(m);
     }
     if (nyrkioResult.metrics.length > 0) {
-        if (!allTestResults) {
-            allTestResults = [{ path: nyrkioPath, git_commit: bench.commit.id, results: [nyrkioResult] }];
-        } else {
-            allTestResults.push({ path: nyrkioPath, git_commit: bench.commit.id, results: [nyrkioResult] });
-        }
+        nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
     }
-    return allTestResults;
+    return nsrt.iterator();
 }
 
 async function setParameters(config: Config) {
@@ -178,7 +215,8 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
     let allChanges: [NyrkioAllChanges] | boolean = false;
 
     for (const r of allTestResults) {
-        let uri = nyrkioApiRoot + 'result/' + r.path;
+        core.debug(r.path);
+        let uri = `${nyrkioApiRoot}result/${r.path}`;
         if (nyrkioOrg !== undefined) {
             uri = nyrkioApiRoot + 'orgs/result/' + nyrkioOrg + '/' + r.path;
         }
@@ -190,7 +228,7 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
                 const resp = response.data;
                 const v = resp[r.path];
                 const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>v;
-                if (c===undefined || c.length === 0) continue;
+                if (c === undefined || c.length === 0) continue;
 
                 // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
                 // However, in most cases you'll get a separate alert a few days later, once the statistical
