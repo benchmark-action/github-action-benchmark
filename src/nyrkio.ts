@@ -168,7 +168,7 @@ async function setParameters(config: Config) {
 
 async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Promise<[NyrkioAllChanges] | boolean> {
     await setParameters(config);
-    const { nyrkioToken, nyrkioApiRoot, neverFail } = config;
+    const { nyrkioToken, nyrkioApiRoot, nyrkioOrg, neverFail } = config;
     core.debug(nyrkioToken ? nyrkioToken.substring(0, 5) : "WHERE's MY TOKEN???");
     const options = {
         headers: {
@@ -178,7 +178,10 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
     let allChanges: [NyrkioAllChanges] | boolean = false;
 
     for (const r of allTestResults) {
-        const uri = nyrkioApiRoot + 'result/' + r.path;
+        let uri = nyrkioApiRoot + 'result/' + r.path;
+        if (nyrkioOrg !== undefined) {
+            uri = nyrkioApiRoot + 'orgs/result/' + nyrkioOrg + '/' + r.path;
+        }
         console.log('PUT results: ' + uri);
         try {
             // Will throw on failure
@@ -187,8 +190,7 @@ async function postResults(allTestResults: [NyrkioJsonPath], config: Config): Pr
                 const resp = response.data;
                 const v = resp[r.path];
                 const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>v;
-                if (c.length === 0) continue;
-
+                if (c===undefined || c.length === 0) continue;
 
                 // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
                 // However, in most cases you'll get a separate alert a few days later, once the statistical
