@@ -91,6 +91,9 @@ inputs:
     description: 'The root URL for a Nyrkiö API'
     required: false
     default: 'https://nyrkio.com/api/v0/'
+  nyrkio-org:
+    description: 'The name of a github org where you have installed Nyrkiö. See https://nyrkio.com/user/settings#nyrkio-settings-userinfo'
+    required: false
   nyrkio-settings-pvalue:
     description: 'The p-value used to determine if a change in benchmark results is statistically significant. Example: 1% (If specified, will be applied to all your nyrkio.com test results.)'
     required: false
