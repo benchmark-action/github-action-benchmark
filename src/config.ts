@@ -271,7 +271,7 @@ export async function configFromJobInput(): Promise<Config> {
     const nyrkioToken: string = core.getInput('nyrkio-token');
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
     const nyrkioPublic: boolean = getBoolInput('nyrkio-public');
-    const nyrkioOrg: string|undefined = core.getInput('nyrkio-org') ||undefined;
+    const nyrkioOrg: string | undefined = core.getInput('nyrkio-org') || undefined;
     const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue');
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold');
     const neverFail: boolean = getBoolInput('never-fail');
