@@ -61,7 +61,7 @@ export interface NyrkioAllChanges {
 
 export function sanitizeForUri(value: string | undefined): string {
     const v: string = value ?? '';
-    const re = /[^a-zA-Z0-9-_.]/gi;
+    const re = /[^a-zA-Z0-9-_.\/]/gi;
     return v.replace(re, '_');
 }
 
