@@ -52,100 +52,126 @@ export const VALID_TOOLS = [
 ] as const;
 const RE_UINT = /^\d+$/;
 
-function validateToolType(tool: string): asserts tool is ToolType {
+function throwValidationError(neverFail: boolean, msg: string): boolean {
+    core.error(msg);
+    if (neverFail) {
+        core.error('never-fail is set. Will exit cleanly so as not to fail your build.');
+        return true;
+    }
+    throw new Error(msg);
+}
+
+function validateToolType(tool: string, neverFail: boolean): asserts tool is ToolType {
     if ((VALID_TOOLS as ReadonlyArray<string>).includes(tool)) {
         return;
     }
-    throw new Error(`Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
+    throwValidationError(neverFail, `Invalid value '${tool}' for 'tool' input. It must be one of ${VALID_TOOLS}`);
 }
 
-function resolvePath(p: string): string {
+function resolvePath(p: string, neverFail: boolean): string {
     if (p.startsWith('~')) {
         const home = os.homedir();
         if (!home) {
-            throw new Error(`Cannot resolve '~' in ${p}`);
+            throwValidationError(neverFail, `Cannot resolve '~' in ${p}`);
+            return '';
         }
         p = path.join(home, p.slice(1));
     }
     return path.resolve(p);
 }
 
-async function resolveFilePath(p: string): Promise<string> {
-    p = resolvePath(p);
+async function resolveFilePath(p: string, neverFail: boolean): Promise<string> {
+    p = resolvePath(p, neverFail);
 
     let s;
     try {
         s = await fs.stat(p);
     } catch (e) {
-        throw new Error(`Cannot stat '${p}': ${e}`);
+        throwValidationError(neverFail, `Cannot stat '${p}': ${e}`);
+        return '';
     }
 
-    if (!s.isFile()) {
-        throw new Error(`Specified path '${p}' is not a file`);
+    if (!s?.isFile()) {
+        throwValidationError(neverFail, `Specified path '${p}' is not a file`);
+        return '';
     }
 
     return p;
 }
 
-async function validateOutputFilePath(filePath: string): Promise<string> {
+async function validateOutputFilePath(filePath: string, neverFail: boolean): Promise<string> {
     try {
-        return await resolveFilePath(filePath);
+        return await resolveFilePath(filePath, neverFail);
     } catch (err) {
-        throw new Error(`Invalid value for 'output-file-path' input: ${err}`);
+        throwValidationError(neverFail, `Invalid value for 'output-file-path' input: ${err}`);
+        return '';
     }
 }
 
-function validateGhPagesBranch(branch: string) {
+function validateGhPagesBranch(branch: string, neverFail: boolean) {
     if (branch) {
         return;
     }
-    throw new Error(`Branch value must not be empty for 'gh-pages-branch' input`);
+    throwValidationError(neverFail, `Branch value must not be empty for 'gh-pages-branch' input`);
+    return;
 }
 
-function validateBenchmarkDataDirPath(dirPath: string): string {
+function validateBenchmarkDataDirPath(dirPath: string, neverFail: boolean): string {
     try {
-        return resolvePath(dirPath);
+        return resolvePath(dirPath, neverFail);
     } catch (e) {
-        throw new Error(`Invalid value for 'benchmark-data-dir-path': ${e}`);
+        throwValidationError(neverFail, `Invalid value for 'benchmark-data-dir-path': ${e}`);
+        return '';
     }
 }
 
-function validateName(name: string) {
+function validateName(name: string, neverFail: boolean) {
     if (name) {
         return;
     }
-    throw new Error('Name must not be empty');
+    throwValidationError(neverFail, 'Name must not be empty');
+    return;
 }
 
-function validateGitHubToken(inputName: string, githubToken: string | undefined, todo: string) {
+function validateGitHubToken(inputName: string, githubToken: string | undefined, todo: string, neverFail: boolean) {
     if (!githubToken) {
-        throw new Error(`'${inputName}' is enabled but 'github-token' is not set. Please give API token ${todo}`);
+        throwValidationError(
+            neverFail,
+            `'${inputName}' is enabled but 'github-token' is not set. Please give API token ${todo}`,
+        );
+        return;
     }
 }
 
-function getBoolInput(name: string): boolean {
+function getBoolInput(name: string, neverFail: boolean): boolean {
     const input = core.getInput(name);
     if (!input) {
         return false;
     }
     if (input !== 'true' && input !== 'false') {
-        throw new Error(`'${name}' input must be boolean value 'true' or 'false' but got '${input}'`);
+        throwValidationError(neverFail, `'${name}' input must be boolean value 'true' or 'false' but got '${input}'`);
+        return false;
     }
     return input === 'true';
 }
 
-function getPercentageInput(name: string): number | null {
+function getPercentageInput(name: string, neverFail: boolean): number | null {
     const input = core.getInput(name);
     if (!input) {
         return null;
     }
     if (!input.endsWith('%')) {
-        throw new Error(`'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
+        throwValidationError(neverFail, `'${name}' input must ends with '%' for percentage value (e.g. '200%')`);
+        return null;
     }
 
     const percentage = parseFloat(input.slice(0, -1)); // Omit '%' at last
     if (isNaN(percentage)) {
-        throw new Error(`Specified value '${input.slice(0, -1)}' in '${name}' input cannot be parsed as float number`);
+        throwValidationError(
+            neverFail,
+            `Specified value '${input.slice(0, -1)}' in '${name}' input cannot be parsed as float number`,
+        );
+        return null;
     }
 
     return percentage / 100;
@@ -159,10 +185,14 @@ function getCommaSeparatedInput(name: string): string[] {
     return input.split(',').map((s) => s.trim());
 }
 
-function validateAlertCommentCcUsers(users: string[]) {
+function validateAlertCommentCcUsers(users: string[], neverFail: boolean) {
     for (const u of users) {
         if (!u.startsWith('@')) {
-            throw new Error(`User name in 'alert-comment-cc-users' input must start with '@' but got '${u}'`);
+            throwValidationError(
+                neverFail,
+                `User name in 'alert-comment-cc-users' input must start with '@' but got '${u}'`,
+            );
+            return;
         }
     }
 }
@@ -176,55 +206,73 @@ async function isDir(path: string) {
     }
 }
 
-async function validateExternalDataJsonPath(path: string | undefined, autoPush: boolean): Promise<string | undefined> {
+async function validateExternalDataJsonPath(
+    path: string | undefined,
+    autoPush: boolean,
+    neverFail: boolean,
+): Promise<string | undefined> {
     if (!path) {
         return Promise.resolve(undefined);
     }
     if (autoPush) {
-        throw new Error(
+        throwValidationError(
+            neverFail,
             'auto-push must be false when external-data-json-path is set since this action reads/writes the given JSON file and never pushes to remote',
         );
+        return;
     }
     try {
-        const p = resolvePath(path);
+        const p = resolvePath(path, neverFail);
         if (await isDir(p)) {
-            throw new Error(`Specified path '${p}' must be file but it is actually directory`);
+            throwValidationError(neverFail, `Specified path '${p}' must be file but it is actually directory`);
+            return;
         }
         return p;
     } catch (err) {
-        throw new Error(`Invalid value for 'external-data-json-path' input: ${err}`);
+        throwValidationError(neverFail, `Invalid value for 'external-data-json-path' input: ${err}`);
+        return;
     }
 }
 
-function getUintInput(name: string): number | null {
+function getUintInput(name: string, neverFail: boolean): number | null {
     const input = core.getInput(name);
     if (!input) {
         return null;
     }
     if (!RE_UINT.test(input)) {
-        throw new Error(`'${name}' input must be unsigned integer but got '${input}'`);
+        throwValidationError(neverFail, `'${name}' input must be unsigned integer but got '${input}'`);
+        return null;
     }
     const i = parseInt(input, 10);
     if (isNaN(i)) {
-        throw new Error(`Unsigned integer value '${input}' in '${name}' input was parsed as NaN`);
+        throwValidationError(neverFail, `Unsigned integer value '${input}' in '${name}' input was parsed as NaN`);
+        return null;
     }
     return i;
 }
 
-function validateMaxItemsInChart(max: number | null) {
+function validateMaxItemsInChart(max: number | null, neverFail: boolean) {
     if (max !== null && max <= 0) {
-        throw new Error(`'max-items-in-chart' input value must be one or more but got ${max}`);
+        throwValidationError(neverFail, `'max-items-in-chart' input value must be one or more but got ${max}`);
+        return;
     }
 }
 
-function validateAlertThreshold(alertThreshold: number | null, failThreshold: number | null): asserts alertThreshold {
+function validateAlertThreshold(
+    alertThreshold: number | null,
+    failThreshold: number | null,
+    neverFail: boolean,
+): asserts alertThreshold {
     if (alertThreshold === null) {
-        throw new Error("'alert-threshold' input must not be empty");
+        throwValidationError(neverFail, "'alert-threshold' input must not be empty");
+        return;
     }
     if (failThreshold && alertThreshold > failThreshold) {
-        throw new Error(
+        throwValidationError(
+            neverFail,
             `'alert-threshold' value must be smaller than 'fail-threshold' value but got ${alertThreshold} > ${failThreshold}`,
         );
+        return;
     }
 }
 
@@ -232,20 +280,28 @@ function validateNyrkio(
     nyrkioEnable: boolean,
     nyrkioToken: string | null,
     nyrkioApiRoot: string | null,
+    neverFail: boolean,
 ): asserts nyrkioToken {
     if (nyrkioEnable) {
         if (!nyrkioToken) {
-            throw new Error(
+            throwValidationError(
+                neverFail,
                 'Please use GitHub secrets to supply a JWT token for ${nyrkioApiRoot}. (https://nyrkio.com/docs/getting-started)',
             );
+            return;
         }
         if (!nyrkioApiRoot) {
-            throw new Error('nyrkio-api-root is required. You probably want https://nyrkio.com/api/v0/');
+            throwValidationError(
+                neverFail,
+                'nyrkio-api-root is required. You proba  bly want https://nyrkio.com/api/v0/',
+            );
+            return;
         }
     }
 }
 
 export async function configFromJobInput(): Promise<Config> {
+    const neverFail: boolean = getBoolInput('never-fail', true);
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path', { required: true });
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
@@ -254,53 +310,52 @@ export async function configFromJobInput(): Promise<Config> {
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const ref: string | undefined = core.getInput('ref') || undefined;
-    const autoPush = getBoolInput('auto-push');
-    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
-    const commentAlways = getBoolInput('comment-always');
-    const summaryAlways = getBoolInput('summary-always');
-    const saveDataFile = getBoolInput('save-data-file');
-    const commentOnAlert = getBoolInput('comment-on-alert');
-    const alertThreshold = getPercentageInput('alert-threshold');
-    const failOnAlert = getBoolInput('fail-on-alert');
+    const autoPush = getBoolInput('auto-push', neverFail);
+    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages', neverFail);
+    const commentAlways = getBoolInput('comment-always', neverFail);
+    const summaryAlways = getBoolInput('summary-always', neverFail);
+    const saveDataFile = getBoolInput('save-data-file', neverFail);
+    const commentOnAlert = getBoolInput('comment-on-alert', neverFail);
+    const alertThreshold = getPercentageInput('alert-threshold', neverFail);
+    const failOnAlert = getBoolInput('fail-on-alert', neverFail);
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
-    const maxItemsInChart = getUintInput('max-items-in-chart');
-    let failThreshold = getPercentageInput('fail-threshold');
+    const maxItemsInChart = getUintInput('max-items-in-chart', neverFail);
+    let failThreshold = getPercentageInput('fail-threshold', neverFail);
 
-    const nyrkioEnable = getBoolInput('nyrkio-enable');
+    const nyrkioEnable = getBoolInput('nyrkio-enable', neverFail);
     const nyrkioToken: string = core.getInput('nyrkio-token');
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
-    const nyrkioPublic: boolean = getBoolInput('nyrkio-public');
+    const nyrkioPublic: boolean = getBoolInput('nyrkio-public', neverFail);
     const nyrkioOrg: string | undefined = core.getInput('nyrkio-org') || undefined;
-    const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue');
-    const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold');
-    const neverFail: boolean = getBoolInput('never-fail');
+    const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue', neverFail);
+    const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold', neverFail);
 
-    validateToolType(tool);
-    outputFilePath = await validateOutputFilePath(outputFilePath);
-    validateGhPagesBranch(ghPagesBranch);
-    benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath);
-    validateName(name);
+    validateToolType(tool, neverFail);
+    outputFilePath = await validateOutputFilePath(outputFilePath, neverFail);
+    validateGhPagesBranch(ghPagesBranch, neverFail);
+    benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath, neverFail);
+    validateName(name, neverFail);
     if (autoPush) {
-        validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
+        validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote', neverFail);
     }
     if (commentAlways && !nyrkioEnable) {
-        validateGitHubToken('comment-always', githubToken, 'to send commit comment');
+        validateGitHubToken('comment-always', githubToken, 'to send commit comment', neverFail);
     }
     if (commentOnAlert && !nyrkioEnable) {
-        validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
+        validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert', neverFail);
     }
     if (ghRepository) {
-        validateGitHubToken('gh-repository', githubToken, 'to clone the repository');
+        validateGitHubToken('gh-repository', githubToken, 'to clone the repository', neverFail);
     }
-    validateAlertThreshold(alertThreshold, failThreshold);
-    validateAlertCommentCcUsers(alertCommentCcUsers);
-    externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
-    validateMaxItemsInChart(maxItemsInChart);
+    validateAlertThreshold(alertThreshold, failThreshold, neverFail);
+    validateAlertCommentCcUsers(alertCommentCcUsers, neverFail);
+    externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush, neverFail);
+    validateMaxItemsInChart(maxItemsInChart, neverFail);
     if (failThreshold === null) {
         failThreshold = alertThreshold;
     }
-    validateNyrkio(nyrkioEnable, nyrkioToken, nyrkioApiRoot);
+    validateNyrkio(nyrkioEnable, nyrkioToken, nyrkioApiRoot, neverFail);
     if (!nyrkioApiRoot.endsWith('/')) nyrkioApiRoot = nyrkioApiRoot + '/';
     core.debug(nyrkioApiRoot);
 
