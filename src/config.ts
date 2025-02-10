@@ -284,10 +284,10 @@ export async function configFromJobInput(): Promise<Config> {
     if (autoPush) {
         validateGitHubToken('auto-push', githubToken, 'to push GitHub pages branch to remote');
     }
-    if (commentAlways) {
+    if (commentAlways && !nyrkioEnable) {
         validateGitHubToken('comment-always', githubToken, 'to send commit comment');
     }
-    if (commentOnAlert) {
+    if (commentOnAlert && !nyrkioEnable) {
         validateGitHubToken('comment-on-alert', githubToken, 'to send commit comment on alert');
     }
     if (ghRepository) {
