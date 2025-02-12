@@ -184,10 +184,18 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
 }
 
 async function setParameters(config: Config) {
-    const { nyrkioPvalue, nyrkioThreshold } = config;
+    const { nyrkioOrg, nyrkioPvalue, nyrkioThreshold, neverFail, nyrkioToken, nyrkioApiRoot } = config;
     if (nyrkioPvalue === null && nyrkioThreshold === null) return;
-
-    const { nyrkioToken, nyrkioApiRoot } = config;
+    if (nyrkioPvalue === null || nyrkioThreshold === null) {
+        core.error('Please set both nyrkio-pvalue and nyrkio-threshold');
+        core.error("Don't worry, you can fix this later and then go to nyrkio.com to look at your benchmark results.");
+        if (!neverFail) {
+            core.setFailed('Please set both nyrkio-pvalue and nyrkio-threshold');
+        }
+        return;
+    }
+    console.log(`Set Nyrkiö parameters: nyrkio-pvalue=${nyrkioPvalue} nyrkio-threshold=${nyrkioThreshold}`);
+    console.log(`Note: These are global parameters that will be used for all your Nyrkiö test results.`);
     const options = {
         headers: {
             Authorization: 'Bearer ' + (nyrkioToken ? nyrkioToken : ''),
@@ -196,11 +204,68 @@ async function setParameters(config: Config) {
     const configObject = {
         core: { min_magnitude: nyrkioThreshold, max_pvalue: nyrkioPvalue },
     };
-    const uri = nyrkioApiRoot + 'user/config';
+    let uri = nyrkioApiRoot + 'user/config';
+    if(nyrkioOrg){
+        uri = nyrkioApiRoot + 'orgs/org/' + nyrkioOrg;
+    }
     core.debug('POST Nyrkiö config: ' + uri);
     // Will throw on failure
     const response = await axios.post(uri, configObject, options);
     core.debug(response.toString());
+}
+async function setNotifiers(config: Config) {
+    const { nyrkioOrg, commentAlways, commentOnAlert, neverFail, nyrkioToken, nyrkioApiRoot } = config;
+    console.log(`Set Nyrkiö preference for comment on PR: comment-always=${commentAlways}`);
+    if(commentOnAlert){
+        console.warn("comment-on-alert is not yet supported for Nyrkiö. Will fall back to comment-always.");
+    }
+    console.log(`Note: These are global parameters that will be used for all your Nyrkiö test results.`);
+    const options = {
+        headers: {
+            Authorization: 'Bearer ' + (nyrkioToken ? nyrkioToken : ''),
+        },
+    };
+    // const configObject = {
+    //     notifiers: { github: commentAlways },
+    // };
+    let uri = nyrkioApiRoot + 'user/config';
+    if(nyrkioOrg){
+        uri = nyrkioApiRoot + 'orgs/org/' + nyrkioOrg;
+    }
+    core.debug('POST Nyrkiö notification config: ' + uri);
+    try {
+        // Will throw on failure
+        const response = await axios.get(uri, options);
+        let configObject = response.data;
+        if (!configObject || configObject && configObject.notifiers===null){
+            configObject = {
+                notifiers: { github: true, slack: false, since_days: 14 },
+            };
+        }
+        configObject['notifiers']['github'] = commentAlways || commentOnAlert;
+        console.log(configObject);
+        const response2 = await axios.post(uri, configObject, options);
+        core.debug(response2.data);
+    } catch (err: any) {
+        console.error(`POST to ${uri} failed. I'll keep trying with rest.`);
+        if (err && err.status == 409){
+            core.debug(`409: ${err.data.detail}`);
+        }
+        else {
+            if (err & err.toJSON) {
+                console.error(err.toJSON());
+            } else {
+                console.error(JSON.stringify(err));
+            }
+            if (!neverFail) {
+                core.setFailed(`POST to ${uri} failed. ${err.status} ${err.code}.`);
+            } else {
+                console.error(
+                    'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+                );
+            }
+        }
+    }
 }
 
 async function postResults(
@@ -209,7 +274,8 @@ async function postResults(
     commit: Commit,
 ): Promise<[NyrkioAllChanges] | boolean> {
     await setParameters(config);
-    const { nyrkioToken, nyrkioApiRoot, nyrkioOrg, neverFail } = config;
+    await setNotifiers(config);
+    const { name, nyrkioToken, nyrkioApiRoot, nyrkioOrg, neverFail, nyrkioPublic } = config;
     core.debug(nyrkioToken ? nyrkioToken.substring(0, 5) : "WHERE's MY TOKEN???");
     const options = {
         headers: {
@@ -217,38 +283,48 @@ async function postResults(
         },
     };
     let allChanges: [NyrkioAllChanges] | boolean = false;
+    let gitRepoBase = 'https://github.com/';
+    let gitRepo = gitRepoBase + commit.repo;
+    gitRepo = encodeURIComponent(gitRepo);
 
     for (const r of allTestResults) {
         core.debug(r.path);
         let uri = `${nyrkioApiRoot}result/${r.path}`;
+        let testConfigUrl = `${nyrkioApiRoot}config/${r.path}`;
         if (commit.prNumber) {
             uri = `${nyrkioApiRoot}pulls/${commit.repo}/${commit.prNumber}/result/${r.path}`;
         }
         if (nyrkioOrg !== undefined) {
             uri = `${nyrkioApiRoot}orgs/result/${nyrkioOrg}/${r.path}`;
+            testConfigUrl = `${nyrkioApiRoot}orgs/config/${nyrkioOrg}/${r.path}`;
             if (commit.prNumber) {
                 uri = `${nyrkioApiRoot}orgs/pulls/${commit.repo}/${commit.prNumber}/result/${nyrkioOrg}/${r.path}`;
             }
         }
-        console.log('PUT results: ' + uri);
         try {
+            console.log('PUT results: ' + uri);
             // Will throw on failure
             const response = await axios.put(uri, r.results, options);
             if (response.data) {
                 const resp = response.data;
                 const v = resp[r.path];
                 const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>v;
-                if (c === undefined || c.length === 0) continue;
+                if (c === undefined || c.length === 0) {
+                    core.debug("No changes");
+                }
+                else {
 
-                // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
-                // However, in most cases you'll get a separate alert a few days later, once the statistical
-                // significance accumulates.
-                for (const changePoint of c) {
-                    if (changePoint.attributes.git_commit === r.git_commit) {
-                        const cc: NyrkioAllChanges = { path: r.path, changes: c };
-                        if (allChanges === false) allChanges = [cc];
-                        else allChanges.push(cc);
+                    // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
+                    // However, in most cases you'll get a separate alert a few days later, once the statistical
+                    // significance accumulates.
+                    for (const changePoint of c) {
+                        if (changePoint.attributes.git_commit === r.git_commit) {
+                            const cc: NyrkioAllChanges = { path: r.path, changes: c };
+                            if (allChanges === false) allChanges = [cc];
+                            else allChanges.push(cc);
+                        }
                     }
+
                 }
             }
         } catch (err: any) {
@@ -266,7 +342,45 @@ async function postResults(
                 );
             }
         }
+        console.log(nyrkioPublic);
+        try {
+            if (nyrkioPublic) {
+                core.debug(`Make ${r.path} public.`);
+                const docs = [{ public: true, attributes:{git_repo: commit.repo, branch: commit.branch }}];
+                const response = await axios.post(testConfigUrl, docs, options);
+                if (response.data) {
+                    core.debug(JSON.stringify(response.data));
+                }
+            }
+        } catch (err: any) {
+            if (err && err.status == 409){
+                core.debug(`409: ${err.data?.detail}`);
+            }
+            else {
+                console.error(`POST to ${testConfigUrl} failed. I'll keep trying with the others though.`);
+                if (err & err.toJSON) {
+                    console.error(err.toJSON());
+                } else {
+                    console.error(err);
+                }
+                if (!neverFail) {
+                    core.setFailed(`POST to ${testConfigUrl} failed. ${err.status} ${err.code}.`);
+                } else {
+                    console.error(
+                        'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+                    );
+                }
+            }
+        }
     }
+    const html_url_base = nyrkioApiRoot.split('/api/')[0];
+    let html_url = `${html_url_base}/tests/${name}`;
+    if (nyrkioPublic) {
+        html_url = `${html_url_base}/public/${gitRepo}/${commit.branch}/${name}`;
+    }
+    console.log("------");
+    console.log('Your test results can now be analyzed at:');
+    console.log(html_url);
     return allChanges;
 }
 
@@ -299,6 +413,5 @@ export async function nyrkioFindChanges(b: Benchmark, config: Config) {
             "Nyrkiö didn't find any changes now. But you should check again in a week or so, smaller changes are detected with a delay to avoid false positives.",
         );
     }
-    console.log('https://nyrkiö.com');
     return;
 }

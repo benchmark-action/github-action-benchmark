@@ -293,7 +293,7 @@ function validateNyrkio(
         if (!nyrkioApiRoot) {
             throwValidationError(
                 neverFail,
-                'nyrkio-api-root is required. You proba  bly want https://nyrkio.com/api/v0/',
+                'nyrkio-api-root is required. You probably want https://nyrkio.com/api/v0/',
             );
             return;
         }
