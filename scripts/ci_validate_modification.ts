@@ -255,13 +255,13 @@ async function main() {
         throw new Error(`Unexpected auto commit author in log '${latestCommitLog}'`);
     }
 
-    const commitMessageLine = commitLogLines[4];
-    const reCommitMessage = new RegExp(
-        `add ${expectedBenchName.replace(
-            /[.*+?^=!:${}()|[\]/\\]/g,
-            '\\$&',
-        )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
-    );
+    // const commitMessageLine = commitLogLines[4];
+    // const reCommitMessage = new RegExp(
+    //     `add ${expectedBenchName.replace(
+    //         /[.*+?^=!:${}()|[\]/\\]/g,
+    //         '\\$&',
+    //     )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
+    // );
     // if (!reCommitMessage.test(commitMessageLine)) {
     //     throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     // }
