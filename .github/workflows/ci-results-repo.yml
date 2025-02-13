@@ -170,7 +170,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          # cache: 'npm'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Cache Benchmark library
@@ -188,6 +188,7 @@ jobs:
           repository: nyrkio/github-action-benchmark-results
           ref: 'gh-pages'
           path: 'dist/other-repo'
+          nyrkio-enable: false
       - name: Save previous data.js
         run: |
           cp ./dist/other-repo/dev/bench/data.js before_data.js
@@ -201,6 +202,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/nyrkio/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark' './benchmark-data-repository'
 
   go:
