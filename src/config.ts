@@ -143,7 +143,7 @@ function validateGitHubToken(inputName: string, githubToken: string | undefined,
     }
 }
 
-function getBoolInput(name: string, neverFail: boolean): boolean {
+function getBoolInput(name: string, defaultValue: boolean, neverFail: boolean): boolean {
     const input = core.getInput(name);
     if (!input) {
         return false;
@@ -153,6 +153,7 @@ function getBoolInput(name: string, neverFail: boolean): boolean {
         return false;
     }
     return input === 'true';
+    return defaultValue;
 }
 
 function getPercentageInput(name: string, neverFail: boolean): number | null {
@@ -301,7 +302,7 @@ function validateNyrkio(
 }
 
 export async function configFromJobInput(): Promise<Config> {
-    const neverFail: boolean = getBoolInput('never-fail', true);
+    const neverFail: boolean = getBoolInput('never-fail', false, true);
     const tool: string = core.getInput('tool');
     let outputFilePath: string = core.getInput('output-file-path', { required: true });
     const ghPagesBranch: string = core.getInput('gh-pages-branch');
@@ -310,23 +311,23 @@ export async function configFromJobInput(): Promise<Config> {
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const ref: string | undefined = core.getInput('ref') || undefined;
-    const autoPush = getBoolInput('auto-push', neverFail);
-    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages', neverFail);
-    const commentAlways = getBoolInput('comment-always', neverFail);
-    const summaryAlways = getBoolInput('summary-always', neverFail);
-    const saveDataFile = getBoolInput('save-data-file', neverFail);
-    const commentOnAlert = getBoolInput('comment-on-alert', neverFail);
+    const autoPush = getBoolInput('auto-push', false, neverFail);
+    const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages', false, neverFail);
+    const commentAlways = getBoolInput('comment-always', false, neverFail);
+    const summaryAlways = getBoolInput('summary-always', false, neverFail);
+    const saveDataFile = getBoolInput('save-data-file', false, neverFail);
+    const commentOnAlert = getBoolInput('comment-on-alert', false, neverFail);
     const alertThreshold = getPercentageInput('alert-threshold', neverFail);
-    const failOnAlert = getBoolInput('fail-on-alert', neverFail);
+    const failOnAlert = getBoolInput('fail-on-alert', false, neverFail);
     const alertCommentCcUsers = getCommaSeparatedInput('alert-comment-cc-users');
     let externalDataJsonPath: undefined | string = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart', neverFail);
     let failThreshold = getPercentageInput('fail-threshold', neverFail);
 
-    const nyrkioEnable = getBoolInput('nyrkio-enable', neverFail);
+    const nyrkioEnable = getBoolInput('nyrkio-enable', true, neverFail);
     const nyrkioToken: string = core.getInput('nyrkio-token');
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
-    const nyrkioPublic: boolean = getBoolInput('nyrkio-public', neverFail);
+    const nyrkioPublic: boolean = getBoolInput('nyrkio-public', false, neverFail);
     const nyrkioOrg: string | undefined = core.getInput('nyrkio-org') || undefined;
     const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue', neverFail);
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold', neverFail);

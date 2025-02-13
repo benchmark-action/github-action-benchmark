@@ -47,3 +47,4 @@ jobs:
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+
