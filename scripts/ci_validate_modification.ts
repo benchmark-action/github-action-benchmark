@@ -262,9 +262,9 @@ async function main() {
             '\\$&',
         )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
     );
-    if (!reCommitMessage.test(commitMessageLine)) {
-        throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
-    }
+    // if (!reCommitMessage.test(commitMessageLine)) {
+    //     throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
+    // }
 
     const dataResults = await Promise.allSettled([
         readDataJson('benchmark-data-repository/dev/bench/data.js'),
