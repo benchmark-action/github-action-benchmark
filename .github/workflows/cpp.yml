@@ -21,7 +21,6 @@ jobs:
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
       - name: Run benchmark
         run: cd examples/cpp && make json
-        nyrkio-enable: false
 
       - name: Store benchmark result
         uses: nyrkio/github-action-benchmark@v1
