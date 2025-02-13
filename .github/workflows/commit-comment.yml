@@ -25,7 +25,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: nyrkio/github-action-benchmark@v1
         with:
           name: Alert setup example with cache
           tool: 'go'
@@ -36,3 +36,4 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
+          nyrkio-enable: false

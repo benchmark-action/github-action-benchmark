@@ -19,7 +19,7 @@ jobs:
         run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: nyrkio/github-action-benchmark@v1
         with:
           name: Criterion.rs Benchmark
           tool: 'cargo'
@@ -31,9 +31,10 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
+          nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: nyrkio/github-action-benchmark@v1
         with:
           name: Criterion.rs Benchmark
           tool: 'cargo'
@@ -45,4 +46,5 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: 'github.com/nyrkio/github-action-benchmark-results'
+          nyrkio-enable: false
