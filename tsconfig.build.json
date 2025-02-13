@@ -4,5 +4,5 @@
     "types": ["node"]
   },
   "include": ["**/*.ts"],
-  "exclude": ["test/**/*.ts"]
+  "exclude": ["test/**/*.ts", "examples/**/*.ts"]
 }
