@@ -21,9 +21,10 @@ jobs:
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
       - name: Run benchmark
         run: cd examples/cpp && make json
+        nyrkio-enable: false
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: nyrkio/github-action-benchmark@v1
         with:
           name: C++ Benchmark
           tool: 'googlecpp'
@@ -35,9 +36,10 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
+          nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: nyrkio/github-action-benchmark@v1
         with:
           name: C++ Benchmark
           tool: 'googlecpp'
@@ -49,4 +51,5 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
-          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          gh-repository: 'github.com/nyrkio/github-action-benchmark-results'
+          nyrkio-enable: false

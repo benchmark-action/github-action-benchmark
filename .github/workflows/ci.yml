@@ -41,6 +41,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
 
   benchmarkjs:
@@ -72,6 +73,7 @@ jobs:
           fail-on-alert: true
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          nyrkio-enable: false
           comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
 
@@ -110,6 +112,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
 
   catch2-v3-framework:
@@ -147,6 +150,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)'
 
   cpp-framework:
@@ -186,6 +190,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
 
   go:
@@ -220,6 +225,7 @@ jobs:
           fail-on-alert: true
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          nyrkio-enable: false
           comment-on-alert: true
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
 
@@ -260,6 +266,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
 
   julia-benchmark:
@@ -301,6 +308,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
 
   pytest-benchmark:
@@ -339,6 +347,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
 
   rust:
@@ -371,6 +380,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
 
   rust-criterion-rs-framework:
@@ -403,6 +413,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
+          nyrkio-enable: false
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark'
 
   only-alert-with-cache:
@@ -438,6 +449,7 @@ jobs:
           comment-on-alert: true
           fail-on-alert: true
           alert-comment-cc-users: '@ktrz'
+          nyrkio-enable: false
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
