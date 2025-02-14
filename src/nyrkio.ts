@@ -205,7 +205,7 @@ async function setParameters(config: Config) {
         core: { min_magnitude: nyrkioThreshold, max_pvalue: nyrkioPvalue },
     };
     let uri = nyrkioApiRoot + 'user/config';
-    if(nyrkioOrg){
+    if (nyrkioOrg) {
         uri = nyrkioApiRoot + 'orgs/org/' + nyrkioOrg;
     }
     core.debug('POST Nyrkiö config: ' + uri);
@@ -216,8 +216,8 @@ async function setParameters(config: Config) {
 async function setNotifiers(config: Config) {
     const { nyrkioOrg, commentAlways, commentOnAlert, neverFail, nyrkioToken, nyrkioApiRoot } = config;
     console.log(`Set Nyrkiö preference for comment on PR: comment-always=${commentAlways}`);
-    if(commentOnAlert){
-        console.warn("comment-on-alert is not yet supported for Nyrkiö. Will fall back to comment-always.");
+    if (commentOnAlert) {
+        console.warn('comment-on-alert is not yet supported for Nyrkiö. Will fall back to comment-always.');
     }
     console.log(`Note: These are global parameters that will be used for all your Nyrkiö test results.`);
     const options = {
@@ -229,7 +229,7 @@ async function setNotifiers(config: Config) {
     //     notifiers: { github: commentAlways },
     // };
     let uri = nyrkioApiRoot + 'user/config';
-    if(nyrkioOrg){
+    if (nyrkioOrg) {
         uri = nyrkioApiRoot + 'orgs/org/' + nyrkioOrg;
     }
     core.debug('POST Nyrkiö notification config: ' + uri);
@@ -237,7 +237,11 @@ async function setNotifiers(config: Config) {
         // Will throw on failure
         const response = await axios.get(uri, options);
         let configObject = response.data;
-        if (!configObject || configObject && configObject.notifiers===null){
+        if (
+            !configObject ||
+            (configObject && configObject.notifiers === null) ||
+            (configObject && configObject.notifiers === undefined)
+        ) {
             configObject = {
                 notifiers: { github: true, slack: false, since_days: 14 },
             };
@@ -248,10 +252,9 @@ async function setNotifiers(config: Config) {
         core.debug(response2.data);
     } catch (err: any) {
         console.error(`POST to ${uri} failed. I'll keep trying with rest.`);
-        if (err && err.status == 409){
+        if (err && err.status === 409) {
             core.debug(`409: ${err.data.detail}`);
-        }
-        else {
+        } else {
             if (err & err.toJSON) {
                 console.error(err.toJSON());
             } else {
@@ -283,7 +286,7 @@ async function postResults(
         },
     };
     let allChanges: [NyrkioAllChanges] | boolean = false;
-    let gitRepoBase = 'https://github.com/';
+    const gitRepoBase = 'https://github.com/';
     let gitRepo = gitRepoBase + commit.repo;
     gitRepo = encodeURIComponent(gitRepo);
 
@@ -310,10 +313,8 @@ async function postResults(
                 const v = resp[r.path];
                 const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>v;
                 if (c === undefined || c.length === 0) {
-                    core.debug("No changes");
-                }
-                else {
-
+                    core.debug('No changes');
+                } else {
                     // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
                     // However, in most cases you'll get a separate alert a few days later, once the statistical
                     // significance accumulates.
@@ -324,7 +325,6 @@ async function postResults(
                             else allChanges.push(cc);
                         }
                     }
-
                 }
             }
         } catch (err: any) {
@@ -346,17 +346,16 @@ async function postResults(
         try {
             if (nyrkioPublic) {
                 core.debug(`Make ${r.path} public.`);
-                const docs = [{ public: true, attributes:{git_repo: commit.repo, branch: commit.branch }}];
+                const docs = [{ public: true, attributes: { git_repo: commit.repo, branch: commit.branch } }];
                 const response = await axios.post(testConfigUrl, docs, options);
                 if (response.data) {
                     core.debug(JSON.stringify(response.data));
                 }
             }
         } catch (err: any) {
-            if (err && err.status == 409){
+            if (err && err.status === 409) {
                 core.debug(`409: ${err.data?.detail}`);
-            }
-            else {
+            } else {
                 console.error(`POST to ${testConfigUrl} failed. I'll keep trying with the others though.`);
                 if (err & err.toJSON) {
                     console.error(err.toJSON());
@@ -378,7 +377,7 @@ async function postResults(
     if (nyrkioPublic) {
         html_url = `${html_url_base}/public/${gitRepo}/${commit.branch}/${name}`;
     }
-    console.log("------");
+    console.log('------');
     console.log('Your test results can now be analyzed at:');
     console.log(html_url);
     return allChanges;
