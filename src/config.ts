@@ -47,6 +47,7 @@ export const VALID_TOOLS = [
     'julia',
     'jmh',
     'benchmarkdotnet',
+    'time',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
 ] as const;

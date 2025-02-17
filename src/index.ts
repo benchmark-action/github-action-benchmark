@@ -7,7 +7,7 @@ import { nyrkioFindChanges } from './nyrkio';
 async function main() {
     const config = await configFromJobInput();
     core.debug(`Config extracted from job: ` + JSON.stringify(config));
-
+    core.debug("PWD: " + process.cwd());
     const bench = await extractResult(config);
     const { commit, date, tool, benches } = bench;
     core.debug(`Benchmark result was extracted: ` + JSON.stringify(benches));

@@ -209,9 +209,29 @@ async function setParameters(config: Config) {
         uri = nyrkioApiRoot + 'orgs/org/' + nyrkioOrg;
     }
     core.debug('POST Nyrkiö config: ' + uri);
-    // Will throw on failure
-    const response = await axios.post(uri, configObject, options);
-    core.debug(response.toString());
+    try {
+        const response = await axios.post(uri, configObject, options);
+        core.debug("Response from user/config or orgs/org: " + JSON.stringify(response));
+    } catch (err: any) {
+        console.error(`POST to ${uri} failed. I'll still try to post the test results. You can always change the settings later.`);
+        if (err && err.status === 409) {
+            core.debug(`409: ${err.data.detail}`);
+        } else {
+            if (err & err.toJSON) {
+                console.error(err.toJSON());
+            } else {
+                console.error(JSON.stringify(err));
+            }
+            if (!neverFail) {
+                core.setFailed(`POST to ${uri} failed. ${err.status} ${err.code}.`);
+            } else {
+                console.error(`POST to ${uri} failed. ${err.status} ${err.code}.`);
+                console.error(
+                    'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+                );
+            }
+        }
+    }
 }
 async function setNotifiers(config: Config) {
     const { nyrkioOrg, commentAlways, commentOnAlert, neverFail, nyrkioToken, nyrkioApiRoot } = config;
