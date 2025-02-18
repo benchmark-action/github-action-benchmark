@@ -32,6 +32,7 @@ async function maybeSetFailed(e: any) {
         core.setFailed(e ? e.message : 'e is undefined');
         return false;
     } else {
+        console.error(e && e.message);
         console.error('Note: never-fail is true. Will exit successfully to keep the build green.');
         return true;
     }
