@@ -1,7 +1,6 @@
 import * as path from 'path';
 import { strict as A } from 'assert';
 import { Config, ToolType } from '../src/config';
-import { extractResult } from '../src/extract';
 
 const dummyWebhookPayload = {
     head_commit: {
@@ -12,9 +11,12 @@ const dummyWebhookPayload = {
         timestamp: 'dummy timestamp',
         url: 'https://github.com/dummy/repo',
     },
+    repository: {
+        full_name: 'repo',
+    },
 } as { [key: string]: any };
 let dummyCommitData = {};
-let lastCommitRequestData = {};
+let lastCommitRequestData = { uh: 'ah' };
 class DummyGitHub {
     rest = {
         repos: {
@@ -45,6 +47,13 @@ jest.mock('@actions/github', () => ({
         return new DummyGitHub();
     },
 }));
+
+import { extractResult as actualExtractResult } from '../src/extract';
+async function extractResult(config: Config) {
+    const bench = await actualExtractResult(config);
+    bench.commit.branch = 'mocked_branch';
+    return bench;
+}
 
 describe('extractResult()', function () {
     afterAll(function () {
@@ -200,7 +209,7 @@ describe('extractResult()', function () {
         dummyGitHubContext.payload = {
             pull_request: {
                 title: 'this is title',
-                html_url: 'https://github.com/dummy/repo/pull/1',
+                html_url: 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789',
                 head: {
                     sha: 'abcdef0123456789',
                     user: {
@@ -209,6 +218,9 @@ describe('extractResult()', function () {
                     repo: {
                         updated_at: 'repo updated at timestamp',
                     },
+                },
+                base: {
+                    repo: 'pr_base_repo',
                 },
             },
         };
@@ -252,6 +264,8 @@ describe('extractResult()', function () {
                     email: 'committer@testdummy.com',
                 },
                 message: 'test message',
+                repo: 'repo',
+                branch: 'mocked_branch',
             },
             sha: 'abcd1234',
             html_url: 'https://github.com/dymmy/repo/commit/abcd1234',
@@ -271,6 +285,8 @@ describe('extractResult()', function () {
             message: 'test message',
             timestamp: 'author updated at timestamp',
             url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            repo: 'repo',
+            branch: 'mocked_branch',
             author: {
                 name: 'test author',
                 username: 'testAuthorLogin',
@@ -330,6 +346,8 @@ describe('extractResult()', function () {
             message: 'test message',
             timestamp: 'author updated at timestamp',
             url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            repo: 'repo',
+            branch: 'mocked_branch',
             author: {
                 name: 'test author',
                 username: 'testAuthorLogin',
@@ -350,7 +368,7 @@ describe('extractResult()', function () {
     });
 
     it('raises an error when commit information is not found in webhook payload and no githubToken is provided', async function () {
-        dummyGitHubContext.payload = {};
+        dummyGitHubContext.payload = { foo: 'bar' };
         const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
         const config = {
             tool: 'go',

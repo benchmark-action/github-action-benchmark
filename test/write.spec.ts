@@ -153,6 +153,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             timestamp: 'dummy stamp',
             tree_id: 'dummy tree id',
             url: `${serverUrl}/user/repo/commit/` + id,
+            repo: 'repo',
         };
     }
 
@@ -193,6 +194,9 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             nyrkioApiRoot: 'http://nyrkio.com/api/v0/',
             nyrkioPvalue: null,
             nyrkioThreshold: null,
+            nyrkioPublic: false,
+            nyrkioOrg: 'myteam',
+            neverFail: false,
         };
 
         const savedRepository = {
@@ -896,6 +900,9 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             nyrkioApiRoot: 'http://nyrkio.com/api/v0/',
             nyrkioPvalue: null,
             nyrkioThreshold: null,
+            nyrkioPublic: false,
+            nyrkioOrg: 'myteam',
+            neverFail: false,
         };
 
         function gitHistory(
