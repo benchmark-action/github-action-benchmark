@@ -282,6 +282,7 @@ async function main() {
 
     console.log('Validating data.js both before/after action');
     validateDataJson(beforeJson);
+    console.log(afterJson);
     validateDataJson(afterJson);
 
     validateDiff(beforeJson, afterJson, expectedBenchName);
