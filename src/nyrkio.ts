@@ -86,7 +86,7 @@ export function nyrkioJsonInit(commit: Commit, buildTime: number): NyrkioJson {
         timestamp: t,
         metrics: [],
         attributes: {
-            git_repo: commit.url,
+            git_repo: commit.repoUrl,
             branch: commit.branch!,
             git_commit: commit.id,
         },

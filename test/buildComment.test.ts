@@ -51,6 +51,7 @@ describe('buildComment', () => {
                     message: 'Test current commit message',
                     url: 'https://test.previous.commit.url',
                     repo: 'repo',
+                    repoUrl: 'https://github.com/dummy/repo',
                 },
                 tool: 'cargo',
                 benches: [
@@ -84,6 +85,7 @@ describe('buildComment', () => {
                     message: 'Test previous commit message',
                     url: 'https://test.previous.commit.url',
                     repo: 'repo',
+                    repoUrl: 'https://github.com/dummy/repo',
                 },
                 tool: 'cargo',
                 benches: [
@@ -139,6 +141,7 @@ describe('buildComment', () => {
                     message: 'Test current commit message',
                     url: 'https://test.previous.commit.url',
                     repo: 'repo',
+                    repoUrl: 'https://github.com/dummy/repo',
                 },
                 tool: 'benchmarkjs',
                 benches: [
@@ -172,6 +175,7 @@ describe('buildComment', () => {
                     message: 'Test previous commit message',
                     url: 'https://test.previous.commit.url',
                     repo: 'repo',
+                    repoUrl: 'https://github.com/dummy/repo',
                 },
                 tool: 'benchmarkjs',
                 benches: [

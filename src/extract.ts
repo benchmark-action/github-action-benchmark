@@ -34,6 +34,7 @@ export interface Commit {
     branch?: string;
     ref?: string;
     prNumber?: number;
+    repoUrl: string;
 }
 
 interface PullRequest {
@@ -251,7 +252,7 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
         name: username, // XXX: Fallback, not correct
         username,
     };
-
+    const commitUrl = pr.html_url ?? pr.base.repo.full_name ?? pr._links.html;
     return {
         author: user,
         committer: user,
@@ -259,9 +260,10 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
         message: pr.title,
         timestamp: pr.head.repo.updated_at,
         repo: pr.base.repo.full_name,
-        url: pr.html_url ?? pr.base.repo.full_name ?? pr._links.html,
+        url: pr.head.url,
         branch: pr.base.ref_name || pr.base.ref,
         prNumber: pr.number,
+        repoUrl: commitUrl,
     };
 }
 
@@ -294,8 +296,9 @@ async function getCommitFromGitHubAPIRequest(githubToken: string, ref?: string):
         id: data.sha,
         message: commit.message,
         timestamp: commit.author?.date,
-        url: data.html_url,
+        url: commit.url,
         repo: github.context.repo.repo,
+        repoUrl: data.html_url,
     };
 }
 
@@ -315,8 +318,9 @@ export async function getCommitFromLocalRepo(commit: any): Promise<Commit> {
         id: commit.commit,
         message: commit.message,
         timestamp: commit.date,
-        url: 'file:///' + process.cwd(),
+        url: `file:///${process.cwd()}/commits/${commit.commit}`,
         repo: 'local_checkout',
+        repoUrl: 'file:///' + process.cwd(),
     };
 }
 
@@ -325,8 +329,11 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
         core.debug('Return head_commit');
         core.debug(JSON.stringify(github.context.payload, null, 4));
         const commit: Commit = github.context.payload.head_commit;
-        commit.url = github.context.payload.head_commit.url;
-        commit.repo = github.context.payload.repository?.full_name ?? commit.url.split(/\/commit\//)[0].replace("https://github.com/", "");
+        commit.url = commit.url ?? github.context.payload.head_commit.url;
+        commit.repo =
+            github.context.payload.repository?.full_name ??
+            commit.url.split(/\/commit\//)[0].replace('https://github.com/', '');
+        commit.repoUrl = commit.url.split(/\/commit\//)[0];
 
         return commit;
     }

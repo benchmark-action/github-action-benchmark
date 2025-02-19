@@ -154,6 +154,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             tree_id: 'dummy tree id',
             url: `${serverUrl}/user/repo/commit/` + id,
             repo: 'repo',
+            repoUrl: `${serverUrl}/user/repo`,
         };
     }
 
