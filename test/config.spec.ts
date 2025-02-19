@@ -44,6 +44,14 @@ describe('configFromJobInput()', function () {
         'alert-comment-cc-users': '',
         'external-data-json-path': '',
         'max-items-in-chart': '',
+        'nyrkio-enable': 'false',
+        'nyrkio-token': '',
+        'nyrkio-api-root': '',
+        'nyrkio-public': 'false',
+        'nyrkio-org': '',
+        'nyrkio-settings-pvalue': '',
+        'nyrkio-settings-threshold': '',
+        'never-fail': 'false',
     };
 
     const validationTests: Array<{

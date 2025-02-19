@@ -212,9 +212,11 @@ async function setParameters(config: Config) {
     core.debug('POST Nyrkiö config: ' + uri);
     try {
         const response = await axios.post(uri, configObject, options);
-        core.debug("Response from user/config or orgs/org: " + JSON.stringify(response));
+        core.debug('Response from user/config or orgs/org: ' + JSON.stringify(response));
     } catch (err: any) {
-        console.error(`POST to ${uri} failed. I'll still try to post the test results. You can always change the settings later.`);
+        console.error(
+            `POST to ${uri} failed. I'll still try to post the test results. You can always change the settings later.`,
+        );
         if (err && err.status === 409) {
             core.debug(`409: ${err.data.detail}`);
         } else {

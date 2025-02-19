@@ -7,7 +7,7 @@ import { nyrkioFindChanges } from './nyrkio';
 async function main() {
     const config = await configFromJobInput();
     core.debug(`Config extracted from job: ` + JSON.stringify(config));
-    core.debug("PWD: " + process.cwd());
+    core.debug('PWD: ' + process.cwd());
     const bench = await extractResult(config);
     const { commit, date, tool, benches } = bench;
     core.debug(`Benchmark result was extracted: ` + JSON.stringify(benches));
@@ -32,7 +32,7 @@ async function maybeSetFailed(e: any) {
         core.setFailed(e ? e.message : 'e is undefined');
         return false;
     } else {
-        console.error(e && e.message);
+        console.error(e ? e.message : 'e is undefined');
         console.error('Note: never-fail is true. Will exit successfully to keep the build green.');
         return true;
     }
