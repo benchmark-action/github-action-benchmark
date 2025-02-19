@@ -54,9 +54,9 @@ export const VALID_TOOLS = [
 const RE_UINT = /^\d+$/;
 
 function throwValidationError(neverFail: boolean, msg: string): boolean {
-    core.error(msg);
     if (neverFail) {
-        core.error('never-fail is set. Will exit cleanly so as not to fail your build.');
+        console.error(msg);
+        console.error('never-fail is set. Will exit cleanly so as not to fail your build.');
         return true;
     }
     throw new Error(msg);
@@ -359,7 +359,6 @@ export async function configFromJobInput(): Promise<Config> {
     }
     validateNyrkio(nyrkioEnable, nyrkioToken, nyrkioApiRoot, neverFail);
     if (!nyrkioApiRoot.endsWith('/')) nyrkioApiRoot = nyrkioApiRoot + '/';
-    core.debug(nyrkioApiRoot);
 
     return {
         name,
