@@ -212,6 +212,7 @@ describe('extractResult()', function () {
                 html_url: 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789',
                 head: {
                     sha: 'abcdef0123456789',
+                    url: 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789',
                     user: {
                         login: 'user',
                     },
@@ -266,9 +267,10 @@ describe('extractResult()', function () {
                 message: 'test message',
                 repo: 'repo',
                 branch: 'mocked_branch',
+                url: 'https://github.com/dummy/repo/commit/abcd1234',
             },
             sha: 'abcd1234',
-            html_url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            html_url: 'https://github.com/dummy/repo',
         };
         const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
         const config = {
@@ -284,8 +286,9 @@ describe('extractResult()', function () {
             id: 'abcd1234',
             message: 'test message',
             timestamp: 'author updated at timestamp',
-            url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            url: 'https://github.com/dummy/repo/commit/abcd1234',
             repo: 'repo',
+            repoUrl: 'https://github.com/dummy/repo',
             branch: 'mocked_branch',
             author: {
                 name: 'test author',
@@ -328,9 +331,10 @@ describe('extractResult()', function () {
                     email: 'committer@testdummy.com',
                 },
                 message: 'test message',
+                url: 'https://github.com/dummy/repo/commit/abcd1234',
             },
             sha: 'abcd1235',
-            html_url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            html_url: 'https://github.com/dummy/repo',
         };
         const outputFilePath = path.join(__dirname, 'data', 'extract', 'go_output.txt');
         const config = {
@@ -345,8 +349,9 @@ describe('extractResult()', function () {
             id: 'abcd1235',
             message: 'test message',
             timestamp: 'author updated at timestamp',
-            url: 'https://github.com/dymmy/repo/commit/abcd1234',
+            url: 'https://github.com/dummy/repo/commit/abcd1234',
             repo: 'repo',
+            repoUrl: 'https://github.com/dummy/repo',
             branch: 'mocked_branch',
             author: {
                 name: 'test author',
