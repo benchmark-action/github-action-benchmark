@@ -111,6 +111,8 @@ class NyrkioResultSorter {
     }
 
     add(path: string, git_commit: string, result: NyrkioJson) {
+        if (result.metrics.length <= 0) return;
+
         if (this.r.get(path) === undefined) this.r.set(path, new Map<string, Map<string, NyrkioJson>>());
         if (this.r.get(path)!.get(git_commit) === undefined)
             this.r.get(path)!.set(git_commit, new Map<string, NyrkioJson>());
@@ -157,12 +159,10 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
     let nyrkioPath = name;
     const nsrt = new NyrkioResultSorter();
     for (const b of benches) {
-        if (testName !== b.testName) {
-            if (nyrkioResult.metrics.length > 0) {
-                nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
-            }
-
+        if (testName !== sanitizeForUri(b.testName)) {
+            nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
             nyrkioResult = nyrkioJsonInit(bench.commit, d);
+
             testName = sanitizeForUri(b.testName);
             branch = sanitizeForUri(nyrkioResult.attributes.branch);
             core.debug(branch);
@@ -178,9 +178,8 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [Nyrkio
         m.unit = b.unit;
         nyrkioResult.metrics.push(m);
     }
-    if (nyrkioResult.metrics.length > 0) {
-        nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
-    }
+    nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
+
     return nsrt.iterator();
 }
 
