@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741766461963,
+  "lastUpdate": 1741766465217,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51207,6 +51207,42 @@ window.BENCHMARK_DATA = {
             "value": 19982.81135253933,
             "unit": "ns/iter",
             "extra": "iterations: 35023\ncpu: 19982.04893926848 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "414owen@gmail.com",
+            "name": "Owen Shepherd",
+            "username": "414owen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "537867564f6637a5284f618819db8ce81b054b44",
+          "message": "chore: tweak grammar of non-failure alert (#284)",
+          "timestamp": "2025-03-12T09:00:33+01:00",
+          "tree_id": "8e0f2194a8f9e69a2d96f1ac82b56a4d5190ab14",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/537867564f6637a5284f618819db8ce81b054b44"
+        },
+        "date": 1741766462307,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 159.47029167278134,
+            "unit": "ns/iter",
+            "extra": "iterations: 4415496\ncpu: 159.45624228852208 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 20000.92637667788,
+            "unit": "ns/iter",
+            "extra": "iterations: 34921\ncpu: 20000.191861630537 ns\nthreads: 1"
           }
         ]
       }
