@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741766476655,
+  "lastUpdate": 1741766479744,
   "entries": {
     "Rust Benchmark": [
       {
@@ -56427,6 +56427,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 19.9841,
             "range": "± 271.198",
+            "unit": "us",
+            "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "414owen@gmail.com",
+            "name": "Owen Shepherd",
+            "username": "414owen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "537867564f6637a5284f618819db8ce81b054b44",
+          "message": "chore: tweak grammar of non-failure alert (#284)",
+          "timestamp": "2025-03-12T09:00:33+01:00",
+          "tree_id": "8e0f2194a8f9e69a2d96f1ac82b56a4d5190ab14",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/537867564f6637a5284f618819db8ce81b054b44"
+        },
+        "date": 1741766476133,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 145.754,
+            "range": "± 2.76494",
+            "unit": "ns",
+            "extra": "100 samples\n197 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 19.9756,
+            "range": "± 265.284",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
           }
