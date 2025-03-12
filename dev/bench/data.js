@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741764576707,
+  "lastUpdate": 1741766461963,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44327,6 +44327,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000014630760427176275",
             "extra": "mean: 1.6462982868983849 msec\nrounds: 603"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "414owen@gmail.com",
+            "name": "Owen Shepherd",
+            "username": "414owen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "537867564f6637a5284f618819db8ce81b054b44",
+          "message": "chore: tweak grammar of non-failure alert (#284)",
+          "timestamp": "2025-03-12T09:00:33+01:00",
+          "tree_id": "8e0f2194a8f9e69a2d96f1ac82b56a4d5190ab14",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/537867564f6637a5284f618819db8ce81b054b44"
+        },
+        "date": 1741766458968,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75969.9229193169,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000001015986861448465",
+            "extra": "mean: 13.163104049243804 usec\nrounds: 36723"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 607.6185567291949,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005042019538286072",
+            "extra": "mean: 1.645769354680329 msec\nrounds: 609"
           }
         ]
       }
