@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741766505958,
+  "lastUpdate": 1741766507681,
   "entries": {
     "Rust Benchmark": [
       {
@@ -10294,6 +10294,42 @@ window.BENCHMARK_DATA = {
             "name": "bench_fib_20",
             "value": 20073.27,
             "range": "± 101.11",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "414owen@gmail.com",
+            "name": "Owen Shepherd",
+            "username": "414owen"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "537867564f6637a5284f618819db8ce81b054b44",
+          "message": "chore: tweak grammar of non-failure alert (#284)",
+          "timestamp": "2025-03-12T09:00:33+01:00",
+          "tree_id": "8e0f2194a8f9e69a2d96f1ac82b56a4d5190ab14",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/537867564f6637a5284f618819db8ce81b054b44"
+        },
+        "date": 1741766504118,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "bench_fib_10",
+            "value": 159.92,
+            "range": "± 3.08",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "bench_fib_20",
+            "value": 20149.29,
+            "range": "± 3470.44",
             "unit": "ns/iter"
           }
         ]
