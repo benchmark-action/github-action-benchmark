@@ -541,8 +541,8 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
         core.debug('Alert check was skipped because previous benchmark result was not found');
     } else {
         await handleComment(name, bench, prevBench, config);
-        await handleAlert(name, bench, prevBench, config);
         await handleSummary(name, bench, prevBench, config);
+        await handleAlert(name, bench, prevBench, config);
     }
 }
 
