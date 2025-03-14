@@ -34,7 +34,7 @@ suite
 ```
 
 Ensure the output includes string values converted from benchmark results.
-This action extracts measured values fron the output.
+This action extracts measured values from the output.
 
 Run the script in workflow:
 
