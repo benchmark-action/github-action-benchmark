@@ -148,11 +148,55 @@ function floatStr(n: number) {
     return n.toString();
 }
 
-function strVal(b: BenchmarkResult): string {
-    let s = `\`${b.value}\` ${b.unit}`;
-    if (b.range) {
-        s += ` (\`${b.range}\`)`;
+const round = (n: number, places: number = 3): number =>
+    parseFloat(n.toFixed(places));
+
+function strDuration(n: number): string {
+    let unit = "ns";
+    if (n >= 6e10) {
+        let secs = n / 1e9;
+        const mins = Math.floor(secs / 60);
+        secs %= 60;
+        return `${mins}m ${round(secs)}s`
     }
+
+    if (n >= 1e9) {
+        unit = "s";
+        n /= 1e9;
+    } else if (n >= 1e6) {
+        unit = "ms";
+        n /= 1e6;
+    } else if (n >= 1e3) {
+        unit = "μs";
+        n /= 1e3;
+    }
+
+    return `${round(n)}${unit}`;
+}
+
+let NS_RANGE_REGEX = /^±\s*([0-9]+)$/;
+
+function strVal(b: BenchmarkResult): string {
+
+    let s = "";
+    let range = b.range;
+
+    if (b.unit == 'ns/iter') {
+        s += `\`${strDuration(b.value)}/iter\``;
+        if (range && range.match(NS_RANGE_REGEX)) {
+            range = "± " + strDuration(parseInt(range.replace(NS_RANGE_REGEX, "$1")));
+        } else {
+            // If we can't show a unit, just give up...
+            range = undefined;
+        }
+    } else {
+        s += `\`${b.value} ${b.unit}\``;
+    }
+
+    if (range) {
+        s += `<br>(\`${range}\`)`;
+    }
+
     return s;
 }
 
