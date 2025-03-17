@@ -24,7 +24,7 @@
     "action",
     "benchmark"
   ],
-  "author": "github-action-benchmark developers <https://github.com/cryspen>",
+  "author": "Cryspen <https://github.com/cryspen>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cryspen/benchmark-data-extract-transform/issues"
