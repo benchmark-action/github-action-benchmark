@@ -1,18 +1,17 @@
 import * as core from '@actions/core';
 import { configFromJobInput } from './config';
-import { extractResult } from './extract';
-import { writeBenchmark } from './write';
+import { extractData, localWriteBenchmark } from './extract';
 
 async function main() {
     const config = await configFromJobInput();
     core.debug(`Config extracted from job: ${config}`);
 
-    const bench = await extractResult(config);
-    core.debug(`Benchmark result was extracted: ${bench}`);
+    const benches = await extractData(config);
+    core.debug(`Benchmark result was extracted: ${benches}`);
 
-    await writeBenchmark(bench, config);
+    await localWriteBenchmark(benches, config);
 
-    console.log('github-action-benchmark was run successfully!', '\nData:', bench);
+    console.log('action was run successfully!', '\nData:', benches);
 }
 
 main().catch((e) => core.setFailed(e.message));
