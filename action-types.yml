@@ -5,17 +5,6 @@ inputs:
     type: enum
     allowed-values:
       - cargo
-      - go
-      - benchmarkjs
-      - pytest
-      - googlecpp
-      - catch2
-      - julia
-      - jmh
-      - benchmarkdotnet
-      - benchmarkluau
-      - customBiggerIsBetter
-      - customSmallerIsBetter
   platform:
     type: string
   output-file-path:

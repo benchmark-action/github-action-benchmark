@@ -1,6 +1,6 @@
-name: 'Continuous Benchmark'
-author: 'github-action-benchmark developers <https://github.com/benchmark-action>'
-description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
+name: 'Benchmark extract and transform'
+author: 'Cryspen <https://github.com/cryspen>'
+description: 'Extract and transform `cargo` and other benchmark data for visualization'
 branding:
   icon: 'fast-forward'
   color: 'blue'
@@ -11,74 +11,17 @@ inputs:
     required: true
     default: 'Benchmark'
   tool:
-    description: 'Tool to use get benchmark output. One of "cargo", "go", "benchmarkjs", "pytest", "googlecpp", "catch2", "julia", "benchmarkdotnet", "customBiggerIsBetter", "customSmallerIsBetter"'
+    description: 'Tool to use get benchmark output. One of "cargo"...'
+    required: true
+  platform:
+    description: 'A string describing the platform'
     required: true
   output-file-path:
     description: 'A path to file which contains the benchmark output'
     required: true
-  gh-pages-branch:
-    description: 'Branch for gh-pages'
+  json-out-path:
+    description: 'A path to the file where the output of the action should be written'
     required: true
-    default: 'gh-pages'
-  gh-repository:
-    description: 'Url to an optional different repository to store benchmark results'
-    required: false
-  benchmark-data-dir-path:
-    description: 'Path to directory which contains benchmark files on GitHub pages branch'
-    required: true
-    default: 'dev/bench'
-  github-token:
-    description: 'GitHub API token to pull/push GitHub pages branch and deploy GitHub pages. For public repository, this must be personal access token for now. Please read README.md for more details'
-    required: false
-  ref:
-    description: 'optional Ref to use when finding commit'
-    required: false
-  auto-push:
-    description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
-    required: false
-    default: false
-  skip-fetch-gh-pages:
-    description: 'Skip pulling GitHub Pages branch before generating an auto commit'
-    required: false
-    default: false
-  comment-always:
-    description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
-    required: false
-    default: false
-  summary-always:
-    description: 'Leave a job summary with benchmark result comparison'
-    required: false
-    default: false
-  save-data-file:
-    description: 'Save the benchmark data to external file'
-    required: false
-    default: true
-  comment-on-alert:
-    description: 'Leave an alert comment when current benchmark result is worse than previous. Threshold is specified with alert-threshold input. To enable this feature, github-token input must be given as well'
-    required: false
-    default: false
-  alert-threshold:
-    description: 'Threshold which determines if an alert should happen or not. Percentage value such as "150%". For example, 150% means that an alert happens when current benchmark result is 1.5x worse than previous'
-    required: false
-    default: '200%'
-  fail-on-alert:
-    description: 'Workflow fails when alert comment happens'
-    required: false
-    # Note: Set to false by default since this action does not push to remote by default. When workflow
-    # fails and auto-push is not set, there is no chance to push the result to remote.
-    default: false
-  fail-threshold:
-    description: 'Threshold which determines if the current workflow fails. Format is the same as alert-threshold input. If this value is not specified, the same value as alert-threshold is used'
-    required: false
-  alert-comment-cc-users:
-    description: 'Comma separated GitHub user names which start with @ (e.g. "@foo,@bar"). They will be mentioned in commit comment for alert.'
-    required: false
-  external-data-json-path:
-    description: 'JSON data file for storing benchmark results. When this input is set, github-action-benchmark no longer uses Git branch to store data. Instead, it reads and appends benchmark data from/to the file. User must store the file anywhere'
-    required: false
-  max-items-in-chart:
-    description: 'Max data points in a benchmark chart to avoid making the chart too busy. Value must be unsigned integer. No limit by default'
-    required: false
 
 runs:
   using: 'node20'
