@@ -1,8 +1,6 @@
 name: Example for minimal setup
 on:
-  push:
-    branches:
-      - master
+  pull_request:
 
 permissions:
   contents: write
@@ -14,20 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
+      - uses: cryspen/benchmark-data-extract-transform@${{ github.head_ref }}
         with:
-          go-version: "stable"
-      - name: Run benchmark
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
-      - name: Download previous benchmark data
-        uses: actions/cache@v4
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-      - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          tool: 'go'
-          output-file-path: examples/go/output.txt
-          external-data-json-path: ./cache/benchmark-data.json
-          fail-on-alert: true
+          tool: 'cargo'
+          platform: 'default'
+          output-file-path: test/data/cargo_output.txt
+          json-out-path: output.txt
