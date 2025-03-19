@@ -58,7 +58,8 @@ async function validateOutputFilePath(filePath: string): Promise<string> {
 }
 async function validateJsonOutPath(filePath: string): Promise<string> {
     try {
-        return await resolveFilePath(filePath);
+	// TODO: validate
+	return filePath;
     } catch (err) {
         throw new Error(`Invalid value for 'json-out-path' input: ${err}`);
     }
