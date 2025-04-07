@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   benchmark:
-    name: Run minimal steps to run github-action-benchmark
+    name: Run minimal steps to run change-detection
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        uses: nyrkio/github-action-benchmark@v1
+        uses: nyrkio/change-detection@v1
         with:
           tool: 'go'
           output-file-path: examples/go/output.txt

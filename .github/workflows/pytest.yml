@@ -24,7 +24,7 @@ jobs:
           pytest bench.py --benchmark-json output.json
 
       - name: Store benchmark result
-        uses: nyrkio/github-action-benchmark@v1
+        uses: nyrkio/change-detection@v1
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
@@ -36,11 +36,10 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@ktrz'
           nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: nyrkio/github-action-benchmark@v1
+        uses: nyrkio/change-detection@v1
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
@@ -52,6 +51,5 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@ktrz'
           gh-repository: 'github.com/nyrkio/github-action-benchmark-results'
           nyrkio-enable: false

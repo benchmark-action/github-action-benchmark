@@ -918,7 +918,7 @@ function maybeSetFailed(e: any, neverFail: boolean) {
     }
 }
 
-async function readNyrkioJsonFiles(outputFilePath: string): Promise<string> {
+async function readNyrkioJsonFiles(outputFilePath: string, neverFail: boolean): Promise<string> {
     let output = '';
     // outputFilePath is actually a directory
     fs.readdir(outputFilePath)

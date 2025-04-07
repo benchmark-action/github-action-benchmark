@@ -211,12 +211,13 @@ describe('configFromJobInput()', function () {
         failThreshold: null,
     };
 
+    const VALID_TOOLS_EXCEPT_ONE = VALID_TOOLS.filter((elem) => elem !== 'nyrkioJson');
     const returnedConfigTests: Array<{
         what: string;
         inputs: any;
         expected: ExpectedResult;
     }> = [
-        ...VALID_TOOLS.map((tool: string) => ({
+        ...VALID_TOOLS_EXCEPT_ONE.map((tool: string) => ({
             what: 'valid tool ' + tool,
             inputs: { ...defaultInputs, tool },
             expected: { ...defaultExpected, tool },

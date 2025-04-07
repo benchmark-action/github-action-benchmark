@@ -25,7 +25,7 @@ jobs:
           java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
 
       - name: Store benchmark result
-        uses: nyrkio/github-action-benchmark@v1
+        uses: nyrkio/change-detection@v1
         with:
           name: JMH Benchmark
           tool: 'jmh'
@@ -37,11 +37,10 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@michaelmior'
           nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: nyrkio/github-action-benchmark@v1
+        uses: nyrkio/change-detection@v1
         with:
           name: JMH Benchmark
           tool: 'jmh'
@@ -53,6 +52,5 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@michaelmior'
           gh-repository: 'github.com/nyrkio/github-action-benchmark-results'
           nyrkio-enable: false
