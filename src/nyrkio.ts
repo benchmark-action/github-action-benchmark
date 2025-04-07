@@ -2,34 +2,10 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
 /* eslint no-useless-escape: 0 */
 
-import { Benchmark, BenchmarkResult, Commit } from './extract';
+import { Benchmark, BenchmarkResult, Commit, NyrkioJsonPath, NyrkioJson, NyrkioMetrics } from './extract';
 import { Config } from './config';
 import * as core from '@actions/core';
 import axios from 'axios';
-
-export interface NyrkioMetrics {
-    name: string;
-    unit: string;
-    value: number;
-    direction?: string;
-}
-
-export interface NyrkioJson {
-    timestamp: number;
-    metrics: NyrkioMetrics[];
-    attributes: {
-        git_commit: string;
-        git_repo: string;
-        branch: string;
-    };
-    extra_info?: object;
-}
-
-export interface NyrkioJsonPath {
-    path: string;
-    git_commit: string;
-    results: NyrkioJson[];
-}
 
 export interface NyrkioChangePoint {
     metric: string;
@@ -110,6 +86,7 @@ class NyrkioResultSorter {
         this.r = new Map<string, Map<string, Map<string, NyrkioJson>>>();
     }
 
+    // TODO: git_commit appears to be redundant
     add(path: string, git_commit: string, result: NyrkioJson) {
         if (result.metrics.length <= 0) return;
 
@@ -135,9 +112,9 @@ class NyrkioResultSorter {
                 for (const t of this.r.get(k)!.get(g)!.keys()) {
                     core.debug(t);
                     if (!ret) {
-                        ret = [{ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] }];
+                        ret = [{ path: k, results: [this.r.get(k)!.get(g)!.get(t)!] }];
                     } else {
-                        ret.push({ path: k, git_commit: g, results: [this.r.get(k)!.get(g)!.get(t)!] });
+                        ret.push({ path: k, results: [this.r.get(k)!.get(g)!.get(t)!] });
                     }
                     core.debug(JSON.stringify(this.r.get(k)!.get(g)!.get(t)!, null, 4));
                 }
@@ -147,7 +124,7 @@ class NyrkioResultSorter {
     }
 }
 
-function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): [NyrkioJsonPath] | null {
+function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): NyrkioJsonPath[] | null {
     let { name } = config;
 
     const benches = bench.benches;
@@ -293,8 +270,8 @@ async function setNotifiers(config: Config) {
     }
 }
 
-async function postResults(
-    allTestResults: [NyrkioJsonPath],
+export async function postResults(
+    allTestResults: NyrkioJsonPath[],
     config: Config,
     commit: Commit,
 ): Promise<[NyrkioAllChanges] | boolean> {
@@ -341,7 +318,7 @@ async function postResults(
                     // However, in most cases you'll get a separate alert a few days later, once the statistical
                     // significance accumulates.
                     for (const changePoint of c) {
-                        if (changePoint.attributes.git_commit === r.git_commit) {
+                        if (changePoint.attributes.git_commit === commit.id) {
                             const cc: NyrkioAllChanges = { path: r.path, changes: c };
                             if (allChanges === false) allChanges = [cc];
                             else allChanges.push(cc);

@@ -50,6 +50,7 @@ export const VALID_TOOLS = [
     'time',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
+    'nyrkioJson',
 ] as const;
 const RE_UINT = /^\d+$/;
 
@@ -81,7 +82,7 @@ function resolvePath(p: string, neverFail: boolean): string {
     return path.resolve(p);
 }
 
-async function resolveFilePath(p: string, neverFail: boolean): Promise<string> {
+async function resolveFilePath(p: string, tool: ToolType, neverFail: boolean): Promise<string> {
     p = resolvePath(p, neverFail);
 
     let s;
@@ -92,17 +93,27 @@ async function resolveFilePath(p: string, neverFail: boolean): Promise<string> {
         return '';
     }
 
-    if (!s?.isFile()) {
-        throwValidationError(neverFail, `Specified path '${p}' is not a file`);
-        return '';
+    if (tool === 'nyrkioJson') {
+        if (!s?.isDirectory()) {
+            throwValidationError(
+                neverFail,
+                `Specified path '${p}' is not a directory. nyrkioJson format expects a directory with one or more JSON files.`,
+            );
+            return '';
+        }
+    } else {
+        if (!s?.isFile()) {
+            throwValidationError(neverFail, `Specified path '${p}' is not a file`);
+            return '';
+        }
     }
 
     return p;
 }
 
-async function validateOutputFilePath(filePath: string, neverFail: boolean): Promise<string> {
+async function validateOutputFilePath(filePath: string, tool: ToolType, neverFail: boolean): Promise<string> {
     try {
-        return await resolveFilePath(filePath, neverFail);
+        return await resolveFilePath(filePath, tool, neverFail);
     } catch (err) {
         throwValidationError(neverFail, `Invalid value for 'output-file-path' input: ${err}`);
         return '';
@@ -334,7 +345,7 @@ export async function configFromJobInput(): Promise<Config> {
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold', neverFail);
 
     validateToolType(tool, neverFail);
-    outputFilePath = await validateOutputFilePath(outputFilePath, neverFail);
+    outputFilePath = await validateOutputFilePath(outputFilePath, tool, neverFail);
     validateGhPagesBranch(ghPagesBranch, neverFail);
     benchmarkDataDirPath = validateBenchmarkDataDirPath(benchmarkDataDirPath, neverFail);
     validateName(name, neverFail);

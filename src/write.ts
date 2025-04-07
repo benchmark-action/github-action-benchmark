@@ -89,6 +89,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return true;
         case 'customSmallerIsBetter':
             return false;
+        case 'nyrkioJson':
+            return false; // This is needed to satisfy compiler. Never happens.
     }
 }
 

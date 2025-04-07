@@ -44,6 +44,34 @@ interface PullRequest {
     body?: string;
 }
 
+/* The JSON supported by the Nyrkio API.
+ * Note that this is only here in order to support pass thru sending this to Nyrkio.com.
+ * We don't parse this to the common Benchmark object and therefore you cannot store NyrkioJson
+ * input into the legacy threshold based system.
+ */
+export interface NyrkioMetrics {
+    name: string;
+    unit: string;
+    value: number;
+    direction?: string;
+}
+
+export interface NyrkioJson {
+    timestamp: number;
+    metrics: NyrkioMetrics[];
+    attributes: {
+        git_commit: string;
+        git_repo: string;
+        branch: string;
+    };
+    extra_info?: object;
+}
+
+export interface NyrkioJsonPath {
+    path: string;
+    results: NyrkioJson[];
+}
+
 export interface Benchmark {
     commit: Commit;
     date: number;
@@ -879,9 +907,61 @@ function extractTimeBenchmarkResult(output: string): BenchmarkResult[] {
     return results;
 }
 
+function maybeSetFailed(e: any, neverFail: boolean) {
+    if (!neverFail) {
+        core.setFailed(e ? e.message : 'e is undefined');
+        return false;
+    } else {
+        console.error(e ? e.message : 'e is undefined');
+        console.error('Note: never-fail is true. Will exit successfully to keep the build green.');
+        return true;
+    }
+}
+
+async function readNyrkioJsonFiles(outputFilePath: string): Promise<string> {
+    let output = '';
+    // outputFilePath is actually a directory
+    fs.readdir(outputFilePath)
+        .then((dirList) =>
+            dirList.forEach((fileName) => {
+                const filePath = outputFilePath + '/' + fileName;
+                fs.readFile(filePath, 'utf8')
+                    .then((fileContent) => {
+                        output = '{path: "' + fileName + '", results: ' + fileContent + '}' + '\n';
+                    })
+                    .catch((err) => {
+                        maybeSetFailed(err, neverFail);
+                    });
+            }),
+        )
+        .catch((err) => {
+            maybeSetFailed(err, neverFail);
+        });
+    output = '[\n' + output + ']\n';
+    return output;
+}
+
+export async function extractNyrkioJsonResult(config: Config): Promise<[NyrkioJsonPath[], Commit]> {
+    const { githubToken, ref, outputFilePath, neverFail } = config;
+    let json: NyrkioJsonPath[];
+    const output = await readNyrkioJsonFiles(outputFilePath, neverFail);
+    try {
+        json = JSON.parse(output);
+    } catch (err: any) {
+        throw new Error(
+            `Output file for 'NyrkioJson' must be inte format defined at http://nyrkio.com/openapi :  ${err.message}`,
+        );
+    }
+
+    const commit = await getCommit(githubToken, ref);
+    await addCommitBranch(commit);
+
+    return [json, commit];
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
-    const output = await fs.readFile(config.outputFilePath, 'utf8');
-    const { tool, githubToken, ref } = config;
+    const { tool, githubToken, ref, outputFilePath } = config;
+    const output: string = await fs.readFile(outputFilePath, 'utf8');
     let benches: BenchmarkResult[];
     core.debug(output);
 

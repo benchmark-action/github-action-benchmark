@@ -16,6 +16,7 @@ inputs:
       - benchmarkluau
       - customBiggerIsBetter
       - customSmallerIsBetter
+      - nyrkioJson
   output-file-path:
     type: string
   gh-pages-branch:
