@@ -1,19 +1,13 @@
 [![nyrkio-logo]][product]   / Change Detection (GitHub Action)
-===============================================================
+==============================================================
 [![Action Marketplace][release-badge]][marketplace]
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
 
 ![nyrkio-footer-graph]
 
-| _                                   |                            _ |
-| :---                                |                         ---: |
-| [This repository][proj] provides a  | [![nyrkio-logo]][product]    |
-| [GitHub Action][github-action] for  |                              |
-| integrating Nyrkiö Change Detection |                              |
-| with your Continuous Benchmarking   |                              |
-| Results.                            |                              |
-
+[This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
+Detection with your Continuous Benchmarking Results.
 
 If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
 pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
