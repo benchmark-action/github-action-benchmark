@@ -29,4 +29,3 @@ jobs:
           fail-on-alert: true
           # Make results and change points public, so that any oss contributor can see them
           nyrkio-public: true
-
