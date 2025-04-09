@@ -24,101 +24,10 @@ very small regressions, in particular, changes smaller than your range of random
 
 You can [read more about how Nyrkiö works here][product].
 
-
-Supported Benchmarking Frameworks
-----------------------------------
-
-This GitHub Action supports the commonly used benchmarking frameworks of all major programming
-languages. In addition we support some generic options such as the `time` utility, a custom
-JSON format, and Nyrkiö's own JSON format in pass-thru mode:
-
-
-- [`cargo bench`][cargo-bench] for Rust projects
-- `go test -bench` for Go projects
-- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
-- [pytest-benchmark][] for Python projects with [pytest][]
-- [Google Benchmark Framework][google-benchmark] for C++ projects
-- [Catch2][catch2] for C++ projects
-- [BenchmarkTools.jl][] for Julia packages
-- [Benchmark.Net][benchmarkdotnet] for .Net projects
-- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
-- [JMH][jmh] for Java projects
-- [time][time] Unix utility to measure execution time of any program
-- Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
-- [Nyrkiö's own JSON][https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post]
-  format, which is simply passed directly to Nyrkiö API.
-
-Multiple languages in the same repository are supported for polyglot projects.
-
-We wish to thank the open source community for this incredible feat of integration!
-Nyrkiö Change Detection GitHub Action is based on 6 years of work over at the
-["GitHub Action Benchmark"][upstream-proj]. Nyrkiö will be upstreaming patches like a
-good open source citizen, whenever we add functionality for our own customers. (Starting with
-the `time` command support.)
-
-
-
-## Examples
-
-Example projects for each language are in [examples/](./examples) directory. Live example workflow
-definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
-
-| Language     | Workflow                                                                                | Example Project                                |
-|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
-| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
-| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
-| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
-| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
-| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
-| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
-| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
-| Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
-| Luau         | Coming soon | Coming soon |
-
-
-### Generic JSON format
-
-(This JSON format created and supported by the github-action-benchmark team.)
-
-Additionally, even though there is no explicit example for them, you can use
-`customBiggerIsBetter` and `customSmallerIsBetter` to use this
-action and create your own graphs from your own benchmark data. The name in
-these tools define which direction "is better" for your benchmarks.
-
-Every entry in the JSON file you provide only needs to provide `name`, `unit`,
-and `value`. You can also provide optional `range` (results' variance) and
-`extra` (any additional information that might be useful to your benchmark's
-context) properties. Like this:
-
-```json
-[
-    {
-        "name": "My Custom Smaller Is Better Benchmark - CPU Load",
-        "unit": "Percent",
-        "value": 50
-    },
-    {
-        "name": "My Custom Smaller Is Better Benchmark - Memory Used",
-        "unit": "Megabytes",
-        "value": 100,
-        "range": "3",
-        "extra": "Value for Tooltip: 25\nOptional Num #2: 100\nAnything Else!"
-    }
-]
-```
-
-### Alert comment on pull request
-
-Nyrkiö can [comment on your PR][alert-comment-example]. when benchmark
-results are worse than previous exceeding a specified threshold.
-
-
 ## How to use
 
 This action takes a file that contains benchmark output. The benchmark results are parsed into
 a common JSON format, which is then sent to nyrkio.com for analysis.
-
 
 ### Minimal setup
 
@@ -166,12 +75,87 @@ A live workflow example is [here](.github/workflows/minimal.yml). And the result
 be seen [here][minimal-workflow-example].
 
 
+Supported Benchmarking Frameworks
+----------------------------------
+
+This GitHub Action supports the commonly used benchmarking frameworks of all major programming
+languages. In addition we support some generic options such as the `time` utility, a custom
+JSON format, and Nyrkiö's own JSON format in pass-thru mode:
+
+
+- [`cargo bench`][cargo-bench] for Rust projects
+- `go test -bench` for Go projects
+- [benchmark.js][benchmarkjs] for JavaScript/TypeScript projects
+- [pytest-benchmark][] for Python projects with [pytest][]
+- [Google Benchmark Framework][google-benchmark] for C++ projects
+- [Catch2][catch2] for C++ projects
+- [BenchmarkTools.jl][] for Julia packages
+- [Benchmark.Net][benchmarkdotnet] for .Net projects
+- [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
+- [JMH][jmh] for Java projects
+- [time][time] Unix utility to measure execution time of any program
+- Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
+- [Nyrkiö's own JSON][https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post]
+  format, which is simply passed directly to Nyrkiö API.
+
+Multiple languages in the same repository are supported for polyglot projects.
+
+We wish to thank the open source community for this incredible feat of integration!
+Nyrkiö Change Detection GitHub Action is based on 6 years of work over at the
+["GitHub Action Benchmark"][upstream-proj]. Nyrkiö will be upstreaming patches like a
+good open source citizen, whenever we add functionality for our own customers. (Starting with
+the `time` command support.)
+
+
+## Examples
+
+Example projects for each language are in [examples/](./examples) directory. Live example workflow
+definitions are in [.github/workflows/](./.github/workflows) directory. Live workflows are:
+
+| Language     | Workflow                                                                                | Example Project                                |
+|--------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
+| Rust         | [![Rust Example Workflow][rust-badge]][rust-workflow-example]                           | [examples/rust](./examples/rust)               |
+| Go           | [![Go Example Workflow][go-badge]][go-workflow-example]                                 | [examples/go](./examples/go)                   |
+| JavaScript   | [![JavaScript Example Workflow][benchmarkjs-badge]][benchmarkjs-workflow-example]       | [examples/benchmarkjs](./examples/benchmarkjs) |
+| Python       | [![pytest-benchmark Example Workflow][pytest-benchmark-badge]][pytest-workflow-example] | [examples/pytest](./examples/pytest)           |
+| C++          | [![C++ Example Workflow][cpp-badge]][cpp-workflow-example]                              | [examples/cpp](./examples/cpp)                 |
+| C++ (Catch2) | [![C++ Catch2 Example Workflow][catch2-badge]][catch2-workflow-example]                 | [examples/catch2](./examples/catch2)           |
+| Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
+| .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
+| Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
+| Luau         | Coming soon | Coming soon |
+
+### Nyrkiö JSON format
+
+You can also simply send your benchmark results to Nyrkiö in Nyrkiö's own JSON format.
+[An example is included in the same format as above][examples/nyrkioJson].
+
+Nyrkiö JSON is documented in the [main Nyrkiö documentation][nyrkio-getting-started].
+
+### Generic JSON format
+
+This JSON format created and supported by the github-action-benchmark team.
+
+Additionally, even though there is no explicit example for them, you can use
+`customBiggerIsBetter` and `customSmallerIsBetter` to use this
+action and create your own graphs from your own benchmark data. The name in
+these tools define which direction "is better" for your benchmarks.
+
+For more details, please consult the [LEGACY_README][LEGACY_README.md]
+
+
+
+## Other features
+
 ### Pull request comment
+
+Nyrkiö can [comment on your PR][alert-comment-example]. when benchmark
+results changed too much compared to the main branch.
 
 In addition to the above setup, you need to install Nyrkiö as a github app into your org.
 This allows Nyrkiö to send comments on your pull requests and file github issues.
-Please click on https://github.com/apps/nyrkio/installations/new andproceed to install
-Nyrkiöif you didn't already.
+Please click on https://github.com/apps/nyrkio/installations/new and proceed to install
+Nyrkiö if you didn't already.
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
@@ -399,6 +383,7 @@ Every release will appear on your GitHub notifications page.
 [proj]: https://github.com/nyrkio/change-detection
 [upstream-proj]: https://github.com/benchmark-action/github-action-benchmark
 [product]: https://nyrkio.com/product
+[nyrkio-getting-started]: https://nyrkio.com/docs/getting-started
 [nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
 [nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
 
