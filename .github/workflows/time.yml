@@ -1,0 +1,32 @@
+name: Time (CLI utility) Example
+
+# Nyrkiö we can also run for pull requests
+on:
+  push:
+    branches:
+      - master
+on:
+  pull_request:
+
+jobs:
+  benchmark:
+    name: Run Some silly benchmark under time
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run some silly benchmark with time
+        run:  (time (cat /dev/random |head --bytes=$((1024*1024*1024)) >/dev/null)) |& tee output.txt
+
+      - name: Analyze results with Nyrkiö
+        uses: nyrkio/change-detection@v1
+        with:
+          name: nyrkio/change-detection/master/time-cli-example
+          tool: 'time'
+          output-file-path: output.txt
+          # Get yours from https://nyrkio.com/docs/getting-started
+          nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
+          fail-on-alert: true
+          # Make results and change points public, so that any oss contributor can see them
+          nyrkio-public: true
