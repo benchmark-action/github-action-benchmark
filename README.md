@@ -20,8 +20,11 @@ noisy benchmarking results. It adapts automatically to the noise level in your b
 avoiding false positive alerts. By analyzing the entire history of results, it can detect even
 very small regressions, in particular, changes smaller than your range of random noise!
 
-You can [read more about how Nyrkiö works here][product]. [![nyrkio-logo]][product]
+[![nyrkio-logo]][product]
 
+You can [read more about how Nyrkiö works here][product].
+
+[nyrkio-footer-graph]
 
 Supported Benchmarking Frameworks
 ----------------------------------
@@ -398,6 +401,7 @@ Every release will appear on your GitHub notifications page.
 [upstream-proj]: https://github.com/benchmark-action/github-action-benchmark
 [product]: https://nyrkio.com/product
 [nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
+[nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
 
 [rust-badge]: https://github.com/nyrkio/change-detection/actions/workflows/rust.yml/badge.svg
 [go-badge]: https://github.com/nyrkio/change-detection/actions/workflows/go.yml/badge.svg
