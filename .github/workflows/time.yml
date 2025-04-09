@@ -12,6 +12,7 @@ jobs:
     name: Run Some silly benchmark under time
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Run some silly benchmark with time
         run: (time (head --bytes=1000000000 /dev/random  >/dev/null)) 2>&1 | tee output.txt
 
