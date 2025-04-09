@@ -2,8 +2,8 @@ name: 'Nyrkiö Change Detection'
 author: 'Nyrkiö Oy <https://nyrkio.com/product>'
 description: 'GitHub Action for integrating Nyrkiö Change Detection with your Continuous Benchmarking results.'
 branding:
-  icon: 'fast-forward'
-  color: 'blue'
+  icon: 'trending-up'
+  color: 'red'
 
 inputs:
   name:
