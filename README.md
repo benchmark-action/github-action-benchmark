@@ -20,7 +20,7 @@ noisy benchmarking results. It adapts automatically to the noise level in your b
 avoiding false positive alerts. By analyzing the entire history of results, it can detect even
 very small regressions, in particular, changes smaller than your range of random noise!
 
-You can [read more about how Nyrkiö works here][product]. [![nyrkio-logo]]
+You can [read more about how Nyrkiö works here][product]. [![nyrkio-logo]][product]
 
 
 Supported Benchmarking Frameworks
