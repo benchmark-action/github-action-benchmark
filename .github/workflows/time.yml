@@ -16,7 +16,7 @@ jobs:
         run: (time (cat /dev/random |head --bytes=$((1024*1024*1024)) >/dev/null)) |& tee output.txt
 
       - name: Analyze results with Nyrkiö
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@HEAD
         with:
           name: nyrkio/change-detection/master/time-cli-example
           tool: 'time'
