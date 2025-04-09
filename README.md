@@ -6,11 +6,14 @@ Nyrkiö / Change Detection (GitHub Action)
 
 ![nyrkio-footer-graph]
 
-[This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
-Detection with your Continuous Benchmarking Results.
+| _                                   |                Right-aligned |
+| :---                                |                         ---: |
+| [This repository][proj] provides a  | [![nyrkio-logo]][product]    |
+| [GitHub Action][github-action] for  |                              |
+| integrating Nyrkiö Change Detection |                              |
+| with your Continuous Benchmarking   |                              |
+| Results.                            |                              |
 
-
-[![nyrkio-logo]][product]
 
 If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
 pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
