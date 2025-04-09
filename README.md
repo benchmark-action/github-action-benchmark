@@ -4,6 +4,8 @@ Nyrkiö / Change Detection (GitHub Action)
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
 
+![nyrkio-footer-graph]
+
 [This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
 Detection with your Continuous Benchmarking Results.
 
@@ -20,11 +22,8 @@ noisy benchmarking results. It adapts automatically to the noise level in your b
 avoiding false positive alerts. By analyzing the entire history of results, it can detect even
 very small regressions, in particular, changes smaller than your range of random noise!
 
-[![nyrkio-logo]][product]
-
 You can [read more about how Nyrkiö works here][product].
 
-![nyrkio-footer-graph]
 
 Supported Benchmarking Frameworks
 ----------------------------------
