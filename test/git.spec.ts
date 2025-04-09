@@ -84,7 +84,7 @@ const ok: (x: any) => asserts x = A.ok;
 const serverUrl = getServerUrl(gitHubContext.payload.repository?.html_url);
 const userArgs = [
     '-c',
-    'user.name=github-action-benchmark',
+    'user.name=henrikingo',
     '-c',
     'user.email=github@users.noreply.github.com',
     '-c',
