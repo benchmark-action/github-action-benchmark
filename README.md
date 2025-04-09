@@ -55,7 +55,7 @@ jobs:
         run: go test -bench 'BenchmarkFib' | tee output.txt
 
       - name: Analyze benchmark results with Nyrkiö
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           tool: 'go'
           output-file-path: output.txt
@@ -159,7 +159,7 @@ Nyrkiö if you didn't already.
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'go'
     output-file-path: output.txt
@@ -354,8 +354,8 @@ GitHub action supports [self-hosted runners](https://docs.github.com/en/actions/
 
 This action conforms semantic versioning 2.0.
 
-For example, `nyrkio/change-detection@v1` means the latest version of `1.x.y`. And
-`nyrkio/change-detection@v1.0.2` always uses `v1.0.2` even if a newer version is published.
+For example, `nyrkio/change-detection@v2` means the latest version of `2.x.y`. And
+`nyrkio/change-detection@v2.0.2` always uses `v2.0.2` even if a newer version is published.
 
 `HEAD` would use the most recent commit of the development branch. This is for experimental and
 development use only!
