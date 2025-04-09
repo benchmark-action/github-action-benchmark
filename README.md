@@ -95,7 +95,7 @@ JSON format, and Nyrkiö's own JSON format in pass-thru mode:
 - [JMH][jmh] for Java projects
 - [time][time] Unix utility to measure execution time of any program
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
-- [Nyrkiö's own JSON][https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post]
+- [Nyrkios own JSON][https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post]
   format, which is simply passed directly to Nyrkiö API.
 
 Multiple languages in the same repository are supported for polyglot projects.
