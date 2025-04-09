@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run some silly benchmark with time
-        run: (time (cat /dev/random |head --bytes=$((1024*1024*1024)) >/dev/null)) |& tee output.txt
+        run: (time (cat /dev/random |head --bytes=$((1024*1024*1024)) >/dev/null)) 2>&1 | tee output.txt
 
       - name: Analyze results with Nyrkiö
         uses: nyrkio/change-detection@HEAD
