@@ -53,6 +53,7 @@ export const VALID_TOOLS = [
     'nyrkioJson',
 ] as const;
 const RE_UINT = /^\d+$/;
+const RE_DOUBLE = /^\d+\.\d+$/;
 
 function throwValidationError(neverFail: boolean, msg: string): boolean {
     if (neverFail) {
@@ -264,6 +265,28 @@ function getUintInput(name: string, neverFail: boolean): number | null {
     return i;
 }
 
+function getDoubleInput(name: string, neverFail: boolean): number | null {
+    const input = core.getInput(name);
+    if (input === undefined || input === null) {
+        console.log(`${name} is nullish`);
+        return null;
+    }
+    if (input === '') {
+        console.log(`${name} is empty string`);
+        return null;
+    }
+    if (!RE_DOUBLE.test(input)) {
+        throwValidationError(neverFail, `'${name}' input must be double but got '${input}'`);
+        return null;
+    }
+    const i = parseFloat(input);
+    if (isNaN(i)) {
+        throwValidationError(neverFail, `Double value '${input}' in '${name}' input was parsed as NaN`);
+        return null;
+    }
+    return i;
+}
+
 function validateMaxItemsInChart(max: number | null, neverFail: boolean) {
     if (max !== null && max <= 0) {
         throwValidationError(neverFail, `'max-items-in-chart' input value must be one or more but got ${max}`);
@@ -341,7 +364,7 @@ export async function configFromJobInput(): Promise<Config> {
     let nyrkioApiRoot: string = core.getInput('nyrkio-api-root') || 'https://nyrkio.com/api/v0/';
     const nyrkioPublic: boolean = getBoolInput('nyrkio-public', false, neverFail);
     const nyrkioOrg: string | undefined = core.getInput('nyrkio-org') || undefined;
-    const nyrkioPvalue = getPercentageInput('nyrkio-settings-pvalue', neverFail);
+    const nyrkioPvalue = getDoubleInput('nyrkio-settings-pvalue', neverFail);
     const nyrkioThreshold = getPercentageInput('nyrkio-settings-threshold', neverFail);
 
     validateToolType(tool, neverFail);

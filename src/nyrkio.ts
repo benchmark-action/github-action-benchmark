@@ -164,7 +164,7 @@ async function setParameters(config: Config) {
     const { nyrkioOrg, nyrkioPvalue, nyrkioThreshold, neverFail, nyrkioToken, nyrkioApiRoot } = config;
     if (nyrkioPvalue === null && nyrkioThreshold === null) return;
     if (nyrkioPvalue === null || nyrkioThreshold === null) {
-        core.error('Please set both nyrkio-pvalue and nyrkio-threshold');
+        core.error('Please set both nyrkio-settings-pvalue and nyrkio-settings-threshold');
         core.error("Don't worry, you can fix this later and then go to nyrkio.com to look at your benchmark results.");
         if (!neverFail) {
             core.setFailed('Please set both nyrkio-pvalue and nyrkio-threshold');
@@ -214,7 +214,11 @@ async function setParameters(config: Config) {
 }
 async function setNotifiers(config: Config) {
     const { nyrkioOrg, commentAlways, commentOnAlert, neverFail, nyrkioToken, nyrkioApiRoot } = config;
-    console.log(`Set Nyrkiö preference for comment on PR: comment-always=${commentAlways}`);
+    console.log(
+        `Set Nyrkiö preference for comment on PR: comment-always=${commentAlways} comment-on-alert=${commentOnAlert} => ${
+            commentAlways || commentOnAlert
+        }`,
+    );
     if (commentOnAlert) {
         console.warn('comment-on-alert is not yet supported for Nyrkiö. Will fall back to comment-always.');
     }

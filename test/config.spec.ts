@@ -49,7 +49,7 @@ describe('configFromJobInput()', function () {
         'nyrkio-api-root': '',
         'nyrkio-public': 'false',
         'nyrkio-org': '',
-        'nyrkio-settings-pvalue': '',
+        'nyrkio-settings-pvalue': '0.0001',
         'nyrkio-settings-threshold': '',
         'never-fail': 'false',
     };

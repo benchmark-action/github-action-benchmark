@@ -919,26 +919,23 @@ function maybeSetFailed(e: any, neverFail: boolean) {
 }
 
 async function readNyrkioJsonFiles(outputFilePath: string, neverFail: boolean): Promise<string> {
-    let output = '';
+    let output: NyrkioJsonPath[] = [];
     // outputFilePath is actually a directory
-    fs.readdir(outputFilePath)
-        .then((dirList) =>
-            dirList.forEach((fileName) => {
-                const filePath = outputFilePath + '/' + fileName;
-                fs.readFile(filePath, 'utf8')
-                    .then((fileContent) => {
-                        output = '{path: "' + fileName + '", results: ' + fileContent + '}' + '\n';
-                    })
-                    .catch((err) => {
-                        maybeSetFailed(err, neverFail);
-                    });
-            }),
-        )
-        .catch((err) => {
-            maybeSetFailed(err, neverFail);
-        });
-    output = '[\n' + output + ']\n';
-    return output;
+    console.log(`Find json files in ${outputFilePath}`);
+    try {
+        const dirList = await fs.readdir(outputFilePath);
+        for (const fileName of dirList) {
+            const filePath = outputFilePath + '/' + fileName;
+            console.log(`Reading ${filePath}`);
+            const fileContent = await fs.readFile(filePath, 'utf8');
+            const parsedFileContent: [] = JSON.parse(fileContent);
+            console.log(parsedFileContent);
+            output = output.concat([<NyrkioJsonPath>{ path: fileName, results: parsedFileContent }]);
+        }
+    } catch (err) {
+        maybeSetFailed(err, neverFail);
+    }
+    return JSON.stringify(output);
 }
 
 export async function extractNyrkioJsonResult(config: Config): Promise<[NyrkioJsonPath[], Commit]> {
@@ -946,6 +943,7 @@ export async function extractNyrkioJsonResult(config: Config): Promise<[NyrkioJs
     let json: NyrkioJsonPath[];
     const output = await readNyrkioJsonFiles(outputFilePath, neverFail);
     try {
+        console.log(output);
         json = JSON.parse(output);
     } catch (err: any) {
         throw new Error(

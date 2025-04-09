@@ -13,13 +13,14 @@ jobs:
     name: Run NyrkioJson (pass through) example
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Nyrkiö Json - just send it as is
         uses: nyrkio/change-detection@HEAD
         with:
           # This plus the filename is the full test name sent to nyrkio
           name: nyrkio/change-detection/master/nyrkioJson
           tool: 'nyrkioJson'
-          output-file-path: examples/nyrkioJson/benchmark-results/benchmark1
+          output-file-path: examples/nyrkioJson/benchmark-results
 
           # What to do if a change is immediately detected by Nyrkiö.
           # Note that smaller changes are only detected with delay, usually after a change

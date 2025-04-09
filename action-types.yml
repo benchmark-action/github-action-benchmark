@@ -68,7 +68,7 @@ inputs:
   nyrkio-org:
     type: string
   nyrkio-settings-pvalue:
-    type: string
+    type: float
   nyrkio-settings-threshold:
     type: string
   never-fail:
