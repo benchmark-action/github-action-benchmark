@@ -1,0 +1,36 @@
+[
+{"timestamp": 1706229855,
+            "metrics": [
+              {"name": "throughput", "unit": "ops/s", "value": 734 },
+              {"name": "bandwidth", "unit": "MB/s", "value": 0.98 },
+            ],
+            "attributes": {
+              "git_repo": "https://github.com/nyrkio/example",
+              "branch": "main",
+              "git_commit": "6995e2de6891c724bfeb2db33d7b87775f913ad1"
+            }
+      },
+{"timestamp": 1706229953,
+            "metrics": [
+              {"name": "throughput", "unit": "ops/s", "value": 72 },
+              {"name": "bandwidth", "unit": "MB/s", "value": 0.99 },
+            ],
+            "attributes": {
+              "git_repo": "https://github.com/nyrkio/example",
+              "branch": "main",
+              "git_commit": "6995e2de6891c724bfeb2db33d7b87775f913ad2"
+            }
+      },
+{"timestamp": 1706230225,
+            "metrics": [
+              {"name": "throughput", "unit": "ops/s", "value": 770 },
+              {"name": "bandwidth", "unit": "MB/s", "value": 0.96 },
+            ],
+            "attributes": {
+              "git_repo": "https://github.com/nyrkio/example",
+              "branch": "main",
+              "git_commit": "6995e2de6891c724bfeb2db33d7b87775f913ad3"
+            }
+      },
+
+]

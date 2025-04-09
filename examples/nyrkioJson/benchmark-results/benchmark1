@@ -1,0 +1,12 @@
+[{"timestamp": 1706220908,
+            "metrics": [
+              {"name": "p50", "unit": "us", "value": 56 },
+              {"name": "p90", "unit": "us", "value": 125 },
+              {"name": "p99", "unit": "us", "value": 280 }
+            ],
+            "attributes": {
+              "git_repo": "https://github.com/nyrkio/nyrkio",
+              "branch": "main",
+              "git_commit": "6995e2de6891c724bfeb2db33d7b87775f913ad1"
+            }
+      }]
