@@ -1,5 +1,5 @@
-[![nyrkio-logo]][product]   / Change Detection (GitHub Action)
-==============================================================
+[![nyrkio-logo]][product]   / Change Detection
+===============================================
 [![Action Marketplace][release-badge]][marketplace]
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
