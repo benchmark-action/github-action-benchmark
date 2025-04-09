@@ -675,3 +675,4 @@ Every release will appear on your GitHub notifications page.
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
 [job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
 
+

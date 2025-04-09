@@ -13,13 +13,13 @@ jobs:
     name: Run NyrkioJson (pass through) example
     runs-on: ubuntu-latest
     steps:
-      - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+      - name: Nyrkiö Json - just send it as is
+        uses: nyrkio/change-detection@HEAD
         with:
           # This plus the filename is the full test name sent to nyrkio
           name: nyrkio/change-detection/master/nyrkioJson
           tool: 'nyrkioJson'
-          output-file-path: examples/nyrkioJson/benchmark-results
+          output-file-path: examples/nyrkioJson/benchmark-results/benchmark1
 
           # What to do if a change is immediately detected by Nyrkiö.
           # Note that smaller changes are only detected with delay, usually after a change
@@ -42,5 +42,5 @@ jobs:
 
           # Make results and change points public, so that any oss contributor can see them
           nyrkio-public: true
-          nyrkio-settings-pvalue: 0.01%
+          nyrkio-settings-pvalue: 0.01
           nyrkio-settings-threshold: 2%
