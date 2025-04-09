@@ -9,6 +9,9 @@ Nyrkiö / Change Detection (GitHub Action)
 [This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
 Detection with your Continuous Benchmarking Results.
 
+
+[![nyrkio-logo]][product]
+
 If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
 pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
 in all those benchmark results your GitHub Action workflows now produce! Nyrkiö was developed to
