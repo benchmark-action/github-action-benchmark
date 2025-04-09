@@ -2,10 +2,9 @@ C++ example for benchmarking with [Catch2 Framework][tool]
 ====================================================================
 
 - [Workflow for this example](../../.github/workflows/catch2.yml)
-- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22)
-- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
+- [Action log of this example](https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22)
 
-This directory shows how to use [`github-action-benchmark`][action] with [Catch2 Framework][tool].
+This directory shows how to use [`nyrkio/change-detection`][action] with [Catch2 Framework][tool].
 
 
 
@@ -40,14 +39,15 @@ Ensure to use `console` reporter for this. `xml` reporter may be supported in th
 Store the benchmark results with step using the action. Please set `catch2` to `tool` input.
 
 ```yaml
-- name: Store benchmark result
-  uses: benchmark-action/github-action-benchmark@v1
+- name: Analyze benchmark results with Nyrkiö
+  uses: nyrkio/change-detection@v1
   with:
     tool: 'catch2'
     output-file-path: benchmark_result.json
+    nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
-Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/nyrkio/change_detection#how-to-use) for common usage.
 
 
 
@@ -65,4 +65,4 @@ $ cmake --build . --config Release
 This will create `Catch2_bench` executable. The results are output to stdout.
 
 [tool]: https://github.com/catchorg/Catch2
-[action]: https://github.com/benchmark-action/github-action-benchmark
+[action]: https://github.com/nyrkio/change_detection

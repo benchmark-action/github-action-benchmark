@@ -60,7 +60,7 @@ export async function cmd(additionalGitOptions: string[], ...args: string[]): Pr
     const userArgs = [
         ...additionalGitOptions,
         '-c',
-        'user.name=github-action-benchmark',
+        'user.name=henrikingo',
         '-c',
         'user.email=github@users.noreply.github.com',
         '-c',

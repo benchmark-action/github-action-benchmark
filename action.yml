@@ -1,6 +1,6 @@
-name: 'Continuous Benchmark'
-author: 'github-action-benchmark developers <https://github.com/benchmark-action>'
-description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
+name: 'Nyrkiö Change Detection'
+author: 'Nyrkiö Oy <https://nyrkio.com/product>'
+description: 'GitHub Action for integrating Nyrkiö Change Detection with your Continuous Benchmarking results.'
 branding:
   icon: 'fast-forward'
   color: 'blue'

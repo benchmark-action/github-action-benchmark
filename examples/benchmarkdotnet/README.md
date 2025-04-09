@@ -2,10 +2,9 @@ C# example for benchmarking with `Benchmark.Net`
 ================================================
 
 - [Workflow for this example](../../.github/workflows/benchmarkdotnet.yml)
-- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+example%22)
-- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
+- [Action log of this example](https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Benchmark.Net+example%22)
 
-This directory shows how to use [`github-action-benchmark`](https://github.com/benchmark-action/github-action-benchmark)
+This directory shows how to use [`nyrkio/change-detection`](https://github.com/nyrkio/change-detection)
 with [`BenchmarkDotNet`](https://benchmarkdotnet.org/).
 
 ## Run benchmarks
@@ -80,11 +79,12 @@ BenchmarkDotNet.Artifacts
 You want to get the path of the `-report-full-compressed.json` report for use with this action.  Once you have both pieces of data, use the action like so, replacing the output file path with your own path.
 
 ```yaml
-- name: Store benchmark result
-  uses: benchmark-action/github-action-benchmark@v1
+- name: Analyze benchmark results with Nyrkiö
+  uses: nyrkio/change-detection@v1
   with:
     tool: 'benchmarkdotnet'
     output-file-path: BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
+    nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
-Please read [How to use section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
+Please read [How to use section](https://github.com/nyrkio/change-detection#how-to-use) for common usage.

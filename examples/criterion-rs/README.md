@@ -1,9 +1,8 @@
 # Rust Criterion example for benchmarking with `cargo bench`
 
 -   [Workflow for this example](../../.github/workflows/criterion-rs.yml)
--   [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
 
-This directory shows how to use [`github-action-benchmark`](https://github.com/benchmark-action/github-action-benchmark)
+This directory shows how to use [`nyrkio/change-detection`](https://github.com/nyrkio/change-detection)
 with [`criterion`](https://github.com/bheisler/criterion.rs).
 
 ## Run benchmarks
@@ -27,11 +26,12 @@ Note that you should run the benchmarks using the bencher output format.
 Store the benchmark results with step using the action. Please set `cargo` to `tool` input.
 
 ```yaml
-- name: Store benchmark result
-  uses: benchmark-action/github-action-benchmark@v1
+- name: Analyze benchmark results with Nyrkiö
+  uses: nyrkio/change-detection@v1
   with:
       tool: 'cargo'
       output-file-path: output.txt
+    nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
-Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/nyrkio/change-detection#how-to-use) for common usage.

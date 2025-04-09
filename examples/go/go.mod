@@ -1,3 +1,3 @@
-module github.com/github-action-benchmark/github-action-benchmark/examples/go
+module github.com/nyrkio/change-detection/examples/go
 
 go 1.20

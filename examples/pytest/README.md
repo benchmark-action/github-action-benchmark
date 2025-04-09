@@ -48,13 +48,14 @@ e.g.
 Store the benchmark results with step using the action. Please set `pytest` to `tool` input.
 
 ```yaml
-- name: Store benchmark result
-  uses: benchmark-action/github-action-benchmark@v1
+- name: Analyze benchmark results with Nyrkiö
+  uses: nyrkio/change-detection@v1
   with:
     tool: 'pytest'
     output-file-path: output.json
+    nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
-Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/nyrkio/change-detection#how-to-use) for common usage.
 
 [tool]: https://pypi.org/project/pytest-benchmark/

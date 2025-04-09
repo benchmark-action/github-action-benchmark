@@ -2,10 +2,9 @@ C++ example for benchmarking with [Google Benchmark Framework][tool]
 ====================================================================
 
 - [Workflow for this example](../../.github/workflows/cpp.yml)
-- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22C%2B%2B+Example%22)
-- [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
+- [Action log of this example](https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22C%2B%2B+Example%22)
 
-This directory shows how to use [`github-action-benchmark`][action] with [Google Benchmark Framework][tool].
+This directory shows how to use [`change-detection`][action] with [Google Benchmark Framework][tool].
 
 ## Run benchmarks
 
@@ -49,14 +48,16 @@ $ ./a.out --benchmark_format=json | tee benchmark_result.json
 Store the benchmark results with step using the action. Please set `googlecpp` to `tool` input.
 
 ```yaml
-- name: Store benchmark result
-  uses: benchmark-action/github-action-benchmark@v1
+- name: Analyze benchmark results with Nyrkiö
+  uses: nyrkio/change-detection@v1
   with:
+    tool: 'pytest'
     tool: 'googlecpp'
     output-file-path: benchmark_result.json
+    nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
-Please read ['How to use' section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.
+Please read ['How to use' section](https://github.com/nyrkio/change-detection#how-to-use) for common usage.
 
 ## Run this example
 
@@ -86,7 +87,7 @@ fib_10            210 ns          210 ns      3239181
 fib_20          27857 ns        27786 ns        25206
 ```
 
-To get JSON output for running [github-action-benchmark][action], please use another subcommand.
+To get JSON output for running [nyrkio/change-detection][action], please use another subcommand.
 
 ```sh
 $ make json
@@ -96,4 +97,4 @@ $ make json
 file in current directory.
 
 [tool]: https://github.com/google/benchmark
-[action]: https://github.com/benchmark-action/github-action-benchmark
+[action]: https://github.com/nyrkio/change-detection
