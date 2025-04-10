@@ -95,7 +95,7 @@ JSON format, and Nyrkiö's own JSON format in pass-thru mode:
 - [JMH][jmh] for Java projects
 - [time][time] Unix utility to measure execution time of any program
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
-- [Nyrkios own JSON][https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post]
+- [Nyrkios own JSON][nyrkio-json]
   format, which is simply passed directly to Nyrkiö API.
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -128,7 +128,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 ### Nyrkiö JSON format
 
 You can also simply send your benchmark results to Nyrkiö in Nyrkiö's own JSON format.
-[An example is included in the same format as above][examples/nyrkioJson].
+[An example is included in the same format as above](examples/nyrkioJson).
 
 Nyrkiö JSON is documented in the [main Nyrkiö documentation][nyrkio-getting-started].
 
@@ -386,6 +386,7 @@ Every release will appear on your GitHub notifications page.
 [nyrkio-getting-started]: https://nyrkio.com/docs/getting-started
 [nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
 [nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
+[nyrkio-json]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
 
 [rust-badge]: https://github.com/nyrkio/change-detection/actions/workflows/rust.yml/badge.svg
 [go-badge]: https://github.com/nyrkio/change-detection/actions/workflows/go.yml/badge.svg
@@ -401,7 +402,7 @@ Every release will appear on your GitHub notifications page.
 [gh-pages]: https://pages.github.com/
 
 
-[alert-comment-example]: https://github.com/nyrkio/nyrkio/pull/310#issuecomment-2646713456
+[alert-comment-example]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
 [rust-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Rust+Example%22
 [go-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Go+Example%22
 [benchmarkjs-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Benchmark.js+Example%22
