@@ -296,7 +296,7 @@ The name of a github org where you have installed Nyrkiö. See https://nyrkio.co
 - Default: 0.001
 
 
-The p-value used to determine if a change in benchmark results is statistically significant. Example: 1% (If specified, will be applied to all your nyrkio.com test results.)
+The p-value used to determine if a change in benchmark results is statistically significant. Example: 0.01 (If specified, will be applied to all your nyrkio.com test results.)
 
 
 ####  nyrkio-settings-threshold
