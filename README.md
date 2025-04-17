@@ -10,32 +10,21 @@ Detection with your Continuous Benchmarking Results.
 
 ![Screenshot of a Nyrkiö GitHub Action that has rendered a green checkmark](examples/Nyrkio_GHA.png)
 
-If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
-pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
-in all those benchmark results your GitHub Action workflows now produce! Nyrkiö was developed to
-help with this last bit. We will analyze your history of benchmark results, and alert you if we
-find any regressions. (Or improvements, for that matter!)
-
-Automating the analysis of continuous benchmarking results is a surprisingly difficult task. Many
-benchmarks have a range of variation - random noise - anywhere from 5 % to 20 %. Nyrkiö uses a state
-of the art *change detection* algorithm to find statistically significant, persistent changes, in
-noisy benchmarking results. It adapts automatically to the noise level in your benchmarks, thus
-avoiding false positive alerts. By analyzing the entire history of results, it can detect even
-very small regressions, in particular, changes smaller than your range of random noise!
-
-You can [read more about how Nyrkiö works here][product].
-
-![nyrkio-footer-graph]
 
 ## How to use
 
 This action takes a file that contains benchmark output. The benchmark results are parsed into
-a common JSON format, which is then sent to nyrkio.com for analysis.
+a common JSON format, which is then sent to nyrkio.com for analysis. All the main benchmarking
+frameworks are supported.
 
 ### Minimal setup
 
 Let's start with a minimal workflow setup. For explanation, here let's say we have a Go project. But basic
 setup is the same when you use other languages. For language-specific setup, please read the later section.
+
+Note: You need to [create an account at nyrkio.com](nyrkio-getting-started) to get the NYRKIO_JWT_TOKEN
+that is used below. To receive alerts from Nyrkiö as pull request comments or GitHub issues, the
+recommended way to create your account is to [install Nyrkiö as a GitHub app][nyrkio-install-app].
 
 ```yaml
 name: Minimal setup
@@ -62,6 +51,7 @@ jobs:
         with:
           tool: 'go'
           output-file-path: output.txt
+          # Pick up your token at https://nyrkio.com/docs/getting-started
           nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 
@@ -73,9 +63,36 @@ The step which runs `nyrkio/change-detection` does followings:
 4. If a change is detected, either immediately or after a few days, you can receive alerts by slack,
    email, and github issues.
 
+## Live demo
 
-A live workflow example is [here](.github/workflows/minimal.yml). And the results of the workflow can
-be seen [here][minimal-workflow-example].
+
+A live workflow example is [here](.github/workflows/time.yml). And the output of the workflow can
+be seen [here][time-workflow-example] and finally [the graphs on Nyrkiö here][time-workflow-graphs].
+
+![nyrkio-footer-graph]
+
+
+About Nyrkiö
+-------------
+
+If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
+pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
+in all those benchmark results your GitHub Action workflows now produce! Nyrkiö was developed to
+help with this last bit. We will analyze your history of benchmark results, and alert you if we
+find any regressions. (Or improvements, for that matter!)
+
+Automating the analysis of continuous benchmarking results is a surprisingly difficult task. Many
+benchmarks have a range of variation - random noise - anywhere from 5 % to 20 %. Nyrkiö uses a state
+of the art *change detection* algorithm to find statistically significant, persistent changes, in
+noisy benchmarking results. It adapts automatically to the noise level in your benchmarks, thus
+avoiding false positive alerts. By analyzing the entire history of results, it can detect even
+very small regressions, in particular, changes smaller than your range of random noise!
+
+You can [read more about how Nyrkiö works here][product].
+
+![nyrkio-footer-graph]
+
+
 
 
 Supported Benchmarking Frameworks
@@ -343,16 +360,6 @@ documented in [LEGACY_README.md](LEGACY_README.md).
 No action output is set by this action for the parent GitHub workflow.
 
 
-#### Stability of Virtual Environment
-
-As far as watching the benchmark results of examples in this repository, the amplitude of the benchmarks
-is about +- 10~20%. If your benchmarks use some resources such as networks or file I/O, the amplitude
-might be bigger.
-
-If the amplitude is not acceptable, please prepare a stable environment to run benchmarks.
-GitHub action supports [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners).
-
-
 ### Versioning
 
 This action conforms semantic versioning 2.0.
@@ -390,7 +397,7 @@ Every release will appear on your GitHub notifications page.
 [nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
 [nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
 [nyrkio-json]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
-
+[nyrkio-install-app]: https://github.com/apps/nyrkio/installations/new
 
 [rust-badge]: https://github.com/nyrkio/change-detection/actions/workflows/rust.yml/badge.svg
 [go-badge]: https://github.com/nyrkio/change-detection/actions/workflows/go.yml/badge.svg
@@ -417,6 +424,8 @@ Every release will appear on your GitHub notifications page.
 [java-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22JMH+Example%22
 [benchmarkdotnet-workflow-example]: https://github.com/nyrkio/benchmarkdotet/actions?query=workflow%3A%22Benchmark.Net+Example%22
 [minimal-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Example+for+minimal+setup%22
+[time-workflow-example]: https://github.com/nyrkio/change-detection/actions/workflows/time.yml
+[time-workflow-graphs]: https://nyrkio.com/public/https%3A%2F%2Fgithub.com%2Fnyrkio%2Fchange-detection/master/nyrkio/change-detection/master/time-cli-example
 
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
