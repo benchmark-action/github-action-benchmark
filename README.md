@@ -144,7 +144,7 @@ Additionally, even though there is no explicit example for them, you can use
 action and create your own graphs from your own benchmark data. The name in
 these tools define which direction "is better" for your benchmarks.
 
-For more details, please consult the [LEGACY_README][LEGACY_README.md]
+For more details, please consult the [LEGACY_README](LEGACY_README.md)
 
 
 
@@ -335,7 +335,7 @@ The root URL for a Nyrkiö API
 
 The remaining parameters aren't used by Nyrkiö. We've preserved the functionality of the original
 threshold based alerting system, but its use is not recommended. The related parameters are
-documented in [LEGACY_README.md][LEGACY_README.md].
+documented in [LEGACY_README.md](LEGACY_README.md).
 
 
 ### Action outputs
