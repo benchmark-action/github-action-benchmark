@@ -170,9 +170,8 @@ For more details, please consult the [LEGACY_README](LEGACY_README.md)
 ### Pull request comment
 
 Nyrkiö can [comment on your PR][alert-comment-example]. when benchmark
-results changed too much compared to the main branch.
-
-In addition to the above setup, you need to install Nyrkiö as a github app into your org.
+results changed too much compared to the main branch. For this to work you need
+to install Nyrkiö as a github app into your org.
 This allows Nyrkiö to send comments on your pull requests and file github issues.
 Please click on https://github.com/apps/nyrkio/installations/new and proceed to install
 Nyrkiö if you didn't already.
@@ -183,21 +182,14 @@ Nyrkiö if you didn't already.
   with:
     tool: 'go'
     output-file-path: output.txt
-    # Comment on the pull request if there were changes in the benchmark results
+    # Comment on the pull request if there were changes in the benchmark results, but do not hard fail
     comment-on-alert: true
-    fail-on-alert: true
+    fail-on-alert: false
     nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
-    # GitHub API token to make a commit comment
-    github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-`secrets.GITHUB_TOKEN` is [a GitHub API token automatically generated for each workflow run][help-github-token].
-It is necessary when fetching meta-data about a commit or pull request.
-
-Now, in addition to making workflow fail, the step leaves a comment on the PR when it detects performance
+Now, instead of making workflow fail, the step leaves a comment on the PR when it detects performance
 regression [like this][alert-comment-example].
-
-A live workflow example is [here](.github/workflows/commit-comment.yml).
 
 
 ### Tool specific setup
@@ -413,7 +405,7 @@ Every release will appear on your GitHub notifications page.
 [gh-pages]: https://pages.github.com/
 
 
-[alert-comment-example]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
+[alert-comment-example]: https://github.com/nyrkio/nyrkio/pull/329#issuecomment-2795220275
 [rust-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Rust+Example%22
 [go-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Go+Example%22
 [benchmarkjs-workflow-example]: https://github.com/nyrkio/change-detection/actions?query=workflow%3A%22Benchmark.js+Example%22
