@@ -4,10 +4,11 @@
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
 
-![nyrkio-footer-graph]
 
 [This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
 Detection with your Continuous Benchmarking Results.
+
+![Screenshot of a Nyrkiö GitHub Action that has rendered a green checkmark](examples/Nyrkio_GHA.png)
 
 If you've managed to automate and run some benchmarks routinely as part of your GitHub Action
 pipelines, you may have noticed it is not easy to spot performance regressions (nor improvements)
@@ -23,6 +24,8 @@ avoiding false positive alerts. By analyzing the entire history of results, it c
 very small regressions, in particular, changes smaller than your range of random noise!
 
 You can [read more about how Nyrkiö works here][product].
+
+![nyrkio-footer-graph]
 
 ## How to use
 
@@ -387,6 +390,7 @@ Every release will appear on your GitHub notifications page.
 [nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
 [nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
 [nyrkio-json]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
+
 
 [rust-badge]: https://github.com/nyrkio/change-detection/actions/workflows/rust.yml/badge.svg
 [go-badge]: https://github.com/nyrkio/change-detection/actions/workflows/go.yml/badge.svg
