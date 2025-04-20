@@ -22,7 +22,7 @@ frameworks are supported.
 Let's start with a minimal workflow setup. For explanation, here let's say we have a Go project. But basic
 setup is the same when you use other languages. For language-specific setup, please read the later section.
 
-Note: You need to [create an account at nyrkio.com](nyrkio-getting-started) to get the NYRKIO_JWT_TOKEN
+Note: You need to [create an account at nyrkio.com][nyrkio-getting-started] to get the NYRKIO_JWT_TOKEN
 that is used below. To receive alerts from Nyrkiö as pull request comments or GitHub issues, the
 recommended way to create your account is to [install Nyrkiö as a GitHub app][nyrkio-install-app].
 
