@@ -532,6 +532,37 @@ which means there is no limit.
 
 If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
 
+#### `comment-on-pull-request` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+If it is set to `true`, this action will leave a comment when on Pull Request.
+
+`github-token` is necessary for this to work.
+
+#### `pr-comment-percentage-threshold` (Optional)
+
+- Type: String
+- Default: `"25%"`
+
+Percentage value like `"50%"`. This threshold helps determine the PR comment icons. It is a deviation threshold indicating how worse or better the current benchmark result is.
+For example, if we now get `150 ms` and previously got `100 ms`, deviation is `50%`.
+
+If deviation is smaller than provided treshold `〰️` icon is shown.
+`comment-on-pull-request` needs to be set to `true` for this to take effect.
+
+#### `pr-comment-absolute-threshold` (Optional)
+
+- Type: Number
+- Default: `200`
+
+This threshold helps determine the PR comment icons. It is a absolute changte threshold indicating how worse or better the current benchmark result is.
+For example, if we now get `150 ms` and previously got `100 ms`, absolute change is `50`.
+
+If absolute change is smaller than provided treshold `〰️` icon is shown.
+`comment-on-pull-request` needs to be set to `true` for this to take effect.
+
 
 ### Action outputs
 

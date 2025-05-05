@@ -1,4 +1,4 @@
-name: 'Continuous Benchmark'
+name: 'Continuous Benchmark + PR comments'
 author: 'github-action-benchmark developers <https://github.com/benchmark-action>'
 description: 'Continuous Benchmark using GitHub pages as dash board for keeping performance'
 branding:
@@ -41,6 +41,18 @@ inputs:
     description: 'Skip pulling GitHub Pages branch before generating an auto commit'
     required: false
     default: false
+  comment-on-pull-request:
+    description: 'Leave a comment with benchmark result comparison on the pull request. To enable this feature, "github-token" input must be provided'
+    required: false
+    default: false
+  pr-comment-percentage-threshold:
+    description: 'Determine PR comment icons based on percentage change threshold. To enable this feature, "github-token" input must be provided and comment-on-pull-request must be set to true'
+    required: false
+    default: '25%'
+  pr-comment-absolute-threshold:
+    description: 'Determine PR comment icons based on absolute change threshold. To enable this feature, "github-token" input must be provided and comment-on-pull-request must be set to true'
+    required: false
+    default: 200
   comment-always:
     description: 'Leave a comment with benchmark result comparison. To enable this feature, github-token input must be given as well'
     required: false
