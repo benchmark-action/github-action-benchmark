@@ -1,9 +1,10 @@
-[![nyrkio-logo]][product]   / Change Detection
-===============================================
 [![Action Marketplace][release-badge]][marketplace]
 [![Build Status][build-badge]][ci]
 [![codecov][codecov-badge]][codecov]
 
+
+[![nyrkio-logo]][product]   / Change Detection
+===============================================
 
 [This repository][proj] provides a [GitHub Action][github-action] for integrating Nyrkiö Change
 Detection with your Continuous Benchmarking Results.
