@@ -94,10 +94,6 @@ very small regressions, in particular, changes smaller than your range of random
 
 You can [read more about how Nyrkiö works here][product].
 
-![nyrkio-footer-graph]
-
-
-
 
 Supported Benchmarking Frameworks
 ----------------------------------
