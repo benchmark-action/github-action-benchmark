@@ -389,7 +389,7 @@ Every release will appear on your GitHub notifications page.
 [upstream-proj]: https://github.com/benchmark-action/github-action-benchmark
 [product]: https://nyrkio.com/product
 [nyrkio-getting-started]: https://nyrkio.com/docs/getting-started
-[nyrkio-logo]: https://nyrkio.com/p/logo/full/Brown/NyrkioLogo_Final_Full_Brown-200px.png
+[nyrkio-logo]: https://nyrkio.com/p/logo/full/BlackRed/NyrkioLogo_Final_Full_BlackRed-200w.png
 [nyrkio-footer-graph]: https://nyrkio.com/assets/footer-white-graphic-8R7Ap4-5.png
 [nyrkio-json]: https://nyrkio.com/openapi#/default/add_result_api_v0_result__test_name__post
 [nyrkio-install-app]: https://github.com/apps/nyrkio/installations/new
