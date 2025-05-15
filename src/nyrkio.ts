@@ -289,6 +289,7 @@ export async function postResults(
         },
     };
     let allChanges: [NyrkioAllChanges] | boolean = false;
+    let changes2: [NyrkioAllChanges] | boolean = false;
     const gitRepoBase = 'https://github.com/';
     let gitRepo = gitRepoBase + commit.repo;
     gitRepo = encodeURIComponent(gitRepo);
@@ -375,6 +376,10 @@ export async function postResults(
             }
         }
     }
+
+    if (commit.prNumber) {
+        changes2 = await getChangesAndNotify(config, commit, options);
+    }
     const html_url_base = nyrkioApiRoot.split('/api/')[0];
     let html_url = `${html_url_base}/tests/${name}`;
     if (nyrkioPublic) {
@@ -383,9 +388,67 @@ export async function postResults(
     console.log('------');
     console.log('Your test results can now be analyzed at:');
     console.log(html_url);
+    console.debug(allChanges);
+    return changes2;
+}
+async function getChangesAndNotify(
+    config: Config,
+    commit: Commit,
+    httpOptions: object,
+): Promise<[NyrkioAllChanges] | boolean> {
+    const repo = commit.repo;
+    const pull_number = commit.prNumber;
+    const middle = `/pulls/${repo}/${pull_number}/changes/${commit.id}`;
+    const { nyrkioApiRoot, commentAlways, commentOnAlert, neverFail } = config;
+    const notify: boolean = commentAlways || commentOnAlert;
+    const q = notify ? '?notify=1' : '';
+    const uri = nyrkioApiRoot + middle + q;
+    let allChanges: [NyrkioAllChanges] | boolean = false;
+
+    try {
+        console.log('Get all changes and notify if configured: ' + uri);
+        const response = await axios.get(uri, httpOptions);
+        if (response.data) {
+            const resp = response.data;
+
+            resp.forEach((path: string, ch: object) => {
+                const c: [NyrkioChanges] | [] = <[NyrkioChanges] | []>ch;
+                if (c === undefined || c.length === 0) {
+                    core.debug('No changes');
+                } else {
+                    // Note: In extreme cases Nyrkiö might alert immediately after you committed a regression.
+                    // However, in most cases you'll get a separate alert a few days later, once the statistical
+                    // significance accumulates.
+                    for (const changePoint of c) {
+                        if (changePoint.attributes.git_commit === commit.id) {
+                            const cc: NyrkioAllChanges = { path: path, changes: c };
+                            if (allChanges === false) allChanges = [cc];
+                            else {
+                                const acTypeList: [NyrkioAllChanges] = <[NyrkioAllChanges]>allChanges;
+                                acTypeList.push(cc);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    } catch (err: any) {
+        console.error(`GET to ${uri} failed.`);
+        if (err & err.toJSON) {
+            console.error(err.toJSON());
+        } else {
+            console.error(err);
+        }
+        if (!neverFail) {
+            core.setFailed(`GET to ${uri} failed. ${err.status} ${err.code} ${err}.`);
+        } else {
+            console.error(
+                'Note: never-fail is true. Ignoring this error and continuing. Will exit successfully to keep the build green.',
+            );
+        }
+    }
     return allChanges;
 }
-
 export async function nyrkioFindChanges(b: Benchmark, config: Config) {
     const { nyrkioEnable, failOnAlert, neverFail } = config;
     core.debug('nyrkio-enable=' + nyrkioEnable.toString());
