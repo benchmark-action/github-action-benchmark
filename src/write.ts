@@ -67,6 +67,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return true;
         case 'go':
             return false;
+        case 'gotpc':
+            return false;
         case 'benchmarkjs':
             return true;
         case 'benchmarkluau':

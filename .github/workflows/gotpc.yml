@@ -1,0 +1,23 @@
+name: Go TPC
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run minimal steps to run change-detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+      - name: Analyze Go TPC results with Nyrkiö
+        uses: nyrkio/change-detection@HEAD
+        with:
+          tool: 'gotpc'
+          output-file-path: test/gotpc/output1.txt
+          fail-on-alert: true
