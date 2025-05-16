@@ -437,6 +437,7 @@ async function getChangesAndNotify(
                                     const acTypeList: [NyrkioAllChanges] = <[NyrkioAllChanges]>allChanges;
                                     acTypeList.push(cc);
                                 }
+
                             }
                         }
                     }

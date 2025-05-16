@@ -259,6 +259,23 @@ export interface BenchmarkDotNetBenchmarkJson {
     Benchmarks: BenchmarkDotnetBenchmark[];
 }
 
+export interface GoTpcBenchmarkJson {
+    "Operation":string;
+    "Count"?:string;
+    "50th(ms)"?:string;
+    "90th(ms)"?:string;
+    "95th(ms)"?:string;
+    "99th(ms)"?:string;
+    "99.9th(ms)"?:string;
+    "Max(ms)"?:string;
+    "Avg(ms)"?:string;
+    "Sum(ms)"?:string;
+    "TPM"?:string;
+    "Takes(s)"?:string;
+    "Prefix"?:string;
+}
+
+
 function getHumanReadableUnitValue(seconds: number): [number, string] {
     if (seconds < 1.0e-6) {
         return [seconds * 1e9, 'nsec'];
@@ -823,6 +840,43 @@ function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
     }
 }
 
+function extractGoTpcBenchmarkResult(output: string): BenchmarkResult[] {
+    const start = output.indexOf("Finished\n");
+    if (start ==-1) {
+        throw new Error("Results for Go TPC benchmark not found. (Searching for 'Finished' followed by JSON)");
+    }
+    const result = output.substring(start+9);
+    try {
+        const json: extractGoTpcBenchmarkResult[] = JSON.parse(result);
+        const ret = [];
+        for (op of json){
+            for (const [metric, v] of Object.entries(op)){
+                if(metric=="Operation") continue;
+
+                const parts = metric.split("(");
+                let u = "";
+                let vv = parts[0];
+                if (parts.length >1) {
+                    u = parts[1].substring(0,-1);
+                }
+                const br: BenchmarkResult = {
+                    name: op["Operation"];
+                    value: parseFloat(v);
+                    unit: u;
+                };
+                ret.push(br);
+            }
+
+        }
+        return ret;
+
+    } catch (err: any) {
+        throw new Error(
+            `Error parsing JSON in Go TPC output: ${err.message}`,
+        );
+    }
+}
+
 function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\n/);
     const results: BenchmarkResult[] = [];
@@ -996,7 +1050,6 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'time':
             benches = extractTimeBenchmarkResult(output);
-            console.log(JSON.stringify(benches));
             break;
         case 'customBiggerIsBetter':
             benches = extractCustomBenchmarkResult(output);
@@ -1006,6 +1059,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'benchmarkluau':
             benches = extractLuauBenchmarkResult(output);
+            break;
+        case 'gotpc':
+            benches = extractGoTpcBenchmarkResult(output);
             break;
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);

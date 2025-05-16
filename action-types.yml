@@ -6,6 +6,7 @@ inputs:
     allowed-values:
       - cargo
       - go
+      - gotpc
       - benchmarkjs
       - pytest
       - googlecpp
