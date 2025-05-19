@@ -8,6 +8,7 @@ a.out: benchmark/build/src/libbenchmark.a bench.cpp fib.hpp
 	clang++ -std=c++14 -O3 -I ./benchmark/include -L ./benchmark/build/src/ -pthread bench.cpp -l benchmark
 
 benchmark/build/src/libbenchmark.a: benchmark/build benchmark/googletest
+	cp CMakeLists.txt ./benchmark/CMakeLists.txt && \
 	cd ./benchmark/build && \
 	cmake -DCMAKE_BUILD_TYPE=Release -DBENCHMARK_ENABLE_TESTING=true ../ && \
 	make -j
