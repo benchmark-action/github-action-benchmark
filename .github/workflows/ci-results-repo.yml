@@ -81,7 +81,7 @@ jobs:
 
   catch2-v2-framework:
     name: Run Catch2 C++ Benchmark Framework example (v2.x) - github.com/benchmark-action/github-action-benchmark-results
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -120,7 +120,7 @@ jobs:
 
   catch2-v3-framework:
     name: Run Catch2 C++ Benchmark Framework example (v3.x) - github.com/benchmark-action/github-action-benchmark-results
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -159,7 +159,7 @@ jobs:
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
