@@ -8,7 +8,6 @@ a.out: benchmark/build/src/libbenchmark.a bench.cpp fib.hpp
 	clang++ -std=c++14 -O3 -I ./benchmark/include -L ./benchmark/build/src/ -pthread bench.cpp -l benchmark
 
 benchmark/build/src/libbenchmark.a: benchmark/build benchmark/googletest
-	cp CMakeLists.txt ./benchmark/CMakeLists.txt && \
 	cd ./benchmark/build && \
 	cmake -DCMAKE_BUILD_TYPE=Release -DBENCHMARK_ENABLE_TESTING=true ../ && \
 	make -j
@@ -20,7 +19,7 @@ benchmark:
 	[ -d benchmark ] || git clone --depth=1 --single-branch --branch v1.5.0 https://github.com/google/benchmark.git benchmark
 
 benchmark/googletest: benchmark
-	[ -d benchmark/googletest ] || git clone --depth=1 --single-branch --branch release-1.10.0 https://github.com/google/googletest.git benchmark/googletest
+	[ -d benchmark/googletest ] || git clone --depth=1 --single-branch --branch release-1.12.1 https://github.com/google/googletest.git benchmark/googletest
 
 clean:
 	rm -rf a.out benchmark
