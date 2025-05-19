@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1747654507884,
+  "lastUpdate": 1747654522435,
   "entries": {
     "Rust Benchmark": [
       {
@@ -64411,6 +64411,44 @@ window.BENCHMARK_DATA = {
             "range": "± 576.058",
             "unit": "us",
             "extra": "100 samples\n2 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd128cf83bac95a64b574137ae5165b341b1f58d",
+          "message": "chore: update ubuntu runner from 20.04 to latest (#312)\n\n* update workflow runner for cpp benchmarks to `ubuntu-latest`\n* update google/benchmark and google/googletest versions to work with latest ubuntu version",
+          "timestamp": "2025-05-19T13:33:52+02:00",
+          "tree_id": "dd30fb32bec1317c2b8a772350c65c34959bbf90",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fd128cf83bac95a64b574137ae5165b341b1f58d"
+        },
+        "date": 1747654519047,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 81.2495,
+            "range": "± 13.0588",
+            "unit": "ns",
+            "extra": "100 samples\n371 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 7.60331,
+            "range": "± 497.958",
+            "unit": "us",
+            "extra": "100 samples\n4 iterations"
           }
         ]
       }
