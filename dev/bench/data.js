@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1747654522435,
+  "lastUpdate": 1747654528816,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51597,6 +51597,42 @@ window.BENCHMARK_DATA = {
             "value": 20000.92637667788,
             "unit": "ns/iter",
             "extra": "iterations: 34921\ncpu: 20000.191861630537 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd128cf83bac95a64b574137ae5165b341b1f58d",
+          "message": "chore: update ubuntu runner from 20.04 to latest (#312)\n\n* update workflow runner for cpp benchmarks to `ubuntu-latest`\n* update google/benchmark and google/googletest versions to work with latest ubuntu version",
+          "timestamp": "2025-05-19T13:33:52+02:00",
+          "tree_id": "dd30fb32bec1317c2b8a772350c65c34959bbf90",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fd128cf83bac95a64b574137ae5165b341b1f58d"
+        },
+        "date": 1747654524845,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.34962043935462,
+            "unit": "ns/iter",
+            "extra": "iterations: 3944429\ncpu: 177.34323700591395 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22358.903453763964,
+            "unit": "ns/iter",
+            "extra": "iterations: 31415\ncpu: 22355.69880630272 ns\nthreads: 1"
           }
         ]
       }
