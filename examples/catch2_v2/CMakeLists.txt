@@ -1,7 +1,4 @@
-set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_CXX_STANDARD_REQUIRED On)
-set (CMAKE_CXX_EXTENSIONS Off)
-cmake_minimum_required(VERSION 3.12...3.13)
+cmake_minimum_required(VERSION 3.12)
 project("Catch2_bench")
 
 include(FetchContent)
