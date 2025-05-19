@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1741766584960,
+  "lastUpdate": 1747654453203,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44553,6 +44553,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00005042019538286072",
             "extra": "mean: 1.645769354680329 msec\nrounds: 609"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd128cf83bac95a64b574137ae5165b341b1f58d",
+          "message": "chore: update ubuntu runner from 20.04 to latest (#312)\n\n* update workflow runner for cpp benchmarks to `ubuntu-latest`\n* update google/benchmark and google/googletest versions to work with latest ubuntu version",
+          "timestamp": "2025-05-19T13:33:52+02:00",
+          "tree_id": "dd30fb32bec1317c2b8a772350c65c34959bbf90",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/fd128cf83bac95a64b574137ae5165b341b1f58d"
+        },
+        "date": 1747654450040,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75481.36468644938,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000010612227960223142",
+            "extra": "mean: 13.248303129573952 usec\nrounds: 39719"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 615.2187091070477,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001156561631874625",
+            "extra": "mean: 1.6254382144057986 msec\nrounds: 597"
           }
         ]
       }
