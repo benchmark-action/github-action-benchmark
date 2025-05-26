@@ -19,7 +19,7 @@ jobs:
         run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Criterion.rs Benchmark
           tool: 'cargo'

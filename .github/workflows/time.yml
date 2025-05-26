@@ -19,7 +19,7 @@ jobs:
         run: (time (head --bytes=1000000000 /dev/random  >/dev/null)) 2>&1 | tee output.txt
 
       - name: Analyze results with Nyrkiö
-        uses: nyrkio/change-detection@HEAD
+        uses: nyrkio/change-detection@v2
         with:
           name: nyrkio/change-detection/master/time-cli-example
           tool: 'time'

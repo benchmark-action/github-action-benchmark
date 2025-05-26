@@ -24,7 +24,7 @@ jobs:
           pytest bench.py --benchmark-json output.json
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'

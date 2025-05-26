@@ -19,7 +19,7 @@ jobs:
         run: cd examples/rust && cargo +nightly bench | tee output.txt
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Rust Benchmark
           tool: 'cargo'
