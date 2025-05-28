@@ -345,6 +345,7 @@ export async function postResults(
                 console.error(err.toJSON());
             } else {
                 console.error(err);
+                console.error(err.response.data);
             }
             if (!neverFail) {
                 core.setFailed(`PUT to ${uri} failed. ${err.status} ${err.code}.`);
