@@ -24,10 +24,11 @@ jobs:
           name: nyrkio/change-detection/master/time-cli-example
           tool: 'time'
           output-file-path: output.txt
-          # Get yours from https://nyrkio.com/docs/getting-started
-          nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Pick up your token at https://nyrkio.com/docs/getting-started
+          # Then head to https://github.com/USER_OR_ORG/PROJECT/settings/secrets/actions
+          # Store the token you just created as a Repository secret. We'll use the variable name `secrets.NYRKIO_JWT_TOKEN` for it below.
+          nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
           comment-on-alert: true
           fail-on-alert: true
           # Make results and change points public, so that any oss contributor can see them

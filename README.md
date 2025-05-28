@@ -56,6 +56,8 @@ jobs:
           tool: 'go'
           output-file-path: output.txt
           # Pick up your token at https://nyrkio.com/docs/getting-started
+          # Then head to https://github.com/USER_OR_ORG/PROJECT/settings/secrets/actions
+          # Store the token you just created as a Repository secret. We'll use the variable name `NYRKIO_JWT_TOKEN` for it below.
           nyrkio-token: ${{ secrets.NYRKIO_JWT_TOKEN }}
 ```
 

@@ -25,7 +25,7 @@ jobs:
           path: ./cache
           key: ${{ runner.os }}-benchmark
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Alert setup example with cache
           tool: 'go'

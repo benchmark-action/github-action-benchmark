@@ -21,7 +21,7 @@ jobs:
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Benchmark.Net Benchmark
           tool: 'benchmarkdotnet'
@@ -35,7 +35,7 @@ jobs:
           nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Benchmark.Net Benchmark
           tool: 'benchmarkdotnet'

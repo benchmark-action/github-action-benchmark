@@ -13,7 +13,7 @@ https://nyrkio.com/docs/getting-started
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'nyrkioJson'
     # Note that for 'nyrkioJson' you should supply a directory that contains 1 or more JSON files.

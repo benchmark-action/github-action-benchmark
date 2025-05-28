@@ -22,7 +22,7 @@ jobs:
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Benchmark.js Benchmark
           tool: 'benchmarkjs'
@@ -36,7 +36,7 @@ jobs:
           nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Benchmark.js Benchmark
           tool: 'benchmarkjs'

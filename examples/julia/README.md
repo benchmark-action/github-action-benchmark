@@ -6,7 +6,7 @@ Please read the [docs](https://juliaci.github.io/BenchmarkTools.jl/stable/manual
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'julia'
     output-file-path: output.txt

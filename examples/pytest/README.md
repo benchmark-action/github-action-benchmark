@@ -49,7 +49,7 @@ Store the benchmark results with step using the action. Please set `pytest` to `
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'pytest'
     output-file-path: output.json

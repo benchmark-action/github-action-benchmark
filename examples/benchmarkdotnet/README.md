@@ -80,7 +80,7 @@ You want to get the path of the `-report-full-compressed.json` report for use wi
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'benchmarkdotnet'
     output-file-path: BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json

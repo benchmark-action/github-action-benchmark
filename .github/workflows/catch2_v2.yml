@@ -23,7 +23,7 @@ jobs:
           ./Catch2_bench | tee ../benchmark_result.txt
 
       - name: Store benchmark result
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Catch2 Benchmark
           tool: 'catch2'
@@ -37,7 +37,7 @@ jobs:
           nyrkio-enable: false
 
       - name: Store benchmark result - separate results repo
-        uses: nyrkio/change-detection@v1
+        uses: nyrkio/change-detection@v2
         with:
           name: Catch2 Benchmark
           tool: 'catch2'

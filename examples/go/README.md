@@ -26,7 +26,7 @@ Store the benchmark results with step using the action. Please set `go` to `tool
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'go'
     output-file-path: output.txt

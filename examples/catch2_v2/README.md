@@ -40,7 +40,7 @@ Store the benchmark results with step using the action. Please set `catch2` to `
 
 ```yaml
 - name: Analyze benchmark results with Nyrkiö
-  uses: nyrkio/change-detection@v1
+  uses: nyrkio/change-detection@v2
   with:
     tool: 'catch2'
     output-file-path: benchmark_result.json
