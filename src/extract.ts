@@ -799,11 +799,12 @@ function extractJmhResult(output: string): BenchmarkResult[] {
     }
     return json.map((b) => {
         const name = b.benchmark;
+        const metricName = b.mode; // metric name
         const value = b.primaryMetric.score;
         const unit = b.primaryMetric.scoreUnit;
         const params = b.params ? ' ( ' + JSON.stringify(b.params) + ' )' : '';
-        const extra = `iterations: ${b.measurementIterations}\nforks: ${b.forks}\nthreads: ${b.threads}`;
-        return { name: name + params, value, unit, extra };
+        const extra = `iterations: ${b.measurementIterations}\nforks: ${b.forks}\nthreads: ${b.threads}\nparams: ${params}`;
+        return { testName: name, name: metricName, value, unit, extra };
     });
 }
 

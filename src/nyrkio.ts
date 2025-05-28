@@ -38,11 +38,18 @@ export interface NyrkioAllChanges {
     changes: NyrkioChanges[];
 }
 
-export function sanitizeForUri(value: string | undefined): string {
+export function sanitizeForUri(value: string | undefined, tool: string): string {
     const v: string = value ?? '';
     const re = /[^a-zA-Z0-9-_.\/]/gi;
     const clean = v.replace(re, '_');
-    return clean.length <= 50 ? clean : clean.substring(0, 50);
+    if (clean.length <= 50) {
+        return clean;
+    }
+    if (tool === 'jmh') {
+        return clean.substring(clean.length - 50);
+    } else {
+        return clean.substring(0, 50);
+    }
 }
 
 export function nyrkioJsonMetricsInit(b: BenchmarkResult): NyrkioMetrics {
@@ -126,22 +133,23 @@ class NyrkioResultSorter {
 
 function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): NyrkioJsonPath[] | null {
     let { name } = config;
+    const { tool } = config;
 
     const benches = bench.benches;
     const d = bench.date / 1000; // Only Unix timestamps in Nyrkiö context.
     let nyrkioResult = nyrkioJsonInit(bench.commit, d);
     let testName: string | undefined = '';
     let branch: string | undefined = undefined;
-    name = sanitizeForUri(name);
+    name = sanitizeForUri(name, tool);
     let nyrkioPath = name;
     const nsrt = new NyrkioResultSorter();
     for (const b of benches) {
-        if (testName !== sanitizeForUri(b.testName)) {
+        if (testName !== sanitizeForUri(b.testName, tool)) {
             nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);
             nyrkioResult = nyrkioJsonInit(bench.commit, d);
 
-            testName = sanitizeForUri(b.testName);
-            branch = sanitizeForUri(nyrkioResult.attributes.branch);
+            testName = sanitizeForUri(b.testName, tool);
+            branch = sanitizeForUri(nyrkioResult.attributes.branch, tool);
             core.debug(branch);
             if (testName && testName.length > 0) {
                 nyrkioPath = name + '/' + branch + '/' + testName;
