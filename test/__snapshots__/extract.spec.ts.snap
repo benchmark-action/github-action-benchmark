@@ -856,8 +856,10 @@ exports[`extractResult() extracts benchmark output from jmh - jmh_output.json 1`
     {
       "extra": "iterations: 3
 forks: 1
-threads: 1",
-      "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+threads: 1
+params: ",
+      "name": "thrpt",
+      "testName": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
       "unit": "ops/s",
       "value": 3376238873.1228185,
     },
@@ -884,8 +886,10 @@ exports[`extractResult() extracts benchmark output from jmh - jmh_output_2.json 
     {
       "extra": "iterations: 3
 forks: 1
-threads: 1",
-      "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere ( {"paramA":"17","paramB":"33"} )",
+threads: 1
+params:  ( {"paramA":"17","paramB":"33"} )",
+      "name": "thrpt",
+      "testName": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
       "unit": "ops/s",
       "value": 3376238873.1228185,
     },
