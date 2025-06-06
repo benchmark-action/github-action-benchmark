@@ -296,6 +296,7 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
         name: username, // XXX: Fallback, not correct
         username,
     };
+    const commitUrl = pr.html_url ?? pr._links.html;
     return {
         author: user,
         committer: user,
@@ -303,10 +304,10 @@ function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
         message: pr.title,
         timestamp: pr.head.repo.updated_at,
         repo: pr.base.repo.full_name,
-        url: pr.head.url,
+        url: commitUrl,
         branch: pr.base.ref_name || pr.base.ref,
         prNumber: pr.number,
-        repoUrl: pr.base.repo.html_url,
+        repoUrl: `https://github.com/${pr.base.repo.full_name}`,
     };
 }
 
