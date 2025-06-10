@@ -1,4 +1,4 @@
-Crystal example for benchmarking with `crystal bench.cr`
+Crystal example for benchmarking with `crystal run --release bench.cr`
 =================================================
 
 - [Workflow for this example](../../.github/workflows/crystal.yml)

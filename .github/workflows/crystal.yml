@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: crystal-lang/install-crystal@v1
       - name: Run benchmark
-        run: cd examples/crystal && crystal bench.cr | tee output.txt
+        run: cd examples/crystal && crystal run --release bench.cr | tee output.txt
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
