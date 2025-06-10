@@ -1,0 +1,3 @@
+Warning: benchmarking without the `--release` flag won't yield useful results
+fibonacci(10)   2.12M (472.18ns) (±10.19%)  0.0B/op         fastest
+fibonacci(20)  17.56k ( 56.93µs) (± 8.95%)  0.0B/op  120.58× slower

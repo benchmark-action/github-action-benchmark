@@ -423,6 +423,35 @@ exports[`extractResult() extracts benchmark output from catch2 - issue16_output.
 }
 `;
 
+exports[`extractResult() extracts benchmark output from crystal - crystal_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "fibonacci(10)",
+      "range": "±10.19%",
+      "unit": "ops/sec",
+      "value": 2120000,
+    },
+    {
+      "name": "fibonacci(20)",
+      "range": "±8.95%",
+      "unit": "ops/sec",
+      "value": 17560,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "crystal",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from customBiggerIsBetter - customBiggerIsBetter_output.json 1`] = `
 {
   "benches": [

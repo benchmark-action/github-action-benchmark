@@ -112,6 +112,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         // Colors from https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
         const toolColors = {
           cargo: '#dea584',
+          crystal: '#776791',
           go: '#00add8',
           benchmarkjs: '#f1e05a',
           benchmarkluau: '#000080',

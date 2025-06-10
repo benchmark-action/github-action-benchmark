@@ -29,6 +29,7 @@ export interface Config {
 
 export const VALID_TOOLS = [
     'cargo',
+    'crystal',
     'go',
     'benchmarkjs',
     'benchmarkluau',

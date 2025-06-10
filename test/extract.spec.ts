@@ -80,6 +80,10 @@ describe('extractResult()', function () {
             file: 'criterion_output.txt',
         },
         {
+            tool: 'crystal',
+            file: 'crystal_output.txt',
+        },
+        {
             tool: 'catch2',
             file: 'catch2_output_v2.txt',
         },

@@ -338,6 +338,35 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
+function extractCrystalResult(output: string): BenchmarkResult[] {
+    const lines = output.split(/\r?\n/g);
+    const ret = [];
+    // Example:
+    //   name, mean iterations per second, the mean times per iteration, the standard deviation relative to the mean, and a comparison:
+    //   fibonacci(10)   2.33M (428.63ns) (± 5.54%)  0.0B/op         fastest
+    //   fibonacci(20)  18.66k ( 53.60µs) (± 7.26%)  0.0B/op  125.05× slower
+
+    const reExtract =
+        /^(?<name>.+?)\s+(?<value>[0-9,.kMGT]+)\s+\((?<unit>.+?)\)\s+\(±(\s+)?(?<range>[0-9,.]+)%\)\s+(?<extra>.*)$/;
+
+    for (const line of lines) {
+        const m = line.match(reExtract);
+        console.log({ line, m });
+        if (m?.groups) {
+            const name = m.groups.name.trim();
+            const value =
+                parseFloat(m.groups.value.replace(/,/g, '')) *
+                (m.groups.value.includes('k') ? 1e3 : m.groups.value.includes('M') ? 1e6 : 1);
+            const unit = 'ops/sec'; // Crystal always uses ops/sec
+            const range = `±${m.groups.range.trim()}%`;
+
+            ret.push({ name, value, unit, range });
+        }
+    }
+
+    return ret;
+}
+
 function extractGoResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\r?\n/g);
     const ret = [];
@@ -698,6 +727,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
     switch (tool) {
         case 'cargo':
             benches = extractCargoResult(output);
+            break;
+        case 'crystal':
+            benches = extractCrystalResult(output);
             break;
         case 'go':
             benches = extractGoResult(output);
