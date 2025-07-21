@@ -26,6 +26,7 @@ This action currently supports the following tools:
 - [Benchmark.Net][benchmarkdotnet] for .Net projects
 - [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
 - [JMH][jmh] for Java projects
+- [time][time-cli-util] CLI utility to measure runtime time of any Linux executable
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -51,6 +52,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 | Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
 | Luau         | Coming soon | Coming soon |
+| Time (CLI utility) | [`time`][time-workflow-example]
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -651,6 +653,7 @@ Every release will appear on your GitHub notifications page.
 [examples-page]: https://benchmark-action.github.io/github-action-benchmark/dev/bench/
 [pytest-benchmark]: https://pypi.org/project/pytest-benchmark/
 [pytest]: https://pypi.org/project/pytest/
+[time-cli-util]: https://man7.org/linux/man-pages/man1/time.1.html
 [alert-comment-example]: https://github.com/benchmark-action/github-action-benchmark/commit/077dde1c236baba9244caad4d9e82ea8399dae20#commitcomment-36047186
 [rust-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Rust+Example%22
 [go-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Go+Example%22
@@ -660,6 +663,7 @@ Every release will appear on your GitHub notifications page.
 [catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
 [julia-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Julia+Example+with+BenchmarkTools.jl%22
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
+[time-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22time+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 [minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22

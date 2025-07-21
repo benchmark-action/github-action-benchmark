@@ -81,6 +81,8 @@ function biggerIsBetter(tool: ToolType): boolean {
             return false;
         case 'benchmarkdotnet':
             return false;
+        case 'time':
+            return false;
         case 'customBiggerIsBetter':
             return true;
         case 'customSmallerIsBetter':

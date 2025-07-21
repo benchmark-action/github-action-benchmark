@@ -968,3 +968,56 @@ rounds: 5",
   "tool": "pytest",
 }
 `;
+
+exports[`extractResult() extracts benchmark output from time - time_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "Hello there",
+      "name": "real",
+      "unit": "s",
+      "value": 0.1,
+    },
+    {
+      "extra": "Hello there",
+      "name": "user",
+      "unit": "s",
+      "value": 0.02,
+    },
+    {
+      "extra": "Hello there",
+      "name": "sys",
+      "unit": "s",
+      "value": 0.003,
+    },
+    {
+      "extra": "Hello again",
+      "name": "real",
+      "unit": "s",
+      "value": 0.1,
+    },
+    {
+      "extra": "Hello again",
+      "name": "user",
+      "unit": "s",
+      "value": 0.02,
+    },
+    {
+      "extra": "Hello again",
+      "name": "sys",
+      "unit": "s",
+      "value": 0.003,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "time",
+}
+`;

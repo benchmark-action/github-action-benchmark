@@ -136,6 +136,10 @@ describe('extractResult()', function () {
             file: 'benchmarkdotnet.json',
         },
         {
+            tool: 'time',
+            file: 'time_output.txt',
+        },
+        {
             tool: 'customBiggerIsBetter',
             file: 'customBiggerIsBetter_output.json',
         },
