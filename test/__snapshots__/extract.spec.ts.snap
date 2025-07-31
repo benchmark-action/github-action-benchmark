@@ -134,6 +134,53 @@ exports[`extractResult() extracts benchmark output from cargo - cargo_output.txt
 }
 `;
 
+exports[`extractResult() extracts benchmark output from cargo - cargo_output_units.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "cmov",
+      "range": "± 14",
+      "unit": "cycles/iter",
+      "value": 2835,
+    },
+    {
+      "name": "cmov2",
+      "range": "± 19",
+      "unit": "cycles/iter",
+      "value": 2845,
+    },
+    {
+      "name": "mov",
+      "range": "± 17",
+      "unit": "cycles/iter",
+      "value": 1508,
+    },
+    {
+      "name": "upload",
+      "range": "± 420",
+      "unit": "MS/s",
+      "value": 1911,
+    },
+    {
+      "name": "download",
+      "range": "± 69",
+      "unit": "MS/s",
+      "value": 9001,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from cargo - cargo_output2.txt 1`] = `
 {
   "benches": [
@@ -160,6 +207,35 @@ exports[`extractResult() extracts benchmark output from cargo - cargo_output2.tx
       "range": "± 82",
       "unit": "ns/iter",
       "value": 493,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "cargo",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from cargo - cargo_output3.txt 1`] = `
+{
+  "benches": [
+    {
+      "name": "bench_fib_10",
+      "range": "± 2.21",
+      "unit": "ns/iter",
+      "value": 148.7,
+    },
+    {
+      "name": "bench_fib_20",
+      "range": "± 440.25",
+      "unit": "ns/iter",
+      "value": 18794.12,
     },
   ],
   "commit": {
@@ -216,7 +292,56 @@ exports[`extractResult() extracts benchmark output from cargo - criterion_output
 }
 `;
 
-exports[`extractResult() extracts benchmark output from catch2 - catch2_output.txt 1`] = `
+exports[`extractResult() extracts benchmark output from catch2 - catch2_output_v2.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "100 samples
+208 iterations",
+      "name": "Fibonacci 10",
+      "range": "± 19",
+      "unit": "ns",
+      "value": 344,
+    },
+    {
+      "extra": "100 samples
+2 iterations",
+      "name": "Fibonacci 20",
+      "range": "± 3.256",
+      "unit": "us",
+      "value": 41.731,
+    },
+    {
+      "extra": "100 samples
+1961 iterations",
+      "name": "Fibonacci~ 5!",
+      "range": "± 4",
+      "unit": "ns",
+      "value": 36,
+    },
+    {
+      "extra": "100 samples
+20 iterations",
+      "name": "Fibonacci-15_bench",
+      "range": "± 362",
+      "unit": "us",
+      "value": 3.789,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "catch2",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from catch2 - catch2_output_v3.txt 1`] = `
 {
   "benches": [
     {

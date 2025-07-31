@@ -313,9 +313,7 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
 function extractCargoResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\r?\n/g);
     const ret = [];
-    // Example:
-    //   test bench_fib_20 ... bench:      37,174 ns/iter (+/- 7,527)
-    const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,]+) ns\/iter \(\+\/- ([0-9,]+)\)$/;
+    const reExtract = /^test (.+)\s+\.\.\. bench:\s+([0-9,.]+) (\w+\/\w+) \(\+\/- ([0-9,.]+)\)$/;
     const reComma = /,/g;
 
     for (const line of lines) {
@@ -325,14 +323,15 @@ function extractCargoResult(output: string): BenchmarkResult[] {
         }
 
         const name = m[1].trim();
-        const value = parseInt(m[2].replace(reComma, ''), 10);
-        const range = m[3].replace(reComma, '');
+        const value = parseFloat(m[2].replace(reComma, ''));
+        const unit = m[3].trim();
+        const range = m[4].replace(reComma, '');
 
         ret.push({
             name,
             value,
             range: `± ${range}`,
-            unit: 'ns/iter',
+            unit: unit,
         });
     }
 
@@ -473,7 +472,7 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     //                43.186 us     41.402 us     46.246 us <-- Actual benchmark data
     //                11.719 us      7.847 us     17.747 us <-- Ignored
 
-    const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
+    const reTestCaseStart = /^benchmark name +samples +iterations +(estimated|est run time)/;
     const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)\s*$/;
     const reBenchmarkValues =
         /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;

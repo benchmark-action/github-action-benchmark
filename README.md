@@ -226,7 +226,7 @@ that this value must be quoted like `'@rhysd'` because [`@` is an indicator in Y
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
 
-### PR Summary
+### Job Summary
 
 Similar to the [Commit comment](#commit-comment) feature, Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
 also supported. In order to use Job Summaries, turn on the `summary-always`
@@ -662,8 +662,8 @@ Every release will appear on your GitHub notifications page.
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
-[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
+[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22
+[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment%22
 [google-benchmark]: https://github.com/google/benchmark
 [catch2]: https://github.com/catchorg/Catch2
 [jmh]: https://openjdk.java.net/projects/code-tools/jmh/

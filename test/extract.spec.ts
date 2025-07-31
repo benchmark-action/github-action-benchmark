@@ -69,11 +69,23 @@ describe('extractResult()', function () {
         },
         {
             tool: 'cargo',
+            file: 'cargo_output3.txt',
+        },
+        {
+            tool: 'cargo',
+            file: 'cargo_output_units.txt',
+        },
+        {
+            tool: 'cargo',
             file: 'criterion_output.txt',
         },
         {
             tool: 'catch2',
-            file: 'catch2_output.txt',
+            file: 'catch2_output_v2.txt',
+        },
+        {
+            tool: 'catch2',
+            file: 'catch2_output_v3.txt',
         },
         {
             tool: 'go',

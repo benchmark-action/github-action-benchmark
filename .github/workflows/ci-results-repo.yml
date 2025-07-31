@@ -79,9 +79,48 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark' './benchmark-data-repository'
 
-  catch2-framework:
-    name: Run Catch2 C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
-    runs-on: ubuntu-20.04
+  catch2-v2-framework:
+    name: Run Catch2 C++ Benchmark Framework example (v2.x) - github.com/benchmark-action/github-action-benchmark-results
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Run benchmark
+        run: |
+          cd examples/catch2_v2
+          mkdir build && cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --config Release
+          ./Catch2_bench > ../benchmark_result.txt
+
+      - uses: actions/checkout@v4
+        with:
+          repository: benchmark-action/github-action-benchmark-results
+          ref: 'gh-pages'
+          path: 'dist/other-repo'
+      - name: Save previous data.js
+        run: |
+          cp ./dist/other-repo/dev/bench/data.js before_data.js
+
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Catch2 Benchmark
+          tool: 'catch2'
+          output-file-path: examples/catch2_v2/benchmark_result.txt
+          fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
+
+  catch2-v3-framework:
+    name: Run Catch2 C++ Benchmark Framework example (v3.x) - github.com/benchmark-action/github-action-benchmark-results
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -110,17 +149,17 @@ jobs:
       - name: Store benchmark result
         uses: ./
         with:
-          name: Catch2 Benchmark
+          name: Catch2 Benchmark (v3)
           tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
+      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)' './benchmark-data-repository'
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
