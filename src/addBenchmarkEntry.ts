@@ -1,14 +1,16 @@
 import { Benchmark } from './extract';
 import * as core from '@actions/core';
 import { BenchmarkSuites } from './write';
+import { normalizeBenchmark } from './normalizeBenchmark';
 
 export function addBenchmarkEntry(
     benchName: string,
     benchEntry: Benchmark,
     entries: BenchmarkSuites,
     maxItems: number | null,
-): { prevBench: Benchmark | null } {
+): { prevBench: Benchmark | null; normalizedCurrentBench: Benchmark } {
     let prevBench: Benchmark | null = null;
+    let normalizedCurrentBench: Benchmark = benchEntry;
 
     // Add benchmark result
     if (entries[benchName] === undefined) {
@@ -24,7 +26,9 @@ export function addBenchmarkEntry(
             }
         }
 
-        suites.push(benchEntry);
+        normalizedCurrentBench = normalizeBenchmark(prevBench, benchEntry);
+
+        suites.push(normalizedCurrentBench);
 
         if (maxItems !== null && suites.length > maxItems) {
             suites.splice(0, suites.length - maxItems);
@@ -33,5 +37,5 @@ export function addBenchmarkEntry(
             );
         }
     }
-    return { prevBench };
+    return { prevBench, normalizedCurrentBench };
 }
