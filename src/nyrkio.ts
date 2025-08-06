@@ -249,17 +249,15 @@ async function setNotifiers(config: Config) {
     try {
         // Will throw on failure
         const response = await axios.get(uri, options);
-        let configObject = response.data;
-        // We cannot set billing information, it is read-only, and Nyrkiö will 400 us if we try
-        if (configObject.billing !== undefined) configObject.billing = undefined;
-        if (
-            !configObject ||
-            (configObject && configObject.notifiers === null) ||
-            (configObject && configObject.notifiers === undefined)
-        ) {
-            configObject = {
-                notifiers: { github: true, slack: false, since_days: 14 },
-            };
+        const currentConfig = response.data;
+        const configObject = {
+            notifiers: { github: true, slack: false, since_days: 14 },
+        };
+        if (currentConfig?.notifiers?.slack) {
+            configObject.notifiers.slack = currentConfig.notifiers.slack;
+        }
+        if (currentConfig?.notifiers?.since_days) {
+            configObject.notifiers.since_days = currentConfig.notifiers.since_days;
         }
         configObject['notifiers']['github'] = commentAlways || commentOnAlert;
         console.log(configObject);
