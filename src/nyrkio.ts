@@ -250,6 +250,8 @@ async function setNotifiers(config: Config) {
         // Will throw on failure
         const response = await axios.get(uri, options);
         let configObject = response.data;
+        // We cannot set billing information, it is read-only, and Nyrkiö will 400 us if we try
+        if (configObject.billing !== undefined) configObject.billing = undefined;
         if (
             !configObject ||
             (configObject && configObject.notifiers === null) ||
