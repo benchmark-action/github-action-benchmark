@@ -53,7 +53,7 @@ export function sanitizeForUri(value: string | undefined, tool: string): string 
 }
 
 export function nyrkioJsonMetricsInit(b: BenchmarkResult): NyrkioMetrics {
-    const NYRKIO_JSON_TEMPLATE_METRICS = { name: b.name, unit: b.unit, value: b.value };
+    const NYRKIO_JSON_TEMPLATE_METRICS = { name: b.name, unit: b.unit, value: b.value, direction: b.direction };
     return NYRKIO_JSON_TEMPLATE_METRICS;
 }
 
@@ -93,7 +93,6 @@ class NyrkioResultSorter {
         this.r = new Map<string, Map<string, Map<string, NyrkioJson>>>();
     }
 
-    // TODO: git_commit appears to be redundant
     add(path: string, git_commit: string, result: NyrkioJson) {
         if (result.metrics.length <= 0) return;
 
@@ -161,6 +160,9 @@ function convertBenchmarkToNyrkioJson(bench: Benchmark, config: Config): NyrkioJ
         m.value = b.value;
         m.name = b.name;
         m.unit = b.unit;
+        if (b.direction !== undefined) {
+            m.direction = b.direction;
+        }
         nyrkioResult.metrics.push(m);
     }
     nsrt.add(nyrkioPath, bench.commit.id, nyrkioResult);

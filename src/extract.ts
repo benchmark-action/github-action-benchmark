@@ -6,11 +6,15 @@ import gitCommitInfo from 'git-commit-info';
 import { branchName } from './git';
 import { Config, ToolType } from './config';
 
+const DIRECTION_IS_BETTER = ['higher_is_better', 'lower_is_better'];
+export type Direction = typeof DIRECTION_IS_BETTER[number];
+
 export interface BenchmarkResult {
     name: string; // metric name
     value: number;
     range?: string;
     unit: string;
+    direction?: Direction;
     extra?: string;
     testName?: string;
 }
@@ -495,12 +499,16 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         const min = m[2].replace(reComma, '');
         const max = m[6].replace(reComma, '');
         // console.log(name,value,unit);
+        let direction: string | undefined = undefined;
+        if (unit === 'time') direction = 'lower_is_better';
+        if (unit === 'thrpt') direction = 'higher_is_better';
 
         ret.push({
             name,
             value,
             range: `[${min}, ${max}]`,
             unit: unit,
+            direction,
             testName,
         });
     }
@@ -804,7 +812,7 @@ function extractJmhResult(output: string): BenchmarkResult[] {
         const unit = b.primaryMetric.scoreUnit;
         const params = b.params ? ' ( ' + JSON.stringify(b.params) + ' )' : '';
         const extra = `iterations: ${b.measurementIterations}\nforks: ${b.forks}\nthreads: ${b.threads}\nparams: ${params}`;
-        return { testName: name, name: metricName, value, unit, extra };
+        return { testName: name, name: metricName, direction: 'lower_is_better', value, unit, extra };
     });
 }
 
@@ -936,6 +944,7 @@ function extractTimeBenchmarkResult(output: string): BenchmarkResult[] {
                     name: 'real',
                     value: v,
                     unit: 's',
+                    direction: 'lower_is_better',
                 });
         }
         if (line.startsWith('user')) {
@@ -948,6 +957,7 @@ function extractTimeBenchmarkResult(output: string): BenchmarkResult[] {
                     name: 'user',
                     value: v,
                     unit: 's',
+                    direction: 'lower_is_better',
                 });
         }
         if (line.startsWith('sys')) {
@@ -959,6 +969,7 @@ function extractTimeBenchmarkResult(output: string): BenchmarkResult[] {
                     name: 'sys',
                     value: v,
                     unit: 's',
+                    direction: 'lower_is_better',
                 });
             firstline = true;
         }

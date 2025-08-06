@@ -854,6 +854,7 @@ exports[`extractResult() extracts benchmark output from jmh - jmh_output.json 1`
 {
   "benches": [
     {
+      "direction": "lower_is_better",
       "extra": "iterations: 3
 forks: 1
 threads: 1
@@ -884,6 +885,7 @@ exports[`extractResult() extracts benchmark output from jmh - jmh_output_2.json 
 {
   "benches": [
     {
+      "direction": "lower_is_better",
       "extra": "iterations: 3
 forks: 1
 threads: 1
