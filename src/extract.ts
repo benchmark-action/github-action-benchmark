@@ -508,8 +508,8 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
             value,
             range: `[${min}, ${max}]`,
             unit: unit,
-            direction,
-            testName,
+            direction: direction,
+            testName: testName,
         });
     }
 
