@@ -500,10 +500,9 @@ function extractCriterionResult(output: string): BenchmarkResult[] {
         const max = m[6].replace(reComma, '');
         // console.log(name,value,unit);
         let direction: string | undefined = undefined;
-        if (unit === 'time') direction = 'lower_is_better';
-        if (unit === 'thrpt') direction = 'higher_is_better';
-        console.log(direction);
-        console.log(unit);
+        if (name === 'time') direction = 'lower_is_better';
+        if (name === 'thrpt') direction = 'higher_is_better';
+
         ret.push({
             name,
             value,
@@ -1085,7 +1084,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
         default:
             throw new Error(`FATAL: Unexpected tool: '${tool}'`);
     }
-    console.log(benches);
+
     if (benches.length === 0) {
         throw new Error(`No benchmark result was found in ${config.outputFilePath}. Benchmark output was '${output}'`);
     }
