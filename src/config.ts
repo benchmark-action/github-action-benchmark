@@ -321,9 +321,8 @@ function validateNyrkio(
 ): asserts nyrkioToken {
     if (nyrkioEnable) {
         if (!nyrkioToken) {
-            throwValidationError(
-                neverFail,
-                'Please use GitHub secrets to supply a JWT token for ${nyrkioApiRoot}. (https://nyrkio.com/docs/getting-started)',
+            console.log(
+                "nyrkio-token is not supplied in the input. Don't worry, will use Challenge Publish Handshake with Nyrkiö to automatically post test_results with your github username.",
             );
             return;
         }

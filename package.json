@@ -35,6 +35,7 @@
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
     "@actions/io": "^1.1.2",
+    "@actions/artifact": "^2.3.2",
     "axios": "^1.7.9",
     "git-commit-info": "^2.0.2"
   },
