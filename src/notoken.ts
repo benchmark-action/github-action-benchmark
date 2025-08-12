@@ -87,23 +87,14 @@ function getGithubContext(): ChallengePublishClaim {
     if (isPr()) {
         core.debug("We're a `pull_request`");
         core.debug(JSON.stringify(github.context));
-        core.debug('1');
         const username = github.context.actor;
-        core.debug('2');
         const client_secret = generateSecret();
-        core.debug('3');
         const repo_owner = github.context.payload.repository?.owner?.login;
-        core.debug('4');
         const repo_name = github.context.payload.repository?.name;
-        core.debug('5');
         const workflow_name = github.context.workflow;
-        core.debug('6');
         const event_name = github.context.eventName;
-        core.debug('7');
         const run_number = github.context.runNumber;
-        core.debug('8');
         const run_id = github.context.runId;
-        core.debug('9');
         return {
             username: username,
             client_secret: client_secret,
