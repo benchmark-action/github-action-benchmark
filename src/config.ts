@@ -322,7 +322,7 @@ function validateNyrkio(
     if (nyrkioEnable) {
         if (!nyrkioToken) {
             console.log(
-                "nyrkio-token is not supplied in the input. Don't worry, will use NoToken authentication with Nyrkiö to post test_results with your github username.",
+                "nyrkio-token is not supplied in the input. Don't worry, will use Challenge Publish Handshake with Nyrkiö to automatically post test_results with your github username.",
             );
             return;
         }

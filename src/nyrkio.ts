@@ -303,10 +303,10 @@ export async function postResults(
             };
         } else {
             if (!neverFail) {
-                core.setFailed(`nyrkio-token was not configured and trying to use NoToken auth failed.`);
+                core.setFailed('nyrkio-token was not configured and trying to use Challenge Publish Handshake failed.');
                 return undefined; // undefined is an error, false means no changepoints
             } else {
-                console.error(`nyrkio-token was not configured and trying to use NoToken auth failed.`);
+                console.error('nyrkio-token was not configured and trying to use Challenge Publish Handshake failed.');
                 console.error('Note: never-fail is true. Will exit successfully to keep the build green.');
                 return undefined; // undefined is an error, false means no changepoints
             }
