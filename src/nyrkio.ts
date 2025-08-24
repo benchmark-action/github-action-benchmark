@@ -284,6 +284,7 @@ export async function postResults(
 ): Promise<[NyrkioAllChanges] | boolean | undefined> {
     const { name, nyrkioApiRoot, nyrkioOrg, neverFail, nyrkioPublic } = config;
     let nyrkioToken: string | null = config.nyrkioToken;
+    let isCphUser: boolean | null = null;
 
     core.debug(nyrkioToken ? nyrkioToken.substring(0, 5) : "WHERE's MY TOKEN???");
 
@@ -294,6 +295,7 @@ export async function postResults(
             console.log(
                 'No JWT token supplied, but successfully used Challenge Publish Handshake to prove my identity.',
             );
+            isCphUser = true;
             nyrkioToken = jwt;
             config.nyrkioToken = jwt;
             options = {
@@ -319,7 +321,7 @@ export async function postResults(
         };
     }
 
-    if (nyrkioToken) {
+    if (nyrkioToken && !isCphUser) {
         await setParameters(config, options);
         await setNotifiers(config, options);
     }
@@ -385,7 +387,7 @@ export async function postResults(
         }
         console.log(nyrkioPublic);
         try {
-            if (nyrkioPublic) {
+            if (nyrkioPublic && nyrkioToken && !isCphUser) {
                 core.debug(`Make ${r.path} public.`);
                 const docs = [{ public: true, attributes: { git_repo: commit.repo, branch: commit.branch } }];
                 const response = await axios.post(testConfigUrl, docs, options);
