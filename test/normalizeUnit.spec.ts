@@ -13,6 +13,18 @@ describe('normalizeUnit', () => {
         expect(normalizeUnit('s', 'ns', 12_000_000_000)).toBe(12);
     });
 
+    it('normalize smaller when new unit is larger - iter units', () => {
+        expect(normalizeUnit('ms/iter', 's/iter', 12)).toBe(12_000);
+        expect(normalizeUnit('us/iter', 's/iter', 12)).toBe(12_000_000);
+        expect(normalizeUnit('ns/iter', 's/iter', 12)).toBe(12_000_000_000);
+    });
+
+    it('normalize smaller when new unit is smaller - iter units', () => {
+        expect(normalizeUnit('s/iter', 'ms/iter', 12)).toBe(0.012);
+        expect(normalizeUnit('s/iter', 'us/iter', 12)).toBe(0.000_012);
+        expect(normalizeUnit('s/iter', 'ns/iter', 12_000_000_000)).toBe(12);
+    });
+
     it('normalize smaller when new unit is smaller - ops per time units', () => {
         expect(normalizeUnit('ops/ms', 'ops/s', 12)).toBe(0.012);
         expect(normalizeUnit('ops/us', 'ops/s', 12)).toBe(0.000_012);

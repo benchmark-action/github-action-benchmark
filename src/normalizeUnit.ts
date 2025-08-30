@@ -8,11 +8,20 @@ export function normalizeUnit(prevUnit: string, currentUnit: string, value: numb
         return value * 1000 ** unitDiff;
     }
 
-    const prevUnitIndex2 = OPS_PER_TIME_UNIT.indexOf(prevUnit);
-    const currentUnitIndex2 = OPS_PER_TIME_UNIT.indexOf(currentUnit);
+    const prevUnitIndex2 = ITER_UNITS.indexOf(prevUnit);
+    const currentUnitIndex2 = ITER_UNITS.indexOf(currentUnit);
 
     if (prevUnitIndex2 >= 0 && currentUnitIndex2 >= 0) {
         const unitDiff = prevUnitIndex2 - currentUnitIndex2;
+
+        return value * 1000 ** unitDiff;
+    }
+
+    const prevUnitIndex3 = OPS_PER_TIME_UNIT.indexOf(prevUnit);
+    const currentUnitIndex3 = OPS_PER_TIME_UNIT.indexOf(currentUnit);
+
+    if (prevUnitIndex3 >= 0 && currentUnitIndex3 >= 0) {
+        const unitDiff = prevUnitIndex3 - currentUnitIndex3;
 
         return value * 1000 ** unitDiff;
     }
@@ -21,4 +30,5 @@ export function normalizeUnit(prevUnit: string, currentUnit: string, value: numb
 }
 
 const TIME_UNITS = ['s', 'ms', 'us', 'ns'];
+const ITER_UNITS = TIME_UNITS.map((unit) => `${unit}/iter`);
 const OPS_PER_TIME_UNIT = [...TIME_UNITS].reverse().map((unit) => `ops/${unit}`);
