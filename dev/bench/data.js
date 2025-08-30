@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571911611,
+  "lastUpdate": 1756571947541,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51859,6 +51859,42 @@ window.BENCHMARK_DATA = {
             "value": 22358.903453763964,
             "unit": "ns/iter",
             "extra": "iterations: 31415\ncpu: 22355.69880630272 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571944444,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.0843270644896,
+            "unit": "ns/iter",
+            "extra": "iterations: 3955966\ncpu: 177.07243894411627 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22295.59297921782,
+            "unit": "ns/iter",
+            "extra": "iterations: 31421\ncpu: 22290.789058273134 ns\nthreads: 1"
           }
         ]
       }
