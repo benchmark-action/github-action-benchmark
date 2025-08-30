@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571907945,
+  "lastUpdate": 1756571911611,
   "entries": {
     "Rust Benchmark": [
       {
@@ -44907,6 +44907,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00001156561631874625",
             "extra": "mean: 1.6254382144057986 msec\nrounds: 597"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571908546,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76939.19181266584,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000010276662264084319",
+            "extra": "mean: 12.99727715407817 usec\nrounds: 37766"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 590.6896785459722,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008727241163934497",
+            "extra": "mean: 1.6929363019539743 msec\nrounds: 563"
           }
         ]
       }
