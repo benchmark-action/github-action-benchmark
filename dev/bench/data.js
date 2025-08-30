@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571965626,
+  "lastUpdate": 1756571994117,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16338,6 +16338,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 30590,
             "range": "± 84",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571990982,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 159,
+            "range": "± 6",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 26404,
+            "range": "± 69",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 20094,
+            "range": "± 38",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 32520,
+            "range": "± 103",
             "unit": "ns/iter"
           },
           {
