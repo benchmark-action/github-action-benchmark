@@ -24,5 +24,7 @@ describe('extractRangeInfo', () => {
     it('should NOT extract range with invalid number', () => {
         expect(extractRangeInfo('± boo')).toBeUndefined();
         expect(extractRangeInfo('+- boo')).toBeUndefined();
+        expect(extractRangeInfo('± 1boo')).toBeUndefined();
+        expect(extractRangeInfo('+- 1boo')).toBeUndefined();
     });
 });

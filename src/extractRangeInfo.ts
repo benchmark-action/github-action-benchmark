@@ -5,11 +5,11 @@ export function extractRangeInfo(range: string | undefined): { prefix: string; v
 
     const matches = range.match(/(?<prefix>(\+-|±)\s*)(?<value>\d.+)/);
 
-    if (!matches) {
+    if (!matches || !matches.groups) {
         return undefined;
     }
 
-    const valueString = matches.groups?.['value'];
+    const valueString = matches.groups.value;
 
     const value = Number(valueString);
 
@@ -19,6 +19,6 @@ export function extractRangeInfo(range: string | undefined): { prefix: string; v
 
     return {
         value,
-        prefix: matches.groups?.prefix ?? '',
+        prefix: matches.groups.prefix ?? '',
     };
 }
