@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571875145,
+  "lastUpdate": 1756571881223,
   "entries": {
     "Rust Benchmark": [
       {
@@ -56915,6 +56915,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 8.23179,
             "range": "± 1.04571",
+            "unit": "us",
+            "extra": "100 samples\n4 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571878215,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 86.9072,
+            "range": "± 7.75249",
+            "unit": "ns",
+            "extra": "100 samples\n361 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 7.57222,
+            "range": "± 300.653",
             "unit": "us",
             "extra": "100 samples\n4 iterations"
           }
