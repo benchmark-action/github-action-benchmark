@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571881223,
+  "lastUpdate": 1756571901002,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36469,6 +36469,44 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 13269,
             "range": "±0.13%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571897602,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1630773,
+            "range": "±0.66%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13376,
+            "range": "±0.17%",
             "unit": "ops/sec",
             "extra": "98 samples"
           }
