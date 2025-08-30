@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1747654555476,
+  "lastUpdate": 1756571875145,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26395,6 +26395,60 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "30156 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "689894fdd87f7c62559ae828d4c91bacc2b211d4",
+          "message": "chore: enable codecov comment on PRs (#321)\n\n* enable PR comments from codecov\n* use the latest codecov action",
+          "timestamp": "2025-08-30T18:37:21+02:00",
+          "tree_id": "7d8957c3b4034091fb7ba16187c142bc4d06baef",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/689894fdd87f7c62559ae828d4c91bacc2b211d4"
+        },
+        "date": 1756571871831,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 312.2,
+            "unit": "ns/op",
+            "extra": "3809805 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 39903,
+            "unit": "ns/op",
+            "extra": "30170 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric",
+            "value": 39832,
+            "unit": "ns/op\t         4.000 auxMetricUnits",
+            "extra": "30372 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 39832,
+            "unit": "ns/op",
+            "extra": "30372 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "30372 times\n4 procs"
           }
         ]
       }
