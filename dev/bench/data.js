@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756848239887,
+  "lastUpdate": 1756848244074,
   "entries": {
     "Rust Benchmark": [
       {
@@ -63023,6 +63023,42 @@ window.BENCHMARK_DATA = {
             "value": 42.92904370597431,
             "unit": "ns",
             "range": "± 0.06560567776636235"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4",
+          "message": "fix: time units are not normalized (issue #122) (#318)\n\nThis PR fixes an issue when the new benchmark results are using a different time unit than the previous one. This happens specifically when the benchmark values are very close to the boundary between 2 units, ex. `990 ns/iter` and `1.1 us/iter`. In that case, we need to normalize the newly coming results to the previously used unit so that the values are comparable.\n\n* extract addBenchmarkEntry function\n* normalize new entry values to match last entry units\n* handle `<time>`, `<time>/iter` and `ops/<time>` units",
+          "timestamp": "2025-09-02T23:22:49+02:00",
+          "tree_id": "adb8609ba7a1aee28972ad77f920c7fdff95086a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4"
+        },
+        "date": 1756848239780,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.91254715834345,
+            "unit": "ns",
+            "range": "± 0.0566968104594448"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 43.048663792701866,
+            "unit": "ns",
+            "range": "± 0.07419502955293104"
           }
         ]
       }
