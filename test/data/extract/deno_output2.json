@@ -1,0 +1,73 @@
+{
+    "version": 1,
+    "runtime": "Deno/2.1.4 aarch64-apple-darwin",
+    "cpu": "Apple M1 Max",
+    "benches": [
+      {
+        "origin": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts",
+        "group": "Float32 writeAt",
+        "name": "wgpu-memory",
+        "baseline": false,
+        "results": [
+          {
+            "ok": {
+              "n": 5321,
+              "min": 61917.0,
+              "max": 1205959.0,
+              "avg": 73232.0,
+              "p75": 64750.0,
+              "p99": 118500.0,
+              "p995": 122000.0,
+              "p999": 206583.0,
+              "highPrecision": true,
+              "usedExplicitTimers": true
+            }
+          }
+        ]
+      },
+      {
+        "origin": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts",
+        "group": "Float32 writeAt",
+        "name": "DataView",
+        "baseline": false,
+        "results": [
+          {
+            "ok": {
+              "n": 6689,
+              "min": 54166.0,
+              "max": 602791.0,
+              "avg": 56036.0,
+              "p75": 54542.0,
+              "p99": 94000.0,
+              "p995": 94125.0,
+              "p999": 102250.0,
+              "highPrecision": true,
+              "usedExplicitTimers": true
+            }
+          }
+        ]
+      },
+      {
+        "origin": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts",
+        "group": "Float32 writeAt",
+        "name": "TypedArray",
+        "baseline": true,
+        "results": [
+          {
+            "ok": {
+              "n": 8493,
+              "min": 38667.0,
+              "max": 225917.0,
+              "avg": 39802.0,
+              "p75": 38958.0,
+              "p99": 59708.0,
+              "p995": 59958.0,
+              "p999": 133042.0,
+              "highPrecision": true,
+              "usedExplicitTimers": true
+            }
+          }
+        ]
+      }
+    ]
+  }

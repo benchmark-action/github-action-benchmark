@@ -487,6 +487,64 @@ exports[`extractResult() extracts benchmark output from customSmallerIsBetter - 
 }
 `;
 
+exports[`extractResult() extracts benchmark output from deno - deno_output1.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "n=49",
+      "name": "file:///dev/bench_me.js/-/Deno.UnsafePointerView#getUint32",
+      "unit": "ns",
+      "value": 1308.7523755102038,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "deno",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from deno - deno_output2.json 1`] = `
+{
+  "benches": [
+    {
+      "extra": "n=5321",
+      "name": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts/Float32 writeAt/wgpu-memory",
+      "unit": "ns",
+      "value": 73232,
+    },
+    {
+      "extra": "n=6689",
+      "name": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts/Float32 writeAt/DataView",
+      "unit": "ns",
+      "value": 56036,
+    },
+    {
+      "extra": "n=8493",
+      "name": "file:///Users/garciat/Desktop/wgpu-memory/benchmarks/scalar.bench.ts/Float32 writeAt/TypedArray",
+      "unit": "ns",
+      "value": 39802,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "deno",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from go - go_fiber_output.txt 1`] = `
 {
   "benches": [
