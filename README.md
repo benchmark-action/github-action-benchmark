@@ -26,6 +26,7 @@ This action currently supports the following tools:
 - [Benchmark.Net][benchmarkdotnet] for .Net projects
 - [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
 - [JMH][jmh] for Java projects
+- [lit][lit] for projects using the LLVM Integrated Tester
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -51,6 +52,8 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 | Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
 | Luau         | Coming soon | Coming soon |
+| lit          | [lit Example Workflow][lit-workflow-example]                                            | [examples/lit](./examples/lit)                 |
+
 
 All benchmark charts from above workflows are gathered in GitHub pages:
 
@@ -362,6 +365,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
 - [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
 - [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
+- [lit](./examples/lit/README.md)
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
 
@@ -660,6 +664,7 @@ Every release will appear on your GitHub notifications page.
 [catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
 [julia-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Julia+Example+with+BenchmarkTools.jl%22
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
+[lit-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22lit+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 [minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22
@@ -673,4 +678,5 @@ Every release will appear on your GitHub notifications page.
 [benchmarkdotnet]: https://benchmarkdotnet.org
 [benchmarkdotnet-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/benchmarkdotnet.yml/badge.svg
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
+[lit]: https://llvm.org/docs/CommandGuide/lit.html
 [job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
