@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756848197947,
+  "lastUpdate": 1756848201168,
   "entries": {
     "Rust Benchmark": [
       {
@@ -36639,6 +36639,44 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 13376,
             "range": "±0.17%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4",
+          "message": "fix: time units are not normalized (issue #122) (#318)\n\nThis PR fixes an issue when the new benchmark results are using a different time unit than the previous one. This happens specifically when the benchmark values are very close to the boundary between 2 units, ex. `990 ns/iter` and `1.1 us/iter`. In that case, we need to normalize the newly coming results to the previously used unit so that the values are comparable.\n\n* extract addBenchmarkEntry function\n* normalize new entry values to match last entry units\n* handle `<time>`, `<time>/iter` and `ops/<time>` units",
+          "timestamp": "2025-09-02T23:22:49+02:00",
+          "tree_id": "adb8609ba7a1aee28972ad77f920c7fdff95086a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4"
+        },
+        "date": 1756848197591,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1650664,
+            "range": "±0.18%",
+            "unit": "ops/sec",
+            "extra": "95 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 13232,
+            "range": "±0.55%",
             "unit": "ops/sec",
             "extra": "98 samples"
           }
