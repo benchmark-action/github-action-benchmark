@@ -1,5 +1,11 @@
 ## Unreleased
 
+<a name="v1.20.5"></a>
+# [v1.20.5](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.5) - 02 Sep 2025
+- **feat** allow to parse generic cargo bench/criterion units (#280)
+- **fix** add summary even when failure threshold is surpassed (#285)
+- **fix** time units are not normalized (#318)
+
 <a name="v1.20.4"></a>
 # [v1.20.4](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.4) - 23 Oct 2024
 - **feat** add typings and validation workflow (#257)
