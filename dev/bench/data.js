@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756571994117,
+  "lastUpdate": 1756848194934,
   "entries": {
     "Rust Benchmark": [
       {
@@ -51955,6 +51955,42 @@ window.BENCHMARK_DATA = {
             "value": 22295.59297921782,
             "unit": "ns/iter",
             "extra": "iterations: 31421\ncpu: 22290.789058273134 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4",
+          "message": "fix: time units are not normalized (issue #122) (#318)\n\nThis PR fixes an issue when the new benchmark results are using a different time unit than the previous one. This happens specifically when the benchmark values are very close to the boundary between 2 units, ex. `990 ns/iter` and `1.1 us/iter`. In that case, we need to normalize the newly coming results to the previously used unit so that the values are comparable.\n\n* extract addBenchmarkEntry function\n* normalize new entry values to match last entry units\n* handle `<time>`, `<time>/iter` and `ops/<time>` units",
+          "timestamp": "2025-09-02T23:22:49+02:00",
+          "tree_id": "adb8609ba7a1aee28972ad77f920c7fdff95086a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4"
+        },
+        "date": 1756848191690,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.39194700745583,
+            "unit": "ns/iter",
+            "extra": "iterations: 3947725\ncpu: 177.3750965429456 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22293.6137522301,
+            "unit": "ns/iter",
+            "extra": "iterations: 31384\ncpu: 22289.31359928626 ns\nthreads: 1"
           }
         ]
       }
