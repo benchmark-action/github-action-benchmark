@@ -2,6 +2,7 @@
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
 import { Config, ToolType } from './config';
+import * as core from '@actions/core';
 
 export interface BenchmarkResult {
     name: string;
@@ -690,6 +691,93 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
     return results;
 }
 
+function parseTimeOutput(line: string): number | undefined {
+    core.debug(`parse time ${line}`);
+    const t = line.split('\t')[1];
+    if (t === undefined) return;
+    const tparts = t.split('m');
+
+    core.debug(tparts[0]);
+    if (tparts[1] === undefined || !tparts[1].endsWith('s')) return;
+    return parseFloat(tparts[0]) * 60.0 + parseFloat(tparts[1].substring(-1));
+}
+/* Expect to process text with the following structure:
+
+        $ time echo Hello there
+        Hello there
+
+        real    0m0,100s
+        user    0m0,020s
+        sys     0m0,003s
+        $ time echo Hello there
+        Hello again
+
+        real    0m0,100s
+        user    0m0,020s
+        sys     0m0,003s
+
+ Into:
+        [{"name": "real",
+         "value": 0,1,
+         "unit": "s",
+         "extra": "testName: Hello there"},
+         ...
+*/
+function extractTimeBenchmarkResult(output: string): BenchmarkResult[] {
+    const lines = output.split(/\n/);
+    const results: BenchmarkResult[] = [];
+    let firstline = true;
+    let name: string | undefined = undefined;
+
+    for (const line of lines) {
+        core.debug(line);
+        if (firstline) {
+            name = line;
+            firstline = false;
+            core.debug(`firstline: ${name}`);
+            continue;
+        }
+        if (line.startsWith('real')) {
+            const v = parseTimeOutput(line);
+            core.debug(`v: ${v}`);
+            if (v !== undefined)
+                results.push({
+                    extra: name,
+                    name: 'real',
+                    value: v,
+                    unit: 's',
+                });
+        }
+        if (line.startsWith('user')) {
+            const v = parseTimeOutput(line);
+
+            core.debug(`v: ${v}`);
+            if (v !== undefined)
+                results.push({
+                    extra: name,
+                    name: 'user',
+                    value: v,
+                    unit: 's',
+                });
+        }
+        if (line.startsWith('sys')) {
+            const v = parseTimeOutput(line);
+            core.debug(`v: ${v}`);
+            if (v !== undefined)
+                results.push({
+                    extra: name,
+                    name: 'sys',
+                    value: v,
+                    unit: 's',
+                });
+            firstline = true;
+        }
+        core.debug('loop');
+    }
+
+    return results;
+}
+
 export async function extractResult(config: Config): Promise<Benchmark> {
     const output = await fs.readFile(config.outputFilePath, 'utf8');
     const { tool, githubToken, ref } = config;
@@ -722,6 +810,9 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             break;
         case 'benchmarkdotnet':
             benches = extractBenchmarkDotnetResult(output);
+            break;
+        case 'time':
+            benches = extractTimeBenchmarkResult(output);
             break;
         case 'customBiggerIsBetter':
             benches = extractCustomBenchmarkResult(output);
