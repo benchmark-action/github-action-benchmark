@@ -1,9 +1,9 @@
 import { canonicalizeUnit } from './canonicalizeUnit';
 
 export function normalizeValueByUnit(prevUnit: string, currentUnit: string, value: number): number {
+    const prev = canonicalizeUnit(prevUnit);
+    const current = canonicalizeUnit(currentUnit);
     for (const units of SUPPORTED_UNITS) {
-        const prev = canonicalizeUnit(prevUnit);
-        const current = canonicalizeUnit(currentUnit);
         const prevUnitIndex = units.indexOf(prev);
         const currentUnitIndex = units.indexOf(current);
 

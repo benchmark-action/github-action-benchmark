@@ -4,19 +4,19 @@ import { extractRangeInfo } from './extractRangeInfo';
 
 export function normalizeBenchmarkResult(
     prevBenchResult: BenchmarkResult | undefined | null,
-    currenBenchResult: BenchmarkResult,
+    currentBenchResult: BenchmarkResult,
 ): BenchmarkResult {
     if (!prevBenchResult) {
-        return currenBenchResult;
+        return currentBenchResult;
     }
 
     const prevUnit = prevBenchResult.unit;
-    const currentUnit = currenBenchResult.unit;
-    const currentRange = currenBenchResult.range;
+    const currentUnit = currentBenchResult.unit;
+    const currentRange = currentBenchResult.range;
     const currentRangeInfo = extractRangeInfo(currentRange);
 
-    const normalizedValue = normalizeValueByUnit(prevUnit, currentUnit, currenBenchResult.value);
-    const normalizedUnit = currenBenchResult.value !== normalizedValue ? prevUnit : currentUnit;
+    const normalizedValue = normalizeValueByUnit(prevUnit, currentUnit, currentBenchResult.value);
+    const normalizedUnit = currentBenchResult.value !== normalizedValue ? prevUnit : currentUnit;
     const normalizedRangeInfo = currentRangeInfo
         ? {
               prefix: currentRangeInfo.prefix,
@@ -25,7 +25,7 @@ export function normalizeBenchmarkResult(
         : undefined;
 
     return {
-        ...currenBenchResult,
+        ...currentBenchResult,
         value: normalizedValue,
         unit: normalizedUnit,
         range: normalizedRangeInfo ? `${normalizedRangeInfo.prefix}${normalizedRangeInfo.value}` : currentRange,
