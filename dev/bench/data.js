@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756848205353,
+  "lastUpdate": 1756848207639,
   "entries": {
     "Rust Benchmark": [
       {
@@ -57363,6 +57363,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 7.57222,
             "range": "± 300.653",
+            "unit": "us",
+            "extra": "100 samples\n4 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4",
+          "message": "fix: time units are not normalized (issue #122) (#318)\n\nThis PR fixes an issue when the new benchmark results are using a different time unit than the previous one. This happens specifically when the benchmark values are very close to the boundary between 2 units, ex. `990 ns/iter` and `1.1 us/iter`. In that case, we need to normalize the newly coming results to the previously used unit so that the values are comparable.\n\n* extract addBenchmarkEntry function\n* normalize new entry values to match last entry units\n* handle `<time>`, `<time>/iter` and `ops/<time>` units",
+          "timestamp": "2025-09-02T23:22:49+02:00",
+          "tree_id": "adb8609ba7a1aee28972ad77f920c7fdff95086a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4"
+        },
+        "date": 1756848203573,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 80.1833,
+            "range": "± 3.45413",
+            "unit": "ns",
+            "extra": "100 samples\n363 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 7.54606,
+            "range": "± 351.832",
             "unit": "us",
             "extra": "100 samples\n4 iterations"
           }
