@@ -1,7 +1,11 @@
+import { canonicalizeUnit } from './canonicalizeUnit';
+
 export function normalizeValueByUnit(prevUnit: string, currentUnit: string, value: number): number {
     for (const units of SUPPORTED_UNITS) {
-        const prevUnitIndex = units.indexOf(prevUnit);
-        const currentUnitIndex = units.indexOf(currentUnit);
+        const prev = canonicalizeUnit(prevUnit);
+        const current = canonicalizeUnit(currentUnit);
+        const prevUnitIndex = units.indexOf(prev);
+        const currentUnitIndex = units.indexOf(current);
 
         if (prevUnitIndex >= 0 && currentUnitIndex >= 0) {
             const unitDiff = prevUnitIndex - currentUnitIndex;

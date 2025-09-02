@@ -37,6 +37,18 @@ describe('normalizeValueByUnit', () => {
         expect(normalizeValueByUnit('ops/s', 'ops/ns', 12)).toBe(12_000_000_000);
     });
 
+    it('handles microsecond symbol variants', () => {
+        expect(normalizeValueByUnit('ms', 'µs', 12)).toBe(0.012);
+        expect(normalizeValueByUnit('ms', 'μs', 12)).toBe(0.012);
+        expect(normalizeValueByUnit('us', 'µs', 12)).toBe(12);
+        expect(normalizeValueByUnit('us', 'μs', 12)).toBe(12);
+        expect(normalizeValueByUnit('µs', 'μs', 12)).toBe(12);
+        expect(normalizeValueByUnit('ops/µs', 'ops/s', 12_000_000)).toBe(12);
+    });
+    it('tolerates surrounding whitespace and case', () => {
+        expect(normalizeValueByUnit(' S ', ' MS ', 12)).toBe(0.012);
+    });
+
     it('NOT normalize when new unit is not supported', () => {
         expect(normalizeValueByUnit('unknown1', 'unknown2', 12)).toBe(12);
     });
