@@ -18,8 +18,8 @@ export function addBenchmarkEntry(
         core.debug(`No suite was found for benchmark '${benchName}' in existing data. Created`);
     } else {
         const suites = entries[benchName];
-        // Get last suite which has different commit ID for alert comment
-        for (const e of suites.slice().reverse()) {
+        // Get the last suite which has different commit ID for alert comment
+        for (const e of [...suites].reverse()) {
             if (e.commit.id !== benchEntry.commit.id) {
                 prevBench = e;
                 break;

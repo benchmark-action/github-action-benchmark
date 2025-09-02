@@ -1,5 +1,5 @@
 import { BenchmarkResult } from './extract';
-import { normalizeUnit } from './normalizeUnit';
+import { normalizeValueByUnit } from './normalizeValueByUnit';
 import { extractRangeInfo } from './extractRangeInfo';
 
 export function normalizeBenchmarkResult(
@@ -15,10 +15,13 @@ export function normalizeBenchmarkResult(
     const currentRange = currenBenchResult.range;
     const currentRangeInfo = extractRangeInfo(currentRange);
 
-    const normalizedValue = normalizeUnit(prevUnit, currentUnit, currenBenchResult.value);
+    const normalizedValue = normalizeValueByUnit(prevUnit, currentUnit, currenBenchResult.value);
     const normalizedUnit = currenBenchResult.value !== normalizedValue ? prevUnit : currentUnit;
     const normalizedRangeInfo = currentRangeInfo
-        ? { prefix: currentRangeInfo.prefix, value: normalizeUnit(prevUnit, currentUnit, currentRangeInfo.value) }
+        ? {
+              prefix: currentRangeInfo.prefix,
+              value: normalizeValueByUnit(prevUnit, currentUnit, currentRangeInfo.value),
+          }
         : undefined;
 
     return {

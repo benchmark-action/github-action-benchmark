@@ -828,8 +828,6 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
         it.each(normalCases)('$it', async function (t) {
             const { data, added, config, repoPayload, error, commitComment } = t;
             const expectedAdded = t.expectedAdded ?? added;
-            added.benches; // ?
-            expectedAdded.benches; // ?
 
             gitHubContext.payload.repository = {
                 private: false,

@@ -1,4 +1,4 @@
-export function normalizeUnit(prevUnit: string, currentUnit: string, value: number): number {
+export function normalizeValueByUnit(prevUnit: string, currentUnit: string, value: number): number {
     for (const units of SUPPORTED_UNITS) {
         const prevUnitIndex = units.indexOf(prevUnit);
         const currentUnitIndex = units.indexOf(currentUnit);
