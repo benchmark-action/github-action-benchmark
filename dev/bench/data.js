@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756848194934,
+  "lastUpdate": 1756848196583,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45005,6 +45005,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00008727241163934497",
             "extra": "mean: 1.6929363019539743 msec\nrounds: 563"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4",
+          "message": "fix: time units are not normalized (issue #122) (#318)\n\nThis PR fixes an issue when the new benchmark results are using a different time unit than the previous one. This happens specifically when the benchmark values are very close to the boundary between 2 units, ex. `990 ns/iter` and `1.1 us/iter`. In that case, we need to normalize the newly coming results to the previously used unit so that the values are comparable.\n\n* extract addBenchmarkEntry function\n* normalize new entry values to match last entry units\n* handle `<time>`, `<time>/iter` and `ops/<time>` units",
+          "timestamp": "2025-09-02T23:22:49+02:00",
+          "tree_id": "adb8609ba7a1aee28972ad77f920c7fdff95086a",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/1003f6bf2a87bea48cb5bddfe7b39e33d1c036d4"
+        },
+        "date": 1756848193233,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75809.60917782171,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000010318846074635828",
+            "extra": "mean: 13.190939919692298 usec\nrounds: 55792"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 539.916990642889,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000012113527223656077",
+            "extra": "mean: 1.8521365641953254 msec\nrounds: 553"
           }
         ]
       }
