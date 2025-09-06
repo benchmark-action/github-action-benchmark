@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractRangeInfo = void 0;
+exports.extractRangeInfo = extractRangeInfo;
 function extractRangeInfo(range) {
     var _a;
     if (!range) {
@@ -20,5 +20,4 @@ function extractRangeInfo(range) {
         prefix: (_a = matches.groups.prefix) !== null && _a !== void 0 ? _a : '',
     };
 }
-exports.extractRangeInfo = extractRangeInfo;
 //# sourceMappingURL=extractRangeInfo.js.map

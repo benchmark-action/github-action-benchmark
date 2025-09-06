@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -11,18 +15,38 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractResult = void 0;
+exports.BenchmarkResults = exports.BenchmarkResult = void 0;
+exports.extractResult = extractResult;
 /* eslint-disable @typescript-eslint/naming-convention */
 const fs_1 = require("fs");
 const github = __importStar(require("@actions/github"));
+const zod_1 = require("zod");
+exports.BenchmarkResult = zod_1.z.object({
+    name: zod_1.z.coerce.string(),
+    value: zod_1.z.coerce.number(),
+    range: zod_1.z.coerce.string().optional(),
+    unit: zod_1.z.coerce.string(),
+    extra: zod_1.z.coerce.string().optional(),
+});
+exports.BenchmarkResults = zod_1.z.array(exports.BenchmarkResult);
 function getHumanReadableUnitValue(seconds) {
     if (seconds < 1.0e-6) {
         return [seconds * 1e9, 'nsec'];
@@ -42,7 +66,7 @@ function getCommitFromPullRequestPayload(pr) {
     const id = pr.head.sha;
     const username = pr.head.user.login;
     const user = {
-        name: username,
+        name: username, // XXX: Fallback, not correct
         username,
     };
     return {
@@ -385,19 +409,16 @@ function extractBenchmarkDotnetResult(output) {
 }
 function extractCustomBenchmarkResult(output) {
     try {
-        const json = JSON.parse(output);
-        return json.map(({ name, value, unit, range, extra }) => {
-            return { name, value, unit, range, extra };
-        });
+        return exports.BenchmarkResults.parse(JSON.parse(output));
     }
     catch (err) {
-        throw new Error(`Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`);
+        const errMessage = err instanceof Error ? err.message : String(err);
+        throw new Error(`Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${errMessage}`);
     }
 }
 function extractLuauBenchmarkResult(output) {
     const lines = output.split(/\n/);
     const results = [];
-    output;
     for (const line of lines) {
         if (!line.startsWith('SUCCESS'))
             continue;
@@ -467,5 +488,4 @@ async function extractResult(config) {
         benches,
     };
 }
-exports.extractResult = extractResult;
 //# sourceMappingURL=extract.js.map

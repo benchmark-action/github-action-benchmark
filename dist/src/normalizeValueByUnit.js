@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.normalizeValueByUnit = void 0;
+exports.normalizeValueByUnit = normalizeValueByUnit;
 const canonicalizeUnit_1 = require("./canonicalizeUnit");
 function normalizeValueByUnit(prevUnit, currentUnit, value) {
     const prev = (0, canonicalizeUnit_1.canonicalizeUnit)(prevUnit);
@@ -15,7 +15,6 @@ function normalizeValueByUnit(prevUnit, currentUnit, value) {
     }
     return value;
 }
-exports.normalizeValueByUnit = normalizeValueByUnit;
 const UNIT_CONVERSION_MULTIPLIER = 1000;
 const TIME_UNITS = ['s', 'ms', 'us', 'ns'];
 const ITER_UNITS = TIME_UNITS.map((unit) => `${unit}/iter`);

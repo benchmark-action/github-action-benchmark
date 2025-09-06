@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -11,15 +15,33 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkout = exports.clone = exports.fetch = exports.pull = exports.push = exports.cmd = exports.getServerName = exports.getServerUrl = exports.getServerUrlObj = void 0;
+exports.getServerUrlObj = getServerUrlObj;
+exports.getServerUrl = getServerUrl;
+exports.getServerName = getServerName;
+exports.cmd = cmd;
+exports.push = push;
+exports.pull = pull;
+exports.fetch = fetch;
+exports.clone = clone;
+exports.checkout = checkout;
 const exec_1 = require("@actions/exec");
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
@@ -58,15 +80,12 @@ function getServerUrlObj(repositoryUrl) {
         : (_a = process.env['GITHUB_SERVER_URL']) !== null && _a !== void 0 ? _a : DEFAULT_GITHUB_URL;
     return new url_1.URL(urlValue);
 }
-exports.getServerUrlObj = getServerUrlObj;
 function getServerUrl(repositoryUrl) {
     return getServerUrlObj(repositoryUrl).origin;
 }
-exports.getServerUrl = getServerUrl;
 function getServerName(repositoryUrl) {
     return getServerUrlObj(repositoryUrl).hostname;
 }
-exports.getServerName = getServerName;
 async function cmd(additionalGitOptions, ...args) {
     var _a;
     core.debug(`Executing Git: ${args.join(' ')}`);
@@ -86,7 +105,6 @@ async function cmd(additionalGitOptions, ...args) {
     }
     return res.stdout;
 }
-exports.cmd = cmd;
 function getCurrentRepoRemoteUrl(token) {
     var _a;
     const { repo, owner } = github.context.repo;
@@ -105,7 +123,6 @@ async function push(token, repoUrl, branch, additionalGitOptions = [], ...option
     }
     return cmd(additionalGitOptions, ...args);
 }
-exports.push = push;
 async function pull(token, branch, additionalGitOptions = [], ...options) {
     core.debug(`Executing 'git pull' to branch '${branch}' with token and options '${options.join(' ')}'`);
     const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
@@ -115,7 +132,6 @@ async function pull(token, branch, additionalGitOptions = [], ...options) {
     }
     return cmd(additionalGitOptions, ...args);
 }
-exports.pull = pull;
 async function fetch(token, branch, additionalGitOptions = [], ...options) {
     core.debug(`Executing 'git fetch' for branch '${branch}' with token and options '${options.join(' ')}'`);
     const remote = token !== undefined ? getCurrentRepoRemoteUrl(token) : 'origin';
@@ -125,7 +141,6 @@ async function fetch(token, branch, additionalGitOptions = [], ...options) {
     }
     return cmd(additionalGitOptions, ...args);
 }
-exports.fetch = fetch;
 async function clone(token, ghRepository, baseDirectory, additionalGitOptions = [], ...options) {
     core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
     const remote = getRepoRemoteUrl(token, ghRepository);
@@ -135,7 +150,6 @@ async function clone(token, ghRepository, baseDirectory, additionalGitOptions = 
     }
     return cmd(additionalGitOptions, ...args);
 }
-exports.clone = clone;
 async function checkout(ghRef, additionalGitOptions = [], ...options) {
     core.debug(`Executing 'git checkout' to ref '${ghRef}' with token and options '${options.join(' ')}'`);
     let args = ['checkout', ghRef];
@@ -144,5 +158,4 @@ async function checkout(ghRef, additionalGitOptions = [], ...options) {
     }
     return cmd(additionalGitOptions, ...args);
 }
-exports.checkout = checkout;
 //# sourceMappingURL=git.js.map

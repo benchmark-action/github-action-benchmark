@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.normalizeBenchmark = void 0;
+exports.normalizeBenchmark = normalizeBenchmark;
 const normalizeBenchmarkResult_1 = require("./normalizeBenchmarkResult");
 function normalizeBenchmark(prevBench, currentBench) {
     if (!prevBench) {
@@ -16,5 +16,4 @@ function normalizeBenchmark(prevBench, currentBench) {
             .map(({ currentBenchResult, prevBenchResult }) => (0, normalizeBenchmarkResult_1.normalizeBenchmarkResult)(prevBenchResult, currentBenchResult)),
     };
 }
-exports.normalizeBenchmark = normalizeBenchmark;
 //# sourceMappingURL=normalizeBenchmark.js.map

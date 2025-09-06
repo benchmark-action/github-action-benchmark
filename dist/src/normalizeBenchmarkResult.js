@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.normalizeBenchmarkResult = void 0;
+exports.normalizeBenchmarkResult = normalizeBenchmarkResult;
 const normalizeValueByUnit_1 = require("./normalizeValueByUnit");
 const extractRangeInfo_1 = require("./extractRangeInfo");
 function normalizeBenchmarkResult(prevBenchResult, currentBenchResult) {
@@ -26,5 +26,4 @@ function normalizeBenchmarkResult(prevBenchResult, currentBenchResult) {
         range: normalizedRangeInfo ? `${normalizedRangeInfo.prefix}${normalizedRangeInfo.value}` : currentRange,
     };
 }
-exports.normalizeBenchmarkResult = normalizeBenchmarkResult;
 //# sourceMappingURL=normalizeBenchmarkResult.js.map
