@@ -427,9 +427,7 @@ exports[`extractResult() extracts benchmark output from customBiggerIsBetter - c
 {
   "benches": [
     {
-      "extra": undefined,
       "name": "My Custom Bigger Is Better Benchmark - Throughput",
-      "range": undefined,
       "unit": "req/s",
       "value": 70,
     },
@@ -467,11 +465,50 @@ exports[`extractResult() extracts benchmark output from customSmallerIsBetter - 
       "value": 50,
     },
     {
-      "extra": undefined,
       "name": "My Custom Smaller Is Better Benchmark - Memory Used",
-      "range": undefined,
       "unit": "Megabytes",
       "value": 100,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "customSmallerIsBetter",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from customSmallerIsBetter - customSmallerIsBetter_output2.json 1`] = `
+{
+  "benches": [
+    {
+      "name": "No instrumentation",
+      "range": "0.519165",
+      "unit": "ns",
+      "value": 90.9439,
+    },
+    {
+      "name": "Deactivated probe",
+      "range": "8.21371",
+      "unit": "ns",
+      "value": 445.661,
+    },
+    {
+      "name": "No logging",
+      "range": "10.2008",
+      "unit": "ns",
+      "value": 1847.38,
+    },
+    {
+      "name": "Binary file",
+      "range": "87.1657",
+      "unit": "ns",
+      "value": 3886.75,
     },
   ],
   "commit": {
