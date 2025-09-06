@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757158169477,
+  "lastUpdate": 1757158170856,
   "entries": {
     "Rust Benchmark": [
       {
@@ -65567,6 +65567,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1940331480.4102955,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5cc78646d0d6ec925248e14ce944b4d5d91f55a0",
+          "message": "fix: improve validation for custom benchmarks (#323)\n\n* add Zod schema for BenchmarkResult\n* parse custom benchmark output to make sure it conforms to schema\n* allow for coercion",
+          "timestamp": "2025-09-06T13:28:25+02:00",
+          "tree_id": "cce983b7ff3f14cae81e5d0fe24641340f5f423d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5cc78646d0d6ec925248e14ce944b4d5d91f55a0"
+        },
+        "date": 1757158166884,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1967753757.5010312,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
