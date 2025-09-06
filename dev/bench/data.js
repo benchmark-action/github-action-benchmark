@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757158186509,
+  "lastUpdate": 1757158222628,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16626,6 +16626,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 32486,
             "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5cc78646d0d6ec925248e14ce944b4d5d91f55a0",
+          "message": "fix: improve validation for custom benchmarks (#323)\n\n* add Zod schema for BenchmarkResult\n* parse custom benchmark output to make sure it conforms to schema\n* allow for coercion",
+          "timestamp": "2025-09-06T13:28:25+02:00",
+          "tree_id": "cce983b7ff3f14cae81e5d0fe24641340f5f423d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5cc78646d0d6ec925248e14ce944b4d5d91f55a0"
+        },
+        "date": 1757158218594,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 176,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 22737,
+            "range": "± 2804",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 23170,
+            "range": "± 30",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 37872,
+            "range": "± 148",
             "unit": "ns/iter"
           },
           {
