@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757158163037,
+  "lastUpdate": 1757158169477,
   "entries": {
     "Rust Benchmark": [
       {
@@ -61135,6 +61135,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44814,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5cc78646d0d6ec925248e14ce944b4d5d91f55a0",
+          "message": "fix: improve validation for custom benchmarks (#323)\n\n* add Zod schema for BenchmarkResult\n* parse custom benchmark output to make sure it conforms to schema\n* allow for coercion",
+          "timestamp": "2025-09-06T13:28:25+02:00",
+          "tree_id": "cce983b7ff3f14cae81e5d0fe24641340f5f423d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5cc78646d0d6ec925248e14ce944b4d5d91f55a0"
+        },
+        "date": 1757158165464,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 305.82239382239385,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":259,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 41638,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
