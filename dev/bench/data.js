@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757158146324,
+  "lastUpdate": 1757158163037,
   "entries": {
     "Rust Benchmark": [
       {
@@ -26881,6 +26881,60 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "30190 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5cc78646d0d6ec925248e14ce944b4d5d91f55a0",
+          "message": "fix: improve validation for custom benchmarks (#323)\n\n* add Zod schema for BenchmarkResult\n* parse custom benchmark output to make sure it conforms to schema\n* allow for coercion",
+          "timestamp": "2025-09-06T13:28:25+02:00",
+          "tree_id": "cce983b7ff3f14cae81e5d0fe24641340f5f423d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5cc78646d0d6ec925248e14ce944b4d5d91f55a0"
+        },
+        "date": 1757158159724,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 313.2,
+            "unit": "ns/op",
+            "extra": "3861345 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 40178,
+            "unit": "ns/op",
+            "extra": "30122 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric",
+            "value": 39976,
+            "unit": "ns/op\t         4.000 auxMetricUnits",
+            "extra": "29730 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 39976,
+            "unit": "ns/op",
+            "extra": "29730 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "29730 times\n4 procs"
           }
         ]
       }
