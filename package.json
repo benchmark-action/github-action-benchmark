@@ -34,7 +34,8 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@actions/io": "^1.1.2"
+    "@actions/io": "^1.1.2",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@types/acorn": "^4.0.5",
