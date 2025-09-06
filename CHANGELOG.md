@@ -1,5 +1,7 @@
 ## Unreleased
 
+- **fix** improve parsing for custom benchmarks (#323)
+
 <a name="v1.20.5"></a>
 # [v1.20.5](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.5) - 02 Sep 2025
 - **feat** allow to parse generic cargo bench/criterion units (#280)
