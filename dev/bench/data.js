@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756849207729,
+  "lastUpdate": 1757158128856,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45457,6 +45457,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00006237000405629129",
             "extra": "mean: 1.6255418836063449 msec\nrounds: 610"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5cc78646d0d6ec925248e14ce944b4d5d91f55a0",
+          "message": "fix: improve validation for custom benchmarks (#323)\n\n* add Zod schema for BenchmarkResult\n* parse custom benchmark output to make sure it conforms to schema\n* allow for coercion",
+          "timestamp": "2025-09-06T13:28:25+02:00",
+          "tree_id": "cce983b7ff3f14cae81e5d0fe24641340f5f423d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5cc78646d0d6ec925248e14ce944b4d5d91f55a0"
+        },
+        "date": 1757158125643,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76481.46208492675,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000001001604101803657",
+            "extra": "mean: 13.075063848669334 usec\nrounds: 37808"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 607.7182274257294,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00001975020844451175",
+            "extra": "mean: 1.6454994352168122 msec\nrounds: 602"
           }
         ]
       }
