@@ -13,8 +13,8 @@ jobs:
     name: Run pytest-benchmark benchmark example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: 3.9
       - name: Run benchmark
@@ -24,7 +24,7 @@ jobs:
           pytest bench.py --benchmark-json output.json
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'
@@ -39,7 +39,7 @@ jobs:
           alert-comment-cc-users: '@ktrz'
 
       - name: Store benchmark result - separate results repo
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1
         with:
           name: Python Benchmark with pytest-benchmark
           tool: 'pytest'

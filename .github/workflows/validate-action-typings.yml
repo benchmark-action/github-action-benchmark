@@ -11,5 +11,5 @@ jobs:
   validate-typings:
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4
-      - uses: typesafegithub/github-actions-typing@v1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: typesafegithub/github-actions-typing@21db25f90324def9328034891ea446b023b8ea77 # v1

@@ -12,11 +12,11 @@ jobs:
     name: Run Benchmark.Net .Net Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3
         with:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -25,7 +25,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -49,8 +49,8 @@ jobs:
     name: Run JavaScript benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -59,7 +59,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -83,8 +83,8 @@ jobs:
     name: Run Catch2 C++ Benchmark Framework example (v2.x) - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -98,7 +98,7 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -122,8 +122,8 @@ jobs:
     name: Run Catch2 C++ Benchmark Framework example (v3.x) - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -137,7 +137,7 @@ jobs:
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -161,15 +161,15 @@ jobs:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Cache Benchmark library
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: examples/cpp/benchmark
           key: ${{ runner.os }}-googlebenchmark-v1.5.0
@@ -178,7 +178,7 @@ jobs:
           cd examples/cpp
           make json
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -202,12 +202,12 @@ jobs:
     name: Run Go benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@7b8cf10d4e4a01d4992d18a89f4d7dc5a3e6d6f4 # v4
         with:
           go-version: "stable"
       - run: npm ci
@@ -215,7 +215,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -239,12 +239,12 @@ jobs:
     name: Run JMH Java Benchmark Framework example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -255,7 +255,7 @@ jobs:
           cd examples/java
           mvn clean verify
           java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -278,14 +278,14 @@ jobs:
     name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/setup-julia@ac0d62164df5a47de404f4e96ce86a1a28a28d56 # v1
         with:
           version: '1'
           arch: x64
@@ -297,7 +297,7 @@ jobs:
             Pkg.instantiate();
             include("fib.jl")'
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -321,12 +321,12 @@ jobs:
     name: Run Pytest benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: 3.9
       - run: npm ci
@@ -337,7 +337,7 @@ jobs:
           pip install -r requirements.txt
           pytest bench.py --benchmark-json output.json
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -361,8 +361,8 @@ jobs:
     name: Run Rust benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -372,7 +372,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -396,8 +396,8 @@ jobs:
     name: Run Criterion.rs benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -407,7 +407,7 @@ jobs:
       - name: Run benchmark
         run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: benchmark-action/github-action-benchmark-results
           ref: 'gh-pages'
@@ -431,20 +431,20 @@ jobs:
     name: Run alert check with actions/cache
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@7b8cf10d4e4a01d4992d18a89f4d7dc5a3e6d6f4 # v4
         with:
           go-version: "stable"
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Download previous benchmark data
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ./cache
           key: ${{ runner.os }}-ci-cache-test
