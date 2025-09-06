@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757159038616,
+  "lastUpdate": 1757159080277,
   "entries": {
     "Rust Benchmark": [
       {
@@ -16722,6 +16722,66 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci/Recursive/21",
             "value": 37872,
             "range": "± 148",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/21",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "2e6f4e33d6695578ee68981a04100aa77e0ac037",
+          "message": "release v1.20.7",
+          "timestamp": "2025-09-06T13:39:25+02:00",
+          "tree_id": "61acd4d1aa66b499262480d88e87cd7aed5b03fc",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/2e6f4e33d6695578ee68981a04100aa77e0ac037"
+        },
+        "date": 1757159076968,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "BenchFib10",
+            "value": 177,
+            "range": "± 6",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "BenchFib20",
+            "value": 28574,
+            "range": "± 3113",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/20",
+            "value": 22296,
+            "range": "± 245",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Iterative/20",
+            "value": 3,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "Fibonacci/Recursive/21",
+            "value": 36090,
+            "range": "± 110",
             "unit": "ns/iter"
           },
           {
