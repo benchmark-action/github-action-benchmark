@@ -1,5 +1,7 @@
 ## Unreleased
 
+<a name="v1.20.7"></a>
+# [v1.20.7](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.7) - 06 Sep 2025
 - **fix** improve parsing for custom benchmarks (#323)
 
 <a name="v1.20.5"></a>
