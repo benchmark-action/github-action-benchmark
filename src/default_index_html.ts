@@ -127,6 +127,16 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         };
 
         function init() {
+          function sortEntriesByGitOrder(entries) {
+            // Sort benchmarks by commit timestamp instead of execution time
+            // This provides better git graph ordering for visualization
+            return [...entries].sort((a, b) => {
+              const timestampA = new Date(a.commit.timestamp).getTime();
+              const timestampB = new Date(b.commit.timestamp).getTime();
+              return timestampA - timestampB;
+            });
+          }
+
           function collectBenchesPerTestCase(entries) {
             const map = new Map();
             for (const entry of entries) {
@@ -140,6 +150,14 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                   arr.push(result);
                 }
               }
+            }
+            // Sort each benchmark's data points by commit timestamp to ensure consistent ordering
+            for (const [benchName, arr] of map.entries()) {
+              arr.sort((a, b) => {
+                const timestampA = new Date(a.commit.timestamp).getTime();
+                const timestampB = new Date(b.commit.timestamp).getTime();
+                return timestampA - timestampB;
+              });
             }
             return map;
           }
@@ -162,10 +180,14 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           };
 
           // Prepare data points for charts
-          return Object.keys(data.entries).map(name => ({
-            name,
-            dataSet: collectBenchesPerTestCase(data.entries[name]),
-          }));
+          return Object.keys(data.entries).map(name => {
+            const entries = data.entries[name];
+            const sortedEntries = sortEntriesByGitOrder(entries);
+            return {
+              name,
+              dataSet: collectBenchesPerTestCase(sortedEntries),
+            };
+          });
         }
 
         function renderAllChars(dataSets) {

@@ -2,6 +2,7 @@ import { Benchmark } from './extract';
 import * as core from '@actions/core';
 import { BenchmarkSuites } from './write';
 import { normalizeBenchmark } from './normalizeBenchmark';
+import { GitGraphAnalyzer } from './gitGraph';
 
 export function addBenchmarkEntry(
     benchName: string,
@@ -11,6 +12,7 @@ export function addBenchmarkEntry(
 ): { prevBench: Benchmark | null; normalizedCurrentBench: Benchmark } {
     let prevBench: Benchmark | null = null;
     let normalizedCurrentBench: Benchmark = benchEntry;
+    const gitAnalyzer = new GitGraphAnalyzer();
 
     // Add benchmark result
     if (entries[benchName] === undefined) {
@@ -18,12 +20,17 @@ export function addBenchmarkEntry(
         core.debug(`No suite was found for benchmark '${benchName}' in existing data. Created`);
     } else {
         const suites = entries[benchName];
-        // Get the last suite which has different commit ID for alert comment
-        for (const e of [...suites].reverse()) {
-            if (e.commit.id !== benchEntry.commit.id) {
-                prevBench = e;
-                break;
-            }
+
+        // Use git-graph aware logic to find previous benchmark
+        const currentBranch = gitAnalyzer.getCurrentBranch();
+        core.debug(`Finding previous benchmark for branch: ${currentBranch}`);
+
+        prevBench = gitAnalyzer.findPreviousBenchmark(suites, benchEntry.commit.id, currentBranch);
+
+        if (prevBench) {
+            core.debug(`Found previous benchmark: ${prevBench.commit.id}`);
+        } else {
+            core.debug('No previous benchmark found');
         }
 
         normalizedCurrentBench = normalizeBenchmark(prevBench, benchEntry);
