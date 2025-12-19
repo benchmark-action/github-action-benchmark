@@ -1,24 +1,14 @@
 import * as github from '@actions/github';
 import { execSync } from 'child_process';
 import * as core from '@actions/core';
-
-export interface Benchmark {
-  commit: {
-    id: string;
-    timestamp: string;
-    message: string;
-    url: string;
-  };
-  date: number;
-  benches: any[];
-}
+import { Benchmark } from './extract';
 
 export class GitGraphAnalyzer {
   private gitCliAvailable: boolean;
 
   constructor() {
     // Check if we're in GitHub Actions environment (git CLI available)
-    this.gitCliAvailable = process.env.GITHUB_ACTIONS === 'true' && process.env.GITHUB_WORKSPACE;
+    this.gitCliAvailable = process.env.GITHUB_ACTIONS === 'true' && Boolean(process.env.GITHUB_WORKSPACE);
   }
 
   /**
@@ -78,14 +68,14 @@ export class GitGraphAnalyzer {
     const ancestry = this.getBranchAncestry(branch);
 
     if (ancestry.length === 0) {
-      console.warn(`No ancestry found for branch ${branch}, falling back to execution time ordering`);
+      core.warning(`No ancestry found for branch ${branch}, falling back to execution time ordering`);
       return this.findPreviousByExecutionTime(suites, currentSha);
     }
 
     // Find position of current commit in ancestry
     const currentIndex = ancestry.indexOf(currentSha);
     if (currentIndex === -1) {
-      console.warn(`Current commit ${currentSha} not found in ancestry, falling back to execution time ordering`);
+      core.warning(`Current commit ${currentSha} not found in ancestry, falling back to execution time ordering`);
       return this.findPreviousByExecutionTime(suites, currentSha);
     }
 
@@ -95,13 +85,13 @@ export class GitGraphAnalyzer {
       const previousBenchmark = suites.find(suite => suite.commit.id === previousSha);
 
       if (previousBenchmark) {
-        console.log(`Found previous benchmark: ${previousSha} based on git ancestry`);
+        core.debug(`Found previous benchmark: ${previousSha} based on git ancestry`);
         return previousBenchmark;
       }
     }
 
     // Fallback: no previous commit found in ancestry
-    console.log('No previous benchmark found in git ancestry');
+    core.debug('No previous benchmark found in git ancestry');
     return null;
   }
 
@@ -115,8 +105,8 @@ export class GitGraphAnalyzer {
     // For GitHub Pages, we don't have git CLI, so sort by commit timestamp
     // This gives a reasonable approximation of git order
     const sortedSuites = [...suites].sort((a, b) => {
-      const timestampA = new Date(a.commit.timestamp).getTime();
-      const timestampB = new Date(b.commit.timestamp).getTime();
+      const timestampA = new Date(a.commit.timestamp || '1970-01-01T00:00:00Z').getTime();
+      const timestampB = new Date(b.commit.timestamp || '1970-01-01T00:00:00Z').getTime();
       return timestampA - timestampB;
     });
 
