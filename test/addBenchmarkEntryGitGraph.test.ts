@@ -2,6 +2,7 @@
 const mockDebug = jest.fn();
 const mockGetCurrentBranch = jest.fn();
 const mockFindPreviousBenchmark = jest.fn();
+const mockFindInsertionIndex = jest.fn();
 
 jest.mock('@actions/core', () => ({
     debug: mockDebug,
@@ -11,6 +12,7 @@ jest.mock('../src/gitGraph', () => ({
     GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
         getCurrentBranch: mockGetCurrentBranch,
         findPreviousBenchmark: mockFindPreviousBenchmark,
+        findInsertionIndex: mockFindInsertionIndex,
     })),
 }));
 
@@ -52,6 +54,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         mockGetCurrentBranch.mockReturnValue('feature-branch');
         mockFindPreviousBenchmark.mockReturnValue(existingEntry);
+        mockFindInsertionIndex.mockReturnValue(1);
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
@@ -76,6 +79,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(null);
+        mockFindInsertionIndex.mockReturnValue(1);
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
@@ -112,6 +116,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(existingEntry);
+        mockFindInsertionIndex.mockReturnValue(1);
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
@@ -135,6 +140,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(oldEntries[oldEntries.length - 1]);
+        mockFindInsertionIndex.mockReturnValue(3);
 
         addBenchmarkEntry(benchName, benchEntry, entries, 3);
 
@@ -166,6 +172,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(oldEntries[0]);
+        mockFindInsertionIndex.mockReturnValue(1);
 
         addBenchmarkEntry(benchName, benchEntry, entries, 5);
 

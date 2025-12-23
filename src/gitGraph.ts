@@ -156,6 +156,42 @@ export class GitGraphAnalyzer {
     }
 
     /**
+     * Find the insertion index for a new benchmark entry based on git ancestry.
+     * Returns the index after which the new entry should be inserted.
+     * If no ancestor is found, returns -1 (insert at beginning) or suites.length (append to end).
+     */
+    findInsertionIndex(suites: Benchmark[], newCommitSha: string): number {
+        if (!this.gitCliAvailable || suites.length === 0) {
+            // Fallback: append to end
+            return suites.length;
+        }
+
+        const ancestry = this.getBranchAncestry(newCommitSha);
+        if (ancestry.length === 0) {
+            core.debug('No ancestry found, appending to end');
+            return suites.length;
+        }
+
+        // Create a set of ancestor SHAs for quick lookup (excluding the commit itself)
+        const ancestorSet = new Set(ancestry.slice(1)); // Skip first element (the commit itself)
+
+        // Find the most recent ancestor in the existing suites
+        // Iterate through suites from end to beginning to find the most recent one
+        for (let i = suites.length - 1; i >= 0; i--) {
+            const suite = suites[i];
+            if (ancestorSet.has(suite.commit.id)) {
+                core.debug(`Found ancestor ${suite.commit.id} at index ${i}, inserting after it`);
+                return i + 1; // Insert after this ancestor
+            }
+        }
+
+        // No ancestor found in existing suites - this commit is likely from a different branch
+        // or is very old. Append to end as fallback.
+        core.debug('No ancestor found in existing suites, appending to end');
+        return suites.length;
+    }
+
+    /**
      * Fallback method: find previous by execution time (original logic)
      */
     private findPreviousByExecutionTime(suites: Benchmark[], currentSha: string): Benchmark | null {

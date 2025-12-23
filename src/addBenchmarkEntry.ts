@@ -35,7 +35,10 @@ export function addBenchmarkEntry(
 
         normalizedCurrentBench = normalizeBenchmark(prevBench, benchEntry);
 
-        suites.push(normalizedCurrentBench);
+        // Insert at the correct position based on git ancestry
+        const insertionIndex = gitAnalyzer.findInsertionIndex(suites, benchEntry.commit.id);
+        core.debug(`Inserting benchmark at index ${insertionIndex} (of ${suites.length} existing entries)`);
+        suites.splice(insertionIndex, 0, normalizedCurrentBench);
 
         if (maxItems !== null && suites.length > maxItems) {
             suites.splice(0, suites.length - maxItems);
