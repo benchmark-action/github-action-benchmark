@@ -130,7 +130,7 @@ describe('GitGraphAnalyzer', () => {
 
             const ancestry = analyzer.getBranchAncestry('main');
             expect(ancestry).toEqual([]);
-            expect(mockWarning).toHaveBeenCalledWith(expect.stringContaining('Failed to get ancestry for branch main'));
+            expect(mockWarning).toHaveBeenCalledWith(expect.stringContaining('Failed to get ancestry for ref main'));
         });
 
         it('should return empty array when git CLI not available', () => {
@@ -270,76 +270,6 @@ describe('GitGraphAnalyzer', () => {
             const result = analyzer.sortByGitOrder(suites);
 
             expect(result.map((b) => b.commit.id)).toEqual(['a', 'b']);
-        });
-    });
-
-    describe('sortByGitOrderWithCLI', () => {
-        const createMockBenchmark = (id: string, timestamp: string): Benchmark => ({
-            commit: {
-                id,
-                timestamp,
-                message: `Commit ${id}`,
-                url: `https://github.com/test/repo/commit/${id}`,
-                author: { username: 'testuser' },
-                committer: { username: 'testuser' },
-            },
-            date: Date.now(),
-            tool: 'cargo',
-            benches: [],
-        });
-
-        beforeEach(() => {
-            process.env.GITHUB_ACTIONS = 'true';
-            process.env.GITHUB_WORKSPACE = '/github/workspace';
-            analyzer = new GitGraphAnalyzer();
-        });
-
-        it('should use git CLI when available', () => {
-            const suites = [
-                createMockBenchmark('abc123', '2025-01-01T00:00:00Z'),
-                createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
-            ];
-
-            mockExecSync.mockReturnValue('def456 Commit 2\nabc123 Commit 1');
-
-            const result = analyzer.sortByGitOrderWithCLI(suites);
-
-            expect(result.map((b) => b.commit.id)).toEqual(['def456', 'abc123']);
-            expect(mockDebug).toHaveBeenCalledWith('Sorted 2 benchmarks using git CLI ancestry');
-        });
-
-        it('should fallback to timestamp sorting when git CLI fails', () => {
-            const suites = [
-                createMockBenchmark('c', '2025-01-03T00:00:00Z'),
-                createMockBenchmark('a', '2025-01-01T00:00:00Z'),
-                createMockBenchmark('b', '2025-01-02T00:00:00Z'),
-            ];
-
-            mockExecSync.mockImplementation(() => {
-                throw new Error('Git failed');
-            });
-
-            const result = analyzer.sortByGitOrderWithCLI(suites);
-
-            expect(result.map((b) => b.commit.id)).toEqual(['a', 'b', 'c']);
-            expect(mockWarning).toHaveBeenCalledWith(
-                'Could not determine git ancestry, falling back to timestamp sort',
-            );
-        });
-
-        it('should fallback to timestamp sorting when git CLI not available', () => {
-            delete process.env.GITHUB_ACTIONS;
-            analyzer = new GitGraphAnalyzer();
-
-            const suites = [
-                createMockBenchmark('c', '2025-01-03T00:00:00Z'),
-                createMockBenchmark('a', '2025-01-01T00:00:00Z'),
-                createMockBenchmark('b', '2025-01-02T00:00:00Z'),
-            ];
-
-            const result = analyzer.sortByGitOrderWithCLI(suites);
-
-            expect(result.map((b) => b.commit.id)).toEqual(['a', 'b', 'c']);
         });
     });
 });

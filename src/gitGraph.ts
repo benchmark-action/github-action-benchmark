@@ -35,14 +35,14 @@ export class GitGraphAnalyzer {
     /**
      * Get git ancestry using topological order (only works in GitHub Actions environment)
      */
-    getBranchAncestry(branch: string): string[] {
+    getBranchAncestry(ref: string): string[] {
         if (!this.gitCliAvailable) {
             core.warning('Git CLI not available, cannot determine ancestry');
             return [];
         }
 
         try {
-            const output = execSync(`git log --oneline --topo-order ${branch}`, {
+            const output = execSync(`git log --oneline --topo-order ${ref}`, {
                 encoding: 'utf8',
                 cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
             });
@@ -52,7 +52,7 @@ export class GitGraphAnalyzer {
                 .filter((line) => line.trim())
                 .map((line) => line.split(' ')[0]); // Extract SHA from "sha message"
         } catch (error) {
-            core.warning(`Failed to get ancestry for branch ${branch}: ${error}`);
+            core.warning(`Failed to get ancestry for ref ${ref}: ${error}`);
             return [];
         }
     }
@@ -107,51 +107,6 @@ export class GitGraphAnalyzer {
         });
 
         core.debug('Sorted benchmarks by commit timestamp (GitHub Pages mode)');
-        return sortedSuites;
-    }
-
-    /**
-     * Advanced sorting using git CLI (only for GitHub Actions)
-     */
-    sortByGitOrderWithCLI(suites: Benchmark[]): Benchmark[] {
-        if (!this.gitCliAvailable) {
-            return this.sortByGitOrder(suites);
-        }
-
-        if (suites.length === 0) return suites;
-
-        // Create a map of SHA to benchmark for quick lookup
-        const benchmarkMap = new Map<string, Benchmark>();
-        for (const suite of suites) {
-            benchmarkMap.set(suite.commit.id, suite);
-        }
-
-        // Get ancestry from all commits (use the branch of the first commit)
-        const firstSuite = suites[0];
-        const ancestry = this.getBranchAncestry(firstSuite.commit.id);
-
-        if (ancestry.length === 0) {
-            core.warning('Could not determine git ancestry, falling back to timestamp sort');
-            return this.sortByGitOrder(suites);
-        }
-
-        // Sort benchmarks according to git ancestry
-        const sortedSuites: Benchmark[] = [];
-        for (const sha of ancestry) {
-            const benchmark = benchmarkMap.get(sha);
-            if (benchmark) {
-                sortedSuites.push(benchmark);
-            }
-        }
-
-        // Add any benchmarks not found in ancestry (shouldn't happen, but be safe)
-        for (const suite of suites) {
-            if (!sortedSuites.includes(suite)) {
-                sortedSuites.push(suite);
-            }
-        }
-
-        core.debug(`Sorted ${sortedSuites.length} benchmarks using git CLI ancestry`);
         return sortedSuites;
     }
 
