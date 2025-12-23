@@ -128,8 +128,7 @@ export class GitGraphAnalyzer {
 
         // Get ancestry from all commits (use the branch of the first commit)
         const firstSuite = suites[0];
-        const branch = this.detectBranchForCommit(firstSuite.commit.id);
-        const ancestry = this.getBranchAncestry(branch);
+        const ancestry = this.getBranchAncestry(firstSuite.commit.id);
 
         if (ancestry.length === 0) {
             core.warning('Could not determine git ancestry, falling back to timestamp sort');
