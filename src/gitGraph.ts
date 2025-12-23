@@ -202,32 +202,4 @@ export class GitGraphAnalyzer {
         }
         return null;
     }
-
-    /**
-     * Attempt to detect which branch a commit belongs to
-     */
-    private detectBranchForCommit(sha: string): string {
-        if (!this.gitCliAvailable) {
-            return 'main'; // Default for GitHub Pages
-        }
-
-        try {
-            // Try to find if commit is on current branch first
-            const currentBranch = this.getCurrentBranch();
-            const output = execSync(`git branch --contains ${sha}`, {
-                encoding: 'utf8',
-                cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
-            });
-
-            if (output.includes(currentBranch)) {
-                return currentBranch;
-            }
-
-            // Default to main if we can't determine
-            return 'main';
-        } catch (error) {
-            core.warning(`Could not detect branch for commit ${sha}, defaulting to 'main'`);
-            return 'main';
-        }
-    }
 }
