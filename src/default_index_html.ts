@@ -127,7 +127,10 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         };
 
         function init() {
-          function sortEntriesByGitOrder(entries) {
+          // By default, we use the order provided by the JSON data (which is sorted by git topology)
+          // We disable client-side timestamp sorting to avoid breaking the topological order
+          // Future work: make this configurable via a JSON flag
+          function sortEntriesByTimestamp(entries) {
             // Sort benchmarks by commit timestamp instead of execution time
             // This provides better git graph ordering for visualization
             return [...entries].sort((a, b) => {
@@ -152,6 +155,8 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
               }
             }
             // Sort each benchmark's data points by commit timestamp to ensure consistent ordering
+            // DISABLED: strictly use server-side order
+            /*
             for (const [benchName, arr] of map.entries()) {
               arr.sort((a, b) => {
                 const timestampA = new Date(a.commit.timestamp).getTime();
@@ -159,6 +164,7 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                 return timestampA - timestampB;
               });
             }
+            */
             return map;
           }
 
@@ -182,7 +188,8 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           // Prepare data points for charts
           return Object.keys(data.entries).map(name => {
             const entries = data.entries[name];
-            const sortedEntries = sortEntriesByGitOrder(entries);
+            // const sortedEntries = sortEntriesByTimestamp(entries);
+            const sortedEntries = entries;
             return {
               name,
               dataSet: collectBenchesPerTestCase(sortedEntries),

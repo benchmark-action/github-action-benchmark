@@ -116,6 +116,20 @@ jest.mock('../src/git', () => ({
     },
 }));
 
+jest.mock('../src/gitGraph', () => ({
+    GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
+        getCurrentBranch: () => 'main',
+        findPreviousBenchmark: (suites: any[]) => {
+            if (suites.length > 0) {
+                return suites[suites.length - 1];
+            }
+            return null;
+        },
+        findInsertionIndex: (suites: any[]) => suites.length,
+        sortByGitOrder: (suites: any[]) => suites,
+    })),
+}));
+
 describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBenchmark() - %s', function (serverUrl) {
     const savedCwd = process.cwd();
 
@@ -217,613 +231,613 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             repoPayload?: null | RepositoryPayloadSubset;
             gitServerUrl?: string;
         }> = [
-            {
-                it: 'appends new result to existing data',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                {
+                    it: 'appends new result to existing data',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                },
+                {
+                    it: 'appends new result to existing data with normalized units - new unit smaller',
+                    config: { ...defaultCfg, tool: 'catch2' },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'catch2',
+                                    benches: [bench('bench_fib_10', 1.012, '± 0.02', 'ms')],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'catch2',
+                        benches: [bench('bench_fib_10', 990, '± 20', 'us')],
+                    },
+                    expectedAdded: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'catch2',
+                        benches: [bench('bench_fib_10', 0.99, '± 0.02', 'ms')],
+                    },
+                    gitServerUrl: serverUrl,
+                },
+                {
+                    it: 'appends new result to existing data with normalized units - new unit larger',
+                    config: { ...defaultCfg, tool: 'catch2' },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'catch2',
+                                    benches: [bench('bench_fib_10', 990, '± 20', 'us')],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'catch2',
+                        benches: [bench('bench_fib_10', 1.012, '± 0.02', 'ms')],
+                    },
+                    expectedAdded: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'catch2',
+                        benches: [bench('bench_fib_10', 1012, '± 20', 'us')],
+                    },
+                    gitServerUrl: serverUrl,
+                },
+                {
+                    it: 'creates new data file',
+                    config: defaultCfg,
+                    data: null,
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
                     },
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-            },
-            {
-                it: 'appends new result to existing data with normalized units - new unit smaller',
-                config: { ...defaultCfg, tool: 'catch2' },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'catch2',
-                                benches: [bench('bench_fib_10', 1.012, '± 0.02', 'ms')],
-                            },
-                        ],
+                {
+                    it: 'creates new result suite to existing data file',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Other benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 10)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
                     },
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'catch2',
-                    benches: [bench('bench_fib_10', 990, '± 20', 'us')],
-                },
-                expectedAdded: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'catch2',
-                    benches: [bench('bench_fib_10', 0.99, '± 0.02', 'ms')],
-                },
-                gitServerUrl: serverUrl,
-            },
-            {
-                it: 'appends new result to existing data with normalized units - new unit larger',
-                config: { ...defaultCfg, tool: 'catch2' },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'catch2',
-                                benches: [bench('bench_fib_10', 990, '± 20', 'us')],
-                            },
-                        ],
+                {
+                    it: 'appends new result to existing multiple benchmarks data',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'pytest',
+                                    benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 900)],
+                                },
+                            ],
+                            'Other benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 10)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'pytest',
+                        benches: [bench('bench_fib_10', 135), bench('bench_fib_20', 1.1, '± 0.02', 'us/iter')],
+                    },
+                    expectedAdded: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'pytest',
+                        benches: [bench('bench_fib_10', 135), bench('bench_fib_20', 1100, '± 20')],
                     },
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'catch2',
-                    benches: [bench('bench_fib_10', 1.012, '± 0.02', 'ms')],
-                },
-                expectedAdded: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'catch2',
-                    benches: [bench('bench_fib_10', 1012, '± 20', 'us')],
-                },
-                gitServerUrl: serverUrl,
-            },
-            {
-                it: 'creates new data file',
-                config: defaultCfg,
-                data: null,
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-            },
-            {
-                it: 'creates new result suite to existing data file',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Other benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 10)],
-                            },
-                        ],
+                {
+                    it: 'raises an alert when exceeding threshold 2.0',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'go',
+                                    benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 10000)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-            },
-            {
-                it: 'appends new result to existing multiple benchmarks data',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'pytest',
-                                benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 900)],
-                            },
-                        ],
-                        'Other benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 10)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
                     },
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'pytest',
-                    benches: [bench('bench_fib_10', 135), bench('bench_fib_20', 1.1, '± 0.02', 'us/iter')],
-                },
-                expectedAdded: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'pytest',
-                    benches: [bench('bench_fib_10', 135), bench('bench_fib_20', 1100, '± 20')],
-                },
-            },
-            {
-                it: 'raises an alert when exceeding threshold 2.0',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'go',
-                                benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 10000)],
-                            },
-                        ],
+                {
+                    it: 'raises an alert when exceeding threshold 2.0 - different units',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'go',
+                                    benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 900)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
-                },
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'raises an alert when exceeding threshold 2.0 - different units',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'go',
-                                benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 900)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [
+                            bench('bench_fib_10', 0.21, '± 0.02', 'us/iter'),
+                            bench('bench_fib_20', 2.25, '± 0.02', 'us/iter'),
+                        ], // Exceeds 2.0 threshold
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [
-                        bench('bench_fib_10', 0.21, '± 0.02', 'us/iter'),
-                        bench('bench_fib_20', 2.25, '± 0.02', 'us/iter'),
-                    ], // Exceeds 2.0 threshold
-                },
-                expectedAdded: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 2250)], // Exceeds 2.0 threshold
-                },
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '| `bench_fib_20` | `2250` ns/iter (`± 20`) | `900` ns/iter (`± 20`) | `2.50` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'raises an alert with tool whose result value is bigger-is-better',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'benchmarkjs',
-                                benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
-                            },
-                        ],
+                    expectedAdded: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 2250)], // Exceeds 2.0 threshold
                     },
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '| `bench_fib_20` | `2250` ns/iter (`± 20`) | `900` ns/iter (`± 20`) | `2.50` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'benchmarkjs',
-                    benches: [bench('benchFib10', 20, '+-20', 'ops/sec')], // ops/sec so bigger is better
-                },
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `benchFib10` | `20` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `5` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'raises an alert without benchmark name with default benchmark name',
-                config: { ...defaultCfg, name: 'Benchmark' },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        Benchmark: [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                {
+                    it: 'raises an alert with tool whose result value is bigger-is-better',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'benchmarkjs',
+                                    benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    'Possible performance regression was detected for benchmark.',
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'raises an alert without CC names',
-                config: { ...defaultCfg, alertCommentCcUsers: [] },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'googlecpp',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'benchmarkjs',
+                        benches: [bench('benchFib10', 20, '+-20', 'ops/sec')], // ops/sec so bigger is better
                     },
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `benchFib10` | `20` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `5` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'googlecpp',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                ],
-            },
-            {
-                it: 'sends commit comment on alert with GitHub API',
-                config: { ...defaultCfg, commentOnAlert: true, githubToken: 'dummy token' },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                {
+                    it: 'raises an alert without benchmark name with default benchmark name',
+                    config: { ...defaultCfg, name: 'Benchmark' },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            Benchmark: [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                commitComment: 'Comment was generated at https://dummy-comment-url',
-            },
-            {
-                it: 'does not raise an alert when both comment-on-alert and fail-on-alert are disabled',
-                config: { ...defaultCfg, commentOnAlert: false, failOnAlert: false },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                     },
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        'Possible performance regression was detected for benchmark.',
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                error: undefined,
-                commitComment: undefined,
-            },
-            {
-                it: 'ignores other bench case on detecting alerts',
-                config: defaultCfg,
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('another_bench', 100)],
-                            },
-                        ],
+                {
+                    it: 'raises an alert without CC names',
+                    config: { ...defaultCfg, alertCommentCcUsers: [] },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'googlecpp',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                error: undefined,
-                commitComment: undefined,
-            },
-            {
-                it: 'throws an error when GitHub token is not set (though this case should not happen in favor of validation)',
-                config: { ...defaultCfg, commentOnAlert: true },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'cargo',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'googlecpp',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                     },
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                    ],
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                error: ["'comment-on-alert' input is set but 'github-token' input is not set"],
-                commitComment: undefined,
-            },
-            {
-                it: 'truncates data items if it exceeds max-items-in-chart',
-                config: { ...defaultCfg, maxItemsInChart: 1 },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'go',
-                                benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 10000)],
-                            },
-                        ],
+                {
+                    it: 'sends commit comment on alert with GitHub API',
+                    config: { ...defaultCfg, commentOnAlert: true, githubToken: 'dummy token' },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
-                },
-                // Though first item is truncated due to maxItemsInChart, alert still can be raised since previous data
-                // is obtained before truncating an array of data items.
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'changes title when threshold is zero which means comment always happens',
-                config: { ...defaultCfg, alertThreshold: 0, failThreshold: 0 },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'benchmarkjs',
-                                benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                     },
+                    commitComment: 'Comment was generated at https://dummy-comment-url',
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'benchmarkjs',
-                    benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
-                },
-                error: [
-                    '# Performance Report',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `0`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `benchFib10` | `100` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `1` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'raises an alert with different failure threshold from alert threshold',
-                config: { ...defaultCfg, failThreshold: 3 },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'go',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                {
+                    it: 'does not raise an alert when both comment-on-alert and fail-on-alert are disabled',
+                    config: { ...defaultCfg, commentOnAlert: false, failOnAlert: false },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
                     },
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [bench('bench_fib_10', 350)], // Exceeds 3.0 failure threshold
-                },
-                error: [
-                    '1 of 1 alerts exceeded the failure threshold `3` specified by fail-threshold input:',
-                    '',
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `350` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `3.50` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                    '',
-                    'CC: @user',
-                ],
-            },
-            {
-                it: 'does not raise an alert when not exceeding failure threshold',
-                config: { ...defaultCfg, failThreshold: 3 },
-                data: {
-                    lastUpdate,
-                    repoUrl,
-                    entries: {
-                        'Test benchmark': [
-                            {
-                                commit: commit('prev commit id'),
-                                date: lastUpdate - 1000,
-                                tool: 'go',
-                                benches: [bench('bench_fib_10', 100)],
-                            },
-                        ],
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                     },
+                    error: undefined,
+                    commitComment: undefined,
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'go',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                {
+                    it: 'ignores other bench case on detecting alerts',
+                    config: defaultCfg,
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('another_bench', 100)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                    },
+                    error: undefined,
+                    commitComment: undefined,
                 },
-                error: undefined,
-            },
-        ];
+                {
+                    it: 'throws an error when GitHub token is not set (though this case should not happen in favor of validation)',
+                    config: { ...defaultCfg, commentOnAlert: true },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'cargo',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                    },
+                    error: ["'comment-on-alert' input is set but 'github-token' input is not set"],
+                    commitComment: undefined,
+                },
+                {
+                    it: 'truncates data items if it exceeds max-items-in-chart',
+                    config: { ...defaultCfg, maxItemsInChart: 1 },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'go',
+                                    benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 10000)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
+                    },
+                    // Though first item is truncated due to maxItemsInChart, alert still can be raised since previous data
+                    // is obtained before truncating an array of data items.
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
+                },
+                {
+                    it: 'changes title when threshold is zero which means comment always happens',
+                    config: { ...defaultCfg, alertThreshold: 0, failThreshold: 0 },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'benchmarkjs',
+                                    benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'benchmarkjs',
+                        benches: [bench('benchFib10', 100, '+-20', 'ops/sec')],
+                    },
+                    error: [
+                        '# Performance Report',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `0`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `benchFib10` | `100` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `1` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
+                },
+                {
+                    it: 'raises an alert with different failure threshold from alert threshold',
+                    config: { ...defaultCfg, failThreshold: 3 },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'go',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [bench('bench_fib_10', 350)], // Exceeds 3.0 failure threshold
+                    },
+                    error: [
+                        '1 of 1 alerts exceeded the failure threshold `3` specified by fail-threshold input:',
+                        '',
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `350` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `3.50` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                        '',
+                        'CC: @user',
+                    ],
+                },
+                {
+                    it: 'does not raise an alert when not exceeding failure threshold',
+                    config: { ...defaultCfg, failThreshold: 3 },
+                    data: {
+                        lastUpdate,
+                        repoUrl,
+                        entries: {
+                            'Test benchmark': [
+                                {
+                                    commit: commit('prev commit id'),
+                                    date: lastUpdate - 1000,
+                                    tool: 'go',
+                                    benches: [bench('bench_fib_10', 100)],
+                                },
+                            ],
+                        },
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'go',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                    },
+                    error: undefined,
+                },
+            ];
 
         it.each(normalCases)('$it', async function (t) {
             const { data, added, config, repoPayload, error, commitComment } = t;
@@ -1047,290 +1061,290 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             error?: string[];
             expectedDataBaseDirectory?: string;
         }> = [
-            {
-                it: 'appends new data',
-                config: defaultCfg,
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
+                {
+                    it: 'appends new data',
+                    config: defaultCfg,
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory(),
                 },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory(),
-            },
-            {
-                it: 'creates new data file',
-                config: { ...defaultCfg, benchmarkDataDirPath: 'new-data-dir' },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
+                {
+                    it: 'creates new data file',
+                    config: { ...defaultCfg, benchmarkDataDirPath: 'new-data-dir' },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ dir: 'new-data-dir' }),
                 },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ dir: 'new-data-dir' }),
-            },
-            {
-                it: 'appends new data in other repository',
-                config: {
-                    ...defaultCfg,
-                    ghRepository: 'https://github.com/user/other-repo',
-                    benchmarkDataDirPath: 'data-dir',
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: [
-                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
-                    [
-                        'checkout',
+                {
+                    it: 'appends new data in other repository',
+                    config: {
+                        ...defaultCfg,
+                        ghRepository: 'https://github.com/user/other-repo',
+                        benchmarkDataDirPath: 'data-dir',
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: [
+                        ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                         [
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            'checkout',
+                            [
+                                'gh-pages',
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'add',
+                                path.join('data-dir', 'data.js'),
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'add',
+                                path.join('data-dir', 'index.html'),
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'commit',
+                                '-m',
+                                'add Test benchmark (cargo) benchmark result for current commit id',
+                            ],
+                        ],
+                        [
+                            'push',
+                            [
+                                'dummy token',
+                                'https://github.com/user/other-repo',
+                                'gh-pages',
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            ],
                         ],
                     ],
-                    [
-                        'cmd',
+                    expectedDataBaseDirectory: 'benchmark-data-repository',
+                },
+                {
+                    it: 'creates new data file in other repository',
+                    config: {
+                        ...defaultCfg,
+                        ghRepository: 'https://github.com/user/other-repo',
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: [
+                        ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                         [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'data.js'),
+                            'checkout',
+                            [
+                                'gh-pages',
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'add',
+                                path.join('data-dir', 'data.js'),
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'add',
+                                path.join('data-dir', 'index.html'),
+                            ],
+                        ],
+                        [
+                            'cmd',
+                            [
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                                'commit',
+                                '-m',
+                                'add Test benchmark (cargo) benchmark result for current commit id',
+                            ],
+                        ],
+                        [
+                            'push',
+                            [
+                                'dummy token',
+                                'https://github.com/user/other-repo',
+                                'gh-pages',
+                                ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            ],
                         ],
                     ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'index.html'),
-                        ],
+                    expectedDataBaseDirectory: 'benchmark-data-repository',
+                },
+                {
+                    it: 'creates new suite in data',
+                    config: defaultCfg,
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('other_bench_foo', 100)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory(),
+                },
+                {
+                    it: 'does not create index.html if it already exists',
+                    config: { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 100)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ dir: 'with-index-html', addIndexHtml: false }),
+                },
+                {
+                    it: 'does not push to remote when auto-push is off',
+                    config: { ...defaultCfg, autoPush: false },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ autoPush: false }),
+                },
+                {
+                    it: 'does not push to remote when auto-push is off without token',
+                    config: { ...defaultCfg, autoPush: false, githubToken: undefined },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ autoPush: false, token: undefined }),
+                },
+                {
+                    it: 'does not fetch remote when github-token is not set for private repo',
+                    config: { ...defaultCfg, autoPush: false, githubToken: undefined },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ autoPush: false, token: undefined, fetch: false }),
+                    privateRepo: true,
+                },
+                {
+                    it: 'does not fetch remote when skip-fetch-gh-pages is enabled',
+                    config: { ...defaultCfg, skipFetchGhPages: true },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 135)],
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory({ fetch: false, skipFetch: true }),
+                },
+                {
+                    it: 'fails when exceeding the threshold',
+                    config: defaultCfg,
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory(),
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
                     ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'commit',
-                            '-m',
-                            'add Test benchmark (cargo) benchmark result for current commit id',
-                        ],
+                },
+                {
+                    it: 'fails when exceeding the threshold - different units',
+                    config: defaultCfg,
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 0.21, '± 0.02', 'us/iter')], // Exceeds 2.0 threshold
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory(),
+                    error: [
+                        '# :warning: **Performance Alert** :warning:',
+                        '',
+                        "Possible performance regression was detected for benchmark **'Test benchmark'**.",
+                        'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                        '',
+                        '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                        '|-|-|-|-|',
+                        '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
+                        '',
+                        `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
                     ],
-                    [
-                        'push',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                        ],
-                    ],
-                ],
-                expectedDataBaseDirectory: 'benchmark-data-repository',
-            },
-            {
-                it: 'creates new data file in other repository',
-                config: {
-                    ...defaultCfg,
-                    ghRepository: 'https://github.com/user/other-repo',
                 },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
+                {
+                    it: 'sends commit message but does not raise an error when exceeding alert threshold but not exceeding failure threshold',
+                    config: {
+                        ...defaultCfg,
+                        commentOnAlert: true,
+                        githubToken: 'dummy token',
+                        alertThreshold: 2,
+                        failThreshold: 3,
+                    },
+                    added: {
+                        commit: commit('current commit id'),
+                        date: lastUpdate,
+                        tool: 'cargo',
+                        benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold but not exceed 3.0 threshold
+                    },
+                    gitServerUrl: serverUrl,
+                    gitHistory: gitHistory(),
+                    error: undefined,
                 },
-                gitServerUrl: serverUrl,
-                gitHistory: [
-                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
-                    [
-                        'checkout',
-                        [
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'data.js'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'index.html'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'commit',
-                            '-m',
-                            'add Test benchmark (cargo) benchmark result for current commit id',
-                        ],
-                    ],
-                    [
-                        'push',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                        ],
-                    ],
-                ],
-                expectedDataBaseDirectory: 'benchmark-data-repository',
-            },
-            {
-                it: 'creates new suite in data',
-                config: defaultCfg,
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('other_bench_foo', 100)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory(),
-            },
-            {
-                it: 'does not create index.html if it already exists',
-                config: { ...defaultCfg, benchmarkDataDirPath: 'with-index-html' },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 100)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ dir: 'with-index-html', addIndexHtml: false }),
-            },
-            {
-                it: 'does not push to remote when auto-push is off',
-                config: { ...defaultCfg, autoPush: false },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ autoPush: false }),
-            },
-            {
-                it: 'does not push to remote when auto-push is off without token',
-                config: { ...defaultCfg, autoPush: false, githubToken: undefined },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ autoPush: false, token: undefined }),
-            },
-            {
-                it: 'does not fetch remote when github-token is not set for private repo',
-                config: { ...defaultCfg, autoPush: false, githubToken: undefined },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ autoPush: false, token: undefined, fetch: false }),
-                privateRepo: true,
-            },
-            {
-                it: 'does not fetch remote when skip-fetch-gh-pages is enabled',
-                config: { ...defaultCfg, skipFetchGhPages: true },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 135)],
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory({ fetch: false, skipFetch: true }),
-            },
-            {
-                it: 'fails when exceeding the threshold',
-                config: defaultCfg,
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory(),
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                ],
-            },
-            {
-                it: 'fails when exceeding the threshold - different units',
-                config: defaultCfg,
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 0.21, '± 0.02', 'us/iter')], // Exceeds 2.0 threshold
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory(),
-                error: [
-                    '# :warning: **Performance Alert** :warning:',
-                    '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
-                    '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
-                    '|-|-|-|-|',
-                    '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
-                    '',
-                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
-                ],
-            },
-            {
-                it: 'sends commit message but does not raise an error when exceeding alert threshold but not exceeding failure threshold',
-                config: {
-                    ...defaultCfg,
-                    commentOnAlert: true,
-                    githubToken: 'dummy token',
-                    alertThreshold: 2,
-                    failThreshold: 3,
-                },
-                added: {
-                    commit: commit('current commit id'),
-                    date: lastUpdate,
-                    tool: 'cargo',
-                    benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold but not exceed 3.0 threshold
-                },
-                gitServerUrl: serverUrl,
-                gitHistory: gitHistory(),
-                error: undefined,
-            },
-        ];
+            ];
         for (const t of normalCases) {
             // FIXME: can't use `it.each` currently as tests running in parallel interfere with each other
             it(t.it, async function () {
@@ -1423,30 +1437,30 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             pushErrorMessage: string;
             pushErrorCount: number;
         }> = [
-            ...[1, 2].map((retries) => ({
-                it: `updates data successfully after ${retries} retries`,
-                pushErrorMessage: '... [remote rejected] ...',
-                pushErrorCount: retries,
-            })),
-            {
-                it: `gives up updating data after ${maxRetries} retries with an error`,
-                pushErrorMessage: '... [remote rejected] ...',
-                pushErrorCount: maxRetries,
-                error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
-            },
-            {
-                it: `gives up updating data after ${maxRetries} retries with an error containing "[rejected]" in message`,
-                pushErrorMessage: '... [rejected] ...',
-                pushErrorCount: maxRetries,
-                error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
-            },
-            {
-                it: 'handles an unexpected error without retry',
-                pushErrorMessage: 'Some fatal error',
-                pushErrorCount: 1,
-                error: /Some fatal error/,
-            },
-        ];
+                ...[1, 2].map((retries) => ({
+                    it: `updates data successfully after ${retries} retries`,
+                    pushErrorMessage: '... [remote rejected] ...',
+                    pushErrorCount: retries,
+                })),
+                {
+                    it: `gives up updating data after ${maxRetries} retries with an error`,
+                    pushErrorMessage: '... [remote rejected] ...',
+                    pushErrorCount: maxRetries,
+                    error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
+                },
+                {
+                    it: `gives up updating data after ${maxRetries} retries with an error containing "[rejected]" in message`,
+                    pushErrorMessage: '... [rejected] ...',
+                    pushErrorCount: maxRetries,
+                    error: /Auto-push failed 3 times since the remote branch gh-pages rejected pushing all the time/,
+                },
+                {
+                    it: 'handles an unexpected error without retry',
+                    pushErrorMessage: 'Some fatal error',
+                    pushErrorCount: 1,
+                    error: /Some fatal error/,
+                },
+            ];
 
         it.each(retryCases)('$it', async function (t) {
             gitSpy.pushFailure = t.pushErrorMessage;

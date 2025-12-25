@@ -7,8 +7,12 @@ export class GitGraphAnalyzer {
     private readonly gitCliAvailable: boolean;
 
     constructor() {
-        // Check if we're in GitHub Actions environment (git CLI available)
-        this.gitCliAvailable = process.env.GITHUB_ACTIONS === 'true' && Boolean(process.env.GITHUB_WORKSPACE);
+        try {
+            execSync('git --version', { stdio: 'ignore' });
+            this.gitCliAvailable = true;
+        } catch (e) {
+            this.gitCliAvailable = false;
+        }
     }
 
     /**
@@ -20,6 +24,22 @@ export class GitGraphAnalyzer {
         // For pull requests, get the head branch
         if (context.payload.pull_request) {
             return context.payload.pull_request.head.ref;
+        }
+
+        // Try to get branch from git CLI first if available
+        if (this.gitCliAvailable) {
+            try {
+                const branch = execSync('git rev-parse --abbrev-ref HEAD', {
+                    encoding: 'utf8',
+                    cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
+                }).trim();
+
+                if (branch && branch !== 'HEAD') {
+                    return branch;
+                }
+            } catch (e) {
+                core.debug(`Failed to get branch from git CLI: ${e}`);
+            }
         }
 
         // For pushes, get the branch from ref
@@ -60,11 +80,11 @@ export class GitGraphAnalyzer {
     /**
      * Find previous benchmark commit based on git graph structure
      */
-    findPreviousBenchmark(suites: Benchmark[], currentSha: string, branch: string): Benchmark | null {
-        const ancestry = this.getBranchAncestry(branch);
+    findPreviousBenchmark(suites: Benchmark[], currentSha: string): Benchmark | null {
+        const ancestry = this.getBranchAncestry(currentSha);
 
         if (ancestry.length === 0) {
-            core.warning(`No ancestry found for branch ${branch}, falling back to execution time ordering`);
+            core.warning(`No ancestry found for commit ${currentSha}, falling back to execution time ordering`);
             return this.findPreviousByExecutionTime(suites, currentSha);
         }
 

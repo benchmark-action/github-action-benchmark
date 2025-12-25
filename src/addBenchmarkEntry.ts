@@ -22,10 +22,9 @@ export function addBenchmarkEntry(
         const suites = entries[benchName];
 
         // Use git-graph aware logic to find previous benchmark
-        const currentBranch = gitAnalyzer.getCurrentBranch();
-        core.debug(`Finding previous benchmark for branch: ${currentBranch}`);
+        core.debug(`Finding previous benchmark for commit: ${benchEntry.commit.id}`);
 
-        prevBench = gitAnalyzer.findPreviousBenchmark(suites, benchEntry.commit.id, currentBranch);
+        prevBench = gitAnalyzer.findPreviousBenchmark(suites, benchEntry.commit.id);
 
         if (prevBench) {
             core.debug(`Found previous benchmark: ${prevBench.commit.id}`);

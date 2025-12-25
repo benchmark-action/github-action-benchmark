@@ -58,13 +58,11 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
-        expect(mockGetCurrentBranch).toHaveBeenCalled();
         expect(mockFindPreviousBenchmark).toHaveBeenCalledWith(
             expect.arrayContaining([existingEntry]),
             'abc123',
-            'feature-branch',
         );
-        expect(mockDebug).toHaveBeenCalledWith('Finding previous benchmark for branch: feature-branch');
+        expect(mockDebug).toHaveBeenCalledWith('Finding previous benchmark for commit: abc123');
         expect(mockDebug).toHaveBeenCalledWith('Found previous benchmark: def456');
         expect(result.prevBench).toBe(existingEntry);
     });
@@ -83,7 +81,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
-        expect(mockDebug).toHaveBeenCalledWith('Finding previous benchmark for branch: main');
+        expect(mockDebug).toHaveBeenCalledWith('Finding previous benchmark for commit: abc123');
         expect(mockDebug).toHaveBeenCalledWith('No previous benchmark found');
         expect(result.prevBench).toBeNull();
     });
