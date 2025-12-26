@@ -12,21 +12,6 @@ jest.mock('child_process', () => ({
     execSync: mockExecSync,
 }));
 
-const mockGitHubContext = {
-    repo: {
-        repo: 'test-repo',
-        owner: 'test-owner',
-    },
-    payload: {},
-    ref: '',
-};
-
-jest.mock('@actions/github', () => ({
-    get context() {
-        return mockGitHubContext;
-    },
-}));
-
 import { GitGraphAnalyzer } from '../src/gitGraph';
 import { Benchmark } from '../src/extract';
 
@@ -45,73 +30,40 @@ describe('GitGraphAnalyzer', () => {
     });
 
     describe('constructor', () => {
-        it('should detect GitHub Actions environment', () => {
-            process.env.GITHUB_ACTIONS = 'true';
-            process.env.GITHUB_WORKSPACE = '/github/workspace';
-
+        it('should detect git CLI availability', () => {
+            mockExecSync.mockReturnValue('git version 2.40.0');
             analyzer = new GitGraphAnalyzer();
-            // We can't directly access the private property, but we can test behavior
-            expect(analyzer).toBeInstanceOf(GitGraphAnalyzer);
+            expect(analyzer.isGitAvailable()).toBe(true);
         });
 
         it('should detect git CLI unavailability', () => {
             mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd.includes('--version')) {
-                    throw new Error('Command failed');
+                if (cmd === 'git --version') {
+                    throw new Error('Command not found');
                 }
                 return '';
             });
 
             analyzer = new GitGraphAnalyzer();
-            // We can check if it behaves as if git is unavailable
-            // We can't access private property, but we can verify it via behavior ?
-            // However, since we can't access private property, we might need to rely on getBranchAncestry behavior
+            expect(analyzer.isGitAvailable()).toBe(false);
         });
     });
 
-    describe('getCurrentBranch', () => {
+    describe('getAncestry', () => {
         beforeEach(() => {
-            analyzer = new GitGraphAnalyzer();
-        });
-
-        it('should get branch from pull request head ref', () => {
-            mockGitHubContext.payload = {
-                pull_request: {
-                    head: {
-                        ref: 'feature-branch',
-                    },
-                },
-            };
-
-            expect(analyzer.getCurrentBranch()).toBe('feature-branch');
-        });
-
-        it('should get branch from ref (push event)', () => {
-            mockGitHubContext.payload = {};
-            mockGitHubContext.ref = 'refs/heads/main';
-
-            expect(analyzer.getCurrentBranch()).toBe('main');
-        });
-
-        it('should fallback to main when no branch detected', () => {
-            mockGitHubContext.payload = {};
-            mockGitHubContext.ref = '';
-
-            expect(analyzer.getCurrentBranch()).toBe('main');
-        });
-    });
-
-    describe('getBranchAncestry', () => {
-        beforeEach(() => {
-            process.env.GITHUB_ACTIONS = 'true';
+            mockExecSync.mockReturnValue('git version 2.40.0');
             process.env.GITHUB_WORKSPACE = '/github/workspace';
             analyzer = new GitGraphAnalyzer();
         });
 
         it('should parse git log output correctly', () => {
-            mockExecSync.mockReturnValue('abc123 Commit message 1\ndef456 Commit message 2\nghi789 Commit message 3');
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'abc123 Commit message 1\ndef456 Commit message 2\nghi789 Commit message 3';
+            });
+            analyzer = new GitGraphAnalyzer();
 
-            const ancestry = analyzer.getBranchAncestry('main');
+            const ancestry = analyzer.getAncestry('main');
 
             expect(mockExecSync).toHaveBeenCalledWith(
                 'git log --oneline --topo-order main',
@@ -124,32 +76,38 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should handle empty git log output', () => {
-            mockExecSync.mockReturnValue('');
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return '';
+            });
+            analyzer = new GitGraphAnalyzer();
 
-            const ancestry = analyzer.getBranchAncestry('main');
+            const ancestry = analyzer.getAncestry('main');
             expect(ancestry).toEqual([]);
         });
 
         it('should handle git command failure', () => {
-            mockExecSync.mockImplementation(() => {
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
                 throw new Error('Git command failed');
             });
+            analyzer = new GitGraphAnalyzer();
 
-            const ancestry = analyzer.getBranchAncestry('main');
+            const ancestry = analyzer.getAncestry('main');
             expect(ancestry).toEqual([]);
             expect(mockWarning).toHaveBeenCalledWith(expect.stringContaining('Failed to get ancestry for ref main'));
         });
 
         it('should return empty array when git CLI not available', () => {
             mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd.includes('--version')) {
-                    throw new Error('Command failed');
+                if (cmd === 'git --version') {
+                    throw new Error('Command not found');
                 }
                 return '';
             });
             analyzer = new GitGraphAnalyzer();
 
-            const ancestry = analyzer.getBranchAncestry('main');
+            const ancestry = analyzer.getAncestry('main');
             expect(ancestry).toEqual([]);
             expect(mockWarning).toHaveBeenCalledWith('Git CLI not available, cannot determine ancestry');
         });
@@ -171,9 +129,7 @@ describe('GitGraphAnalyzer', () => {
         });
 
         beforeEach(() => {
-            process.env.GITHUB_ACTIONS = 'true';
             process.env.GITHUB_WORKSPACE = '/github/workspace';
-            analyzer = new GitGraphAnalyzer();
         });
 
         it('should find previous benchmark using git ancestry', () => {
@@ -183,7 +139,11 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('ghi789', '2025-01-03T00:00:00Z'),
             ];
 
-            mockExecSync.mockReturnValue('ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1');
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1';
+            });
+            analyzer = new GitGraphAnalyzer();
 
             const result = analyzer.findPreviousBenchmark(suites, 'ghi789');
 
@@ -195,7 +155,11 @@ describe('GitGraphAnalyzer', () => {
         it('should return null when no previous benchmark found', () => {
             const suites = [createMockBenchmark('abc123', '2025-01-01T00:00:00Z')];
 
-            mockExecSync.mockReturnValue('abc123 Commit 1');
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'abc123 Commit 1';
+            });
+            analyzer = new GitGraphAnalyzer();
 
             const result = analyzer.findPreviousBenchmark(suites, 'abc123');
 
@@ -209,9 +173,11 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
             ];
 
-            mockExecSync.mockImplementation(() => {
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
                 throw new Error('Git failed');
             });
+            analyzer = new GitGraphAnalyzer();
 
             const result = analyzer.findPreviousBenchmark(suites, 'def456');
 
@@ -226,7 +192,11 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
             ];
 
-            mockExecSync.mockReturnValue('xyz999 Other commit');
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'xyz999 Other commit';
+            });
+            analyzer = new GitGraphAnalyzer();
 
             const result = analyzer.findPreviousBenchmark(suites, 'def456');
 
@@ -236,7 +206,7 @@ describe('GitGraphAnalyzer', () => {
         });
     });
 
-    describe('sortByGitOrder', () => {
+    describe('findInsertionIndex', () => {
         const createMockBenchmark = (id: string, timestamp: string): Benchmark => ({
             commit: {
                 id,
@@ -252,36 +222,55 @@ describe('GitGraphAnalyzer', () => {
         });
 
         beforeEach(() => {
+            process.env.GITHUB_WORKSPACE = '/github/workspace';
+        });
+
+        it('should find correct insertion index after ancestor', () => {
+            const suites = [
+                createMockBenchmark('abc123', '2025-01-01T00:00:00Z'),
+                createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
+            ];
+
+            // New commit ghi789 has def456 as ancestor
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1';
+            });
             analyzer = new GitGraphAnalyzer();
+
+            const index = analyzer.findInsertionIndex(suites, 'ghi789');
+
+            // Should insert after def456 (index 1), so at index 2
+            expect(index).toBe(2);
+            expect(mockDebug).toHaveBeenCalledWith('Found ancestor def456 at index 1, inserting after it');
         });
 
-        it('should sort by commit timestamp', () => {
+        it('should append to end when no ancestor found', () => {
             const suites = [
-                createMockBenchmark('c', '2025-01-03T00:00:00Z'),
-                createMockBenchmark('a', '2025-01-01T00:00:00Z'),
-                createMockBenchmark('b', '2025-01-02T00:00:00Z'),
+                createMockBenchmark('abc123', '2025-01-01T00:00:00Z'),
+                createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
             ];
 
-            const result = analyzer.sortByGitOrder(suites);
+            // New commit has no relation to existing commits
+            mockExecSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git --version') return 'git version 2.40.0';
+                return 'xyz999 Unrelated commit';
+            });
+            analyzer = new GitGraphAnalyzer();
 
-            expect(result.map((b) => b.commit.id)).toEqual(['a', 'b', 'c']);
-            expect(mockDebug).toHaveBeenCalledWith('Sorted benchmarks by commit timestamp (GitHub Pages mode)');
+            const index = analyzer.findInsertionIndex(suites, 'xyz999');
+
+            expect(index).toBe(2);
+            expect(mockDebug).toHaveBeenCalledWith('No ancestor found in existing suites, appending to end');
         });
 
-        it('should handle empty array', () => {
-            const result = analyzer.sortByGitOrder([]);
-            expect(result).toEqual([]);
-        });
+        it('should append to end for empty suites', () => {
+            mockExecSync.mockReturnValue('git version 2.40.0');
+            analyzer = new GitGraphAnalyzer();
 
-        it('should maintain original order for equal timestamps', () => {
-            const suites = [
-                createMockBenchmark('a', '2025-01-01T00:00:00Z'),
-                createMockBenchmark('b', '2025-01-01T00:00:00Z'),
-            ];
+            const index = analyzer.findInsertionIndex([], 'abc123');
 
-            const result = analyzer.sortByGitOrder(suites);
-
-            expect(result.map((b) => b.commit.id)).toEqual(['a', 'b']);
+            expect(index).toBe(0);
         });
     });
 });

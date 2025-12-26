@@ -1,4 +1,3 @@
-import * as github from '@actions/github';
 import { execSync } from 'child_process';
 import * as core from '@actions/core';
 import { Benchmark } from './extract';
@@ -16,46 +15,16 @@ export class GitGraphAnalyzer {
     }
 
     /**
-     * Get current branch from GitHub context
+     * Check if git CLI is available
      */
-    getCurrentBranch(): string {
-        const context = github.context;
-
-        // For pull requests, get the head branch
-        if (context.payload.pull_request) {
-            return context.payload.pull_request.head.ref;
-        }
-
-        // Try to get branch from git CLI first if available
-        if (this.gitCliAvailable) {
-            try {
-                const branch = execSync('git rev-parse --abbrev-ref HEAD', {
-                    encoding: 'utf8',
-                    cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
-                }).trim();
-
-                if (branch && branch !== 'HEAD') {
-                    return branch;
-                }
-            } catch (e) {
-                core.debug(`Failed to get branch from git CLI: ${e}`);
-            }
-        }
-
-        // For pushes, get the branch from ref
-        if (context.ref) {
-            // Remove 'refs/heads/' prefix if present
-            return context.ref.replace('refs/heads/', '');
-        }
-
-        // Fallback to 'main' if we can't determine branch
-        return 'main';
+    isGitAvailable(): boolean {
+        return this.gitCliAvailable;
     }
 
     /**
-     * Get git ancestry using topological order (only works in GitHub Actions environment)
+     * Get git ancestry using topological order
      */
-    getBranchAncestry(ref: string): string[] {
+    getAncestry(ref: string): string[] {
         if (!this.gitCliAvailable) {
             core.warning('Git CLI not available, cannot determine ancestry');
             return [];
@@ -78,10 +47,11 @@ export class GitGraphAnalyzer {
     }
 
     /**
-     * Find previous benchmark commit based on git graph structure
+     * Find previous benchmark commit based on git ancestry.
+     * Falls back to execution time ordering if git ancestry is not available.
      */
     findPreviousBenchmark(suites: Benchmark[], currentSha: string): Benchmark | null {
-        const ancestry = this.getBranchAncestry(currentSha);
+        const ancestry = this.getAncestry(currentSha);
 
         if (ancestry.length === 0) {
             core.warning(`No ancestry found for commit ${currentSha}, falling back to execution time ordering`);
@@ -112,36 +82,15 @@ export class GitGraphAnalyzer {
     }
 
     /**
-     * Sort benchmark data by commit timestamp (for GitHub Pages visualization)
-     * This doesn't need git CLI - just uses the commit timestamps already stored
-     */
-    sortByGitOrder(suites: Benchmark[]): Benchmark[] {
-        if (suites.length === 0) return suites;
-
-        // For GitHub Pages, we don't have git CLI, so sort by commit timestamp
-        // This gives a reasonable approximation of git order
-        const sortedSuites = [...suites].sort((a, b) => {
-            const timestampA = new Date(a.commit.timestamp ?? '1970-01-01T00:00:00Z').getTime();
-            const timestampB = new Date(b.commit.timestamp ?? '1970-01-01T00:00:00Z').getTime();
-            return timestampA - timestampB;
-        });
-
-        core.debug('Sorted benchmarks by commit timestamp (GitHub Pages mode)');
-        return sortedSuites;
-    }
-
-    /**
      * Find the insertion index for a new benchmark entry based on git ancestry.
-     * Returns the index after which the new entry should be inserted.
-     * If no ancestor is found, returns -1 (insert at beginning) or suites.length (append to end).
+     * Inserts after the most recent ancestor in the existing suites.
      */
     findInsertionIndex(suites: Benchmark[], newCommitSha: string): number {
         if (!this.gitCliAvailable || suites.length === 0) {
-            // Fallback: append to end
             return suites.length;
         }
 
-        const ancestry = this.getBranchAncestry(newCommitSha);
+        const ancestry = this.getAncestry(newCommitSha);
         if (ancestry.length === 0) {
             core.debug('No ancestry found, appending to end');
             return suites.length;

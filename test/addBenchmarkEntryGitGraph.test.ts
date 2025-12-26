@@ -1,6 +1,5 @@
 // Mock modules before imports
 const mockDebug = jest.fn();
-const mockGetCurrentBranch = jest.fn();
 const mockFindPreviousBenchmark = jest.fn();
 const mockFindInsertionIndex = jest.fn();
 
@@ -10,7 +9,6 @@ jest.mock('@actions/core', () => ({
 
 jest.mock('../src/gitGraph', () => ({
     GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
-        getCurrentBranch: mockGetCurrentBranch,
         findPreviousBenchmark: mockFindPreviousBenchmark,
         findInsertionIndex: mockFindInsertionIndex,
     })),
@@ -52,16 +50,12 @@ describe('addBenchmarkEntry with Git Graph', () => {
             [benchName]: [existingEntry],
         };
 
-        mockGetCurrentBranch.mockReturnValue('feature-branch');
         mockFindPreviousBenchmark.mockReturnValue(existingEntry);
         mockFindInsertionIndex.mockReturnValue(1);
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
 
-        expect(mockFindPreviousBenchmark).toHaveBeenCalledWith(
-            expect.arrayContaining([existingEntry]),
-            'abc123',
-        );
+        expect(mockFindPreviousBenchmark).toHaveBeenCalledWith(expect.arrayContaining([existingEntry]), 'abc123');
         expect(mockDebug).toHaveBeenCalledWith('Finding previous benchmark for commit: abc123');
         expect(mockDebug).toHaveBeenCalledWith('Found previous benchmark: def456');
         expect(result.prevBench).toBe(existingEntry);
@@ -75,7 +69,6 @@ describe('addBenchmarkEntry with Git Graph', () => {
             [benchName]: [existingEntry],
         };
 
-        mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(null);
         mockFindInsertionIndex.mockReturnValue(1);
 
@@ -91,7 +84,6 @@ describe('addBenchmarkEntry with Git Graph', () => {
         const benchEntry = createMockBenchmark('abc123');
         const entries: any = {};
 
-        mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(null);
 
         const result = addBenchmarkEntry(benchName, benchEntry, entries, null);
@@ -112,7 +104,6 @@ describe('addBenchmarkEntry with Git Graph', () => {
             [benchName]: [existingEntry],
         };
 
-        mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(existingEntry);
         mockFindInsertionIndex.mockReturnValue(1);
 
@@ -136,7 +127,6 @@ describe('addBenchmarkEntry with Git Graph', () => {
             [benchName]: oldEntries,
         };
 
-        mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(oldEntries[oldEntries.length - 1]);
         mockFindInsertionIndex.mockReturnValue(3);
 
@@ -168,7 +158,6 @@ describe('addBenchmarkEntry with Git Graph', () => {
             [benchName]: oldEntries,
         };
 
-        mockGetCurrentBranch.mockReturnValue('main');
         mockFindPreviousBenchmark.mockReturnValue(oldEntries[0]);
         mockFindInsertionIndex.mockReturnValue(1);
 

@@ -127,19 +127,6 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
         };
 
         function init() {
-          // By default, we use the order provided by the JSON data (which is sorted by git topology)
-          // We disable client-side timestamp sorting to avoid breaking the topological order
-          // Future work: make this configurable via a JSON flag
-          function sortEntriesByTimestamp(entries) {
-            // Sort benchmarks by commit timestamp instead of execution time
-            // This provides better git graph ordering for visualization
-            return [...entries].sort((a, b) => {
-              const timestampA = new Date(a.commit.timestamp).getTime();
-              const timestampB = new Date(b.commit.timestamp).getTime();
-              return timestampA - timestampB;
-            });
-          }
-
           function collectBenchesPerTestCase(entries) {
             const map = new Map();
             for (const entry of entries) {
@@ -154,17 +141,6 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
                 }
               }
             }
-            // Sort each benchmark's data points by commit timestamp to ensure consistent ordering
-            // DISABLED: strictly use server-side order
-            /*
-            for (const [benchName, arr] of map.entries()) {
-              arr.sort((a, b) => {
-                const timestampA = new Date(a.commit.timestamp).getTime();
-                const timestampB = new Date(b.commit.timestamp).getTime();
-                return timestampA - timestampB;
-              });
-            }
-            */
             return map;
           }
 
@@ -185,14 +161,12 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
             a.click();
           };
 
-          // Prepare data points for charts
+          // Prepare data points for charts (uses server-side ordering)
           return Object.keys(data.entries).map(name => {
             const entries = data.entries[name];
-            // const sortedEntries = sortEntriesByTimestamp(entries);
-            const sortedEntries = entries;
             return {
               name,
-              dataSet: collectBenchesPerTestCase(sortedEntries),
+              dataSet: collectBenchesPerTestCase(entries),
             };
           });
         }
