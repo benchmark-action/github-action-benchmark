@@ -116,6 +116,20 @@ jest.mock('../src/git', () => ({
     },
 }));
 
+jest.mock('../src/gitGraph', () => ({
+    GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
+        getCurrentBranch: () => 'main',
+        findPreviousBenchmark: (suites: any[]) => {
+            if (suites.length > 0) {
+                return suites[suites.length - 1];
+            }
+            return null;
+        },
+        findInsertionIndex: (suites: any[]) => suites.length,
+        sortByGitOrder: (suites: any[]) => suites,
+    })),
+}));
+
 describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBenchmark() - %s', function (serverUrl) {
     const savedCwd = process.cwd();
 

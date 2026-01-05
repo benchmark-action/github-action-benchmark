@@ -2,6 +2,7 @@ import { Benchmark } from './extract';
 import * as core from '@actions/core';
 import { BenchmarkSuites } from './write';
 import { normalizeBenchmark } from './normalizeBenchmark';
+import { GitGraphAnalyzer } from './gitGraph';
 
 export function addBenchmarkEntry(
     benchName: string,
@@ -11,6 +12,7 @@ export function addBenchmarkEntry(
 ): { prevBench: Benchmark | null; normalizedCurrentBench: Benchmark } {
     let prevBench: Benchmark | null = null;
     let normalizedCurrentBench: Benchmark = benchEntry;
+    const gitAnalyzer = new GitGraphAnalyzer();
 
     // Add benchmark result
     if (entries[benchName] === undefined) {
@@ -18,17 +20,24 @@ export function addBenchmarkEntry(
         core.debug(`No suite was found for benchmark '${benchName}' in existing data. Created`);
     } else {
         const suites = entries[benchName];
-        // Get the last suite which has different commit ID for alert comment
-        for (const e of [...suites].reverse()) {
-            if (e.commit.id !== benchEntry.commit.id) {
-                prevBench = e;
-                break;
-            }
+
+        // Find previous benchmark using git ancestry
+        core.debug(`Finding previous benchmark for commit: ${benchEntry.commit.id}`);
+
+        prevBench = gitAnalyzer.findPreviousBenchmark(suites, benchEntry.commit.id);
+
+        if (prevBench) {
+            core.debug(`Found previous benchmark: ${prevBench.commit.id}`);
+        } else {
+            core.debug('No previous benchmark found');
         }
 
         normalizedCurrentBench = normalizeBenchmark(prevBench, benchEntry);
 
-        suites.push(normalizedCurrentBench);
+        // Insert at the correct position based on git ancestry
+        const insertionIndex = gitAnalyzer.findInsertionIndex(suites, benchEntry.commit.id);
+        core.debug(`Inserting benchmark at index ${insertionIndex} (of ${suites.length} existing entries)`);
+        suites.splice(insertionIndex, 0, normalizedCurrentBench);
 
         if (maxItems !== null && suites.length > maxItems) {
             suites.splice(0, suites.length - maxItems);
