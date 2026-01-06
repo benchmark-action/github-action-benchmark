@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import * as core from '@actions/core';
 import { Benchmark } from './extract';
 
@@ -7,7 +7,7 @@ export class GitGraphAnalyzer {
 
     constructor() {
         try {
-            execSync('git --version', { stdio: 'ignore' });
+            spawnSync('git', ['--version'], { stdio: 'ignore' });
             this.gitCliAvailable = true;
         } catch (e) {
             this.gitCliAvailable = false;
@@ -31,12 +31,16 @@ export class GitGraphAnalyzer {
         }
 
         try {
-            const output = execSync(`git log --oneline --topo-order ${ref}`, {
+            const result = spawnSync('git', ['log', '--oneline', '--topo-order', ref], {
                 encoding: 'utf8',
                 cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
             });
 
-            return output
+            if (result.error) {
+                throw result.error;
+            }
+
+            return result.stdout
                 .split('\n')
                 .filter((line) => line.trim())
                 .map((line) => line.split(' ')[0]); // Extract SHA from "sha message"
@@ -97,7 +101,9 @@ export class GitGraphAnalyzer {
         }
 
         // Create a set of ancestor SHAs for quick lookup (excluding the commit itself)
-        const ancestorSet = new Set(ancestry.slice(1)); // Skip first element (the commit itself)
+        // Skip first element only if it matches the commit (it should)
+        const startIndex = ancestry[0] === newCommitSha ? 1 : 0;
+        const ancestorSet = new Set(ancestry.slice(startIndex));
 
         // Find the most recent ancestor in the existing suites
         // Iterate through suites from end to beginning to find the most recent one

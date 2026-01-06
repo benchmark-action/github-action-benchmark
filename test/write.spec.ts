@@ -118,15 +118,15 @@ jest.mock('../src/git', () => ({
 
 jest.mock('../src/gitGraph', () => ({
     GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
-        getCurrentBranch: () => 'main',
-        findPreviousBenchmark: (suites: any[]) => {
+        isGitAvailable: () => true,
+        getAncestry: (ref: string) => [],
+        findPreviousBenchmark: (suites: any[], currentSha: string) => {
             if (suites.length > 0) {
                 return suites[suites.length - 1];
             }
             return null;
         },
-        findInsertionIndex: (suites: any[]) => suites.length,
-        sortByGitOrder: (suites: any[]) => suites,
+        findInsertionIndex: (suites: any[], newCommitSha: string) => suites.length,
     })),
 }));
 
