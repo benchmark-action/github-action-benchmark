@@ -1,0 +1,27 @@
+PASS
+ok  	github.com/gofiber/fiber/v3/log	0.173s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/adaptor	0.184s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/basicauth	0.173s
+goos: darwin
+goarch: arm64
+pkg: github.com/gofiber/fiber/v3/middleware/cache
+BenchmarkAppendMsgitem
+BenchmarkAppendMsgitem-12    	63634455	        19.01 ns/op	3103.57 MB/s	       0 B/op	       0 allocs/op
+BenchmarkAppendMsgitem-12    	66411781	        18.42 ns/op	3202.97 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/cache	2.649s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/compress	0.219s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/cors	0.188s
+goos: darwin
+goarch: arm64
+pkg: github.com/gofiber/fiber/v3/middleware/csrf
+BenchmarkAppendMsgitem
+BenchmarkAppendMsgitem-12    	1000000000	         0.2926 ns/op	3417.23 MB/s	       0 B/op	       0 allocs/op
+BenchmarkAppendMsgitem-12    	1000000000	         0.2883 ns/op	3468.54 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/csrf	0.842s
+PASS
