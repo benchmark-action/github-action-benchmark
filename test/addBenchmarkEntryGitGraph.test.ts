@@ -7,11 +7,15 @@ jest.mock('@actions/core', () => ({
     debug: mockDebug,
 }));
 
+const mockAnalyzerInstance = {
+    findPreviousBenchmark: mockFindPreviousBenchmark,
+    findInsertionIndex: mockFindInsertionIndex,
+};
+
 jest.mock('../src/gitGraph', () => ({
-    GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
-        findPreviousBenchmark: mockFindPreviousBenchmark,
-        findInsertionIndex: mockFindInsertionIndex,
-    })),
+    GitGraphAnalyzer: {
+        getInstance: jest.fn(() => mockAnalyzerInstance),
+    },
 }));
 
 import { addBenchmarkEntry } from '../src/addBenchmarkEntry';
