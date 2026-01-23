@@ -116,17 +116,18 @@ jest.mock('../src/git', () => ({
     },
 }));
 
+// Simplified mock for general write tests - git-graph-specific logic is tested in dedicated test files
 jest.mock('../src/gitGraph', () => ({
     GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
         isGitAvailable: () => true,
-        getAncestry: (ref: string) => [],
-        findPreviousBenchmark: (suites: any[], currentSha: string) => {
+        getAncestry: (_ref: string) => [],
+        findPreviousBenchmark: (suites: any[], _currentSha: string) => {
             if (suites.length > 0) {
                 return suites[suites.length - 1];
             }
             return null;
         },
-        findInsertionIndex: (suites: any[], newCommitSha: string) => suites.length,
+        findInsertionIndex: (suites: any[], _newCommitSha: string) => suites.length,
     })),
 }));
 
