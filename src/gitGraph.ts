@@ -11,6 +11,7 @@ export class GitGraphAnalyzer {
             this.gitCliAvailable = true;
         } catch (e) {
             this.gitCliAvailable = false;
+            core.debug('Git CLI not available during initialization');
         }
     }
 
@@ -22,11 +23,29 @@ export class GitGraphAnalyzer {
     }
 
     /**
+     * Validate that a ref matches expected git reference patterns.
+     * Accepts SHA hashes, branch names, and tag names.
+     */
+    private isValidRef(ref: string): boolean {
+        if (!ref || ref.length === 0) {
+            return false;
+        }
+        // Allow: hex SHA (short or full), branch/tag names (alphanumeric, dots, underscores, hyphens, slashes)
+        const validRefPattern = /^[a-zA-Z0-9._\-/]+$/;
+        return validRefPattern.test(ref);
+    }
+
+    /**
      * Get git ancestry using topological order
      */
     getAncestry(ref: string): string[] {
         if (!this.gitCliAvailable) {
             core.warning('Git CLI not available, cannot determine ancestry');
+            return [];
+        }
+
+        if (!this.isValidRef(ref)) {
+            core.warning(`Invalid git ref format: ${ref}`);
             return [];
         }
 

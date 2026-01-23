@@ -16,6 +16,7 @@ jest.mock('../src/gitGraph', () => ({
 
 import { addBenchmarkEntry } from '../src/addBenchmarkEntry';
 import { Benchmark } from '../src/extract';
+import { BenchmarkSuites } from '../src/write';
 
 describe('addBenchmarkEntry with Git Graph', () => {
     const createMockBenchmark = (id: string, timestamp?: string): Benchmark => ({
@@ -82,7 +83,7 @@ describe('addBenchmarkEntry with Git Graph', () => {
     it('should create new benchmark suite when none exists', () => {
         const benchName = 'test-suite';
         const benchEntry = createMockBenchmark('abc123');
-        const entries: any = {};
+        const entries: BenchmarkSuites = {};
 
         mockFindPreviousBenchmark.mockReturnValue(null);
 

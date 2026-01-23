@@ -1,7 +1,7 @@
 // Mock modules before imports
 const mockDebug = jest.fn();
 const mockWarning = jest.fn();
-const mockExecSync = jest.fn();
+const mockSpawnSync = jest.fn();
 
 jest.mock('@actions/core', () => ({
     debug: mockDebug,
@@ -9,11 +9,25 @@ jest.mock('@actions/core', () => ({
 }));
 
 jest.mock('child_process', () => ({
-    execSync: mockExecSync,
+    spawnSync: mockSpawnSync,
 }));
 
 import { GitGraphAnalyzer } from '../src/gitGraph';
 import { Benchmark } from '../src/extract';
+
+const createMockBenchmark = (id: string, timestamp: string): Benchmark => ({
+    commit: {
+        id,
+        timestamp,
+        message: `Commit ${id}`,
+        url: `https://github.com/test/repo/commit/${id}`,
+        author: { username: 'testuser' },
+        committer: { username: 'testuser' },
+    },
+    date: Date.now(),
+    tool: 'cargo',
+    benches: [],
+});
 
 describe('GitGraphAnalyzer', () => {
     let analyzer: GitGraphAnalyzer;
@@ -31,17 +45,17 @@ describe('GitGraphAnalyzer', () => {
 
     describe('constructor', () => {
         it('should detect git CLI availability', () => {
-            mockExecSync.mockReturnValue('git version 2.40.0');
+            mockSpawnSync.mockReturnValue({ stdout: 'git version 2.40.0', error: null });
             analyzer = new GitGraphAnalyzer();
             expect(analyzer.isGitAvailable()).toBe(true);
         });
 
         it('should detect git CLI unavailability', () => {
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') {
+            mockSpawnSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git') {
                     throw new Error('Command not found');
                 }
-                return '';
+                return { stdout: '', error: null };
             });
 
             analyzer = new GitGraphAnalyzer();
@@ -51,22 +65,26 @@ describe('GitGraphAnalyzer', () => {
 
     describe('getAncestry', () => {
         beforeEach(() => {
-            mockExecSync.mockReturnValue('git version 2.40.0');
+            mockSpawnSync.mockReturnValue({ stdout: 'git version 2.40.0', error: null });
             process.env.GITHUB_WORKSPACE = '/github/workspace';
             analyzer = new GitGraphAnalyzer();
         });
 
         it('should parse git log output correctly', () => {
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'abc123 Commit message 1\ndef456 Commit message 2\nghi789 Commit message 3';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return {
+                    stdout: 'abc123 Commit message 1\ndef456 Commit message 2\nghi789 Commit message 3',
+                    error: null,
+                };
             });
             analyzer = new GitGraphAnalyzer();
 
             const ancestry = analyzer.getAncestry('main');
 
-            expect(mockExecSync).toHaveBeenCalledWith(
-                'git log --oneline --topo-order main',
+            expect(mockSpawnSync).toHaveBeenCalledWith(
+                'git',
+                ['log', '--oneline', '--topo-order', 'main'],
                 expect.objectContaining({
                     encoding: 'utf8',
                     cwd: '/github/workspace',
@@ -76,9 +94,9 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should handle empty git log output', () => {
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return '';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: '', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -87,9 +105,9 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should handle git command failure', () => {
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                throw new Error('Git command failed');
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: '', error: new Error('Git command failed') };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -99,11 +117,11 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should return empty array when git CLI not available', () => {
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') {
+            mockSpawnSync.mockImplementation((cmd: string) => {
+                if (cmd === 'git') {
                     throw new Error('Command not found');
                 }
-                return '';
+                return { stdout: '', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -111,23 +129,63 @@ describe('GitGraphAnalyzer', () => {
             expect(ancestry).toEqual([]);
             expect(mockWarning).toHaveBeenCalledWith('Git CLI not available, cannot determine ancestry');
         });
+
+        it('should reject empty ref', () => {
+            const ancestry = analyzer.getAncestry('');
+            expect(ancestry).toEqual([]);
+            expect(mockWarning).toHaveBeenCalledWith('Invalid git ref format: ');
+        });
+
+        it('should reject ref with shell metacharacters', () => {
+            const ancestry = analyzer.getAncestry('main; rm -rf /');
+            expect(ancestry).toEqual([]);
+            expect(mockWarning).toHaveBeenCalledWith('Invalid git ref format: main; rm -rf /');
+        });
+
+        it('should reject ref with backticks', () => {
+            const ancestry = analyzer.getAncestry('`whoami`');
+            expect(ancestry).toEqual([]);
+            expect(mockWarning).toHaveBeenCalledWith('Invalid git ref format: `whoami`');
+        });
+
+        it('should accept valid SHA hash', () => {
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'abc123def456 Commit message', error: null };
+            });
+            analyzer = new GitGraphAnalyzer();
+
+            const ancestry = analyzer.getAncestry('abc123def456');
+            expect(ancestry).toEqual(['abc123def456']);
+            expect(mockWarning).not.toHaveBeenCalled();
+        });
+
+        it('should accept valid branch name with slashes', () => {
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'abc123 Commit message', error: null };
+            });
+            analyzer = new GitGraphAnalyzer();
+
+            const ancestry = analyzer.getAncestry('feature/my-branch');
+            expect(ancestry).toEqual(['abc123']);
+            expect(mockWarning).not.toHaveBeenCalled();
+        });
+
+        it('should accept valid tag name with dots', () => {
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'abc123 Commit message', error: null };
+            });
+            analyzer = new GitGraphAnalyzer();
+
+            const ancestry = analyzer.getAncestry('v1.2.3');
+            expect(ancestry).toEqual(['abc123']);
+            expect(mockWarning).not.toHaveBeenCalled();
+        });
     });
 
     describe('findPreviousBenchmark', () => {
-        const createMockBenchmark = (id: string, timestamp: string): Benchmark => ({
-            commit: {
-                id,
-                timestamp,
-                message: `Commit ${id}`,
-                url: `https://github.com/test/repo/commit/${id}`,
-                author: { username: 'testuser' },
-                committer: { username: 'testuser' },
-            },
-            date: Date.now(),
-            tool: 'cargo',
-            benches: [],
-        });
-
         beforeEach(() => {
             process.env.GITHUB_WORKSPACE = '/github/workspace';
         });
@@ -139,9 +197,9 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('ghi789', '2025-01-03T00:00:00Z'),
             ];
 
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -155,9 +213,9 @@ describe('GitGraphAnalyzer', () => {
         it('should return null when no previous benchmark found', () => {
             const suites = [createMockBenchmark('abc123', '2025-01-01T00:00:00Z')];
 
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'abc123 Commit 1';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'abc123 Commit 1', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -173,9 +231,9 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
             ];
 
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                throw new Error('Git failed');
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: '', error: new Error('Git failed') };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -192,9 +250,9 @@ describe('GitGraphAnalyzer', () => {
                 createMockBenchmark('def456', '2025-01-02T00:00:00Z'),
             ];
 
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'xyz999 Other commit';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'xyz999 Other commit', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -207,20 +265,6 @@ describe('GitGraphAnalyzer', () => {
     });
 
     describe('findInsertionIndex', () => {
-        const createMockBenchmark = (id: string, timestamp: string): Benchmark => ({
-            commit: {
-                id,
-                timestamp,
-                message: `Commit ${id}`,
-                url: `https://github.com/test/repo/commit/${id}`,
-                author: { username: 'testuser' },
-                committer: { username: 'testuser' },
-            },
-            date: Date.now(),
-            tool: 'cargo',
-            benches: [],
-        });
-
         beforeEach(() => {
             process.env.GITHUB_WORKSPACE = '/github/workspace';
         });
@@ -232,9 +276,9 @@ describe('GitGraphAnalyzer', () => {
             ];
 
             // New commit ghi789 has def456 as ancestor
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'ghi789 Commit 3\ndef456 Commit 2\nabc123 Commit 1', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -252,9 +296,9 @@ describe('GitGraphAnalyzer', () => {
             ];
 
             // New commit has no relation to existing commits
-            mockExecSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git --version') return 'git version 2.40.0';
-                return 'xyz999 Unrelated commit';
+            mockSpawnSync.mockImplementation((_cmd: string, args: string[]) => {
+                if (args && args[0] === '--version') return { stdout: 'git version 2.40.0', error: null };
+                return { stdout: 'xyz999 Unrelated commit', error: null };
             });
             analyzer = new GitGraphAnalyzer();
 
@@ -265,7 +309,7 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should append to end for empty suites', () => {
-            mockExecSync.mockReturnValue('git version 2.40.0');
+            mockSpawnSync.mockReturnValue({ stdout: 'git version 2.40.0', error: null });
             analyzer = new GitGraphAnalyzer();
 
             const index = analyzer.findInsertionIndex([], 'abc123');
