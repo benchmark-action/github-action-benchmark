@@ -117,18 +117,22 @@ jest.mock('../src/git', () => ({
 }));
 
 // Simplified mock for general write tests - git-graph-specific logic is tested in dedicated test files
+const mockWriteAnalyzerInstance = {
+    isGitAvailable: () => true,
+    getAncestry: (_ref: string) => [],
+    findPreviousBenchmark: (suites: any[], _currentSha: string) => {
+        if (suites.length > 0) {
+            return suites[suites.length - 1];
+        }
+        return null;
+    },
+    findInsertionIndex: (suites: any[], _newCommitSha: string) => suites.length,
+};
+
 jest.mock('../src/gitGraph', () => ({
-    GitGraphAnalyzer: jest.fn().mockImplementation(() => ({
-        isGitAvailable: () => true,
-        getAncestry: (_ref: string) => [],
-        findPreviousBenchmark: (suites: any[], _currentSha: string) => {
-            if (suites.length > 0) {
-                return suites[suites.length - 1];
-            }
-            return null;
-        },
-        findInsertionIndex: (suites: any[], _newCommitSha: string) => suites.length,
-    })),
+    GitGraphAnalyzer: {
+        getInstance: jest.fn(() => mockWriteAnalyzerInstance),
+    },
 }));
 
 describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBenchmark() - %s', function (serverUrl) {

@@ -2,16 +2,18 @@ import { spawnSync } from 'child_process';
 import * as core from '@actions/core';
 import { Benchmark } from './extract';
 
+let cachedInstance: GitGraphAnalyzer | null = null;
+
 export class GitGraphAnalyzer {
     private readonly gitCliAvailable: boolean;
 
     constructor() {
-        try {
-            spawnSync('git', ['--version'], { stdio: 'ignore' });
-            this.gitCliAvailable = true;
-        } catch (e) {
+        const result = spawnSync('git', ['--version'], { stdio: 'ignore' });
+        if (result.error) {
             this.gitCliAvailable = false;
             core.debug('Git CLI not available during initialization');
+        } else {
+            this.gitCliAvailable = true;
         }
     }
 
@@ -28,6 +30,9 @@ export class GitGraphAnalyzer {
      */
     private isValidRef(ref: string): boolean {
         if (!ref || ref.length === 0) {
+            return false;
+        }
+        if (ref.startsWith('-')) {
             return false;
         }
         // Allow: hex SHA (short or full), branch/tag names (alphanumeric, dots, underscores, hyphens, slashes)
@@ -50,7 +55,7 @@ export class GitGraphAnalyzer {
         }
 
         try {
-            const result = spawnSync('git', ['log', '--oneline', '--topo-order', ref], {
+            const result = spawnSync('git', ['log', '--oneline', '--topo-order', '--', ref], {
                 encoding: 'utf8',
                 cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
             });
@@ -150,5 +155,23 @@ export class GitGraphAnalyzer {
             }
         }
         return null;
+    }
+
+    /**
+     * Get a cached singleton instance of GitGraphAnalyzer.
+     * Avoids repeated `git --version` checks across multiple calls.
+     */
+    static getInstance(): GitGraphAnalyzer {
+        if (!cachedInstance) {
+            cachedInstance = new GitGraphAnalyzer();
+        }
+        return cachedInstance;
+    }
+
+    /**
+     * Reset the cached instance (useful for testing).
+     */
+    static resetInstance(): void {
+        cachedInstance = null;
     }
 }

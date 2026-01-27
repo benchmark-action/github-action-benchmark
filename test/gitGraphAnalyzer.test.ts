@@ -51,12 +51,7 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should detect git CLI unavailability', () => {
-            mockSpawnSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git') {
-                    throw new Error('Command not found');
-                }
-                return { stdout: '', error: null };
-            });
+            mockSpawnSync.mockReturnValue({ stdout: '', error: new Error('Command not found') });
 
             analyzer = new GitGraphAnalyzer();
             expect(analyzer.isGitAvailable()).toBe(false);
@@ -84,7 +79,7 @@ describe('GitGraphAnalyzer', () => {
 
             expect(mockSpawnSync).toHaveBeenCalledWith(
                 'git',
-                ['log', '--oneline', '--topo-order', 'main'],
+                ['log', '--oneline', '--topo-order', '--', 'main'],
                 expect.objectContaining({
                     encoding: 'utf8',
                     cwd: '/github/workspace',
@@ -117,12 +112,7 @@ describe('GitGraphAnalyzer', () => {
         });
 
         it('should return empty array when git CLI not available', () => {
-            mockSpawnSync.mockImplementation((cmd: string) => {
-                if (cmd === 'git') {
-                    throw new Error('Command not found');
-                }
-                return { stdout: '', error: null };
-            });
+            mockSpawnSync.mockReturnValue({ stdout: '', error: new Error('Command not found') });
             analyzer = new GitGraphAnalyzer();
 
             const ancestry = analyzer.getAncestry('main');
@@ -146,6 +136,12 @@ describe('GitGraphAnalyzer', () => {
             const ancestry = analyzer.getAncestry('`whoami`');
             expect(ancestry).toEqual([]);
             expect(mockWarning).toHaveBeenCalledWith('Invalid git ref format: `whoami`');
+        });
+
+        it('should reject ref starting with dash', () => {
+            const ancestry = analyzer.getAncestry('--all');
+            expect(ancestry).toEqual([]);
+            expect(mockWarning).toHaveBeenCalledWith('Invalid git ref format: --all');
         });
 
         it('should accept valid SHA hash', () => {
@@ -315,6 +311,34 @@ describe('GitGraphAnalyzer', () => {
             const index = analyzer.findInsertionIndex([], 'abc123');
 
             expect(index).toBe(0);
+        });
+    });
+
+    describe('getInstance (singleton)', () => {
+        afterEach(() => {
+            GitGraphAnalyzer.resetInstance();
+        });
+
+        it('should return the same instance on multiple calls', () => {
+            mockSpawnSync.mockReturnValue({ stdout: 'git version 2.40.0', error: null });
+
+            const instance1 = GitGraphAnalyzer.getInstance();
+            const instance2 = GitGraphAnalyzer.getInstance();
+
+            expect(instance1).toBe(instance2);
+            // git --version should only be called once during first instantiation
+            expect(mockSpawnSync).toHaveBeenCalledTimes(1);
+        });
+
+        it('should create new instance after resetInstance', () => {
+            mockSpawnSync.mockReturnValue({ stdout: 'git version 2.40.0', error: null });
+
+            const instance1 = GitGraphAnalyzer.getInstance();
+            GitGraphAnalyzer.resetInstance();
+            const instance2 = GitGraphAnalyzer.getInstance();
+
+            expect(instance1).not.toBe(instance2);
+            expect(mockSpawnSync).toHaveBeenCalledTimes(2);
         });
     });
 });
