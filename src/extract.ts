@@ -359,7 +359,28 @@ function extractGoResult(output: string): BenchmarkResult[] {
     const reExtract =
         /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
 
+    // First pass: detect all unique packages
+    // This is used to determine if we need to append package names to benchmark names for disambiguation
+    const packageRegex = /^pkg:\s+(.+)$/;
+    const packages = new Set<string>();
     for (const line of lines) {
+        const pkgMatch = line.match(packageRegex);
+        if (pkgMatch) {
+            packages.add(pkgMatch[1]);
+        }
+    }
+    const hasMultiplePackages = packages.size > 1;
+
+    // Second pass: extract benchmarks with package context
+    let currentPackage = '';
+    for (const line of lines) {
+        // Track current package from "pkg:" lines
+        const pkgMatch = line.match(packageRegex);
+        if (pkgMatch) {
+            currentPackage = pkgMatch[1];
+            continue;
+        }
+
         const m = line.match(reExtract);
         if (m?.groups) {
             const procs = m.groups.procs !== undefined ? m.groups.procs.slice(1) : null;
@@ -374,6 +395,10 @@ function extractGoResult(output: string): BenchmarkResult[] {
                 pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
             }
 
+            // Build base benchmark name with optional package suffix for disambiguation
+            const baseName =
+                hasMultiplePackages && currentPackage ? `${m.groups.name} (${currentPackage})` : m.groups.name;
+
             for (let i = 0; i < pieces.length; i = i + 2) {
                 let extra = `${times} times`.replace(/\s\s+/g, ' ');
                 if (procs !== null) {
@@ -383,9 +408,9 @@ function extractGoResult(output: string): BenchmarkResult[] {
                 const unit = pieces[i + 1];
                 let name;
                 if (i > 0) {
-                    name = m.groups.name + ' - ' + unit;
+                    name = baseName + ' - ' + unit;
                 } else {
-                    name = m.groups.name;
+                    name = baseName;
                 }
                 ret.push({ name, value, unit, extra });
             }
