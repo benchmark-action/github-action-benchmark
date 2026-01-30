@@ -366,9 +366,10 @@ export function extractGoResult(output: string): BenchmarkResult[] {
     const reExtractRegexp =
         /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
 
-    // Process each section and flatten results
-    return sections.flatMap(({ pkg, lines }) =>
-        lines.flatMap((line) => {
+    // Flatten sections into lines with package context, then process each line
+    return sections
+        .flatMap(({ pkg, lines }) => lines.map((line) => ({ pkg, line })))
+        .flatMap(({ pkg, line }) => {
             const match = line.match(reExtractRegexp);
             if (!match?.groups) return [];
 
@@ -392,8 +393,7 @@ export function extractGoResult(output: string): BenchmarkResult[] {
                 unit,
                 extra,
             }));
-        }),
-    );
+        });
 }
 
 function chunkPairs(arr: string[]): Array<[string, string]> {
