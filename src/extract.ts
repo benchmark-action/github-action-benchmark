@@ -3,14 +3,19 @@ import { promises as fs } from 'fs';
 import * as github from '@actions/github';
 import { Config, ToolType } from './config';
 import * as core from '@actions/core';
+import { z } from 'zod';
 
-export interface BenchmarkResult {
-    name: string;
-    value: number;
-    range?: string;
-    unit: string;
-    extra?: string;
-}
+export const BenchmarkResult = z.object({
+    name: z.coerce.string(),
+    value: z.coerce.number(),
+    range: z.coerce.string().optional(),
+    unit: z.coerce.string(),
+    extra: z.coerce.string().optional(),
+});
+
+export type BenchmarkResult = z.infer<typeof BenchmarkResult>;
+
+export const BenchmarkResults = z.array(BenchmarkResult);
 
 interface GitHubUser {
     email?: string;
@@ -659,13 +664,11 @@ function extractBenchmarkDotnetResult(output: string): BenchmarkResult[] {
 
 function extractCustomBenchmarkResult(output: string): BenchmarkResult[] {
     try {
-        const json: BenchmarkResult[] = JSON.parse(output);
-        return json.map(({ name, value, unit, range, extra }) => {
-            return { name, value, unit, range, extra };
-        });
-    } catch (err: any) {
+        return BenchmarkResults.parse(JSON.parse(output));
+    } catch (err: unknown) {
+        const errMessage = err instanceof Error ? err.message : String(err);
         throw new Error(
-            `Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${err.message}`,
+            `Output file for 'custom-(bigger|smaller)-is-better' must be JSON file containing an array of entries in BenchmarkResult format: ${errMessage}`,
         );
     }
 }
@@ -674,7 +677,6 @@ function extractLuauBenchmarkResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\n/);
     const results: BenchmarkResult[] = [];
 
-    output;
     for (const line of lines) {
         if (!line.startsWith('SUCCESS')) continue;
         const [_0, name, _2, valueStr, _4, range, _6, extra] = line.split(/\s+/);

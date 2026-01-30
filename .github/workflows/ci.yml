@@ -453,7 +453,9 @@ jobs:
         run: |
           sudo pip install yamllint
           yamllint --strict .github/workflows
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     name: Run linting and formatting check

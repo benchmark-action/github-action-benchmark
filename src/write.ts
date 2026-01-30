@@ -9,6 +9,7 @@ import { Config, ToolType } from './config';
 import { DEFAULT_INDEX_HTML } from './default_index_html';
 import { leavePRComment } from './comment/leavePRComment';
 import { leaveCommitComment } from './comment/leaveCommitComment';
+import { addBenchmarkEntry } from './addBenchmarkEntry';
 
 export type BenchmarkSuites = { [name: string]: Benchmark[] };
 export interface DataJson {
@@ -323,39 +324,16 @@ function addBenchmarkToDataJson(
     bench: Benchmark,
     data: DataJson,
     maxItems: number | null,
-): Benchmark | null {
+): { prevBench: Benchmark | null; normalizedCurrentBench: Benchmark } {
     const repoMetadata = getCurrentRepoMetadata();
     const htmlUrl = repoMetadata.html_url ?? '';
 
-    let prevBench: Benchmark | null = null;
     data.lastUpdate = Date.now();
     data.repoUrl = htmlUrl;
 
-    // Add benchmark result
-    if (data.entries[benchName] === undefined) {
-        data.entries[benchName] = [bench];
-        core.debug(`No suite was found for benchmark '${benchName}' in existing data. Created`);
-    } else {
-        const suites = data.entries[benchName];
-        // Get last suite which has different commit ID for alert comment
-        for (const e of suites.slice().reverse()) {
-            if (e.commit.id !== bench.commit.id) {
-                prevBench = e;
-                break;
-            }
-        }
+    const { prevBench, normalizedCurrentBench } = addBenchmarkEntry(benchName, bench, data.entries, maxItems);
 
-        suites.push(bench);
-
-        if (maxItems !== null && suites.length > maxItems) {
-            suites.splice(0, suites.length - maxItems);
-            core.debug(
-                `Number of data items for '${benchName}' was truncated to ${maxItems} due to max-items-in-charts`,
-            );
-        }
-    }
-
-    return prevBench;
+    return { prevBench, normalizedCurrentBench };
 }
 
 function isRemoteRejectedError(err: unknown): err is Error {
@@ -369,7 +347,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     bench: Benchmark,
     config: Config,
     retry: number,
-): Promise<Benchmark | null> {
+): Promise<{ prevBench: Benchmark | null; normalizedCurrentBench: Benchmark }> {
     const {
         name,
         tool,
@@ -423,7 +401,7 @@ async function writeBenchmarkToGitHubPagesWithRetry(
     await io.mkdirP(benchmarkDataDirFullPath);
 
     const data = await loadDataJs(dataPath);
-    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+    const { prevBench, normalizedCurrentBench } = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
     await storeDataJs(dataPath, data);
 
@@ -471,10 +449,13 @@ async function writeBenchmarkToGitHubPagesWithRetry(
         );
     }
 
-    return prevBench;
+    return { prevBench, normalizedCurrentBench };
 }
 
-async function writeBenchmarkToGitHubPages(bench: Benchmark, config: Config): Promise<Benchmark | null> {
+async function writeBenchmarkToGitHubPages(
+    bench: Benchmark,
+    config: Config,
+): Promise<{ prevBench: Benchmark | null; normalizedCurrentBench: Benchmark }> {
     const { ghPagesBranch, skipFetchGhPages, ghRepository, githubToken } = config;
     if (!ghRepository) {
         if (!skipFetchGhPages) {
@@ -510,14 +491,14 @@ async function writeBenchmarkToExternalJson(
     bench: Benchmark,
     jsonFilePath: string,
     config: Config,
-): Promise<Benchmark | null> {
+): Promise<{ prevBench: Benchmark | null; normalizedCurrentBench: Benchmark }> {
     const { name, maxItemsInChart, saveDataFile } = config;
     const data = await loadDataJson(jsonFilePath);
-    const prevBench = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
+    const { prevBench, normalizedCurrentBench } = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 
     if (!saveDataFile) {
         core.debug('Skipping storing benchmarks in external data file');
-        return prevBench;
+        return { prevBench, normalizedCurrentBench };
     }
 
     try {
@@ -528,12 +509,12 @@ async function writeBenchmarkToExternalJson(
         throw new Error(`Could not store benchmark data as JSON at ${jsonFilePath}: ${err}`);
     }
 
-    return prevBench;
+    return { prevBench, normalizedCurrentBench };
 }
 
 export async function writeBenchmark(bench: Benchmark, config: Config) {
     const { name, externalDataJsonPath } = config;
-    const prevBench = externalDataJsonPath
+    const { prevBench, normalizedCurrentBench } = externalDataJsonPath
         ? await writeBenchmarkToExternalJson(bench, externalDataJsonPath, config)
         : await writeBenchmarkToGitHubPages(bench, config);
 
@@ -542,9 +523,9 @@ export async function writeBenchmark(bench: Benchmark, config: Config) {
     if (prevBench === null) {
         core.debug('Alert check was skipped because previous benchmark result was not found');
     } else {
-        await handleComment(name, bench, prevBench, config);
-        await handleSummary(name, bench, prevBench, config);
-        await handleAlert(name, bench, prevBench, config);
+        await handleComment(name, normalizedCurrentBench, prevBench, config);
+        await handleSummary(name, normalizedCurrentBench, prevBench, config);
+        await handleAlert(name, normalizedCurrentBench, prevBench, config);
     }
 }
 

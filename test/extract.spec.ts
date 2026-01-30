@@ -147,6 +147,10 @@ describe('extractResult()', function () {
             tool: 'customSmallerIsBetter',
             file: 'customSmallerIsBetter_output.json',
         },
+        {
+            tool: 'customSmallerIsBetter',
+            file: 'customSmallerIsBetter_output2.json',
+        },
     ];
 
     it.each(normalCases)(`extracts benchmark output from $tool - $file`, async function (test) {
