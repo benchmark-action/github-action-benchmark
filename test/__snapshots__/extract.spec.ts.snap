@@ -963,6 +963,37 @@ exports[`extractResult() extracts benchmark output from go - go_output.txt 1`] =
 }
 `;
 
+exports[`extractResult() extracts benchmark output from go - go_single_package_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "5000000 times
+8 procs",
+      "name": "BenchmarkFib10",
+      "unit": "ns/op",
+      "value": 325,
+    },
+    {
+      "extra": "30000 times
+8 procs",
+      "name": "BenchmarkFib20",
+      "unit": "ns/op",
+      "value": 40537,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "go",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from googlecpp - googlecpp_output.json 1`] = `
 {
   "benches": [
