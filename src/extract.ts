@@ -344,48 +344,27 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 }
 
 export function extractGoResult(output: string): BenchmarkResult[] {
-    const lines = output.split(/\r?\n/g);
-    const ret = [];
-    // Example:
-    //   BenchmarkFib20-8           30000             41653 ns/op
-    //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
-
-    // Example if someone has used the ReportMetric function to add additional metrics to each benchmark:
-    // BenchmarkThing-16    	       1	95258906556 ns/op	        64.02 UnitsForMeasure2	        31.13 UnitsForMeasure3
-
-    // reference, "Proposal: Go Benchmark Data Format": https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
-    // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
-    // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
-    const reExtract =
+    const benchmarkRegex =
         /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
 
-    // First pass: detect all unique packages
-    // This is used to determine if we need to append package names to benchmark names for disambiguation
-    const packageRegex = /^pkg:\s+(.+)$/;
-    const packages = new Set<string>();
-    for (const line of lines) {
-        const pkgMatch = line.match(packageRegex);
-        if (pkgMatch) {
-            packages.add(pkgMatch[1]);
-        }
-    }
-    const hasMultiplePackages = packages.size > 1;
+    // Split into sections by "pkg:" lines, keeping package name with each section
+    const sections = output.split(/^pkg:\s+/m).map((section, index) => {
+        if (index === 0) return { pkg: '', lines: section.split(/\r?\n/g) };
+        const [pkg, ...rest] = section.split(/\r?\n/g);
+        return { pkg, lines: rest };
+    });
 
-    // Second pass: extract benchmarks with package context
-    let currentPackage = '';
-    for (const line of lines) {
-        // Track current package from "pkg:" lines
-        const pkgMatch = line.match(packageRegex);
-        if (pkgMatch) {
-            currentPackage = pkgMatch[1];
-            continue;
-        }
+    const hasMultiplePackages = sections.filter((s) => s.pkg).length > 1;
 
-        const m = line.match(reExtract);
-        if (m?.groups) {
-            const procs = m.groups.procs !== undefined ? m.groups.procs.slice(1) : null;
-            const times = m.groups.times;
-            const remainder = m.groups.remainder;
+    // Process each section and flatten results
+    return sections.flatMap(({ pkg, lines }) =>
+        lines.flatMap((line) => {
+            const match = line.match(benchmarkRegex);
+            if (!match?.groups) return [];
+
+            const { name, procs: procsRaw, times, remainder } = match.groups;
+            const procs = procsRaw?.slice(1) ?? null;
+            const extra = procs !== null ? `${times} times\n${procs} procs` : `${times} times`;
 
             const pieces = remainder.split(/[ \t]+/);
 
@@ -395,29 +374,20 @@ export function extractGoResult(output: string): BenchmarkResult[] {
                 pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
             }
 
-            // Build base benchmark name with optional package suffix for disambiguation
-            const baseName =
-                hasMultiplePackages && currentPackage ? `${m.groups.name} (${currentPackage})` : m.groups.name;
+            const baseName = hasMultiplePackages && pkg ? `${name} (${pkg})` : name;
+            // Chunk into [value, unit] pairs and map to results
+            return chunkPairs(pieces).map(([valueStr, unit], i) => ({
+                name: i > 0 ? `${baseName} - ${unit}` : baseName,
+                value: parseFloat(valueStr),
+                unit,
+                extra,
+            }));
+        }),
+    );
+}
 
-            for (let i = 0; i < pieces.length; i = i + 2) {
-                let extra = `${times} times`.replace(/\s\s+/g, ' ');
-                if (procs !== null) {
-                    extra += `\n${procs} procs`;
-                }
-                const value = parseFloat(pieces[i]);
-                const unit = pieces[i + 1];
-                let name;
-                if (i > 0) {
-                    name = baseName + ' - ' + unit;
-                } else {
-                    name = baseName;
-                }
-                ret.push({ name, value, unit, extra });
-            }
-        }
-    }
-
-    return ret;
+function chunkPairs(arr: string[]): Array<[string, string]> {
+    return Array.from({ length: Math.floor(arr.length / 2) }, (_, i) => [arr[i * 2], arr[i * 2 + 1]]);
 }
 
 function extractBenchmarkJsResult(output: string): BenchmarkResult[] {

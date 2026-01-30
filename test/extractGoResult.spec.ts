@@ -1,5 +1,5 @@
-import { extractGoResult } from '../src/extract';
 import dedent from 'dedent';
+import { extractGoResult } from '../src/extract';
 
 describe('extractGoResult()', () => {
     describe('basic benchmark extraction', () => {
