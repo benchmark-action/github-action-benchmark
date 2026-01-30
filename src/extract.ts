@@ -343,7 +343,7 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
-function extractGoResult(output: string): BenchmarkResult[] {
+export function extractGoResult(output: string): BenchmarkResult[] {
     const lines = output.split(/\r?\n/g);
     const ret = [];
     // Example:
