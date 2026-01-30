@@ -344,9 +344,6 @@ function extractCargoResult(output: string): BenchmarkResult[] {
 }
 
 export function extractGoResult(output: string): BenchmarkResult[] {
-    const benchmarkRegex =
-        /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
-
     // Split into sections by "pkg:" lines, keeping package name with each section
     const sections = output.split(/^pkg:\s+/m).map((section, index) => {
         if (index === 0) return { pkg: '', lines: section.split(/\r?\n/g) };
@@ -356,10 +353,23 @@ export function extractGoResult(output: string): BenchmarkResult[] {
 
     const hasMultiplePackages = sections.filter((s) => s.pkg).length > 1;
 
+    // Example:
+    //   BenchmarkFib20-8           30000             41653 ns/op
+    //   BenchmarkDoWithConfigurer1-8            30000000                42.3 ns/op
+
+    // Example if someone has used the ReportMetric function to add additional metrics to each benchmark:
+    // BenchmarkThing-16    	       1	95258906556 ns/op	        64.02 UnitsForMeasure2	        31.13 UnitsForMeasure3
+
+    // reference, "Proposal: Go Benchmark Data Format": https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
+    // "A benchmark result line has the general form: <name> <iterations> <value> <unit> [<value> <unit>...]"
+    // "The fields are separated by runs of space characters (as defined by unicode.IsSpace), so the line can be parsed with strings.Fields. The line must have an even number of fields, and at least four."
+    const reExtractRegexp =
+        /^(?<name>Benchmark\w+[\w()$%^&*-=|,[\]{}"#]*?)(?<procs>-\d+)?\s+(?<times>\d+)\s+(?<remainder>.+)$/;
+
     // Process each section and flatten results
     return sections.flatMap(({ pkg, lines }) =>
         lines.flatMap((line) => {
-            const match = line.match(benchmarkRegex);
+            const match = line.match(reExtractRegexp);
             if (!match?.groups) return [];
 
             const { name, procs: procsRaw, times, remainder } = match.groups;
