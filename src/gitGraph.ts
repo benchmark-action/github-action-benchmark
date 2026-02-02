@@ -44,6 +44,9 @@ export class GitGraphAnalyzer {
      * Get git ancestry using topological order
      */
     getAncestry(ref: string): string[] {
+        core.debug(`GitGraphAnalyzer.getAncestry called with ref='${ref}'`);
+        core.debug(`GitGraphAnalyzer.getAncestry cwd='${process.cwd()}'`);
+        core.debug(`GitGraphAnalyzer.getAncestry GITHUB_WORKSPACE='${process.env.GITHUB_WORKSPACE ?? ''}'`);
         if (!this.gitCliAvailable) {
             core.warning('Git CLI not available, cannot determine ancestry');
             return [];
@@ -55,13 +58,32 @@ export class GitGraphAnalyzer {
         }
 
         try {
-            const result = spawnSync('git', ['log', '--oneline', '--topo-order', '--', ref], {
+            const args = ['log', '--oneline', '--topo-order', '--', ref];
+            const cwd = process.env.GITHUB_WORKSPACE ?? process.cwd();
+            core.debug(`GitGraphAnalyzer.getAncestry running: git ${args.join(' ')} (cwd='${cwd}')`);
+            const result = spawnSync('git', args, {
                 encoding: 'utf8',
-                cwd: process.env.GITHUB_WORKSPACE ?? process.cwd(),
+                cwd,
             });
 
             if (result.error) {
                 throw result.error;
+            }
+
+            if (result.status !== 0) {
+                core.warning(
+                    `GitGraphAnalyzer.getAncestry git log exited with status ${result.status}. stderr='${result.stderr?.trim() ?? ''}'`,
+                );
+            }
+            if (result.stderr && result.stderr.trim().length > 0) {
+                core.debug(`GitGraphAnalyzer.getAncestry stderr: ${result.stderr.trim()}`);
+            }
+            core.debug(
+                `GitGraphAnalyzer.getAncestry stdout length=${result.stdout?.length ?? 0}`,
+            );
+            if (result.stdout) {
+                const preview = result.stdout.split('\n').slice(0, 5).join('\n');
+                core.debug(`GitGraphAnalyzer.getAncestry stdout preview:\n${preview}`);
             }
 
             return result.stdout
