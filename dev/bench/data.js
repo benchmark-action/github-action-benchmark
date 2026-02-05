@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770294577802,
+  "lastUpdate": 1770294579890,
   "entries": {
     "Rust Benchmark": [
       {
@@ -64385,6 +64385,42 @@ window.BENCHMARK_DATA = {
             "value": 42.99465011698859,
             "unit": "ns",
             "range": "± 0.048017047687258924"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "45cba092eae71bae509d94d24333a24f155f0c69",
+          "message": "chore: setup CLAUDE.md file",
+          "timestamp": "2026-02-05T13:28:17+01:00",
+          "tree_id": "c3d1654eb3bad00305dc1554e71a9dc5caa850c8",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/45cba092eae71bae509d94d24333a24f155f0c69"
+        },
+        "date": 1770294574473,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 21.197399377822876,
+            "unit": "ns",
+            "range": "± 0.030363786199730312"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 43.44680426518122,
+            "unit": "ns",
+            "range": "± 0.08507554330272965"
           }
         ]
       }
