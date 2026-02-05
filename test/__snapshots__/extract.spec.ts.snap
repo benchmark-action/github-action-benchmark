@@ -524,6 +524,163 @@ exports[`extractResult() extracts benchmark output from customSmallerIsBetter - 
 }
 `;
 
+exports[`extractResult() extracts benchmark output from go - go_fiber_duplicate_names_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "21228057 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/cache)",
+      "unit": "ns/op	2833.37 MB/s	       0 B/op	       0 allocs/op",
+      "value": 55.76,
+    },
+    {
+      "extra": "21228057 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/cache) - ns/op",
+      "unit": "ns/op",
+      "value": 55.76,
+    },
+    {
+      "extra": "21228057 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/cache) - MB/s",
+      "unit": "MB/s",
+      "value": 2833.37,
+    },
+    {
+      "extra": "21228057 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/cache) - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "21228057 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/cache) - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "6855655 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/cache)",
+      "unit": "ns/op	 907.83 MB/s	       0 B/op	       0 allocs/op",
+      "value": 174,
+    },
+    {
+      "extra": "6855655 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/cache) - ns/op",
+      "unit": "ns/op",
+      "value": 174,
+    },
+    {
+      "extra": "6855655 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/cache) - MB/s",
+      "unit": "MB/s",
+      "value": 907.83,
+    },
+    {
+      "extra": "6855655 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/cache) - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "6855655 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/cache) - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "1000000000 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf)",
+      "unit": "ns/op	2678.46 MB/s	       0 B/op	       0 allocs/op",
+      "value": 0.3733,
+    },
+    {
+      "extra": "1000000000 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf) - ns/op",
+      "unit": "ns/op",
+      "value": 0.3733,
+    },
+    {
+      "extra": "1000000000 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf) - MB/s",
+      "unit": "MB/s",
+      "value": 2678.46,
+    },
+    {
+      "extra": "1000000000 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf) - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "1000000000 times
+4 procs",
+      "name": "BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf) - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+    {
+      "extra": "275056135 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/csrf)",
+      "unit": "ns/op	 229.35 MB/s	       0 B/op	       0 allocs/op",
+      "value": 4.36,
+    },
+    {
+      "extra": "275056135 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/csrf) - ns/op",
+      "unit": "ns/op",
+      "value": 4.36,
+    },
+    {
+      "extra": "275056135 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/csrf) - MB/s",
+      "unit": "MB/s",
+      "value": 229.35,
+    },
+    {
+      "extra": "275056135 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/csrf) - B/op",
+      "unit": "B/op",
+      "value": 0,
+    },
+    {
+      "extra": "275056135 times
+4 procs",
+      "name": "BenchmarkUnmarshalitem (github.com/gofiber/fiber/v3/middleware/csrf) - allocs/op",
+      "unit": "allocs/op",
+      "value": 0,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "go",
+}
+`;
+
 exports[`extractResult() extracts benchmark output from go - go_fiber_output.txt 1`] = `
 {
   "benches": [
@@ -791,6 +948,37 @@ exports[`extractResult() extracts benchmark output from go - go_output.txt 1`] =
       "name": "BenchmarkFib22 - auxMetricUnits",
       "unit": "auxMetricUnits",
       "value": 4,
+    },
+  ],
+  "commit": {
+    "author": null,
+    "committer": null,
+    "id": "123456789abcdef",
+    "message": "this is dummy",
+    "timestamp": "dummy timestamp",
+    "url": "https://github.com/dummy/repo",
+  },
+  "date": 1712131503296,
+  "tool": "go",
+}
+`;
+
+exports[`extractResult() extracts benchmark output from go - go_single_package_output.txt 1`] = `
+{
+  "benches": [
+    {
+      "extra": "5000000 times
+8 procs",
+      "name": "BenchmarkFib10",
+      "unit": "ns/op",
+      "value": 325,
+    },
+    {
+      "extra": "30000 times
+8 procs",
+      "name": "BenchmarkFib20",
+      "unit": "ns/op",
+      "value": 40537,
     },
   ],
   "commit": {

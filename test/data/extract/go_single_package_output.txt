@@ -1,0 +1,9 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/example/mypackage
+BenchmarkFib10
+BenchmarkFib10-8    	5000000	       325 ns/op
+BenchmarkFib20
+BenchmarkFib20-8    	  30000	     40537 ns/op
+PASS
+ok  	github.com/example/mypackage	3.614s
