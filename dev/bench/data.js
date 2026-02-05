@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770294584243,
+  "lastUpdate": 1770294620271,
   "entries": {
     "Rust Benchmark": [
       {
@@ -53169,6 +53169,42 @@ window.BENCHMARK_DATA = {
             "value": 22533.073930208782,
             "unit": "ns/iter",
             "extra": "iterations: 31408\ncpu: 22528.37821574121 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "45cba092eae71bae509d94d24333a24f155f0c69",
+          "message": "chore: setup CLAUDE.md file",
+          "timestamp": "2026-02-05T13:28:17+01:00",
+          "tree_id": "c3d1654eb3bad00305dc1554e71a9dc5caa850c8",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/45cba092eae71bae509d94d24333a24f155f0c69"
+        },
+        "date": 1770294615650,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.16962796066264,
+            "unit": "ns/iter",
+            "extra": "iterations: 3943884\ncpu: 177.15429916295713 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22307.127232214734,
+            "unit": "ns/iter",
+            "extra": "iterations: 31415\ncpu: 22304.580518860417 ns\nthreads: 1"
           }
         ]
       }
