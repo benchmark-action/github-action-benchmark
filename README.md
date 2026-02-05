@@ -620,6 +620,10 @@ Every release will appear on your GitHub notifications page.
 - [lighthouse-ci-action][] is an action for [Lighthouse CI][lighthouse-ci]. If you're measuring performance
   of your web application, using Lighthouse CI and lighthouse-ci-action would be better than using this
   action.
+- [bencher][] is an action for the [Bencher CLI][].
+  If your project requires the ability to measure performance across multiple branches,
+  test environments, or for pull requests from forks,
+  Bencher may be better than using this action.
 
 
 
@@ -669,6 +673,8 @@ Every release will appear on your GitHub notifications page.
 [jmh]: https://openjdk.java.net/projects/code-tools/jmh/
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
+[bencher]: https://github.com/bencherdev/bencher
+[Bencher CLI]: https://bencher.dev/docs/how-to/install-cli/#github-actions
 [BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
 [benchmarkdotnet]: https://benchmarkdotnet.org
 [benchmarkdotnet-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/benchmarkdotnet.yml/badge.svg
