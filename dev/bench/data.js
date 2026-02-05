@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770295752709,
+  "lastUpdate": 1770295761275,
   "entries": {
     "Rust Benchmark": [
       {
@@ -64811,6 +64811,42 @@ window.BENCHMARK_DATA = {
             "value": 43.44680426518122,
             "unit": "ns",
             "range": "± 0.08507554330272965"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7e8372b9afe51c8853624707ad83a88e712c9cae",
+          "message": "fix: include package name for duplicate bench names [#264] (#330)\n\n## Problem Solved\n\nWhen running Go benchmarks across multiple packages that have benchmarks\nwith the same name (e.g., `BenchmarkAppendMsgitem` in both\n`middleware/cache` and `middleware/csrf`), the results would collide\nsince they shared identical names. This made it impossible to track them\nseparately over time.\n\n## Solution\n\nBenchmark names are now disambiguated by appending the package name in\nparentheses when multiple packages are detected in the output:\n\n- `BenchmarkFoo` → `BenchmarkFoo (github.com/example/package1)`\n- `BenchmarkFoo` → `BenchmarkFoo (github.com/example/package2)`\n\n**Backward compatible**: When only a single package exists (or no `pkg:`\nlines), names remain unchanged.\n\n## Code Changes\n\n### `src/extract.ts` (+33/-28 lines)\n\n- Refactored `extractGoResult()` to detect multiple packages by parsing\n`pkg:` lines\n- Split output into sections by package context\n- Added `chunkPairs()` helper function for cleaner `[value, unit]` pair\nextraction\n- Changed from imperative loops to a functional, chained `flatMap`\napproach\n- Exported `extractGoResult` for direct unit testing\n\n## New Test Coverage\n\n### `test/extractGoResult.spec.ts` (254 lines)\n\nComprehensive unit tests covering:\n\n- Basic benchmark extraction (with/without processor count)\n- Multiple metrics per benchmark\n- Single package backward compatibility\n- Multiple package disambiguation (the main fix)\n- Edge cases (orphan benchmarks, empty input, Windows line endings)\n\n### Test fixtures added\n\n- `go_fiber_duplicate_names_output.txt` - Real-world example with\nduplicate names across `cache` and `csrf` packages\n- `go_single_package_output.txt` - Single package output for backward\ncompatibility testing",
+          "timestamp": "2026-02-05T13:48:11+01:00",
+          "tree_id": "91becd1fb12f033525ed33bdc29034c9630576de",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7e8372b9afe51c8853624707ad83a88e712c9cae"
+        },
+        "date": 1770295756785,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 19.37872402369976,
+            "unit": "ns",
+            "range": "± 0.012084371965991639"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 35.444163297613464,
+            "unit": "ns",
+            "range": "± 0.020539325697840775"
           }
         ]
       }
