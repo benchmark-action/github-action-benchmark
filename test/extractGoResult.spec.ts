@@ -250,5 +250,41 @@ describe('extractGoResult()', () => {
             expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg1)');
             expect(results[2].name).toBe('BenchmarkBaz (github.com/example/pkg2)');
         });
+
+        it('does not add package suffix when same package appears multiple times', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg1
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+
+            const results = extractGoResult(output);
+
+            expect(results).toHaveLength(2);
+            expect(results[0].name).toBe('BenchmarkFoo');
+            expect(results[1].name).toBe('BenchmarkBar');
+        });
+
+        it('adds package suffix when multiple packages exist even with duplicate sections', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+                pkg: github.com/example/pkg1
+                BenchmarkBaz-8    	2000000	       300 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkFoo-8    	2000000	       400 ns/op
+            `;
+
+            const results = extractGoResult(output);
+
+            expect(results).toHaveLength(4);
+            expect(results[0].name).toBe('BenchmarkFoo (github.com/example/pkg1)');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+            expect(results[2].name).toBe('BenchmarkBaz (github.com/example/pkg1)');
+            expect(results[3].name).toBe('BenchmarkFoo (github.com/example/pkg2)');
+        });
     });
 });

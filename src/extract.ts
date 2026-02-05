@@ -351,7 +351,8 @@ export function extractGoResult(output: string): BenchmarkResult[] {
         return { pkg, lines: rest };
     });
 
-    const hasMultiplePackages = sections.filter((s) => s.pkg).length > 1;
+    const uniquePackages = new Set(sections.map((s) => s.pkg).filter(Boolean));
+    const hasMultiplePackages = uniquePackages.size > 1;
 
     // Example:
     //   BenchmarkFib20-8           30000             41653 ns/op
