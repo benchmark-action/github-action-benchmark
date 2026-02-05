@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770294541220,
+  "lastUpdate": 1770294556281,
   "entries": {
     "Rust Benchmark": [
       {
@@ -45947,6 +45947,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00003086624963128564",
             "extra": "mean: 1.628067386252015 msec\nrounds: 611"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "45cba092eae71bae509d94d24333a24f155f0c69",
+          "message": "chore: setup CLAUDE.md file",
+          "timestamp": "2026-02-05T13:28:17+01:00",
+          "tree_id": "c3d1654eb3bad00305dc1554e71a9dc5caa850c8",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/45cba092eae71bae509d94d24333a24f155f0c69"
+        },
+        "date": 1770294551965,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 75137.52346833162,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000010376027771543172",
+            "extra": "mean: 13.308929464802924 usec\nrounds: 39895"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 617.8754940412833,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000028046714376973872",
+            "extra": "mean: 1.6184490397238265 msec\nrounds: 579"
           }
         ]
       }
