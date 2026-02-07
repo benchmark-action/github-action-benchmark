@@ -490,7 +490,7 @@ async function writeBenchmarkToExternalJson(
     jsonFilePath: string,
     config: Config,
 ): Promise<{ prevBench: Benchmark | null; normalizedCurrentBench: Benchmark }> {
-    const { name, maxItemsInChart, saveDataFile } = config;
+    const { name, saveDataFile, maxItemsInChart } = config;
     const data = await loadDataJson(jsonFilePath);
     const { prevBench, normalizedCurrentBench } = addBenchmarkToDataJson(name, bench, data, maxItemsInChart);
 

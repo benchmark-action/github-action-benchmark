@@ -161,11 +161,14 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
             a.click();
           };
 
-          // Prepare data points for charts
-          return Object.keys(data.entries).map(name => ({
-            name,
-            dataSet: collectBenchesPerTestCase(data.entries[name]),
-          }));
+          // Prepare data points for charts (uses server-side ordering)
+          return Object.keys(data.entries).map(name => {
+            const entries = data.entries[name];
+            return {
+              name,
+              dataSet: collectBenchesPerTestCase(entries),
+            };
+          });
         }
 
         function renderAllChars(dataSets) {
