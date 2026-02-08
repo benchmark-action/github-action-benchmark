@@ -11,6 +11,7 @@
     "format": "prettier -w **",
     "format:check": "prettier -c **",
     "test": "jest",
+    "test-s": "jest --silent",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "coverage:open": "jest --coverage && open ./coverage/lcov-report/index.html"

@@ -96,6 +96,14 @@ describe('extractResult()', function () {
             file: 'go_fiber_output.txt',
         },
         {
+            tool: 'go',
+            file: 'go_fiber_duplicate_names_output.txt',
+        },
+        {
+            tool: 'go',
+            file: 'go_single_package_output.txt',
+        },
+        {
             tool: 'benchmarkjs',
             file: 'benchmarkjs_output.txt',
         },
