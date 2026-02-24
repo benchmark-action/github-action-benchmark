@@ -350,4 +350,43 @@ describe('extractGoResult()', () => {
             expect(results[1].name).toBe('BenchmarkStore (github.com/example/store)');
         });
     });
+
+    describe('forcePackageSuffix option', () => {
+        it('forces package suffix when forcePackageSuffix is true', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output, { forcePackageSuffix: true });
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1 (github.com/example/pkg1)');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix by default when name contains package ref', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            // No options passed - should use default behavior
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix when forcePackageSuffix is explicitly false', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output, { forcePackageSuffix: false });
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+    });
 });

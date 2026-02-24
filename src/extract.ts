@@ -355,7 +355,11 @@ function containsPackageRef(name: string, pkg: string): boolean {
     return false;
 }
 
-export function extractGoResult(output: string): BenchmarkResult[] {
+export interface GoExtractOptions {
+    forcePackageSuffix?: boolean;
+}
+
+export function extractGoResult(output: string, options: GoExtractOptions = {}): BenchmarkResult[] {
     // Split into sections by "pkg:" lines, keeping package name with each section
     const sections = output.split(/^pkg:\s+/m).map((section, index) => {
         if (index === 0) return { pkg: '', lines: section.split(/\r?\n/g) };
@@ -398,7 +402,8 @@ export function extractGoResult(output: string): BenchmarkResult[] {
                 pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
             }
 
-            const shouldAddPackageSuffix = hasMultiplePackages && pkg && !containsPackageRef(name, pkg);
+            const shouldAddPackageSuffix =
+                hasMultiplePackages && pkg && (options.forcePackageSuffix || !containsPackageRef(name, pkg));
             const baseName = shouldAddPackageSuffix ? `${name} (${pkg})` : name;
             // Chunk into [value, unit] pairs and map to results
             return chunkPairs(pieces).map(([valueStr, unit], i) => ({
@@ -721,7 +726,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             benches = extractCargoResult(output);
             break;
         case 'go':
-            benches = extractGoResult(output);
+            benches = extractGoResult(output, { forcePackageSuffix: config.goForcePackageSuffix });
             break;
         case 'benchmarkjs':
             benches = extractBenchmarkJsResult(output);
