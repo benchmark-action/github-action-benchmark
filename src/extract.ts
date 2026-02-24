@@ -343,6 +343,18 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
+function containsPackageRef(name: string, pkg: string): boolean {
+    const segments = pkg.split('/');
+    // Require at least 2 segments to avoid false positives (e.g., "cache" appearing in BenchmarkCache)
+    const minSegments = 2;
+    for (let i = 0; i <= segments.length - minSegments; i++) {
+        const suffix = segments.slice(i).join('/');
+        if (name.includes(suffix)) return true;
+        if (name.includes(suffix.replace(/\//g, '_'))) return true;
+    }
+    return false;
+}
+
 export function extractGoResult(output: string): BenchmarkResult[] {
     // Split into sections by "pkg:" lines, keeping package name with each section
     const sections = output.split(/^pkg:\s+/m).map((section, index) => {
@@ -386,7 +398,8 @@ export function extractGoResult(output: string): BenchmarkResult[] {
                 pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
             }
 
-            const baseName = hasMultiplePackages && pkg ? `${name} (${pkg})` : name;
+            const shouldAddPackageSuffix = hasMultiplePackages && pkg && !containsPackageRef(name, pkg);
+            const baseName = shouldAddPackageSuffix ? `${name} (${pkg})` : name;
             // Chunk into [value, unit] pairs and map to results
             return chunkPairs(pieces).map(([valueStr, unit], i) => ({
                 name: i > 0 ? `${baseName} - ${unit}` : baseName,
