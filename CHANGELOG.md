@@ -1,5 +1,10 @@
 ## Unreleased
 
+<a name="v1.21.0"></a>
+# [v1.21.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.21.0) - 02 Mar 2026
+- **fix** include package name for duplicate bench names (#330)
+- **fix** avoid duplicate package suffix in Go benchmarks (#337)
+
 <a name="v1.20.7"></a>
 # [v1.20.7](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.7) - 06 Sep 2025
 - **fix** improve parsing for custom benchmarks (#323)
