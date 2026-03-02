@@ -371,4 +371,32 @@ describe('configFromJobInput()', function () {
         A.ok(path.isAbsolute(config.benchmarkDataDirPath), config.benchmarkDataDirPath);
         A.equal(config.benchmarkDataDirPath, path.join(absCwd, 'outdir'));
     });
+
+    describe('go-force-package-suffix', () => {
+        it('parses go-force-package-suffix as true', async () => {
+            mockInputs({ ...defaultInputs, 'go-force-package-suffix': 'true' });
+            const config = await configFromJobInput();
+            A.equal(config.goForcePackageSuffix, true);
+        });
+
+        it('parses go-force-package-suffix as false', async () => {
+            mockInputs({ ...defaultInputs, 'go-force-package-suffix': 'false' });
+            const config = await configFromJobInput();
+            A.equal(config.goForcePackageSuffix, false);
+        });
+
+        it('defaults go-force-package-suffix to false when not set', async () => {
+            mockInputs({ ...defaultInputs });
+            const config = await configFromJobInput();
+            A.equal(config.goForcePackageSuffix, false);
+        });
+
+        it('throws on invalid go-force-package-suffix value', async () => {
+            mockInputs({ ...defaultInputs, 'go-force-package-suffix': 'invalid' });
+            await A.rejects(
+                configFromJobInput,
+                /'go-force-package-suffix' input must be boolean value 'true' or 'false' but got 'invalid'/,
+            );
+        });
+    });
 });

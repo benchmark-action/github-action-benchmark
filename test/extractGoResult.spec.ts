@@ -287,4 +287,106 @@ describe('extractGoResult()', () => {
             expect(results[3].name).toBe('BenchmarkFoo (github.com/example/pkg2)');
         });
     });
+
+    describe('avoiding duplicate package suffix', () => {
+        it('skips suffix when name contains full package path', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_github.com/example/pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkFoo_github.com/example/pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix when name contains normalized full package path', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_github.com_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkFoo_github.com_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix when name contains last package segments', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix for gofiber-style workaround', () => {
+            const output = dedent`
+                pkg: github.com/gofiber/fiber/v3/middleware/cache
+                BenchmarkAppendMsgitem_middleware_cache-8    	5000000	       100 ns/op
+                pkg: github.com/gofiber/fiber/v3/middleware/csrf
+                BenchmarkAppendMsgitem-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkAppendMsgitem_middleware_cache');
+            expect(results[1].name).toBe('BenchmarkAppendMsgitem (github.com/gofiber/fiber/v3/middleware/csrf)');
+        });
+
+        it('still adds suffix when only single segment matches (avoid false positives)', () => {
+            const output = dedent`
+                pkg: github.com/example/cache
+                BenchmarkCache-8    	5000000	       100 ns/op
+                pkg: github.com/example/store
+                BenchmarkStore-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output);
+            // "cache" appears in name but it's not a deliberate suffix - still add package
+            expect(results[0].name).toBe('BenchmarkCache (github.com/example/cache)');
+            expect(results[1].name).toBe('BenchmarkStore (github.com/example/store)');
+        });
+    });
+
+    describe('forcePackageSuffix option', () => {
+        it('forces package suffix when forcePackageSuffix is true', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output, { forcePackageSuffix: true });
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1 (github.com/example/pkg1)');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix by default when name contains package ref', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            // No options passed - should use default behavior
+            const results = extractGoResult(output);
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+
+        it('skips suffix when forcePackageSuffix is explicitly false', () => {
+            const output = dedent`
+                pkg: github.com/example/pkg1
+                BenchmarkFoo_example_pkg1-8    	5000000	       100 ns/op
+                pkg: github.com/example/pkg2
+                BenchmarkBar-8    	3000000	       200 ns/op
+            `;
+            const results = extractGoResult(output, { forcePackageSuffix: false });
+            expect(results[0].name).toBe('BenchmarkFoo_example_pkg1');
+            expect(results[1].name).toBe('BenchmarkBar (github.com/example/pkg2)');
+        });
+    });
 });
