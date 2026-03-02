@@ -111,9 +111,9 @@ describe('buildComment', () => {
             
             | Benchmark suite | Current: testCommitIdCurrent | Previous: testCommitIdPrevious | Ratio |
             |-|-|-|-|
-            | \`TestBench<1>\` | \`0\` testUnit | \`0\` testUnit | \`1\` |
-            | \`TestBench<2>\` | \`1\` testUnit | \`0\` testUnit | \`+∞\` |
-            | \`TestBench<3>\` | \`-1\` testUnit | \`0\` testUnit | \`-∞\` |
+            | \`TestBench<1>\` | \`0 testUnit\` | \`0 testUnit\` | \`1\` |
+            | \`TestBench<2>\` | \`1 testUnit\` | \`0 testUnit\` | \`+∞\` |
+            | \`TestBench<3>\` | \`-1 testUnit\` | \`0 testUnit\` | \`-∞\` |
             
             </details>
             
@@ -197,9 +197,9 @@ describe('buildComment', () => {
             
             | Benchmark suite | Current: testCommitIdCurrent | Previous: testCommitIdPrevious | Ratio |
             |-|-|-|-|
-            | \`TestBench<1>\` | \`0\` testUnit | \`0\` testUnit | \`1\` |
-            | \`TestBench<2>\` | \`0\` testUnit | \`1\` testUnit | \`+∞\` |
-            | \`TestBench<3>\` | \`0\` testUnit | \`-1\` testUnit | \`-∞\` |
+            | \`TestBench<1>\` | \`0 testUnit\` | \`0 testUnit\` | \`1\` |
+            | \`TestBench<2>\` | \`0 testUnit\` | \`1 testUnit\` | \`+∞\` |
+            | \`TestBench<3>\` | \`0 testUnit\` | \`-1 testUnit\` | \`-∞\` |
             
             </details>
             
