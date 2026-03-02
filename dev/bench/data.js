@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772487830468,
+  "lastUpdate": 1772487831806,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59463,6 +59463,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 7.5825,
             "range": "± 586.492",
+            "unit": "us",
+            "extra": "100 samples\n4 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trzesniewski",
+            "username": "ktrz"
+          },
+          "distinct": true,
+          "id": "a887eba2af2000fda74e733fcf952aa823b65916",
+          "message": "release v1.21.0",
+          "timestamp": "2026-03-02T22:41:42+01:00",
+          "tree_id": "bac81cd8e2e851927a5ee1325d7b26896f252b7b",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/a887eba2af2000fda74e733fcf952aa823b65916"
+        },
+        "date": 1772487826569,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 80.3022,
+            "range": "± 3.58829",
+            "unit": "ns",
+            "extra": "100 samples\n354 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 7.40569,
+            "range": "± 339.683",
             "unit": "us",
             "extra": "100 samples\n4 iterations"
           }
