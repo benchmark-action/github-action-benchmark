@@ -230,6 +230,7 @@ async function configFromJobInput() {
     let externalDataJsonPath = core.getInput('external-data-json-path');
     const maxItemsInChart = getUintInput('max-items-in-chart');
     let failThreshold = getPercentageInput('fail-threshold');
+    const goForcePackageSuffix = getBoolInput('go-force-package-suffix');
     validateToolType(tool);
     outputFilePath = await validateOutputFilePath(outputFilePath);
     validateGhPagesBranch(ghPagesBranch);
@@ -275,6 +276,7 @@ async function configFromJobInput() {
         maxItemsInChart,
         failThreshold,
         ref,
+        goForcePackageSuffix,
     };
 }
 //# sourceMappingURL=config.js.map
