@@ -392,7 +392,7 @@ Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchm
 
 Path to a file which contains the output from benchmark tool. The path can be relative to repository root.
 
-#### `gh-pages-branch` (Required)
+#### `gh-pages-branch`
 
 - Type: String
 - Default: `"gh-pages"`
