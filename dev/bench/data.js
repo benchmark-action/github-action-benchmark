@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772487006703,
+  "lastUpdate": 1772487008606,
   "entries": {
     "Rust Benchmark": [
       {
@@ -67139,6 +67139,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
             "value": 1940942105.2353213,
+            "unit": "ops/s",
+            "extra": "iterations: 3\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "022dc9c1181b2a3b0e15ba786ffc2d97afed0197",
+          "message": "fix: avoid duplicate package suffix in Go benchmarks [#336]  (#337)\n\n- Fixes duplicate suffixes for users who worked around #264 by including\n  package names in benchmark names\n- Detects when benchmark name already contains package reference (full\n  path, underscored, or ≥2 trailing segments) and skips suffix\n- Adds go-force-package-suffix option to always append suffix regardless\nof suffix detection",
+          "timestamp": "2026-03-02T22:28:54+01:00",
+          "tree_id": "6b2b1de6cb3bd51bbea044b5a412ccb4e48d48de",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/022dc9c1181b2a3b0e15ba786ffc2d97afed0197"
+        },
+        "date": 1772487004206,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "org.openjdk.jmh.samples.JMHSample_01_HelloWorld.wellHelloThere",
+            "value": 1935327770.2342656,
             "unit": "ops/s",
             "extra": "iterations: 3\nforks: 1\nthreads: 1"
           }
