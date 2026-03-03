@@ -4,6 +4,7 @@ import * as os from 'os';
 import * as path from 'path';
 
 export type ToolType = typeof VALID_TOOLS[number];
+
 export interface Config {
     name: string;
     tool: ToolType;
