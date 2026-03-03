@@ -343,7 +343,23 @@ function extractCargoResult(output: string): BenchmarkResult[] {
     return ret;
 }
 
-export function extractGoResult(output: string): BenchmarkResult[] {
+function containsPackageRef(name: string, pkg: string): boolean {
+    const segments = pkg.split('/');
+    // Require at least 2 segments to avoid false positives (e.g., "cache" appearing in BenchmarkCache)
+    const minSegments = 2;
+    for (let i = 0; i <= segments.length - minSegments; i++) {
+        const suffix = segments.slice(i).join('/');
+        if (name.includes(suffix)) return true;
+        if (name.includes(suffix.replace(/\//g, '_'))) return true;
+    }
+    return false;
+}
+
+export interface GoExtractOptions {
+    forcePackageSuffix?: boolean;
+}
+
+export function extractGoResult(output: string, options: GoExtractOptions = {}): BenchmarkResult[] {
     // Split into sections by "pkg:" lines, keeping package name with each section
     const sections = output.split(/^pkg:\s+/m).map((section, index) => {
         if (index === 0) return { pkg: '', lines: section.split(/\r?\n/g) };
@@ -386,7 +402,9 @@ export function extractGoResult(output: string): BenchmarkResult[] {
                 pieces.unshift(pieces[0], remainder.slice(remainder.indexOf(pieces[1])));
             }
 
-            const baseName = hasMultiplePackages && pkg ? `${name} (${pkg})` : name;
+            const shouldAddPackageSuffix =
+                hasMultiplePackages && pkg && (options.forcePackageSuffix || !containsPackageRef(name, pkg));
+            const baseName = shouldAddPackageSuffix ? `${name} (${pkg})` : name;
             // Chunk into [value, unit] pairs and map to results
             return chunkPairs(pieces).map(([valueStr, unit], i) => ({
                 name: i > 0 ? `${baseName} - ${unit}` : baseName,
@@ -708,7 +726,7 @@ export async function extractResult(config: Config): Promise<Benchmark> {
             benches = extractCargoResult(output);
             break;
         case 'go':
-            benches = extractGoResult(output);
+            benches = extractGoResult(output, { forcePackageSuffix: config.goForcePackageSuffix });
             break;
         case 'benchmarkjs':
             benches = extractBenchmarkJsResult(output);

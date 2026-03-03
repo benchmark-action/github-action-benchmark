@@ -207,6 +207,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            goForcePackageSuffix: false,
         };
 
         const savedRepository = {
@@ -1025,6 +1026,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            goForcePackageSuffix: false,
         };
 
         function gitHistory(
