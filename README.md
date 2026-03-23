@@ -91,7 +91,7 @@ jobs:
         run: go test -bench 'BenchmarkFib' | tee output.txt
       # Download previous benchmark result from cache
       - name: Download previous benchmark data
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
           path: ./cache/benchmark-data.json
@@ -109,7 +109,7 @@ jobs:
           fail-on-alert: true
       # Upload the updated cache file for the next job by actions/cache
       - name: Save benchmark JSON
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v5
         with:
           path: ./cache/benchmark-data.json
           # Include OS in key so that we don't compare benchmarks across different OSes
@@ -158,7 +158,7 @@ can be seen [here][commit-comment-workflow-example].
 
 ### Job Summary
 
-Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
+GitHub Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
 also supported. In order to use Job Summaries, turn on the `summary-always` option.
 
 ```yaml
