@@ -1,5 +1,46 @@
 ## Unreleased
 
+<a name="v1.21.0"></a>
+# [v1.21.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.21.0) - 02 Mar 2026
+- **fix** include package name for duplicate bench names (#330)
+- **fix** avoid duplicate package suffix in Go benchmarks (#337)
+
+<a name="v1.20.7"></a>
+# [v1.20.7](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.7) - 06 Sep 2025
+- **fix** improve parsing for custom benchmarks (#323)
+
+<a name="v1.20.5"></a>
+# [v1.20.5](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.5) - 02 Sep 2025
+- **feat** allow to parse generic cargo bench/criterion units (#280)
+- **fix** add summary even when failure threshold is surpassed (#285)
+- **fix** time units are not normalized (#318)
+
+<a name="v1.20.4"></a>
+# [v1.20.4](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.4) - 23 Oct 2024
+- **feat** add typings and validation workflow (#257)
+
+<a name="v1.20.3"></a>
+# [v1.20.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.3) - 19 May 2024
+- **fix** Catch2 v.3.5.0 changed output format (#247)
+
+<a name="v1.20.2"></a>
+# [v1.20.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.2) - 19 May 2024
+- **fix** Support sub-nanosecond precision on Cargo benchmarks (#246)
+
+<a name="v1.20.1"></a>
+# [v1.20.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.1) - 02 Apr 2024
+- **fix** release script
+
+<a name="v1.20.0"></a>
+# [v1.20.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.20.0) - 02 Apr 2024
+- **fix** Rust benchmarks not comparing to baseline (#235)
+- **feat** Comment on PR and auto update comment (#223)
+
+<a name="v1.19.3"></a>
+# [v1.19.3](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.3) - 02 Feb 2024
+- **fix** ratio is NaN when previous value is 0. Now, print 1 when both values are 0 and `+-∞` when divisor is 0 (#222)
+- **fix** action hangs in some cases for go fiber benchmarks (#225)
+
 <a name="v1.19.2"></a>
 # [v1.19.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.19.2) - 26 Jan 2024
 - **fix** markdown rendering for summary is broken (#218)

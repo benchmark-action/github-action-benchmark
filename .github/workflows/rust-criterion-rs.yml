@@ -21,7 +21,7 @@ jobs:
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Rust Benchmark
+          name: Criterion.rs Benchmark
           tool: 'cargo'
           output-file-path: examples/criterion-rs/output.txt
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +35,7 @@ jobs:
       - name: Store benchmark result - separate results repo
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Rust Benchmark
+          name: Criterion.rs Benchmark
           tool: 'cargo'
           output-file-path: examples/criterion-rs/output.txt
           github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}

@@ -82,8 +82,8 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
         with:
           go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
@@ -156,7 +156,7 @@ that this value must be quoted like `'@rhysd'` because [`@` is an indicator in Y
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
 
-### Leave a comment on PR Summary
+### Job Summary
 
 Github Actions [Job Summaries](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/) are
 also supported. In order to use Job Summaries, turn on the `summary-always` option.
@@ -211,8 +211,8 @@ jobs:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
         with:
           go-version: "stable"
       # Run benchmark with `go test -bench` and stores the output to a file
@@ -438,6 +438,20 @@ which means there is no limit.
 
 If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
 
+#### `go-force-package-suffix` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+Go-specific option. When running benchmarks across multiple packages, this action automatically appends
+the package name as a suffix to benchmark names to disambiguate them (e.g., `BenchmarkFoo (github.com/example/pkg1)`).
+By default, if the benchmark name already contains a reference to the package path, the suffix is skipped
+to avoid duplication.
+
+If set to `true`, the package suffix is always added regardless of whether the benchmark name already
+contains a package reference. This can be useful when you want consistent naming or when the automatic
+detection doesn't match your naming conventions.
+
 
 ### Action outputs
 
@@ -535,21 +549,21 @@ Every release will appear on your GitHub notifications page.
 
 
 
-[build-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/CI/badge.svg?branch=master&event=push
+[build-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/ci.yml/badge.svg
 [ci]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3ACI
 [codecov-badge]: https://codecov.io/gh/benchmark-action/github-action-benchmark/branch/master/graph/badge.svg
 [codecov]: https://app.codecov.io/gh/benchmark-action/github-action-benchmark
 [release-badge]: https://img.shields.io/github/v/release/benchmark-action/github-action-benchmark.svg
 [marketplace]: https://github.com/marketplace/actions/continuous-benchmark
 [proj]: https://github.com/benchmark-action/github-action-benchmark
-[rust-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Rust%20Example/badge.svg
-[go-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Go%20Example/badge.svg
-[benchmarkjs-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Benchmark.js%20Example/badge.svg
-[pytest-benchmark-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Python%20Example%20with%20pytest/badge.svg
-[cpp-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/C%2B%2B%20Example/badge.svg
-[catch2-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Catch2%20C%2B%2B%20Example/badge.svg
-[julia-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/Julia%20Example%20with%20BenchmarkTools.jl/badge.svg
-[java-badge]: https://github.com/benchmark-action/github-action-benchmark/workflows/JMH%20Example/badge.svg
+[rust-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/rust.yml/badge.svg
+[go-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/go.yml/badge.svg
+[benchmarkjs-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/benchmarkjs.yml/badge.svg
+[pytest-benchmark-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/pytest.yml/badge.svg
+[cpp-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/cpp.yml/badge.svg
+[catch2-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/catch2.yml/badge.svg
+[julia-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/julia.yml/badge.svg
+[java-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/java.yml/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
@@ -568,8 +582,8 @@ Every release will appear on your GitHub notifications page.
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup
-[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment
+[minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22
+[commit-comment-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+alert+with+commit+comment%22
 [google-benchmark]: https://github.com/google/benchmark
 [catch2]: https://github.com/catchorg/Catch2
 [jmh]: https://openjdk.java.net/projects/code-tools/jmh/
@@ -577,6 +591,6 @@ Every release will appear on your GitHub notifications page.
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
 [BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
 [benchmarkdotnet]: https://benchmarkdotnet.org
-[benchmarkdotnet-badge]: https://github.com/rhysd/github-action-benchmark/workflows/Benchmark.Net%20Example/badge.svg
+[benchmarkdotnet-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/benchmarkdotnet.yml/badge.svg
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
 [job-summaries]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/

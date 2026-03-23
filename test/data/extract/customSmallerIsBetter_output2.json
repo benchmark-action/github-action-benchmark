@@ -1,0 +1,26 @@
+[
+  {
+    "name": "No instrumentation",
+    "unit": "ns",
+    "value": 90.9439,
+    "range": 0.519165
+  },
+  {
+    "name": "Deactivated probe",
+    "unit": "ns",
+    "value": 445.661,
+    "range": 8.21371
+  },
+  {
+    "name": "No logging",
+    "unit": "ns",
+    "value": 1847.38,
+    "range": 10.2008
+  },
+  {
+    "name": "Binary file",
+    "unit": "ns",
+    "value": 3886.75,
+    "range": 87.1657
+  }
+]

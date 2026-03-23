@@ -10,8 +10,8 @@ permissions:
 
 jobs:
   benchmark:
-    name: Run C++ benchmark example
-    runs-on: ubuntu-20.04
+    name: Run Catch2 C++ Benchmark Framework example (v3.x)
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Build and run benchmarks with Catch2
@@ -25,7 +25,7 @@ jobs:
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Catch2 Benchmark
+          name: Catch2 Benchmark (v3)
           tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -34,12 +34,12 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@bernedom,@ktrz'
+          alert-comment-cc-users: '@ktrz'
 
       - name: Store benchmark result - separate results repo
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: Catch2 Benchmark
+          name: Catch2 Benchmark (v3)
           tool: 'catch2'
           output-file-path: examples/catch2/benchmark_result.txt
           github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
@@ -48,5 +48,5 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@bernedom,@ktrz'
+          alert-comment-cc-users: '@ktrz'
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'

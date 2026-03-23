@@ -2,19 +2,19 @@ C# example for benchmarking with `Benchmark.Net`
 ================================================
 
 - [Workflow for this example](../../.github/workflows/benchmarkdotnet.yml)
-- [Action log of this example](https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+example%22)
+- [Action log of this example](https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+example%22)
 - [Benchmark results on GitHub pages](https://benchmark-action.github.io/github-action-benchmark/dev/bench/)
 
-This directory shows how to use [`github-action-benchmark`](https://github.com/rhysd/github-action-benchmark)
-with [`Benchmark.Net`](https://benchmarkdotnet.org/).
+This directory shows how to use [`github-action-benchmark`](https://github.com/benchmark-action/github-action-benchmark)
+with [`BenchmarkDotNet`](https://benchmarkdotnet.org/).
 
 ## Run benchmarks
 
-Official documentation for usage of `Benchmark.Net`:
+Official documentation for usage of `BenchmarkDotNet`:
 
 https://benchmarkdotnet.org/articles/overview.html
 
-You should add the `Benchmark.Net` package to your test project and configure your tests according to the [Getting Started](https://benchmarkdotnet.org/articles/guides/getting-started.html) docs. A simple test file might look like
+You should add the `BenchmarkDotNet` package to your test project and configure your tests according to the [Getting Started](https://benchmarkdotnet.org/articles/guides/getting-started.html) docs. A simple test file might look like
 
 
 ```csharp
@@ -64,7 +64,7 @@ You can then run the tests using `dotnet run`.  It's _very_ important that you e
 
 Store the benchmark results with step using the action. Please set `benchmarkdotnet` to `tool` input.
 
-By default, Benchmark.Net will output results files to the current directory in a structure like:
+By default, BenchmarkDotNet will output results files to the current directory in a structure like:
 
 ```
 BenchmarkDotNet.Artifacts
@@ -81,10 +81,10 @@ You want to get the path of the `-report-full-compressed.json` report for use wi
 
 ```yaml
 - name: Store benchmark result
-  uses: rhysd/github-action-benchmark@v1
+  uses: benchmark-action/github-action-benchmark@v1
   with:
     tool: 'benchmarkdotnet'
     output-file-path: BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
 ```
 
-Please read ['How to use' section](https://github.com/rhysd/github-action-benchmark#how-to-use) for common usage.
+Please read [How to use section](https://github.com/benchmark-action/github-action-benchmark#how-to-use) for common usage.

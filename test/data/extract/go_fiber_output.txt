@@ -1,0 +1,6 @@
+Benchmark_Ctx_Accepts/run-[]string{".xml"}-4            	 4846809	       247.6 ns/op	       0 B/op	       0 allocs/op
+Benchmark_Ctx_Accepts/run-[]string{"json",_"xml"}-4     	 3900769	       307.1 ns/op	       0 B/op	       0 allocs/op
+Benchmark_Ctx_Accepts/run-[]string{"application/json",_"application/xml"}-4         	 5118646	       316.1 ns/op	       0 B/op	       0 allocs/op
+Benchmark_Utils_GetOffer/mime_extension#01-4                                        	 3067818	       390.7 ns/op	      48 B/op	       2 allocs/op
+Benchmark_Utils_GetOffer/mime_extension#02-4                                        	 1992943	       602.1 ns/op	      48 B/op	       2 allocs/op
+Benchmark_Utils_GetOffer/mime_extension#03-4                                        	 4180965	       286.3 ns/op	       0 B/op	       0 allocs/op

@@ -1,0 +1,12 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+
+running 2 tests
+test bench_fib_10 ... bench:         148.70 ns/iter (+/- 2.21)
+test bench_fib_20 ... bench:      18,794.12 ns/iter (+/- 440.25)
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 2 measured; 0 filtered out
+
