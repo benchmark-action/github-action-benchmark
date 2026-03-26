@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774556271561,
+  "lastUpdate": 1774556345191,
   "entries": {
     "Rust Benchmark": [
       {
@@ -63211,6 +63211,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 44823,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "765740+giordano@users.noreply.github.com",
+            "name": "Mosè Giordano",
+            "username": "giordano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e8b0080feae9103b2683f4fa32d2acc77d83bea",
+          "message": "chore: bump node to 24 (#339)",
+          "timestamp": "2026-03-26T21:14:59+01:00",
+          "tree_id": "cbb80db04508bedab66b6be7e91fdf5bea0c637c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5e8b0080feae9103b2683f4fa32d2acc77d83bea"
+        },
+        "date": 1774556341028,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 354.33962264150944,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":212,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44933,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
