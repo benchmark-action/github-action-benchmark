@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774556123715,
+  "lastUpdate": 1774556135846,
   "entries": {
     "Rust Benchmark": [
       {
@@ -38143,6 +38143,44 @@ window.BENCHMARK_DATA = {
             "name": "fib(20)",
             "value": 13084,
             "range": "±1.35%",
+            "unit": "ops/sec",
+            "extra": "94 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "765740+giordano@users.noreply.github.com",
+            "name": "Mosè Giordano",
+            "username": "giordano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e8b0080feae9103b2683f4fa32d2acc77d83bea",
+          "message": "chore: bump node to 24 (#339)",
+          "timestamp": "2026-03-26T21:14:59+01:00",
+          "tree_id": "cbb80db04508bedab66b6be7e91fdf5bea0c637c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5e8b0080feae9103b2683f4fa32d2acc77d83bea"
+        },
+        "date": 1774556131175,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1590215,
+            "range": "±0.36%",
+            "unit": "ops/sec",
+            "extra": "97 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 12927,
+            "range": "±0.56%",
             "unit": "ops/sec",
             "extra": "94 samples"
           }
