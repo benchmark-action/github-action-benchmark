@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774556185607,
+  "lastUpdate": 1774556213446,
   "entries": {
     "Rust Benchmark": [
       {
@@ -54217,6 +54217,42 @@ window.BENCHMARK_DATA = {
             "value": 22437.392992000016,
             "unit": "ns/iter",
             "extra": "iterations: 31250\ncpu: 22431.832704 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "765740+giordano@users.noreply.github.com",
+            "name": "Mosè Giordano",
+            "username": "giordano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e8b0080feae9103b2683f4fa32d2acc77d83bea",
+          "message": "chore: bump node to 24 (#339)",
+          "timestamp": "2026-03-26T21:14:59+01:00",
+          "tree_id": "cbb80db04508bedab66b6be7e91fdf5bea0c637c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5e8b0080feae9103b2683f4fa32d2acc77d83bea"
+        },
+        "date": 1774556210092,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.98109810090023,
+            "unit": "ns/iter",
+            "extra": "iterations: 3939128\ncpu: 177.9365412852794 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22339.5403508772,
+            "unit": "ns/iter",
+            "extra": "iterations: 31350\ncpu: 22335.02465709728 ns\nthreads: 1"
           }
         ]
       }
