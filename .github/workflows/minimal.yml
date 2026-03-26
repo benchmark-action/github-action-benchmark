@@ -19,7 +19,7 @@ jobs:
         with:
           go-version: "stable"
       - name: Run benchmark and stores the output to a file
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+        run: go test ./examples/go -bench 'BenchmarkFib' | tee output.txt
       - name: Get JSON for benchmark
         uses: benchmark-action/github-action-benchmark@v1
         with:

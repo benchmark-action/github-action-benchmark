@@ -71,7 +71,7 @@ context) properties. Like this:
 ### Minimal setup
 
 ```yaml
-nname: Example for minimal setup
+name: Example for minimal setup
 on:
   # NOTE! Do NOT add any other "on", because this workflow has permission to write to the repo!
   push:
@@ -92,7 +92,7 @@ jobs:
         with:
           go-version: "stable"
       - name: Run benchmark and stores the output to a file
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+        run: go test ./examples/go -bench 'BenchmarkFib' | tee output.txt
       - name: Get JSON for benchmark
         uses: benchmark-action/github-action-benchmark@v1
         with:
@@ -250,7 +250,7 @@ This action merges all benchmark results into one GitHub pages branch. If your w
 steps to check benchmarks from multiple tools, please give `name` input to each step to make each
 benchmark results identical.
 
-Please see the above ['Examples' section](#examples) to see live workflow examples for each language.
+Please see the above ['Supported Languages & Examples' section](#supported-languages--examples) to see live workflow examples for each language.
 
 If you don't want to pass GitHub API token to this action:
 
