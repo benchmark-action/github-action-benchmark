@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774558142598,
+  "lastUpdate": 1774558220348,
   "entries": {
     "Rust Benchmark": [
       {
@@ -63883,6 +63883,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "fib/20",
             "value": 46110,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b0e7057f76614dd5c0355257b2b77ee514f3e77b",
+          "message": "chore(deps): bump zipp from 0.6.0 to 3.19.1 in /examples/pytest (#256)\n\nBumps [zipp](https://github.com/jaraco/zipp) from 0.6.0 to 3.19.1.\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a\nhref=\"https://github.com/jaraco/zipp/blob/main/NEWS.rst\">zipp's\nchangelog</a>.</em></p>\n<blockquote>\n<h1>v3.19.1</h1>\n<h2>Bugfixes</h2>\n<ul>\n<li>Improved handling of malformed zip files. (<a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/119\">#119</a>)</li>\n</ul>\n<h1>v3.19.0</h1>\n<h2>Features</h2>\n<ul>\n<li>Implement is_symlink. (<a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/117\">#117</a>)</li>\n</ul>\n<h1>v3.18.2</h1>\n<p>No significant changes.</p>\n<h1>v3.18.1</h1>\n<p>No significant changes.</p>\n<h1>v3.18.0</h1>\n<h2>Features</h2>\n<ul>\n<li>Bypass ZipFile.namelist in glob for better performance. (<a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/106\">#106</a>)</li>\n<li>Refactored glob functionality to support a more generalized solution\nwith support for platform-specific path separators. (<a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/108\">#108</a>)</li>\n</ul>\n<h2>Bugfixes</h2>\n<ul>\n<li>Add special accounting for pypy when computing the stack level for\ntext encoding warnings. (<a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/114\">#114</a>)</li>\n</ul>\n<h1>v3.17.0</h1>\n<p>Features</p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/6d1cb72aa55e0536f35d2af128994b5a61ca4c1a\"><code>6d1cb72</code></a>\nFinalize</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/fd604bd34f0343472521a36da1fbd22e793e14fd\"><code>fd604bd</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/120\">#120</a> from\njaraco/bugfix/119-malformed-paths</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/c18417ed2953e181728a7dac07bff88a2190abf7\"><code>c18417e</code></a>\nAdd news fragment.</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/58115d2be968644ce71ce6bcc9b79826c82a1806\"><code>58115d2</code></a>\nEmploy SanitizedNames in CompleteDirs. Fixes broken test.</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/564fcc10cdbfdaecdb33688e149827465931c9e0\"><code>564fcc1</code></a>\nAdd SanitizedNames mixin.</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/79a309fe54dc6b7934fb72e9f31bcb58f2e9f547\"><code>79a309f</code></a>\nAdd some assertions about malformed paths.</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/2d015c22348fab46ca765339f55f84fe9d6e8115\"><code>2d015c2</code></a>\nMerge <a\nhref=\"https://github.com/jaraco/skeleton\">https://github.com/jaraco/skeleton</a></li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/a595a0fad054cd20b69d3e954c99174e3a548938\"><code>a595a0f</code></a>\nRename extras to align with core metadata spec.</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/608f90a6e74919501577a1312dc5c7d8e1d391d7\"><code>608f90a</code></a>\nFinalize</li>\n<li><a\nhref=\"https://github.com/jaraco/zipp/commit/3a22d724acf874111b43f87f7110225122ec3de5\"><code>3a22d72</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/jaraco/zipp/issues/118\">#118</a> from\njaraco/feature/is-symlink</li>\n<li>Additional commits viewable in <a\nhref=\"https://github.com/jaraco/zipp/compare/v0.6.0...v3.19.1\">compare\nview</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility\nscore](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=zipp&package-manager=pip&previous-version=0.6.0&new-version=3.19.1)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't\nalter it yourself. You can also trigger a rebase manually by commenting\n`@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits\nthat have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after\nyour CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge\nand block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating\nit. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all\nof the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop\nDependabot creating any more for this major version (unless you reopen\nthe PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop\nDependabot creating any more for this minor version (unless you reopen\nthe PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop\nDependabot creating any more for this dependency (unless you reopen the\nPR or upgrade to it yourself)\nYou can disable automated security fix PRs for this repo from the\n[Security Alerts\npage](https://github.com/benchmark-action/github-action-benchmark/network/alerts).\n\n</details>\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-26T21:47:06+01:00",
+          "tree_id": "6a27e3e787599abe11fe064453ceaa682e95c153",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/b0e7057f76614dd5c0355257b2b77ee514f3e77b"
+        },
+        "date": 1774558216136,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "fib/10",
+            "value": 310.1167315175097,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":257,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          },
+          {
+            "name": "fib/20",
+            "value": 44804,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
