@@ -11,31 +11,31 @@ permissions:
 
 jobs:
   benchmark:
-    name: Performance regression check
+    name: Run benchmark and save results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
         with:
           go-version: "stable"
-      # Run benchmark with `go test -bench` and stores the output to a file
-      - name: Run benchmark
+      - name: Run benchmark and stores the output to a file
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
-      # Download previous benchmark result from cache
-      - name: Download previous benchmark data
-        uses: actions/cache/restore@v5
-        with:
-          fail-on-cache-miss: true
-          path: ./cache/benchmark-data.json
-          key: ${{ runner.os }}-benchmark
-      - name: Compare benchmark result
+      - name: Get JSON for benchmark
         uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
           tool: 'go'
           # Where the output from the benchmark tool is stored
           output-file-path: output.txt
-          # Where the previous benchmark results are (to compare)
+          # Updates this file
           external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: true
+          # Writes to gh-pages-branch
+          auto-push: "true"
+      - name: Save JSON in cache
+        uses: actions/cache/save@v5
+        with:
+          path: ./cache/benchmark-data.json
+          # Save with commit hash to avoid "cache already exists"
+          key: "${{ github.sha }}-${{ runner.os }}-go-benchmark"

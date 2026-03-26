@@ -71,49 +71,47 @@ context) properties. Like this:
 ### Minimal setup
 
 ```yaml
-name: Minimal setup
+nname: Example for minimal setup
 on:
+  # NOTE! Do NOT add any other "on", because this workflow has permission to write to the repo!
   push:
     branches:
       - master
 
+permissions:
+  # permission to update benchmark contents in gh-pages branch
+  contents: "write"
+
 jobs:
   benchmark:
-    name: Performance regression check
+    name: Run benchmark and save results
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
         with:
           go-version: "stable"
-      # Run benchmark with `go test -bench` and stores the output to a file
-      - name: Run benchmark
-        run: go test -bench 'BenchmarkFib' | tee output.txt
-      # Download previous benchmark result from cache
-      - name: Download previous benchmark data
-        uses: actions/cache/restore@v5
-        with:
-          fail-on-cache-miss: true
-          path: ./cache/benchmark-data.json
-          key: ${{ runner.os }}-benchmark
-      - name: Compare results
+      - name: Run benchmark and stores the output to a file
+        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
+      - name: Get JSON for benchmark
         uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
           tool: 'go'
-          # Extract benchmark result from here
+          # Where the output from the benchmark tool is stored
           output-file-path: output.txt
-          # Where the previous data file is stored
+          # Updates this file
           external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: true
-      # Upload the updated cache file for the next job by actions/cache
-      - name: Save benchmark JSON
+          # Writes to gh-pages-branch
+          auto-push: "true"
+      - name: Save JSON in cache
         uses: actions/cache/save@v5
         with:
           path: ./cache/benchmark-data.json
-          # Include OS in key so that we don't compare benchmarks across different OSes
-          key: ${{ runner.os }}-benchmark
+          # Save with commit hash to avoid "cache already exists"
+          key: "${{ github.sha }}-${{ runner.os }}-go-benchmark"
 ```
 
 By default, this action marks the result as performance regression when it is worse than the previous
@@ -140,8 +138,8 @@ be seen [here][minimal-workflow-example].
     github-token: ${{ secrets.GITHUB_TOKEN }}
     # Enable alert commit comment
     comment-on-alert: true
-    # Mention @rhysd in the commit comment, not mandatory but highly recommended to ensure the comment is seen
-    alert-comment-cc-users: '@rhysd'
+    # Mention @ktrz in the commit comment, not mandatory but highly recommended to ensure the comment is seen
+    alert-comment-cc-users: '@ktrz'
 ```
 
 `secrets.GITHUB_TOKEN` is [a GitHub API token automatically generated for each workflow run][help-github-token].
@@ -151,7 +149,7 @@ performance regression.
 Now, in addition to making workflow fail, the step leaves a commit comment when it detects performance
 regression [like this][alert-comment-example]. Though `alert-comment-cc-users` input is not mandatory for
 this, I recommend to set it to make sure you notice the comment via GitHub notification. Please note
-that this value must be quoted like `'@rhysd'` because [`@` is an indicator in YAML syntax](https://yaml.org/spec/1.2/spec.html#id2772075).
+that this value must be quoted like `'@ktrz'` because [`@` is an indicator in YAML syntax](https://yaml.org/spec/1.2/spec.html#id2772075).
 
 A live workflow example is [here](.github/workflows/commit-comment.yml). And the results of the workflow
 can be seen [here][commit-comment-workflow-example].
