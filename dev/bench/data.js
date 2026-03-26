@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774556135846,
+  "lastUpdate": 1774556140608,
   "entries": {
     "Rust Benchmark": [
       {
@@ -59635,6 +59635,44 @@ window.BENCHMARK_DATA = {
             "name": "Fibonacci 20",
             "value": 7.40569,
             "range": "± 339.683",
+            "unit": "us",
+            "extra": "100 samples\n4 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "765740+giordano@users.noreply.github.com",
+            "name": "Mosè Giordano",
+            "username": "giordano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e8b0080feae9103b2683f4fa32d2acc77d83bea",
+          "message": "chore: bump node to 24 (#339)",
+          "timestamp": "2026-03-26T21:14:59+01:00",
+          "tree_id": "cbb80db04508bedab66b6be7e91fdf5bea0c637c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5e8b0080feae9103b2683f4fa32d2acc77d83bea"
+        },
+        "date": 1774556136241,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "Fibonacci 10",
+            "value": 131.888,
+            "range": "± 36.6813",
+            "unit": "ns",
+            "extra": "100 samples\n342 iterations"
+          },
+          {
+            "name": "Fibonacci 20",
+            "value": 7.92542,
+            "range": "± 540.334",
             "unit": "us",
             "extra": "100 samples\n4 iterations"
           }
