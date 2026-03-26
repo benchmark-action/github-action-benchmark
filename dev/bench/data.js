@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774556182156,
+  "lastUpdate": 1774556185607,
   "entries": {
     "Rust Benchmark": [
       {
@@ -46941,6 +46941,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000016698471298594323",
             "extra": "mean: 1.6135398926830173 msec\nrounds: 615"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "765740+giordano@users.noreply.github.com",
+            "name": "Mosè Giordano",
+            "username": "giordano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e8b0080feae9103b2683f4fa32d2acc77d83bea",
+          "message": "chore: bump node to 24 (#339)",
+          "timestamp": "2026-03-26T21:14:59+01:00",
+          "tree_id": "cbb80db04508bedab66b6be7e91fdf5bea0c637c",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/5e8b0080feae9103b2683f4fa32d2acc77d83bea"
+        },
+        "date": 1774556179380,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 76690.9493712884,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000011563518709694698",
+            "extra": "mean: 13.039348295959163 usec\nrounds: 37382"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 613.5874480691359,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000023151803737393974",
+            "extra": "mean: 1.6297595447019724 msec\nrounds: 604"
           }
         ]
       }
