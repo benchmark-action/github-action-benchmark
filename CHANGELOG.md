@@ -1,4 +1,5 @@
 ## Unreleased
+- **chore** bump node to 24 (#339)
 
 <a name="v1.21.0"></a>
 # [v1.21.0](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.21.0) - 02 Mar 2026
