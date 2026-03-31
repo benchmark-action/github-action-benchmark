@@ -1,0 +1,51 @@
+name: Time (CLI utility) Example
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run Some silly benchmark under `time`
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run some silly benchmark with time
+        run: (time (head --bytes=1000000000 /dev/random  >/dev/null)) 2>&1 | tee output.txt
+
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Time Benchmark
+          tool: 'time'
+          output-file-path: output.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz','@henrikingo'
+
+      - name: Store benchmark result - separate results repo
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Time Benchmark
+          tool: 'time'
+          output-file-path: output.txt
+          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz','@henrikingo'
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
