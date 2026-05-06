@@ -12,22 +12,47 @@ function help(): never {
     throw new Error('Usage: node ci_validate_modification.js "benchmark name" [benchmark-data-repository-directory]');
 }
 
-async function exec(cmd: string): Promise<string> {
+interface GitContext {
+    benchmarkDataDirectory?: string;
+}
+
+function gitArgsFor(ctx: GitContext): string[] {
+    if (!ctx.benchmarkDataDirectory) {
+        return [];
+    }
+    return [`--work-tree=${ctx.benchmarkDataDirectory}`, `--git-dir=${ctx.benchmarkDataDirectory}/.git`];
+}
+
+function execGit(ctx: GitContext, ...args: string[]): Promise<string> {
+    const argv = [...gitArgsFor(ctx), ...args];
+    const cmd = `git ${argv.join(' ')}`;
     console.log(`+ ${cmd}`);
     return new Promise((resolve, reject) => {
-        cp.exec(cmd, (err, stdout, stderr) => {
+        cp.execFile('git', argv, { maxBuffer: 100 * 1024 * 1024 }, (err, stdout, stderr) => {
             if (err) {
                 reject(new Error(`Exec '${cmd}' failed with error ${err.message}. Stderr: '${stderr}'`));
                 return;
             }
+            if (stderr) console.warn(`stderr from '${cmd}': ${stderr}`);
             resolve(stdout);
         });
     });
 }
 
-async function readDataJsonFromGit(gitParams: string, ref: string): Promise<DataJson> {
-    const content = await exec(`git ${gitParams} show ${ref}:dev/bench/data.js`);
-    return JSON.parse(content.slice(SCRIPT_PREFIX.length));
+async function tryReadBenchDataJsAtRef(ctx: GitContext, ref: string): Promise<DataJson | null> {
+    let content: string;
+    try {
+        content = await execGit(ctx, 'show', `${ref}:dev/bench/data.js`);
+    } catch (err) {
+        console.log(`No data.js at ${ref} (first run / new tool): ${err}`);
+        return null;
+    }
+    if (!content.startsWith(SCRIPT_PREFIX)) {
+        throw new Error(
+            `data.js at ${ref} does not begin with expected SCRIPT_PREFIX. First 64 chars: ${content.slice(0, 64)}`,
+        );
+    }
+    return JSON.parse(content.slice(SCRIPT_PREFIX.length)) as DataJson;
 }
 
 function validateDataJson(data: DataJson) {
@@ -219,59 +244,63 @@ async function main() {
     }
 
     const expectedBenchName = process.argv[2];
-    const benchmarkDataDirectory = process.argv[3];
-
-    const additionalGitParams = benchmarkDataDirectory
-        ? `--work-tree=${benchmarkDataDirectory} --git-dir=${benchmarkDataDirectory}/.git`
-        : '';
+    const ctx: GitContext = { benchmarkDataDirectory: process.argv[3] };
 
     console.log('Validating modifications by action');
 
     console.log('Validating current branch');
-    const branch = await exec(`git ${additionalGitParams} rev-parse --abbrev-ref HEAD`);
+    const branch = (await execGit(ctx, 'rev-parse', '--abbrev-ref', 'HEAD')).trim();
     if (branch === 'gh-pages') {
         throw new Error(`Current branch is still on '${branch}'`);
     }
 
     console.log('Retrieving data.js after action');
-    await exec(`git ${additionalGitParams} checkout gh-pages`);
-    const latestCommitLog = await exec(`git ${additionalGitParams} log -n 1`);
+    await execGit(ctx, 'checkout', 'gh-pages');
+    try {
+        const latestCommitLog = await execGit(ctx, 'log', '-n', '1');
 
-    console.log('Validating auto commit');
-    const commitLogLines = latestCommitLog.split('\n');
+        console.log('Validating auto commit');
+        const commitLogLines = latestCommitLog.split('\n');
 
-    const commitAuthorLine = commitLogLines[1];
-    if (!commitAuthorLine.startsWith('Author: github-action-benchmark')) {
-        throw new Error(`Unexpected auto commit author in log '${latestCommitLog}'`);
+        const commitAuthorLine = commitLogLines[1];
+        if (!commitAuthorLine.startsWith('Author: github-action-benchmark')) {
+            throw new Error(`Unexpected auto commit author in log '${latestCommitLog}'`);
+        }
+
+        const commitMessageLine = commitLogLines[4];
+        const reCommitMessage = new RegExp(
+            `add ${expectedBenchName.replace(
+                /[.*+?^=!:${}()|[\]/\\]/g,
+                '\\$&',
+            )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
+        );
+        if (!reCommitMessage.test(commitMessageLine)) {
+            throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
+        }
+
+        console.log('Reading data.js after action as JSON (HEAD)');
+        const afterJson = await tryReadBenchDataJsAtRef(ctx, 'HEAD');
+        if (!afterJson) {
+            throw new Error('data.js missing at HEAD on gh-pages branch after action commit');
+        }
+
+        console.log('Reading data.js before action as JSON (HEAD~1)');
+        const beforeJson =
+            (await tryReadBenchDataJsAtRef(ctx, 'HEAD~1')) ??
+            ({ lastUpdate: 0, repoUrl: afterJson.repoUrl, entries: {} } as DataJson);
+
+        console.log('Validating data.js both before/after action');
+        validateDataJson(beforeJson);
+        validateDataJson(afterJson);
+
+        validateDiff(beforeJson, afterJson, expectedBenchName);
+    } finally {
+        await execGit(ctx, 'checkout', '-');
     }
-
-    const commitMessageLine = commitLogLines[4];
-    const reCommitMessage = new RegExp(
-        `add ${expectedBenchName.replace(
-            /[.*+?^=!:${}()|[\]/\\]/g,
-            '\\$&',
-        )} \\([^)]+\\) benchmark result for [0-9a-f]+$`,
-    );
-    if (!reCommitMessage.test(commitMessageLine)) {
-        throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
-    }
-
-    console.log('Reading data.js before action as JSON (HEAD~1)');
-    const beforeJson = await readDataJsonFromGit(additionalGitParams, 'HEAD~1');
-
-    console.log('Reading data.js after action as JSON (HEAD)');
-    const afterJson = await readDataJsonFromGit(additionalGitParams, 'HEAD');
-
-    await exec(`git ${additionalGitParams} checkout -`);
-
-    console.log('Validating data.js both before/after action');
-    validateDataJson(beforeJson);
-    validateDataJson(afterJson);
-
-    validateDiff(beforeJson, afterJson, expectedBenchName);
 }
 
 main().catch((err) => {
-    console.error(err);
+    const prefix = /Exec 'git\b/.test(err.message) ? '[git-error]' : '[validation-error]';
+    console.error(prefix, err);
     process.exit(110);
 });
