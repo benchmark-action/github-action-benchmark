@@ -1,0 +1,5 @@
+tracker:
+  type: github
+  github:
+    repo: benchmark-action/github-action-benchmark
+    in_review_label: in-review
