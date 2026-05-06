@@ -1,0 +1,37 @@
+{
+    "__version__": [
+      18,
+      1,
+      8
+    ],
+    "elapsed": 1.0956830978393555,
+    "tests": [
+      {
+        "artifacts": {
+          "artifact-content-in-request": {
+            "contents": "RXhpdCBDb2RlOiAwCgpDb21tYW5kIE91dHB1dCAoc3Rkb3V0KToKLS0KIyBSVU46IGF0IGxpbmUgMQpzbGVlcCAxCiMgZXhlY3V0ZWQgY29tbWFuZDogc2xlZXAgMQoKLS0K"
+          }
+        },
+        "duration": "1.009553909s",
+        "expected": true,
+        "start_time": "2025-01-19T20:13:43.882058Z",
+        "status": "PASS",
+        "summary_html": "<p><text-artifact artifact-id=\"artifact-content-in-request\"></p>",
+        "testId": "time-tests :: b.txt"
+      },
+      {
+        "artifacts": {
+          "artifact-content-in-request": {
+            "contents": "RXhpdCBDb2RlOiAwCgpDb21tYW5kIE91dHB1dCAoc3Rkb3V0KToKLS0KIyBSVU46IGF0IGxpbmUgMQp0cnVlCiMgZXhlY3V0ZWQgY29tbWFuZDogdHJ1ZQoKLS0K"
+          }
+        },
+        "duration": "0.003667116s",
+        "expected": true,
+        "start_time": "2025-01-19T20:13:43.882072Z",
+        "status": "PASS",
+        "summary_html": "<p><text-artifact artifact-id=\"artifact-content-in-request\"></p>",
+        "testId": "time-tests :: a.txt"
+      }
+    ]
+  }
+  

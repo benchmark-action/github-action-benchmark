@@ -41,6 +41,7 @@ export const VALID_TOOLS = [
     'benchmarkdotnet',
     'customBiggerIsBetter',
     'customSmallerIsBetter',
+    'lit',
 ] as const;
 const RE_UINT = /^\d+$/;
 
