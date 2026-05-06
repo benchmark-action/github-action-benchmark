@@ -250,7 +250,7 @@ async function main() {
 
     console.log('Validating current branch');
     const branch = (await execGit(ctx, 'rev-parse', '--abbrev-ref', 'HEAD')).trim();
-    if (branch === 'gh-pages') {
+    if (!ctx.benchmarkDataDirectory && branch === 'gh-pages') {
         throw new Error(`Current branch is still on '${branch}'`);
     }
 
