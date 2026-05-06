@@ -6,13 +6,10 @@ import { VALID_TOOLS } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { diff, Diff, DiffArray, DiffEdit, DiffNew } from 'deep-diff';
 import { getServerUrl } from '../src/git';
-import assert from 'assert';
 import deepEq = require('deep-equal');
 
 function help(): never {
-    throw new Error(
-        'Usage: node ci_validate_modification.js before_data.js "benchmark name" [benchmark-data-repository-directory]',
-    );
+    throw new Error('Usage: node ci_validate_modification.js "benchmark name" [benchmark-data-repository-directory]');
 }
 
 async function exec(cmd: string): Promise<string> {
@@ -28,8 +25,8 @@ async function exec(cmd: string): Promise<string> {
     });
 }
 
-async function readDataJson(file: string): Promise<DataJson> {
-    const content = await fs.readFile(file, 'utf8');
+async function readDataJsonFromGit(gitParams: string, ref: string): Promise<DataJson> {
+    const content = await exec(`git ${gitParams} show ${ref}:dev/bench/data.js`);
     return JSON.parse(content.slice(SCRIPT_PREFIX.length));
 }
 
@@ -207,7 +204,7 @@ function validateDiff(beforeJson: DataJson, afterJson: DataJson, expectedBenchNa
 async function main() {
     console.log('Start validating modifications by action with args', process.argv);
 
-    if (process.argv.length !== 4 && process.argv.length !== 5) {
+    if (process.argv.length !== 3 && process.argv.length !== 4) {
         help();
     }
 
@@ -221,19 +218,14 @@ async function main() {
         throw new Error('This script must be run at root directory of repository');
     }
 
-    const beforeDataJs = path.resolve(process.argv[2]);
-    const expectedBenchName = process.argv[3];
-    const benchmarkDataDirectory = process.argv[4];
+    const expectedBenchName = process.argv[2];
+    const benchmarkDataDirectory = process.argv[3];
 
     const additionalGitParams = benchmarkDataDirectory
         ? `--work-tree=${benchmarkDataDirectory} --git-dir=${benchmarkDataDirectory}/.git`
         : '';
 
     console.log('Validating modifications by action');
-    console.log(`  data.js before action: ${beforeDataJs}`);
-
-    console.log('Reading data.js before action as JSON');
-    const beforeJson = await readDataJson(beforeDataJs);
 
     console.log('Validating current branch');
     const branch = await exec(`git ${additionalGitParams} rev-parse --abbrev-ref HEAD`);
@@ -264,18 +256,12 @@ async function main() {
         throw new Error(`Unexpected auto commit message in log '${latestCommitLog}'`);
     }
 
-    const dataResults = await Promise.allSettled([
-        readDataJson('benchmark-data-repository/dev/bench/data.js'),
-        readDataJson('dev/bench/data.js'),
-    ]);
+    console.log('Reading data.js before action as JSON (HEAD~1)');
+    const beforeJson = await readDataJsonFromGit(additionalGitParams, 'HEAD~1');
 
-    const jsonResults = dataResults
-        .filter((res): res is PromiseFulfilledResult<DataJson> => res.status === 'fulfilled')
-        .map((res) => res.value);
+    console.log('Reading data.js after action as JSON (HEAD)');
+    const afterJson = await readDataJsonFromGit(additionalGitParams, 'HEAD');
 
-    assert(jsonResults.length > 0 && jsonResults.length <= 2, 'Maximum 2 data.js files should be present in the repo');
-
-    const afterJson = jsonResults[0];
     await exec(`git ${additionalGitParams} checkout -`);
 
     console.log('Validating data.js both before/after action');
