@@ -22,6 +22,8 @@ jobs:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
       - name: Store benchmark result
@@ -48,6 +50,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
       - name: Store benchmark result
@@ -74,6 +78,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/catch2_v2
@@ -105,6 +111,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/catch2
@@ -136,6 +144,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Cache Benchmark library
         uses: actions/cache@v4
         with:
@@ -172,6 +182,8 @@ jobs:
           go-version: "stable"
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
       - name: Store benchmark result
@@ -202,6 +214,8 @@ jobs:
           java-version: '11'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/java
@@ -231,6 +245,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
@@ -269,6 +285,8 @@ jobs:
           python-version: 3.9
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/pytest
