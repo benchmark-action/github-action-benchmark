@@ -43,7 +43,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Benchmark.Net Benchmark' './benchmark-data-repository'
 
   benchmarkjs:
     name: Run JavaScript benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -77,7 +77,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Benchmark.js Benchmark' './benchmark-data-repository'
 
   catch2-v2-framework:
     name: Run Catch2 C++ Benchmark Framework example (v2.x) - github.com/benchmark-action/github-action-benchmark-results
@@ -116,7 +116,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Catch2 Benchmark' './benchmark-data-repository'
 
   catch2-v3-framework:
     name: Run Catch2 C++ Benchmark Framework example (v3.x) - github.com/benchmark-action/github-action-benchmark-results
@@ -155,7 +155,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Catch2 Benchmark (v3)' './benchmark-data-repository'
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example - github.com/benchmark-action/github-action-benchmark-results
@@ -196,7 +196,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'C++ Benchmark' './benchmark-data-repository'
 
   go:
     name: Run Go benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -233,7 +233,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Go Benchmark' './benchmark-data-repository'
 
   java-jmh:
     name: Run JMH Java Benchmark Framework example
@@ -272,7 +272,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'JMH Benchmark' './benchmark-data-repository'
 
   julia-benchmark:
     name: Run Julia benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -315,7 +315,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Julia benchmark' './benchmark-data-repository'
 
   pytest-benchmark:
     name: Run Pytest benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -355,7 +355,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Python Benchmark with pytest-benchmark' './benchmark-data-repository'
 
   rust:
     name: Run Rust benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -390,7 +390,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Rust Benchmark' './benchmark-data-repository'
 
   rust-criterion-rs-framework:
     name: Run Criterion.rs benchmark example - github.com/benchmark-action/github-action-benchmark-results
@@ -425,7 +425,7 @@ jobs:
           fail-on-alert: true
           gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark' './benchmark-data-repository'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Criterion.rs Benchmark' './benchmark-data-repository'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache

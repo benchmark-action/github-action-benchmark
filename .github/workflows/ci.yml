@@ -41,7 +41,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Benchmark.Net Benchmark'
 
   benchmarkjs:
     name: Run JavaScript benchmark example
@@ -73,7 +73,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Benchmark.js Benchmark'
 
   catch2-v2-framework:
     name: Run Catch2 C++ Benchmark Framework example (v2.x)
@@ -110,7 +110,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Catch2 Benchmark'
 
   catch2-v3-framework:
     name: Run Catch2 C++ Benchmark Framework example (v3.x)
@@ -147,7 +147,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Catch2 Benchmark (v3)'
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example
@@ -186,7 +186,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'C++ Benchmark'
 
   go:
     name: Run Go benchmark example
@@ -221,7 +221,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Go Benchmark'
 
   java-jmh:
     name: Run JMH Java Benchmark Framework example
@@ -260,7 +260,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'JMH Benchmark'
 
   julia-benchmark:
     name: Run Julia benchmark example
@@ -301,7 +301,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Julia benchmark'
 
   pytest-benchmark:
     name: Run Pytest benchmark example
@@ -339,7 +339,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Python Benchmark with pytest-benchmark'
 
   rust:
     name: Run Rust benchmark example
@@ -371,7 +371,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Rust Benchmark'
 
   rust-criterion-rs-framework:
     name: Run Criterion.rs benchmark example
@@ -403,7 +403,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts before_data.js 'Criterion.rs Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
