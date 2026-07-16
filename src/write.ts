@@ -239,19 +239,25 @@ function buildAlertComment(
     return lines.join('\n');
 }
 
-async function leaveComment(commitId: string, body: string, commentId: string, token: string) {
+async function leaveComment(
+    commitId: string,
+    body: string,
+    commentId: string,
+    token: string,
+    pullRequestNumber: number | null,
+) {
     core.debug('Sending comment:\n' + body);
 
     const repoMetadata = getCurrentRepoMetadata();
-    const pr = github.context.payload.pull_request;
+    const pullRequest = pullRequestNumber ?? github.context.payload.pull_request?.number;
 
-    return await (pr?.number
-        ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pr.number, body, commentId, token)
+    return await (pullRequest
+        ? leavePRComment(repoMetadata.owner.login, repoMetadata.name, pullRequest, body, commentId, token)
         : leaveCommitComment(repoMetadata.owner.login, repoMetadata.name, commitId, body, commentId, token));
 }
 
 async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
-    const { commentAlways, githubToken } = config;
+    const { commentAlways, githubToken, pullRequestNumber } = config;
 
     if (!commentAlways) {
         core.debug('Comment check was skipped because comment-always is disabled');
@@ -266,7 +272,7 @@ async function handleComment(benchName: string, curSuite: Benchmark, prevSuite: 
 
     const body = buildComment(benchName, curSuite, prevSuite);
 
-    await leaveComment(curSuite.commit.id, body, `${benchName} Summary`, githubToken);
+    await leaveComment(curSuite.commit.id, body, `${benchName} Summary`, githubToken, pullRequestNumber);
 }
 
 async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Benchmark, config: Config) {
@@ -291,7 +297,13 @@ async function handleAlert(benchName: string, curSuite: Benchmark, prevSuite: Be
         if (!githubToken) {
             throw new Error("'comment-on-alert' input is set but 'github-token' input is not set");
         }
-        const res = await leaveComment(curSuite.commit.id, body, `${benchName} Alert`, githubToken);
+        const res = await leaveComment(
+            curSuite.commit.id,
+            body,
+            `${benchName} Alert`,
+            githubToken,
+            config.pullRequestNumber,
+        );
         const url = res.data.html_url;
         message = body + `\nComment was generated at ${url}`;
     }
