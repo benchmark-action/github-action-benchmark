@@ -7,7 +7,7 @@ import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
 import { DataJson, writeBenchmark } from '../src/write';
 import { expect } from '@jest/globals';
-import { FakedOctokit, fakedRepos } from './fakedOctokit';
+import { FakedOctokit, fakedPulls, fakedRepos } from './fakedOctokit';
 import { wrapBodyWithBenchmarkTags } from '../src/comment/benchmarkCommentTags';
 
 const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
@@ -132,6 +132,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
 
     afterEach(function () {
         fakedRepos.clear();
+        fakedPulls.clear();
     });
 
     // Utilities for test data
@@ -188,6 +189,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            pullRequestNumber: null,
             goForcePackageSuffix: false,
         };
 
@@ -215,6 +217,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             expectedAdded?: Benchmark;
             error?: string[];
             commitComment?: string;
+            pullRequestComment?: number;
             repoPayload?: null | RepositoryPayloadSubset;
             gitServerUrl?: string;
         }> = [
@@ -242,6 +245,36 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 135)],
                 },
                 gitServerUrl: serverUrl,
+            },
+            {
+                it: 'uses pull request number override for comments',
+                config: {
+                    ...defaultCfg,
+                    githubToken: 'dummy token',
+                    commentAlways: true,
+                    pullRequestNumber: 3197,
+                },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'cargo',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'cargo',
+                    benches: [bench('bench_fib_10', 135)],
+                },
+                pullRequestComment: 3197,
             },
             {
                 it: 'appends new result to existing data with normalized units - new unit smaller',
@@ -827,7 +860,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
         ];
 
         it.each(normalCases)('$it', async function (t) {
-            const { data, added, config, repoPayload, error, commitComment } = t;
+            const { data, added, config, repoPayload, error, commitComment, pullRequestComment } = t;
             const expectedAdded = t.expectedAdded ?? added;
 
             gitHubContext.payload.repository = {
@@ -930,6 +963,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 expect('github-action-benchmark').toEqual(actionLink.text());
                 expect('https://github.com/marketplace/actions/continuous-benchmark').toEqual(actionLink.attr('href'));
             }
+
+            if (pullRequestComment !== undefined) {
+                expect(fakedRepos.spyOpts).toHaveLength(0);
+                expect(fakedPulls.createdReviews).toHaveLength(1);
+                const review = fakedPulls.createdReviews[0];
+                expect(review.pull_number).toEqual(pullRequestComment);
+                expect(
+                    review.body.startsWith('<!-- github-benchmark-action-comment(start): Test benchmark Summary -->'),
+                ).toBe(true);
+            }
         });
     });
 
@@ -1007,6 +1050,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             maxItemsInChart: null,
             failThreshold: 2.0,
             ref: undefined,
+            pullRequestNumber: null,
             goForcePackageSuffix: false,
         };
 

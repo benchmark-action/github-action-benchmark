@@ -44,6 +44,7 @@ describe('configFromJobInput()', function () {
         'alert-comment-cc-users': '',
         'external-data-json-path': '',
         'max-items-in-chart': '',
+        'pull-request-number': '',
     };
 
     const validationTests: Array<{
@@ -140,6 +141,22 @@ describe('configFromJobInput()', function () {
             expected: /'max-items-in-chart' input value must be one or more/,
         },
         {
+            what: 'pull-request-number must be an integer',
+            inputs: {
+                ...defaultInputs,
+                'pull-request-number': '3.14',
+            },
+            expected: /'pull-request-number' input must be unsigned integer but got '3.14'/,
+        },
+        {
+            what: 'pull-request-number must not be zero',
+            inputs: {
+                ...defaultInputs,
+                'pull-request-number': '0',
+            },
+            expected: /'pull-request-number' input value must be one or more/,
+        },
+        {
             what: 'alert-threshold must not be empty',
             inputs: {
                 ...defaultInputs,
@@ -183,6 +200,7 @@ describe('configFromJobInput()', function () {
         alertCommentCcUsers: string[];
         hasExternalDataJsonPath: boolean;
         maxItemsInChart: null | number;
+        pullRequestNumber: null | number;
         failThreshold: number | null;
     }
 
@@ -200,6 +218,7 @@ describe('configFromJobInput()', function () {
         alertCommentCcUsers: [],
         hasExternalDataJsonPath: false,
         maxItemsInChart: null,
+        pullRequestNumber: null,
         failThreshold: null,
     };
 
@@ -272,6 +291,11 @@ describe('configFromJobInput()', function () {
             expected: { ...defaultExpected, maxItemsInChart: 50 },
         },
         {
+            what: 'pull request number',
+            inputs: { ...defaultInputs, 'pull-request-number': '3197' },
+            expected: { ...defaultExpected, pullRequestNumber: 3197 },
+        },
+        {
             what: 'different failure threshold from alert threshold',
             inputs: { ...defaultInputs, 'fail-threshold': '300%' },
             expected: { ...defaultExpected, failThreshold: 3.0 },
@@ -303,6 +327,7 @@ describe('configFromJobInput()', function () {
         A.ok(path.isAbsolute(actual.outputFilePath), actual.outputFilePath);
         A.ok(path.isAbsolute(actual.benchmarkDataDirPath), actual.benchmarkDataDirPath);
         A.equal(actual.maxItemsInChart, test.expected.maxItemsInChart);
+        A.equal(actual.pullRequestNumber, test.expected.pullRequestNumber);
         if (test.expected.failThreshold === null) {
             A.equal(actual.failThreshold, test.expected.alertThreshold);
         } else {

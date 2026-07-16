@@ -25,6 +25,7 @@ export interface Config {
     externalDataJsonPath: string | undefined;
     maxItemsInChart: number | null;
     ref: string | undefined;
+    pullRequestNumber: number | null;
     goForcePackageSuffix: boolean;
 }
 
@@ -209,6 +210,12 @@ function validateMaxItemsInChart(max: number | null) {
     }
 }
 
+function validatePullRequestNumber(pullRequestNumber: number | null) {
+    if (pullRequestNumber !== null && pullRequestNumber <= 0) {
+        throw new Error(`'pull-request-number' input value must be one or more but got ${pullRequestNumber}`);
+    }
+}
+
 function validateAlertThreshold(alertThreshold: number | null, failThreshold: number | null): asserts alertThreshold {
     if (alertThreshold === null) {
         throw new Error("'alert-threshold' input must not be empty");
@@ -229,6 +236,7 @@ export async function configFromJobInput(): Promise<Config> {
     const name: string = core.getInput('name');
     const githubToken: string | undefined = core.getInput('github-token') || undefined;
     const ref: string | undefined = core.getInput('ref') || undefined;
+    const pullRequestNumber = getUintInput('pull-request-number');
     const autoPush = getBoolInput('auto-push');
     const skipFetchGhPages = getBoolInput('skip-fetch-gh-pages');
     const commentAlways = getBoolInput('comment-always');
@@ -264,6 +272,7 @@ export async function configFromJobInput(): Promise<Config> {
     validateAlertCommentCcUsers(alertCommentCcUsers);
     externalDataJsonPath = await validateExternalDataJsonPath(externalDataJsonPath, autoPush);
     validateMaxItemsInChart(maxItemsInChart);
+    validatePullRequestNumber(pullRequestNumber);
     if (failThreshold === null) {
         failThreshold = alertThreshold;
     }
@@ -289,6 +298,7 @@ export async function configFromJobInput(): Promise<Config> {
         maxItemsInChart,
         failThreshold,
         ref,
+        pullRequestNumber,
         goForcePackageSuffix,
     };
 }

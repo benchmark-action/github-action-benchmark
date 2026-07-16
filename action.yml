@@ -33,6 +33,9 @@ inputs:
   ref:
     description: 'optional Ref to use when finding commit'
     required: false
+  pull-request-number:
+    description: 'Optional pull request number to use for comments instead of the event payload'
+    required: false
   auto-push:
     description: 'Push GitHub Pages branch to remote automatically. This option requires github-token input'
     required: false
