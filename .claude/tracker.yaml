@@ -1,0 +1,19 @@
+# Tracker config for Claude Code skills.
+#
+# Tells Claude skills (plan-feature, create-pr, resolve-pr-comments, etc.)
+# which issue tracker this repo uses, so they can fetch tickets, link them
+# in PRs, and transition statuses without per-invocation prompts.
+#
+# Resolution order: this file first, then ~/.claude/tracker.yaml as a
+# fallback. Schema and supported backends (jira, linear, github, clickup)
+# are documented at:
+#   https://github.com/ktrz/skills/blob/main/_shared/references/tracker.md
+#
+# Safe to commit: contains no secrets — only the public repo slug and the
+# label name used to mark issues as "in review".
+
+tracker:
+  type: github
+  github:
+    repo: benchmark-action/github-action-benchmark
+    in_review_label: in-review

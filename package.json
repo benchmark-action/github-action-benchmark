@@ -11,6 +11,7 @@
     "format": "prettier -w **",
     "format:check": "prettier -c **",
     "test": "jest",
+    "test-s": "jest --silent",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "coverage:open": "jest --coverage && open ./coverage/lcov-report/index.html"
@@ -31,7 +32,7 @@
   },
   "homepage": "https://github.com/benchmark-action/github-action-benchmark#readme",
   "dependencies": {
-    "@actions/core": "^1.10.0",
+    "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
     "@actions/io": "^1.1.2",
@@ -62,6 +63,7 @@
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^29.1.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.2"
   }
 }

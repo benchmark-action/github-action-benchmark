@@ -79,7 +79,11 @@ inputs:
   max-items-in-chart:
     description: 'Max data points in a benchmark chart to avoid making the chart too busy. Value must be unsigned integer. No limit by default'
     required: false
+  go-force-package-suffix:
+    description: 'Force adding package suffix to Go benchmark names even when name already contains package reference'
+    required: false
+    default: 'false'
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/src/index.js'

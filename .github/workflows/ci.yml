@@ -15,21 +15,17 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3
         with:
           dotnet-version: '6.0.101'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/benchmarkdotnet && dotnet run --exporters json --filter '*'
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -41,7 +37,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.Net Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Benchmark.Net Benchmark'
 
   benchmarkjs:
     name: Run JavaScript benchmark example
@@ -50,18 +46,14 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/benchmarkjs && npm install && node bench.js | tee output.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -73,7 +65,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Benchmark.js Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Benchmark.js Benchmark'
 
   catch2-v2-framework:
     name: Run Catch2 C++ Benchmark Framework example (v2.x)
@@ -82,10 +74,12 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/catch2_v2
@@ -93,12 +87,6 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -110,7 +98,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Catch2 Benchmark'
 
   catch2-v3-framework:
     name: Run Catch2 C++ Benchmark Framework example (v3.x)
@@ -119,10 +107,12 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/catch2
@@ -130,12 +120,6 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release ..
           cmake --build . --config Release
           ./Catch2_bench > ../benchmark_result.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -147,7 +131,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Catch2 Benchmark (v3)'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Catch2 Benchmark (v3)'
 
   cpp-framework:
     name: Run Google C++ Benchmark Framework example
@@ -156,10 +140,12 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Cache Benchmark library
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
@@ -169,12 +155,6 @@ jobs:
         run: |
           cd examples/cpp
           make json
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -186,7 +166,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'C++ Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'C++ Benchmark'
 
   go:
     name: Run Go benchmark example
@@ -195,21 +175,17 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - uses: actions/setup-go@7b8cf10d4e4a01d4992d18a89f4d7dc5a3e6d6f4 # v4
         with:
           go-version: "stable"
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -221,7 +197,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Go Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Go Benchmark'
 
   java-jmh:
     name: Run JMH Java Benchmark Framework example
@@ -230,7 +206,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
@@ -238,17 +214,13 @@ jobs:
           java-version: '11'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/java
           mvn clean verify
           java -jar target/benchmarks.jar -wi 1 -i 3 -f 1 -rf json
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -260,7 +232,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'JMH Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'JMH Benchmark'
 
   julia-benchmark:
     name: Run Julia benchmark example
@@ -269,7 +241,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
@@ -284,12 +256,6 @@ jobs:
             using Pkg;
             Pkg.instantiate();
             include("fib.jl")'
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -301,7 +267,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Julia benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Julia benchmark'
 
   pytest-benchmark:
     name: Run Pytest benchmark example
@@ -310,24 +276,20 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: 3.9
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - name: Run benchmark
         run: |
           cd examples/pytest
           pip install -r requirements.txt
           pytest bench.py --benchmark-json output.json
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -339,7 +301,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Python Benchmark with pytest-benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Python Benchmark with pytest-benchmark'
 
   rust:
     name: Run Rust benchmark example
@@ -348,19 +310,13 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
         run: cd examples/rust && cargo +nightly bench | tee output.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -371,7 +327,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Rust Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Rust Benchmark'
 
   rust-criterion-rs-framework:
     name: Run Criterion.rs benchmark example
@@ -380,19 +336,13 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
       - run: rustup toolchain update nightly && rustup default nightly
       - name: Run benchmark
         run: cd examples/criterion-rs && cargo +nightly bench -- --output-format bencher | tee output.txt
-      - name: Save previous data.js
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp ./dev/bench/data.js before_data.js
-          git checkout -
       - name: Store benchmark result
         uses: ./
         with:
@@ -403,7 +353,7 @@ jobs:
           summary-always: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
-      - run: node ./dist/scripts/ci_validate_modification.js before_data.js 'Criterion.rs Benchmark'
+      - run: npx tsx scripts/ci_validate_modification.ts 'Criterion.rs Benchmark'
 
   only-alert-with-cache:
     name: Run alert check with actions/cache
@@ -412,7 +362,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
@@ -445,7 +395,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run coverage
@@ -464,7 +414,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
       - run: npm run lint

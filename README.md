@@ -532,6 +532,20 @@ which means there is no limit.
 
 If set to `true`, the workflow will skip fetching branch defined with the `gh-pages-branch` variable.
 
+#### `go-force-package-suffix` (Optional)
+
+- Type: Boolean
+- Default: `false`
+
+Go-specific option. When running benchmarks across multiple packages, this action automatically appends
+the package name as a suffix to benchmark names to disambiguate them (e.g., `BenchmarkFoo (github.com/example/pkg1)`).
+By default, if the benchmark name already contains a reference to the package path, the suffix is skipped
+to avoid duplication.
+
+If set to `true`, the package suffix is always added regardless of whether the benchmark name already
+contains a package reference. This can be useful when you want consistent naming or when the automatic
+detection doesn't match your naming conventions.
+
 
 ### Action outputs
 

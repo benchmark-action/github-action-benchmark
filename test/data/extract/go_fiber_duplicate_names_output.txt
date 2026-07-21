@@ -1,0 +1,27 @@
+PASS
+ok  	github.com/gofiber/fiber/v3/log	0.173s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/adaptor	0.184s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/basicauth	0.173s
+goos: linux
+goarch: amd64
+pkg: github.com/gofiber/fiber/v3/middleware/cache
+cpu: AMD EPYC 7763 64-Core Processor
+BenchmarkAppendMsgitem-4              	21228057	        55.76 ns/op	2833.37 MB/s	       0 B/op	       0 allocs/op
+BenchmarkUnmarshalitem-4              	 6855655	       174.0 ns/op	 907.83 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/cache	2.649s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/compress	0.219s
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/cors	0.188s
+goos: linux
+goarch: amd64
+pkg: github.com/gofiber/fiber/v3/middleware/csrf
+cpu: AMD EPYC 7763 64-Core Processor
+BenchmarkAppendMsgitem-4                    	1000000000	         0.3733 ns/op	2678.46 MB/s	       0 B/op	       0 allocs/op
+BenchmarkUnmarshalitem-4                    	275056135	         4.360 ns/op	 229.35 MB/s	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/gofiber/fiber/v3/middleware/csrf	0.842s
+PASS
