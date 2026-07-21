@@ -245,6 +245,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
       - uses: julia-actions/setup-julia@ac0d62164df5a47de404f4e96ce86a1a28a28d56 # v1
         with:
           version: '1'
