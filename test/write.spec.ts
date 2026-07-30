@@ -21,7 +21,7 @@ const ok: (x: any, msg?: string) => asserts x = (x, msg) => {
     }
 };
 
-type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone' | 'checkout';
+type GitFunc = 'cmd' | 'push' | 'pull' | 'fetch' | 'clone';
 class GitSpy {
     history: [GitFunc, unknown[]][];
     pushFailure: null | string;
@@ -108,10 +108,6 @@ jest.mock('../src/git', () => ({
     },
     async clone(...args: unknown[]) {
         gitSpy.call('clone', args);
-        return '';
-    },
-    async checkout(...args: unknown[]) {
-        gitSpy.call('checkout', args);
         return '';
     },
 }));
@@ -1088,12 +1084,18 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 gitServerUrl: serverUrl,
                 gitHistory: [
-                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                     [
-                        'checkout',
+                        'clone',
                         [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            './benchmark-data-repository',
+                            [],
+                            '--branch',
                             'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            '--single-branch',
+                            '--depth',
+                            '1',
                         ],
                     ],
                     [
@@ -1147,12 +1149,18 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 },
                 gitServerUrl: serverUrl,
                 gitHistory: [
-                    ['clone', ['dummy token', 'https://github.com/user/other-repo', './benchmark-data-repository']],
                     [
-                        'checkout',
+                        'clone',
                         [
+                            'dummy token',
+                            'https://github.com/user/other-repo',
+                            './benchmark-data-repository',
+                            [],
+                            '--branch',
                             'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
+                            '--single-branch',
+                            '--depth',
+                            '1',
                         ],
                     ],
                     [

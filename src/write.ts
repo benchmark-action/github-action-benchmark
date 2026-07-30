@@ -367,12 +367,21 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     if (githubToken && !skipFetchGhPages && ghRepository) {
         benchmarkBaseDir = './benchmark-data-repository';
-        await git.clone(githubToken, ghRepository, benchmarkBaseDir);
+        await git.clone(
+            githubToken,
+            ghRepository,
+            benchmarkBaseDir,
+            [],
+            '--branch',
+            ghPagesBranch,
+            '--single-branch',
+            '--depth',
+            '1',
+        );
         rollbackActions.push(async () => {
             await io.rmRF(benchmarkBaseDir);
         });
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
-        await git.checkout(ghPagesBranch, extraGitArguments);
     } else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
     } else if (isPrivateRepo && !skipFetchGhPages) {
