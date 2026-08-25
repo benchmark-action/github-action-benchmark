@@ -60,7 +60,7 @@ async function addIndexHtmlIfNeeded(additionalGitArguments: string[], dir: strin
     console.log('Created default index.html at', indexHtmlFullPath);
 }
 
-function biggerIsBetter(tool: ToolType): boolean {
+function biggerIsBetter(tool: ToolType, result: BenchmarkResult): boolean {
     switch (tool) {
         case 'cargo':
             return false;
@@ -79,7 +79,7 @@ function biggerIsBetter(tool: ToolType): boolean {
         case 'julia':
             return false;
         case 'jmh':
-            return false;
+            return result.unit.toLowerCase().startsWith('ops/');
         case 'benchmarkdotnet':
             return false;
         case 'customBiggerIsBetter':
@@ -548,7 +548,7 @@ async function handleSummary(benchName: string, currBench: Benchmark, prevBench:
 function getRatio(tool: ToolType, prev: BenchmarkResult, current: BenchmarkResult) {
     if (prev.value === 0 && current.value === 0) return 1;
 
-    return biggerIsBetter(tool)
+    return biggerIsBetter(tool, current)
         ? prev.value / current.value // e.g. current=100, prev=200
         : current.value / prev.value; // e.g. current=200, prev=100
 }
