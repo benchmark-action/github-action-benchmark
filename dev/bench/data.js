@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789466208672,
+  "lastUpdate": 1789466213832,
   "entries": {
     "Rust Benchmark": [
       {
@@ -40741,6 +40741,44 @@ window.BENCHMARK_DATA = {
             "range": "±0.88%",
             "unit": "ops/sec",
             "extra": "98 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7bc4f64f1579baa81aeece47a1a6a4e754bbbddd",
+          "message": "test: cover gh-repository shallow-clone rollback and clone args (#370)\n\n### Description\nFollow-up to #364, addressing review findings:\n- Add a gh-repository retry test covering push rejected → reset --hard\nHEAD~1 → rmRF → shallow re-clone\n- Add a clone() argv unit test in test/git.spec.ts\n- Extract otherRepoGitHistory() helper to dedupe the other-repository\ntest expectations\n- Comment the shallow/single-branch clone rationale in src/write.ts\n- README: note that with gh-repository the action shallow-clones the\ntarget branch directly\n\n### Test scenario\n- [ ] CI green (jest, lint, build)\n\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai\n-->\n## Summary by CodeRabbit\n\n- **Documentation**\n- Clarified that specifying a GitHub Pages repository uses a shallow\nclone of only the `gh-pages` branch.\n- Added details explaining repository cloning behavior when publishing\nbenchmarks.\n\n- **Bug Fixes**\n- Ensured an `index.html` file is created when needed without\noverwriting an existing file.\n\n- **Tests**\n- Expanded coverage for authenticated repository cloning and\nbranch-specific operations.\n- Added coverage for push rejection scenarios and safer rollback\nhandling.\n  - Added coverage for `index.html` creation and preservation behavior.\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+          "timestamp": "2026-09-15T11:56:26+02:00",
+          "tree_id": "41ef0db4bf4afa8903da1e54f33c64500b88a36d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7bc4f64f1579baa81aeece47a1a6a4e754bbbddd"
+        },
+        "date": 1789466210133,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "fib(10)",
+            "value": 1832102,
+            "range": "±0.74%",
+            "unit": "ops/sec",
+            "extra": "98 samples"
+          },
+          {
+            "name": "fib(20)",
+            "value": 15154,
+            "range": "±0.10%",
+            "unit": "ops/sec",
+            "extra": "100 samples"
           }
         ]
       }
