@@ -44,7 +44,7 @@ async function storeDataJs(dataPath: string, data: DataJson) {
     core.debug(`Overwrote ${dataPath} for adding new data`);
 }
 
-async function addIndexHtmlIfNeeded(additionalGitArguments: string[], dir: string, baseDir: string) {
+export async function addIndexHtmlIfNeeded(additionalGitArguments: string[], dir: string, baseDir: string) {
     const indexHtmlRelativePath = path.join(dir, 'index.html');
     const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
     try {

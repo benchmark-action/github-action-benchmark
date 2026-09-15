@@ -1,3 +1,4 @@
+import * as os from 'os';
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import * as cheerio from 'cheerio';
@@ -5,7 +6,8 @@ import markdownit from 'markdown-it';
 import rimraf from 'rimraf';
 import { Config } from '../src/config';
 import { Benchmark } from '../src/extract';
-import { DataJson, writeBenchmark } from '../src/write';
+import { addIndexHtmlIfNeeded, DataJson, writeBenchmark } from '../src/write';
+import { DEFAULT_INDEX_HTML } from '../src/default_index_html';
 import { expect } from '@jest/globals';
 import { FakedOctokit, fakedRepos } from './fakedOctokit';
 import { wrapBodyWithBenchmarkTags } from '../src/comment/benchmarkCommentTags';
@@ -1465,9 +1467,54 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 ...otherRepoGitHistory(),
                 ['cmd', [otherRepoGitArgs, 'reset', '--hard', 'HEAD~1']],
                 // index.html created by the first attempt survives because rmRF is mocked, so it is not added again
+                // (recreating a missing index.html is covered by the addIndexHtmlIfNeeded() tests below)
                 ...otherRepoGitHistory({ addIndexHtml: false }),
             ]);
             expect(rmRFSpy).toEqual(['./benchmark-data-repository']);
         });
+    });
+});
+
+describe('addIndexHtmlIfNeeded()', function () {
+    const gitArgs = ['--work-tree=./repo', '--git-dir=./repo/.git'];
+    const dir = 'data-dir';
+    const indexHtmlRelativePath = path.join(dir, 'index.html');
+    let baseDir: string;
+
+    beforeEach(async function () {
+        baseDir = await fs.mkdtemp(path.join(os.tmpdir(), 'add-index-html-'));
+        await fs.mkdir(path.join(baseDir, dir));
+    });
+
+    afterEach(async function () {
+        gitSpy.clear();
+        await fs.rm(baseDir, { recursive: true, force: true });
+    });
+
+    it('creates and adds index.html when missing, and recreates it after it is removed', async function () {
+        const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
+        const addIndexHtml = ['cmd', [gitArgs, 'add', indexHtmlRelativePath]];
+
+        await addIndexHtmlIfNeeded(gitArgs, dir, baseDir);
+
+        expect(await fs.readFile(indexHtmlFullPath, 'utf8')).toBe(DEFAULT_INDEX_HTML);
+        expect(gitSpy.history).toEqual([addIndexHtml]);
+
+        // Simulate a fresh re-clone that does not contain index.html
+        await fs.unlink(indexHtmlFullPath);
+        await addIndexHtmlIfNeeded(gitArgs, dir, baseDir);
+
+        expect(await fs.readFile(indexHtmlFullPath, 'utf8')).toBe(DEFAULT_INDEX_HTML);
+        expect(gitSpy.history).toEqual([addIndexHtml, addIndexHtml]);
+    });
+
+    it('neither overwrites nor adds an existing index.html', async function () {
+        const indexHtmlFullPath = path.join(baseDir, indexHtmlRelativePath);
+        await fs.writeFile(indexHtmlFullPath, 'custom index.html', 'utf8');
+
+        await addIndexHtmlIfNeeded(gitArgs, dir, baseDir);
+
+        expect(await fs.readFile(indexHtmlFullPath, 'utf8')).toBe('custom index.html');
+        expect(gitSpy.history).toEqual([]);
     });
 });
