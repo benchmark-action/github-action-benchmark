@@ -1,6 +1,6 @@
 Contributing to github-action-benchmark
 =======================================
-
+tab
 ## How to add new benchmark tool support
 
 Thank you for being interested in adding a support for new benchmarking tool.
