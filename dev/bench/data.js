@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789463234854,
+  "lastUpdate": 1789463236836,
   "entries": {
     "Rust Benchmark": [
       {
@@ -49787,6 +49787,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000016108860720393148",
             "extra": "mean: 1.6604976866665075 msec\nrounds: 600"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rjhallsted@gmail.com",
+            "name": "RJ Barman",
+            "username": "barbarj"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "64c1e0ae78e8888a8ad9ec376e146ae2b068b01e",
+          "message": "perf: shallow-clone the target branch only (#364)\n\nThis PR modifies the action to shallow clone the target branch only. \n\n**Why**: For large repos, the time to do a full clone and checkout can\nbe 20 minutes plus, which is long enough to cause retry loops when the\nbranch tip is under contention by multiple benchmark runs.\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai\n-->\n\n## Summary by CodeRabbit\n\n* **Performance Improvements**\n* Benchmark repositories are now retrieved using a faster, shallow clone\nof only the required GitHub Pages branch.\n* Removed the separate branch checkout step during benchmark publishing.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+          "timestamp": "2026-09-15T11:06:51+02:00",
+          "tree_id": "ac3de774909afb22aee51682c9bdf48ac2b7a323",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/64c1e0ae78e8888a8ad9ec376e146ae2b068b01e"
+        },
+        "date": 1789463231911,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "bench.py::test_fib_10",
+            "value": 136155.3929510402,
+            "unit": "iter/sec",
+            "range": "stddev: 6.129741828991051e-7",
+            "extra": "mean: 7.344549329453206 usec\nrounds: 41831"
+          },
+          {
+            "name": "bench.py::test_fib_20",
+            "value": 1116.007232571479,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000024450711194958287",
+            "extra": "mean: 896.0515405404876 usec\nrounds: 999"
           }
         ]
       }
