@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789466250417,
+  "lastUpdate": 1789466256568,
   "entries": {
     "Rust Benchmark": [
       {
@@ -29881,6 +29881,60 @@ window.BENCHMARK_DATA = {
             "value": 4,
             "unit": "auxMetricUnits",
             "extra": "30243 times\n4 procs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7bc4f64f1579baa81aeece47a1a6a4e754bbbddd",
+          "message": "test: cover gh-repository shallow-clone rollback and clone args (#370)\n\n### Description\nFollow-up to #364, addressing review findings:\n- Add a gh-repository retry test covering push rejected → reset --hard\nHEAD~1 → rmRF → shallow re-clone\n- Add a clone() argv unit test in test/git.spec.ts\n- Extract otherRepoGitHistory() helper to dedupe the other-repository\ntest expectations\n- Comment the shallow/single-branch clone rationale in src/write.ts\n- README: note that with gh-repository the action shallow-clones the\ntarget branch directly\n\n### Test scenario\n- [ ] CI green (jest, lint, build)\n\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai\n-->\n## Summary by CodeRabbit\n\n- **Documentation**\n- Clarified that specifying a GitHub Pages repository uses a shallow\nclone of only the `gh-pages` branch.\n- Added details explaining repository cloning behavior when publishing\nbenchmarks.\n\n- **Bug Fixes**\n- Ensured an `index.html` file is created when needed without\noverwriting an existing file.\n\n- **Tests**\n- Expanded coverage for authenticated repository cloning and\nbranch-specific operations.\n- Added coverage for push rejection scenarios and safer rollback\nhandling.\n  - Added coverage for `index.html` creation and preservation behavior.\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+          "timestamp": "2026-09-15T11:56:26+02:00",
+          "tree_id": "41ef0db4bf4afa8903da1e54f33c64500b88a36d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7bc4f64f1579baa81aeece47a1a6a4e754bbbddd"
+        },
+        "date": 1789466251820,
+        "tool": "go",
+        "benches": [
+          {
+            "name": "BenchmarkFib10",
+            "value": 275.2,
+            "unit": "ns/op",
+            "extra": "4393011 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20",
+            "value": 34323,
+            "unit": "ns/op",
+            "extra": "35328 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric",
+            "value": 34650,
+            "unit": "ns/op\t         4.000 auxMetricUnits",
+            "extra": "35109 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - ns/op",
+            "value": 34650,
+            "unit": "ns/op",
+            "extra": "35109 times\n4 procs"
+          },
+          {
+            "name": "BenchmarkFib20WithAuxMetric - auxMetricUnits",
+            "value": 4,
+            "unit": "auxMetricUnits",
+            "extra": "35109 times\n4 procs"
           }
         ]
       }
