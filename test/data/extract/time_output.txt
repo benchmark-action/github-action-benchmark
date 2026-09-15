@@ -1,0 +1,10 @@
+Hello there
+
+real	0m0.100s
+user	0m0.020s
+sys	0m0.003s
+Hello again
+
+real	0m0.100s
+user	0m0.020s
+sys	0m0.003s

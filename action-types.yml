@@ -14,6 +14,7 @@ inputs:
       - jmh
       - benchmarkdotnet
       - benchmarkluau
+      - time
       - customBiggerIsBetter
       - customSmallerIsBetter
   output-file-path:
