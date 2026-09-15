@@ -1,33 +1,41 @@
 name: Example for minimal setup
 on:
+  # NOTE! Do NOT add any other "on", because this workflow has permission to write to the repo!
   push:
     branches:
       - master
 
 permissions:
-  contents: write
-  deployments: write
+  # permission to update benchmark contents in gh-pages branch
+  contents: "write"
 
 jobs:
   benchmark:
-    name: Run minimal steps to run github-action-benchmark
+    name: Run benchmark and save results
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
         with:
           go-version: "stable"
-      - name: Run benchmark
-        run: cd examples/go && go test -bench 'BenchmarkFib' | tee output.txt
-      - name: Download previous benchmark data
-        uses: actions/cache@v4
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-      - name: Store benchmark result
+      - name: Run benchmark and stores the output to a file
+        run: go test ./examples/go -bench 'BenchmarkFib' | tee output.txt
+      - name: Get JSON for benchmark
         uses: benchmark-action/github-action-benchmark@v1
         with:
+          # What benchmark tool the output.txt came from
           tool: 'go'
-          output-file-path: examples/go/output.txt
+          # Where the output from the benchmark tool is stored
+          output-file-path: output.txt
+          # Updates this file
           external-data-json-path: ./cache/benchmark-data.json
+          # Workflow will fail when an alert happens
           fail-on-alert: true
+          # Writes to gh-pages-branch
+          auto-push: "true"
+      - name: Save JSON in cache
+        uses: actions/cache/save@v5
+        with:
+          path: ./cache/benchmark-data.json
+          # Save with commit hash to avoid "cache already exists"
+          key: "${{ github.sha }}-${{ runner.os }}-go-benchmark"
