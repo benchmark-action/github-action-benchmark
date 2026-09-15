@@ -1,5 +1,9 @@
 ## Unreleased
 
+<a name="v1.22.2"></a>
+# [v1.22.2](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.22.2) - 15 Sep 2026
+- **perf** shallow-clone the target branch only (#364)
+
 <a name="v1.22.1"></a>
 # [v1.22.1](https://github.com/benchmark-action/github-action-benchmark/releases/tag/v1.22.1) - 6 May 2026
 - **fix** scope tsconfig.build.json to src/ for reproducibility (#352)
