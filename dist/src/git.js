@@ -41,7 +41,6 @@ exports.push = push;
 exports.pull = pull;
 exports.fetch = fetch;
 exports.clone = clone;
-exports.checkout = checkout;
 const exec_1 = require("@actions/exec");
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
@@ -145,14 +144,6 @@ async function clone(token, ghRepository, baseDirectory, additionalGitOptions = 
     core.debug(`Executing 'git clone' to directory '${baseDirectory}' with token and options '${options.join(' ')}'`);
     const remote = getRepoRemoteUrl(token, ghRepository);
     let args = ['clone', remote, baseDirectory];
-    if (options.length > 0) {
-        args = args.concat(options);
-    }
-    return cmd(additionalGitOptions, ...args);
-}
-async function checkout(ghRef, additionalGitOptions = [], ...options) {
-    core.debug(`Executing 'git checkout' to ref '${ghRef}' with token and options '${options.join(' ')}'`);
-    let args = ['checkout', ghRef];
     if (options.length > 0) {
         args = args.concat(options);
     }

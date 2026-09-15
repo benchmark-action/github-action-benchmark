@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SCRIPT_PREFIX = void 0;
+exports.addIndexHtmlIfNeeded = addIndexHtmlIfNeeded;
 exports.buildComment = buildComment;
 exports.writeBenchmark = writeBenchmark;
 const fs_1 = require("fs");
@@ -308,12 +309,13 @@ async function writeBenchmarkToGitHubPagesWithRetry(bench, config, retry) {
     let extraGitArguments = [];
     if (githubToken && !skipFetchGhPages && ghRepository) {
         benchmarkBaseDir = './benchmark-data-repository';
-        await git.clone(githubToken, ghRepository, benchmarkBaseDir);
+        // Shallow, single-branch clone: only the tip of the pages branch is needed. Full clones of large
+        // repositories can take 20+ minutes and widen the window for push contention with other runs.
+        await git.clone(githubToken, ghRepository, benchmarkBaseDir, [], '--branch', ghPagesBranch, '--single-branch', '--depth', '1');
         rollbackActions.push(async () => {
             await io.rmRF(benchmarkBaseDir);
         });
         extraGitArguments = [`--work-tree=${benchmarkBaseDir}`, `--git-dir=${benchmarkBaseDir}/.git`];
-        await git.checkout(ghPagesBranch, extraGitArguments);
     }
     else if (!skipFetchGhPages && (!isPrivateRepo || githubToken)) {
         await git.pull(githubToken, ghPagesBranch);
