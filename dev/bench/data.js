@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789463293369,
+  "lastUpdate": 1789463331090,
   "entries": {
     "Rust Benchmark": [
       {
@@ -70799,6 +70799,42 @@ window.BENCHMARK_DATA = {
             "value": 43.410931097609655,
             "unit": "ns",
             "range": "± 0.05522039240154226"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rjhallsted@gmail.com",
+            "name": "RJ Barman",
+            "username": "barbarj"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "64c1e0ae78e8888a8ad9ec376e146ae2b068b01e",
+          "message": "perf: shallow-clone the target branch only (#364)\n\nThis PR modifies the action to shallow clone the target branch only. \n\n**Why**: For large repos, the time to do a full clone and checkout can\nbe 20 minutes plus, which is long enough to cause retry loops when the\nbranch tip is under contention by multiple benchmark runs.\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai\n-->\n\n## Summary by CodeRabbit\n\n* **Performance Improvements**\n* Benchmark repositories are now retrieved using a faster, shallow clone\nof only the required GitHub Pages branch.\n* Removed the separate branch checkout step during benchmark publishing.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+          "timestamp": "2026-09-15T11:06:51+02:00",
+          "tree_id": "ac3de774909afb22aee51682c9bdf48ac2b7a323",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/64c1e0ae78e8888a8ad9ec376e146ae2b068b01e"
+        },
+        "date": 1789463326963,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Sample.Benchmarks.Fib10",
+            "value": 23.90517355616276,
+            "unit": "ns",
+            "range": "± 0.017205209258660203"
+          },
+          {
+            "name": "Sample.Benchmarks.Fib20",
+            "value": 48.52407431602478,
+            "unit": "ns",
+            "range": "± 0.010522448245506482"
           }
         ]
       }
