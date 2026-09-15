@@ -37,6 +37,10 @@ const dummyGitHubContext = {
     ref: 'abcd1234',
 };
 
+jest.mock('../src/git', () => ({
+    cmd: jest.fn().mockResolvedValue('2024-01-15T10:30:00+00:00\n'),
+}));
+
 jest.mock('@actions/github', () => ({
     get context() {
         return dummyGitHubContext;
@@ -218,9 +222,7 @@ describe('extractResult()', function () {
                     user: {
                         login: 'user',
                     },
-                    repo: {
-                        updated_at: 'repo updated at timestamp',
-                    },
+                    repo: {},
                 },
             },
         };
@@ -238,7 +240,7 @@ describe('extractResult()', function () {
         A.deepEqual(commit.committer, expectedUser);
         A.equal(commit.id, 'abcdef0123456789');
         A.equal(commit.message, 'this is title');
-        A.equal(commit.timestamp, 'repo updated at timestamp');
+        A.equal(commit.timestamp, '2024-01-15T10:30:00+00:00');
         A.equal(commit.url, 'https://github.com/dummy/repo/pull/1/commits/abcdef0123456789');
     });
 

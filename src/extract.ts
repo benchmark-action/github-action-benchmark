@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { promises as fs } from 'fs';
 import * as github from '@actions/github';
+import { cmd } from './git';
 import { Config, ToolType } from './config';
 import { z } from 'zod';
 
@@ -239,21 +240,24 @@ function getHumanReadableUnitValue(seconds: number): [number, string] {
     }
 }
 
-function getCommitFromPullRequestPayload(pr: PullRequest): Commit {
-    // On pull_request hook, head_commit is not available
+async function getCommitFromPullRequestPayload(pr: PullRequest): Promise<Commit> {
+    // On pull_request hook, head_commit is not available.
+    // HEAD is the merge commit GitHub creates for the PR, always accessible even with shallow clones.
+    // Its timestamp is within seconds of the actual commit time.
     const id: string = pr.head.sha;
     const username: string = pr.head.user.login;
     const user = {
         name: username, // XXX: Fallback, not correct
         username,
     };
+    const timestamp = (await cmd([], 'log', '-1', '--format=%aI', 'HEAD')).trim();
 
     return {
         author: user,
         committer: user,
         id,
         message: pr.title,
-        timestamp: pr.head.repo.updated_at,
+        timestamp,
         url: `${pr.html_url}/commits/${id}`,
     };
 }
@@ -299,7 +303,7 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
     const pr = github.context.payload.pull_request;
 
     if (pr) {
-        return getCommitFromPullRequestPayload(pr);
+        return await getCommitFromPullRequestPayload(pr);
     }
 
     if (!githubToken) {
