@@ -435,6 +435,15 @@ GitHub API access token.
 
 Ref to use for reporting the commit
 
+#### `pull-request-number` (Optional)
+
+- Type: Number
+- Default: N/A
+
+Pull request number to use for comments instead of the pull request in the event payload. This is useful
+for events such as `repository_dispatch`, which can pass a pull request number in `client_payload` but do
+not have a top-level `pull_request` field.
+
 #### `auto-push` (Optional)
 
 - Type: Boolean
