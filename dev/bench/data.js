@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789463388433,
+  "lastUpdate": 1789466208672,
   "entries": {
     "Rust Benchmark": [
       {
@@ -57719,6 +57719,42 @@ window.BENCHMARK_DATA = {
             "value": 22322.028813288453,
             "unit": "ns/iter",
             "extra": "iterations: 31305\ncpu: 22319.68145663633 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "k.trzesniewski@gmail.com",
+            "name": "Chris Trześniewski",
+            "username": "ktrz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7bc4f64f1579baa81aeece47a1a6a4e754bbbddd",
+          "message": "test: cover gh-repository shallow-clone rollback and clone args (#370)\n\n### Description\nFollow-up to #364, addressing review findings:\n- Add a gh-repository retry test covering push rejected → reset --hard\nHEAD~1 → rmRF → shallow re-clone\n- Add a clone() argv unit test in test/git.spec.ts\n- Extract otherRepoGitHistory() helper to dedupe the other-repository\ntest expectations\n- Comment the shallow/single-branch clone rationale in src/write.ts\n- README: note that with gh-repository the action shallow-clones the\ntarget branch directly\n\n### Test scenario\n- [ ] CI green (jest, lint, build)\n\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai\n-->\n## Summary by CodeRabbit\n\n- **Documentation**\n- Clarified that specifying a GitHub Pages repository uses a shallow\nclone of only the `gh-pages` branch.\n- Added details explaining repository cloning behavior when publishing\nbenchmarks.\n\n- **Bug Fixes**\n- Ensured an `index.html` file is created when needed without\noverwriting an existing file.\n\n- **Tests**\n- Expanded coverage for authenticated repository cloning and\nbranch-specific operations.\n- Added coverage for push rejection scenarios and safer rollback\nhandling.\n  - Added coverage for `index.html` creation and preservation behavior.\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+          "timestamp": "2026-09-15T11:56:26+02:00",
+          "tree_id": "41ef0db4bf4afa8903da1e54f33c64500b88a36d",
+          "url": "https://github.com/benchmark-action/github-action-benchmark/commit/7bc4f64f1579baa81aeece47a1a6a4e754bbbddd"
+        },
+        "date": 1789466204257,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "fib_10",
+            "value": 177.5037196247607,
+            "unit": "ns/iter",
+            "extra": "iterations: 3930504\ncpu: 177.48357666090658 ns\nthreads: 1"
+          },
+          {
+            "name": "fib_20",
+            "value": 22367.950119904817,
+            "unit": "ns/iter",
+            "extra": "iterations: 31275\ncpu: 22366.7309352518 ns\nthreads: 1"
           }
         ]
       }
