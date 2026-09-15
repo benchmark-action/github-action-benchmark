@@ -1,5 +1,5 @@
 import { deepStrictEqual as eq, notDeepStrictEqual as neq, strict as A } from 'assert';
-import { cmd, getServerUrl, pull, push, fetch } from '../src/git';
+import { cmd, getServerUrl, pull, push, fetch, clone } from '../src/git';
 
 interface ExecOptions {
     listeners: {
@@ -215,6 +215,40 @@ describe('git', function () {
             ok(args);
             eq(args[0], 'git');
             eq(args[1], userArgs.concat(['fetch', 'origin', 'my-branch:my-branch', 'opt1', 'opt2']));
+        });
+    });
+
+    describe('clone()', function () {
+        it('runs `git clone` with given repository, directory and options', async function () {
+            const stdout = await clone(
+                'this-is-token',
+                'github.com/user/other-repo',
+                './benchmark-data-repository',
+                [],
+                '--branch',
+                'my-branch',
+                '--single-branch',
+                '--depth',
+                '1',
+            );
+            const args = fakedExec.lastArgs;
+
+            eq(stdout, 'this is test');
+            ok(args);
+            eq(args[0], 'git');
+            eq(
+                args[1],
+                userArgs.concat([
+                    'clone',
+                    'https://x-access-token:this-is-token@github.com/user/other-repo.git',
+                    './benchmark-data-repository',
+                    '--branch',
+                    'my-branch',
+                    '--single-branch',
+                    '--depth',
+                    '1',
+                ]),
+            );
         });
     });
 });

@@ -51,6 +51,7 @@ class GitSpy {
     }
 }
 const gitSpy = new GitSpy();
+const rmRFSpy: string[] = [];
 
 interface RepositoryPayloadSubset {
     private: boolean;
@@ -111,6 +112,12 @@ jest.mock('../src/git', () => ({
         return '';
     },
 }));
+jest.mock('@actions/io', () => ({
+    ...jest.requireActual('@actions/io'),
+    async rmRF(inputPath: string) {
+        rmRFSpy.push(inputPath); // Record only; do not delete test fixtures on rollback
+    },
+}));
 
 describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBenchmark() - %s', function (serverUrl) {
     const savedCwd = process.cwd();
@@ -123,6 +130,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
         jest.unmock('@actions/core');
         jest.unmock('@actions/github');
         jest.unmock('../src/git');
+        jest.unmock('@actions/io');
         process.chdir(savedCwd);
     });
 
@@ -936,6 +944,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
         });
         afterEach(async function () {
             gitSpy.clear();
+            rmRFSpy.length = 0;
             delete (global as any).window;
             for (const p of [
                 path.join('data-dir', 'data.js'),
@@ -1035,6 +1044,44 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
         }
 
+        const otherRepoGitArgs = [
+            '--work-tree=./benchmark-data-repository',
+            '--git-dir=./benchmark-data-repository/.git',
+        ];
+
+        function otherRepoGitHistory(cfg: { addIndexHtml?: boolean } = {}): [GitFunc, unknown[]][] {
+            const addIndexHtml = cfg.addIndexHtml ?? true;
+            const hist: Array<[GitFunc, unknown[]] | undefined> = [
+                [
+                    'clone',
+                    [
+                        'dummy token',
+                        'https://github.com/user/other-repo',
+                        './benchmark-data-repository',
+                        [],
+                        '--branch',
+                        'gh-pages',
+                        '--single-branch',
+                        '--depth',
+                        '1',
+                    ],
+                ],
+                ['cmd', [otherRepoGitArgs, 'add', path.join('data-dir', 'data.js')]],
+                addIndexHtml ? ['cmd', [otherRepoGitArgs, 'add', path.join('data-dir', 'index.html')]] : undefined,
+                [
+                    'cmd',
+                    [
+                        otherRepoGitArgs,
+                        'commit',
+                        '-m',
+                        'add Test benchmark (cargo) benchmark result for current commit id',
+                    ],
+                ],
+                ['push', ['dummy token', 'https://github.com/user/other-repo', 'gh-pages', otherRepoGitArgs]],
+            ];
+            return hist.filter((x: [GitFunc, unknown[]] | undefined): x is [GitFunc, unknown[]] => x !== undefined);
+        }
+
         const normalCases: Array<{
             it: string;
             config: Config;
@@ -1083,56 +1130,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 135)],
                 },
                 gitServerUrl: serverUrl,
-                gitHistory: [
-                    [
-                        'clone',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            './benchmark-data-repository',
-                            [],
-                            '--branch',
-                            'gh-pages',
-                            '--single-branch',
-                            '--depth',
-                            '1',
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'data.js'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'index.html'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'commit',
-                            '-m',
-                            'add Test benchmark (cargo) benchmark result for current commit id',
-                        ],
-                    ],
-                    [
-                        'push',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                        ],
-                    ],
-                ],
+                gitHistory: otherRepoGitHistory(),
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
             {
@@ -1148,56 +1146,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 135)],
                 },
                 gitServerUrl: serverUrl,
-                gitHistory: [
-                    [
-                        'clone',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            './benchmark-data-repository',
-                            [],
-                            '--branch',
-                            'gh-pages',
-                            '--single-branch',
-                            '--depth',
-                            '1',
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'data.js'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'add',
-                            path.join('data-dir', 'index.html'),
-                        ],
-                    ],
-                    [
-                        'cmd',
-                        [
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                            'commit',
-                            '-m',
-                            'add Test benchmark (cargo) benchmark result for current commit id',
-                        ],
-                    ],
-                    [
-                        'push',
-                        [
-                            'dummy token',
-                            'https://github.com/user/other-repo',
-                            'gh-pages',
-                            ['--work-tree=./benchmark-data-repository', '--git-dir=./benchmark-data-repository/.git'],
-                        ],
-                    ],
-                ],
+                gitHistory: otherRepoGitHistory(),
                 expectedDataBaseDirectory: 'benchmark-data-repository',
             },
             {
@@ -1494,6 +1443,31 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 }
                 ok(t.error.test(err.message), `'${err.message}' did not match to ${t.error}`);
             }
+        });
+
+        it('re-clones other repository after rollback when push is rejected', async function () {
+            gitSpy.pushFailure = '... [remote rejected] ...';
+            gitSpy.pushFailureCount = 1;
+            const config = { ...defaultCfg, ghRepository: 'https://github.com/user/other-repo' };
+            const added: Benchmark = {
+                commit: commit('current commit id'),
+                date: lastUpdate,
+                tool: 'cargo',
+                benches: [bench('bench_fib_10', 135)],
+            };
+
+            const dataDirPath = path.join('benchmark-data-repository', config.benchmarkDataDirPath);
+            await fs.copyFile(path.join(dataDirPath, 'original_data.js'), path.join(dataDirPath, 'data.js'));
+
+            await writeBenchmark(added, config);
+
+            expect(gitSpy.history).toEqual([
+                ...otherRepoGitHistory(),
+                ['cmd', [otherRepoGitArgs, 'reset', '--hard', 'HEAD~1']],
+                // index.html created by the first attempt survives because rmRF is mocked, so it is not added again
+                ...otherRepoGitHistory({ addIndexHtml: false }),
+            ]);
+            expect(rmRFSpy).toEqual(['./benchmark-data-repository']);
         });
     });
 });
