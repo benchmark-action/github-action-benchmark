@@ -60,9 +60,9 @@ export async function cmd(additionalGitOptions: string[], ...args: string[]): Pr
     const userArgs = [
         ...additionalGitOptions,
         '-c',
-        'user.name=github-action-benchmark',
+        'user.name=github-actions[bot]',
         '-c',
-        'user.email=github@users.noreply.github.com',
+        'user.email=github-actions[bot]@users.noreply.github.com',
         '-c',
         `http.${serverUrl}/.extraheader=`, // This config is necessary to support actions/checkout@v2 (#9)
     ];
