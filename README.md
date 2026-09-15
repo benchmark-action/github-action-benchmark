@@ -309,7 +309,8 @@ jobs:
 The step which runs `github-action-benchmark` does followings:
 
 1. Extract benchmark result from the output in `output.txt`
-2. Switch branch to `gh-pages`
+2. Switch branch to `gh-pages` (when `gh-repository` is set, the action instead shallow-clones only the
+   `gh-pages` branch of that repository)
 3. Read existing benchmark results from `dev/bench/data.js`
 4. Update `dev/bench/data.js` with the extracted benchmark result
 5. Generate a commit to store the update in `gh-pages` branch

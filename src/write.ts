@@ -367,6 +367,8 @@ async function writeBenchmarkToGitHubPagesWithRetry(
 
     if (githubToken && !skipFetchGhPages && ghRepository) {
         benchmarkBaseDir = './benchmark-data-repository';
+        // Shallow, single-branch clone: only the tip of the pages branch is needed. Full clones of large
+        // repositories can take 20+ minutes and widen the window for push contention with other runs.
         await git.clone(
             githubToken,
             ghRepository,
