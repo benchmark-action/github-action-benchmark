@@ -154,11 +154,13 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
 
           // Render footer
           document.getElementById('dl-button').onclick = () => {
-            const dataUrl = 'data:,' + JSON.stringify(data, null, 2);
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = dataUrl;
+            a.href = url;
             a.download = 'benchmark_data.json';
             a.click();
+            URL.revokeObjectURL(url);
           };
 
           // Prepare data points for charts
