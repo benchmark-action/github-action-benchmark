@@ -149,12 +149,85 @@ function floatStr(n: number) {
     return n.toString();
 }
 
-function strVal(b: BenchmarkResult): string {
-    let s = `\`${b.value}\` ${b.unit}`;
-    if (b.range) {
-        s += ` (\`${b.range}\`)`;
+const round = (n: number, places = 3): number => parseFloat(n.toFixed(places));
+
+function strDuration(n: number): string {
+    let unit = 'ns';
+    if (n >= 6e10) {
+        let secs = n / 1e9;
+        const mins = Math.floor(secs / 60);
+        secs %= 60;
+        return `${mins}m ${round(secs)}s`;
     }
-    return s;
+
+    if (n >= 1e9) {
+        unit = 's';
+        n /= 1e9;
+    } else if (n >= 1e6) {
+        unit = 'ms';
+        n /= 1e6;
+    } else if (n >= 1e3) {
+        unit = 'μs';
+        n /= 1e3;
+    }
+
+    return `${round(n)}${unit}`;
+}
+
+const NS_PER_TIME_UNIT: { [unit: string]: number } = {
+    ns: 1,
+    us: 1e3,
+    ms: 1e6,
+    s: 1e9,
+};
+
+interface DurationFormat {
+    timeUnit: string;
+    suffix: string;
+}
+
+function parseDurationFormat(unit: string): DurationFormat | null {
+    const perIter = unit.match(/^(ns|us|ms|s)\/(\w+)$/);
+    if (perIter) {
+        return { timeUnit: perIter[1], suffix: `/${perIter[2]}` };
+    }
+
+    const duration = unit.match(/^(ns|us|ms|s)$/);
+    if (duration) {
+        return { timeUnit: duration[1], suffix: '' };
+    }
+
+    return null;
+}
+
+function toNanoseconds(value: number, timeUnit: string): number {
+    return value * NS_PER_TIME_UNIT[timeUnit];
+}
+
+const RANGE_REGEX = /^±\s*(\d+(?:\.\d+)?)$/;
+
+function strRange(range: string | undefined, timeUnit: string): string | undefined {
+    const m = range?.match(RANGE_REGEX);
+    if (!m) {
+        return range;
+    }
+    return '± ' + strDuration(toNanoseconds(parseFloat(m[1]), timeUnit));
+}
+
+function strRawValue(b: BenchmarkResult): string {
+    const value = `\`${b.value} ${b.unit}\``;
+    return b.range ? `${value}<br>(\`${b.range}\`)` : value;
+}
+
+function strDurationValue(b: BenchmarkResult, format: DurationFormat): string {
+    const value = `\`${strDuration(toNanoseconds(b.value, format.timeUnit))}${format.suffix}\``;
+    const range = strRange(b.range, format.timeUnit);
+    return range ? `${value}<br>(\`${range}\`)` : value;
+}
+
+function strVal(b: BenchmarkResult): string {
+    const duration = parseDurationFormat(b.unit);
+    return duration === null ? strRawValue(b) : strDurationValue(b, duration);
 }
 
 function commentFooter(): string {
