@@ -221,6 +221,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
             expectedAdded?: Benchmark;
             error?: string[];
             commitComment?: string;
+            expectedComment?: string[];
             repoPayload?: null | RepositoryPayloadSubset;
             gitServerUrl?: string;
         }> = [
@@ -408,12 +409,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 25000)], // Exceeds 2.0 threshold
                 },
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
@@ -456,12 +461,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 210), bench('bench_fib_20', 2250)], // Exceeds 2.0 threshold
                 },
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '| `bench_fib_20` | `2250` ns/iter (`± 20`) | `900` ns/iter (`± 20`) | `2.50` |',
@@ -495,12 +504,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('benchFib10', 20, '+-20', 'ops/sec')], // ops/sec so bigger is better
                 },
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `benchFib10` | `20` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `5` |',
                     '',
@@ -533,12 +546,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                 },
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    '# Performance Report',
                     '',
-                    'Possible performance regression was detected for benchmark.',
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '',
@@ -571,12 +588,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                     benches: [bench('bench_fib_10', 210)], // Exceeds 2.0 threshold
                 },
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '',
@@ -712,15 +733,111 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 // Though first item is truncated due to maxItemsInChart, alert still can be raised since previous data
                 // is obtained before truncating an array of data items.
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '| `bench_fib_20` | `25000` ns/iter (`± 20`) | `10000` ns/iter (`± 20`) | `2.50` |',
+                    '',
+                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                    '',
+                    'CC: @user',
+                ],
+            },
+            {
+                it: 'adds improvements to table',
+                config: { ...defaultCfg, maxItemsInChart: 1 },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'go',
+                                benches: [bench('bench_fib_10', 100), bench('bench_fib_20', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'go',
+                    benches: [bench('bench_fib_10', 300), bench('bench_fib_20', 30)], // Exceeds 2.0 threshold
+                },
+                // Though first item is truncated due to maxItemsInChart, alert still can be raised since previous data
+                // is obtained before truncating an array of data items.
+                error: [
+                    "# Performance Report for **'Test benchmark'**",
+                    '',
+                    'Benchmark result(s) exceed the regression ratio of 2 or show improvements of more than 2x.',
+                    '',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
+                    '|-|-|-|-|',
+                    '| `bench_fib_10` | `300` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `3` |',
+                    '',
+                    '### :rocket: The following benchmarks show improvements:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
+                    '|-|-|-|-|',
+                    '| `bench_fib_20` | `30` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `0.30` |',
+                    '',
+                    `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
+                    '',
+                    'CC: @user',
+                ],
+            },
+            {
+                it: 'describes only the improvement threshold for an improvement-only report',
+                config: { ...defaultCfg, commentOnAlert: true, githubToken: 'dummy token' },
+                data: {
+                    lastUpdate,
+                    repoUrl,
+                    entries: {
+                        'Test benchmark': [
+                            {
+                                commit: commit('prev commit id'),
+                                date: lastUpdate - 1000,
+                                tool: 'go',
+                                benches: [bench('bench_fib_10', 100)],
+                            },
+                        ],
+                    },
+                },
+                added: {
+                    commit: commit('current commit id'),
+                    date: lastUpdate,
+                    tool: 'go',
+                    benches: [bench('bench_fib_10', 30)],
+                },
+                expectedComment: [
+                    "# Performance Report for **'Test benchmark'**",
+                    '',
+                    'Benchmark result(s) show improvements of more than 2x.',
+                    '',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :rocket: The following benchmarks show improvements:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
+                    '|-|-|-|-|',
+                    '| `bench_fib_10` | `30` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `0.30` |',
                     '',
                     `This comment was automatically generated by [workflow](${serverUrl}/user/repo/actions?query=workflow%3AWorkflow%20name) using [github-action-benchmark](https://github.com/marketplace/actions/continuous-benchmark).`,
                     '',
@@ -753,10 +870,12 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 error: [
                     '# Performance Report',
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `0`.',
+                    "For benchmark **'Test benchmark'**.",
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `benchFib10` | `100` ops/sec (`+-20`) | `100` ops/sec (`+-20`) | `1` |',
                     '',
@@ -791,12 +910,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 error: [
                     '1 of 1 alerts exceeded the failure threshold `3` specified by fail-threshold input:',
                     '',
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `350` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `3.50` |',
                     '',
@@ -833,7 +956,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
         ];
 
         it.each(normalCases)('$it', async function (t) {
-            const { data, added, config, repoPayload, error, commitComment } = t;
+            const { data, added, config, repoPayload, error, commitComment, expectedComment } = t;
             const expectedAdded = t.expectedAdded ?? added;
 
             gitHubContext.payload.repository = {
@@ -893,6 +1016,11 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 expect(caughtError.message).toEqual(expected);
             }
 
+            if (expectedComment !== undefined) {
+                const expectedMessage = wrapBodyWithBenchmarkTags('Test benchmark Alert', expectedComment.join('\n'));
+                expect(fakedRepos.lastCall().body).toEqual(expectedMessage);
+            }
+
             if (commitComment !== undefined) {
                 ok(caughtError);
                 // Last line is appended only for failure message
@@ -919,7 +1047,7 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
 
                 const h1 = query('h1');
                 expect(1).toEqual(h1.length);
-                expect(':warning: Performance Alert :warning:').toEqual(h1.text());
+                expect("Performance Report for 'Test benchmark'").toEqual(h1.text());
 
                 const tr = query('tbody tr');
                 expect(added.benches.length).toEqual(tr.length);
@@ -1236,12 +1364,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 gitServerUrl: serverUrl,
                 gitHistory: gitHistory(),
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '',
@@ -1260,12 +1392,16 @@ describe.each(['https://github.com', 'https://github.enterprise.corp'])('writeBe
                 gitServerUrl: serverUrl,
                 gitHistory: gitHistory(),
                 error: [
-                    '# :warning: **Performance Alert** :warning:',
+                    "# Performance Report for **'Test benchmark'**",
                     '',
-                    "Possible performance regression was detected for benchmark **'Test benchmark'**.",
-                    'Benchmark result of this commit is worse than the previous benchmark result exceeding threshold `2`.',
+                    'Benchmark result(s) exceed the regression ratio of 2.',
                     '',
-                    '| Benchmark suite | Current: current commit id | Previous: prev commit id | Ratio |',
+                    'Previous commit: prev commit id',
+                    'Current commit: current commit id',
+                    '',
+                    '### :snail: The following benchmarks show regressions:',
+                    '',
+                    '| Benchmark suite | Current | Previous | Ratio |',
                     '|-|-|-|-|',
                     '| `bench_fib_10` | `210` ns/iter (`± 20`) | `100` ns/iter (`± 20`) | `2.10` |',
                     '',
