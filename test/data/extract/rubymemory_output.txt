@@ -1,0 +1,10 @@
+Calculating -------------------------------------
+             fib(10)     0.000  memsize (     0.000  retained)
+                         0.000  objects (     0.000  retained)
+                         0.000  strings (     0.000  retained)
+  fib(10).to_s * 100   360.000  memsize (     0.000  retained)
+                         2.000  objects (     0.000  retained)
+                         2.000  strings (     0.000  retained)
+     Array.new(1000)     8.040k memsize (     0.000  retained)
+                         1.000  objects (     0.000  retained)
+                         0.000  strings (     0.000  retained)

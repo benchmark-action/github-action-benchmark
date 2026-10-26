@@ -33,6 +33,8 @@ export const VALID_TOOLS = [
     'go',
     'benchmarkjs',
     'benchmarkluau',
+    'rubyruntime',
+    'rubymemory',
     'pytest',
     'googlecpp',
     'catch2',

@@ -1,0 +1,5 @@
+ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +PRISM [arm64-darwin24]
+Warming up --------------------------------------
+           noisy sum     1.000 i/100ms
+Calculating -------------------------------------
+           noisy sum     12.345 (± Inf%) i/s   (81.00 ms/i) -     62.000 in   5.022301s

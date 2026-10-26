@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'benchmark-ips', '~> 2.14'
+gem 'benchmark-memory', '~> 0.2'

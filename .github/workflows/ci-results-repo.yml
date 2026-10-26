@@ -277,6 +277,49 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: npx tsx scripts/ci_validate_modification.ts 'Python Benchmark with pytest-benchmark' './benchmark-data-repository'
 
+  ruby-benchmark-ips:
+    name: Run Ruby benchmark-ips and benchmark-memory example - github.com/benchmark-action/github-action-benchmark-results
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+          working-directory: examples/ruby
+      - run: npm ci
+      - run: npm run build
+      - name: Run benchmark
+        run: cd examples/ruby && bundle exec ruby bench.rb | tee output.txt
+
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Ruby Benchmark with benchmark-ips
+          tool: 'rubyruntime'
+          output-file-path: examples/ruby/output.txt
+          fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: npx tsx scripts/ci_validate_modification.ts 'Ruby Benchmark with benchmark-ips' './benchmark-data-repository'
+      - name: Run memory benchmark
+        run: cd examples/ruby && bundle exec ruby bench_memory.rb | tee memory_output.txt
+
+      - name: Store memory benchmark result
+        uses: ./
+        with:
+          name: Ruby Memory Benchmark with benchmark-memory
+          tool: 'rubymemory'
+          output-file-path: examples/ruby/memory_output.txt
+          fail-on-alert: true
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: npx tsx scripts/ci_validate_modification.ts 'Ruby Memory Benchmark with benchmark-memory' './benchmark-data-repository'
+
   rust:
     name: Run Rust benchmark example - github.com/benchmark-action/github-action-benchmark-results
     runs-on: ubuntu-latest

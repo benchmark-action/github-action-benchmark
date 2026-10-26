@@ -70,6 +70,10 @@ function biggerIsBetter(tool: ToolType): boolean {
             return true;
         case 'benchmarkluau':
             return false;
+        case 'rubyruntime':
+            return true;
+        case 'rubymemory':
+            return false;
         case 'pytest':
             return true;
         case 'googlecpp':

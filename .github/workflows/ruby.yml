@@ -1,0 +1,93 @@
+name: Ruby Example with benchmark-ips and benchmark-memory
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run Ruby benchmark-ips and benchmark-memory example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+          working-directory: examples/ruby
+      # Use the locally built action until a released `v1` supports the Ruby tools
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Run benchmark
+        shell: bash
+        run: cd examples/ruby && bundle exec ruby bench.rb | tee output.txt
+
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Ruby Benchmark with benchmark-ips
+          tool: 'rubyruntime'
+          output-file-path: examples/ruby/output.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz'
+
+      - name: Store benchmark result - separate results repo
+        uses: ./
+        with:
+          name: Ruby Benchmark with benchmark-ips
+          tool: 'rubyruntime'
+          output-file-path: examples/ruby/output.txt
+          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz'
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'
+
+      - name: Run memory benchmark
+        shell: bash
+        run: cd examples/ruby && bundle exec ruby bench_memory.rb | tee memory_output.txt
+
+      - name: Store memory benchmark result
+        uses: ./
+        with:
+          name: Ruby Memory Benchmark with benchmark-memory
+          tool: 'rubymemory'
+          output-file-path: examples/ruby/memory_output.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible memory regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz'
+
+      - name: Store memory benchmark result - separate results repo
+        uses: ./
+        with:
+          name: Ruby Memory Benchmark with benchmark-memory
+          tool: 'rubymemory'
+          output-file-path: examples/ruby/memory_output.txt
+          github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
+          auto-push: true
+          # Show alert with commit comment on detecting possible memory regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@ktrz'
+          gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'

@@ -1,0 +1,20 @@
+ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +PRISM [arm64-darwin24]
+Warming up --------------------------------------
+                             fib(10)    39.604k i/100ms
+a very long benchmark label (fib 15)     3.220k i/100ms
+             Array#sort with 3 items     1.158M i/100ms
+Calculating -------------------------------------
+                             fib(10)    401.757k (± 1.1%) i/s    (2.49 μs/i) -    435.644k in   1.084348s
+a very long benchmark label (fib 15)     36.142k (± 2.8%) i/s   (27.67 μs/i) -     38.640k in   1.069104s
+             Array#sort with 3 items     11.625M (± 1.9%) i/s   (86.02 ns/i) -     12.737M in   1.095681s
+
+Comparison:
+             Array#sort with 3 items: 11624692.8 i/s
+                             fib(10):   401756.6 i/s - 28.93x  slower
+a very long benchmark label (fib 15):    36142.4 i/s - 321.64x  slower
+
+ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +PRISM [arm64-darwin24]
+Warming up --------------------------------------
+          raw fib(5)    427320 i/100ms
+Calculating -------------------------------------
+          raw fib(5)  4438233.7 (±2.0%) i/s  (225.31 ns/i) -    4700520 in   1.059097s

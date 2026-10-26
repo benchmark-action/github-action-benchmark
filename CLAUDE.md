@@ -23,7 +23,7 @@ This is a GitHub Action that collects benchmark results from various tools and t
 
 1. **`src/index.ts`** - Entry point that orchestrates the action
 2. **`src/config.ts`** - Parses and validates action inputs from `action.yml`
-3. **`src/extract.ts`** - Parses benchmark output from 12+ supported tools (cargo, go, benchmarkjs, pytest, googlecpp, catch2, julia, jmh, benchmarkdotnet, benchmarkluau, customBiggerIsBetter, customSmallerIsBetter)
+3. **`src/extract.ts`** - Parses benchmark output from 12+ supported tools (cargo, go, benchmarkjs, pytest, googlecpp, catch2, julia, jmh, benchmarkdotnet, benchmarkluau, rubyruntime, rubymemory, customBiggerIsBetter, customSmallerIsBetter)
 4. **`src/write.ts`** - Handles result storage: commits to gh-pages branch, alerts on regressions, and generates dashboard HTML
 
 ### Key Types
@@ -42,7 +42,7 @@ Each benchmark tool has its own extraction function in `src/extract.ts` (e.g., `
 
 ## Supported Benchmark Tools
 
-The `tool` input accepts: `cargo`, `go`, `benchmarkjs`, `benchmarkluau`, `pytest`, `googlecpp`, `catch2`, `julia`, `jmh`, `benchmarkdotnet`, `customBiggerIsBetter`, `customSmallerIsBetter`
+The `tool` input accepts: `cargo`, `go`, `benchmarkjs`, `benchmarkluau`, `rubyruntime`, `rubymemory`, `pytest`, `googlecpp`, `catch2`, `julia`, `jmh`, `benchmarkdotnet`, `customBiggerIsBetter`, `customSmallerIsBetter`
 
 ## Test Data
 

@@ -305,6 +305,53 @@ jobs:
           comment-on-alert: true
       - run: npx tsx scripts/ci_validate_modification.ts 'Python Benchmark with pytest-benchmark'
 
+  ruby-benchmark-ips:
+    name: Run Ruby benchmark-ips and benchmark-memory example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+          working-directory: examples/ruby
+      - run: npm ci
+      - run: npm run build
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages:gh-pages
+      - name: Run benchmark
+        run: cd examples/ruby && bundle exec ruby bench.rb | tee output.txt
+      - name: Store benchmark result
+        uses: ./
+        with:
+          name: Ruby Benchmark with benchmark-ips
+          tool: 'rubyruntime'
+          output-file-path: examples/ruby/output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
+      - run: npx tsx scripts/ci_validate_modification.ts 'Ruby Benchmark with benchmark-ips'
+      - name: Run memory benchmark
+        run: cd examples/ruby && bundle exec ruby bench_memory.rb | tee memory_output.txt
+      - name: Store memory benchmark result
+        uses: ./
+        with:
+          name: Ruby Memory Benchmark with benchmark-memory
+          tool: 'rubymemory'
+          output-file-path: examples/ruby/memory_output.txt
+          skip-fetch-gh-pages: true
+          fail-on-alert: true
+          summary-always: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
+      - run: npx tsx scripts/ci_validate_modification.ts 'Ruby Memory Benchmark with benchmark-memory'
+
   rust:
     name: Run Rust benchmark example
     runs-on: ubuntu-latest

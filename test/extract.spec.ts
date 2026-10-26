@@ -112,6 +112,30 @@ describe('extractResult()', function () {
             file: 'benchmarkluau_output.txt',
         },
         {
+            tool: 'rubyruntime',
+            file: 'rubyruntime_output.txt',
+        },
+        {
+            tool: 'rubyruntime',
+            file: 'rubyruntime_output_compare.txt',
+        },
+        {
+            tool: 'rubyruntime',
+            file: 'rubyruntime_output_inf.txt',
+        },
+        {
+            tool: 'rubyruntime',
+            file: 'rubyruntime_output_v2_7.txt',
+        },
+        {
+            tool: 'rubymemory',
+            file: 'rubymemory_output.txt',
+        },
+        {
+            tool: 'rubymemory',
+            file: 'rubymemory_output_compare.txt',
+        },
+        {
             tool: 'pytest',
             file: 'pytest_output.json',
         },

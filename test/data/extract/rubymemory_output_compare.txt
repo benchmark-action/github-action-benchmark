@@ -1,0 +1,20 @@
+Calculating -------------------------------------
+             nothing     0.000  memsize (     0.000  retained)
+                         0.000  objects (     0.000  retained)
+                         0.000  strings (     0.000  retained)
+     Array.new(1000)     8.040k memsize (     0.000  retained)
+                         1.000  objects (     0.000  retained)
+                         0.000  strings (     0.000  retained)
+a very long benchmark label (strings)
+                       177.504k memsize (     0.000  retained)
+                         3.992k objects (     0.000  retained)
+                        50.000  strings (     0.000  retained)
+
+Comparison:
+             nothing:          0 allocated
+     Array.new(1000):       8040 allocated - Infx more
+a very long benchmark label (strings):     177504 allocated - Infx more
+Calculating -------------------------------------
+     retain 1M bytes     1.000M memsize (     1.000M retained)
+                         2.000  objects (     1.000  retained)
+                         2.000  strings (     1.000  retained)

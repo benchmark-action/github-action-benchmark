@@ -1,0 +1,22 @@
+Warming up --------------------------------------
+             fib(10)    38.184k i/100ms
+a very long benchmark label (fib 15)
+                         3.564k i/100ms
+Array#sort with 3 items
+                       588.405k i/100ms
+Calculating -------------------------------------
+             fib(10)    398.339k (± 3.0%) i/s -    420.024k in   1.055429s
+a very long benchmark label (fib 15)
+                         36.383k (± 2.6%) i/s -     39.204k in   1.078318s
+Array#sort with 3 items
+                         11.716M (± 1.1%) i/s -     11.768M in   1.004573s
+
+Comparison:
+Array#sort with 3 items: 11715928.9 i/s
+             fib(10):   398339.3 i/s - 29.41x  slower
+a very long benchmark label (fib 15):    36382.6 i/s - 322.02x  slower
+
+Warming up --------------------------------------
+          raw fib(5)    319679 i/100ms
+Calculating -------------------------------------
+          raw fib(5)  4520276.5 (±1.2%) i/s -    4795185 in   1.060967s

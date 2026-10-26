@@ -115,6 +115,8 @@ export const DEFAULT_INDEX_HTML = String.raw`<!DOCTYPE html>
           go: '#00add8',
           benchmarkjs: '#f1e05a',
           benchmarkluau: '#000080',
+          rubyruntime: '#701516',
+          rubymemory: '#701516',
           pytest: '#3572a5',
           googlecpp: '#f34b7d',
           catch2: '#f34b7d',

@@ -26,6 +26,7 @@ This action currently supports the following tools:
 - [Benchmark.Net][benchmarkdotnet] for .Net projects
 - [benchmarkluau](https://github.com/Roblox/luau/tree/master/bench) for Luau projects
 - [JMH][jmh] for Java projects
+- [benchmark-ips][] and [benchmark-memory][] for Ruby projects
 - Custom benchmarks where either 'biggerIsBetter' or 'smallerIsBetter'
 
 Multiple languages in the same repository are supported for polyglot projects.
@@ -50,6 +51,7 @@ definitions are in [.github/workflows/](./.github/workflows) directory. Live wor
 | Julia | [![Julia Example][julia-badge]][julia-workflow-example]                 | [examples/julia](./examples/julia)           |
 | .Net         | [![C# Benchmark.Net Example Workflow][benchmarkdotnet-badge]][benchmarkdotnet-workflow-example] | [examples/benchmarkdotnet](./examples/benchmarkdotnet) |
 | Java         | [![Java Example Workflow][java-badge]][java-workflow-example] | [examples/java](./examples/java) |
+| Ruby         | [![Ruby Example Workflow][ruby-badge]][ruby-workflow-example] | [examples/ruby](./examples/ruby) |
 | Luau         | Coming soon | Coming soon |
 
 All benchmark charts from above workflows are gathered in GitHub pages:
@@ -362,6 +364,7 @@ and store it to file. Then specify the file path to `output-file-path` input.
 - [catch2 for C++ projects](./examples/cpp/README.md)
 - [BenchmarkTools.jl for Julia projects](./examples/julia/README.md)
 - [Benchmark.Net for .Net projects](./examples/benchmarkdotnet/README.md)
+- [benchmark-ips and benchmark-memory for Ruby projects](./examples/ruby/README.md)
 - [benchmarkluau for Luau projects](#) - Examples for this are still a work in progress.
 
 These examples are run in workflows of this repository as described in the 'Examples' section above.
@@ -384,7 +387,7 @@ Name of the benchmark. This value must be identical across all benchmarks in you
 - Default: N/A
 
 Tool for running benchmark. The value must be one of `"cargo"`, `"go"`, `"benchmarkjs"`, `"pytest"`,
-`"googlecpp"`, `"catch2"`, `"julia"`, `"jmh"`, `"benchmarkdotnet"`,`"benchmarkluau"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
+`"googlecpp"`, `"catch2"`, `"julia"`, `"jmh"`, `"benchmarkdotnet"`,`"benchmarkluau"`, `"rubyruntime"`, `"rubymemory"`, `"customBiggerIsBetter"`, `"customSmallerIsBetter"`.
 
 #### `output-file-path` (Required)
 
@@ -659,6 +662,7 @@ Every release will appear on your GitHub notifications page.
 [catch2-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/catch2.yml/badge.svg
 [julia-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/julia.yml/badge.svg
 [java-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/java.yml/badge.svg
+[ruby-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/ruby.yml/badge.svg
 [github-action]: https://github.com/features/actions
 [cargo-bench]: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
 [benchmarkjs]: https://benchmarkjs.com/
@@ -675,6 +679,7 @@ Every release will appear on your GitHub notifications page.
 [catch2-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Catch2+C%2B%2B+Example%22
 [julia-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Julia+Example+with+BenchmarkTools.jl%22
 [java-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22JMH+Example%22
+[ruby-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Ruby+Example+with+benchmark-ips+and+benchmark-memory%22
 [help-watch-release]: https://docs.github.com/en/github/receiving-notifications-about-activity-on-github/watching-and-unwatching-releases-for-a-repository
 [help-github-token]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 [minimal-workflow-example]: https://github.com/benchmark-action/github-action-benchmark/actions?query=workflow%3A%22Example+for+minimal+setup%22
@@ -685,6 +690,8 @@ Every release will appear on your GitHub notifications page.
 [lighthouse-ci-action]: https://github.com/treosh/lighthouse-ci-action
 [lighthouse-ci]: https://github.com/GoogleChrome/lighthouse-ci
 [BenchmarkTools.jl]: https://github.com/JuliaCI/BaseBenchmarks.jl
+[benchmark-ips]: https://github.com/evanphx/benchmark-ips
+[benchmark-memory]: https://github.com/michaelherold/benchmark-memory
 [benchmarkdotnet]: https://benchmarkdotnet.org
 [benchmarkdotnet-badge]: https://github.com/benchmark-action/github-action-benchmark/actions/workflows/benchmarkdotnet.yml/badge.svg
 [benchmarkdotnet-workflow-example]: https://github.com/rhysd/github-action-benchmark/actions?query=workflow%3A%22Benchmark.Net+Example%22
